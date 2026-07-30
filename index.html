@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vernissages SP — Galerias, Aberturas e Roteiros</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0e0e11">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="dados.js"></script>
+<style>
+  :root{
+    --bg:#0e0e11; --panel:#17171c; --panel2:#1e1e25; --border:#2a2a33;
+    --text:#ececf0; --muted:#9a9aa6; --accent:#e8c15a; --accent2:#c96f4a;
+    --green:#7fb98a; --red:#d97b6c; --blue:#7da7d9;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.5}
+  header{padding:26px 32px 16px;border-bottom:1px solid var(--border);display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between}
+  header h1{font-size:1.6rem;font-weight:600;letter-spacing:.5px}
+  header h1 span{color:var(--accent)}
+  header p{color:var(--muted);font-size:.85rem;margin-top:3px}
+  #search{background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:24px;
+    padding:9px 18px;font-size:.9rem;width:320px;max-width:100%}
+  #search:focus{outline:none;border-color:var(--accent)}
+  .wrap{max-width:1320px;margin:0 auto;padding:0 32px 60px}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:22px 0}
+  .kpi{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:14px 16px}
+  .kpi .num{font-size:1.8rem;font-weight:700;color:var(--accent)}
+  .kpi .lbl{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.8px}
+  h2{font-size:1rem;font-weight:600;margin:28px 0 10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent)}
+  .filters{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 16px;align-items:center}
+  .chip{background:var(--panel2);border:1px solid var(--border);color:var(--muted);border-radius:20px;
+    padding:6px 14px;font-size:.82rem;cursor:pointer;transition:.15s;user-select:none}
+  .chip:hover{border-color:var(--accent)}
+  .chip.on{background:var(--accent);color:#111;border-color:var(--accent);font-weight:600}
+  select{background:var(--panel2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:6px 10px;font-size:.85rem}
+  .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
+  @media(max-width:950px){.grid{grid-template-columns:1fr}}
+  #map{height:560px;border-radius:12px;border:1px solid var(--border);z-index:0}
+  .cards{display:flex;flex-direction:column;gap:10px;max-height:560px;overflow-y:auto;padding-right:6px}
+  .cards::-webkit-scrollbar,.dirbody::-webkit-scrollbar{width:8px}
+  .cards::-webkit-scrollbar-thumb,.dirbody::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+  .card{background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--muted);border-radius:10px;padding:12px 14px;transition:.15s}
+  .card:hover{border-color:var(--accent)}
+  .card.opening{border-left-color:var(--accent)}
+  .card.closing{border-left-color:var(--red)}
+  .card.current{border-left-color:var(--green)}
+  .card.fair{border-left-color:var(--accent2)}
+  .card .title{font-weight:600;font-size:.94rem;cursor:pointer}
+  .card .venue{color:var(--accent2);font-size:.84rem;margin-top:2px}
+  .card .addr{color:var(--muted);font-size:.76rem;margin-top:2px}
+  .card .meta{color:var(--muted);font-size:.76rem;margin-top:6px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .tag{display:inline-block;padding:1px 8px;border-radius:10px;font-size:.68rem;font-weight:600;letter-spacing:.4px}
+  .tag.opening{background:rgba(232,193,90,.15);color:var(--accent)}
+  .tag.closing{background:rgba(217,123,108,.15);color:var(--red)}
+  .tag.current{background:rgba(127,185,138,.15);color:var(--green)}
+  .tag.fair{background:rgba(201,111,74,.2);color:var(--accent2)}
+  .btn{background:var(--panel2);border:1px solid var(--border);color:var(--blue);border-radius:14px;
+    padding:2px 10px;font-size:.72rem;cursor:pointer;text-decoration:none;display:inline-block}
+  .btn:hover{border-color:var(--blue)}
+  .btn.add{color:var(--accent)}
+  .btn.add:hover{border-color:var(--accent)}
+  /* diretório */
+  .dirwrap{background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+  .dirbody{max-height:480px;overflow-y:auto}
+  table{width:100%;border-collapse:collapse;font-size:.84rem}
+  th{position:sticky;top:0;background:var(--panel2);color:var(--muted);text-transform:uppercase;font-size:.7rem;
+    letter-spacing:.8px;padding:10px 14px;text-align:left;cursor:pointer;user-select:none}
+  th:hover{color:var(--accent)}
+  td{padding:9px 14px;border-top:1px solid var(--border);vertical-align:top}
+  td .gname{font-weight:600;cursor:pointer}
+  td .gname:hover{color:var(--accent)}
+  td.actions{white-space:nowrap}
+  .zona{font-size:.7rem;color:var(--muted)}
+  /* roteiro */
+  #routePanel{position:fixed;right:20px;bottom:20px;width:300px;background:var(--panel2);border:1px solid var(--accent);
+    border-radius:14px;padding:14px 16px;z-index:1000;box-shadow:0 8px 30px rgba(0,0,0,.5);display:none}
+  #routePanel h3{font-size:.85rem;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+  #routePanel ol{margin:0 0 10px 18px;font-size:.8rem}
+  #routePanel li{margin:3px 0}
+  #routePanel li span{cursor:pointer;color:var(--red);margin-left:6px}
+  #routePanel .go{background:var(--accent);color:#111;border:none;border-radius:8px;padding:7px 12px;
+    font-weight:600;font-size:.8rem;cursor:pointer;width:100%}
+  #routePanel .clear{background:none;border:none;color:var(--muted);font-size:.72rem;cursor:pointer;margin-top:6px;width:100%}
+  .bars{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:18px 20px}
+  .barrow{display:grid;grid-template-columns:150px 1fr 34px;align-items:center;gap:10px;margin:6px 0;font-size:.83rem}
+  .barrow .bn{color:var(--muted);text-align:right;cursor:pointer}
+  .barrow .bn:hover{color:var(--accent)}
+  .bar{height:13px;border-radius:7px;background:linear-gradient(90deg,var(--accent2),var(--accent))}
+  .barrow .bv{color:var(--text);font-weight:600}
+  .note{color:var(--muted);font-size:.78rem;margin-top:10px}
+  footer{color:var(--muted);font-size:.78rem;margin-top:36px;border-top:1px solid var(--border);padding-top:16px}
+  footer a{color:var(--accent2)}
+  .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--panel2);color:var(--text)}
+  .leaflet-popup-content{font-size:.82rem;line-height:1.45}
+  .leaflet-popup-content b{color:var(--accent)}
+  .leaflet-popup-content a{color:var(--blue)}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>VERNISSAGES <span>SP</span></h1>
+    <p>Galerias, aberturas de exposições e roteiros de arte em São Paulo · atualizado em <span id="upd"></span></p>
+  </div>
+  <input id="search" type="text" placeholder="🔎 Buscar galeria, artista, endereço, bairro…">
+</header>
+<div class="wrap">
+
+  <div class="kpis" id="kpis"></div>
+
+  <h2>Agenda · Aberturas e Exposições</h2>
+  <div class="filters">
+    <span id="statusFilters">
+      <span class="chip on" data-st="all">Tudo</span>
+      <span class="chip" data-st="opening">Próximas aberturas</span>
+      <span class="chip" data-st="current">Em cartaz</span>
+      <span class="chip" data-st="closing">Últimos dias</span>
+    </span>
+    <select id="zonaSel">
+      <option value="all">Todas as zonas</option>
+      <option>Oeste</option><option>Centro</option><option>Sul</option>
+    </select>
+    <select id="bairroSel"><option value="all">Todos os bairros</option></select>
+    <select id="tipoSel">
+      <option value="all">Galerias + institucionais</option>
+      <option value="galeria">Só galerias</option>
+      <option value="institucional">Só institucionais</option>
+    </select>
+    <select id="venueSel"><option value="all">Todas as galerias/espaços</option></select>
+  </div>
+
+  <div class="grid">
+    <div id="map"></div>
+    <div class="cards" id="cards"></div>
+  </div>
+  <p class="note">● dourado = abertura próxima · ● verde = em cartaz · ● vermelho = últimos dias · ● terracota = feira · ● cinza = espaço sem mostra mapeada nesta janela. Clique num ponto ou card para detalhes; use "+ Roteiro" para montar um percurso a pé/carro.</p>
+
+  <h2 id="dirtitle">Diretório de Galerias e Espaços</h2>
+  <div class="dirwrap">
+    <div class="dirbody">
+      <table id="dirTable">
+        <thead><tr>
+          <th data-k="name">Espaço ⇅</th><th data-k="addr">Endereço ⇅</th>
+          <th data-k="bairro">Bairro ⇅</th><th data-k="zona">Zona ⇅</th>
+          <th data-k="tipo">Tipo ⇅</th><th>Ações</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+  <p class="note">Diretório com as principais galerias ativas verificadas + espaços institucionais. O estudo FGV/ArteRef contabiliza 67 galerias do mercado primário na cidade, mas a lista nominal completa não foi publicada — endereços marcados com ~ são aproximados; confirme antes de visitar.</p>
+
+  <h2>Galerias por bairro · mercado primário (FGV/ArteRef)</h2>
+  <div class="bars" id="bars"></div>
+  <p class="note">Clique num bairro para filtrar a agenda e o mapa. Zona Oeste concentra 42 galerias; Centro, 20; Zona Sul, 5.</p>
+
+  <footer>
+    Posições e endereços com ~ são aproximados. Nem toda abertura tem vernissage pública — confirme nos canais de cada espaço.<br>
+    Fontes: <a href="https://artequeacontece.com.br/eventos/categoria/sao-paulo/">Arte Que Acontece</a> ·
+    <a href="https://ocula.com/cities/brazil/sao-paulo-art-galleries/exhibitions/">Ocula São Paulo</a> ·
+    <a href="https://arteref.com/galerias/o-mapa-de-galerias-em-sao-paulo/">ArteRef/FGV</a> ·
+    <a href="https://saopaulosecreto.com/galerias-de-arte-em-sao-paulo/">São Paulo Secreto</a> ·
+    <a href="https://www.guiadasartes.com.br/sao-paulo/sao-paulo/galerias-de-arte">Guia das Artes</a> ·
+    <a href="https://www.sp-arte.com/about-the-event-rotas">SP-Arte Rotas</a> ·
+    <a href="https://www.cnnbrasil.com.br/viagemegastronomia/viagem/exposicoes-em-sao-paulo-mais-de-30-mostras-para-ver-nas-ferias-de-julho/">CNN V&G</a>
+  </footer>
+</div>
+
+<div id="routePanel">
+  <h3>🗺️ Meu roteiro (<span id="rc">0</span>)</h3>
+  <ol id="routeList"></ol>
+  <button class="go" onclick="openRoute()">Abrir rota no Google Maps</button>
+  <button class="clear" onclick="clearRoute()">limpar roteiro</button>
+</div>
+
+<script>
+const TODAY = new Date();
+
+const {venues:VENUES, expos:EXPOS, bairros:BAIRRO_COUNTS} = window.DATA;
+
+/* ================= LOGIC ================= */
+const vByName={}; VENUES.forEach(v=>vByName[v.name]=v);
+function status(e){
+  const ini=new Date(e.ini+'T12:00'), fim=e.fim?new Date(e.fim+'T12:00'):null;
+  if(ini>TODAY) return 'opening';
+  if(fim&&fim<TODAY) return 'past';
+  if(fim&&(fim-TODAY)/864e5<=7) return 'closing';
+  return 'current';
+}
+const expos=EXPOS.map(e=>({...e,st:status(e),ven:vByName[e.v]})).filter(e=>e.st!=='past'&&e.ven);
+const fmt=d=>{const[y,m,dd]=d.split('-');return dd+'/'+m};
+const STLBL={opening:'ABERTURA',current:'EM CARTAZ',closing:'ÚLTIMOS DIAS'};
+const COLORS={opening:'#e8c15a',current:'#7fb98a',closing:'#d97b6c',feira:'#c96f4a',dir:'#66666e'};
+const gmaps=v=>'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(v.name+', '+v.addr.replace(' ~','')+', São Paulo');
+
+/* KPIs */
+document.getElementById('kpis').innerHTML=[
+ [VENUES.filter(v=>v.tipo==='galeria').length,'Galerias mapeadas'],
+ [VENUES.filter(v=>v.tipo==='institucional').length,'Espaços institucionais'],
+ [expos.filter(e=>e.st==='opening').length,'Aberturas confirmadas'],
+ [expos.filter(e=>e.st!=='opening').length,'Mostras em cartaz'],
+ [[...new Set(VENUES.map(v=>v.b))].length,'Bairros no mapa']
+].map(k=>`<div class="kpi"><div class="num">${k[0]}</div><div class="lbl">${k[1]}</div></div>`).join('');
+
+/* selects */
+const bSel=document.getElementById('bairroSel'),vSel=document.getElementById('venueSel');
+[...new Set(VENUES.map(v=>v.b))].sort().forEach(b=>bSel.add(new Option(b,b)));
+VENUES.map(v=>v.name).sort().forEach(n=>vSel.add(new Option(n,n)));
+
+/* map */
+const map=L.map('map').setView([-23.556,-46.668],12);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap © CARTO',maxZoom:18}).addTo(map);
+let markers={};
+
+function popupHtml(v,ex){
+  let h=`<b>${v.name}</b><br>${v.addr} · ${v.b} (Zona ${v.z})<br><i>${v.info||''}</i>`;
+  if(ex&&ex.length)h+='<hr style="border-color:#333">'+ex.map(e=>`▸ <b>${e.t}</b><br>&nbsp;&nbsp;${e.st==='opening'?'abre '+fmt(e.ini):'até '+(e.fim?fmt(e.fim):'—')}`).join('<br>');
+  h+=`<br><a href="${gmaps(v)}" target="_blank">🧭 Como chegar</a> · <a href="#" onclick="addStop('${v.name.replace(/'/g,"\\'")}');return false;">➕ Roteiro</a>`;
+  return h;
+}
+
+function matches(v,q){return !q||[v.name,v.addr,v.b,v.z,v.info].join(' ').toLowerCase().includes(q)}
+
+function draw(){
+  const st=document.querySelector('#statusFilters .chip.on').dataset.st;
+  const zona=document.getElementById('zonaSel').value,b=bSel.value,
+        tipo=document.getElementById('tipoSel').value,ven=vSel.value,
+        q=document.getElementById('search').value.trim().toLowerCase();
+
+  Object.values(markers).forEach(m=>map.removeLayer(m));markers={};
+
+  const okV=v=>(zona==='all'||v.z===zona)&&(b==='all'||v.b===b)&&(tipo==='all'||v.tipo===tipo||v.tipo==='feira')&&(ven==='all'||v.name===ven);
+
+  let list=expos.filter(e=>okV(e.ven)&&(st==='all'||e.st===st)&&(matches(e.ven,q)||(e.t+' '+(e.d||'')).toLowerCase().includes(q||'')));
+  if(q)list=expos.filter(e=>okV(e.ven)&&(st==='all'||e.st===st)&&((e.t+' '+(e.d||'')+' '+e.ven.name+' '+e.ven.addr+' '+e.ven.b).toLowerCase().includes(q)));
+
+  list.sort((a,c)=>a.st==='opening'&&c.st!=='opening'?-1:c.st==='opening'&&a.st!=='opening'?1:
+    new Date(a.st==='opening'?a.ini:a.fim||'2099-01-01')-new Date(c.st==='opening'?c.ini:c.fim||'2099-01-01'));
+
+  /* cards */
+  document.getElementById('cards').innerHTML=list.map((e,i)=>{
+    const cls=e.ven.tipo==='feira'?'fair':e.st;
+    const tag=e.ven.tipo==='feira'?'<span class="tag fair">FEIRA</span>':`<span class="tag ${e.st}">${STLBL[e.st]}</span>`;
+    const dates=e.st==='opening'?`abre ${fmt(e.ini)}${e.fim?' · até '+fmt(e.fim):''}`:`até ${e.fim?fmt(e.fim):'—'}`;
+    return `<div class="card ${cls}">
+      <div class="title" onclick="focusVenue('${e.ven.name.replace(/'/g,"\\'")}')">${e.t}</div>
+      <div class="venue">${e.ven.name} · ${e.ven.b}</div>
+      <div class="addr">${e.ven.addr}</div>
+      ${e.d?`<div class="addr" style="color:#b6b6c2;margin-top:4px">${e.d}</div>`:''}
+      <div class="meta">${tag}<span>${dates}</span>
+        <a class="btn" href="${gmaps(e.ven)}" target="_blank">🧭 Rota</a>
+        <span class="btn add" onclick="addStop('${e.ven.name.replace(/'/g,"\\'")}')">➕ Roteiro</span></div>
+    </div>`;
+  }).join('')||'<p class="note">Nada encontrado com esses filtros.</p>';
+
+  /* markers: venues com expo filtrada */
+  const exByV={};list.forEach(e=>{(exByV[e.ven.name]=exByV[e.ven.name]||[]).push(e)});
+  VENUES.forEach(v=>{
+    if(!okV(v))return;
+    const ex=exByV[v.name];
+    let c,r;
+    if(ex){
+      const pri=ex.some(x=>x.st==='opening')?'opening':ex.some(x=>x.st==='closing')?'closing':'current';
+      c=v.tipo==='feira'?COLORS.feira:COLORS[pri];r=8;
+    }else{
+      if(st!=='all'||!matches(v,q))return;
+      c=COLORS.dir;r=5;
+    }
+    markers[v.name]=L.circleMarker([v.lat,v.lng],{radius:r,color:c,fillColor:c,fillOpacity:.85,weight:1})
+      .addTo(map).bindPopup(popupHtml(v,ex));
+  });
+  drawDir(q,zona,b,tipo,ven);
+}
+
+function focusVenue(n){const v=vByName[n];if(!v)return;map.setView([v.lat,v.lng],15);
+  if(markers[n])markers[n].openPopup();else{markers[n]=L.circleMarker([v.lat,v.lng],{radius:7,color:COLORS.dir,fillColor:COLORS.dir,fillOpacity:.85,weight:1}).addTo(map).bindPopup(popupHtml(v,null));markers[n].openPopup();}
+  window.scrollTo({top:document.getElementById('map').offsetTop-20,behavior:'smooth'});}
+
+/* diretório */
+let sortK='b',sortAsc=true;
+function drawDir(q,zona,b,tipo,ven){
+  let rows=VENUES.filter(v=>v.tipo!=='feira'&&(zona==='all'||v.z===zona)&&(b==='all'||v.b===b)&&(tipo==='all'||v.tipo===tipo)&&(ven==='all'||v.name===ven)&&matches(v,q));
+  const kmap={name:'name',addr:'addr',bairro:'b',zona:'z',tipo:'tipo'};
+  rows.sort((a,c)=>(''+a[sortK]).localeCompare(''+c[sortK],'pt')* (sortAsc?1:-1));
+  document.querySelector('#dirTable tbody').innerHTML=rows.map(v=>`<tr>
+    <td><span class="gname" onclick="focusVenue('${v.name.replace(/'/g,"\\'")}')">${v.name}</span></td>
+    <td>${v.addr}</td><td>${v.b}</td><td class="zona">${v.z}</td><td class="zona">${v.tipo}</td>
+    <td class="actions"><a class="btn" href="${gmaps(v)}" target="_blank">🧭 Rota</a>
+      <span class="btn add" onclick="addStop('${v.name.replace(/'/g,"\\'")}')">➕</span></td></tr>`).join('');
+  document.getElementById('dirtitle').textContent=`Diretório de Galerias e Espaços (${rows.length})`;
+}
+document.querySelectorAll('#dirTable th[data-k]').forEach(th=>th.onclick=()=>{
+  const kmap={name:'name',addr:'addr',bairro:'b',zona:'z',tipo:'tipo'};
+  const k=kmap[th.dataset.k];sortAsc=(sortK===k)?!sortAsc:true;sortK=k;draw();});
+
+/* roteiro multi-paradas */
+let route=[];
+function addStop(n){if(!route.includes(n)){route.push(n);renderRoute();}}
+function delStop(i){route.splice(i,1);renderRoute();}
+function clearRoute(){route=[];renderRoute();}
+function renderRoute(){
+  const p=document.getElementById('routePanel');
+  document.getElementById('rc').textContent=route.length;
+  document.getElementById('routeList').innerHTML=route.map((n,i)=>`<li>${n}<span onclick="delStop(${i})">✕</span></li>`).join('');
+  p.style.display=route.length?'block':'none';
+}
+function openRoute(){
+  if(!route.length)return;
+  const addr=n=>encodeURIComponent(vByName[n].name+', '+vByName[n].addr.replace(' ~','')+', São Paulo');
+  let url='https://www.google.com/maps/dir/?api=1&destination='+addr(route[route.length-1]);
+  if(route.length>1)url+='&waypoints='+route.slice(0,-1).map(addr).join('%7C');
+  url+='&travelmode=driving';
+  window.open(url,'_blank');
+}
+
+/* filtros */
+document.querySelectorAll('#statusFilters .chip').forEach(ch=>ch.onclick=()=>{
+  document.querySelectorAll('#statusFilters .chip').forEach(c=>c.classList.remove('on'));
+  ch.classList.add('on');draw();});
+['zonaSel','bairroSel','tipoSel','venueSel'].forEach(id=>document.getElementById(id).onchange=draw);
+document.getElementById('search').oninput=()=>draw();
+
+/* bar chart */
+const mx=BAIRRO_COUNTS[0][1];
+document.getElementById('bars').innerHTML=BAIRRO_COUNTS.map(([b,n])=>
+ `<div class="barrow"><div class="bn" onclick="barFilter('${b}')">${b}</div><div><div class="bar" style="width:${n/mx*100}%"></div></div><div class="bv">${n}</div></div>`).join('');
+function barFilter(b){
+  const map2={"Jardins":"Jardim Paulista"};
+  const opt=[...bSel.options].find(o=>o.value===b||o.value===map2[b]);
+  bSel.value=opt?opt.value:'all';draw();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+document.getElementById('upd').textContent=window.DATA.atualizado;
+if('serviceWorker' in navigator && location.protocol.indexOf('http')===0)navigator.serviceWorker.register('./sw.js');
+draw();
+</script>
+</body>
+</html>
