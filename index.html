@@ -4,6 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vernissages SP — Galerias, Aberturas e Roteiros</title>
+<meta name="description" content="Mapa vivo da cena de arte de São Paulo: 70 galerias e museus, vernissages da semana, roteiros e agenda de exposições atualizada diariamente.">
+<meta property="og:title" content="Vernissages SP 🥂 Galerias e Aberturas">
+<meta property="og:description" content="Mapa vivo da cena de arte de São Paulo: vernissages da semana, 70 galerias e museus, roteiros e agenda atualizada diariamente.">
+<meta property="og:url" content="https://lucasnegrelli.github.io/vernissages-sp/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://lucasnegrelli.github.io/vernissages-sp/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://lucasnegrelli.github.io/vernissages-sp/og-image.png">
+<link rel="icon" type="image/png" href="icon-192.png">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#0e0e11">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -280,7 +292,7 @@ let markers={};
 function popupHtml(v,ex){
   let h=`<b>${v.name}</b><br>${v.addr} · ${v.b} (Zona ${v.z})<br><i>${v.info||''}</i>`;
   if(ex&&ex.length)h+='<hr style="border-color:#333">'+ex.map(e=>`▸ <b>${e.t}</b><br>&nbsp;&nbsp;${e.st==='opening'?'abre '+fmt(e.ini):'até '+(e.fim?fmt(e.fim):'—')}`).join('<br>');
-  h+=`<br>${v.site?`<a href="${v.site}" target="_blank">🌐 Site</a> · `:''}<a href="${gsearch(v.name+' galeria são paulo')}" target="_blank">🔍 Buscar</a> · <a href="${gmaps(v)}" target="_blank">🧭 Como chegar</a> · <a href="#" onclick="addStop('${v.name.replace(/'/g,"\\'")}');return false;">➕ Roteiro</a>`;
+  h+=`<br>${v.site?`<a href="${v.site}" target="_blank">🌐 Site</a> · `:''}${v.ig?`<a href="https://instagram.com/${v.ig}" target="_blank">📸 IG</a> · `:''}<a href="${gsearch(v.name+' galeria são paulo')}" target="_blank">🔍 Buscar</a> · <a href="${gmaps(v)}" target="_blank">🧭 Como chegar</a> · <a href="#" onclick="addStop('${v.name.replace(/'/g,"\\'")}');return false;">➕ Roteiro</a>`;
   return h;
 }
 const gsearch=q=>'https://www.google.com/search?q='+encodeURIComponent(q);
@@ -320,6 +332,7 @@ function draw(){
         ${nearOn&&userPos?`<span class="dist">📍 ${distKm(e.ven).toFixed(1)} km</span>`:''}
         <span class="fav ${favs.has(e.ven.name)?'on':''}" onclick="toggleFav('${e.ven.name.replace(/'/g,"\\'")}')" title="Favoritar">♥</span>
         ${e.ven.site?`<a class="btn" href="${e.ven.site}" target="_blank">🌐 Site</a>`:''}
+        ${e.ven.ig?`<a class="btn" href="https://instagram.com/${e.ven.ig}" target="_blank">📸 IG</a>`:''}
         <a class="btn" href="${gsearch(e.t+' '+e.ven.name)}" target="_blank">🔍 Info</a>
         <a class="btn" href="${gmaps(e.ven)}" target="_blank">🧭 Rota</a>
         <span class="btn add" onclick="addStop('${e.ven.name.replace(/'/g,"\\'")}')">➕ Roteiro</span></div>
@@ -360,6 +373,7 @@ function drawDir(q,zona,b,tipo,ven){
     <td>${v.addr}</td><td>${v.b}</td><td class="zona">${v.z}</td><td class="zona">${v.tipo}</td>
     <td class="actions"><span class="fav ${favs.has(v.name)?'on':''}" onclick="toggleFav('${v.name.replace(/'/g,"\\'")}')" title="Favoritar">♥</span>
       ${v.site?`<a class="btn" href="${v.site}" target="_blank">🌐</a>`:`<a class="btn" href="${gsearch(v.name+' galeria são paulo')}" target="_blank">🔍</a>`}
+      ${v.ig?`<a class="btn" href="https://instagram.com/${v.ig}" target="_blank">📸</a>`:''}
       <a class="btn" href="${gmaps(v)}" target="_blank">🧭 Rota</a>
       <span class="btn add" onclick="addStop('${v.name.replace(/'/g,"\\'")}')">➕</span></td></tr>`).join('');
   document.getElementById('dirtitle').textContent=`Diretório de Galerias e Espaços (${rows.length})`;
