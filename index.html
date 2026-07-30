@@ -93,6 +93,29 @@
   .bar{height:13px;border-radius:7px;background:linear-gradient(90deg,var(--accent2),var(--accent))}
   .barrow .bv{color:var(--text);font-weight:600}
   .note{color:var(--muted);font-size:.78rem;margin-top:10px}
+  /* vernissages da semana */
+  .wkwrap{background:linear-gradient(135deg,rgba(232,193,90,.10),rgba(201,111,74,.08));border:1px solid var(--accent);border-radius:14px;padding:14px 18px;margin:20px 0 4px}
+  .wkwrap h2{margin:0 0 10px}
+  .wkrow{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px}
+  .wkrow::-webkit-scrollbar{height:8px}.wkrow::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+  .wk{min-width:215px;max-width:260px;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:10px 12px;cursor:pointer;flex:0 0 auto}
+  .wk:hover{border-color:var(--accent)}
+  .wk .d{color:var(--accent);font-weight:700;font-size:.8rem}
+  .wk .t{font-size:.85rem;font-weight:600;margin-top:2px}
+  .wk .v{color:var(--muted);font-size:.75rem;margin-top:2px}
+  .share{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+  .share .btn{font-size:.8rem;padding:5px 12px}
+  /* artistas */
+  .artist{color:var(--blue);cursor:pointer}
+  .artist:hover{text-decoration:underline}
+  #modalBg{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:1500;display:none;align-items:center;justify-content:center}
+  #modal{background:var(--panel2);border:1px solid var(--accent);border-radius:14px;max-width:540px;width:92%;max-height:80vh;overflow-y:auto;padding:22px 24px}
+  #modal h3{color:var(--accent);margin-bottom:2px}
+  #modal .sub{color:var(--muted);font-size:.8rem;margin-bottom:10px}
+  #modal .links{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px}
+  #modal .exline{border-top:1px solid var(--border);padding:9px 0;font-size:.85rem}
+  #modal .exline .w{color:var(--accent2)}
+  #modal .close{float:right;cursor:pointer;color:var(--muted);font-size:1.2rem;line-height:1}
   footer{color:var(--muted);font-size:.78rem;margin-top:36px;border-top:1px solid var(--border);padding-top:16px}
   footer a{color:var(--accent2)}
   .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--panel2);color:var(--text)}
@@ -113,6 +136,15 @@
 
   <div class="kpis" id="kpis"></div>
 
+  <div class="wkwrap" id="wkwrap" style="display:none">
+    <h2>🥂 Vernissages desta semana</h2>
+    <div class="wkrow" id="wkrow"></div>
+    <div class="share">
+      <a class="btn add" id="waShare" target="_blank">📲 Enviar no WhatsApp</a>
+      <span class="btn" onclick="copyWeek()">📋 Copiar agenda</span>
+    </div>
+  </div>
+
   <h2>Agenda · Aberturas e Exposições</h2>
   <div class="filters">
     <span id="statusFilters">
@@ -132,6 +164,7 @@
       <option value="institucional">Só institucionais</option>
     </select>
     <select id="venueSel"><option value="all">Todas as galerias/espaços</option></select>
+    <select id="artistSel"><option value="all">Todos os artistas</option></select>
   </div>
 
   <div class="grid">
@@ -171,6 +204,8 @@
   </footer>
 </div>
 
+<div id="modalBg" onclick="if(event.target.id==='modalBg')closeArtist()"><div id="modal"></div></div>
+
 <div id="routePanel">
   <h3>🗺️ Meu roteiro (<span id="rc">0</span>)</h3>
   <ol id="routeList"></ol>
@@ -208,13 +243,14 @@ document.getElementById('kpis').innerHTML=[
 ].map(k=>`<div class="kpi"><div class="num">${k[0]}</div><div class="lbl">${k[1]}</div></div>`).join('');
 
 /* selects */
-const bSel=document.getElementById('bairroSel'),vSel=document.getElementById('venueSel');
+const bSel=document.getElementById('bairroSel'),vSel=document.getElementById('venueSel'),aSel=document.getElementById('artistSel');
 [...new Set(VENUES.map(v=>v.b))].sort().forEach(b=>bSel.add(new Option(b,b)));
 VENUES.map(v=>v.name).sort().forEach(n=>vSel.add(new Option(n,n)));
+[...new Set(expos.flatMap(e=>e.a?e.a.split(', '):[]))].sort((x,y)=>x.localeCompare(y,'pt')).forEach(n=>aSel.add(new Option(n,n)));
 
 /* map */
 const map=L.map('map').setView([-23.556,-46.668],12);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'© OpenStreetMap © CARTO',maxZoom:18}).addTo(map);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png',{attribution:'© OpenStreetMap © CARTO',maxZoom:18}).addTo(map);
 let markers={};
 
 function popupHtml(v,ex){
@@ -230,15 +266,16 @@ function matches(v,q){return !q||[v.name,v.addr,v.b,v.z,v.info].join(' ').toLowe
 function draw(){
   const st=document.querySelector('#statusFilters .chip.on').dataset.st;
   const zona=document.getElementById('zonaSel').value,b=bSel.value,
-        tipo=document.getElementById('tipoSel').value,ven=vSel.value,
+        tipo=document.getElementById('tipoSel').value,ven=vSel.value,art=aSel.value,
         q=document.getElementById('search').value.trim().toLowerCase();
 
   Object.values(markers).forEach(m=>map.removeLayer(m));markers={};
 
   const okV=v=>(zona==='all'||v.z===zona)&&(b==='all'||v.b===b)&&(tipo==='all'||v.tipo===tipo||v.tipo==='feira')&&(ven==='all'||v.name===ven);
 
-  let list=expos.filter(e=>okV(e.ven)&&(st==='all'||e.st===st)&&(matches(e.ven,q)||(e.t+' '+(e.d||'')).toLowerCase().includes(q||'')));
-  if(q)list=expos.filter(e=>okV(e.ven)&&(st==='all'||e.st===st)&&((e.t+' '+(e.d||'')+' '+e.ven.name+' '+e.ven.addr+' '+e.ven.b).toLowerCase().includes(q)));
+  const okA=e=>art==='all'||(e.a||'').split(', ').includes(art);
+  let list=expos.filter(e=>okV(e.ven)&&okA(e)&&(st==='all'||e.st===st));
+  if(q)list=list.filter(e=>(e.t+' '+(e.d||'')+' '+(e.a||'')+' '+e.ven.name+' '+e.ven.addr+' '+e.ven.b).toLowerCase().includes(q));
 
   list.sort((a,c)=>a.st==='opening'&&c.st!=='opening'?-1:c.st==='opening'&&a.st!=='opening'?1:
     new Date(a.st==='opening'?a.ini:a.fim||'2099-01-01')-new Date(c.st==='opening'?c.ini:c.fim||'2099-01-01'));
@@ -252,6 +289,7 @@ function draw(){
       <div class="title" onclick="focusVenue('${e.ven.name.replace(/'/g,"\\'")}')">${e.t}</div>
       <div class="venue">${e.ven.name} · ${e.ven.b}</div>
       <div class="addr">${e.ven.addr}</div>
+      ${e.a?`<div class="addr">🎨 ${e.a.split(', ').map(n=>`<span class="artist" onclick="openArtist('${n.replace(/'/g,"\\'")}')">${n}</span>`).join(' · ')}</div>`:''}
       ${e.d?`<div class="addr" style="color:#b6b6c2;margin-top:4px">${e.d}</div>`:''}
       <div class="meta">${tag}<span>${dates}</span>
         ${e.ven.site?`<a class="btn" href="${e.ven.site}" target="_blank">🌐 Site</a>`:''}
@@ -322,12 +360,46 @@ function openRoute(){
   window.open(url,'_blank');
 }
 
+/* artista: modal de detalhe */
+function openArtist(name){
+  const shows=expos.filter(e=>(e.a||'').split(', ').includes(name));
+  const links=[
+    ['🔍 Google',gsearch(name+' artista')],
+    ['🖼️ Obras',('https://www.google.com/search?tbm=isch&q='+encodeURIComponent(name+' artista obras'))],
+    ['📸 Instagram',gsearch(name+' artista instagram')],
+    ['📚 Wikipédia','https://pt.wikipedia.org/w/index.php?search='+encodeURIComponent(name)]
+  ].map(l=>`<a class="btn" target="_blank" href="${l[1]}">${l[0]}</a>`).join('');
+  document.getElementById('modal').innerHTML=`<span class="close" onclick="closeArtist()">✕</span>
+    <h3>🎨 ${name}</h3><div class="sub">${shows.length} mostra(s) na agenda atual</div>
+    <div class="links">${links}</div>`+
+    shows.map(e=>`<div class="exline"><b>${e.t}</b><br><span class="w">${e.ven.name}</span> · ${e.ven.b} · ${e.st==='opening'?'abre '+fmt(e.ini):'até '+(e.fim?fmt(e.fim):'—')}${e.d?`<br><span style="color:#9a9aa6">${e.d}</span>`:''}
+      <div style="margin-top:5px"><a class="btn" target="_blank" href="${gmaps(e.ven)}">🧭 Rota</a> ${e.ven.site?`<a class="btn" target="_blank" href="${e.ven.site}">🌐 Site</a>`:''}</div></div>`).join('');
+  document.getElementById('modalBg').style.display='flex';
+}
+function closeArtist(){document.getElementById('modalBg').style.display='none'}
+
+/* vernissages da semana + compartilhar */
+function weekBanner(){
+  const end=new Date(TODAY.getTime()+7*864e5);
+  const wk=expos.filter(e=>e.st==='opening'&&new Date(e.ini+'T12:00')<=end).sort((a,c)=>a.ini.localeCompare(c.ini));
+  const w=document.getElementById('wkwrap');
+  if(!wk.length){w.style.display='none';return}
+  w.style.display='block';
+  document.getElementById('wkrow').innerHTML=wk.map(e=>`<div class="wk" onclick="focusVenue('${e.ven.name.replace(/'/g,"\\'")}')">
+    <div class="d">${fmt(e.ini)}</div><div class="t">${e.t}</div><div class="v">${e.ven.name} · ${e.ven.b}</div></div>`).join('');
+  const txt='🥂 Vernissages SP — aberturas da semana:\n'+wk.map(e=>`• ${fmt(e.ini)} — ${e.t} @ ${e.ven.name} (${e.ven.b})`).join('\n')+'\n\nAgenda completa, mapa e roteiros: https://lucasnegrelli.github.io/vernissages-sp/';
+  window._wkTxt=txt;
+  document.getElementById('waShare').href='https://wa.me/?text='+encodeURIComponent(txt);
+}
+function copyWeek(){navigator.clipboard.writeText(window._wkTxt||'').then(()=>alert('Agenda da semana copiada! Cole onde quiser.'))}
+
 /* filtros */
 document.querySelectorAll('#statusFilters .chip').forEach(ch=>ch.onclick=()=>{
   document.querySelectorAll('#statusFilters .chip').forEach(c=>c.classList.remove('on'));
   ch.classList.add('on');draw();});
-['zonaSel','bairroSel','tipoSel','venueSel'].forEach(id=>document.getElementById(id).onchange=draw);
+['zonaSel','bairroSel','tipoSel','venueSel','artistSel'].forEach(id=>document.getElementById(id).onchange=draw);
 document.getElementById('search').oninput=()=>draw();
+weekBanner();
 
 /* bar chart */
 const mx=BAIRRO_COUNTS[0][1];

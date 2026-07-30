@@ -1,48 +1,71 @@
-# Vernissages SP
+# 🥂 Vernissages SP
 
-Dashboard de galerias, aberturas de exposições e roteiros de arte na cidade de São Paulo.
-Site estático + PWA (instalável no celular). Sem backend, sem build — é só hospedar a pasta.
+**Site ao vivo: https://lucasnegrelli.github.io/vernissages-sp/**
+
+Mapa vivo da cena de arte de São Paulo: galerias, museus e centros culturais, com agenda de
+vernissages e aberturas de exposições, roteiros de visita e compartilhamento da programação da semana.
+
+Site estático + PWA (instalável no celular direto do navegador). Sem backend, sem build.
+
+## Funcionalidades
+
+- 🗺️ **Mapa interativo** (Leaflet + tiles CARTO dark @2x) com ~70 espaços: galerias comerciais,
+  institucionais e feiras, coloridos por status — abertura próxima, em cartaz, últimos dias, feira.
+- 🥂 **Vernissages desta semana**: banner com as aberturas dos próximos 7 dias.
+- 📲 **Compartilhar agenda**: gera a lista da semana pronta pro WhatsApp (ou copia pra qualquer lugar).
+- 🎨 **Página de artista**: clique no nome de qualquer artista para ver todas as mostras dele na
+  agenda + atalhos (Google, obras, Instagram, Wikipédia).
+- 🔎 **Busca e filtros**: texto livre (galeria, artista, endereço, bairro), status, zona, bairro,
+  tipo de espaço, galeria específica e artista.
+- 🧭 **Rotas**: botão "Rota" (Google Maps) em cada card e um **montador de roteiro** multi-paradas
+  para circuitos de vernissage.
+- 📇 **Diretório** ordenável com endereço, bairro, zona, site oficial e ações.
+- 📊 Distribuição de galerias por bairro (estudo FGV/ArteRef — 67 galerias no mercado primário).
 
 ## Estrutura
 
 | arquivo | função |
 |---|---|
-| `index.html` | interface (mapa, filtros, roteiros) — raramente precisa mudar |
-| `dados.js` | **base de dados** — é aqui que você atualiza galerias e exposições |
-| `manifest.webmanifest` + `sw.js` + ícones | PWA (instalação e offline) |
+| `index.html` | interface completa (mapa, filtros, roteiros, modal de artista) |
+| `dados.js` | **base de dados** — venues, exposições, artistas, sites |
+| `manifest.webmanifest` + `sw.js` + `icon-*.png` | PWA: instalação e cache offline (network-first) |
 
-## Como publicar (GitHub Pages, grátis)
+### Formato do `dados.js`
 
-1. Crie um repositório no GitHub (ex.: `vernissages-sp`).
-2. Suba todos os arquivos desta pasta.
-3. Em **Settings → Pages**, escolha *Deploy from a branch* → branch `main` → pasta `/ (root)`.
-4. Em ~1 min o site estará em `https://SEU-USUARIO.github.io/vernissages-sp/`.
-5. Domínio próprio (opcional): em Pages → *Custom domain*, aponte um CNAME.
+```js
+window.DATA = { atualizado: "dd/mm/aaaa", venues: [...], expos: [...], bairros: [...] }
+// venue: { name, addr, b (bairro), z (Oeste|Centro|Sul), tipo (galeria|institucional|feira),
+//          lat, lng, site?, info }
+// expo:  { t (título), v (name EXATO do venue), a? (artistas, separados por ", "),
+//          ini, fim (YYYY-MM-DD | null), d (descrição curta) }
+```
 
-Alternativas: arraste a pasta em https://app.netlify.com/drop (publica na hora) ou use Vercel.
+O status de cada mostra (abertura próxima / em cartaz / últimos dias) é calculado na hora pelo
+navegador; mostras encerradas somem sozinhas. Endereços com `~` ou "(a confirmar)" são aproximados.
 
-## Como atualizar a agenda
+## Atualização automática
 
-Abra `dados.js` e edite:
-- **EXPOS**: adicione objetos `{t, v, ini, fim, d}` (datas em `YYYY-MM-DD`; `fim: null` se não anunciado). O `v` precisa ser idêntico ao `name` de um espaço em VENUES.
-- **VENUES**: novos espaços com `{name, addr, b, z, tipo, lat, lng, info}` (lat/lng: pegue no Google Maps com clique-direito no local).
-- Atualize o campo `atualizado` no final do arquivo.
+Uma rotina diária (agente Claude, ~9h) lê o `dados.js` publicado, varre agregadores
+(Arte Que Acontece, Ocula, Guia das Artes) e os sites oficiais das galerias em rodízio,
+adiciona as novas aberturas, remove as encerradas e faz commit direto na `main` —
+o GitHub Pages republica em ~1 minuto. Sem novidade, sem commit.
 
-O status (abertura próxima / em cartaz / últimos dias) é calculado sozinho pela data do acesso.
-Exposições encerradas somem automaticamente — não precisa apagar, mas vale limpar de vez em quando.
+## Publicação
 
-## PWA / instalação no celular
+Hospedado no **GitHub Pages** (Settings → Pages → branch `main`, root). Qualquer push na `main`
+atualiza o site. Domínio próprio: Settings → Pages → Custom domain.
 
-Servido via HTTPS (GitHub Pages já é), o navegador oferece "Adicionar à tela inicial".
-Funciona offline (cache network-first: sempre tenta dados frescos primeiro).
+## Roadmap para as lojas de app
 
-## Caminho para as lojas
+1. **Google Play**: empacotar a PWA como TWA com [Bubblewrap](https://github.com/GoogleChromeLabs/bubblewrap) (conta US$ 25, única).
+2. **App Store**: empacotar com [Capacitor](https://capacitorjs.com/) e somar recursos nativos
+   (push de vernissages, "perto de mim", favoritos) — conta US$ 99/ano.
 
-1. **Google Play**: empacote a PWA como TWA com [Bubblewrap](https://github.com/GoogleChromeLabs/bubblewrap) (conta: US$ 25 única).
-2. **App Store**: empacote com [Capacitor](https://capacitorjs.com/) e adicione recursos nativos
-   (push de novas vernissages, geolocalização "perto de mim", favoritos) — a Apple rejeita apps que são "só um site" (conta: US$ 99/ano).
+## Fontes
 
-## Fontes dos dados
+[Arte Que Acontece](https://artequeacontece.com.br) · [Ocula](https://ocula.com) ·
+[ArteRef/FGV](https://arteref.com/galerias/o-mapa-de-galerias-em-sao-paulo/) ·
+[Guia das Artes](https://www.guiadasartes.com.br) · [São Paulo Secreto](https://saopaulosecreto.com) ·
+[SP-Arte](https://www.sp-arte.com) · sites oficiais das galerias.
 
-Arte Que Acontece · Ocula · ArteRef/FGV · São Paulo Secreto · Guia das Artes · SP-Arte.
-Endereços com `~` ou "(a confirmar)" são aproximados — confirme antes de publicar como definitivo.
+Confirme data e horário de vernissage nos canais de cada espaço — nem toda abertura tem evento público.
