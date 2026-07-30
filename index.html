@@ -116,6 +116,21 @@
   #modal .exline{border-top:1px solid var(--border);padding:9px 0;font-size:.85rem}
   #modal .exline .w{color:var(--accent2)}
   #modal .close{float:right;cursor:pointer;color:var(--muted);font-size:1.2rem;line-height:1}
+  /* contador de visitas */
+  .visits{display:none;align-items:center;gap:7px;background:var(--panel2);border:1px solid var(--accent);border-radius:20px;padding:5px 14px;font-size:.85rem;color:var(--accent);font-weight:600;margin-top:8px;width:fit-content}
+  .visits b{font-variant-numeric:tabular-nums;font-size:1rem}
+  .visits span{color:var(--muted);font-weight:400;font-size:.75rem}
+  /* enquete */
+  .poll{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:18px 20px}
+  .poll .opts{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+  .pollrow{display:grid;grid-template-columns:190px 1fr 52px;align-items:center;gap:10px;margin:7px 0;font-size:.84rem}
+  .pollrow .pn{color:var(--muted);text-align:right}
+  .pollrow .pb{height:13px;border-radius:7px;background:linear-gradient(90deg,var(--blue),var(--accent))}
+  .pollrow .pv{color:var(--text);font-weight:600}
+  /* favoritos e distância */
+  .fav{cursor:pointer;font-size:1.05rem;color:var(--muted);user-select:none}
+  .fav.on{color:#e35d6a}
+  .dist{color:var(--blue);font-size:.75rem;font-weight:600}
   footer{color:var(--muted);font-size:.78rem;margin-top:36px;border-top:1px solid var(--border);padding-top:16px}
   footer a{color:var(--accent2)}
   .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--panel2);color:var(--text)}
@@ -129,6 +144,7 @@
   <div>
     <h1>VERNISSAGES <span>SP</span></h1>
     <p>Galerias, aberturas de exposições e roteiros de arte em São Paulo · atualizado em <span id="upd"></span></p>
+    <div class="visits" id="visits">👁 <b id="vc">–</b> <span>visitas · contador público e anônimo</span></div>
   </div>
   <input id="search" type="text" placeholder="🔎 Buscar galeria, artista, endereço, bairro…">
 </header>
@@ -165,6 +181,8 @@
     </select>
     <select id="venueSel"><option value="all">Todas as galerias/espaços</option></select>
     <select id="artistSel"><option value="all">Todos os artistas</option></select>
+    <span class="chip" id="nearBtn">📍 Perto de mim</span>
+    <span class="chip" id="favBtn">♥ Favoritos</span>
   </div>
 
   <div class="grid">
@@ -187,6 +205,9 @@
     </div>
   </div>
   <p class="note">Diretório com as principais galerias ativas verificadas + espaços institucionais. O estudo FGV/ArteRef contabiliza 67 galerias do mercado primário na cidade, mas a lista nominal completa não foi publicada — endereços marcados com ~ são aproximados; confirme antes de visitar.</p>
+
+  <h2>Quem é o público? · enquete anônima</h2>
+  <div class="poll" id="poll"><p class="note" style="margin:0">Carregando enquete…</p></div>
 
   <h2>Galerias por bairro · mercado primário (FGV/ArteRef)</h2>
   <div class="bars" id="bars"></div>
@@ -271,7 +292,7 @@ function draw(){
 
   Object.values(markers).forEach(m=>map.removeLayer(m));markers={};
 
-  const okV=v=>(zona==='all'||v.z===zona)&&(b==='all'||v.b===b)&&(tipo==='all'||v.tipo===tipo||v.tipo==='feira')&&(ven==='all'||v.name===ven);
+  const okV=v=>(zona==='all'||v.z===zona)&&(b==='all'||v.b===b)&&(tipo==='all'||v.tipo===tipo||v.tipo==='feira')&&(ven==='all'||v.name===ven)&&(!favOnly||favs.has(v.name));
 
   const okA=e=>art==='all'||(e.a||'').split(', ').includes(art);
   let list=expos.filter(e=>okV(e.ven)&&okA(e)&&(st==='all'||e.st===st));
@@ -279,6 +300,7 @@ function draw(){
 
   list.sort((a,c)=>a.st==='opening'&&c.st!=='opening'?-1:c.st==='opening'&&a.st!=='opening'?1:
     new Date(a.st==='opening'?a.ini:a.fim||'2099-01-01')-new Date(c.st==='opening'?c.ini:c.fim||'2099-01-01'));
+  if(nearOn&&userPos)list.sort((a,c)=>distKm(a.ven)-distKm(c.ven));
 
   /* cards */
   document.getElementById('cards').innerHTML=list.map((e,i)=>{
@@ -292,6 +314,8 @@ function draw(){
       ${e.a?`<div class="addr">🎨 ${e.a.split(', ').map(n=>`<span class="artist" onclick="openArtist('${n.replace(/'/g,"\\'")}')">${n}</span>`).join(' · ')}</div>`:''}
       ${e.d?`<div class="addr" style="color:#b6b6c2;margin-top:4px">${e.d}</div>`:''}
       <div class="meta">${tag}<span>${dates}</span>
+        ${nearOn&&userPos?`<span class="dist">📍 ${distKm(e.ven).toFixed(1)} km</span>`:''}
+        <span class="fav ${favs.has(e.ven.name)?'on':''}" onclick="toggleFav('${e.ven.name.replace(/'/g,"\\'")}')" title="Favoritar">♥</span>
         ${e.ven.site?`<a class="btn" href="${e.ven.site}" target="_blank">🌐 Site</a>`:''}
         <a class="btn" href="${gsearch(e.t+' '+e.ven.name)}" target="_blank">🔍 Info</a>
         <a class="btn" href="${gmaps(e.ven)}" target="_blank">🧭 Rota</a>
@@ -331,7 +355,8 @@ function drawDir(q,zona,b,tipo,ven){
   document.querySelector('#dirTable tbody').innerHTML=rows.map(v=>`<tr>
     <td><span class="gname" onclick="focusVenue('${v.name.replace(/'/g,"\\'")}')">${v.name}</span></td>
     <td>${v.addr}</td><td>${v.b}</td><td class="zona">${v.z}</td><td class="zona">${v.tipo}</td>
-    <td class="actions">${v.site?`<a class="btn" href="${v.site}" target="_blank">🌐</a>`:`<a class="btn" href="${gsearch(v.name+' galeria são paulo')}" target="_blank">🔍</a>`}
+    <td class="actions"><span class="fav ${favs.has(v.name)?'on':''}" onclick="toggleFav('${v.name.replace(/'/g,"\\'")}')" title="Favoritar">♥</span>
+      ${v.site?`<a class="btn" href="${v.site}" target="_blank">🌐</a>`:`<a class="btn" href="${gsearch(v.name+' galeria são paulo')}" target="_blank">🔍</a>`}
       <a class="btn" href="${gmaps(v)}" target="_blank">🧭 Rota</a>
       <span class="btn add" onclick="addStop('${v.name.replace(/'/g,"\\'")}')">➕</span></td></tr>`).join('');
   document.getElementById('dirtitle').textContent=`Diretório de Galerias e Espaços (${rows.length})`;
@@ -392,6 +417,53 @@ function weekBanner(){
   document.getElementById('waShare').href='https://wa.me/?text='+encodeURIComponent(txt);
 }
 function copyWeek(){navigator.clipboard.writeText(window._wkTxt||'').then(()=>alert('Agenda da semana copiada! Cole onde quiser.'))}
+
+/* favoritos + perto de mim */
+let favs=new Set(JSON.parse(localStorage.getItem('vspFavs')||'[]')),favOnly=false,userPos=null,nearOn=false,userMarker=null;
+function toggleFav(n){favs.has(n)?favs.delete(n):favs.add(n);localStorage.setItem('vspFavs',JSON.stringify([...favs]));draw();}
+function distKm(v){const R=6371,dLa=(v.lat-userPos[0])*Math.PI/180,dLo=(v.lng-userPos[1])*Math.PI/180,
+  x=Math.sin(dLa/2)**2+Math.cos(userPos[0]*Math.PI/180)*Math.cos(v.lat*Math.PI/180)*Math.sin(dLo/2)**2;
+  return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));}
+document.getElementById('favBtn').onclick=function(){favOnly=!favOnly;this.classList.toggle('on',favOnly);draw();};
+document.getElementById('nearBtn').onclick=function(){
+  const btn=this;
+  if(nearOn){nearOn=false;btn.classList.remove('on');if(userMarker){map.removeLayer(userMarker);userMarker=null;}draw();return;}
+  if(!navigator.geolocation){alert('Geolocalização não disponível neste navegador.');return;}
+  btn.textContent='📍 localizando…';
+  navigator.geolocation.getCurrentPosition(p=>{
+    userPos=[p.coords.latitude,p.coords.longitude];nearOn=true;
+    btn.textContent='📍 Perto de mim';btn.classList.add('on');
+    userMarker=L.circleMarker(userPos,{radius:9,color:'#fff',fillColor:'#7da7d9',fillOpacity:.95,weight:2})
+      .addTo(map).bindPopup('<b>Você está aqui</b>');
+    map.setView(userPos,13);draw();
+  },()=>{btn.textContent='📍 Perto de mim';alert('Não consegui acessar sua localização — verifique a permissão do navegador.');});
+};
+
+/* contador de visitas + enquete (Abacus — anônimo, sem cookies de rastreamento) */
+const ABC='https://abacus.jasoncameron.dev',NS='vernissages-sp-lucas';
+fetch(ABC+'/hit/'+NS+'/visitas').then(r=>r.json()).then(j=>{
+  document.getElementById('vc').textContent=Number(j.value).toLocaleString('pt-BR');
+  document.getElementById('visits').style.display='inline-flex';
+}).catch(()=>{});
+const POLL=[['artista','🎨 Artista'],['colecionador','🖼️ Colecionador(a)'],['curadoria','📚 Curadoria / pesquisa'],['galerista','🏛️ Galerista / produção'],['curioso','🥂 Público curioso']];
+function pollResults(){
+  Promise.all(POLL.map(p=>fetch(ABC+'/get/'+NS+'/pub_'+p[0]).then(r=>r.json()).then(j=>Number(j.value)||0).catch(()=>0)))
+  .then(vs=>{
+    const tot=vs.reduce((a,c)=>a+c,0)||1,my=localStorage.getItem('vspVote');
+    document.getElementById('poll').innerHTML=
+      '<p class="note" style="margin:0 0 8px">'+(my?'Valeu pelo voto! ':'')+vs.reduce((a,c)=>a+c,0)+' resposta(s) — resultados públicos, voto anônimo:</p>'+
+      POLL.map((p,i)=>'<div class="pollrow"><div class="pn">'+p[1]+(my===p[0]?' ✓':'')+'</div><div><div class="pb" style="width:'+Math.max(3,Math.round(vs[i]/tot*100))+'%"></div></div><div class="pv">'+Math.round(vs[i]/tot*100)+'%</div></div>').join('');
+  }).catch(()=>{document.getElementById('poll').innerHTML='<p class="note" style="margin:0">Enquete indisponível no momento.</p>';});
+}
+function vote(k){
+  if(localStorage.getItem('vspVote'))return pollResults();
+  localStorage.setItem('vspVote',k);
+  fetch(ABC+'/hit/'+NS+'/pub_'+k).then(()=>pollResults()).catch(()=>pollResults());
+}
+if(localStorage.getItem('vspVote'))pollResults();
+else document.getElementById('poll').innerHTML=
+  '<p class="note" style="margin:0 0 8px">Como você se conecta com a cena de arte? 1 clique, anônimo — os resultados ficam públicos aqui.</p>'+
+  '<div class="opts">'+POLL.map(p=>'<span class="chip" onclick="vote(\''+p[0]+'\')">'+p[1]+'</span>').join('')+'</div>';
 
 /* filtros */
 document.querySelectorAll('#statusFilters .chip').forEach(ch=>ch.onclick=()=>{
