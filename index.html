@@ -220,9 +220,10 @@ let markers={};
 function popupHtml(v,ex){
   let h=`<b>${v.name}</b><br>${v.addr} · ${v.b} (Zona ${v.z})<br><i>${v.info||''}</i>`;
   if(ex&&ex.length)h+='<hr style="border-color:#333">'+ex.map(e=>`▸ <b>${e.t}</b><br>&nbsp;&nbsp;${e.st==='opening'?'abre '+fmt(e.ini):'até '+(e.fim?fmt(e.fim):'—')}`).join('<br>');
-  h+=`<br><a href="${gmaps(v)}" target="_blank">🧭 Como chegar</a> · <a href="#" onclick="addStop('${v.name.replace(/'/g,"\\'")}');return false;">➕ Roteiro</a>`;
+  h+=`<br>${v.site?`<a href="${v.site}" target="_blank">🌐 Site</a> · `:''}<a href="${gsearch(v.name+' galeria são paulo')}" target="_blank">🔍 Buscar</a> · <a href="${gmaps(v)}" target="_blank">🧭 Como chegar</a> · <a href="#" onclick="addStop('${v.name.replace(/'/g,"\\'")}');return false;">➕ Roteiro</a>`;
   return h;
 }
+const gsearch=q=>'https://www.google.com/search?q='+encodeURIComponent(q);
 
 function matches(v,q){return !q||[v.name,v.addr,v.b,v.z,v.info].join(' ').toLowerCase().includes(q)}
 
@@ -253,6 +254,8 @@ function draw(){
       <div class="addr">${e.ven.addr}</div>
       ${e.d?`<div class="addr" style="color:#b6b6c2;margin-top:4px">${e.d}</div>`:''}
       <div class="meta">${tag}<span>${dates}</span>
+        ${e.ven.site?`<a class="btn" href="${e.ven.site}" target="_blank">🌐 Site</a>`:''}
+        <a class="btn" href="${gsearch(e.t+' '+e.ven.name)}" target="_blank">🔍 Info</a>
         <a class="btn" href="${gmaps(e.ven)}" target="_blank">🧭 Rota</a>
         <span class="btn add" onclick="addStop('${e.ven.name.replace(/'/g,"\\'")}')">➕ Roteiro</span></div>
     </div>`;
@@ -290,7 +293,8 @@ function drawDir(q,zona,b,tipo,ven){
   document.querySelector('#dirTable tbody').innerHTML=rows.map(v=>`<tr>
     <td><span class="gname" onclick="focusVenue('${v.name.replace(/'/g,"\\'")}')">${v.name}</span></td>
     <td>${v.addr}</td><td>${v.b}</td><td class="zona">${v.z}</td><td class="zona">${v.tipo}</td>
-    <td class="actions"><a class="btn" href="${gmaps(v)}" target="_blank">🧭 Rota</a>
+    <td class="actions">${v.site?`<a class="btn" href="${v.site}" target="_blank">🌐</a>`:`<a class="btn" href="${gsearch(v.name+' galeria são paulo')}" target="_blank">🔍</a>`}
+      <a class="btn" href="${gmaps(v)}" target="_blank">🧭 Rota</a>
       <span class="btn add" onclick="addStop('${v.name.replace(/'/g,"\\'")}')">➕</span></td></tr>`).join('');
   document.getElementById('dirtitle').textContent=`Diretório de Galerias e Espaços (${rows.length})`;
 }
