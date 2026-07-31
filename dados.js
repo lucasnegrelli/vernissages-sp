@@ -36,6 +36,7 @@ const VENUES = [
  {name:"Fortes D'Aloia & Gabriel — Galeria",ig:"fortesdaloiagabriel",site:"https://fdag.com.br",addr:"R. Fradique Coutinho, 1500",b:"Pinheiros",z:"Oeste",tipo:"galeria",lat:-23.5562,lng:-46.6931,info:"Ernesto Neto, Rivane Neuenschwander, Erika Verzutti. Espaço-irmão: Galpão (Barra Funda)."},
  {name:"Galeria Estação",ig:"galeriaestacao",site:"https://www.galeriaestacao.com.br",addr:"R. Ferreira de Araújo, 625",b:"Pinheiros",z:"Oeste",tipo:"galeria",lat:-23.5641,lng:-46.6982,info:"Referência em arte popular brasileira e artistas autodidatas."},
  {name:"Central Galeria",ig:"centralgaleria",site:"https://www.centralgaleria.com",addr:"R. Mourato Coelho ~",b:"Pinheiros",z:"Oeste",tipo:"galeria",lat:-23.5602,lng:-46.6890,info:"Contemporâneo emergente."},
+ {name:"Casa de Cultura do Parque",addr:"Av. Prof. Fonseca Rodrigues, 1300",b:"Alto de Pinheiros",z:"Oeste",tipo:"institucional",lat:-23.5477,lng:-46.7135,info:"Centro cultural em Alto de Pinheiros; ciclos expositivos em parceria com o ICCo."},
  {name:"Galeria Raquel Arnaud",ig:"galeriaraquelarnaud",site:"https://www.raquelarnaud.com",addr:"R. Fidalga, 125",b:"Vila Madalena",z:"Oeste",tipo:"galeria",lat:-23.5572,lng:-46.6891,info:"Desde 1973. Construtivo e abstração: Sérgio Camargo, Carlos Zilio."},
  {name:"Galeria Dezoito",site:"https://galeriadezoito.com",addr:"R. Simpatia, 23",b:"Vila Madalena",z:"Oeste",tipo:"galeria",lat:-23.5561,lng:-46.6872,info:"Espaço da Vila Madalena com foco em paisagem e pintura contemporânea."},
  {name:"Marli Matsumoto Arte Contemporânea",addr:"Vila Madalena ~",b:"Vila Madalena",z:"Oeste",tipo:"galeria",lat:-23.5542,lng:-46.6902,info:"Galeria + anexo experimental."},
@@ -87,6 +88,12 @@ const VENUES = [
 
 /* ================= EXPOS ================= */
 const EXPOS = [
+ {t:"Verso: na encruzilhada da revolta — Ravioli e Ussami",a:"Frederico Ravioli, Gabriel Ussami",v:"Galeria Vermelho",ini:"2026-07-30",fim:"2026-08-01",d:"Abertura 30/07, 19h–22h, com DJ sets de Cashu e Regis. Dez pinturas sobre cartazes de ponto de ônibus; texto de Caio Bonifácio."},
+ {t:"Omẽ Mahsã – Seres invisíveis — Daiara Tukano",a:"Daiara Tukano",v:"Almeida & Dale | Millan",ini:"2026-07-04",fim:"2026-08-01",d:"Cerca de 20 pinturas inéditas sobre seres ligados ao ar na cosmologia Yepá Mahsã."},
+ {t:"Inverno dentro do bosque — coletiva",v:"Luciana Brito Galeria",ini:"2026-07-04",fim:"2026-08-08",d:"Coletiva de inverno na casa modernista de Rino Levi."},
+ {t:"Quarto — coletiva",v:"Galeria Marília Razuk",ini:"2026-05-09",fim:"2026-08-08",d:"No Anexo, com Cristina Tolovi e Luana Fortes: o quarto como campo de projeção subjetiva."},
+ {t:"Rajada encarnada — coletiva",v:"Casa de Cultura do Parque",ini:"2026-07-25",fim:"2026-10-25",d:"II Ciclo Expositivo em parceria com o ICCo. Quarta a domingo, 11h–18h."},
+ {t:"Política da superfície — coletiva",v:"Casa de Cultura do Parque",ini:"2026-07-25",fim:"2026-10-25",d:"II Ciclo Expositivo em parceria com o ICCo. Quarta a domingo, 11h–18h."},
  {t:"Masao Yamamoto — individual",a:"Masao Yamamoto",v:"Galeria Marcelo Guarnieri",ini:"2026-08-01",fim:"2026-09-19",d:"Fotografias em pequeno formato do mestre japonês; poética do silêncio."},
  {t:"Ígneo Piaga — Thiago Martins de Melo",a:"Thiago Martins de Melo",v:"Almeida & Dale | Millan",ini:"2026-08-01",fim:"2026-09-12",d:"Pintura densa e mitologia amazônica no espaço Fradique."},
  {t:"Habitar a paisagem — Flavia Fabbriziani",a:"Flavia Fabbriziani",v:"Galeria Dezoito",ini:"2026-08-05",fim:"2026-09-05",d:"Curadoria de Jurandy Valença."},
@@ -107,8 +114,8 @@ const EXPOS = [
  {t:"Pele Azul — Vivian Caccuri",a:"Vivian Caccuri",v:"CCBB São Paulo",ini:"2026-04-29",fim:"2026-08-03",d:"Som, mosquitos e ecologia no Espaço Anexo."},
  {t:"Plantas em Movimento — Burle Marx",a:"Roberto Burle Marx",v:"Museu Judaico de São Paulo",ini:"2026-04-30",fim:"2026-08-02",d:"Paisagismo e botânica em movimento."},
  {t:"Estrelas Escolhidas — Luiz Zerbini",a:"Luiz Zerbini",v:"Instituto Tomie Ohtake",ini:"2026-06-26",fim:"2026-08-16",d:"~230 obras: monotipias, pinturas e instalações da última década."},
- {t:"Antes da Forma, o Encanto — Mônica Ventura",a:"Mônica Ventura",v:"Galeria Nara Roesler",ini:"2026-05-26",fim:"2026-08-01",d:"Cosmologias afro-ameríndias e geometria."},
- {t:"Fascination and Affection — coletiva",v:"Galeria Nara Roesler",ini:"2026-05-26",fim:"2026-08-01",d:"Recorte do programa da galeria."},
+ {t:"Antes da Forma, o Encanto — Mônica Ventura",a:"Mônica Ventura",v:"Galeria Nara Roesler",ini:"2026-05-26",fim:"2026-08-08",d:"Cosmologias afro-ameríndias e geometria."},
+ {t:"Fascination and Affection — coletiva",v:"Galeria Nara Roesler",ini:"2026-05-26",fim:"2026-08-08",d:"Recorte do programa da galeria."},
  {t:"Alfabeto Solare — Edival Ramosa",a:"Edival Ramosa",v:"Galatea",ini:"2026-06-09",fim:"2026-08-08",d:"Redescoberta do escultor ítalo-brasileiro."},
  {t:"Terra, cores naturais… — Tito Terapia",a:"Tito Terapia",v:"Galatea",ini:"2026-05-12",fim:"2026-07-30",d:"Pigmentos naturais e pertencimento (espaço Padre João Manuel)."},
  {t:"Fluxos — Janet Vollebregt",a:"Janet Vollebregt",v:"Galeria Luis Maluf",ini:"2026-05-16",fim:"2026-08-08",d:"Individual da artista holandesa-brasileira."},
@@ -129,5 +136,5 @@ const BAIRRO_COUNTS=[["Jardins",18],["Barra Funda",8],["Jardim Europa",7],["Pinh
  ["Vila Madalena",3],["Itaim Bibi",3],["Cerqueira César",3],["Higienópolis",3],["Vila Buarque",3],
  ["Consolação",2],["Moema",2],["Vila Nova Conceição",2],["Butantã",1],["Pacaembu",1],["República",1],
  ["Santa Cecília",1],["Bela Vista",1],["Morumbi",1],["Sumarezinho",1]];
-return { atualizado: "29/07/2026", venues: VENUES, expos: EXPOS, bairros: BAIRRO_COUNTS };
+return { atualizado: "30/07/2026", venues: VENUES, expos: EXPOS, bairros: BAIRRO_COUNTS };
 })();
