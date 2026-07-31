@@ -295,12 +295,14 @@ function ingressoDe(v){
  return {conf:true};
 }
 function ingTag(v){
+ if(v.tipo==='galeria') return '';           // galeria comercial: entrada franca, sem selo
  const g=ingressoDe(v);
  if(g.g) return '<span class="tag free">GRÁTIS</span>';
  if(g.conf) return '<span class="tag tbc">A CONFIRMAR</span>';
  return '<span class="tag paid">'+brl(g.i)+(g.m?' · meia '+brl(g.m):'')+'</span>';
 }
 function ingTxt(v){
+ if(v.tipo==='galeria') return '';
  const g=ingressoDe(v); const p=[];
  if(g.g) p.push('Entrada gratuita.');
  else if(g.conf) p.push('Ingresso a confirmar'+(g.obs?': '+g.obs:'.'));
@@ -337,7 +339,7 @@ let markers={};
 function popupHtml(v,ex){
   let h=`<b>${v.name}</b><br>${v.addr} · ${v.b} (Zona ${v.z})<br><i>${v.info||''}</i>`;
   if(ex&&ex.length)h+='<hr style="border-color:#333">'+ex.map(e=>`▸ <b>${e.t}</b><br>&nbsp;&nbsp;${e.st==='opening'?'abre '+fmt(e.ini):'até '+(e.fim?fmt(e.fim):'—')}`).join('<br>');
-  h+=`<br><i style="color:#9a9aa6">${ingTxt(v)}</i>`;
+  if(ingTxt(v))h+=`<br><i style="color:#9a9aa6">${ingTxt(v)}</i>`;
 h+=`<br>${v.site?`<a href="${v.site}" target="_blank">Site</a> · `:''}${v.ig?`<a href="https://instagram.com/${v.ig}" target="_blank">IG</a> · `:''}<a href="${gsearch(v.name+' galeria são paulo')}" target="_blank">🔍 Buscar</a> · <a href="${gmaps(v)}" target="_blank">🧭 Como chegar</a> · <a href="#" onclick="addStop('${v.name.replace(/'/g,"\\'")}');return false;">+ Roteiro</a>`;
   return h;
 }
@@ -374,7 +376,7 @@ function draw(){
       <div class="addr">${e.ven.addr}</div>
       ${e.a?`<div class="addr">${e.a.split(', ').map(n=>`<span class="artist" onclick="openArtist('${n.replace(/'/g,"\\'")}')">${n}</span>`).join(' · ')}</div>`:''}
       ${e.d?`<div class="addr" style="color:#b6b6c2;margin-top:4px">${e.d}</div>`:''}
-${(()=>{const g=ingressoDe(e.ven);return g.free?`<div class="freeday">Grátis ${g.free}</div>`:''})()}
+${(()=>{const g=ingressoDe(e.ven);return (e.ven.tipo!=='galeria'&&g.free)?`<div class="freeday">Grátis ${g.free}</div>`:''})()}
       <div class="meta">${tag}${ingTag(e.ven)}<span>${dates}</span>
         ${nearOn&&userPos?`<span class="dist">📍 ${distKm(e.ven).toFixed(1)} km</span>`:''}
         <span class="fav ${favs.has(e.ven.name)?'on':''}" onclick="toggleFav('${e.ven.name.replace(/'/g,"\\'")}')" title="Favoritar">♥</span>
