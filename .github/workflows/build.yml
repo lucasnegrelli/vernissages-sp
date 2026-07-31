@@ -1,0 +1,43 @@
+name: Gerar acervo e paginas
+
+on:
+  push:
+    paths:
+      - 'dados.js'
+      - 'gerar.js'
+      - '.github/workflows/build.yml'
+  schedule:
+    - cron: '0 14 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: acervo
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Gerar acervo, paginas e sitemap
+        run: node gerar.js
+
+      - name: Commitar o que mudou
+        run: |
+          git config user.name "vernissages-bot"
+          git config user.email "actions@github.com"
+          git add -A acervo.json arquivo.html artistas.html sitemap.xml robots.txt m a
+          if git diff --staged --quiet; then
+            echo "Nada mudou no acervo."
+          else
+            git commit -m "Acervo: regenera paginas e sitemap [skip ci]"
+            git push
+          fi
