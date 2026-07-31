@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://lucasnegrelli.github.io/vernissages-sp/sitemap.xml

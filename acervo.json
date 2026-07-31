@@ -1,0 +1,1603 @@
+{
+ "expos": [
+  {
+   "id": "verso-na-encruzilhada-da-revolta-ravioli-e-ussami--galeria-vermelho",
+   "t": "Verso: na encruzilhada da revolta — Ravioli e Ussami",
+   "a": "Frederico Ravioli, Gabriel Ussami",
+   "v": "Galeria Vermelho",
+   "ini": "2026-07-30",
+   "fim": "2026-08-01",
+   "d": "Abertura 30/07, 19h–22h, com DJ sets de Cashu e Regis. Dez pinturas sobre cartazes de ponto de ônibus; texto de Caio Bonifácio.",
+   "bairro": "Higienópolis",
+   "zona": "Centro",
+   "addr": "R. Minas Gerais, 350",
+   "tipo": "galeria",
+   "site": "https://galeriavermelho.com.br",
+   "ig": "galeriavermelho",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "ome-mahsa-seres-invisiveis-daiara-tukano--almeida-e-dale-millan",
+   "t": "Omẽ Mahsã – Seres invisíveis — Daiara Tukano",
+   "a": "Daiara Tukano",
+   "v": "Almeida & Dale | Millan",
+   "ini": "2026-07-04",
+   "fim": "2026-08-01",
+   "d": "Cerca de 20 pinturas inéditas sobre seres ligados ao ar na cosmologia Yepá Mahsã.",
+   "bairro": "Pinheiros",
+   "zona": "Oeste",
+   "addr": "R. Fradique Coutinho, 1360",
+   "tipo": "galeria",
+   "site": "https://millan.art",
+   "ig": "galeriamillan",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "inverno-dentro-do-bosque-coletiva--luciana-brito-galeria",
+   "t": "Inverno dentro do bosque — coletiva",
+   "a": "",
+   "v": "Luciana Brito Galeria",
+   "ini": "2026-07-04",
+   "fim": "2026-08-08",
+   "d": "Coletiva de inverno na casa modernista de Rino Levi.",
+   "bairro": "Jardim Europa",
+   "zona": "Oeste",
+   "addr": "Av. Nove de Julho, 5162",
+   "tipo": "galeria",
+   "site": "https://lucianabritogaleria.com.br",
+   "ig": "lucianabritogaleria",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "quarto-coletiva--galeria-marilia-razuk",
+   "t": "Quarto — coletiva",
+   "a": "",
+   "v": "Galeria Marília Razuk",
+   "ini": "2026-05-09",
+   "fim": "2026-08-08",
+   "d": "No Anexo, com Cristina Tolovi e Luana Fortes: o quarto como campo de projeção subjetiva.",
+   "bairro": "Itaim Bibi",
+   "zona": "Sul",
+   "addr": "R. Jerônimo da Veiga, 131",
+   "tipo": "galeria",
+   "site": "https://www.galeriamariliarazuk.com.br",
+   "ig": "galeriamariliarazuk",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "rajada-encarnada-coletiva--casa-de-cultura-do-parque",
+   "t": "Rajada encarnada — coletiva",
+   "a": "",
+   "v": "Casa de Cultura do Parque",
+   "ini": "2026-07-25",
+   "fim": "2026-10-25",
+   "d": "II Ciclo Expositivo em parceria com o ICCo. Quarta a domingo, 11h–18h.",
+   "bairro": "Alto de Pinheiros",
+   "zona": "Oeste",
+   "addr": "Av. Prof. Fonseca Rodrigues, 1300",
+   "tipo": "institucional",
+   "site": "",
+   "ig": "",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "politica-da-superficie-coletiva--casa-de-cultura-do-parque",
+   "t": "Política da superfície — coletiva",
+   "a": "",
+   "v": "Casa de Cultura do Parque",
+   "ini": "2026-07-25",
+   "fim": "2026-10-25",
+   "d": "II Ciclo Expositivo em parceria com o ICCo. Quarta a domingo, 11h–18h.",
+   "bairro": "Alto de Pinheiros",
+   "zona": "Oeste",
+   "addr": "Av. Prof. Fonseca Rodrigues, 1300",
+   "tipo": "institucional",
+   "site": "",
+   "ig": "",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "masao-yamamoto-individual--galeria-marcelo-guarnieri",
+   "t": "Masao Yamamoto — individual",
+   "a": "Masao Yamamoto",
+   "v": "Galeria Marcelo Guarnieri",
+   "ini": "2026-08-01",
+   "fim": "2026-09-19",
+   "d": "Fotografias em pequeno formato do mestre japonês; poética do silêncio.",
+   "bairro": "Jardim Paulista",
+   "zona": "Oeste",
+   "addr": "Al. Lorena, 1835",
+   "tipo": "galeria",
+   "site": "https://www.galeriamarceloguarnieri.com.br",
+   "ig": "galeriamarceloguarnieri",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "igneo-piaga-thiago-martins-de-melo--almeida-e-dale-millan",
+   "t": "Ígneo Piaga — Thiago Martins de Melo",
+   "a": "Thiago Martins de Melo",
+   "v": "Almeida & Dale | Millan",
+   "ini": "2026-08-01",
+   "fim": "2026-09-12",
+   "d": "Pintura densa e mitologia amazônica no espaço Fradique.",
+   "bairro": "Pinheiros",
+   "zona": "Oeste",
+   "addr": "R. Fradique Coutinho, 1360",
+   "tipo": "galeria",
+   "site": "https://millan.art",
+   "ig": "galeriamillan",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "habitar-a-paisagem-flavia-fabbriziani--galeria-dezoito",
+   "t": "Habitar a paisagem — Flavia Fabbriziani",
+   "a": "Flavia Fabbriziani",
+   "v": "Galeria Dezoito",
+   "ini": "2026-08-05",
+   "fim": "2026-09-05",
+   "d": "Curadoria de Jurandy Valença.",
+   "bairro": "Vila Madalena",
+   "zona": "Oeste",
+   "addr": "R. Simpatia, 23",
+   "tipo": "galeria",
+   "site": "https://galeriadezoito.com",
+   "ig": "",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "joan-miro-mestre-das-formas--mab-faap",
+   "t": "Joan Miró: Mestre das Formas",
+   "a": "Joan Miró",
+   "v": "MAB FAAP",
+   "ini": "2026-08-07",
+   "fim": null,
+   "d": "Grande mostra do catalão no museu da FAAP.",
+   "bairro": "Pacaembu",
+   "zona": "Centro",
+   "addr": "R. Alagoas, 903",
+   "tipo": "institucional",
+   "site": "https://www.faap.br/museu",
+   "ig": "",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "o-lado-escuro-da-lua-alfredo-jaar--galeria-luisa-strina",
+   "t": "O Lado Escuro da Lua — Alfredo Jaar",
+   "a": "Alfredo Jaar",
+   "v": "Galeria Luisa Strina",
+   "ini": "2026-08-08",
+   "fim": null,
+   "d": "Novo projeto do artista chileno, Leão de Ouro de Veneza.",
+   "bairro": "Cerqueira César",
+   "zona": "Oeste",
+   "addr": "R. Padre João Manuel, 755",
+   "tipo": "galeria",
+   "site": "https://www.galerialuisastrina.com.br",
+   "ig": "galerialuisastrina",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "sp-arte-rotas-2026-5-edicao--arca",
+   "t": "SP-Arte Rotas 2026 · 5ª edição",
+   "a": "",
+   "v": "ARCA",
+   "ini": "2026-08-26",
+   "fim": "2026-08-30",
+   "d": "~70 expositores; direção artística de Bernardo Mosqueira; foco América Latina. Dia 26 só convidados; 27–28 (13h–20h), 29 (12h–20h), 30 (12h–19h).",
+   "bairro": "Vila Leopoldina",
+   "zona": "Oeste",
+   "addr": "Av. Manuel Bandeira, 360",
+   "tipo": "feira",
+   "site": "https://www.sp-arte.com",
+   "ig": "sp_arte",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "viver-tecendo-claudia-alarcon-e-silat--masp",
+   "t": "Viver tecendo — Claudia Alarcón e Silät",
+   "a": "Claudia Alarcón",
+   "v": "MASP",
+   "ini": "2026-03-06",
+   "fim": "2026-08-02",
+   "d": "Tecelagens do coletivo wichí (Argentina).",
+   "bairro": "Bela Vista",
+   "zona": "Centro",
+   "addr": "Av. Paulista, 1578",
+   "tipo": "institucional",
+   "site": "https://masp.org.br",
+   "ig": "masp",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "pop-andino-la-chola-poblete--masp",
+   "t": "Pop andino — La Chola Poblete",
+   "a": "La Chola Poblete",
+   "v": "MASP",
+   "ini": "2026-03-06",
+   "fim": "2026-08-02",
+   "d": "Primeira individual da artista argentina no Brasil.",
+   "bairro": "Bela Vista",
+   "zona": "Centro",
+   "addr": "Av. Paulista, 1578",
+   "tipo": "institucional",
+   "site": "https://masp.org.br",
+   "ig": "masp",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "o-principio-do-conhecimento-santiago-yahuarcani--masp",
+   "t": "O princípio do conhecimento — Santiago Yahuarcani",
+   "a": "Santiago Yahuarcani",
+   "v": "MASP",
+   "ini": "2026-04-02",
+   "fim": "2026-08-02",
+   "d": "Pintura uitoto sobre llanchama.",
+   "bairro": "Bela Vista",
+   "zona": "Centro",
+   "addr": "Av. Paulista, 1578",
+   "tipo": "institucional",
+   "site": "https://masp.org.br",
+   "ig": "masp",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "democracia-radical-colectivo-acciones-de-arte--masp",
+   "t": "Democracia radical — Colectivo Acciones de Arte",
+   "a": "Colectivo Acciones de Arte (CADA)",
+   "v": "MASP",
+   "ini": "2026-04-07",
+   "fim": "2026-08-02",
+   "d": "Ações do CADA contra a ditadura chilena.",
+   "bairro": "Bela Vista",
+   "zona": "Centro",
+   "addr": "Av. Paulista, 1578",
+   "tipo": "institucional",
+   "site": "https://masp.org.br",
+   "ig": "masp",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "materia-e-energia-damian-ortega--masp",
+   "t": "Matéria e Energia — Damián Ortega",
+   "a": "Damián Ortega",
+   "v": "MASP",
+   "ini": "2026-05-15",
+   "fim": "2026-09-13",
+   "d": "Três décadas do escultor mexicano.",
+   "bairro": "Bela Vista",
+   "zona": "Centro",
+   "addr": "Av. Paulista, 1578",
+   "tipo": "institucional",
+   "site": "https://masp.org.br",
+   "ig": "masp",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "acervo-em-transformacao-doacoes-recentes--masp",
+   "t": "Acervo em Transformação: Doações Recentes",
+   "a": "",
+   "v": "MASP",
+   "ini": "2026-05-15",
+   "fim": "2026-09-13",
+   "d": "Curadoria Adriano Pedrosa e equipe.",
+   "bairro": "Bela Vista",
+   "zona": "Centro",
+   "addr": "Av. Paulista, 1578",
+   "tipo": "institucional",
+   "site": "https://masp.org.br",
+   "ig": "masp",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "confluencias-carolina-caycedo--masp",
+   "t": "confluências — Carolina Caycedo",
+   "a": "Carolina Caycedo",
+   "v": "MASP",
+   "ini": "2026-07-03",
+   "fim": "2026-10-04",
+   "d": "Rios, represas e resistência socioambiental.",
+   "bairro": "Bela Vista",
+   "zona": "Centro",
+   "addr": "Av. Paulista, 1578",
+   "tipo": "institucional",
+   "site": "https://masp.org.br",
+   "ig": "masp",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "casa-maria-lionza-sol-calero--masp",
+   "t": "Casa María Lionza — Sol Calero",
+   "a": "Sol Calero",
+   "v": "MASP",
+   "ini": "2026-07-03",
+   "fim": "2027-05-30",
+   "d": "Instalação de longa duração da venezuelana.",
+   "bairro": "Bela Vista",
+   "zona": "Centro",
+   "addr": "Av. Paulista, 1578",
+   "tipo": "institucional",
+   "site": "https://masp.org.br",
+   "ig": "masp",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "knockout-pascale-marthine-tayou--pinacoteca-de-sao-paulo",
+   "t": "Knockout! — Pascale Marthine Tayou",
+   "a": "Pascale Marthine Tayou",
+   "v": "Pinacoteca de São Paulo",
+   "ini": "2026-03-07",
+   "fim": "2026-08-02",
+   "d": "Instalações do camaronês na Pina Contemporânea.",
+   "bairro": "Luz",
+   "zona": "Centro",
+   "addr": "Praça da Luz, 2",
+   "tipo": "institucional",
+   "site": "https://pinacoteca.org.br",
+   "ig": "pinasp",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "a-mae-contempla-o-mar-cristina-salgado--pinacoteca-de-sao-paulo",
+   "t": "a mãe contempla o mar — Cristina Salgado",
+   "a": "Cristina Salgado",
+   "v": "Pinacoteca de São Paulo",
+   "ini": "2026-03-07",
+   "fim": "2026-08-02",
+   "d": "Escultura e imagem materna.",
+   "bairro": "Luz",
+   "zona": "Centro",
+   "addr": "Praça da Luz, 2",
+   "tipo": "institucional",
+   "site": "https://pinacoteca.org.br",
+   "ig": "pinasp",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "o-que-elas-viram-coletiva--ims-paulista",
+   "t": "O que elas viram — coletiva",
+   "a": "",
+   "v": "IMS Paulista",
+   "ini": "2026-03-17",
+   "fim": "2026-08-03",
+   "d": "Fotógrafas pioneiras no acervo IMS.",
+   "bairro": "Bela Vista",
+   "zona": "Centro",
+   "addr": "Av. Paulista, 2424",
+   "tipo": "institucional",
+   "site": "https://ims.com.br",
+   "ig": "imoreirasalles",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "pele-azul-vivian-caccuri--ccbb-sao-paulo",
+   "t": "Pele Azul — Vivian Caccuri",
+   "a": "Vivian Caccuri",
+   "v": "CCBB São Paulo",
+   "ini": "2026-04-29",
+   "fim": "2026-08-03",
+   "d": "Som, mosquitos e ecologia no Espaço Anexo.",
+   "bairro": "Sé",
+   "zona": "Centro",
+   "addr": "R. Álvares Penteado, 112",
+   "tipo": "institucional",
+   "site": "https://ccbb.com.br",
+   "ig": "ccbbsp",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "plantas-em-movimento-burle-marx--museu-judaico-de-sao-paulo",
+   "t": "Plantas em Movimento — Burle Marx",
+   "a": "Roberto Burle Marx",
+   "v": "Museu Judaico de São Paulo",
+   "ini": "2026-04-30",
+   "fim": "2026-08-02",
+   "d": "Paisagismo e botânica em movimento.",
+   "bairro": "Bela Vista",
+   "zona": "Centro",
+   "addr": "R. Martinho Prado, 128",
+   "tipo": "institucional",
+   "site": "https://museujudaico.org.br",
+   "ig": "museujudaicosp",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "estrelas-escolhidas-luiz-zerbini--instituto-tomie-ohtake",
+   "t": "Estrelas Escolhidas — Luiz Zerbini",
+   "a": "Luiz Zerbini",
+   "v": "Instituto Tomie Ohtake",
+   "ini": "2026-06-26",
+   "fim": "2026-08-16",
+   "d": "~230 obras: monotipias, pinturas e instalações da última década.",
+   "bairro": "Pinheiros",
+   "zona": "Oeste",
+   "addr": "R. Coropés, 88",
+   "tipo": "institucional",
+   "site": "https://www.institutotomieohtake.org.br",
+   "ig": "institutotomieohtake",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "antes-da-forma-o-encanto-monica-ventura--galeria-nara-roesler",
+   "t": "Antes da Forma, o Encanto — Mônica Ventura",
+   "a": "Mônica Ventura",
+   "v": "Galeria Nara Roesler",
+   "ini": "2026-05-26",
+   "fim": "2026-08-08",
+   "d": "Cosmologias afro-ameríndias e geometria.",
+   "bairro": "Jardim Europa",
+   "zona": "Oeste",
+   "addr": "Av. Europa, 655",
+   "tipo": "galeria",
+   "site": "https://nararoesler.art",
+   "ig": "galerianararoesler",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "fascination-and-affection-coletiva--galeria-nara-roesler",
+   "t": "Fascination and Affection — coletiva",
+   "a": "",
+   "v": "Galeria Nara Roesler",
+   "ini": "2026-05-26",
+   "fim": "2026-08-08",
+   "d": "Recorte do programa da galeria.",
+   "bairro": "Jardim Europa",
+   "zona": "Oeste",
+   "addr": "Av. Europa, 655",
+   "tipo": "galeria",
+   "site": "https://nararoesler.art",
+   "ig": "galerianararoesler",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "alfabeto-solare-edival-ramosa--galatea",
+   "t": "Alfabeto Solare — Edival Ramosa",
+   "a": "Edival Ramosa",
+   "v": "Galatea",
+   "ini": "2026-06-09",
+   "fim": "2026-08-08",
+   "d": "Redescoberta do escultor ítalo-brasileiro.",
+   "bairro": "Cerqueira César",
+   "zona": "Oeste",
+   "addr": "R. Oscar Freire, 379",
+   "tipo": "galeria",
+   "site": "https://galatea.art",
+   "ig": "",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "terra-cores-naturais-tito-terapia--galatea",
+   "t": "Terra, cores naturais… — Tito Terapia",
+   "a": "Tito Terapia",
+   "v": "Galatea",
+   "ini": "2026-05-12",
+   "fim": "2026-07-30",
+   "d": "Pigmentos naturais e pertencimento (espaço Padre João Manuel).",
+   "bairro": "Cerqueira César",
+   "zona": "Oeste",
+   "addr": "R. Oscar Freire, 379",
+   "tipo": "galeria",
+   "site": "https://galatea.art",
+   "ig": "",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "fluxos-janet-vollebregt--galeria-luis-maluf",
+   "t": "Fluxos — Janet Vollebregt",
+   "a": "Janet Vollebregt",
+   "v": "Galeria Luis Maluf",
+   "ini": "2026-05-16",
+   "fim": "2026-08-08",
+   "d": "Individual da artista holandesa-brasileira.",
+   "bairro": "Jardim Paulista",
+   "zona": "Oeste",
+   "addr": "R. Peixoto Gomide, 1887",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "almir-mavignier-acaso-determinado--dan-galeria",
+   "t": "Almir Mavignier: Acaso Determinado",
+   "a": "Almir Mavignier",
+   "v": "DAN Galeria",
+   "ini": "2026-05-23",
+   "fim": "2026-08-15",
+   "d": "Concretismo e op art (DAN Contemporânea).",
+   "bairro": "Jardim América",
+   "zona": "Oeste",
+   "addr": "R. Estados Unidos, 1638",
+   "tipo": "galeria",
+   "site": "https://www.dangaleria.com.br",
+   "ig": "dangaleria",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "surrealismos-arte-para-alem-da-razao--pinakotheke-sao-paulo",
+   "t": "Surrealismos: Arte para Além da Razão",
+   "a": "",
+   "v": "Pinakotheke São Paulo",
+   "ini": "2026-05-16",
+   "fim": "2026-08-15",
+   "d": "Curadoria Max Perlingeiro e Tadeu Chiarelli.",
+   "bairro": "Jardim América",
+   "zona": "Oeste",
+   "addr": "R. Estados Unidos, 1216",
+   "tipo": "galeria",
+   "site": "https://www.pinakotheke.com.br",
+   "ig": "",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "oposicoes-geometricas-coletiva--paulo-kuczynski-escritorio-de-arte",
+   "t": "Oposições Geométricas — coletiva",
+   "a": "",
+   "v": "Paulo Kuczynski Escritório de Arte",
+   "ini": "2026-05-16",
+   "fim": "2026-08-22",
+   "d": "Geometrias em diálogo (Mavignier e outros).",
+   "bairro": "Cerqueira César",
+   "zona": "Oeste",
+   "addr": "Al. Ministro Rocha Azevedo ~",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "agua-da-mata-miguel-penha-gunga-guerra--zipper-galeria",
+   "t": "Água da Mata (Miguel Penha) + Gunga Guerra",
+   "a": "Miguel Penha, Gunga Guerra",
+   "v": "Zipper Galeria",
+   "ini": "2026-06-01",
+   "fim": "2026-08-01",
+   "d": "Duas mostras simultâneas; entrada gratuita.",
+   "bairro": "Jardim América",
+   "zona": "Oeste",
+   "addr": "R. Estados Unidos, 1494",
+   "tipo": "galeria",
+   "site": "https://www.zippergaleria.com.br",
+   "ig": "zippergaleria",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "a-palavra-errada-rebecca-watson-horn--fortes-d-aloia-e-gabriel-galeria",
+   "t": "A palavra errada — Rebecca Watson Horn",
+   "a": "Rebecca Watson Horn",
+   "v": "Fortes D'Aloia & Gabriel — Galeria",
+   "ini": "2026-06-10",
+   "fim": "2026-08-01",
+   "d": "Pintura e linguagem.",
+   "bairro": "Pinheiros",
+   "zona": "Oeste",
+   "addr": "R. Fradique Coutinho, 1500",
+   "tipo": "galeria",
+   "site": "https://fdag.com.br",
+   "ig": "fortesdaloiagabriel",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "fugido-anderson-borba--fortes-d-aloia-e-gabriel-galeria",
+   "t": "Fugido — Anderson Borba",
+   "a": "Anderson Borba",
+   "v": "Fortes D'Aloia & Gabriel — Galeria",
+   "ini": "2026-06-10",
+   "fim": "2026-08-01",
+   "d": "Esculturas em madeira.",
+   "bairro": "Pinheiros",
+   "zona": "Oeste",
+   "addr": "R. Fradique Coutinho, 1500",
+   "tipo": "galeria",
+   "site": "https://fdag.com.br",
+   "ig": "fortesdaloiagabriel",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "uma-folha-translucida-no-lugar-dos-olhos-d-steegmann-mangrane--mendes-wood-dm",
+   "t": "Uma Folha Translúcida no Lugar dos Olhos — D. Steegmann Mangrané",
+   "a": "Daniel Steegmann Mangrané",
+   "v": "Mendes Wood DM",
+   "ini": "2026-04-07",
+   "fim": "2026-08-08",
+   "d": "Ecologia e percepção.",
+   "bairro": "Barra Funda",
+   "zona": "Centro",
+   "addr": "R. Barra Funda, 216",
+   "tipo": "galeria",
+   "site": "https://mendeswooddm.com",
+   "ig": "mendeswooddm",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "geologia-da-forma-germana-monte-mor--galeria-leme",
+   "t": "Geologia da forma — Germana Monte-Mór",
+   "a": "Germana Monte-Mór",
+   "v": "Galeria Leme",
+   "ini": "2026-06-25",
+   "fim": "2026-08-21",
+   "d": "Obras dos anos 90.",
+   "bairro": "Butantã",
+   "zona": "Oeste",
+   "addr": "Av. Valdemar Ferreira, 130",
+   "tipo": "galeria",
+   "site": "https://galerialeme.com",
+   "ig": "galerialeme",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "nem-mais-nem-menos-carlos-zilio--galeria-raquel-arnaud",
+   "t": "nem mais nem menos — Carlos Zilio",
+   "a": "Carlos Zilio",
+   "v": "Galeria Raquel Arnaud",
+   "ini": "2026-06-10",
+   "fim": "2026-08-22",
+   "d": "Pinturas recentes.",
+   "bairro": "Vila Madalena",
+   "zona": "Oeste",
+   "addr": "R. Fidalga, 125",
+   "tipo": "galeria",
+   "site": "https://www.raquelarnaud.com",
+   "ig": "galeriaraquelarnaud",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "etereas-chaim-weffort-giacomini-belem--galeria-raquel-arnaud",
+   "t": "Etéreas — Chaim, Weffort, Giacomini, Belém",
+   "a": "Carla Chaim, Marina Weffort, Amalia Giacomini, Laura Belém",
+   "v": "Galeria Raquel Arnaud",
+   "ini": "2026-06-11",
+   "fim": "2026-08-22",
+   "d": "Coletiva sobre leveza e matéria.",
+   "bairro": "Vila Madalena",
+   "zona": "Oeste",
+   "addr": "R. Fidalga, 125",
+   "tipo": "galeria",
+   "site": "https://www.raquelarnaud.com",
+   "ig": "galeriaraquelarnaud",
+   "visto": "2026-07-30"
+  },
+  {
+   "id": "mao-amiga-jose-bento--a-gentil-carioca-sp",
+   "t": "Mão Amiga — José Bento",
+   "a": "José Bento",
+   "v": "A Gentil Carioca SP",
+   "ini": "2026-05-23",
+   "fim": "2026-08-01",
+   "d": "Madeira e ofício.",
+   "bairro": "República",
+   "zona": "Centro",
+   "addr": "R. Barão de Itapetininga ~",
+   "tipo": "galeria",
+   "site": "https://agentilcarioca.com.br",
+   "ig": "agentilcarioca",
+   "visto": "2026-07-30"
+  }
+ ],
+ "artistas": {
+  "frederico-ravioli": {
+   "nome": "Frederico Ravioli",
+   "mostras": [
+    "verso-na-encruzilhada-da-revolta-ravioli-e-ussami--galeria-vermelho"
+   ]
+  },
+  "gabriel-ussami": {
+   "nome": "Gabriel Ussami",
+   "mostras": [
+    "verso-na-encruzilhada-da-revolta-ravioli-e-ussami--galeria-vermelho"
+   ]
+  },
+  "daiara-tukano": {
+   "nome": "Daiara Tukano",
+   "mostras": [
+    "ome-mahsa-seres-invisiveis-daiara-tukano--almeida-e-dale-millan"
+   ]
+  },
+  "masao-yamamoto": {
+   "nome": "Masao Yamamoto",
+   "mostras": [
+    "masao-yamamoto-individual--galeria-marcelo-guarnieri"
+   ]
+  },
+  "thiago-martins-de-melo": {
+   "nome": "Thiago Martins de Melo",
+   "mostras": [
+    "igneo-piaga-thiago-martins-de-melo--almeida-e-dale-millan"
+   ]
+  },
+  "flavia-fabbriziani": {
+   "nome": "Flavia Fabbriziani",
+   "mostras": [
+    "habitar-a-paisagem-flavia-fabbriziani--galeria-dezoito"
+   ]
+  },
+  "joan-miro": {
+   "nome": "Joan Miró",
+   "mostras": [
+    "joan-miro-mestre-das-formas--mab-faap"
+   ]
+  },
+  "alfredo-jaar": {
+   "nome": "Alfredo Jaar",
+   "mostras": [
+    "o-lado-escuro-da-lua-alfredo-jaar--galeria-luisa-strina"
+   ]
+  },
+  "claudia-alarcon": {
+   "nome": "Claudia Alarcón",
+   "mostras": [
+    "viver-tecendo-claudia-alarcon-e-silat--masp"
+   ]
+  },
+  "la-chola-poblete": {
+   "nome": "La Chola Poblete",
+   "mostras": [
+    "pop-andino-la-chola-poblete--masp"
+   ]
+  },
+  "santiago-yahuarcani": {
+   "nome": "Santiago Yahuarcani",
+   "mostras": [
+    "o-principio-do-conhecimento-santiago-yahuarcani--masp"
+   ]
+  },
+  "colectivo-acciones-de-arte-cada": {
+   "nome": "Colectivo Acciones de Arte (CADA)",
+   "mostras": [
+    "democracia-radical-colectivo-acciones-de-arte--masp"
+   ]
+  },
+  "damian-ortega": {
+   "nome": "Damián Ortega",
+   "mostras": [
+    "materia-e-energia-damian-ortega--masp"
+   ]
+  },
+  "carolina-caycedo": {
+   "nome": "Carolina Caycedo",
+   "mostras": [
+    "confluencias-carolina-caycedo--masp"
+   ]
+  },
+  "sol-calero": {
+   "nome": "Sol Calero",
+   "mostras": [
+    "casa-maria-lionza-sol-calero--masp"
+   ]
+  },
+  "pascale-marthine-tayou": {
+   "nome": "Pascale Marthine Tayou",
+   "mostras": [
+    "knockout-pascale-marthine-tayou--pinacoteca-de-sao-paulo"
+   ]
+  },
+  "cristina-salgado": {
+   "nome": "Cristina Salgado",
+   "mostras": [
+    "a-mae-contempla-o-mar-cristina-salgado--pinacoteca-de-sao-paulo"
+   ]
+  },
+  "vivian-caccuri": {
+   "nome": "Vivian Caccuri",
+   "mostras": [
+    "pele-azul-vivian-caccuri--ccbb-sao-paulo"
+   ]
+  },
+  "roberto-burle-marx": {
+   "nome": "Roberto Burle Marx",
+   "mostras": [
+    "plantas-em-movimento-burle-marx--museu-judaico-de-sao-paulo"
+   ]
+  },
+  "luiz-zerbini": {
+   "nome": "Luiz Zerbini",
+   "mostras": [
+    "estrelas-escolhidas-luiz-zerbini--instituto-tomie-ohtake"
+   ]
+  },
+  "monica-ventura": {
+   "nome": "Mônica Ventura",
+   "mostras": [
+    "antes-da-forma-o-encanto-monica-ventura--galeria-nara-roesler"
+   ]
+  },
+  "edival-ramosa": {
+   "nome": "Edival Ramosa",
+   "mostras": [
+    "alfabeto-solare-edival-ramosa--galatea"
+   ]
+  },
+  "tito-terapia": {
+   "nome": "Tito Terapia",
+   "mostras": [
+    "terra-cores-naturais-tito-terapia--galatea"
+   ]
+  },
+  "janet-vollebregt": {
+   "nome": "Janet Vollebregt",
+   "mostras": [
+    "fluxos-janet-vollebregt--galeria-luis-maluf"
+   ]
+  },
+  "almir-mavignier": {
+   "nome": "Almir Mavignier",
+   "mostras": [
+    "almir-mavignier-acaso-determinado--dan-galeria"
+   ]
+  },
+  "miguel-penha": {
+   "nome": "Miguel Penha",
+   "mostras": [
+    "agua-da-mata-miguel-penha-gunga-guerra--zipper-galeria"
+   ]
+  },
+  "gunga-guerra": {
+   "nome": "Gunga Guerra",
+   "mostras": [
+    "agua-da-mata-miguel-penha-gunga-guerra--zipper-galeria"
+   ]
+  },
+  "rebecca-watson-horn": {
+   "nome": "Rebecca Watson Horn",
+   "mostras": [
+    "a-palavra-errada-rebecca-watson-horn--fortes-d-aloia-e-gabriel-galeria"
+   ]
+  },
+  "anderson-borba": {
+   "nome": "Anderson Borba",
+   "mostras": [
+    "fugido-anderson-borba--fortes-d-aloia-e-gabriel-galeria"
+   ]
+  },
+  "daniel-steegmann-mangrane": {
+   "nome": "Daniel Steegmann Mangrané",
+   "mostras": [
+    "uma-folha-translucida-no-lugar-dos-olhos-d-steegmann-mangrane--mendes-wood-dm"
+   ]
+  },
+  "germana-monte-mor": {
+   "nome": "Germana Monte-Mór",
+   "mostras": [
+    "geologia-da-forma-germana-monte-mor--galeria-leme"
+   ]
+  },
+  "carlos-zilio": {
+   "nome": "Carlos Zilio",
+   "mostras": [
+    "nem-mais-nem-menos-carlos-zilio--galeria-raquel-arnaud"
+   ]
+  },
+  "carla-chaim": {
+   "nome": "Carla Chaim",
+   "mostras": [
+    "etereas-chaim-weffort-giacomini-belem--galeria-raquel-arnaud"
+   ]
+  },
+  "marina-weffort": {
+   "nome": "Marina Weffort",
+   "mostras": [
+    "etereas-chaim-weffort-giacomini-belem--galeria-raquel-arnaud"
+   ]
+  },
+  "amalia-giacomini": {
+   "nome": "Amalia Giacomini",
+   "mostras": [
+    "etereas-chaim-weffort-giacomini-belem--galeria-raquel-arnaud"
+   ]
+  },
+  "laura-belem": {
+   "nome": "Laura Belém",
+   "mostras": [
+    "etereas-chaim-weffort-giacomini-belem--galeria-raquel-arnaud"
+   ]
+  },
+  "jose-bento": {
+   "nome": "José Bento",
+   "mostras": [
+    "mao-amiga-jose-bento--a-gentil-carioca-sp"
+   ]
+  }
+ },
+ "venues": {
+  "galeria-luisa-strina": {
+   "name": "Galeria Luisa Strina",
+   "addr": "R. Padre João Manuel, 755",
+   "b": "Cerqueira César",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://www.galerialuisastrina.com.br",
+   "ig": "galerialuisastrina",
+   "info": "Fundada em 1974, decana da arte contemporânea no Brasil. Alfredo Jaar, Cildo Meireles, Leonilson."
+  },
+  "galatea": {
+   "name": "Galatea",
+   "addr": "R. Oscar Freire, 379",
+   "b": "Cerqueira César",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://galatea.art",
+   "ig": "",
+   "info": "Dois espaços nos Jardins (Oscar Freire e Padre João Manuel). Arte brasileira moderna e contemporânea."
+  },
+  "casa-triangulo": {
+   "name": "Casa Triângulo",
+   "addr": "R. Estados Unidos, 1324",
+   "b": "Jardim América",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://www.casatriangulo.com",
+   "ig": "casatriangulo",
+   "info": "Desde 1988 (Ricardo Trevisan). ~500 m² experimentais. Yuli Yamagata, Vânia Mignone."
+  },
+  "zipper-galeria": {
+   "name": "Zipper Galeria",
+   "addr": "R. Estados Unidos, 1494",
+   "b": "Jardim América",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://www.zippergaleria.com.br",
+   "ig": "zippergaleria",
+   "info": "Desde 2010. Curadoria diversa, múltiplas mídias."
+  },
+  "dan-galeria": {
+   "name": "DAN Galeria",
+   "addr": "R. Estados Unidos, 1638",
+   "b": "Jardim América",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://www.dangaleria.com.br",
+   "ig": "dangaleria",
+   "info": "Modernismo brasileiro e concretismo; braço contemporâneo DAN Contemporânea."
+  },
+  "pinakotheke-sao-paulo": {
+   "name": "Pinakotheke São Paulo",
+   "addr": "R. Estados Unidos, 1216",
+   "b": "Jardim América",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://www.pinakotheke.com.br",
+   "ig": "",
+   "info": "Casa histórica dedicada à arte brasileira dos séculos XX–XXI."
+  },
+  "galeria-marcelo-guarnieri": {
+   "name": "Galeria Marcelo Guarnieri",
+   "addr": "Al. Lorena, 1835",
+   "b": "Jardim Paulista",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://www.galeriamarceloguarnieri.com.br",
+   "ig": "galeriamarceloguarnieri",
+   "info": "Origem em Ribeirão Preto (1985); espaço nos Jardins. Fotografia e contemporâneo."
+  },
+  "simoes-de-assis": {
+   "name": "Simões de Assis",
+   "addr": "Al. Lorena, 2050A",
+   "b": "Jardim Paulista",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://simoesdeassis.com",
+   "ig": "simoesdeassis",
+   "info": "Fundada em Curitiba (1984). Abstração geométrica e contemporâneo."
+  },
+  "galeria-luis-maluf": {
+   "name": "Galeria Luis Maluf",
+   "addr": "R. Peixoto Gomide, 1887",
+   "b": "Jardim Paulista",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "",
+   "info": "Arte contemporânea brasileira emergente."
+  },
+  "choque-cultural": {
+   "name": "Choque Cultural",
+   "addr": "Al. Sarutaiá, 206",
+   "b": "Jardim Paulista",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "http://choquecultural.com.br",
+   "ig": "choquecultural",
+   "info": "Referência em arte urbana, grafite e street art desde 2004."
+  },
+  "almeida-e-dale": {
+   "name": "Almeida & Dale",
+   "addr": "R. Caconde, 152",
+   "b": "Jardim Paulista",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://www.almeidaedale.com.br",
+   "ig": "almeidaedale",
+   "info": "Uma das maiores do país; incorporou a Galeria Millan em 2025. Mercado primário e secundário."
+  },
+  "kogan-amaro": {
+   "name": "Kogan Amaro",
+   "addr": "Al. Franca, 1054 ~",
+   "b": "Jardim Paulista",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://www.koganamaro.com",
+   "ig": "",
+   "info": "SP e Zurique. Contemporâneo brasileiro e internacional."
+  },
+  "verve-galeria": {
+   "name": "Verve Galeria",
+   "addr": "Al. Lorena, 1257 ~",
+   "b": "Jardim Paulista",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "",
+   "info": "Contemporâneo; forte presença em feiras nacionais."
+  },
+  "galeria-berenice-arvani": {
+   "name": "Galeria Berenice Arvani",
+   "addr": "R. Oscar Freire, 540 ~",
+   "b": "Cerqueira César",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "",
+   "info": "Modernos e contemporâneos brasileiros."
+  },
+  "galeria-superficie": {
+   "name": "Galeria Superfície",
+   "addr": "R. Oscar Freire, 240 ~",
+   "b": "Cerqueira César",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://www.galeriasuperficie.com.br",
+   "ig": "galeriasuperficie",
+   "info": "Arte conceitual brasileira dos anos 1970 em diante."
+  },
+  "paulo-kuczynski-escritorio-de-arte": {
+   "name": "Paulo Kuczynski Escritório de Arte",
+   "addr": "Al. Ministro Rocha Azevedo ~",
+   "b": "Cerqueira César",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "",
+   "info": "Mercado secundário de alto nível; mostras curadas."
+  },
+  "ricardo-camargo-galeria": {
+   "name": "Ricardo Camargo Galeria",
+   "addr": "R. Bento de Andrade ~",
+   "b": "Jardim Paulista",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "",
+   "info": "Arte brasileira moderna."
+  },
+  "monica-filgueiras-galeria": {
+   "name": "Mônica Filgueiras Galeria",
+   "addr": "R. Bela Cintra, 1533 ~",
+   "b": "Cerqueira César",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "",
+   "info": "Contemporâneo brasileiro desde os anos 1980."
+  },
+  "danielian-sao-paulo": {
+   "name": "Danielian São Paulo",
+   "addr": "Jardins (endereço a confirmar)",
+   "b": "Jardim Paulista",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "",
+   "info": "Galeria carioca com espaço recente em SP."
+  },
+  "galeria-nara-roesler": {
+   "name": "Galeria Nara Roesler",
+   "addr": "Av. Europa, 655",
+   "b": "Jardim Europa",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://nararoesler.art",
+   "ig": "galerianararoesler",
+   "info": "SP, Rio e NY. Abraham Palatnik, Vik Muniz, Tomie Ohtake."
+  },
+  "luciana-brito-galeria": {
+   "name": "Luciana Brito Galeria",
+   "addr": "Av. Nove de Julho, 5162",
+   "b": "Jardim Europa",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://lucianabritogaleria.com.br",
+   "ig": "lucianabritogaleria",
+   "info": "Sede em casa modernista de Rino Levi (1958). Contemporâneo internacional."
+  },
+  "galeria-lume": {
+   "name": "Galeria Lume",
+   "addr": "R. Gumercindo Saraiva, 54 ~",
+   "b": "Jardim Europa",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://www.galerialume.com",
+   "ig": "galerialume",
+   "info": "Contemporâneo brasileiro e latino-americano."
+  },
+  "gomide-e-co": {
+   "name": "Gomide&Co",
+   "addr": "Av. Paulista, 2644 (Ed. Rosa)",
+   "b": "Consolação",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://gomide.co",
+   "ig": "gomideco",
+   "info": "600 m² no corredor cultural da Paulista. Modernismo e contemporâneo."
+  },
+  "almeida-e-dale-millan": {
+   "name": "Almeida & Dale | Millan",
+   "addr": "R. Fradique Coutinho, 1360",
+   "b": "Pinheiros",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://millan.art",
+   "ig": "galeriamillan",
+   "info": "Espaço Fradique; a histórica Galeria Millan (1986) integrou-se à Almeida & Dale em 2025."
+  },
+  "fortes-d-aloia-e-gabriel-galeria": {
+   "name": "Fortes D'Aloia & Gabriel — Galeria",
+   "addr": "R. Fradique Coutinho, 1500",
+   "b": "Pinheiros",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://fdag.com.br",
+   "ig": "fortesdaloiagabriel",
+   "info": "Ernesto Neto, Rivane Neuenschwander, Erika Verzutti. Espaço-irmão: Galpão (Barra Funda)."
+  },
+  "galeria-estacao": {
+   "name": "Galeria Estação",
+   "addr": "R. Ferreira de Araújo, 625",
+   "b": "Pinheiros",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://www.galeriaestacao.com.br",
+   "ig": "galeriaestacao",
+   "info": "Referência em arte popular brasileira e artistas autodidatas."
+  },
+  "central-galeria": {
+   "name": "Central Galeria",
+   "addr": "R. Mourato Coelho ~",
+   "b": "Pinheiros",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://www.centralgaleria.com",
+   "ig": "centralgaleria",
+   "info": "Contemporâneo emergente."
+  },
+  "casa-de-cultura-do-parque": {
+   "name": "Casa de Cultura do Parque",
+   "addr": "Av. Prof. Fonseca Rodrigues, 1300",
+   "b": "Alto de Pinheiros",
+   "z": "Oeste",
+   "tipo": "institucional",
+   "site": "",
+   "ig": "",
+   "info": "Centro cultural em Alto de Pinheiros; ciclos expositivos em parceria com o ICCo."
+  },
+  "galeria-raquel-arnaud": {
+   "name": "Galeria Raquel Arnaud",
+   "addr": "R. Fidalga, 125",
+   "b": "Vila Madalena",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://www.raquelarnaud.com",
+   "ig": "galeriaraquelarnaud",
+   "info": "Desde 1973. Construtivo e abstração: Sérgio Camargo, Carlos Zilio."
+  },
+  "galeria-dezoito": {
+   "name": "Galeria Dezoito",
+   "addr": "R. Simpatia, 23",
+   "b": "Vila Madalena",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://galeriadezoito.com",
+   "ig": "",
+   "info": "Espaço da Vila Madalena com foco em paisagem e pintura contemporânea."
+  },
+  "marli-matsumoto-arte-contemporanea": {
+   "name": "Marli Matsumoto Arte Contemporânea",
+   "addr": "Vila Madalena ~",
+   "b": "Vila Madalena",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "",
+   "info": "Galeria + anexo experimental."
+  },
+  "galeria-leme": {
+   "name": "Galeria Leme",
+   "addr": "Av. Valdemar Ferreira, 130",
+   "b": "Butantã",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://galerialeme.com",
+   "ig": "galerialeme",
+   "info": "Prédio brutalista de Paulo Mendes da Rocha. Latino-americanos e africanos."
+  },
+  "mendes-wood-dm": {
+   "name": "Mendes Wood DM",
+   "addr": "R. Barra Funda, 216",
+   "b": "Barra Funda",
+   "z": "Centro",
+   "tipo": "galeria",
+   "site": "https://mendeswooddm.com",
+   "ig": "mendeswooddm",
+   "info": "SP, Bruxelas, NY, Paris. Sonia Gomes, Paulo Nazareth, Solange Pessoa."
+  },
+  "fortes-d-aloia-e-gabriel-galpao": {
+   "name": "Fortes D'Aloia & Gabriel — Galpão",
+   "addr": "R. James Holland, 71",
+   "b": "Barra Funda",
+   "z": "Centro",
+   "tipo": "galeria",
+   "site": "https://fdag.com.br",
+   "ig": "fortesdaloiagabriel",
+   "info": "Galpão industrial para mostras de grande escala."
+  },
+  "galeria-vermelho": {
+   "name": "Galeria Vermelho",
+   "addr": "R. Minas Gerais, 350",
+   "b": "Higienópolis",
+   "z": "Centro",
+   "tipo": "galeria",
+   "site": "https://galeriavermelho.com.br",
+   "ig": "galeriavermelho",
+   "info": "Desde 2002. Performance, instalação e política. Verbo (mostra anual de performance)."
+  },
+  "hoa-galeria": {
+   "name": "HOA Galeria",
+   "addr": "Higienópolis ~",
+   "b": "Higienópolis",
+   "z": "Centro",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "hoagaleria",
+   "info": "Fundada por Igi Ayedun; foco em artistas negros e periféricos."
+  },
+  "galeria-jaqueline-martins": {
+   "name": "Galeria Jaqueline Martins",
+   "addr": "R. Dr. Cesário Mota Jr., 443",
+   "b": "Vila Buarque",
+   "z": "Centro",
+   "tipo": "galeria",
+   "site": "https://www.galeriajaquelinemartins.com.br",
+   "ig": "galeriajaquelinemartins",
+   "info": "SP e Bruxelas. Vanguardas dos anos 1970–80 e contemporâneo. Hudinilson Jr."
+  },
+  "a-gentil-carioca-sp": {
+   "name": "A Gentil Carioca SP",
+   "addr": "R. Barão de Itapetininga ~",
+   "b": "República",
+   "z": "Centro",
+   "tipo": "galeria",
+   "site": "https://agentilcarioca.com.br",
+   "ig": "agentilcarioca",
+   "info": "Filial paulistana da galeria carioca fundada por Ernesto Neto, Márcio Botner e Laura Lima."
+  },
+  "se-galeria": {
+   "name": "Sé Galeria",
+   "addr": "Centro ~",
+   "b": "Sé",
+   "z": "Centro",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "",
+   "info": "Programa experimental no centro histórico."
+  },
+  "baro-galeria": {
+   "name": "Baró Galeria",
+   "addr": "Santa Cecília (galpão de 1.500 m²) ~",
+   "b": "Santa Cecília",
+   "z": "Centro",
+   "tipo": "galeria",
+   "site": "https://barogaleria.com",
+   "ig": "barogaleria",
+   "info": "Dirigida por Maria Baró; galpão reformado de 1.500 m². Diálogo Brasil–Espanha–América Latina."
+  },
+  "a7ma-galeria": {
+   "name": "A7MA Galeria",
+   "addr": "R. Harmonia, 239 ~",
+   "b": "Vila Madalena",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "",
+   "info": "Arte urbana e cultura de rua na Vila Madalena."
+  },
+  "amoa-konoya-arte-indigena": {
+   "name": "Amoa Konoya Arte Indígena",
+   "addr": "R. João Moura, 1002 ~",
+   "b": "Pinheiros",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "amoakonoya",
+   "info": "Dedicada à arte dos povos indígenas do Brasil."
+  },
+  "blau-projects": {
+   "name": "Blau Projects",
+   "addr": "R. Fradique Coutinho ~",
+   "b": "Pinheiros",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://www.blauprojects.com",
+   "ig": "blauprojects",
+   "info": "Artistas emergentes e múltiplas linguagens."
+  },
+  "galeria-aura": {
+   "name": "Galeria Aura",
+   "addr": "Pinheiros (endereço a confirmar)",
+   "b": "Pinheiros",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "",
+   "info": "Entre Porto Alegre e SP; foco em projetos expositivos e feiras."
+  },
+  "adelina-galeria": {
+   "name": "Adelina Galeria",
+   "addr": "Pinheiros (endereço a confirmar)",
+   "b": "Pinheiros",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "",
+   "info": "Arte contemporânea com foco em novos diálogos e pertencimento."
+  },
+  "arte-infinita": {
+   "name": "Arte Infinita",
+   "addr": "Jardim Europa (endereço a confirmar)",
+   "b": "Jardim Europa",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "",
+   "info": "Fundada por Viviane Teperman em 2001; ênfase em escultura."
+  },
+  "arteedicoes-galeria": {
+   "name": "Arteedições Galeria",
+   "addr": "Jardins (endereço a confirmar)",
+   "b": "Jardim Paulista",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "",
+   "info": "Gravuras e edições: Hirst, Kapoor, Opie, Sonia Gomes, Leda Catunda."
+  },
+  "a-casa-das-artes": {
+   "name": "A Casa das Artes",
+   "addr": "Itaim Bibi (endereço a confirmar)",
+   "b": "Itaim Bibi",
+   "z": "Sul",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "",
+   "info": "Direção de Marta Veloso de Souza; modernos e contemporâneos."
+  },
+  "galeria-marilia-razuk": {
+   "name": "Galeria Marília Razuk",
+   "addr": "R. Jerônimo da Veiga, 131",
+   "b": "Itaim Bibi",
+   "z": "Sul",
+   "tipo": "galeria",
+   "site": "https://www.galeriamariliarazuk.com.br",
+   "ig": "galeriamariliarazuk",
+   "info": "Desde 1992. Contemporâneo brasileiro."
+  },
+  "galeria-mario-cohen": {
+   "name": "Galeria Mario Cohen",
+   "addr": "R. Pedroso Alvarenga ~",
+   "b": "Itaim Bibi",
+   "z": "Sul",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "",
+   "info": "Pop e contemporâneo internacional."
+  },
+  "arte-132-galeria": {
+   "name": "Arte 132 Galeria",
+   "addr": "Av. Juriti, 132",
+   "b": "Moema",
+   "z": "Sul",
+   "tipo": "galeria",
+   "site": "https://arte132.com.br",
+   "ig": "arte132galeria",
+   "info": "Casa-galeria em Moema; acervo moderno e contemporâneo."
+  },
+  "galeria-jacques-ardies": {
+   "name": "Galeria Jacques Ardies",
+   "addr": "R. Morgado de Mateus, 579",
+   "b": "Vila Mariana",
+   "z": "Sul",
+   "tipo": "galeria",
+   "site": "https://www.ardies.com",
+   "ig": "",
+   "info": "Especializada em arte naïf brasileira desde 1979."
+  },
+  "masp": {
+   "name": "MASP",
+   "addr": "Av. Paulista, 1578",
+   "b": "Bela Vista",
+   "z": "Centro",
+   "tipo": "institucional",
+   "site": "https://masp.org.br",
+   "ig": "masp",
+   "info": "Museu de Arte de São Paulo Assis Chateaubriand + Ed. Pietro Maria Bardi (14 andares)."
+  },
+  "pinacoteca-de-sao-paulo": {
+   "name": "Pinacoteca de São Paulo",
+   "addr": "Praça da Luz, 2",
+   "b": "Luz",
+   "z": "Centro",
+   "tipo": "institucional",
+   "site": "https://pinacoteca.org.br",
+   "ig": "pinasp",
+   "info": "Pina Luz, Pina Estação e Pina Contemporânea."
+  },
+  "ccbb-sao-paulo": {
+   "name": "CCBB São Paulo",
+   "addr": "R. Álvares Penteado, 112",
+   "b": "Sé",
+   "z": "Centro",
+   "tipo": "institucional",
+   "site": "https://ccbb.com.br",
+   "ig": "ccbbsp",
+   "info": "Centro Cultural Banco do Brasil, centro histórico."
+  },
+  "ims-paulista": {
+   "name": "IMS Paulista",
+   "addr": "Av. Paulista, 2424",
+   "b": "Bela Vista",
+   "z": "Centro",
+   "tipo": "institucional",
+   "site": "https://ims.com.br",
+   "ig": "imoreirasalles",
+   "info": "Instituto Moreira Salles: fotografia, cinema e literatura."
+  },
+  "itau-cultural": {
+   "name": "Itaú Cultural",
+   "addr": "Av. Paulista, 149",
+   "b": "Bela Vista",
+   "z": "Centro",
+   "tipo": "institucional",
+   "site": "https://www.itaucultural.org.br",
+   "ig": "itaucultural",
+   "info": "Programação gratuita na Paulista."
+  },
+  "centro-cultural-sao-paulo-ccsp": {
+   "name": "Centro Cultural São Paulo (CCSP)",
+   "addr": "R. Vergueiro, 1000",
+   "b": "Paraíso",
+   "z": "Centro",
+   "tipo": "institucional",
+   "site": "https://centrocultural.sp.gov.br",
+   "ig": "",
+   "info": "Exposições, acervo e residências."
+  },
+  "museu-judaico-de-sao-paulo": {
+   "name": "Museu Judaico de São Paulo",
+   "addr": "R. Martinho Prado, 128",
+   "b": "Bela Vista",
+   "z": "Centro",
+   "tipo": "institucional",
+   "site": "https://museujudaico.org.br",
+   "ig": "museujudaicosp",
+   "info": "Junto à sinagoga Beth-El."
+  },
+  "pivo": {
+   "name": "Pivô",
+   "addr": "Av. Ipiranga, 200 (Copan)",
+   "b": "República",
+   "z": "Centro",
+   "tipo": "institucional",
+   "site": "https://www.pivo.org.br",
+   "ig": "",
+   "info": "Plataforma sem fins lucrativos no Edifício Copan: mostras e residências."
+  },
+  "casa-do-povo": {
+   "name": "Casa do Povo",
+   "addr": "R. Três Rios, 252",
+   "b": "Bom Retiro",
+   "z": "Centro",
+   "tipo": "institucional",
+   "site": "https://casadopovo.org.br",
+   "ig": "casadopovo",
+   "info": "Centro cultural experimental no Bom Retiro."
+  },
+  "mab-faap": {
+   "name": "MAB FAAP",
+   "addr": "R. Alagoas, 903",
+   "b": "Pacaembu",
+   "z": "Centro",
+   "tipo": "institucional",
+   "site": "https://www.faap.br/museu",
+   "ig": "",
+   "info": "Museu de Arte Brasileira da FAAP."
+  },
+  "instituto-tomie-ohtake": {
+   "name": "Instituto Tomie Ohtake",
+   "addr": "R. Coropés, 88",
+   "b": "Pinheiros",
+   "z": "Oeste",
+   "tipo": "institucional",
+   "site": "https://www.institutotomieohtake.org.br",
+   "ig": "institutotomieohtake",
+   "info": "Torre de Ruy Ohtake na Faria Lima."
+  },
+  "sesc-pompeia": {
+   "name": "Sesc Pompeia",
+   "addr": "R. Clélia, 93",
+   "b": "Pompeia",
+   "z": "Oeste",
+   "tipo": "institucional",
+   "site": "https://www.sescsp.org.br/unidades/sesc-pompeia",
+   "ig": "sescpompeia",
+   "info": "Complexo de Lina Bo Bardi; exposições de grande porte."
+  },
+  "mam-sao-paulo": {
+   "name": "MAM São Paulo",
+   "addr": "Parque Ibirapuera, portão 3",
+   "b": "Ibirapuera",
+   "z": "Sul",
+   "tipo": "institucional",
+   "site": "https://mam.org.br",
+   "ig": "mamsaopaulo",
+   "info": "Museu de Arte Moderna, marquise do Ibirapuera."
+  },
+  "mac-usp": {
+   "name": "MAC USP",
+   "addr": "Av. Pedro Álvares Cabral, 1301",
+   "b": "Ibirapuera",
+   "z": "Sul",
+   "tipo": "institucional",
+   "site": "https://www.mac.usp.br",
+   "ig": "",
+   "info": "Museu de Arte Contemporânea da USP, antigo Detran."
+  },
+  "museu-afro-brasil-emanoel-araujo": {
+   "name": "Museu Afro Brasil Emanoel Araujo",
+   "addr": "Parque Ibirapuera, portão 10",
+   "b": "Ibirapuera",
+   "z": "Sul",
+   "tipo": "institucional",
+   "site": "https://museuafrobrasil.org.br",
+   "ig": "museuafrobrasil",
+   "info": "Pavilhão Padre Manoel da Nóbrega."
+  },
+  "oca-pavilhao-lucas-nogueira-garcez": {
+   "name": "Oca — Pavilhão Lucas Nogueira Garcez",
+   "addr": "Parque Ibirapuera, portão 3",
+   "b": "Ibirapuera",
+   "z": "Sul",
+   "tipo": "institucional",
+   "site": "",
+   "ig": "",
+   "info": "Pavilhão de Niemeyer para grandes mostras."
+  },
+  "fundacao-bienal-pavilhao-ciccillo-matarazzo": {
+   "name": "Fundação Bienal / Pavilhão Ciccillo Matarazzo",
+   "addr": "Parque Ibirapuera, portão 3",
+   "b": "Ibirapuera",
+   "z": "Sul",
+   "tipo": "institucional",
+   "site": "https://bienal.org.br",
+   "ig": "bienalsaopaulo",
+   "info": "Sede da Bienal de São Paulo e da feira SP-Arte (abril)."
+  },
+  "arca": {
+   "name": "ARCA",
+   "addr": "Av. Manuel Bandeira, 360",
+   "b": "Vila Leopoldina",
+   "z": "Oeste",
+   "tipo": "feira",
+   "site": "https://www.sp-arte.com",
+   "ig": "sp_arte",
+   "info": "Galpão de eventos; sede da SP-Arte Rotas."
+  }
+ },
+ "atualizado": "2026-07-30"
+}
