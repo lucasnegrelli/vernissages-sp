@@ -30,9 +30,9 @@
     --green:#7fb98a; --red:#d97b6c; --blue:#7da7d9;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.5}
-  header{padding:26px 32px 16px;border-bottom:1px solid var(--border);display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between}
-  header h1{font-size:1.6rem;font-weight:600;letter-spacing:.5px}
+  body{background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,'Segoe UI',Inter,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;font-size:15px}
+  header{padding:30px 32px 22px;border-bottom:1px solid var(--border);display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between}
+  header h1{font-size:1.5rem;font-weight:600;letter-spacing:2.5px}
   header h1 span{color:var(--accent)}
   header p{color:var(--muted);font-size:.85rem;margin-top:3px}
   #search{background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:24px;
@@ -40,10 +40,10 @@
   #search:focus{outline:none;border-color:var(--accent)}
   .wrap{max-width:1320px;margin:0 auto;padding:0 32px 60px}
   .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:22px 0}
-  .kpi{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:14px 16px}
-  .kpi .num{font-size:1.8rem;font-weight:700;color:var(--accent)}
+  .kpi{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+  .kpi .num{font-size:1.65rem;font-weight:600;color:var(--accent);letter-spacing:-.5px}
   .kpi .lbl{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.8px}
-  h2{font-size:1rem;font-weight:600;margin:28px 0 10px;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent)}
+  h2{font-size:.78rem;font-weight:600;margin:44px 0 16px;text-transform:uppercase;letter-spacing:1.8px;color:var(--muted);padding-bottom:9px;border-bottom:1px solid var(--border)}
   .filters{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 16px;align-items:center}
   .chip{background:var(--panel2);border:1px solid var(--border);color:var(--muted);border-radius:20px;
     padding:6px 14px;font-size:.82rem;cursor:pointer;transition:.15s;user-select:none}
@@ -53,19 +53,19 @@
   .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
   @media(max-width:950px){.grid{grid-template-columns:1fr}}
   #map{height:560px;border-radius:12px;border:1px solid var(--border);z-index:0}
-  .cards{display:flex;flex-direction:column;gap:10px;max-height:560px;overflow-y:auto;padding-right:6px}
+  .cards{display:flex;flex-direction:column;gap:12px;max-height:560px;overflow-y:auto;padding-right:6px}
   .cards::-webkit-scrollbar,.dirbody::-webkit-scrollbar{width:8px}
   .cards::-webkit-scrollbar-thumb,.dirbody::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
-  .card{background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--muted);border-radius:10px;padding:12px 14px;transition:.15s}
+  .card{background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--muted);border-radius:12px;padding:15px 17px;transition:.18s}
   .card:hover{border-color:var(--accent)}
   .card.opening{border-left-color:var(--accent)}
   .card.closing{border-left-color:var(--red)}
   .card.current{border-left-color:var(--green)}
   .card.fair{border-left-color:var(--accent2)}
-  .card .title{font-weight:600;font-size:.94rem;cursor:pointer}
-  .card .venue{color:var(--accent2);font-size:.84rem;margin-top:2px}
+  .card .title{font-weight:600;font-size:1.02rem;line-height:1.35;cursor:pointer;letter-spacing:-.1px}
+  .card .venue{color:var(--accent2);font-size:.85rem;margin-top:5px}
   .card .addr{color:var(--muted);font-size:.76rem;margin-top:2px}
-  .card .meta{color:var(--muted);font-size:.76rem;margin-top:6px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .card .meta{color:var(--muted);font-size:.76rem;margin-top:11px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
   .tag{display:inline-block;padding:1px 8px;border-radius:10px;font-size:.68rem;font-weight:600;letter-spacing:.4px}
   .tag.opening{background:rgba(232,193,90,.15);color:var(--accent)}
   .tag.closing{background:rgba(217,123,108,.15);color:var(--red)}
@@ -106,11 +106,12 @@
   .barrow .bv{color:var(--text);font-weight:600}
   .note{color:var(--muted);font-size:.78rem;margin-top:10px}
   /* vernissages da semana */
-  .wkwrap{background:linear-gradient(135deg,rgba(232,193,90,.10),rgba(201,111,74,.08));border:1px solid var(--accent);border-radius:14px;padding:14px 18px;margin:20px 0 4px}
-  .wkwrap h2{margin:0 0 10px}
+  .wkwrap{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:20px 22px;margin:26px 0 4px}
+  .wkwrap h2{margin:0 0 14px;border-bottom:none;padding-bottom:0;color:var(--accent)}
   .wkrow{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px}
   .wkrow::-webkit-scrollbar{height:8px}.wkrow::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
-  .wk{min-width:215px;max-width:260px;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:10px 12px;cursor:pointer;flex:0 0 auto}
+  .wk{min-width:215px;max-width:260px;background:var(--panel2);border:1px solid var(--border);border-radius:12px;padding:13px 15px;cursor:pointer;flex:0 0 auto}
+  .wk .nw{display:inline-block;background:rgba(127,185,138,.15);color:var(--green);border-radius:9px;padding:1px 7px;font-size:.63rem;font-weight:700;letter-spacing:.5px;margin-left:6px;vertical-align:1px}
   .wk:hover{border-color:var(--accent)}
   .wk .d{color:var(--accent);font-weight:700;font-size:.8rem}
   .wk .t{font-size:.85rem;font-weight:600;margin-top:2px}
@@ -129,9 +130,8 @@
   #modal .exline .w{color:var(--accent2)}
   #modal .close{float:right;cursor:pointer;color:var(--muted);font-size:1.2rem;line-height:1}
   /* contador de visitas */
-  .visits{display:none;align-items:center;gap:7px;background:var(--panel2);border:1px solid var(--accent);border-radius:20px;padding:5px 14px;font-size:.85rem;color:var(--accent);font-weight:600;margin-top:8px;width:fit-content}
-  .visits b{font-variant-numeric:tabular-nums;font-size:1rem}
-  .visits span{color:var(--muted);font-weight:400;font-size:.75rem}
+  .visits{display:none;color:var(--muted);font-size:.72rem;opacity:.6;margin-top:12px}
+.visits b{font-variant-numeric:tabular-nums;font-weight:600}
   /* enquete */
   .poll{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:18px 20px}
   .poll .opts{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
@@ -143,7 +143,7 @@
   .fav{cursor:pointer;font-size:1.05rem;color:var(--muted);user-select:none}
   .fav.on{color:#e35d6a}
   .dist{color:var(--blue);font-size:.75rem;font-weight:600}
-  footer{color:var(--muted);font-size:.78rem;margin-top:36px;border-top:1px solid var(--border);padding-top:16px}
+  footer{color:var(--muted);font-size:.76rem;line-height:1.7;margin-top:52px;border-top:1px solid var(--border);padding-top:22px}
   footer a{color:var(--accent2)}
   .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--panel2);color:var(--text)}
   .leaflet-popup-content{font-size:.82rem;line-height:1.45}
@@ -156,20 +156,19 @@
   <div>
     <h1>VERNISSAGES <span>SP</span></h1>
     <p>Galerias, aberturas de exposições e roteiros de arte em São Paulo · atualizado em <span id="upd"></span></p>
-    <div class="visits" id="visits">👁 <b id="vc">–</b> <span>visitas · contador público e anônimo</span></div>
-  </div>
-  <input id="search" type="text" placeholder="🔎 Buscar galeria, artista, endereço, bairro…">
+      </div>
+  <input id="search" type="text" placeholder="Buscar galeria, artista, endereço, bairro…">
 </header>
 <div class="wrap">
 
   <div class="kpis" id="kpis"></div>
 
   <div class="wkwrap" id="wkwrap" style="display:none">
-    <h2>🥂 Vernissages desta semana</h2>
+    <h2>Aberturas · esta semana</h2>
     <div class="wkrow" id="wkrow"></div>
     <div class="share">
-      <a class="btn add" id="waShare" target="_blank">📲 Enviar no WhatsApp</a>
-      <span class="btn" onclick="copyWeek()">📋 Copiar agenda</span>
+      <a class="btn add" id="waShare" target="_blank">Enviar no WhatsApp</a>
+      <span class="btn" onclick="copyWeek()">Copiar agenda</span>
     </div>
   </div>
 
@@ -193,7 +192,7 @@
     </select>
     <select id="venueSel"><option value="all">Todas as galerias/espaços</option></select>
     <select id="artistSel"><option value="all">Todos os artistas</option></select>
-    <span class="chip" id="nearBtn">📍 Perto de mim</span>
+    <span class="chip" id="nearBtn">Perto de mim</span>
     <span class="chip" id="favBtn">♥ Favoritos</span>
   </div>
 
@@ -218,7 +217,7 @@
   </div>
   <p class="note">Diretório com as principais galerias ativas verificadas + espaços institucionais. O estudo FGV/ArteRef contabiliza 67 galerias do mercado primário na cidade, mas a lista nominal completa não foi publicada — endereços marcados com ~ são aproximados; confirme antes de visitar.</p>
 
-  <h2>Quem é o público? · enquete anônima</h2>
+  <h2>Quem é o público · enquete anônima</h2>
   <div class="poll" id="poll"><p class="note" style="margin:0">Carregando enquete…</p></div>
 
   <h2>Galerias por bairro · mercado primário (FGV/ArteRef)</h2>
@@ -237,7 +236,8 @@
     <a href="https://latitudebrasil.org">Latitude/ApexBrasil</a> ·
     <a href="https://www.sp-arte.com/about-the-event-rotas">SP-Arte Rotas</a> ·
     <a href="https://www.cnnbrasil.com.br/viagemegastronomia/viagem/exposicoes-em-sao-paulo-mais-de-30-mostras-para-ver-nas-ferias-de-julho/">CNN V&G</a>
-  </footer>
+  <div class="visits" id="visits"><b id="vc">–</b> visitas · contagem anônima, uma por dispositivo</div>
+</footer>
 </div>
 
 <div id="modalBg" onclick="if(event.target.id==='modalBg')closeArtist()"><div id="modal"></div></div>
@@ -292,7 +292,7 @@ let markers={};
 function popupHtml(v,ex){
   let h=`<b>${v.name}</b><br>${v.addr} · ${v.b} (Zona ${v.z})<br><i>${v.info||''}</i>`;
   if(ex&&ex.length)h+='<hr style="border-color:#333">'+ex.map(e=>`▸ <b>${e.t}</b><br>&nbsp;&nbsp;${e.st==='opening'?'abre '+fmt(e.ini):'até '+(e.fim?fmt(e.fim):'—')}`).join('<br>');
-  h+=`<br>${v.site?`<a href="${v.site}" target="_blank">🌐 Site</a> · `:''}${v.ig?`<a href="https://instagram.com/${v.ig}" target="_blank">📸 IG</a> · `:''}<a href="${gsearch(v.name+' galeria são paulo')}" target="_blank">🔍 Buscar</a> · <a href="${gmaps(v)}" target="_blank">🧭 Como chegar</a> · <a href="#" onclick="addStop('${v.name.replace(/'/g,"\\'")}');return false;">➕ Roteiro</a>`;
+  h+=`<br>${v.site?`<a href="${v.site}" target="_blank">Site</a> · `:''}${v.ig?`<a href="https://instagram.com/${v.ig}" target="_blank">IG</a> · `:''}<a href="${gsearch(v.name+' galeria são paulo')}" target="_blank">🔍 Buscar</a> · <a href="${gmaps(v)}" target="_blank">🧭 Como chegar</a> · <a href="#" onclick="addStop('${v.name.replace(/'/g,"\\'")}');return false;">+ Roteiro</a>`;
   return h;
 }
 const gsearch=q=>'https://www.google.com/search?q='+encodeURIComponent(q);
@@ -326,16 +326,16 @@ function draw(){
       <div class="title" onclick="focusVenue('${e.ven.name.replace(/'/g,"\\'")}')">${e.t}</div>
       <div class="venue">${e.ven.name} · ${e.ven.b}</div>
       <div class="addr">${e.ven.addr}</div>
-      ${e.a?`<div class="addr">🎨 ${e.a.split(', ').map(n=>`<span class="artist" onclick="openArtist('${n.replace(/'/g,"\\'")}')">${n}</span>`).join(' · ')}</div>`:''}
+      ${e.a?`<div class="addr">${e.a.split(', ').map(n=>`<span class="artist" onclick="openArtist('${n.replace(/'/g,"\\'")}')">${n}</span>`).join(' · ')}</div>`:''}
       ${e.d?`<div class="addr" style="color:#b6b6c2;margin-top:4px">${e.d}</div>`:''}
       <div class="meta">${tag}<span>${dates}</span>
         ${nearOn&&userPos?`<span class="dist">📍 ${distKm(e.ven).toFixed(1)} km</span>`:''}
         <span class="fav ${favs.has(e.ven.name)?'on':''}" onclick="toggleFav('${e.ven.name.replace(/'/g,"\\'")}')" title="Favoritar">♥</span>
-        ${e.ven.site?`<a class="btn" href="${e.ven.site}" target="_blank">🌐 Site</a>`:''}
-        ${e.ven.ig?`<a class="btn" href="https://instagram.com/${e.ven.ig}" target="_blank">📸 IG</a>`:''}
-        <a class="btn" href="${gsearch(e.t+' '+e.ven.name)}" target="_blank">🔍 Info</a>
-        <a class="btn" href="${gmaps(e.ven)}" target="_blank">🧭 Rota</a>
-        <span class="btn add" onclick="addStop('${e.ven.name.replace(/'/g,"\\'")}')">➕ Roteiro</span></div>
+        ${e.ven.site?`<a class="btn" href="${e.ven.site}" target="_blank">Site</a>`:''}
+        ${e.ven.ig?`<a class="btn" href="https://instagram.com/${e.ven.ig}" target="_blank">IG</a>`:''}
+        <a class="btn" href="${gsearch(e.t+' '+e.ven.name)}" target="_blank">Info</a>
+        <a class="btn" href="${gmaps(e.ven)}" target="_blank">Rota</a>
+        <span class="btn add" onclick="addStop('${e.ven.name.replace(/'/g,"\\'")}')">+ Roteiro</span></div>
     </div>`;
   }).join('')||'<p class="note">Nada encontrado com esses filtros.</p>';
 
@@ -374,7 +374,7 @@ function drawDir(q,zona,b,tipo,ven){
     <td class="actions"><span class="fav ${favs.has(v.name)?'on':''}" onclick="toggleFav('${v.name.replace(/'/g,"\\'")}')" title="Favoritar">♥</span>
       ${v.site?`<a class="btn" href="${v.site}" target="_blank">🌐</a>`:`<a class="btn" href="${gsearch(v.name+' galeria são paulo')}" target="_blank">🔍</a>`}
       ${v.ig?`<a class="btn" href="https://instagram.com/${v.ig}" target="_blank">📸</a>`:''}
-      <a class="btn" href="${gmaps(v)}" target="_blank">🧭 Rota</a>
+      <a class="btn" href="${gmaps(v)}" target="_blank">Rota</a>
       <span class="btn add" onclick="addStop('${v.name.replace(/'/g,"\\'")}')">➕</span></td></tr>`).join('');
   document.getElementById('dirtitle').textContent=`Diretório de Galerias e Espaços (${rows.length})`;
 }
@@ -415,21 +415,21 @@ function openArtist(name){
     <h3>🎨 ${name}</h3><div class="sub">${shows.length} mostra(s) na agenda atual</div>
     <div class="links">${links}</div>`+
     shows.map(e=>`<div class="exline"><b>${e.t}</b><br><span class="w">${e.ven.name}</span> · ${e.ven.b} · ${e.st==='opening'?'abre '+fmt(e.ini):'até '+(e.fim?fmt(e.fim):'—')}${e.d?`<br><span style="color:#9a9aa6">${e.d}</span>`:''}
-      <div style="margin-top:5px"><a class="btn" target="_blank" href="${gmaps(e.ven)}">🧭 Rota</a> ${e.ven.site?`<a class="btn" target="_blank" href="${e.ven.site}">🌐 Site</a>`:''}</div></div>`).join('');
+      <div style="margin-top:5px"><a class="btn" target="_blank" href="${gmaps(e.ven)}">Rota</a> ${e.ven.site?`<a class="btn" target="_blank" href="${e.ven.site}">Site</a>`:''}</div></div>`).join('');
   document.getElementById('modalBg').style.display='flex';
 }
 function closeArtist(){document.getElementById('modalBg').style.display='none'}
 
 /* vernissages da semana + compartilhar */
 function weekBanner(){
-  const end=new Date(TODAY.getTime()+7*864e5);
-  const wk=expos.filter(e=>e.st==='opening'&&new Date(e.ini+'T12:00')<=end).sort((a,c)=>a.ini.localeCompare(c.ini));
+  const end=new Date(TODAY.getTime()+7*864e5), start=new Date(TODAY.getTime()-7*864e5);
+const wk=expos.filter(e=>{const d=new Date(e.ini+'T12:00');return d<=end&&d>=start;}).sort((a,c)=>a.ini.localeCompare(c.ini));
   const w=document.getElementById('wkwrap');
   if(!wk.length){w.style.display='none';return}
   w.style.display='block';
   document.getElementById('wkrow').innerHTML=wk.map(e=>`<div class="wk" onclick="focusVenue('${e.ven.name.replace(/'/g,"\\'")}')">
-    <div class="d">${fmt(e.ini)}</div><div class="t">${e.t}</div><div class="v">${e.ven.name} · ${e.ven.b}</div></div>`).join('');
-  const txt='🥂 Vernissages SP — aberturas da semana:\n'+wk.map(e=>`• ${fmt(e.ini)} — ${e.t} @ ${e.ven.name} (${e.ven.b})`).join('\n')+'\n\nAgenda completa, mapa e roteiros: https://lucasnegrelli.github.io/vernissages-sp/';
+    <div class="d">${fmt(e.ini)}${new Date(e.ini+'T12:00')<=TODAY?'<span class="nw">JÁ ABRIU</span>':''}</div><div class="t">${e.t}</div><div class="v">${e.ven.name} · ${e.ven.b}</div></div>`).join('');
+  const txt='🥂 Vernissages SP — aberturas da semana:\n'+wk.map(e=>`• ${fmt(e.ini)}${new Date(e.ini+'T12:00')<=TODAY?' (já abriu)':''} — ${e.t} @ ${e.ven.name} (${e.ven.b})`).join('\n')+'\n\nAgenda completa, mapa e roteiros: https://lucasnegrelli.github.io/vernissages-sp/';
   window._wkTxt=txt;
   document.getElementById('waShare').href='https://wa.me/?text='+encodeURIComponent(txt);
 }
@@ -458,9 +458,11 @@ document.getElementById('nearBtn').onclick=function(){
 
 /* contador de visitas + enquete (Abacus — anônimo, sem cookies de rastreamento) */
 const ABC='https://abacus.jasoncameron.dev',NS='vernissages-sp-lucas';
-fetch(ABC+'/hit/'+NS+'/visitas').then(r=>r.json()).then(j=>{
+const jaVeio=localStorage.getItem('vspSeen');
+if(!jaVeio)localStorage.setItem('vspSeen','1');
+fetch(ABC+(jaVeio?'/get/':'/hit/')+NS+'/visitas').then(r=>r.json()).then(j=>{
   document.getElementById('vc').textContent=Number(j.value).toLocaleString('pt-BR');
-  document.getElementById('visits').style.display='inline-flex';
+  document.getElementById('visits').style.display='block';
 }).catch(()=>{});
 const POLL=[['artista','🎨 Artista'],['colecionador','🖼️ Colecionador(a)'],['curadoria','📚 Curadoria / pesquisa'],['galerista','🏛️ Galerista / produção'],['curioso','🥂 Público curioso']];
 function pollResults(){
