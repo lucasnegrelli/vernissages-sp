@@ -105,6 +105,18 @@
   .bar{height:13px;border-radius:7px;background:linear-gradient(90deg,var(--accent2),var(--accent))}
   .barrow .bv{color:var(--text);font-weight:600}
   .note{color:var(--muted);font-size:.78rem;margin-top:10px}
+  /* em foco (espaço editorial / futuro patrocinado) */
+  .foco{background:linear-gradient(135deg,rgba(232,193,90,.07),rgba(201,111,74,.05));border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:14px;padding:22px 24px;margin:26px 0 4px;display:none}
+  .foco .kicker{font-size:.68rem;text-transform:uppercase;letter-spacing:1.8px;color:var(--accent);font-weight:700}
+  .foco .kicker .selo{background:rgba(154,154,166,.16);color:var(--muted);border-radius:9px;padding:1px 8px;margin-left:8px;letter-spacing:.6px}
+  .foco h3{font-size:1.35rem;font-weight:600;line-height:1.3;margin:8px 0 4px;letter-spacing:-.3px}
+  .foco .quem{color:var(--accent2);font-size:.92rem}
+  .foco .txt{color:#c3c3cd;font-size:.95rem;margin-top:10px;max-width:70ch}
+  .foco .btns{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+  /* navegação do acervo */
+  .navacervo{display:flex;gap:16px;margin-top:9px;font-size:.8rem}
+  .navacervo a{color:var(--muted);text-decoration:none;border-bottom:1px solid transparent}
+  .navacervo a:hover{color:var(--accent);border-color:var(--accent)}
   /* vernissages da semana */
   .wkwrap{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:20px 22px;margin:26px 0 4px}
   .wkwrap h2{margin:0 0 14px;border-bottom:none;padding-bottom:0;color:var(--accent)}
@@ -157,6 +169,7 @@
   <div>
     <h1>VERNISSAGES <span>SP</span></h1>
     <p>Galerias, aberturas de exposições e roteiros de arte em São Paulo · atualizado em <span id="upd"></span></p>
+<div class="navacervo"><a href="arquivo.html">Acervo de exposições</a><a href="artistas.html">Artistas</a></div>
       </div>
   <input id="search" type="text" placeholder="Buscar galeria, artista, endereço, bairro…">
 </header>
@@ -164,7 +177,9 @@
 
   <div class="kpis" id="kpis"></div>
 
-  <div class="wkwrap" id="wkwrap" style="display:none">
+  <div class="foco" id="foco"></div>
+
+<div class="wkwrap" id="wkwrap" style="display:none">
     <h2>Aberturas · esta semana</h2>
     <div class="wkrow" id="wkrow"></div>
     <div class="share">
@@ -421,6 +436,23 @@ function openArtist(name){
   document.getElementById('modalBg').style.display='flex';
 }
 function closeArtist(){document.getElementById('modalBg').style.display='none'}
+
+/* em foco: bloco editorial destacado (vira espaço patrocinado com f.publi=true) */
+function renderFoco(){
+const f=window.DATA.foco; if(!f||!f.t)return;
+const v=vByName[f.v]||null; const el=document.getElementById('foco');
+el.innerHTML='<div class="kicker">'+(f.publi?'Apoio<span class="selo">CONTEÚDO PATROCINADO</span>':'Em foco')+'</div>'+
+'<h3>'+f.t+'</h3>'+
+(f.quem?'<div class="quem">'+f.quem+'</div>':'')+
+(f.txt?'<div class="txt">'+f.txt+'</div>':'')+
+'<div class="btns">'+
+(v?'<span class="btn add" onclick="focusVenue(\''+v.name.replace(/'/g,"\\'")+'\')">Ver no mapa</span>':'')+
+(f.link?'<a class="btn" href="'+f.link+'" target="_blank" rel="noopener">Saiba mais</a>':'')+
+(v&&v.site?'<a class="btn" href="'+v.site+'" target="_blank" rel="noopener">Site</a>':'')+
+'</div>';
+el.style.display='block';
+}
+renderFoco();
 
 /* vernissages da semana + compartilhar */
 function weekBanner(){
