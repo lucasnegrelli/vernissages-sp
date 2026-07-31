@@ -111,6 +111,7 @@
   .wkrow{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px}
   .wkrow::-webkit-scrollbar{height:8px}.wkrow::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
   .wk{min-width:215px;max-width:260px;background:var(--panel2);border:1px solid var(--border);border-radius:12px;padding:13px 15px;cursor:pointer;flex:0 0 auto}
+  .wk .nw.hj{background:rgba(232,193,90,.2);color:var(--accent)}
   .wk .nw{display:inline-block;background:rgba(127,185,138,.15);color:var(--green);border-radius:9px;padding:1px 7px;font-size:.63rem;font-weight:700;letter-spacing:.5px;margin-left:6px;vertical-align:1px}
   .wk:hover{border-color:var(--accent)}
   .wk .d{color:var(--accent);font-weight:700;font-size:.8rem}
@@ -251,6 +252,7 @@
 
 <script>
 const TODAY = new Date();
+const HOJESTR = new Date(TODAY.getTime()-TODAY.getTimezoneOffset()*6e4).toISOString().slice(0,10);
 
 const {venues:VENUES, expos:EXPOS, bairros:BAIRRO_COUNTS} = window.DATA;
 
@@ -428,8 +430,8 @@ const wk=expos.filter(e=>{const d=new Date(e.ini+'T12:00');return d<=end&&d>=sta
   if(!wk.length){w.style.display='none';return}
   w.style.display='block';
   document.getElementById('wkrow').innerHTML=wk.map(e=>`<div class="wk" onclick="focusVenue('${e.ven.name.replace(/'/g,"\\'")}')">
-    <div class="d">${fmt(e.ini)}${new Date(e.ini+'T12:00')<=TODAY?'<span class="nw">JÁ ABRIU</span>':''}</div><div class="t">${e.t}</div><div class="v">${e.ven.name} · ${e.ven.b}</div></div>`).join('');
-  const txt='🥂 Vernissages SP — aberturas da semana:\n'+wk.map(e=>`• ${fmt(e.ini)}${new Date(e.ini+'T12:00')<=TODAY?' (já abriu)':''} — ${e.t} @ ${e.ven.name} (${e.ven.b})`).join('\n')+'\n\nAgenda completa, mapa e roteiros: https://lucasnegrelli.github.io/vernissages-sp/';
+    <div class="d">${fmt(e.ini)}${e.ini===HOJESTR?'<span class="nw hj">HOJE</span>':(new Date(e.ini+'T12:00')<TODAY?'<span class="nw">JÁ ABRIU</span>':'')}</div><div class="t">${e.t}</div><div class="v">${e.ven.name} · ${e.ven.b}</div></div>`).join('');
+  const txt='🥂 Vernissages SP — aberturas da semana:\n'+wk.map(e=>`• ${fmt(e.ini)}${e.ini===HOJESTR?' (hoje!)':(new Date(e.ini+'T12:00')<TODAY?' (já abriu)':'')} — ${e.t} @ ${e.ven.name} (${e.ven.b})`).join('\n')+'\n\nAgenda completa, mapa e roteiros: https://lucasnegrelli.github.io/vernissages-sp/';
   window._wkTxt=txt;
   document.getElementById('waShare').href='https://wa.me/?text='+encodeURIComponent(txt);
 }
