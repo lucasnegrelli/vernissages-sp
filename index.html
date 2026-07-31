@@ -71,6 +71,10 @@
   .tag.closing{background:rgba(217,123,108,.15);color:var(--red)}
   .tag.current{background:rgba(127,185,138,.15);color:var(--green)}
   .tag.fair{background:rgba(201,111,74,.2);color:var(--accent2)}
+  .tag.free{background:rgba(127,185,138,.16);color:var(--green)}
+  .tag.paid{background:rgba(125,167,217,.14);color:var(--blue)}
+  .tag.tbc{background:rgba(154,154,166,.14);color:var(--muted)}
+  .freeday{color:var(--green);font-size:.74rem}
   .btn{background:var(--panel2);border:1px solid var(--border);color:var(--blue);border-radius:14px;
     padding:2px 10px;font-size:.72rem;cursor:pointer;text-decoration:none;display:inline-block}
   .btn:hover{border-color:var(--blue)}
@@ -209,7 +213,8 @@
     <select id="venueSel"><option value="all">Todas as galerias/espaços</option></select>
     <select id="artistSel"><option value="all">Todos os artistas</option></select>
     <span class="chip" id="nearBtn">Perto de mim</span>
-    <span class="chip" id="favBtn">♥ Favoritos</span>
+    <span class="chip" id="freeBtn">Grátis</span>
+<span class="chip" id="favBtn">♥ Favoritos</span>
   </div>
 
   <div class="grid">
@@ -282,6 +287,29 @@ function status(e){
 }
 const expos=EXPOS.map(e=>({...e,st:status(e),ven:vByName[e.v]})).filter(e=>e.st!=='past'&&e.ven);
 const fmt=d=>{const[y,m,dd]=d.split('-');return dd+'/'+m};
+/* ---- ingresso ---- */
+const brl=n=>'R$ '+Number(n).toFixed(2).replace('.',',').replace(',00','');
+function ingressoDe(v){
+ if(v.ing) return v.ing;
+ if(v.tipo==='galeria') return {g:true};      // galeria comercial: entrada franca
+ return {conf:true};
+}
+function ingTag(v){
+ const g=ingressoDe(v);
+ if(g.g) return '<span class="tag free">GRÁTIS</span>';
+ if(g.conf) return '<span class="tag tbc">A CONFIRMAR</span>';
+ return '<span class="tag paid">'+brl(g.i)+(g.m?' · meia '+brl(g.m):'')+'</span>';
+}
+function ingTxt(v){
+ const g=ingressoDe(v); const p=[];
+ if(g.g) p.push('Entrada gratuita.');
+ else if(g.conf) p.push('Ingresso a confirmar'+(g.obs?': '+g.obs:'.'));
+ else p.push('Inteira '+brl(g.i)+(g.m?', meia '+brl(g.m):'')+'.');
+ if(g.free) p.push('Grátis '+g.free+'.');
+ if(g.obs&&!g.conf) p.push(g.obs+'.');
+ return p.join(' ');
+}
+function ehGratis(v){ return !!ingressoDe(v).g; }
 const STLBL={opening:'ABERTURA',current:'EM CARTAZ',closing:'ÚLTIMOS DIAS'};
 const COLORS={opening:'#e8c15a',current:'#7fb98a',closing:'#d97b6c',feira:'#c96f4a',dir:'#66666e'};
 const gmaps=v=>'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(v.name+', '+v.addr.replace(' ~','')+', São Paulo');
@@ -309,7 +337,8 @@ let markers={};
 function popupHtml(v,ex){
   let h=`<b>${v.name}</b><br>${v.addr} · ${v.b} (Zona ${v.z})<br><i>${v.info||''}</i>`;
   if(ex&&ex.length)h+='<hr style="border-color:#333">'+ex.map(e=>`▸ <b>${e.t}</b><br>&nbsp;&nbsp;${e.st==='opening'?'abre '+fmt(e.ini):'até '+(e.fim?fmt(e.fim):'—')}`).join('<br>');
-  h+=`<br>${v.site?`<a href="${v.site}" target="_blank">Site</a> · `:''}${v.ig?`<a href="https://instagram.com/${v.ig}" target="_blank">IG</a> · `:''}<a href="${gsearch(v.name+' galeria são paulo')}" target="_blank">🔍 Buscar</a> · <a href="${gmaps(v)}" target="_blank">🧭 Como chegar</a> · <a href="#" onclick="addStop('${v.name.replace(/'/g,"\\'")}');return false;">+ Roteiro</a>`;
+  h+=`<br><i style="color:#9a9aa6">${ingTxt(v)}</i>`;
+h+=`<br>${v.site?`<a href="${v.site}" target="_blank">Site</a> · `:''}${v.ig?`<a href="https://instagram.com/${v.ig}" target="_blank">IG</a> · `:''}<a href="${gsearch(v.name+' galeria são paulo')}" target="_blank">🔍 Buscar</a> · <a href="${gmaps(v)}" target="_blank">🧭 Como chegar</a> · <a href="#" onclick="addStop('${v.name.replace(/'/g,"\\'")}');return false;">+ Roteiro</a>`;
   return h;
 }
 const gsearch=q=>'https://www.google.com/search?q='+encodeURIComponent(q);
@@ -324,7 +353,7 @@ function draw(){
 
   Object.values(markers).forEach(m=>map.removeLayer(m));markers={};
 
-  const okV=v=>(zona==='all'||v.z===zona)&&(b==='all'||v.b===b)&&(tipo==='all'||v.tipo===tipo||v.tipo==='feira')&&(ven==='all'||v.name===ven)&&(!favOnly||favs.has(v.name));
+  const okV=v=>(zona==='all'||v.z===zona)&&(b==='all'||v.b===b)&&(tipo==='all'||v.tipo===tipo||v.tipo==='feira')&&(ven==='all'||v.name===ven)&&(!favOnly||favs.has(v.name))&&(!freeOnly||ehGratis(v));
 
   const okA=e=>art==='all'||(e.a||'').split(', ').includes(art);
   let list=expos.filter(e=>okV(e.ven)&&okA(e)&&(st==='all'||e.st===st));
@@ -345,7 +374,8 @@ function draw(){
       <div class="addr">${e.ven.addr}</div>
       ${e.a?`<div class="addr">${e.a.split(', ').map(n=>`<span class="artist" onclick="openArtist('${n.replace(/'/g,"\\'")}')">${n}</span>`).join(' · ')}</div>`:''}
       ${e.d?`<div class="addr" style="color:#b6b6c2;margin-top:4px">${e.d}</div>`:''}
-      <div class="meta">${tag}<span>${dates}</span>
+${(()=>{const g=ingressoDe(e.ven);return g.free?`<div class="freeday">Grátis ${g.free}</div>`:''})()}
+      <div class="meta">${tag}${ingTag(e.ven)}<span>${dates}</span>
         ${nearOn&&userPos?`<span class="dist">📍 ${distKm(e.ven).toFixed(1)} km</span>`:''}
         <span class="fav ${favs.has(e.ven.name)?'on':''}" onclick="toggleFav('${e.ven.name.replace(/'/g,"\\'")}')" title="Favoritar">♥</span>
         ${e.ven.site?`<a class="btn" href="${e.ven.site}" target="_blank">Site</a>`:''}
@@ -470,12 +500,13 @@ const wk=expos.filter(e=>{const d=new Date(e.ini+'T12:00');return d<=end&&d>=sta
 function copyWeek(){navigator.clipboard.writeText(window._wkTxt||'').then(()=>alert('Agenda da semana copiada! Cole onde quiser.'))}
 
 /* favoritos + perto de mim */
-let favs=new Set(JSON.parse(localStorage.getItem('vspFavs')||'[]')),favOnly=false,userPos=null,nearOn=false,userMarker=null;
+let favs=new Set(JSON.parse(localStorage.getItem('vspFavs')||'[]')),favOnly=false,freeOnly=false,userPos=null,nearOn=false,userMarker=null;
 function toggleFav(n){favs.has(n)?favs.delete(n):favs.add(n);localStorage.setItem('vspFavs',JSON.stringify([...favs]));draw();}
 function distKm(v){const R=6371,dLa=(v.lat-userPos[0])*Math.PI/180,dLo=(v.lng-userPos[1])*Math.PI/180,
   x=Math.sin(dLa/2)**2+Math.cos(userPos[0]*Math.PI/180)*Math.cos(v.lat*Math.PI/180)*Math.sin(dLo/2)**2;
   return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));}
 document.getElementById('favBtn').onclick=function(){favOnly=!favOnly;this.classList.toggle('on',favOnly);draw();};
+document.getElementById('freeBtn').onclick=function(){freeOnly=!freeOnly;this.classList.toggle('on',freeOnly);draw();};
 document.getElementById('nearBtn').onclick=function(){
   const btn=this;
   if(nearOn){nearOn=false;btn.classList.remove('on');if(userMarker){map.removeLayer(userMarker);userMarker=null;}draw();return;}
