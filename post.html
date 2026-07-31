@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kit de post — Vernissages SP</title>
+<meta name="robots" content="noindex">
+<script src="dados.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+:root{--bg:#0e0e11;--panel:#17171c;--panel2:#1e1e25;--border:#2a2a33;--text:#ececf0;--muted:#9a9aa6;--accent:#e8c15a;--accent2:#c96f4a;--green:#7fb98a;--blue:#7da7d9}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,'Segoe UI',sans-serif;line-height:1.6}
+.top{border-bottom:1px solid var(--border);padding:20px 26px}
+.top a{color:var(--text);text-decoration:none;font-weight:600;letter-spacing:2.5px}
+.top a span{color:var(--accent)}
+.wrap{max-width:1180px;margin:0 auto;padding:30px 26px 70px}
+h1{font-size:1.6rem;font-weight:600;margin-bottom:6px}
+.lead{color:var(--muted);font-size:.9rem;margin-bottom:22px;max-width:70ch}
+h2{font-size:.78rem;text-transform:uppercase;letter-spacing:1.8px;color:var(--muted);margin:34px 0 14px;padding-bottom:9px;border-bottom:1px solid var(--border)}
+.btn{background:var(--panel2);border:1px solid var(--border);color:var(--blue);border-radius:16px;padding:9px 18px;font-size:.86rem;cursor:pointer;font-family:inherit}
+.btn:hover{border-color:var(--blue)}
+.btn.main{background:var(--accent);color:#111;border-color:var(--accent);font-weight:600}
+.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
+.status{color:var(--muted);font-size:.82rem}
+.slides{display:flex;gap:18px;overflow-x:auto;padding:14px 0 20px}
+.slidebox{flex:0 0 auto}
+.slidebox .cap{color:var(--muted);font-size:.75rem;margin-bottom:6px;text-align:center}
+/* o slide é 1080x1080 renderizado a 0,37 de escala na tela */
+.slide{width:1080px;height:1080px;background:#0e0e11;padding:80px 76px;display:flex;flex-direction:column;position:relative;transform:scale(.37);transform-origin:top left}
+.shell{width:400px;height:400px;overflow:hidden}
+.slide .marca{font-size:30px;letter-spacing:7px;font-weight:600;color:#ececf0}
+.slide .marca b{color:var(--accent);font-weight:600}
+.slide .kick{margin-top:auto;font-size:26px;letter-spacing:5px;text-transform:uppercase;color:var(--accent);font-weight:700}
+.slide h3{font-size:78px;line-height:1.06;font-weight:600;letter-spacing:-2px;margin-top:18px}
+.slide .sub{font-size:34px;color:var(--accent2);margin-top:26px;line-height:1.3}
+.slide .info{font-size:28px;color:#9a9aa6;margin-top:16px;line-height:1.45}
+.slide .desc{font-size:30px;color:#c3c3cd;margin-top:30px;line-height:1.4}
+.slide .pill{display:inline-block;font-size:24px;font-weight:700;letter-spacing:1px;padding:8px 22px;border-radius:30px;margin-top:34px}
+.slide .pill.free{background:rgba(127,185,138,.16);color:var(--green)}
+.slide .pill.paid{background:rgba(125,167,217,.14);color:var(--blue)}
+.slide .foot{margin-top:auto;font-size:26px;color:#6f6f7a;letter-spacing:1px}
+.slide .rule{height:4px;background:var(--accent);width:110px;margin-top:30px}
+.slide.capa h3{font-size:96px}
+.slide.cta h3{font-size:72px}
+.slide .big{font-size:150px;font-weight:700;color:var(--accent);letter-spacing:-4px;line-height:1}
+textarea{width:100%;min-height:290px;background:var(--panel);border:1px solid var(--border);color:var(--text);border-radius:12px;padding:16px 18px;font-family:inherit;font-size:.9rem;line-height:1.65;resize:vertical}
+.hint{color:var(--muted);font-size:.78rem;margin-top:8px}
+</style>
+</head>
+<body>
+<div class="top"><a href="./">VERNISSAGES <span>SP</span></a></div>
+<div class="wrap">
+<h1>Kit de post do dia</h1>
+<p class="lead">Carrossel pronto no visual do site, montado a partir da agenda de hoje. Baixe as imagens, copie a legenda e publique. Nada aqui é enviado para lugar nenhum — tudo é gerado no seu navegador.</p>
+
+<h2>Carrossel</h2>
+<div class="bar">
+<button class="btn main" onclick="baixarTudo()">Baixar todas as imagens</button>
+<button class="btn" onclick="montar()">Montar de novo</button>
+<span class="status" id="st"></span>
+</div>
+<div class="slides" id="slides"></div>
+
+<h2>Legenda</h2>
+<textarea id="cap"></textarea>
+<div class="bar" style="margin-top:12px">
+<button class="btn main" onclick="copiar()">Copiar legenda</button>
+<span class="status" id="st2"></span>
+</div>
+<p class="hint">Dica: no Instagram, poste o carrossel entre 18h e 21h — é quando o público de arte está rolando o feed. Marque as galerias citadas para elas repostarem nos stories.</p>
+</div>
+
+<script>
+const D=window.DATA, V={}; D.venues.forEach(v=>V[v.name]=v);
+const HOJE=new Date(Date.now()-3*3600e3).toISOString().slice(0,10);
+const fmt=d=>d.split('-').reverse().slice(0,2).join('/');
+const brl=n=>'R$ '+Number(n).toFixed(2).replace('.',',').replace(',00','');
+function ing(v){ if(v.ing) return v.ing; if(v.tipo==='galeria') return {g:true}; return {conf:true}; }
+function ingTxt(v){ const g=ing(v); if(g.g) return 'ENTRADA GRATUITA'; if(g.conf) return 'INGRESSO A CONFIRMAR'; return brl(g.i)+(g.m?' · MEIA '+brl(g.m):''); }
+const MES=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+
+/* seleção: aberturas de -3 a +10 dias, no máximo 6 */
+function selecionar(){
+ const ini=new Date(Date.now()-3*864e5).toISOString().slice(0,10);
+ const fim=new Date(Date.now()+10*864e5).toISOString().slice(0,10);
+ return D.expos.filter(e=>e.ini>=ini&&e.ini<=fim&&V[e.v])
+   .sort((a,b)=>a.ini.localeCompare(b.ini)).slice(0,6);
+}
+
+function slideHTML(inner,cls){ return '<div class="slidebox"><div class="cap"></div><div class="shell"><div class="slide '+(cls||'')+'">'+inner+'</div></div></div>'; }
+
+function montar(){
+ const sel=selecionar(); const box=document.getElementById('slides'); const hoje=new Date();
+ const per=hoje.getDate()+' de '+MES[hoje.getMonth()];
+ let html='';
+ html+=slideHTML('<div class="marca">VERNISSAGES <b>SP</b></div>'+
+  '<div class="kick">agenda · '+per+'</div>'+
+  '<h3>'+sel.length+' aberturas<br>pra ver agora<br>em São Paulo</h3>'+
+  '<div class="rule"></div>'+
+  '<div class="foot">arrasta pro lado →</div>','capa');
+ sel.forEach((e,i)=>{
+  const v=V[e.v]; const g=ing(v);
+  html+=slideHTML('<div class="marca">VERNISSAGES <b>SP</b></div>'+
+   '<div class="kick">'+(e.ini>HOJE?'abre '+fmt(e.ini):'em cartaz')+'</div>'+
+   '<h3>'+e.t.replace(/ — .*/,'')+'</h3>'+
+   (e.a?'<div class="sub">'+e.a+'</div>':'')+
+   '<div class="info">'+v.name+' · '+v.b+'<br>'+(e.fim?'até '+fmt(e.fim):'sem data de encerramento')+'</div>'+
+   (e.d?'<div class="desc">'+(e.d.length>150?e.d.slice(0,150)+'…':e.d)+'</div>':'')+
+   '<div class="pill '+(g.g?'free':'paid')+'">'+ingTxt(v)+'</div>'+
+   '<div class="foot">'+(i+1)+'/'+(sel.length+1)+'</div>');
+ });
+ html+=slideHTML('<div class="marca">VERNISSAGES <b>SP</b></div>'+
+  '<div class="kick">agenda completa</div>'+
+  '<h3>Mapa, roteiro<br>e agenda diária</h3>'+
+  '<div class="sub">no link da bio</div>'+
+  '<div class="rule"></div>'+
+  '<div class="foot">vernissages sp · atualizado todo dia</div>','cta');
+ box.innerHTML=html;
+ [...box.querySelectorAll('.cap')].forEach((c,i)=>c.textContent=i===0?'capa':(i<=sel.length?'mostra '+i:'final'));
+ legenda(sel,per);
+ document.getElementById('st').textContent=(sel.length+2)+' imagens montadas';
+}
+
+function legenda(sel,per){
+ const linhas=sel.map(e=>{const v=V[e.v];const g=ing(v);
+  return '• '+e.t.replace(/ — .*/,'')+' — '+v.name+' ('+v.b+')\n  '+(e.ini>HOJE?'abre '+fmt(e.ini):'em cartaz')+(e.fim?' · até '+fmt(e.fim):'')+' · '+(g.g?'grátis':(g.conf?'ingresso a confirmar':brl(g.i)));});
+ const tags='#vernissagessp #arteemsaopaulo #exposicoessp #galeriasdearte #artecontemporanea #saopaulo #agendacultural #artebrasileira #vernissage #ovaledoartes';
+ document.getElementById('cap').value=
+  'Agenda de '+per+' — o que abre e o que dá pra ver essa semana em São Paulo 🥂\n\n'+
+  linhas.join('\n')+'\n\n'+
+  'Agenda completa, mapa das galerias e roteiro a pé no link da bio. Atualizado todo dia.\n\n'+tags;
+}
+
+async function baixarTudo(){
+ const slides=[...document.querySelectorAll('.slide')];
+ const st=document.getElementById('st');
+ for(let i=0;i<slides.length;i++){
+  st.textContent='gerando imagem '+(i+1)+' de '+slides.length+'…';
+  const el=slides[i]; const antes=el.style.transform; el.style.transform='none';
+  const canvas=await html2canvas(el,{backgroundColor:'#0e0e11',width:1080,height:1080,scale:1,logging:false});
+  el.style.transform=antes;
+  const a=document.createElement('a');
+  a.download='vernissages-sp-'+String(i+1).padStart(2,'0')+'.png';
+  a.href=canvas.toDataURL('image/png'); a.click();
+  await new Promise(r=>setTimeout(r,400));
+ }
+ st.textContent='pronto — '+slides.length+' imagens na sua pasta de downloads';
+}
+
+function copiar(){
+ const ta=document.getElementById('cap'); ta.select();
+ navigator.clipboard.writeText(ta.value).then(()=>{document.getElementById('st2').textContent='legenda copiada';},
+  ()=>{document.execCommand('copy');document.getElementById('st2').textContent='legenda copiada';});
+}
+montar();
+</script>
+</body>
+</html>
