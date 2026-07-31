@@ -30,7 +30,7 @@ const VENUES = [
  {name:"Galeria Nara Roesler",ig:"galerianararoesler",site:"https://nararoesler.art",addr:"Av. Europa, 655",b:"Jardim Europa",z:"Oeste",tipo:"galeria",lat:-23.5719,lng:-46.6739,info:"SP, Rio e NY. Abraham Palatnik, Vik Muniz, Tomie Ohtake."},
  {name:"Luciana Brito Galeria",ig:"lucianabritogaleria",site:"https://lucianabritogaleria.com.br",addr:"Av. Nove de Julho, 5162",b:"Jardim Europa",z:"Oeste",tipo:"galeria",lat:-23.5758,lng:-46.6789,info:"Sede em casa modernista de Rino Levi (1958). Contemporâneo internacional."},
  {name:"Galeria Lume",ig:"galerialume",site:"https://www.galerialume.com",addr:"R. Gumercindo Saraiva, 54 ~",b:"Jardim Europa",z:"Oeste",tipo:"galeria",lat:-23.5731,lng:-46.6771,info:"Contemporâneo brasileiro e latino-americano."},
- {name:"Gomide&Co",ig:"gomideco",site:"https://gomide.co",addr:"Av. Paulista, 2644 (Ed. Rosa)",b:"Consolação",z:"Oeste",tipo:"galeria",lat:-23.5556,lng:-46.6622,info:"600 m² no corredor cultural da Paulista. Modernismo e contemporâneo."},
+ {name:"Gomide&Co",ig:"gomideco",addr:"Av. Paulista, 2644 (Ed. Rosa)",b:"Consolação",z:"Oeste",tipo:"galeria",lat:-23.5556,lng:-46.6622,info:"600 m² no corredor cultural da Paulista. Modernismo e contemporâneo."},
  // --- Pinheiros / Vila Madalena / Butantã ---
  {name:"Almeida & Dale | Millan",ig:"galeriamillan",site:"https://millan.art",addr:"R. Fradique Coutinho, 1360",b:"Pinheiros",z:"Oeste",tipo:"galeria",lat:-23.5618,lng:-46.6898,info:"Espaço Fradique; a histórica Galeria Millan (1986) integrou-se à Almeida & Dale em 2025."},
  {name:"Fortes D'Aloia & Gabriel — Galeria",ig:"fortesdaloiagabriel",site:"https://fdag.com.br",addr:"R. Fradique Coutinho, 1500",b:"Pinheiros",z:"Oeste",tipo:"galeria",lat:-23.5562,lng:-46.6931,info:"Ernesto Neto, Rivane Neuenschwander, Erika Verzutti. Espaço-irmão: Galpão (Barra Funda)."},
@@ -46,7 +46,7 @@ const VENUES = [
  {name:"Fortes D'Aloia & Gabriel — Galpão",ig:"fortesdaloiagabriel",site:"https://fdag.com.br",addr:"R. James Holland, 71",b:"Barra Funda",z:"Centro",tipo:"galeria",lat:-23.5245,lng:-46.6633,info:"Galpão industrial para mostras de grande escala."},
  {name:"Galeria Vermelho",ig:"galeriavermelho",site:"https://galeriavermelho.com.br",addr:"R. Minas Gerais, 350",b:"Higienópolis",z:"Centro",tipo:"galeria",lat:-23.5541,lng:-46.6592,info:"Desde 2002. Performance, instalação e política. Verbo (mostra anual de performance)."},
  {name:"HOA Galeria",ig:"hoagaleria",addr:"Higienópolis ~",b:"Higienópolis",z:"Centro",tipo:"galeria",lat:-23.5480,lng:-46.6560,info:"Fundada por Igi Ayedun; foco em artistas negros e periféricos."},
- {name:"Galeria Jaqueline Martins",ig:"galeriajaquelinemartins",site:"https://www.galeriajaquelinemartins.com.br",addr:"R. Dr. Cesário Mota Jr., 443",b:"Vila Buarque",z:"Centro",tipo:"galeria",lat:-23.5452,lng:-46.6502,info:"SP e Bruxelas. Vanguardas dos anos 1970–80 e contemporâneo. Hudinilson Jr."},
+ {name:"Galeria Jaqueline Martins",ig:"galeriajaquelinemartins",addr:"R. Dr. Cesário Mota Jr., 443",b:"Vila Buarque",z:"Centro",tipo:"galeria",lat:-23.5452,lng:-46.6502,info:"SP e Bruxelas. Vanguardas dos anos 1970–80 e contemporâneo. Hudinilson Jr."},
  {name:"A Gentil Carioca SP",ig:"agentilcarioca",site:"https://agentilcarioca.com.br",addr:"R. Barão de Itapetininga ~",b:"República",z:"Centro",tipo:"galeria",lat:-23.5445,lng:-46.6422,info:"Filial paulistana da galeria carioca fundada por Ernesto Neto, Márcio Botner e Laura Lima."},
  {name:"Sé Galeria",addr:"Centro ~",b:"Sé",z:"Centro",tipo:"galeria",lat:-23.5489,lng:-46.6388,info:"Programa experimental no centro histórico."},
  // --- Adições via Guia das Artes ---
@@ -84,6 +84,10 @@ const VENUES = [
  {name:"Fundação Bienal / Pavilhão Ciccillo Matarazzo",ig:"bienalsaopaulo",site:"https://bienal.org.br",addr:"Parque Ibirapuera, portão 3",b:"Ibirapuera",z:"Sul",tipo:"institucional",lat:-23.5878,lng:-46.6553,ing:{conf:true,obs:"Bienal é gratuita; demais eventos variam"},info:"Sede da Bienal de São Paulo e da feira SP-Arte (abril)."},
  // --- FEIRA ---
  {name:"ARCA",ig:"sp_arte",site:"https://www.sp-arte.com",addr:"Av. Manuel Bandeira, 360",b:"Vila Leopoldina",z:"Oeste",tipo:"feira",lat:-23.5232,lng:-46.7332,ing:{conf:true,obs:"feira com ingresso pago; confira valores na SP-Arte"},info:"Galpão de eventos; sede da SP-Arte Rotas."}
+,
+ {name:"Mendes Wood DM — Casa Iramaia",site:"https://mendeswooddm.com",addr:"R. Iramaia, Jardim Europa (a confirmar)",b:"Jardim Europa",z:"Oeste",tipo:"galeria",lat:-23.5748,lng:-46.6752,info:"Segundo espaço paulistano da Mendes Wood DM, em casa modernista."},
+ {name:"GRUTA Espaço de Arte Contemporânea",addr:"R. Barra Funda, 450 ~",b:"Barra Funda",z:"Centro",tipo:"galeria",lat:-23.5271,lng:-46.6585,info:"Espaço independente na Barra Funda; foco em artistas em início de carreira."},
+ {name:"Janaina Torres Galeria",addr:"R. Vitorino Carmilo, 427 ~",b:"Barra Funda",z:"Centro",tipo:"galeria",lat:-23.5322,lng:-46.6567,info:"Galeria com sedes em São Paulo e Nova York; contemporâneo brasileiro."}
 ];
 
 /* ================= EXPOS ================= */
@@ -98,7 +102,7 @@ const EXPOS = [
  {t:"Ígneo Piaga — Thiago Martins de Melo",a:"Thiago Martins de Melo",v:"Almeida & Dale | Millan",ini:"2026-08-01",fim:"2026-09-12",d:"Pintura densa e mitologia amazônica no espaço Fradique."},
  {t:"Habitar a paisagem — Flavia Fabbriziani",a:"Flavia Fabbriziani",v:"Galeria Dezoito",ini:"2026-08-05",fim:"2026-09-05",d:"Curadoria de Jurandy Valença."},
  {t:"Joan Miró: Mestre das Formas",a:"Joan Miró",v:"MAB FAAP",ini:"2026-08-07",fim:null,d:"Grande mostra do catalão no museu da FAAP."},
- {t:"O Lado Escuro da Lua — Alfredo Jaar",a:"Alfredo Jaar",v:"Galeria Luisa Strina",ini:"2026-08-08",fim:null,d:"Novo projeto do artista chileno, Leão de Ouro de Veneza."},
+ {t:"O Lado Escuro da Lua — Alfredo Jaar",a:"Alfredo Jaar",v:"Galeria Luisa Strina",ini:"2026-08-08",fim:"2026-09-19",d:"Novo projeto do artista chileno, Leão de Ouro de Veneza."},
  {t:"SP-Arte Rotas 2026 · 5ª edição",v:"ARCA",ini:"2026-08-26",fim:"2026-08-30",d:"~70 expositores; direção artística de Bernardo Mosqueira; foco América Latina. Dia 26 só convidados; 27–28 (13h–20h), 29 (12h–20h), 30 (12h–19h)."},
  {t:"Viver tecendo — Claudia Alarcón e Silät",a:"Claudia Alarcón",v:"MASP",ini:"2026-03-06",fim:"2026-08-02",d:"Tecelagens do coletivo wichí (Argentina)."},
  {t:"Pop andino — La Chola Poblete",a:"La Chola Poblete",v:"MASP",ini:"2026-03-06",fim:"2026-08-02",d:"Primeira individual da artista argentina no Brasil."},
@@ -107,7 +111,7 @@ const EXPOS = [
  {t:"Matéria e Energia — Damián Ortega",a:"Damián Ortega",v:"MASP",ini:"2026-05-15",fim:"2026-09-13",d:"Três décadas do escultor mexicano."},
  {t:"Acervo em Transformação: Doações Recentes",v:"MASP",ini:"2026-05-15",fim:"2026-09-13",d:"Curadoria Adriano Pedrosa e equipe."},
  {t:"confluências — Carolina Caycedo",a:"Carolina Caycedo",v:"MASP",ini:"2026-07-03",fim:"2026-10-04",d:"Rios, represas e resistência socioambiental."},
- {t:"Casa María Lionza — Sol Calero",a:"Sol Calero",v:"MASP",ini:"2026-07-03",fim:"2027-05-30",d:"Instalação de longa duração da venezuelana."},
+ {t:"Casa María Lionza — Sol Calero",a:"Sol Calero",v:"MASP",ini:"2026-07-03",fim:"2027-01-30",d:"Instalação de longa duração da venezuelana."},
  {t:"Knockout! — Pascale Marthine Tayou",a:"Pascale Marthine Tayou",v:"Pinacoteca de São Paulo",ini:"2026-03-07",fim:"2026-08-02",d:"Instalações do camaronês na Pina Contemporânea."},
  {t:"a mãe contempla o mar — Cristina Salgado",a:"Cristina Salgado",v:"Pinacoteca de São Paulo",ini:"2026-03-07",fim:"2026-08-02",d:"Escultura e imagem materna."},
  {t:"O que elas viram — coletiva",v:"IMS Paulista",ini:"2026-03-17",fim:"2026-08-03",d:"Fotógrafas pioneiras no acervo IMS."},
@@ -129,7 +133,26 @@ const EXPOS = [
  {t:"Geologia da forma — Germana Monte-Mór",a:"Germana Monte-Mór",v:"Galeria Leme",ini:"2026-06-25",fim:"2026-08-21",d:"Obras dos anos 90."},
  {t:"nem mais nem menos — Carlos Zilio",a:"Carlos Zilio",v:"Galeria Raquel Arnaud",ini:"2026-06-10",fim:"2026-08-22",d:"Pinturas recentes."},
  {t:"Etéreas — Chaim, Weffort, Giacomini, Belém",a:"Carla Chaim, Marina Weffort, Amalia Giacomini, Laura Belém",v:"Galeria Raquel Arnaud",ini:"2026-06-11",fim:"2026-08-22",d:"Coletiva sobre leveza e matéria."},
- {t:"Mão Amiga — José Bento",a:"José Bento",v:"A Gentil Carioca SP",ini:"2026-05-23",fim:"2026-08-01",d:"Madeira e ofício."}
+ {t:"Mão Amiga — José Bento",a:"José Bento",v:"A Gentil Carioca SP",ini:"2026-05-23",fim:"2026-08-01",d:"Madeira e ofício."},
+ {t:"Presença — Anna Maria Maiolino",a:"Anna Maria Maiolino",v:"Galeria Luisa Strina",ini:"2026-08-08",fim:"2026-09-19",d:"Individual da artista ítalo-brasileira; abre na mesma noite que Alfredo Jaar."},
+ {t:"Ojú-Inú — Ayrson Heráclito",a:"Ayrson Heráclito",v:"Simões de Assis",ini:"2026-08-08",fim:"2026-09-12",d:"Corpo, ritual e memória afro-atlântica no espaço dos Jardins."},
+ {t:"Flores e Vasos — coletiva",v:"Luciana Brito Galeria",ini:"2026-08-22",fim:"2026-10-17",d:"Coletiva com curadoria de Nessia Pope."},
+ {t:"Imagens do Interior — Fabiana de Barros",a:"Fabiana de Barros",v:"Luciana Brito Galeria",ini:"2026-08-22",fim:"2026-10-17",d:"Individual da artista brasileira radicada na Suíça."},
+ {t:"Daniel Jorge — individual",a:"Daniel Jorge",v:"Mendes Wood DM",ini:"2026-08-22",fim:"2026-11-06",d:"Individual do artista no espaço da Barra Funda."},
+ {t:"Déboussolé est le mot exact — Jean Claracq",a:"Jean Claracq",v:"Mendes Wood DM — Casa Iramaia",ini:"2026-08-22",fim:"2026-11-06",d:"Pintura em pequeno formato do artista francês."},
+ {t:"Sendo — Lygia Pape",a:"Lygia Pape",v:"Mendes Wood DM",ini:"2026-04-07",fim:"2026-08-08",d:"Mostra dedicada à artista neoconcreta, em dois endereços da galeria."},
+ {t:"Playful, Stormy, Continuing",v:"Baró Galeria",ini:"2026-08-20",fim:"2026-09-03",d:"Coletiva na sede da Rua Amauri."},
+ {t:"É Tempo Ainda",v:"Janaina Torres Galeria",ini:"2026-08-15",fim:"2026-10-17",d:"Mostra na sede da Barra Funda."},
+ {t:"Sala de Vídeo: Regina José Galindo",a:"Regina José Galindo",v:"MASP",ini:"2026-07-03",fim:"2026-08-23",d:"Vídeo-performances da artista guatemalteca."},
+ {t:"Uma Obra: Pintura sem fim",v:"Pinacoteca de São Paulo",ini:"2026-07-04",fim:"2028-01-31",d:"Terceira edição do projeto Uma Obra: pintura em construção permanente com o público (Pina Luz)."},
+ {t:"Para crianças: experiências com a arte desde 1968",v:"Pinacoteca de São Paulo",ini:"2026-05-30",fim:"2026-10-18",d:"Mostra que convida crianças a pensar e intervir no mundo pela arte (Pina Contemporânea)."},
+ {t:"Beatriz Milhazes: gravuras do acervo da Pinacoteca",a:"Beatriz Milhazes",v:"Pinacoteca de São Paulo",ini:"2026-05-16",fim:"2027-03-14",d:"27 gravuras feitas entre 1996 e 2019 com a Durham Press (Pina Estação)."},
+ {t:"trágico subúrbio — Paulo Pedro Leal",a:"Paulo Pedro Leal",v:"Pinacoteca de São Paulo",ini:"2026-04-11",fim:"2026-11-08",d:"Primeira individual do artista (Pina Luz)."},
+ {t:"um ato fotográfico — Alice Yura",a:"Alice Yura",v:"Pinacoteca de São Paulo",ini:"2026-04-11",fim:"2026-09-13",d:"Fotografia, arquivo e memória (Pina Contemporânea)."},
+ {t:"Ibirapema — Olinda Tupinambá",a:"Olinda Tupinambá",v:"Pinacoteca de São Paulo",ini:"2026-04-11",fim:"2026-12-27",d:"Videoinstalação na Sala de Vídeo da Pina Luz."},
+ {t:"Macunaíma é Duwid",v:"Pinacoteca de São Paulo",ini:"2026-03-28",fim:"2026-09-13",d:"Coletiva que revisita Mário de Andrade em diálogo com artistas indígenas (Pina Estação)."},
+ {t:"Miss Ceilingfan – ad nauseam — Joeun Kim Aatchim",a:"Joeun Kim Aatchim",v:"Almeida & Dale | Millan",ini:"2026-07-04",fim:"2026-08-01",d:"Individual da artista coreano-americana no espaço Fradique."},
+ {t:"Primeiro Mergulho — Beatriz Buendia",a:"Beatriz Buendia",v:"GRUTA Espaço de Arte Contemporânea",ini:"2026-07-11",fim:"2026-08-08",d:"Primeira individual da artista no espaço da Barra Funda."}
 ];
 
 const BAIRRO_COUNTS=[["Jardins",18],["Barra Funda",8],["Jardim Europa",7],["Pinheiros",6],
@@ -140,13 +163,13 @@ const BAIRRO_COUNTS=[["Jardins",18],["Barra Funda",8],["Jardim Europa",7],["Pinh
  Bloco de destaque no topo. Troque quando quiser.
  publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
 const FOCO = {
- t:"Estrelas Escolhidas — Luiz Zerbini",
- v:"Instituto Tomie Ohtake",
- quem:"Luiz Zerbini · até 16 de agosto · entrada gratuita",
- txt:"Cerca de 230 obras da última década do artista: monotipias botânicas feitas com plantas colhidas por ele, pinturas de grande formato e instalações. É a mostra mais extensa de Zerbini em São Paulo até aqui — e uma das poucas chances de ver o conjunto das monotipias reunido.",
- link:"",
+ t:"O Lado Escuro da Lua — Alfredo Jaar",
+ v:"Galeria Luisa Strina",
+ quem:"Alfredo Jaar",
+ txt:"Dia 8 de agosto a Luisa Strina abre duas individuais na mesma noite. Jaar traz 48 trabalhos dos anos 1970 e 1980, feitos sob a ditadura de Pinochet — um conjunto raramente visto no Brasil, mais perto do documento do que do objeto de galeria. Na sala ao lado, Anna Maria Maiolino apresenta Presença. Vale reservar a noite inteira para os Jardins.",
+ link:"https://www.galerialuisastrina.com.br/exhibitions",
  publi:false
 };
 
-return { foco: FOCO, atualizado: "30/07/2026", venues: VENUES, expos: EXPOS, bairros: BAIRRO_COUNTS };
+return { foco: FOCO, atualizado: "31/07/2026", venues: VENUES, expos: EXPOS, bairros: BAIRRO_COUNTS };
 })();
