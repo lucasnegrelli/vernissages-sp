@@ -136,5 +136,17 @@ const BAIRRO_COUNTS=[["Jardins",18],["Barra Funda",8],["Jardim Europa",7],["Pinh
  ["Vila Madalena",3],["Itaim Bibi",3],["Cerqueira César",3],["Higienópolis",3],["Vila Buarque",3],
  ["Consolação",2],["Moema",2],["Vila Nova Conceição",2],["Butantã",1],["Pacaembu",1],["República",1],
  ["Santa Cecília",1],["Bela Vista",1],["Morumbi",1],["Sumarezinho",1]];
-return { atualizado: "30/07/2026", venues: VENUES, expos: EXPOS, bairros: BAIRRO_COUNTS };
+/* ================= EM FOCO =================
+ Bloco de destaque no topo. Troque quando quiser.
+ publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
+const FOCO = {
+ t:"Estrelas Escolhidas — Luiz Zerbini",
+ v:"Instituto Tomie Ohtake",
+ quem:"Luiz Zerbini · até 16 de agosto · entrada gratuita",
+ txt:"Cerca de 230 obras da última década do artista: monotipias botânicas feitas com plantas colhidas por ele, pinturas de grande formato e instalações. É a mostra mais extensa de Zerbini em São Paulo até aqui — e uma das poucas chances de ver o conjunto das monotipias reunido.",
+ link:"",
+ publi:false
+};
+
+return { foco: FOCO, atualizado: "30/07/2026", venues: VENUES, expos: EXPOS, bairros: BAIRRO_COUNTS };
 })();
