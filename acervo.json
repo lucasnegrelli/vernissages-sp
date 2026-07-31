@@ -176,7 +176,7 @@
    "a": "Alfredo Jaar",
    "v": "Galeria Luisa Strina",
    "ini": "2026-08-08",
-   "fim": null,
+   "fim": "2026-09-19",
    "d": "Novo projeto do artista chileno, Leão de Ouro de Veneza.",
    "bairro": "Cerqueira César",
    "zona": "Oeste",
@@ -329,7 +329,7 @@
    "a": "Sol Calero",
    "v": "MASP",
    "ini": "2026-07-03",
-   "fim": "2027-05-30",
+   "fim": "2027-01-30",
    "d": "Instalação de longa duração da venezuelana.",
    "bairro": "Bela Vista",
    "zona": "Centro",
@@ -713,6 +713,310 @@
    "ig": "agentilcarioca",
    "visto": "2026-07-31",
    "primeiroRegistro": "2026-07-30"
+  },
+  {
+   "id": "presenca-anna-maria-maiolino--galeria-luisa-strina",
+   "t": "Presença — Anna Maria Maiolino",
+   "a": "Anna Maria Maiolino",
+   "v": "Galeria Luisa Strina",
+   "ini": "2026-08-08",
+   "fim": "2026-09-19",
+   "d": "Individual da artista ítalo-brasileira; abre na mesma noite que Alfredo Jaar.",
+   "bairro": "Cerqueira César",
+   "zona": "Oeste",
+   "addr": "R. Padre João Manuel, 755",
+   "tipo": "galeria",
+   "site": "https://www.galerialuisastrina.com.br",
+   "ig": "galerialuisastrina",
+   "visto": "2026-07-31"
+  },
+  {
+   "id": "oju-inu-ayrson-heraclito--simoes-de-assis",
+   "t": "Ojú-Inú — Ayrson Heráclito",
+   "a": "Ayrson Heráclito",
+   "v": "Simões de Assis",
+   "ini": "2026-08-08",
+   "fim": "2026-09-12",
+   "d": "Corpo, ritual e memória afro-atlântica no espaço dos Jardins.",
+   "bairro": "Jardim Paulista",
+   "zona": "Oeste",
+   "addr": "Al. Lorena, 2050A",
+   "tipo": "galeria",
+   "site": "https://simoesdeassis.com",
+   "ig": "simoesdeassis",
+   "visto": "2026-07-31"
+  },
+  {
+   "id": "flores-e-vasos-coletiva--luciana-brito-galeria",
+   "t": "Flores e Vasos — coletiva",
+   "a": "",
+   "v": "Luciana Brito Galeria",
+   "ini": "2026-08-22",
+   "fim": "2026-10-17",
+   "d": "Coletiva com curadoria de Nessia Pope.",
+   "bairro": "Jardim Europa",
+   "zona": "Oeste",
+   "addr": "Av. Nove de Julho, 5162",
+   "tipo": "galeria",
+   "site": "https://lucianabritogaleria.com.br",
+   "ig": "lucianabritogaleria",
+   "visto": "2026-07-31"
+  },
+  {
+   "id": "imagens-do-interior-fabiana-de-barros--luciana-brito-galeria",
+   "t": "Imagens do Interior — Fabiana de Barros",
+   "a": "Fabiana de Barros",
+   "v": "Luciana Brito Galeria",
+   "ini": "2026-08-22",
+   "fim": "2026-10-17",
+   "d": "Individual da artista brasileira radicada na Suíça.",
+   "bairro": "Jardim Europa",
+   "zona": "Oeste",
+   "addr": "Av. Nove de Julho, 5162",
+   "tipo": "galeria",
+   "site": "https://lucianabritogaleria.com.br",
+   "ig": "lucianabritogaleria",
+   "visto": "2026-07-31"
+  },
+  {
+   "id": "daniel-jorge-individual--mendes-wood-dm",
+   "t": "Daniel Jorge — individual",
+   "a": "Daniel Jorge",
+   "v": "Mendes Wood DM",
+   "ini": "2026-08-22",
+   "fim": "2026-11-06",
+   "d": "Individual do artista no espaço da Barra Funda.",
+   "bairro": "Barra Funda",
+   "zona": "Centro",
+   "addr": "R. Barra Funda, 216",
+   "tipo": "galeria",
+   "site": "https://mendeswooddm.com",
+   "ig": "mendeswooddm",
+   "visto": "2026-07-31"
+  },
+  {
+   "id": "deboussole-est-le-mot-exact-jean-claracq--mendes-wood-dm-casa-iramaia",
+   "t": "Déboussolé est le mot exact — Jean Claracq",
+   "a": "Jean Claracq",
+   "v": "Mendes Wood DM — Casa Iramaia",
+   "ini": "2026-08-22",
+   "fim": "2026-11-06",
+   "d": "Pintura em pequeno formato do artista francês.",
+   "bairro": "Jardim Europa",
+   "zona": "Oeste",
+   "addr": "R. Iramaia, Jardim Europa (a confirmar)",
+   "tipo": "galeria",
+   "site": "https://mendeswooddm.com",
+   "ig": "",
+   "visto": "2026-07-31"
+  },
+  {
+   "id": "sendo-lygia-pape--mendes-wood-dm",
+   "t": "Sendo — Lygia Pape",
+   "a": "Lygia Pape",
+   "v": "Mendes Wood DM",
+   "ini": "2026-04-07",
+   "fim": "2026-08-08",
+   "d": "Mostra dedicada à artista neoconcreta, em dois endereços da galeria.",
+   "bairro": "Barra Funda",
+   "zona": "Centro",
+   "addr": "R. Barra Funda, 216",
+   "tipo": "galeria",
+   "site": "https://mendeswooddm.com",
+   "ig": "mendeswooddm",
+   "visto": "2026-07-31"
+  },
+  {
+   "id": "playful-stormy-continuing--baro-galeria",
+   "t": "Playful, Stormy, Continuing",
+   "a": "",
+   "v": "Baró Galeria",
+   "ini": "2026-08-20",
+   "fim": "2026-09-03",
+   "d": "Coletiva na sede da Rua Amauri.",
+   "bairro": "Santa Cecília",
+   "zona": "Centro",
+   "addr": "Santa Cecília (galpão de 1.500 m²) ~",
+   "tipo": "galeria",
+   "site": "https://barogaleria.com",
+   "ig": "barogaleria",
+   "visto": "2026-07-31"
+  },
+  {
+   "id": "e-tempo-ainda--janaina-torres-galeria",
+   "t": "É Tempo Ainda",
+   "a": "",
+   "v": "Janaina Torres Galeria",
+   "ini": "2026-08-15",
+   "fim": "2026-10-17",
+   "d": "Mostra na sede da Barra Funda.",
+   "bairro": "Barra Funda",
+   "zona": "Centro",
+   "addr": "R. Vitorino Carmilo, 427 ~",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "",
+   "visto": "2026-07-31"
+  },
+  {
+   "id": "sala-de-video-regina-jose-galindo--masp",
+   "t": "Sala de Vídeo: Regina José Galindo",
+   "a": "Regina José Galindo",
+   "v": "MASP",
+   "ini": "2026-07-03",
+   "fim": "2026-08-23",
+   "d": "Vídeo-performances da artista guatemalteca.",
+   "bairro": "Bela Vista",
+   "zona": "Centro",
+   "addr": "Av. Paulista, 1578",
+   "tipo": "institucional",
+   "site": "https://masp.org.br",
+   "ig": "masp",
+   "visto": "2026-07-31"
+  },
+  {
+   "id": "uma-obra-pintura-sem-fim--pinacoteca-de-sao-paulo",
+   "t": "Uma Obra: Pintura sem fim",
+   "a": "",
+   "v": "Pinacoteca de São Paulo",
+   "ini": "2026-07-04",
+   "fim": "2028-01-31",
+   "d": "Terceira edição do projeto Uma Obra: pintura em construção permanente com o público (Pina Luz).",
+   "bairro": "Luz",
+   "zona": "Centro",
+   "addr": "Praça da Luz, 2",
+   "tipo": "institucional",
+   "site": "https://pinacoteca.org.br",
+   "ig": "pinasp",
+   "visto": "2026-07-31"
+  },
+  {
+   "id": "para-criancas-experiencias-com-a-arte-desde-1968--pinacoteca-de-sao-paulo",
+   "t": "Para crianças: experiências com a arte desde 1968",
+   "a": "",
+   "v": "Pinacoteca de São Paulo",
+   "ini": "2026-05-30",
+   "fim": "2026-10-18",
+   "d": "Mostra que convida crianças a pensar e intervir no mundo pela arte (Pina Contemporânea).",
+   "bairro": "Luz",
+   "zona": "Centro",
+   "addr": "Praça da Luz, 2",
+   "tipo": "institucional",
+   "site": "https://pinacoteca.org.br",
+   "ig": "pinasp",
+   "visto": "2026-07-31"
+  },
+  {
+   "id": "beatriz-milhazes-gravuras-do-acervo-da-pinacoteca--pinacoteca-de-sao-paulo",
+   "t": "Beatriz Milhazes: gravuras do acervo da Pinacoteca",
+   "a": "Beatriz Milhazes",
+   "v": "Pinacoteca de São Paulo",
+   "ini": "2026-05-16",
+   "fim": "2027-03-14",
+   "d": "27 gravuras feitas entre 1996 e 2019 com a Durham Press (Pina Estação).",
+   "bairro": "Luz",
+   "zona": "Centro",
+   "addr": "Praça da Luz, 2",
+   "tipo": "institucional",
+   "site": "https://pinacoteca.org.br",
+   "ig": "pinasp",
+   "visto": "2026-07-31"
+  },
+  {
+   "id": "tragico-suburbio-paulo-pedro-leal--pinacoteca-de-sao-paulo",
+   "t": "trágico subúrbio — Paulo Pedro Leal",
+   "a": "Paulo Pedro Leal",
+   "v": "Pinacoteca de São Paulo",
+   "ini": "2026-04-11",
+   "fim": "2026-11-08",
+   "d": "Primeira individual do artista (Pina Luz).",
+   "bairro": "Luz",
+   "zona": "Centro",
+   "addr": "Praça da Luz, 2",
+   "tipo": "institucional",
+   "site": "https://pinacoteca.org.br",
+   "ig": "pinasp",
+   "visto": "2026-07-31"
+  },
+  {
+   "id": "um-ato-fotografico-alice-yura--pinacoteca-de-sao-paulo",
+   "t": "um ato fotográfico — Alice Yura",
+   "a": "Alice Yura",
+   "v": "Pinacoteca de São Paulo",
+   "ini": "2026-04-11",
+   "fim": "2026-09-13",
+   "d": "Fotografia, arquivo e memória (Pina Contemporânea).",
+   "bairro": "Luz",
+   "zona": "Centro",
+   "addr": "Praça da Luz, 2",
+   "tipo": "institucional",
+   "site": "https://pinacoteca.org.br",
+   "ig": "pinasp",
+   "visto": "2026-07-31"
+  },
+  {
+   "id": "ibirapema-olinda-tupinamba--pinacoteca-de-sao-paulo",
+   "t": "Ibirapema — Olinda Tupinambá",
+   "a": "Olinda Tupinambá",
+   "v": "Pinacoteca de São Paulo",
+   "ini": "2026-04-11",
+   "fim": "2026-12-27",
+   "d": "Videoinstalação na Sala de Vídeo da Pina Luz.",
+   "bairro": "Luz",
+   "zona": "Centro",
+   "addr": "Praça da Luz, 2",
+   "tipo": "institucional",
+   "site": "https://pinacoteca.org.br",
+   "ig": "pinasp",
+   "visto": "2026-07-31"
+  },
+  {
+   "id": "macunaima-e-duwid--pinacoteca-de-sao-paulo",
+   "t": "Macunaíma é Duwid",
+   "a": "",
+   "v": "Pinacoteca de São Paulo",
+   "ini": "2026-03-28",
+   "fim": "2026-09-13",
+   "d": "Coletiva que revisita Mário de Andrade em diálogo com artistas indígenas (Pina Estação).",
+   "bairro": "Luz",
+   "zona": "Centro",
+   "addr": "Praça da Luz, 2",
+   "tipo": "institucional",
+   "site": "https://pinacoteca.org.br",
+   "ig": "pinasp",
+   "visto": "2026-07-31"
+  },
+  {
+   "id": "miss-ceilingfan-ad-nauseam-joeun-kim-aatchim--almeida-e-dale-millan",
+   "t": "Miss Ceilingfan – ad nauseam — Joeun Kim Aatchim",
+   "a": "Joeun Kim Aatchim",
+   "v": "Almeida & Dale | Millan",
+   "ini": "2026-07-04",
+   "fim": "2026-08-01",
+   "d": "Individual da artista coreano-americana no espaço Fradique.",
+   "bairro": "Pinheiros",
+   "zona": "Oeste",
+   "addr": "R. Fradique Coutinho, 1360",
+   "tipo": "galeria",
+   "site": "https://millan.art",
+   "ig": "galeriamillan",
+   "visto": "2026-07-31"
+  },
+  {
+   "id": "primeiro-mergulho-beatriz-buendia--gruta-espaco-de-arte-contemporanea",
+   "t": "Primeiro Mergulho — Beatriz Buendia",
+   "a": "Beatriz Buendia",
+   "v": "GRUTA Espaço de Arte Contemporânea",
+   "ini": "2026-07-11",
+   "fim": "2026-08-08",
+   "d": "Primeira individual da artista no espaço da Barra Funda.",
+   "bairro": "Barra Funda",
+   "zona": "Centro",
+   "addr": "R. Barra Funda, 450 ~",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "",
+   "visto": "2026-07-31"
   }
  ],
  "artistas": {
@@ -936,6 +1240,84 @@
    "nome": "José Bento",
    "mostras": [
     "mao-amiga-jose-bento--a-gentil-carioca-sp"
+   ]
+  },
+  "anna-maria-maiolino": {
+   "nome": "Anna Maria Maiolino",
+   "mostras": [
+    "presenca-anna-maria-maiolino--galeria-luisa-strina"
+   ]
+  },
+  "ayrson-heraclito": {
+   "nome": "Ayrson Heráclito",
+   "mostras": [
+    "oju-inu-ayrson-heraclito--simoes-de-assis"
+   ]
+  },
+  "fabiana-de-barros": {
+   "nome": "Fabiana de Barros",
+   "mostras": [
+    "imagens-do-interior-fabiana-de-barros--luciana-brito-galeria"
+   ]
+  },
+  "daniel-jorge": {
+   "nome": "Daniel Jorge",
+   "mostras": [
+    "daniel-jorge-individual--mendes-wood-dm"
+   ]
+  },
+  "jean-claracq": {
+   "nome": "Jean Claracq",
+   "mostras": [
+    "deboussole-est-le-mot-exact-jean-claracq--mendes-wood-dm-casa-iramaia"
+   ]
+  },
+  "lygia-pape": {
+   "nome": "Lygia Pape",
+   "mostras": [
+    "sendo-lygia-pape--mendes-wood-dm"
+   ]
+  },
+  "regina-jose-galindo": {
+   "nome": "Regina José Galindo",
+   "mostras": [
+    "sala-de-video-regina-jose-galindo--masp"
+   ]
+  },
+  "beatriz-milhazes": {
+   "nome": "Beatriz Milhazes",
+   "mostras": [
+    "beatriz-milhazes-gravuras-do-acervo-da-pinacoteca--pinacoteca-de-sao-paulo"
+   ]
+  },
+  "paulo-pedro-leal": {
+   "nome": "Paulo Pedro Leal",
+   "mostras": [
+    "tragico-suburbio-paulo-pedro-leal--pinacoteca-de-sao-paulo"
+   ]
+  },
+  "alice-yura": {
+   "nome": "Alice Yura",
+   "mostras": [
+    "um-ato-fotografico-alice-yura--pinacoteca-de-sao-paulo"
+   ]
+  },
+  "olinda-tupinamba": {
+   "nome": "Olinda Tupinambá",
+   "mostras": [
+    "ibirapema-olinda-tupinamba--pinacoteca-de-sao-paulo"
+   ]
+  },
+  "joeun-kim-aatchim": {
+   "nome": "Joeun Kim Aatchim",
+   "mostras": [
+    "miss-ceilingfan-ad-nauseam-joeun-kim-aatchim--almeida-e-dale-millan"
+   ]
+  },
+  "beatriz-buendia": {
+   "nome": "Beatriz Buendia",
+   "mostras": [
+    "primeiro-mergulho-beatriz-buendia--gruta-espaco-de-arte-contemporanea"
    ]
   }
  },
@@ -1166,7 +1548,7 @@
    "b": "Consolação",
    "z": "Oeste",
    "tipo": "galeria",
-   "site": "https://gomide.co",
+   "site": "",
    "ig": "gomideco",
    "info": "600 m² no corredor cultural da Paulista. Modernismo e contemporâneo."
   },
@@ -1306,7 +1688,7 @@
    "b": "Vila Buarque",
    "z": "Centro",
    "tipo": "galeria",
-   "site": "https://www.galeriajaquelinemartins.com.br",
+   "site": "",
    "ig": "galeriajaquelinemartins",
    "info": "SP e Bruxelas. Vanguardas dos anos 1970–80 e contemporâneo. Hudinilson Jr."
   },
@@ -1639,6 +2021,36 @@
    "site": "https://www.sp-arte.com",
    "ig": "sp_arte",
    "info": "Galpão de eventos; sede da SP-Arte Rotas."
+  },
+  "mendes-wood-dm-casa-iramaia": {
+   "name": "Mendes Wood DM — Casa Iramaia",
+   "addr": "R. Iramaia, Jardim Europa (a confirmar)",
+   "b": "Jardim Europa",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://mendeswooddm.com",
+   "ig": "",
+   "info": "Segundo espaço paulistano da Mendes Wood DM, em casa modernista."
+  },
+  "gruta-espaco-de-arte-contemporanea": {
+   "name": "GRUTA Espaço de Arte Contemporânea",
+   "addr": "R. Barra Funda, 450 ~",
+   "b": "Barra Funda",
+   "z": "Centro",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "",
+   "info": "Espaço independente na Barra Funda; foco em artistas em início de carreira."
+  },
+  "janaina-torres-galeria": {
+   "name": "Janaina Torres Galeria",
+   "addr": "R. Vitorino Carmilo, 427 ~",
+   "b": "Barra Funda",
+   "z": "Centro",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "",
+   "info": "Galeria com sedes em São Paulo e Nova York; contemporâneo brasileiro."
   }
  },
  "atualizado": "2026-07-31"
