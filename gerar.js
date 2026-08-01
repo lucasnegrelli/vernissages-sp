@@ -167,7 +167,7 @@ ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld)}</scr`+`
 <div class="top">
 <a href="${SITE}/">VERNISSAGES <span>SP</span></a>
 <div class="nav">
-<a href="${SITE}/">Agenda</a><a href="${SITE}/arquivo.html">Acervo</a><a href="${SITE}/artistas.html">Artistas</a>
+<a href="${SITE}/">Agenda</a><a href="${SITE}/arquivo.html">Acervo</a><a href="${SITE}/artistas.html">Artistas</a><a href="${SITE}/editais.html">Editais</a>
 </div>
 </div>
 <div class="wrap${wide ? ' wide' : ''}">
@@ -330,6 +330,62 @@ document.querySelectorAll('#g a').forEach(function(a){a.style.display=!q||a.data
   });
 }
 
+/* ---------- editais e chamadas ---------- */
+const CAT_EDITAL = { fomento: 'Fomento público', residencia: 'Residência', premio: 'Prêmio', chamada: 'Chamada aberta' };
+
+function estadoEdital(ed) {
+  if (!ed.prazo) return { k: 'soon', txt: 'FLUXO CONTÍNUO' };
+  if (ed.prazo < HOJE) return { k: 'off', txt: 'ENCERRADO' };
+  const dias = Math.round((new Date(ed.prazo) - new Date(HOJE)) / 864e5);
+  if (dias === 0) return { k: 'soon', txt: 'ÚLTIMO DIA' };
+  if (dias <= 7) return { k: 'soon', txt: 'FALTAM ' + dias + ' DIA' + (dias > 1 ? 'S' : '') };
+  return { k: 'on', txt: 'ABERTO' };
+}
+
+function paginaEditais(editais) {
+  const peso = e => (!e.prazo ? 1 : (e.prazo >= HOJE ? 0 : 2));
+  const ord = [...editais].sort((a, b) => peso(a) - peso(b) || (a.prazo || '9999').localeCompare(b.prazo || '9999'));
+  const abertos = ord.filter(e => peso(e) < 2);
+
+  const item = ed => {
+    const st = estadoEdital(ed);
+    const busca = [ed.t, ed.org, CAT_EDITAL[ed.cat] || ed.cat, ed.quem, ed.onde, ed.d].join(' ').toLowerCase();
+    return `<li class="${st.k}" data-b="${esc(busca)}">
+<a class="t" href="${esc(ed.link || '#')}" target="_blank" rel="noopener">${esc(ed.t)}</a><span class="tag ${st.k}">${st.txt}</span>
+<div class="l2">${esc(ed.org || '')}${ed.cat ? ' · ' + esc(CAT_EDITAL[ed.cat] || ed.cat) : ''}</div>
+<div class="l3">${ed.prazo ? 'Inscrições até ' + dataLonga(ed.prazo) : 'Fluxo contínuo — sem data de encerramento divulgada'}${ed.valor ? ' · ' + esc(ed.valor) : ''}${ed.taxa ? ' · inscrição ' + esc(ed.taxa) : ''}</div>
+${ed.d ? `<div class="l3">${esc(ed.d)}</div>` : ''}
+<div class="l3" style="opacity:.7">${ed.quem ? 'Quem pode se inscrever: ' + esc(ed.quem) + ' · ' : ''}${ed.onde ? 'Abrangência: ' + esc(ed.onde) + ' · ' : ''}${ed.fonte ? 'Fonte: ' + esc(ed.fonte) : ''}</div>
+</li>`;
+  };
+
+  const corpo = `
+<h1>Editais e chamadas abertas</h1>
+<p class="txt">Oportunidades para artistas visuais, curadores e coletivos com atuação em São Paulo: chamadas de galerias e museus, residências, prêmios e editais públicos de fomento. ${abertos.length} com inscrição aberta hoje.</p>
+<p class="txt" style="color:var(--muted);font-size:.92rem">Só entra aqui edital com prazo confirmado na fonte oficial. Ainda assim, leia o regulamento no site do organizador antes de se inscrever — prorrogações e mudanças de prazo são comuns.</p>
+<input class="busca" id="q" type="text" placeholder="Filtrar por título, organizador, tipo ou público…">
+${ord.length ? `<ul class="lista">
+${ord.map(item).join('\n')}
+</ul>` : '<p class="txt">Nenhum edital cadastrado no momento.</p>'}
+<div class="btns">
+<a class="btn" href="${SITE}/">Ver agenda de aberturas</a>
+<a class="btn" href="${SITE}/arquivo.html">Acervo de exposições</a>
+</div>
+<scr`+`ipt>
+document.getElementById('q').addEventListener('input',function(){
+var q=this.value.toLowerCase().trim();
+document.querySelectorAll('ul.lista li').forEach(function(li){
+li.style.display=!q||li.dataset.b.indexOf(q)>-1?'':'none';});
+});
+</scr`+`ipt>`;
+
+  return pagina({
+    titulo: 'Editais e chamadas abertas para artistas em São Paulo | Vernissages SP',
+    desc: `${abertos.length} editais, residências, prêmios e chamadas com inscrição aberta para artistas visuais, curadores e coletivos em São Paulo. Prazos, quem pode se inscrever e link oficial.`,
+    canonical: `${SITE}/editais.html`, corpo, wide: true
+  });
+}
+
 /* ---------- execução ---------- */
 function main() {
   const DATA = carregarDados();
@@ -347,9 +403,10 @@ function main() {
 
   fs.writeFileSync(path.join(RAIZ, 'arquivo.html'), paginaArquivo(acervo.expos));
   fs.writeFileSync(path.join(RAIZ, 'artistas.html'), paginaArtistas(acervo.artistas));
+  fs.writeFileSync(path.join(RAIZ, 'editais.html'), paginaEditais(DATA.editais || []));
   fs.writeFileSync(path.join(RAIZ, 'acervo.json'), JSON.stringify(acervo, null, 1));
 
-  const urls = [`${SITE}/`, `${SITE}/arquivo.html`, `${SITE}/artistas.html`]
+  const urls = [`${SITE}/`, `${SITE}/arquivo.html`, `${SITE}/artistas.html`, `${SITE}/editais.html`]
     .concat(acervo.expos.map(e => `${SITE}/m/${e.id}.html`))
     .concat(Object.keys(acervo.artistas).map(k => `${SITE}/a/${k}.html`));
   fs.writeFileSync(path.join(RAIZ, 'sitemap.xml'),
