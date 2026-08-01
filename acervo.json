@@ -1036,6 +1036,118 @@
    "ig": "",
    "visto": "2026-08-01",
    "primeiroRegistro": "2026-07-31"
+  },
+  {
+   "id": "ca-rita-lessa--almeida-e-dale-millan",
+   "t": "ÇA — Rita Lessa",
+   "a": "Rita Lessa",
+   "v": "Almeida & Dale | Millan",
+   "ini": "2026-08-01",
+   "fim": "2026-09-12",
+   "d": "Individual da artista, em paralelo a Thiago Martins de Melo.",
+   "bairro": "Pinheiros",
+   "zona": "Oeste",
+   "addr": "R. Fradique Coutinho, 1360",
+   "tipo": "galeria",
+   "site": "https://millan.art",
+   "ig": "galeriamillan",
+   "visto": "2026-08-01"
+  },
+  {
+   "id": "mensageiro-da-manha-andre-ricardo--almeida-e-dale-millan",
+   "t": "Mensageiro da Manhã — André Ricardo",
+   "a": "André Ricardo",
+   "v": "Almeida & Dale | Millan",
+   "ini": "2026-08-15",
+   "fim": "2026-09-19",
+   "d": "Individual do pintor paulistano anunciada pela galeria.",
+   "bairro": "Pinheiros",
+   "zona": "Oeste",
+   "addr": "R. Fradique Coutinho, 1360",
+   "tipo": "galeria",
+   "site": "https://millan.art",
+   "ig": "galeriamillan",
+   "visto": "2026-08-01"
+  },
+  {
+   "id": "abstencoes-uma-miragem-mas-permanente-nino-kapanadze--almeida-e-dale-millan",
+   "t": "Abstenções (uma miragem, mas permanente) — Nino Kapanadze",
+   "a": "Nino Kapanadze",
+   "v": "Almeida & Dale | Millan",
+   "ini": "2026-08-15",
+   "fim": "2026-09-19",
+   "d": "Exposição individual anunciada pela galeria.",
+   "bairro": "Pinheiros",
+   "zona": "Oeste",
+   "addr": "R. Fradique Coutinho, 1360",
+   "tipo": "galeria",
+   "site": "https://millan.art",
+   "ig": "galeriamillan",
+   "visto": "2026-08-01"
+  },
+  {
+   "id": "bauci-a-cidade-e-os-olhos-erica-magalhaes--galeria-aura",
+   "t": "Bauci: a cidade e os olhos — Érica Magalhães",
+   "a": "Érica Magalhães",
+   "v": "Galeria Aura",
+   "ini": "2026-08-08",
+   "fim": "2026-09-23",
+   "d": "Esculturas que equilibram porcelana e concreto; texto curatorial de Tatiana Ferraz.",
+   "bairro": "Jardim Paulista",
+   "zona": "Oeste",
+   "addr": "R. da Consolação, 2767",
+   "tipo": "galeria",
+   "site": "https://aura.art.br",
+   "ig": "aura.galeria",
+   "visto": "2026-08-01"
+  },
+  {
+   "id": "perpetuo-samuel-alves-de-jesus--yehudi-hollander-pappi",
+   "t": "Perpétuo — Samuel Alves de Jesus",
+   "a": "Samuel Alves de Jesus",
+   "v": "Yehudi Hollander-Pappi",
+   "ini": "2026-07-21",
+   "fim": "2026-08-15",
+   "d": "Primeira individual do artista; o sal como matéria, corrosão e símbolo.",
+   "bairro": "Jardim Paulista",
+   "zona": "Oeste",
+   "addr": "Al. Lorena, 1295",
+   "tipo": "galeria",
+   "site": "https://yehudihollanderpappi.com",
+   "ig": "",
+   "visto": "2026-08-01"
+  },
+  {
+   "id": "contra-cena-mexa--yehudi-hollander-pappi",
+   "t": "Contra Cena — MEXA",
+   "a": "MEXA",
+   "v": "Yehudi Hollander-Pappi",
+   "ini": "2026-07-21",
+   "fim": "2026-08-15",
+   "d": "Fotografias do coletivo MEXA sobre o que antecede e sucede a cena: camarins, esperas, intervalos.",
+   "bairro": "Jardim Paulista",
+   "zona": "Oeste",
+   "addr": "Al. Lorena, 1295",
+   "tipo": "galeria",
+   "site": "https://yehudihollanderpappi.com",
+   "ig": "",
+   "visto": "2026-08-01"
+  },
+  {
+   "id": "sintese-arte-e-tecnologia--itau-cultural",
+   "t": "Síntese — Arte e Tecnologia",
+   "a": "",
+   "v": "Itaú Cultural",
+   "ini": "2026-07-02",
+   "fim": "2026-08-31",
+   "d": "Coletiva com obras da Coleção Itaú de Arte e Tecnologia; curadoria de Leno Veras.",
+   "bairro": "Bela Vista",
+   "zona": "Centro",
+   "addr": "Av. Paulista, 149",
+   "tipo": "institucional",
+   "site": "https://www.itaucultural.org.br",
+   "ig": "itaucultural",
+   "visto": "2026-08-01"
   }
  ],
  "artistas": {
@@ -1337,6 +1449,42 @@
    "nome": "Beatriz Buendia",
    "mostras": [
     "primeiro-mergulho-beatriz-buendia--gruta-espaco-de-arte-contemporanea"
+   ]
+  },
+  "rita-lessa": {
+   "nome": "Rita Lessa",
+   "mostras": [
+    "ca-rita-lessa--almeida-e-dale-millan"
+   ]
+  },
+  "andre-ricardo": {
+   "nome": "André Ricardo",
+   "mostras": [
+    "mensageiro-da-manha-andre-ricardo--almeida-e-dale-millan"
+   ]
+  },
+  "nino-kapanadze": {
+   "nome": "Nino Kapanadze",
+   "mostras": [
+    "abstencoes-uma-miragem-mas-permanente-nino-kapanadze--almeida-e-dale-millan"
+   ]
+  },
+  "erica-magalhaes": {
+   "nome": "Érica Magalhães",
+   "mostras": [
+    "bauci-a-cidade-e-os-olhos-erica-magalhaes--galeria-aura"
+   ]
+  },
+  "samuel-alves-de-jesus": {
+   "nome": "Samuel Alves de Jesus",
+   "mostras": [
+    "perpetuo-samuel-alves-de-jesus--yehudi-hollander-pappi"
+   ]
+  },
+  "mexa": {
+   "nome": "MEXA",
+   "mostras": [
+    "contra-cena-mexa--yehudi-hollander-pappi"
    ]
   }
  },
@@ -1773,12 +1921,12 @@
   },
   "galeria-aura": {
    "name": "Galeria Aura",
-   "addr": "Pinheiros (endereço a confirmar)",
-   "b": "Pinheiros",
+   "addr": "R. da Consolação, 2767",
+   "b": "Jardim Paulista",
    "z": "Oeste",
    "tipo": "galeria",
-   "site": "",
-   "ig": "",
+   "site": "https://aura.art.br",
+   "ig": "aura.galeria",
    "info": "Entre Porto Alegre e SP; foco em projetos expositivos e feiras."
   },
   "adelina-galeria": {
@@ -2070,6 +2218,16 @@
    "site": "",
    "ig": "",
    "info": "Galeria com sedes em São Paulo e Nova York; contemporâneo brasileiro."
+  },
+  "yehudi-hollander-pappi": {
+   "name": "Yehudi Hollander-Pappi",
+   "addr": "Al. Lorena, 1295",
+   "b": "Jardim Paulista",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://yehudihollanderpappi.com",
+   "ig": "",
+   "info": "Galeria de jovens artistas; linguagens experimentais e temporalidade expandida."
   }
  },
  "atualizado": "2026-08-01"
