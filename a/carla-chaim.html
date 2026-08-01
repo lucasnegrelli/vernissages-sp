@@ -59,14 +59,32 @@ ul.lista li .l3{color:var(--muted);font-size:.8rem;margin-top:3px}
 footer{border-top:1px solid var(--border);margin-top:50px;padding-top:20px;color:var(--muted);font-size:.78rem;line-height:1.7}
 footer a{color:var(--accent2)}
 @media(max-width:600px){.wrap{padding:26px 18px 60px}h1{font-size:1.5rem}.box dl{grid-template-columns:1fr;gap:2px 0}.box dt{margin-top:8px}}
+/* ===== TEMAS ===== */
+:root{--font:ui-sans-serif,system-ui,'Segoe UI',Inter,sans-serif;--radius:12px;--radius-sm:10px;--bw:1px;--ls:0px;--onaccent:#111111}
+html[data-tema="cubo"]{--bg:#ffffff;--panel:#fafafa;--panel2:#f1f1f1;--border:#e3e3e3;--text:#111111;--muted:#6b6b6b;--accent:#111111;--accent2:#6d4c1f;--green:#2f7d46;--blue:#2557a7;--onaccent:#ffffff;--font:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,'Times New Roman',serif;--radius:0px;--radius-sm:0px;--bw:1px}
+html[data-tema="impresso"]{--bg:#f4f1ea;--panel:#ebe6da;--panel2:#e2dccd;--border:#d6cfc0;--text:#1a1712;--muted:#6f6659;--accent:#8b2f1d;--accent2:#7a5c2e;--green:#3f6b46;--blue:#2f5d7a;--onaccent:#f4f1ea;--font:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,'Times New Roman',serif;--radius:0px;--radius-sm:0px;--bw:1px}
+html[data-tema="neon"]{--bg:#07060d;--panel:#12101f;--panel2:#191531;--border:#3a2a6b;--text:#f0edff;--muted:#9d92c9;--accent:#ff2e88;--accent2:#00e5ff;--green:#4dffb8;--blue:#6ea8ff;--onaccent:#07060d;--font:'Archivo Narrow','Roboto Condensed','Arial Narrow',ui-sans-serif,system-ui,sans-serif;--radius:4px;--radius-sm:3px;--bw:1px;--ls:.4px}
+html[data-tema="terminal"]{--bg:#0a0a0a;--panel:#0d0d0d;--panel2:#111111;--border:#00ff41;--text:#d7ffd9;--muted:#4f9f5e;--accent:#00ff41;--accent2:#ffffff;--green:#00ff41;--blue:#66ccff;--onaccent:#0a0a0a;--font:ui-monospace,SFMono-Regular,Menlo,Consolas,'Courier New',monospace;--radius:0px;--radius-sm:0px;--bw:2px}
+html[data-tema="vapor"]{--bg:#0b1b3d;--panel:#122a5e;--panel2:#1a3a7a;--border:#2f5aa8;--text:#e8f9ff;--muted:#8fb8dd;--accent:#6ff2e6;--accent2:#ff8fd0;--green:#7dffd4;--blue:#9fd0ff;--onaccent:#06122b;--font:'Archivo Narrow','Roboto Condensed','Arial Narrow',ui-sans-serif,system-ui,sans-serif;--radius:18px;--radius-sm:14px;--bw:1px;--ls:.3px}
+body,button,input,select,textarea,.btn{font-family:var(--font);letter-spacing:var(--ls)}
+.box,ul.lista li,.grid2 a{border-radius:var(--radius)}
+.box,.grid2 a{border-width:var(--bw)}
+.btn,.busca{border-radius:calc(var(--radius) + 6px);border-width:var(--bw)}
+.tag{border-radius:var(--radius-sm)}
+.temasel{display:inline-flex;gap:6px;flex-wrap:wrap;margin-left:12px;vertical-align:middle}
+.temasel button{background:var(--panel2);border:1px solid var(--border);color:var(--muted);border-radius:calc(var(--radius) + 6px);padding:1px 9px;font-size:.7rem;cursor:pointer;line-height:1.6}
+.temasel button:hover{border-color:var(--accent);color:var(--text)}
+.temasel button[aria-pressed="true"]{background:var(--accent);color:var(--onaccent);border-color:var(--accent)}
+@media(max-width:600px){.temasel{margin-left:0;margin-top:6px}}
 </style>
+<script>(function(){try{var t=localStorage.getItem('vspTema');if(t&&t!=='noite')document.documentElement.dataset.tema=t}catch(e){}})();</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Carla Chaim","url":"https://lucasnegrelli.github.io/vernissages-sp/a/carla-chaim.html","jobTitle":"Artista visual","performerIn":[{"@type":"ExhibitionEvent","name":"Etéreas — Chaim, Weffort, Giacomini, Belém","startDate":"2026-06-11","url":"https://lucasnegrelli.github.io/vernissages-sp/m/etereas-chaim-weffort-giacomini-belem--galeria-raquel-arnaud.html"}]}</script>
 </head>
 <body>
 <div class="top">
 <a href="https://lucasnegrelli.github.io/vernissages-sp/">VERNISSAGES <span>SP</span></a>
 <div class="nav">
-<a href="https://lucasnegrelli.github.io/vernissages-sp/">Agenda</a><a href="https://lucasnegrelli.github.io/vernissages-sp/arquivo.html">Acervo</a><a href="https://lucasnegrelli.github.io/vernissages-sp/artistas.html">Artistas</a><a href="https://lucasnegrelli.github.io/vernissages-sp/editais.html">Editais</a>
+<a href="https://lucasnegrelli.github.io/vernissages-sp/">Agenda</a><a href="https://lucasnegrelli.github.io/vernissages-sp/arquivo.html">Acervo</a><a href="https://lucasnegrelli.github.io/vernissages-sp/artistas.html">Artistas</a><a href="https://lucasnegrelli.github.io/vernissages-sp/editais.html">Editais</a><span class="temasel" id="temaSel"><button type="button" data-t="noite">Noite</button><button type="button" data-t="cubo">Cubo</button><button type="button" data-t="impresso">Impresso</button><button type="button" data-t="neon">Neon</button><button type="button" data-t="terminal">Terminal</button><button type="button" data-t="vapor">Aquafuture</button></span>
 </div>
 </div>
 <div class="wrap">
@@ -90,5 +108,8 @@ Vernissages SP — mapa vivo das galerias e aberturas de São Paulo, atualizado 
 Datas conforme divulgação dos espaços; confirme antes de visitar. <a href="https://lucasnegrelli.github.io/vernissages-sp/">Voltar à agenda</a>
 </footer>
 </div>
+<script>
+(function(){var s=document.getElementById('temaSel');if(!s)return;function m(t){[].forEach.call(s.querySelectorAll('button'),function(b){b.setAttribute('aria-pressed',b.getAttribute('data-t')===t?'true':'false')})}function a(t){if(t==='noite'){document.documentElement.removeAttribute('data-tema')}else{document.documentElement.setAttribute('data-tema',t)}m(t);try{localStorage.setItem('vspTema',t)}catch(e){}}s.addEventListener('click',function(e){var b=e.target.closest('button');if(b){a(b.getAttribute('data-t'))}});var atual='noite';try{atual=localStorage.getItem('vspTema')||'noite'}catch(e){}m(atual);})();
+</script>
 </body>
 </html>
