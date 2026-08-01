@@ -160,7 +160,7 @@
    "v": "MAB FAAP",
    "ini": "2026-08-07",
    "fim": null,
-   "d": "Grande mostra do catalão no museu da FAAP.",
+   "d": "140 obras originais do catalão, várias inéditas no Brasil. Ingresso pago, vendido em mmf26.com.br.",
    "bairro": "Pacaembu",
    "zona": "Centro",
    "addr": "R. Alagoas, 903",
@@ -728,7 +728,8 @@
    "tipo": "galeria",
    "site": "https://www.galerialuisastrina.com.br",
    "ig": "galerialuisastrina",
-   "visto": "2026-07-31"
+   "visto": "2026-07-31",
+   "primeiroRegistro": "2026-07-31"
   },
   {
    "id": "oju-inu-ayrson-heraclito--simoes-de-assis",
@@ -744,7 +745,8 @@
    "tipo": "galeria",
    "site": "https://simoesdeassis.com",
    "ig": "simoesdeassis",
-   "visto": "2026-07-31"
+   "visto": "2026-07-31",
+   "primeiroRegistro": "2026-07-31"
   },
   {
    "id": "flores-e-vasos-coletiva--luciana-brito-galeria",
@@ -760,7 +762,8 @@
    "tipo": "galeria",
    "site": "https://lucianabritogaleria.com.br",
    "ig": "lucianabritogaleria",
-   "visto": "2026-07-31"
+   "visto": "2026-07-31",
+   "primeiroRegistro": "2026-07-31"
   },
   {
    "id": "imagens-do-interior-fabiana-de-barros--luciana-brito-galeria",
@@ -776,7 +779,8 @@
    "tipo": "galeria",
    "site": "https://lucianabritogaleria.com.br",
    "ig": "lucianabritogaleria",
-   "visto": "2026-07-31"
+   "visto": "2026-07-31",
+   "primeiroRegistro": "2026-07-31"
   },
   {
    "id": "daniel-jorge-individual--mendes-wood-dm",
@@ -792,7 +796,8 @@
    "tipo": "galeria",
    "site": "https://mendeswooddm.com",
    "ig": "mendeswooddm",
-   "visto": "2026-07-31"
+   "visto": "2026-07-31",
+   "primeiroRegistro": "2026-07-31"
   },
   {
    "id": "deboussole-est-le-mot-exact-jean-claracq--mendes-wood-dm-casa-iramaia",
@@ -808,7 +813,8 @@
    "tipo": "galeria",
    "site": "https://mendeswooddm.com",
    "ig": "",
-   "visto": "2026-07-31"
+   "visto": "2026-07-31",
+   "primeiroRegistro": "2026-07-31"
   },
   {
    "id": "sendo-lygia-pape--mendes-wood-dm",
@@ -824,7 +830,8 @@
    "tipo": "galeria",
    "site": "https://mendeswooddm.com",
    "ig": "mendeswooddm",
-   "visto": "2026-07-31"
+   "visto": "2026-07-31",
+   "primeiroRegistro": "2026-07-31"
   },
   {
    "id": "playful-stormy-continuing--baro-galeria",
@@ -840,7 +847,8 @@
    "tipo": "galeria",
    "site": "https://barogaleria.com",
    "ig": "barogaleria",
-   "visto": "2026-07-31"
+   "visto": "2026-07-31",
+   "primeiroRegistro": "2026-07-31"
   },
   {
    "id": "e-tempo-ainda--janaina-torres-galeria",
@@ -856,7 +864,8 @@
    "tipo": "galeria",
    "site": "",
    "ig": "",
-   "visto": "2026-07-31"
+   "visto": "2026-07-31",
+   "primeiroRegistro": "2026-07-31"
   },
   {
    "id": "sala-de-video-regina-jose-galindo--masp",
@@ -872,7 +881,8 @@
    "tipo": "institucional",
    "site": "https://masp.org.br",
    "ig": "masp",
-   "visto": "2026-07-31"
+   "visto": "2026-07-31",
+   "primeiroRegistro": "2026-07-31"
   },
   {
    "id": "uma-obra-pintura-sem-fim--pinacoteca-de-sao-paulo",
@@ -888,7 +898,8 @@
    "tipo": "institucional",
    "site": "https://pinacoteca.org.br",
    "ig": "pinasp",
-   "visto": "2026-07-31"
+   "visto": "2026-07-31",
+   "primeiroRegistro": "2026-07-31"
   },
   {
    "id": "para-criancas-experiencias-com-a-arte-desde-1968--pinacoteca-de-sao-paulo",
@@ -904,7 +915,8 @@
    "tipo": "institucional",
    "site": "https://pinacoteca.org.br",
    "ig": "pinasp",
-   "visto": "2026-07-31"
+   "visto": "2026-07-31",
+   "primeiroRegistro": "2026-07-31"
   },
   {
    "id": "beatriz-milhazes-gravuras-do-acervo-da-pinacoteca--pinacoteca-de-sao-paulo",
@@ -920,7 +932,8 @@
    "tipo": "institucional",
    "site": "https://pinacoteca.org.br",
    "ig": "pinasp",
-   "visto": "2026-07-31"
+   "visto": "2026-07-31",
+   "primeiroRegistro": "2026-07-31"
   },
   {
    "id": "tragico-suburbio-paulo-pedro-leal--pinacoteca-de-sao-paulo",
@@ -936,7 +949,8 @@
    "tipo": "institucional",
    "site": "https://pinacoteca.org.br",
    "ig": "pinasp",
-   "visto": "2026-07-31"
+   "visto": "2026-07-31",
+   "primeiroRegistro": "2026-07-31"
   },
   {
    "id": "um-ato-fotografico-alice-yura--pinacoteca-de-sao-paulo",
@@ -952,7 +966,8 @@
    "tipo": "institucional",
    "site": "https://pinacoteca.org.br",
    "ig": "pinasp",
-   "visto": "2026-07-31"
+   "visto": "2026-07-31",
+   "primeiroRegistro": "2026-07-31"
   },
   {
    "id": "ibirapema-olinda-tupinamba--pinacoteca-de-sao-paulo",
@@ -968,7 +983,8 @@
    "tipo": "institucional",
    "site": "https://pinacoteca.org.br",
    "ig": "pinasp",
-   "visto": "2026-07-31"
+   "visto": "2026-07-31",
+   "primeiroRegistro": "2026-07-31"
   },
   {
    "id": "macunaima-e-duwid--pinacoteca-de-sao-paulo",
@@ -984,7 +1000,8 @@
    "tipo": "institucional",
    "site": "https://pinacoteca.org.br",
    "ig": "pinasp",
-   "visto": "2026-07-31"
+   "visto": "2026-07-31",
+   "primeiroRegistro": "2026-07-31"
   },
   {
    "id": "miss-ceilingfan-ad-nauseam-joeun-kim-aatchim--almeida-e-dale-millan",
@@ -1000,7 +1017,8 @@
    "tipo": "galeria",
    "site": "https://millan.art",
    "ig": "galeriamillan",
-   "visto": "2026-07-31"
+   "visto": "2026-07-31",
+   "primeiroRegistro": "2026-07-31"
   },
   {
    "id": "primeiro-mergulho-beatriz-buendia--gruta-espaco-de-arte-contemporanea",
@@ -1016,7 +1034,8 @@
    "tipo": "galeria",
    "site": "",
    "ig": "",
-   "visto": "2026-07-31"
+   "visto": "2026-07-31",
+   "primeiroRegistro": "2026-07-31"
   }
  ],
  "artistas": {
