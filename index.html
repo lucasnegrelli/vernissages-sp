@@ -183,6 +183,7 @@ body,button,input,select,textarea,.btn,.chip{font-family:var(--font);letter-spac
 .foco .txt{color:var(--text2)}
 .chip.on,#routePanel .go{color:var(--onaccent)}
 html[data-tema="cubo"] .foco,html[data-tema="terminal"] .foco{background-image:none;background:var(--panel)}
+html[data-tema="cubo"] .leaflet-tile-pane,html[data-tema="impresso"] .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) saturate(.55) brightness(1.02)}
 .temasel{display:inline-flex;gap:6px;flex-wrap:wrap;margin-left:14px;vertical-align:middle}
 .temasel button{background:var(--panel2);border:1px solid var(--border);color:var(--muted);border-radius:calc(var(--radius) + 6px);padding:2px 10px;font-size:.72rem;cursor:pointer;line-height:1.6}
 .temasel button:hover{border-color:var(--accent);color:var(--text)}
@@ -600,24 +601,15 @@ draw();
 <script>
 (function(){
  var sel=document.getElementById('temaSel'); if(!sel) return;
- function tiles(t){
-  if(!window.map||!window.L) return;
-  var claro=(t==='cubo'||t==='impresso');
-  var url='https://{s}.basemaps.cartocdn.com/'+(claro?'light_all':'dark_all')+'/{z}/{x}/{y}{r}.png';
-  if(window.__tl===url) return; window.__tl=url;
-  window.map.eachLayer(function(l){ if(l instanceof L.TileLayer) window.map.removeLayer(l); });
-  L.tileLayer(url,{maxZoom:19,attribution:'&copy; OpenStreetMap &copy; CARTO'}).addTo(window.map);
- }
  function marca(t){[].forEach.call(sel.querySelectorAll('button'),function(b){b.setAttribute('aria-pressed',b.getAttribute('data-t')===t?'true':'false')})}
  function aplica(t,salva){
   if(t==='noite'){document.documentElement.removeAttribute('data-tema')}else{document.documentElement.setAttribute('data-tema',t)}
-  marca(t); tiles(t);
+  marca(t);
   if(salva){try{localStorage.setItem('vspTema',t)}catch(e){}}
  }
  sel.addEventListener('click',function(e){var b=e.target.closest('button'); if(b){aplica(b.getAttribute('data-t'),true)}});
  var atual='noite'; try{atual=localStorage.getItem('vspTema')||'noite'}catch(e){}
  marca(atual);
- setTimeout(function(){tiles(atual)},1500);
 })();
 </script>
 </body>
