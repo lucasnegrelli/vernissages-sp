@@ -71,20 +71,28 @@ body,button,input,select,textarea,.btn{font-family:var(--font);letter-spacing:va
 .box,.grid2 a{border-width:var(--bw)}
 .btn,.busca{border-radius:calc(var(--radius) + 6px);border-width:var(--bw)}
 .tag{border-radius:var(--radius-sm)}
-.temasel{display:inline-flex;gap:6px;flex-wrap:wrap;margin-left:12px;vertical-align:middle}
-.temasel button{background:var(--panel2);border:1px solid var(--border);color:var(--muted);border-radius:calc(var(--radius) + 6px);padding:1px 9px;font-size:.7rem;cursor:pointer;line-height:1.6}
-.temasel button:hover{border-color:var(--accent);color:var(--text)}
-.temasel button[aria-pressed="true"]{background:var(--accent);color:var(--onaccent);border-color:var(--accent)}
-@media(max-width:600px){.temasel{display:flex;flex:1 0 100%;width:100%;margin-left:0;margin-top:6px}}
+.temabox{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:1200;display:flex;align-items:center}
+.temabtn{background:var(--panel);border:1px solid var(--border);border-right:0;border-radius:10px 0 0 10px;padding:11px 8px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:.5;transition:opacity .2s}
+.temabox:hover .temabtn,.temabox:focus-within .temabtn,.temabox.aberto .temabtn{opacity:1}
+.temadot{width:11px;height:11px;border-radius:50%;background:var(--accent);display:block}
+.temamenu{position:absolute;right:100%;top:50%;margin-right:7px;transform:translateY(-50%) translateX(10px);background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:6px;display:flex;flex-direction:column;gap:1px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s ease,transform .18s ease;box-shadow:0 10px 34px rgba(0,0,0,.4)}
+.temabox:hover .temamenu,.temabox:focus-within .temamenu,.temabox.aberto .temamenu{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(-50%) translateX(0)}
+.temamenu button{display:flex;align-items:center;gap:9px;background:none;border:0;color:var(--muted);padding:6px 14px 6px 8px;border-radius:8px;cursor:pointer;font-size:.79rem;white-space:nowrap;text-align:left;width:100%}
+.temamenu button:hover{background:var(--panel2);color:var(--text)}
+.temamenu button[aria-pressed="true"]{color:var(--text);background:var(--panel2)}
+.temamenu i{width:15px;height:15px;border-radius:50%;flex:0 0 auto;border:1px solid var(--border);background:linear-gradient(135deg,var(--sw-b) 0 50%,var(--sw-a) 50% 100%)}
+.temamenu button[aria-pressed="true"] i{border-color:var(--accent)}
+@media(max-width:600px){.temabox{top:auto;bottom:18px;transform:none}.temamenu{top:auto;bottom:0;transform:translateX(10px)}.temabox:hover .temamenu,.temabox:focus-within .temamenu,.temabox.aberto .temamenu{transform:translateX(0)}}
 </style>
 <script>(function(){try{var t=localStorage.getItem('vspTema');if(t&&t!=='noite')document.documentElement.dataset.tema=t}catch(e){}})();</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Frederico Ravioli","url":"https://lucasnegrelli.github.io/vernissages-sp/a/frederico-ravioli.html","jobTitle":"Artista visual","performerIn":[{"@type":"ExhibitionEvent","name":"Verso: na encruzilhada da revolta — Ravioli e Ussami","startDate":"2026-07-30","url":"https://lucasnegrelli.github.io/vernissages-sp/m/verso-na-encruzilhada-da-revolta-ravioli-e-ussami--galeria-vermelho.html"}]}</script>
 </head>
 <body>
+<div class="temabox" id="temaBox"><button class="temabtn" type="button" id="temaBtn" aria-label="Trocar tema do site" aria-expanded="false"><span class="temadot"></span></button><div class="temamenu" id="temaMenu"><button type="button" data-t="noite" style="--sw-b:#0e0e11;--sw-a:#e8c15a"><i></i>Noite</button><button type="button" data-t="cubo" style="--sw-b:#ffffff;--sw-a:#111111"><i></i>Cubo branco</button><button type="button" data-t="impresso" style="--sw-b:#f4f1ea;--sw-a:#8b2f1d"><i></i>Impresso</button><button type="button" data-t="neon" style="--sw-b:#07060d;--sw-a:#ff2e88"><i></i>Neon</button><button type="button" data-t="terminal" style="--sw-b:#0a0a0a;--sw-a:#00ff41"><i></i>Terminal</button><button type="button" data-t="vapor" style="--sw-b:#0b1b3d;--sw-a:#6ff2e6"><i></i>Aquafuture</button></div></div>
 <div class="top">
 <a href="https://lucasnegrelli.github.io/vernissages-sp/">VERNISSAGES <span>SP</span></a>
 <div class="nav">
-<a href="https://lucasnegrelli.github.io/vernissages-sp/">Agenda</a><a href="https://lucasnegrelli.github.io/vernissages-sp/arquivo.html">Acervo</a><a href="https://lucasnegrelli.github.io/vernissages-sp/artistas.html">Artistas</a><a href="https://lucasnegrelli.github.io/vernissages-sp/editais.html">Editais</a><span class="temasel" id="temaSel"><button type="button" data-t="noite">Noite</button><button type="button" data-t="cubo">Cubo</button><button type="button" data-t="impresso">Impresso</button><button type="button" data-t="neon">Neon</button><button type="button" data-t="terminal">Terminal</button><button type="button" data-t="vapor">Aquafuture</button></span>
+<a href="https://lucasnegrelli.github.io/vernissages-sp/">Agenda</a><a href="https://lucasnegrelli.github.io/vernissages-sp/arquivo.html">Acervo</a><a href="https://lucasnegrelli.github.io/vernissages-sp/artistas.html">Artistas</a><a href="https://lucasnegrelli.github.io/vernissages-sp/editais.html">Editais</a>
 </div>
 </div>
 <div class="wrap">
@@ -109,7 +117,7 @@ Datas conforme divulgação dos espaços; confirme antes de visitar. <a href="ht
 </footer>
 </div>
 <script>
-(function(){var s=document.getElementById('temaSel');if(!s)return;function m(t){[].forEach.call(s.querySelectorAll('button'),function(b){b.setAttribute('aria-pressed',b.getAttribute('data-t')===t?'true':'false')})}function a(t){if(t==='noite'){document.documentElement.removeAttribute('data-tema')}else{document.documentElement.setAttribute('data-tema',t)}m(t);try{localStorage.setItem('vspTema',t)}catch(e){}}s.addEventListener('click',function(e){var b=e.target.closest('button');if(b){a(b.getAttribute('data-t'))}});var atual='noite';try{atual=localStorage.getItem('vspTema')||'noite'}catch(e){}m(atual);})();
+(function(){var box=document.getElementById('temaBox');if(!box)return;var btn=document.getElementById('temaBtn'),menu=document.getElementById('temaMenu');function m(t){[].forEach.call(menu.querySelectorAll('button'),function(b){b.setAttribute('aria-pressed',b.getAttribute('data-t')===t?'true':'false')})}function fecha(){box.classList.remove('aberto');btn.setAttribute('aria-expanded','false')}function a(t){if(t==='noite'){document.documentElement.removeAttribute('data-tema')}else{document.documentElement.setAttribute('data-tema',t)}m(t);try{localStorage.setItem('vspTema',t)}catch(e){}}btn.addEventListener('click',function(e){e.stopPropagation();var ab=box.classList.toggle('aberto');btn.setAttribute('aria-expanded',ab?'true':'false')});menu.addEventListener('click',function(e){var b=e.target.closest('button');if(b){a(b.getAttribute('data-t'));fecha()}});document.addEventListener('click',function(e){if(!box.contains(e.target))fecha()});document.addEventListener('keydown',function(e){if(e.key==='Escape')fecha()});var atual='noite';try{atual=localStorage.getItem('vspTema')||'noite'}catch(e){}m(atual);})();
 </script>
 </body>
 </html>
