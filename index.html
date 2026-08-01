@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vernissages SP — Galerias, Aberturas e Roteiros</title>
 <meta name="description" content="Mapa vivo da cena de arte de São Paulo: 70 galerias e museus, vernissages da semana, roteiros e agenda de exposições atualizada diariamente.">
-<meta property="og:title" content="Vernissages SP 🥂 Galerias e Aberturas">
+<meta property="og:title" content="Vernissages SP — Galerias e Aberturas">
 <meta property="og:description" content="Mapa vivo da cena de arte de São Paulo: vernissages da semana, 70 galerias e museus, roteiros e agenda atualizada diariamente.">
 <meta property="og:url" content="https://lucasnegrelli.github.io/vernissages-sp/">
 <meta property="og:type" content="website">
@@ -485,7 +485,7 @@
     <select id="artistSel"><option value="all">Todos os artistas</option></select>
     <span class="chip" id="nearBtn">Perto de mim</span>
     <span class="chip" id="freeBtn">Grátis</span>
-<span class="chip" id="favBtn">♥ Favoritos</span>
+<span class="chip" id="favBtn">Favoritos</span>
   </div>
 
   <div class="viewtoggle" id="viewToggle"><button type="button" class="on" data-v="lista">Lista</button><button type="button" data-v="mapa">Mapa</button></div>
@@ -546,7 +546,7 @@
 <div id="modalBg" onclick="if(event.target.id==='modalBg')closeArtist()"><div id="modal"></div></div>
 
 <div id="routePanel">
-  <h3>🗺️ Meu roteiro (<span id="rc">0</span>)</h3>
+  <h3>Meu roteiro (<span id="rc">0</span>)</h3>
   <ol id="routeList"></ol>
   <button class="go" onclick="openRoute()">Abrir rota no Google Maps</button>
   <button class="clear" onclick="clearRoute()">limpar roteiro</button>
@@ -622,7 +622,7 @@ function popupHtml(v,ex){
   let h=`<b>${v.name}</b><br>${v.addr} · ${v.b} (Zona ${v.z})<br><i>${v.info||''}</i>`;
   if(ex&&ex.length)h+='<hr style="border-color:#333">'+ex.map(e=>`▸ <b>${e.t}</b><br>&nbsp;&nbsp;${e.st==='opening'?'abre '+fmt(e.ini):'até '+(e.fim?fmt(e.fim):'—')}`).join('<br>');
   if(ingTxt(v))h+=`<br><i style="color:#9a9aa6">${ingTxt(v)}</i>`;
-h+=`<br>${v.site?`<a href="${v.site}" target="_blank">Site</a> · `:''}${v.ig?`<a href="https://instagram.com/${v.ig}" target="_blank">IG</a> · `:''}<a href="${gsearch(v.name+' galeria são paulo')}" target="_blank">🔍 Buscar</a> · <a href="${gmaps(v)}" target="_blank">🧭 Como chegar</a> · <a href="#" onclick="addStop('${v.name.replace(/'/g,"\\'")}');return false;">+ Roteiro</a>`;
+h+=`<br>${v.site?`<a href="${v.site}" target="_blank">Site</a> · `:''}${v.ig?`<a href="https://instagram.com/${v.ig}" target="_blank">IG</a> · `:''}<a href="${gsearch(v.name+' galeria são paulo')}" target="_blank">Buscar</a> · <a href="${gmaps(v)}" target="_blank">Como chegar</a> · <a href="#" onclick="addStop('${v.name.replace(/'/g,"\\'")}');return false;">+ Roteiro</a>`;
   return h;
 }
 const gsearch=q=>'https://www.google.com/search?q='+encodeURIComponent(q);
@@ -660,8 +660,8 @@ function draw(){
       ${e.d?`<div class="addr" style="color:#b6b6c2;margin-top:4px">${e.d}</div>`:''}
 ${(()=>{const g=ingressoDe(e.ven);return (e.ven.tipo!=='galeria'&&g.free)?`<div class="freeday">Grátis ${g.free}</div>`:''})()}
       <div class="meta">${tag}${ingTag(e.ven)}<span>${dates}</span>
-        ${nearOn&&userPos?`<span class="dist">📍 ${distKm(e.ven).toFixed(1)} km</span>`:''}
-        <span class="fav ${favs.has(e.ven.name)?'on':''}" onclick="toggleFav('${e.ven.name.replace(/'/g,"\\'")}')" title="Favoritar">♥</span>
+        ${nearOn&&userPos?`<span class="dist">${distKm(e.ven).toFixed(1)} km</span>`:''}
+        <span class="fav ${favs.has(e.ven.name)?'on':''}" onclick="toggleFav('${e.ven.name.replace(/'/g,"\\'")}')" title="Favoritar">&#9829;</span>
         ${e.ven.site?`<a class="btn" href="${e.ven.site}" target="_blank">Site</a>`:''}
         ${e.ven.ig?`<a class="btn" href="https://instagram.com/${e.ven.ig}" target="_blank">IG</a>`:''}
         <a class="btn" href="${gsearch(e.t+' '+e.ven.name)}" target="_blank">Info</a>
@@ -702,11 +702,11 @@ function drawDir(q,zona,b,tipo,ven){
   document.querySelector('#dirTable tbody').innerHTML=rows.map(v=>`<tr>
     <td><span class="gname" onclick="focusVenue('${v.name.replace(/'/g,"\\'")}')">${v.name}</span></td>
     <td>${v.addr}</td><td>${v.b}</td><td class="zona">${v.z}</td><td class="zona">${v.tipo}</td>
-    <td class="actions"><span class="fav ${favs.has(v.name)?'on':''}" onclick="toggleFav('${v.name.replace(/'/g,"\\'")}')" title="Favoritar">♥</span>
-      ${v.site?`<a class="btn" href="${v.site}" target="_blank">🌐</a>`:`<a class="btn" href="${gsearch(v.name+' galeria são paulo')}" target="_blank">🔍</a>`}
-      ${v.ig?`<a class="btn" href="https://instagram.com/${v.ig}" target="_blank">📸</a>`:''}
+    <td class="actions"><span class="fav ${favs.has(v.name)?'on':''}" onclick="toggleFav('${v.name.replace(/'/g,"\\'")}')" title="Favoritar">&#9829;</span>
+      ${v.site?`<a class="btn" href="${v.site}" target="_blank">Site</a>`:`<a class="btn" href="${gsearch(v.name+' galeria são paulo')}" target="_blank">Buscar</a>`}
+      ${v.ig?`<a class="btn" href="https://instagram.com/${v.ig}" target="_blank">IG</a>`:''}
       <a class="btn" href="${gmaps(v)}" target="_blank">Rota</a>
-      <span class="btn add" onclick="addStop('${v.name.replace(/'/g,"\\'")}')">➕</span></td></tr>`).join('');
+      <span class="btn add" onclick="addStop('${v.name.replace(/'/g,"\\'")}')">+ Roteiro</span></td></tr>`).join('');
   document.getElementById('dirtitle').textContent=`Diretório de Galerias e Espaços (${rows.length})`;
 }
 document.querySelectorAll('#dirTable th[data-k]').forEach(th=>th.onclick=()=>{
@@ -737,13 +737,13 @@ function openRoute(){
 function openArtist(name){
   const shows=expos.filter(e=>(e.a||'').split(', ').includes(name));
   const links=[
-    ['🔍 Google',gsearch(name+' artista')],
-    ['🖼️ Obras',('https://www.google.com/search?tbm=isch&q='+encodeURIComponent(name+' artista obras'))],
-    ['📸 Instagram',gsearch(name+' artista instagram')],
-    ['📚 Wikipédia','https://pt.wikipedia.org/w/index.php?search='+encodeURIComponent(name)]
+    ['Google',gsearch(name+' artista')],
+    ['Obras',('https://www.google.com/search?tbm=isch&q='+encodeURIComponent(name+' artista obras'))],
+    ['Instagram',gsearch(name+' artista instagram')],
+    ['Wikipédia','https://pt.wikipedia.org/w/index.php?search='+encodeURIComponent(name)]
   ].map(l=>`<a class="btn" target="_blank" href="${l[1]}">${l[0]}</a>`).join('');
   document.getElementById('modal').innerHTML=`<span class="close" onclick="closeArtist()">✕</span>
-    <h3>🎨 ${name}</h3><div class="sub">${shows.length} mostra(s) na agenda atual</div>
+    <h3>${name}</h3><div class="sub">${shows.length} mostra(s) na agenda atual</div>
     <div class="links">${links}</div>`+
     shows.map(e=>`<div class="exline"><b>${e.t}</b><br><span class="w">${e.ven.name}</span> · ${e.ven.b} · ${e.st==='opening'?'abre '+fmt(e.ini):'até '+(e.fim?fmt(e.fim):'—')}${e.d?`<br><span style="color:#9a9aa6">${e.d}</span>`:''}
       <div style="margin-top:5px"><a class="btn" target="_blank" href="${gmaps(e.ven)}">Rota</a> ${e.ven.site?`<a class="btn" target="_blank" href="${e.ven.site}">Site</a>`:''}</div></div>`).join('');
@@ -798,7 +798,7 @@ const wk=expos.filter(e=>{const d=new Date(e.ini+'T12:00');return d<=end&&d>=sta
   w.style.display='block';
   document.getElementById('wkrow').innerHTML=wk.map(e=>`<div class="wk" onclick="focusVenue('${e.ven.name.replace(/'/g,"\\'")}')">
     <div class="d">${fmt(e.ini)}${e.ini===HOJESTR?'<span class="nw hj">HOJE</span>':(new Date(e.ini+'T12:00')<TODAY?'<span class="nw">JÁ ABRIU</span>':'')}</div><div class="t">${e.t}</div><div class="v">${e.ven.name} · ${e.ven.b}</div></div>`).join('');
-  const txt='🥂 Vernissages SP — aberturas da semana:\n'+wk.map(e=>`• ${fmt(e.ini)}${e.ini===HOJESTR?' (hoje!)':(new Date(e.ini+'T12:00')<TODAY?' (já abriu)':'')} — ${e.t} @ ${e.ven.name} (${e.ven.b})`).join('\n')+'\n\nAgenda completa, mapa e roteiros: https://lucasnegrelli.github.io/vernissages-sp/';
+  const txt='Vernissages SP — aberturas da semana:\n'+wk.map(e=>`• ${fmt(e.ini)}${e.ini===HOJESTR?' (hoje!)':(new Date(e.ini+'T12:00')<TODAY?' (já abriu)':'')} — ${e.t} @ ${e.ven.name} (${e.ven.b})`).join('\n')+'\n\nAgenda completa, mapa e roteiros: https://lucasnegrelli.github.io/vernissages-sp/';
   window._wkTxt=txt;
   document.getElementById('waShare').href='https://wa.me/?text='+encodeURIComponent(txt);
 }
@@ -816,14 +816,14 @@ document.getElementById('nearBtn').onclick=function(){
   const btn=this;
   if(nearOn){nearOn=false;btn.classList.remove('on');if(userMarker){map.removeLayer(userMarker);userMarker=null;}draw();return;}
   if(!navigator.geolocation){alert('Geolocalização não disponível neste navegador.');return;}
-  btn.textContent='📍 localizando…';
+  btn.textContent='localizando…';
   navigator.geolocation.getCurrentPosition(p=>{
     userPos=[p.coords.latitude,p.coords.longitude];nearOn=true;
-    btn.textContent='📍 Perto de mim';btn.classList.add('on');
+    btn.textContent='Perto de mim';btn.classList.add('on');
     userMarker=L.circleMarker(userPos,{radius:9,color:'#fff',fillColor:'#7da7d9',fillOpacity:.95,weight:2})
       .addTo(map).bindPopup('<b>Você está aqui</b>');
     map.setView(userPos,13);draw();
-  },()=>{btn.textContent='📍 Perto de mim';alert('Não consegui acessar sua localização — verifique a permissão do navegador.');});
+  },()=>{btn.textContent='Perto de mim';alert('Não consegui acessar sua localização — verifique a permissão do navegador.');});
 };
 
 /* contador de visitas + enquete (Abacus — anônimo, sem cookies de rastreamento) */
