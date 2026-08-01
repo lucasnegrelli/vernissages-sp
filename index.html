@@ -7,14 +7,14 @@
 <meta name="description" content="Mapa vivo da cena de arte de São Paulo: 70 galerias e museus, vernissages da semana, roteiros e agenda de exposições atualizada diariamente.">
 <meta property="og:title" content="Vernissages SP — Galerias e Aberturas">
 <meta property="og:description" content="Mapa vivo da cena de arte de São Paulo: vernissages da semana, 70 galerias e museus, roteiros e agenda atualizada diariamente.">
-<meta property="og:url" content="https://lucasnegrelli.github.io/vernissages-sp/">
+<meta property="og:url" content="https://vernissagessp.com.br/">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://lucasnegrelli.github.io/vernissages-sp/og-image.png">
+<meta property="og:image" content="https://vernissagessp.com.br/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lucasnegrelli.github.io/vernissages-sp/og-image.png">
+<meta name="twitter:image" content="https://vernissagessp.com.br/og-image.png">
 <link rel="icon" type="image/png" href="icon-192.png">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#0e0e11">
@@ -875,7 +875,7 @@ const wk=expos.filter(e=>{const d=new Date(e.ini+'T12:00');return d<=end&&d>=sta
   w.style.display='block';
   document.getElementById('wkrow').innerHTML=wk.map(e=>`<div class="wk" onclick="focusVenue('${e.ven.name.replace(/'/g,"\\'")}')">
     <div class="d">${fmt(e.ini)}${e.ini===HOJESTR?'<span class="nw hj">HOJE</span>':(new Date(e.ini+'T12:00')<TODAY?'<span class="nw">JÁ ABRIU</span>':'')}</div><div class="t">${e.t}</div><div class="v">${e.ven.name} · ${e.ven.b}</div></div>`).join('');
-  const txt='Vernissages SP — aberturas da semana:\n'+wk.map(e=>`• ${fmt(e.ini)}${e.ini===HOJESTR?' (hoje!)':(new Date(e.ini+'T12:00')<TODAY?' (já abriu)':'')} — ${e.t} @ ${e.ven.name} (${e.ven.b})`).join('\n')+'\n\nAgenda completa, mapa e roteiros: https://lucasnegrelli.github.io/vernissages-sp/';
+  const txt='Vernissages SP — aberturas da semana:\n'+wk.map(e=>`• ${fmt(e.ini)}${e.ini===HOJESTR?' (hoje!)':(new Date(e.ini+'T12:00')<TODAY?' (já abriu)':'')} — ${e.t} @ ${e.ven.name} (${e.ven.b})`).join('\n')+'\n\nAgenda completa, mapa e roteiros: https://vernissagessp.com.br/';
   window._wkTxt=txt;
   document.getElementById('waShare').href='https://wa.me/?text='+encodeURIComponent(txt);
 }
