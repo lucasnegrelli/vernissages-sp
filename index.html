@@ -188,7 +188,7 @@ html[data-tema="cubo"] .leaflet-tile-pane,html[data-tema="impresso"] .leaflet-ti
 .temasel button{background:var(--panel2);border:1px solid var(--border);color:var(--muted);border-radius:calc(var(--radius) + 6px);padding:2px 10px;font-size:.72rem;cursor:pointer;line-height:1.6}
 .temasel button:hover{border-color:var(--accent);color:var(--text)}
 .temasel button[aria-pressed="true"]{background:var(--accent);color:var(--onaccent);border-color:var(--accent)}
-@media(max-width:600px){.temasel{margin-left:0;margin-top:8px}}
+@media(max-width:600px){.temasel{display:flex;flex:1 0 100%;width:100%;margin-left:0;margin-top:8px}}
 </style>
 <script>(function(){try{var t=localStorage.getItem('vspTema');if(t&&t!=='noite')document.documentElement.dataset.tema=t}catch(e){}})();</script>
 </head>
