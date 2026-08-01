@@ -69,7 +69,7 @@ const VENUES = [
  {name:"Pinacoteca de São Paulo",ig:"pinasp",site:"https://pinacoteca.org.br",addr:"Praça da Luz, 2",b:"Luz",z:"Centro",tipo:"institucional",lat:-23.5340,lng:-46.6336,ing:{i:40,m:20,free:"sábados e no 2º domingo de cada mês",obs:"+R$ 2 de taxa online; ingresso vale os três prédios",fonte:"pinacoteca.org.br"},info:"Pina Luz, Pina Estação e Pina Contemporânea."},
  {name:"CCBB São Paulo",ig:"ccbbsp",site:"https://ccbb.com.br",addr:"R. Álvares Penteado, 112",b:"Sé",z:"Centro",tipo:"institucional",lat:-23.5470,lng:-46.6343,ing:{g:true,obs:"retirada de ingresso no site do BB ou na bilheteria"},info:"Centro Cultural Banco do Brasil, centro histórico."},
  {name:"IMS Paulista",ig:"imoreirasalles",site:"https://ims.com.br",addr:"Av. Paulista, 2424",b:"Bela Vista",z:"Centro",tipo:"institucional",lat:-23.5561,lng:-46.6620,ing:{g:true},info:"Instituto Moreira Salles: fotografia, cinema e literatura."},
- {name:"Itaú Cultural",ig:"itaucultural",site:"https://www.itaucultural.org.br",addr:"Av. Paulista, 149",b:"Bela Vista",z:"Centro",tipo:"institucional",lat:-23.5701,lng:-46.6462,ing:{g:true},info:"Programação gratuita na Paulista."},
+ {name:"Itaú Cultural",ig:"itaucultural",site:"https://www.itaucultural.org.br",addr:"Av. Paulista, 149",b:"Bela Vista",z:"Centro",tipo:"institucional",lat:-23.5701,lng:-46.6462,ing:{g:true,obs:"Entrada gratuita.",fonte:"itaucultural.org.br"},info:"Programação gratuita na Paulista."},
  {name:"Centro Cultural São Paulo (CCSP)",site:"https://centrocultural.sp.gov.br",addr:"R. Vergueiro, 1000",b:"Paraíso",z:"Centro",tipo:"institucional",lat:-23.5701,lng:-46.6402,ing:{g:true},info:"Exposições, acervo e residências."},
  {name:"Museu Judaico de São Paulo",ig:"museujudaicosp",site:"https://museujudaico.org.br",addr:"R. Martinho Prado, 128",b:"Bela Vista",z:"Centro",tipo:"institucional",lat:-23.5527,lng:-46.6478,ing:{i:20,m:10,free:"sábados",fonte:"museujudaicosp.org.br"},info:"Junto à sinagoga Beth-El."},
  {name:"Pivô",site:"https://www.pivo.org.br",addr:"Av. Ipiranga, 200 (Copan)",b:"República",z:"Centro",tipo:"institucional",lat:-23.5465,lng:-46.6448,ing:{g:true},info:"Plataforma sem fins lucrativos no Edifício Copan: mostras e residências."},
@@ -155,6 +155,16 @@ const EXPOS = [
  {t:"Primeiro Mergulho — Beatriz Buendia",a:"Beatriz Buendia",v:"GRUTA Espaço de Arte Contemporânea",ini:"2026-07-11",fim:"2026-08-08",d:"Primeira individual da artista no espaço da Barra Funda."}
 ];
 
+/* ================= EDITAIS =================
+ cat: fomento | residencia | premio | chamada
+ prazo: YYYY-MM-DD  ·  null = fluxo continuo (sem data de encerramento divulgada)
+ Nunca inventar prazo: se a fonte nao trouxer data, deixe null e explique no campo d. */
+const EDITAIS = [
+ {t:"Fomento CultSP / ProAC 2026 — pacote de 9 editais",org:"Secretaria da Cultura, Economia e Indústria Criativas de SP",cat:"fomento",prazo:"2026-08-03",quem:"Pessoas físicas e jurídicas do estado de São Paulo",onde:"Estado de São Paulo",valor:"R$ 90 milhões no conjunto",taxa:"gratuita",d:"Pacote publicado em 10 de junho com editais de audiovisual, games, arquitetura (ocupação de bens tombados pelo CONDEPHAAT), economia criativa (moda e design de produtos), festivais e eventos, cinemas de rua e municípios de até 50 mil habitantes. Inscrições prorrogadas até 3 de agosto, só pela plataforma Fomento CultSP.",link:"https://www.cultura.sp.gov.br/sec_cultura/Fomento/Programa_ProAC_(Editais)",fonte:"Agência SP, 27/07/2026"},
+ {t:"Prêmio Photothings de Fotolivro Artesanal",org:"Festival Photothings",cat:"premio",prazo:"2026-08-02",quem:"Fotógrafos e artistas visuais brasileiros — não elegíveis artistas representados por galerias comerciais",onde:"Brasil",taxa:"gratuita",d:"Um projeto fotográfico selecionado vira fotolivro produzido de forma 100% artesanal. O regulamento fica no link da bio do Instagram do festival.",link:"https://www.instagram.com/photo.things/",fonte:"Artvsm e Dasartes, julho/2026"},
+ {t:"Propostas de exposição para o MAB FAAP",org:"Museu de Arte Brasileira da FAAP",cat:"chamada",prazo:null,quem:"Artistas, curadores e coletivos",onde:"São Paulo",taxa:"gratuita",d:"O museu recebe propostas de exposição em fluxo contínuo, por formulário online. Não há data de encerramento divulgada.",link:"https://faapinscricao.crmeducacional.com/formulario/2406",fonte:"faap.br/mab"}
+];
+
 const BAIRRO_COUNTS=[["Jardins",18],["Barra Funda",8],["Jardim Europa",7],["Pinheiros",6],
  ["Vila Madalena",3],["Itaim Bibi",3],["Cerqueira César",3],["Higienópolis",3],["Vila Buarque",3],
  ["Consolação",2],["Moema",2],["Vila Nova Conceição",2],["Butantã",1],["Pacaembu",1],["República",1],
@@ -171,5 +181,5 @@ const FOCO = {
  publi:false
 };
 
-return { foco: FOCO, atualizado: "31/07/2026", venues: VENUES, expos: EXPOS, bairros: BAIRRO_COUNTS };
+return { foco: FOCO, atualizado: "31/07/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, bairros: BAIRRO_COUNTS };
 })();
