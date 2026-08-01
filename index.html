@@ -56,17 +56,29 @@
   ::selection{background:var(--accent);color:var(--onaccent)}
 
   /* ---------- header ---------- */
-  header{position:sticky;top:0;z-index:60;padding:18px 32px 15px;
-    display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between;
+  header{position:sticky;top:0;z-index:60;padding:16px 0 14px;
     background:rgba(10,10,13,.62);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
     border-bottom:1px solid var(--hair)}
+  .hwrap{max-width:1320px;margin:0 auto;padding:0 32px;width:100%;
+    display:flex;flex-wrap:wrap;gap:14px 24px;align-items:flex-end;justify-content:space-between}
+  .hacoes{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
   header h1{font-size:1.35rem;font-weight:600;letter-spacing:2.5px;line-height:1.2}
   header h1 span{color:var(--accent)}
   header p{color:var(--muted);font-size:.8rem;margin-top:2px}
-  .navacervo{display:flex;gap:16px;margin-top:9px;flex-wrap:wrap}
-  .navacervo a{color:var(--text2);text-decoration:none;font-size:.8rem;padding-bottom:2px;
-    border-bottom:1px solid transparent;transition:.18s}
-  .navacervo a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+  .navacervo{position:relative}
+  .navbtn{background:var(--glass);border:1px solid var(--line);color:var(--muted);
+    border-radius:24px;padding:9px 16px;font-family:var(--font);font-size:.8rem;cursor:pointer;
+    backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);transition:.18s;white-space:nowrap}
+  .navbtn::after{content:'›';display:inline-block;margin-left:7px;transform:rotate(90deg);opacity:.6}
+  .navbtn:hover{color:var(--ink);border-color:var(--line2)}
+  .navmenu{display:none;position:absolute;right:0;top:calc(100% + 8px);z-index:80;min-width:210px;
+    background:rgba(20,20,26,.94);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
+    border:1px solid var(--line2);border-radius:var(--radius);padding:6px;
+    box-shadow:0 24px 60px -20px rgba(0,0,0,.95)}
+  .navacervo.open .navmenu{display:block}
+  .navmenu a{display:block;color:var(--text2);text-decoration:none;font-size:.82rem;
+    padding:9px 12px;border-radius:var(--radius-sm);transition:.15s}
+  .navmenu a:hover{background:var(--glass2);color:var(--accent)}
   #search{background:var(--glass);border:1px solid var(--line);color:var(--ink);border-radius:24px;
     padding:10px 18px;font-size:.88rem;width:320px;max-width:100%;
     backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);transition:.2s}
@@ -76,13 +88,15 @@
   .wrap{max-width:1320px;margin:0 auto;padding:0 32px 60px}
 
   /* ---------- KPIs: faixa fina ---------- */
-  .kpis{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;
-    margin:18px 0 6px;padding:11px 2px;font-size:.78rem;color:var(--muted);
-    border-bottom:1px solid var(--hair)}
-  .kpi{display:inline-flex;align-items:baseline;gap:6px;white-space:nowrap;letter-spacing:.2px}
-  .kpi b{font-size:.95rem;font-weight:650;color:var(--accent);font-variant-numeric:tabular-nums}
-  .kpi+.kpi::before{content:'';width:3px;height:3px;border-radius:50%;
-    background:var(--line2);margin-right:14px;transform:translateY(-3px)}
+  .kpis{display:grid;grid-template-columns:repeat(5,1fr);
+    margin:16px 0 4px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+  .kpi{display:flex;flex-direction:column;gap:1px;padding:13px 4px 12px 18px;
+    position:relative;font-size:.73rem;color:var(--muted);letter-spacing:.3px;min-width:0}
+  .kpi::before{content:'';position:absolute;left:0;top:11px;bottom:11px;width:1px;background:var(--hair)}
+  .kpi:first-child{padding-left:0}
+  .kpi:first-child::before{display:none}
+  .kpi b{font-size:1.15rem;font-weight:600;color:var(--accent);
+    font-variant-numeric:tabular-nums;letter-spacing:-.3px;line-height:1.15}
 
   /* ---------- titulos ---------- */
   h2{font-size:.74rem;font-weight:600;margin:40px 0 14px;text-transform:uppercase;
@@ -91,6 +105,8 @@
 
   /* ---------- controles ---------- */
   .filters{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 16px;align-items:center}
+  #statusFilters{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .chip,.btn,select,.navbtn{line-height:1.35}
   .chip{background:var(--glass);border:1px solid var(--line);color:var(--text2);border-radius:20px;
     padding:7px 15px;font-size:.81rem;cursor:pointer;transition:.18s;user-select:none;
     backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);white-space:nowrap}
@@ -185,6 +201,19 @@
   .foco{position:relative;background:var(--glass);border:1px solid var(--line);border-radius:var(--radius);
     padding:24px 26px;margin:18px 0 4px;overflow:hidden;box-shadow:var(--shadow);
     backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}
+  .foco.comimg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.85fr);gap:0;padding:0;align-items:stretch}
+  .foco.comimg .focotxt{padding:28px 30px;min-width:0;min-height:286px;
+    display:flex;flex-direction:column;justify-content:center}
+  .focoimg{position:relative;order:2;overflow:hidden;min-height:100%}
+  .focoimg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+    filter:saturate(1.05) contrast(1.02);transition:transform .6s ease}
+  .foco.comimg:hover .focoimg img{transform:scale(1.03)}
+  .focoimg::after{content:'';position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(90deg,var(--bg) 0%,rgba(10,10,13,.45) 22%,transparent 55%)}
+  .focoimg .cred{position:absolute;right:10px;bottom:9px;z-index:2;font-size:.6rem;letter-spacing:.4px;
+    color:var(--text2);background:rgba(10,10,13,.6);border:1px solid var(--line);
+    padding:3px 9px;border-radius:20px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+  .focolocal{color:var(--muted);font-size:.79rem;margin-top:4px}
   .foco::before{content:'';position:absolute;inset:0;pointer-events:none;
     background:radial-gradient(70% 130% at 0% 0%,rgba(232,193,90,.10),transparent 60%)}
   .foco>*{position:relative}
@@ -234,23 +263,43 @@
   .zona{font-size:.72rem;color:var(--muted)}
 
   /* ---------- pre-footer: enquete + bairros ---------- */
-  .prefoot{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;margin-top:40px}
+  .prefoot{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;margin-top:44px}
+  .prefoot>section{display:flex;flex-direction:column;min-width:0}
   .prefoot h2{margin:0 0 12px}
-  .panel{background:var(--glass);border:1px solid var(--line);border-radius:var(--radius);
-    padding:18px 20px;box-shadow:var(--shadow);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}
-  .poll .opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:11px}
-  .pollrow{display:grid;grid-template-columns:130px 1fr 34px;align-items:center;gap:10px;margin-top:8px;font-size:.79rem}
+  .panel{position:relative;background:var(--glass);border:1px solid var(--line);
+    border-radius:var(--radius);padding:20px 22px;overflow:hidden;box-shadow:var(--shadow);
+    backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}
+  .panel::before{content:'';position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(75% 120% at 100% 0%,rgba(232,193,90,.07),transparent 62%)}
+  .panel>*{position:relative}
+  .poll .opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}
+  .pollrow{display:grid;grid-template-columns:150px 1fr 46px;align-items:center;gap:12px;
+    margin-top:9px;font-size:.79rem}
   .pollrow .pn{color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .pollrow .pb{height:7px;border-radius:20px;background:linear-gradient(90deg,var(--accent2),var(--accent));min-width:3px}
-  .pollrow .pv{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums}
-  .bars{display:flex;flex-direction:column;gap:7px}
-  .barrow{display:grid;grid-template-columns:118px 1fr 26px;align-items:center;gap:11px;font-size:.79rem}
+  .pollrow .pb{height:8px;border-radius:20px;min-width:3px;
+    background:linear-gradient(90deg,var(--accent2),var(--accent));
+    box-shadow:0 0 16px -4px rgba(232,193,90,.55)}
+  .pollrow .pv{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums;font-size:.75rem}
+
+  .bars{display:flex;flex-direction:column}
+  .barrow{display:grid;grid-template-columns:126px 1fr 30px;align-items:center;gap:12px;
+    font-size:.79rem;padding:6px 0;border-bottom:1px solid var(--hair);transition:.15s}
+  .barrow:last-of-type{border-bottom:0}
+  .barrow:hover{background:rgba(255,255,255,.03)}
   .barrow.hid{display:none}
   .barrow .bn{text-align:right;color:var(--text2);cursor:pointer;transition:.18s;
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .barrow .bn:hover{color:var(--accent)}
-  .bar{height:7px;border-radius:20px;background:linear-gradient(90deg,var(--accent2),var(--accent));min-width:3px}
-  .barrow .bv{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums;font-size:.75rem}
+  .barrow:hover .bn{color:var(--accent)}
+  .bar{height:8px;border-radius:20px;min-width:3px;
+    background:linear-gradient(90deg,var(--accent2),var(--accent))}
+  .barrow:first-of-type .bar{box-shadow:0 0 18px -3px rgba(232,193,90,.6)}
+  .barrow .bv{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums;font-size:.76rem}
+  .barrow:first-of-type .bv{color:var(--accent);font-weight:600}
+  .paineltopo{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
+    margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--hair)}
+  .paineltopo .pt{font-size:.8rem;color:var(--text2)}
+  .paineltopo .pn2{font-size:.68rem;color:var(--muted);text-transform:uppercase;
+    letter-spacing:1.4px;white-space:nowrap}
   .cardsmore{display:none;width:100%;margin-top:14px;padding:12px;background:var(--glass2);
     border:1px solid var(--line);border-radius:22px;color:var(--text2);font-family:var(--font);
     font-size:.83rem;font-weight:600;cursor:pointer;transition:.18s;letter-spacing:.3px}
@@ -327,8 +376,13 @@
     header h1{font-size:1.15rem;letter-spacing:2px}
     #search{width:100%}
     .wrap{padding:0 18px 44px}
-    .kpis{gap:6px 14px;font-size:.73rem;margin:14px 0 4px}
-    .kpi+.kpi::before{margin-right:8px}
+    .kpis{grid-template-columns:1fr 1fr;margin:12px 0 2px}
+    .kpi{padding:11px 4px 10px 14px;font-size:.7rem}
+    .kpi b{font-size:1.02rem}
+    .kpi:nth-child(odd){padding-left:0}
+    .kpi:nth-child(odd)::before{display:none}
+    .kpi:nth-child(n+3)::after{content:'';position:absolute;left:0;right:0;top:0;height:1px;background:var(--hair)}
+    .kpi:last-child{grid-column:1 / -1}
     h2{margin:30px 0 12px}
     .foco{padding:19px 18px}
     .foco h3{font-size:1.25rem}
@@ -345,9 +399,14 @@
     .cards{max-height:none;overflow:visible;padding-right:0}
     .cardsmore.on{display:block}
     .grid.mapa+.cardsmore{display:none}
-    .prefoot{grid-template-columns:1fr;gap:8px}
-    .pollrow{grid-template-columns:110px 1fr 32px}
-    .barrow{grid-template-columns:96px 1fr 24px}
+    .prefoot{grid-template-columns:1fr;gap:10px}
+    .pollrow{grid-template-columns:118px 1fr 40px}
+    .barrow{grid-template-columns:104px 1fr 28px}
+    .paineltopo{flex-direction:column;gap:3px}
+    .foco.comimg{grid-template-columns:1fr}
+    .foco.comimg .focotxt{padding:19px 18px;min-height:0}
+    .focoimg{order:0;min-height:0;aspect-ratio:16/10}
+    .focoimg::after{background:linear-gradient(0deg,var(--bg) 0%,rgba(10,10,13,.4) 25%,transparent 60%)}
     #routePanel{left:12px;right:12px;bottom:12px;width:auto}
     .dirbody{max-height:340px}
     table{font-size:.78rem}
@@ -363,13 +422,23 @@
 </head>
 <body>
 <header>
-  <div>
-    <h1>VERNISSAGES <span>SP</span></h1>
-    <p>Galerias, aberturas de exposições e roteiros de arte em São Paulo · atualizado em <span id="upd"></span></p>
-<div class="navacervo"><a href="arquivo.html">Acervo de exposições</a><a href="artistas.html">Artistas</a><a href="editais.html">Editais</a></div>
+  <div class="hwrap">
+    <div class="hbrand">
+      <h1>VERNISSAGES <span>SP</span></h1>
+      <p>Galerias, aberturas de exposições e roteiros de arte em São Paulo · atualizado em <span id="upd"></span></p>
+    </div>
+    <div class="hacoes">
+      <input id="search" type="text" placeholder="Buscar galeria, artista, endereço, bairro…">
+      <div class="navacervo" id="navAcervo">
+        <button class="navbtn" type="button" id="navBtn" aria-expanded="false" aria-haspopup="true">Explorar</button>
+        <div class="navmenu">
+          <a href="editais.html">Editais e chamadas</a>
+          <a href="arquivo.html">Acervo de exposições</a>
+          <a href="artistas.html">Artistas</a>
+        </div>
       </div>
-  <input id="search" type="text" placeholder="Buscar galeria, artista, endereço, bairro…">
-</header>
+    </div>
+  </div>
 <div class="wrap">
 
   <div class="kpis" id="kpis"></div>
@@ -450,6 +519,7 @@
     <section>
       <h2>Galerias por bairro · FGV/ArteRef</h2>
       <div class="panel">
+        <div class="paineltopo"><span class="pt">Onde as galerias se concentram</span><span class="pn2" id="barsTotal"></span></div>
         <div class="bars" id="bars"></div>
         <button class="barsmore" type="button" id="barsMore"></button>
       </div>
@@ -535,7 +605,7 @@ document.getElementById('kpis').innerHTML=[
  [expos.filter(e=>e.st==='opening').length,'Aberturas confirmadas'],
  [expos.filter(e=>e.st!=='opening').length,'Mostras em cartaz'],
  [[...new Set(VENUES.map(v=>v.b))].length,'Bairros no mapa']
-].map(k=>`<span class="kpi"><b>${k[0]}</b> ${k[1].toLowerCase()}</span>`).join('');
+].map(k=>`<div class="kpi"><b>${k[0]}</b>${k[1].toLowerCase()}</div>`).join('');
 
 /* selects */
 const bSel=document.getElementById('bairroSel'),vSel=document.getElementById('venueSel'),aSel=document.getElementById('artistSel');
@@ -683,19 +753,40 @@ function closeArtist(){document.getElementById('modalBg').style.display='none'}
 
 /* em foco: bloco editorial destacado (vira espaço patrocinado com f.publi=true) */
 function renderFoco(){
-const f=window.DATA.foco; if(!f||!f.t)return;
-const v=vByName[f.v]||null; const el=document.getElementById('foco');
-el.innerHTML='<div class="kicker">'+(f.publi?'Apoio<span class="selo">CONTEÚDO PATROCINADO</span>':'Em foco')+'</div>'+
-'<h3>'+f.t+'</h3>'+
-(f.quem?'<div class="quem">'+f.quem+'</div>':'')+
-(f.txt?'<div class="txt">'+f.txt+'</div>':'')+
-'<div class="btns">'+
-(v?'<span class="btn add" onclick="focusVenue(\''+v.name.replace(/'/g,"\\'")+'\')">Ver no mapa</span>':'')+
-(f.link?'<a class="btn" href="'+f.link+'" target="_blank" rel="noopener">Saiba mais</a>':'')+
-(v&&v.site?'<a class="btn" href="'+v.site+'" target="_blank" rel="noopener">Site</a>':'')+
-'</div>';
-el.style.display='block';
-}
+    const el=document.getElementById('foco'); if(!el) return;
+    const man=window.DATA.foco;
+    /* patrocinio continua mandando: se publi:true, o bloco manual vence */
+    let f=null, auto=false;
+    if(man&&man.t&&man.publi){ f=man; }
+    else{
+      const pool=expos.filter(e=>e.img);
+      if(!pool.length){ if(man&&man.t){f=man;} else {el.style.display='none';return;} }
+      else{
+        const dia=Math.floor((Date.now()-3*3600e3)/864e5);
+        const e=pool[dia%pool.length];
+        f={t:e.t,v:e.v,quem:e.a||'',txt:e.d||'',img:e.img,cred:e.cred||''};
+        auto=true;
+      }
+    }
+    const v=vByName[f.v]||null;
+    const esc=s=>String(s||'').replace(/"/g,'&quot;');
+    el.className='foco'+(f.img?' comimg':'');
+    el.innerHTML=
+      (f.img?'<div class="focoimg"><img src="'+esc(f.img)+'" alt="'+esc(f.t)+'" loading="eager" onerror="this.closest(\'.focoimg\').remove();document.getElementById(\'foco\').classList.remove(\'comimg\')">'+
+        (f.cred?'<span class="cred">'+f.cred+'</span>':'')+'</div>':'')+
+      '<div class="focotxt">'+
+      '<div class="kicker">'+(f.publi?'Apoio<span class="selo">CONTEÚDO PATROCINADO</span>':'Em foco'+(auto?'<span class="selo">DESTAQUE DO DIA</span>':''))+'</div>'+
+      '<h3>'+f.t+'</h3>'+
+      (f.quem?'<div class="quem">'+f.quem+'</div>':'')+
+      (v?'<div class="focolocal">'+v.name+' · '+v.b+'</div>':'')+
+      (f.txt?'<div class="txt">'+f.txt+'</div>':'')+
+      '<div class="btns">'+
+      (v?'<span class="btn add" onclick="focusVenue(\''+v.name.replace(/'/g,"\\'")+'\')">Ver no mapa</span>':'')+
+      (f.link?'<a class="btn" href="'+f.link+'" target="_blank" rel="noopener">Saiba mais</a>':'')+
+      (v&&v.site?'<a class="btn" href="'+v.site+'" target="_blank" rel="noopener">Site</a>':'')+
+      '</div></div>';
+    el.style.display='';
+  }
 renderFoco();
 
 /* vernissages da semana + compartilhar */
@@ -743,7 +834,7 @@ fetch(ABC+(jaVeio?'/get/':'/hit/')+NS+'/visitas').then(r=>r.json()).then(j=>{
   document.getElementById('vc').textContent=Number(j.value).toLocaleString('pt-BR');
   document.getElementById('visits').style.display='block';
 }).catch(()=>{});
-const POLL=[['artista','🎨 Artista'],['colecionador','🖼️ Colecionador(a)'],['curadoria','📚 Curadoria / pesquisa'],['galerista','🏛️ Galerista / produção'],['curioso','🥂 Público curioso']];
+const POLL=[['artista','Artista'],['colecionador','Colecionador(a)'],['curadoria','Curadoria / pesquisa'],['galerista','Galerista / produção'],['curioso','Público curioso']];
 function pollResults(){
   Promise.all(POLL.map(p=>fetch(ABC+'/get/'+NS+'/pub_'+p[0]).then(r=>r.json()).then(j=>Number(j.value)||0).catch(()=>0)))
   .then(vs=>{
@@ -760,7 +851,7 @@ function vote(k){
 }
 if(localStorage.getItem('vspVote'))pollResults();
 else document.getElementById('poll').innerHTML=
-  '<p class="note" style="margin:0 0 8px">Como você se conecta com a cena de arte? 1 clique, anônimo — os resultados ficam públicos aqui.</p>'+
+  '<div class="paineltopo"><span class="pt">Como você se conecta com a cena de arte?</span><span class="pn2">1 clique · anônimo</span></div>'+
   '<div class="opts">'+POLL.map(p=>'<span class="chip" onclick="vote(\''+p[0]+'\')">'+p[1]+'</span>').join('')+'</div>';
 
 /* filtros */
@@ -777,6 +868,8 @@ const TOPN=6;
   document.getElementById('bars').innerHTML=BAIRRO_COUNTS.map(([b,n],i)=>
     `<div class="barrow${i>=TOPN?' hid':''}"><div class="bn" onclick="barFilter('${b}')">${b}</div><div><div class="bar" style="width:${n/mx*100}%"></div></div><div class="bv">${n}</div></div>`).join('');
   (function(){
+    const bt=document.getElementById('barsTotal');
+    if(bt) bt.textContent=BAIRRO_COUNTS.reduce((a,c)=>a+c[1],0)+' galerias · '+BAIRRO_COUNTS.length+' bairros';
     const bm=document.getElementById('barsMore'); if(!bm) return;
     const extra=BAIRRO_COUNTS.length-TOPN;
     if(extra<=0){bm.style.display='none';return;}
@@ -823,6 +916,16 @@ function barFilter(b){
     new MutationObserver(aplica).observe(box,{childList:true});
     window.addEventListener('resize',()=>{ultimo=-1;aplica();});
     aplica();
+  })();
+
+  /* menu Explorar */
+  (function(){
+    const w=document.getElementById('navAcervo'); if(!w) return;
+    const b=document.getElementById('navBtn');
+    b.addEventListener('click',e=>{e.stopPropagation();
+      const on=w.classList.toggle('open'); b.setAttribute('aria-expanded',on?'true':'false');});
+    document.addEventListener('click',e=>{if(!w.contains(e.target)){w.classList.remove('open');b.setAttribute('aria-expanded','false');}});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'){w.classList.remove('open');b.setAttribute('aria-expanded','false');}});
   })();
 
   /* filtros colapsaveis no mobile */
