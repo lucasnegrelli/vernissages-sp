@@ -54,7 +54,8 @@ const VENUES = [
  {name:"A7MA Galeria",addr:"R. Harmonia, 239 ~",b:"Vila Madalena",z:"Oeste",tipo:"galeria",lat:-23.5532,lng:-46.6912,info:"Arte urbana e cultura de rua na Vila Madalena."},
  {name:"Amoa Konoya Arte Indígena",ig:"amoakonoya",addr:"R. João Moura, 1002 ~",b:"Pinheiros",z:"Oeste",tipo:"galeria",lat:-23.5602,lng:-46.6851,info:"Dedicada à arte dos povos indígenas do Brasil."},
  {name:"Blau Projects",ig:"blauprojects",site:"https://www.blauprojects.com",addr:"R. Fradique Coutinho ~",b:"Pinheiros",z:"Oeste",tipo:"galeria",lat:-23.5608,lng:-46.6882,info:"Artistas emergentes e múltiplas linguagens."},
- {name:"Galeria Aura",addr:"Pinheiros (endereço a confirmar)",b:"Pinheiros",z:"Oeste",tipo:"galeria",lat:-23.5625,lng:-46.6870,info:"Entre Porto Alegre e SP; foco em projetos expositivos e feiras."},
+ {name:"Galeria Aura",ig:"aura.galeria",site:"https://aura.art.br",addr:"R. da Consolação, 2767",b:"Jardim Paulista",z:"Oeste",tipo:"galeria",lat:-23.5566,lng:-46.6612,info:"Entre Porto Alegre e SP; foco em projetos expositivos e feiras."},
+ {name:"Yehudi Hollander-Pappi",site:"https://yehudihollanderpappi.com",addr:"Al. Lorena, 1295",b:"Jardim Paulista",z:"Oeste",tipo:"galeria",lat:-23.5628,lng:-46.6641,info:"Galeria de jovens artistas; linguagens experimentais e temporalidade expandida."},
  {name:"Adelina Galeria",addr:"Pinheiros (endereço a confirmar)",b:"Pinheiros",z:"Oeste",tipo:"galeria",lat:-23.5648,lng:-46.6920,info:"Arte contemporânea com foco em novos diálogos e pertencimento."},
  {name:"Arte Infinita",addr:"Jardim Europa (endereço a confirmar)",b:"Jardim Europa",z:"Oeste",tipo:"galeria",lat:-23.5740,lng:-46.6760,info:"Fundada por Viviane Teperman em 2001; ênfase em escultura."},
  {name:"Arteedições Galeria",addr:"Jardins (endereço a confirmar)",b:"Jardim Paulista",z:"Oeste",tipo:"galeria",lat:-23.5655,lng:-46.6638,info:"Gravuras e edições: Hirst, Kapoor, Opie, Sonia Gomes, Leda Catunda."},
@@ -100,6 +101,13 @@ const EXPOS = [
  {t:"Política da superfície — coletiva",v:"Casa de Cultura do Parque",ini:"2026-07-25",fim:"2026-10-25",d:"II Ciclo Expositivo em parceria com o ICCo. Quarta a domingo, 11h–18h."},
  {t:"Masao Yamamoto — individual",a:"Masao Yamamoto",v:"Galeria Marcelo Guarnieri",ini:"2026-08-01",fim:"2026-09-19",d:"Fotografias em pequeno formato do mestre japonês; poética do silêncio."},
  {t:"Ígneo Piaga — Thiago Martins de Melo",a:"Thiago Martins de Melo",v:"Almeida & Dale | Millan",ini:"2026-08-01",fim:"2026-09-12",d:"Pintura densa e mitologia amazônica no espaço Fradique."},
+ {t:"ÇA — Rita Lessa",a:"Rita Lessa",v:"Almeida & Dale | Millan",ini:"2026-08-01",fim:"2026-09-12",d:"Individual da artista, em paralelo a Thiago Martins de Melo."},
+ {t:"Mensageiro da Manhã — André Ricardo",a:"André Ricardo",v:"Almeida & Dale | Millan",ini:"2026-08-15",fim:"2026-09-19",d:"Individual do pintor paulistano anunciada pela galeria."},
+ {t:"Abstenções (uma miragem, mas permanente) — Nino Kapanadze",a:"Nino Kapanadze",v:"Almeida & Dale | Millan",ini:"2026-08-15",fim:"2026-09-19",d:"Exposição individual anunciada pela galeria."},
+ {t:"Bauci: a cidade e os olhos — Érica Magalhães",a:"Érica Magalhães",v:"Galeria Aura",ini:"2026-08-08",fim:"2026-09-23",d:"Esculturas que equilibram porcelana e concreto; texto curatorial de Tatiana Ferraz."},
+ {t:"Perpétuo — Samuel Alves de Jesus",a:"Samuel Alves de Jesus",v:"Yehudi Hollander-Pappi",ini:"2026-07-21",fim:"2026-08-15",d:"Primeira individual do artista; o sal como matéria, corrosão e símbolo."},
+ {t:"Contra Cena — MEXA",a:"MEXA",v:"Yehudi Hollander-Pappi",ini:"2026-07-21",fim:"2026-08-15",d:"Fotografias do coletivo MEXA sobre o que antecede e sucede a cena: camarins, esperas, intervalos."},
+ {t:"Síntese — Arte e Tecnologia",v:"Itaú Cultural",ini:"2026-07-02",fim:"2026-08-31",d:"Coletiva com obras da Coleção Itaú de Arte e Tecnologia; curadoria de Leno Veras."},
  {t:"Habitar a paisagem — Flavia Fabbriziani",a:"Flavia Fabbriziani",v:"Galeria Dezoito",ini:"2026-08-05",fim:"2026-09-05",d:"Curadoria de Jurandy Valença."},
  {t:"Joan Miró: Mestre das Formas",a:"Joan Miró",v:"MAB FAAP",ini:"2026-08-07",fim:null,d:"140 obras originais do catalão, várias inéditas no Brasil. Ingresso pago, vendido em mmf26.com.br."},
  {t:"O Lado Escuro da Lua — Alfredo Jaar",a:"Alfredo Jaar",v:"Galeria Luisa Strina",ini:"2026-08-08",fim:"2026-09-19",d:"Novo projeto do artista chileno, Leão de Ouro de Veneza."},
@@ -182,5 +190,5 @@ const FOCO = {
  publi:false
 };
 
-return { foco: FOCO, atualizado: "31/07/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, bairros: BAIRRO_COUNTS };
+return { foco: FOCO, atualizado: "01/08/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, bairros: BAIRRO_COUNTS };
 })();
