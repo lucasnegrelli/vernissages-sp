@@ -15,9 +15,12 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="https://lucasnegrelli.github.io/vernissages-sp/icon-192.png">
 <style>
-:root{--bg:#0e0e11;--panel:#17171c;--panel2:#1e1e25;--border:#2a2a33;--text:#ececf0;--muted:#9a9aa6;--accent:#e8c15a;--accent2:#c96f4a;--green:#7fb98a;--blue:#7da7d9}
+:root{--bg:#0a0a0d;--ink:#f3f3f7;--text:#f3f3f7;--muted:#8b8b9a;--text2:#c2c2d0;--accent:#e8c15a;--accent2:#c96f4a;--violet:#a78bfa;--green:#7fd8a0;--red:#f08a7a;--blue:#8fb6f9;--glass:rgba(255,255,255,.045);--glass2:rgba(255,255,255,.075);--line:rgba(255,255,255,.10);--line2:rgba(255,255,255,.20);--hair:rgba(255,255,255,.055);--panel:rgba(255,255,255,.045);--panel2:rgba(255,255,255,.075);--border:rgba(255,255,255,.10);--blur:blur(16px) saturate(150%)}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,'Segoe UI',Inter,sans-serif;line-height:1.65;font-size:16px;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,'Segoe UI',Inter,sans-serif;line-height:1.65;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(58vw 46vh at 10% -8%,rgba(232,193,90,.13),transparent 62%),radial-gradient(48vw 42vh at 94% 4%,rgba(167,139,250,.12),transparent 62%),radial-gradient(72vw 55vh at 48% 104%,rgba(201,111,74,.09),transparent 60%)}
+body::after{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);background-size:72px 72px;-webkit-mask-image:radial-gradient(ellipse 85% 55% at 50% 0%,#000 20%,transparent 78%);mask-image:radial-gradient(ellipse 85% 55% at 50% 0%,#000 20%,transparent 78%)}
+::selection{background:var(--accent);color:#0a0a0d}
 a{color:var(--blue)}
 .top{border-bottom:1px solid var(--border);padding:20px 24px}
 .top a{color:var(--text);text-decoration:none;font-weight:600;letter-spacing:2.5px;font-size:1rem}
@@ -59,36 +62,27 @@ ul.lista li .l3{color:var(--muted);font-size:.8rem;margin-top:3px}
 footer{border-top:1px solid var(--border);margin-top:50px;padding-top:20px;color:var(--muted);font-size:.78rem;line-height:1.7}
 footer a{color:var(--accent2)}
 @media(max-width:600px){.wrap{padding:26px 18px 60px}h1{font-size:1.5rem}.box dl{grid-template-columns:1fr;gap:2px 0}.box dt{margin-top:8px}}
-/* ===== TEMAS ===== */
-:root{--font:ui-sans-serif,system-ui,'Segoe UI',Inter,sans-serif;--radius:12px;--radius-sm:10px;--bw:1px;--ls:0px;--onaccent:#111111}
-html[data-tema="cubo"]{--bg:#ffffff;--panel:#fafafa;--panel2:#f1f1f1;--border:#e3e3e3;--text:#111111;--muted:#6b6b6b;--accent:#111111;--accent2:#6d4c1f;--green:#2f7d46;--blue:#2557a7;--onaccent:#ffffff;--font:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,'Times New Roman',serif;--radius:0px;--radius-sm:0px;--bw:1px}
-html[data-tema="impresso"]{--bg:#f4f1ea;--panel:#ebe6da;--panel2:#e2dccd;--border:#d6cfc0;--text:#1a1712;--muted:#6f6659;--accent:#8b2f1d;--accent2:#7a5c2e;--green:#3f6b46;--blue:#2f5d7a;--onaccent:#f4f1ea;--font:'Iowan Old Style','Palatino Linotype',Palatino,Georgia,'Times New Roman',serif;--radius:0px;--radius-sm:0px;--bw:1px}
-html[data-tema="neon"]{--bg:#07060d;--panel:#12101f;--panel2:#191531;--border:#3a2a6b;--text:#f0edff;--muted:#9d92c9;--accent:#ff2e88;--accent2:#00e5ff;--green:#4dffb8;--blue:#6ea8ff;--onaccent:#07060d;--font:'Archivo Narrow','Roboto Condensed','Arial Narrow',ui-sans-serif,system-ui,sans-serif;--radius:4px;--radius-sm:3px;--bw:1px;--ls:.4px}
-html[data-tema="terminal"]{--bg:#0a0a0a;--panel:#0d0d0d;--panel2:#111111;--border:#00ff41;--text:#d7ffd9;--muted:#4f9f5e;--accent:#00ff41;--accent2:#ffffff;--green:#00ff41;--blue:#66ccff;--onaccent:#0a0a0a;--font:ui-monospace,SFMono-Regular,Menlo,Consolas,'Courier New',monospace;--radius:0px;--radius-sm:0px;--bw:2px}
-html[data-tema="vapor"]{--bg:#0b1b3d;--panel:#122a5e;--panel2:#1a3a7a;--border:#2f5aa8;--text:#e8f9ff;--muted:#8fb8dd;--accent:#6ff2e6;--accent2:#ff8fd0;--green:#7dffd4;--blue:#9fd0ff;--onaccent:#06122b;--font:'Archivo Narrow','Roboto Condensed','Arial Narrow',ui-sans-serif,system-ui,sans-serif;--radius:18px;--radius-sm:14px;--bw:1px;--ls:.3px}
+/* ===== TOKENS ===== */
+:root{--font:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Inter,sans-serif;--radius:16px;--radius-sm:10px;--bw:1px;--ls:0px;--onaccent:#0a0a0d}
 body,button,input,select,textarea,.btn{font-family:var(--font);letter-spacing:var(--ls)}
 .box,ul.lista li,.grid2 a{border-radius:var(--radius)}
 .box,.grid2 a{border-width:var(--bw)}
 .btn,.busca{border-radius:calc(var(--radius) + 6px);border-width:var(--bw)}
 .tag{border-radius:var(--radius-sm)}
-.temabox{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:1200;display:flex;align-items:center}
-.temabtn{background:var(--panel);border:1px solid var(--border);border-right:0;border-radius:10px 0 0 10px;padding:11px 8px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:.5;transition:opacity .2s}
-.temabox:hover .temabtn,.temabox:focus-within .temabtn,.temabox.aberto .temabtn{opacity:1}
-.temadot{width:11px;height:11px;border-radius:50%;background:var(--accent);display:block}
-.temamenu{position:absolute;right:100%;top:50%;margin-right:7px;transform:translateY(-50%) translateX(10px);background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:6px;display:flex;flex-direction:column;gap:1px;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s ease,transform .18s ease;box-shadow:0 10px 34px rgba(0,0,0,.4)}
-.temabox:hover .temamenu,.temabox:focus-within .temamenu,.temabox.aberto .temamenu{opacity:1;visibility:visible;pointer-events:auto;transform:translateY(-50%) translateX(0)}
-.temamenu button{display:flex;align-items:center;gap:9px;background:none;border:0;color:var(--muted);padding:6px 14px 6px 8px;border-radius:8px;cursor:pointer;font-size:.79rem;white-space:nowrap;text-align:left;width:100%}
-.temamenu button:hover{background:var(--panel2);color:var(--text)}
-.temamenu button[aria-pressed="true"]{color:var(--text);background:var(--panel2)}
-.temamenu i{width:15px;height:15px;border-radius:50%;flex:0 0 auto;border:1px solid var(--border);background:linear-gradient(135deg,var(--sw-b) 0 50%,var(--sw-a) 50% 100%)}
-.temamenu button[aria-pressed="true"] i{border-color:var(--accent)}
-@media(max-width:600px){.temabox{top:auto;bottom:18px;transform:none}.temamenu{top:auto;bottom:0;transform:translateX(10px)}.temabox:hover .temamenu,.temabox:focus-within .temamenu,.temabox.aberto .temamenu{transform:translateX(0)}}
+/* ===== VIDRO ===== */
+.box,ul.lista li,.grid2 a{background:var(--glass);border:1px solid var(--line);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);box-shadow:0 1px 0 rgba(255,255,255,.06) inset,0 12px 32px -18px rgba(0,0,0,.9)}
+ul.lista li:hover,.grid2 a:hover{background:var(--glass2);border-color:var(--line2);transform:translateY(-2px)}
+ul.lista li,.grid2 a{transition:.2s}
+.top{background:rgba(10,10,13,.62);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border-bottom:1px solid var(--hair);position:sticky;top:0;z-index:60}
+.btn,.busca{background:var(--glass2);border:1px solid var(--line);color:var(--text2);transition:.18s}
+.btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(232,193,90,.09)}
+.busca:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(232,193,90,.10)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
 </style>
-<script>(function(){try{var t=localStorage.getItem('vspTema');if(t&&t!=='noite')document.documentElement.dataset.tema=t}catch(e){}})();</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"José Bento","url":"https://lucasnegrelli.github.io/vernissages-sp/a/jose-bento.html","jobTitle":"Artista visual","performerIn":[{"@type":"ExhibitionEvent","name":"Mão Amiga — José Bento","startDate":"2026-05-23","url":"https://lucasnegrelli.github.io/vernissages-sp/m/mao-amiga-jose-bento--a-gentil-carioca-sp.html"}]}</script>
 </head>
 <body>
-<div class="temabox" id="temaBox"><button class="temabtn" type="button" id="temaBtn" aria-label="Trocar tema do site" aria-expanded="false"><span class="temadot"></span></button><div class="temamenu" id="temaMenu"><button type="button" data-t="noite" style="--sw-b:#0e0e11;--sw-a:#e8c15a"><i></i>Noite</button><button type="button" data-t="cubo" style="--sw-b:#ffffff;--sw-a:#111111"><i></i>Cubo branco</button><button type="button" data-t="impresso" style="--sw-b:#f4f1ea;--sw-a:#8b2f1d"><i></i>Impresso</button><button type="button" data-t="neon" style="--sw-b:#07060d;--sw-a:#ff2e88"><i></i>Neon</button><button type="button" data-t="terminal" style="--sw-b:#0a0a0a;--sw-a:#00ff41"><i></i>Terminal</button><button type="button" data-t="vapor" style="--sw-b:#0b1b3d;--sw-a:#6ff2e6"><i></i>Aquafuture</button></div></div>
 <div class="top">
 <a href="https://lucasnegrelli.github.io/vernissages-sp/">VERNISSAGES <span>SP</span></a>
 <div class="nav">
@@ -116,8 +110,5 @@ Vernissages SP — mapa vivo das galerias e aberturas de São Paulo, atualizado 
 Datas conforme divulgação dos espaços; confirme antes de visitar. <a href="https://lucasnegrelli.github.io/vernissages-sp/">Voltar à agenda</a>
 </footer>
 </div>
-<script>
-(function(){var box=document.getElementById('temaBox');if(!box)return;var btn=document.getElementById('temaBtn'),menu=document.getElementById('temaMenu');function m(t){[].forEach.call(menu.querySelectorAll('button'),function(b){b.setAttribute('aria-pressed',b.getAttribute('data-t')===t?'true':'false')})}function fecha(){box.classList.remove('aberto');btn.setAttribute('aria-expanded','false')}function a(t){if(t==='noite'){document.documentElement.removeAttribute('data-tema')}else{document.documentElement.setAttribute('data-tema',t)}m(t);try{localStorage.setItem('vspTema',t)}catch(e){}}btn.addEventListener('click',function(e){e.stopPropagation();var ab=box.classList.toggle('aberto');btn.setAttribute('aria-expanded',ab?'true':'false')});menu.addEventListener('click',function(e){var b=e.target.closest('button');if(b){a(b.getAttribute('data-t'));fecha()}});document.addEventListener('click',function(e){if(!box.contains(e.target))fecha()});document.addEventListener('keydown',function(e){if(e.key==='Escape')fecha()});var atual='noite';try{atual=localStorage.getItem('vspTema')||'noite'}catch(e){}m(atual);})();
-</script>
 </body>
 </html>
