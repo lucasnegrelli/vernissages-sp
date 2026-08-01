@@ -14,7 +14,7 @@ const fs = require('fs');
 const path = require('path');
 
 const RAIZ = process.cwd();
-const SITE = 'https://lucasnegrelli.github.io/vernissages-sp';
+const SITE = 'https://vernissagessp.com.br';
 const HOJE = new Date(Date.now() - 3 * 3600e3).toISOString().slice(0, 10); // fuso de SP
 
 /* ---------- carrega dados.js ---------- */
