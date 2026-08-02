@@ -1170,7 +1170,8 @@
    "tipo": "galeria",
    "site": "https://mendeswooddm.com",
    "ig": "",
-   "visto": "2026-08-02"
+   "visto": "2026-08-02",
+   "primeiroRegistro": "2026-08-02"
   },
   {
    "id": "cantaria-daniel-jorge--mendes-wood-dm",
@@ -1186,7 +1187,8 @@
    "tipo": "galeria",
    "site": "https://mendeswooddm.com",
    "ig": "mendeswooddm",
-   "visto": "2026-08-02"
+   "visto": "2026-08-02",
+   "primeiroRegistro": "2026-08-02"
   },
   {
    "id": "deboussole-est-le-mot-exact-jean-claracq--mendes-wood-dm",
@@ -1202,7 +1204,8 @@
    "tipo": "galeria",
    "site": "https://mendeswooddm.com",
    "ig": "mendeswooddm",
-   "visto": "2026-08-02"
+   "visto": "2026-08-02",
+   "primeiroRegistro": "2026-08-02"
   },
   {
    "id": "sendo-lygia-pape--mendes-wood-dm-casa-iramaia",
@@ -1218,7 +1221,8 @@
    "tipo": "galeria",
    "site": "https://mendeswooddm.com",
    "ig": "",
-   "visto": "2026-08-02"
+   "visto": "2026-08-02",
+   "primeiroRegistro": "2026-08-02"
   },
   {
    "id": "solange-pessoa-outras-escalas--itau-cultural",
@@ -1234,7 +1238,8 @@
    "tipo": "institucional",
    "site": "https://www.itaucultural.org.br",
    "ig": "itaucultural",
-   "visto": "2026-08-02"
+   "visto": "2026-08-02",
+   "primeiroRegistro": "2026-08-02"
   },
   {
    "id": "delirio-tropical-recanto--sesc-pinheiros",
@@ -1250,7 +1255,8 @@
    "tipo": "institucional",
    "site": "https://www.sescsp.org.br/unidades/pinheiros",
    "ig": "sescpinheiros",
-   "visto": "2026-08-02"
+   "visto": "2026-08-02",
+   "primeiroRegistro": "2026-08-02"
   },
   {
    "id": "tudo-que-eu-sei-eu-aprendi-a-noite-luisa-matsushita--cultura-artistica",
@@ -1266,7 +1272,8 @@
    "tipo": "institucional",
    "site": "https://culturaartistica.org",
    "ig": "culturaartistica",
-   "visto": "2026-08-02"
+   "visto": "2026-08-02",
+   "primeiroRegistro": "2026-08-02"
   },
   {
    "id": "tecituras--farol-santander",
@@ -1282,7 +1289,8 @@
    "tipo": "institucional",
    "site": "https://www.farolsantander.com.br/sp",
    "ig": "farolsantander",
-   "visto": "2026-08-02"
+   "visto": "2026-08-02",
+   "primeiroRegistro": "2026-08-02"
   },
   {
    "id": "pequeno-mapa-do-tempo-paula-siebra--mendes-wood-dm-casa-iramaia",
@@ -1298,7 +1306,8 @@
    "tipo": "galeria",
    "site": "https://mendeswooddm.com",
    "ig": "",
-   "visto": "2026-08-02"
+   "visto": "2026-08-02",
+   "primeiroRegistro": "2026-08-02"
   },
   {
    "id": "tudo-que-inventei-aconteceu-flavia-junqueira--zipper-galeria",
@@ -1314,7 +1323,8 @@
    "tipo": "galeria",
    "site": "https://www.zippergaleria.com.br",
    "ig": "zippergaleria",
-   "visto": "2026-08-02"
+   "visto": "2026-08-02",
+   "primeiroRegistro": "2026-08-02"
   },
   {
    "id": "no-corpo-e-na-paisagem-o-que-resta-e-o-po-henrique-detomi--zipper-galeria",
@@ -1330,7 +1340,8 @@
    "tipo": "galeria",
    "site": "https://www.zippergaleria.com.br",
    "ig": "zippergaleria",
-   "visto": "2026-08-02"
+   "visto": "2026-08-02",
+   "primeiroRegistro": "2026-08-02"
   },
   {
    "id": "sistema-mundo-marina-camargo--galeria-superficie",
@@ -1346,6 +1357,23 @@
    "tipo": "galeria",
    "site": "https://www.galeriasuperficie.com.br",
    "ig": "galeriasuperficie",
+   "visto": "2026-08-02",
+   "primeiroRegistro": "2026-08-02"
+  },
+  {
+   "id": "natureza-tecida-somos-um-unico-fio--mata-lab-mata-sao-paulo",
+   "t": "Natureza Tecida — Somos Um Único Fio",
+   "a": "Sandra Anselmi",
+   "v": "Mata Lab — Mata São Paulo",
+   "ini": "2026-06-10",
+   "fim": "2026-08-31",
+   "d": "Cogumelos monumentais e tramas de tricô ocupam o Mata Lab; curadoria de Lilian Pacce. Visitação gratuita.",
+   "bairro": "Bela Vista",
+   "zona": "Centro",
+   "addr": "Al. Rio Claro, 260",
+   "tipo": "hibrido",
+   "site": "",
+   "ig": "matasaopaulo",
    "visto": "2026-08-02"
   }
  ],
@@ -1724,6 +1752,12 @@
    "nome": "Marina Camargo",
    "mostras": [
     "sistema-mundo-marina-camargo--galeria-superficie"
+   ]
+  },
+  "sandra-anselmi": {
+   "nome": "Sandra Anselmi",
+   "mostras": [
+    "natureza-tecida-somos-um-unico-fio--mata-lab-mata-sao-paulo"
    ]
   }
  },
@@ -2497,6 +2531,16 @@
    "site": "https://culturaartistica.org",
    "ig": "culturaartistica",
    "info": "Teatro de Rino Levi; nova área expositiva inaugurada em 2026 com o programa Aberto Solo."
+  },
+  "mata-lab-mata-sao-paulo": {
+   "name": "Mata Lab — Mata São Paulo",
+   "addr": "Al. Rio Claro, 260",
+   "b": "Bela Vista",
+   "z": "Centro",
+   "tipo": "hibrido",
+   "site": "",
+   "ig": "matasaopaulo",
+   "info": "Loja-conceito de design e natureza com espaço expositivo próprio, o Mata Lab; mostras com curadoria e entrada franca."
   }
  },
  "atualizado": "2026-08-02"
