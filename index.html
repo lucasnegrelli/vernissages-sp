@@ -671,8 +671,7 @@ document.getElementById('kpis').innerHTML=[
  [VENUES.filter(v=>v.tipo==='institucional').length,'Espaços institucionais'],
  ...(VENUES.some(v=>v.tipo==='hibrido')?[[VENUES.filter(v=>v.tipo==='hibrido').length,'Espaços híbridos']]:[]),
  [expos.filter(e=>e.st==='opening').length,'Aberturas confirmadas'],
- [expos.filter(e=>e.st!=='opening').length,'Mostras em cartaz'],
- [[...new Set(VENUES.map(v=>v.b))].length,'Bairros no mapa']
+ [expos.filter(e=>e.st!=='opening').length,'Mostras em cartaz']
 ].map(k=>`<div class="kpi"><b>${k[0]}</b>${k[1].toLowerCase()}</div>`).join('');
 
 /* selects */
