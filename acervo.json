@@ -1373,9 +1373,25 @@
    "addr": "Al. Rio Claro, 260",
    "tipo": "hibrido",
    "site": "",
-   "ig": "matasaopaulo",
+   "ig": "matalabsp",
    "visto": "2026-08-02",
    "primeiroRegistro": "2026-08-02"
+  },
+  {
+   "id": "charline-von-heyl-individual--auroras",
+   "t": "Charline von Heyl — individual",
+   "a": "Charline von Heyl",
+   "v": "Auroras",
+   "ini": "2026-06-14",
+   "fim": "2026-09-19",
+   "d": "Primeira exposição da pintora alemã-americana no Brasil: quinze pinturas recentes, entre grandes formatos e a série Sabotagerie (2026). Organizada em colaboração com a Petzel Gallery. Entrada gratuita, sábados 11h–18h.",
+   "bairro": "Morumbi",
+   "zona": "Sul",
+   "addr": "Av. São Valério, 426",
+   "tipo": "hibrido",
+   "site": "https://auroras.art.br",
+   "ig": "auroras.art.br",
+   "visto": "2026-08-02"
   }
  ],
  "artistas": {
@@ -1759,6 +1775,12 @@
    "nome": "Sandra Anselmi",
    "mostras": [
     "natureza-tecida-somos-um-unico-fio--mata-lab-mata-sao-paulo"
+   ]
+  },
+  "charline-von-heyl": {
+   "nome": "Charline von Heyl",
+   "mostras": [
+    "charline-von-heyl-individual--auroras"
    ]
   }
  },
@@ -2540,7 +2562,7 @@
    "z": "Centro",
    "tipo": "hibrido",
    "site": "",
-   "ig": "matasaopaulo",
+   "ig": "matalabsp",
    "info": "Loja-conceito de design e natureza com espaço expositivo próprio, o Mata Lab; mostras com curadoria e entrada franca."
   },
   "auroras": {
@@ -2560,23 +2582,23 @@
    "z": "Centro",
    "tipo": "hibrido",
    "site": "",
-   "ig": "massapeprojetos",
+   "ig": "massape_projetos",
    "info": "Plataforma de arte contemporânea gerida por artistas; galeria e ateliê compartilhado com Mano Penalva, Marcelo Pacheco, Marina Rodrigues, Fabiana Preti e Tchelo."
   },
   "espaco-republica": {
    "name": "Espaço República",
-   "addr": "Av. São Luís, República ~",
+   "addr": "Av. São Luís, 86",
    "b": "República",
    "z": "Centro",
    "tipo": "hibrido",
    "site": "",
-   "ig": "",
-   "info": "Núcleo cultural aberto em 2025 no centro histórico: cinco andares com ateliês privativos e coletivos, sala de cursos e andar expositivo."
+   "ig": "espacorepublica",
+   "info": "Núcleo cultural aberto em 2025 no centro histórico: cinco andares com ateliês privativos e coletivos, cursos, residência e andar expositivo."
   },
   "atelie397": {
    "name": "Ateliê397",
-   "addr": "R. Cruzeiro, 802",
-   "b": "Barra Funda",
+   "addr": "Travessa Dona Paula, 126",
+   "b": "Higienópolis",
    "z": "Centro",
    "tipo": "hibrido",
    "site": "https://atelie397.com",
@@ -2599,7 +2621,7 @@
    "b": "Santa Cecília",
    "z": "Centro",
    "tipo": "hibrido",
-   "site": "",
+   "site": "https://aparelhaluzia.com.br",
    "ig": "aparelhaluzia",
    "info": "Quilombo urbano fundado em 2016: arte, cultura e política negra, com exposições, shows e encontros."
   },
