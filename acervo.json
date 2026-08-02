@@ -1374,7 +1374,8 @@
    "tipo": "hibrido",
    "site": "",
    "ig": "matasaopaulo",
-   "visto": "2026-08-02"
+   "visto": "2026-08-02",
+   "primeiroRegistro": "2026-08-02"
   }
  ],
  "artistas": {
@@ -2541,6 +2542,86 @@
    "site": "",
    "ig": "matasaopaulo",
    "info": "Loja-conceito de design e natureza com espaço expositivo próprio, o Mata Lab; mostras com curadoria e entrada franca."
+  },
+  "auroras": {
+   "name": "Auroras",
+   "addr": "Av. São Valério, 426",
+   "b": "Morumbi",
+   "z": "Sul",
+   "tipo": "hibrido",
+   "site": "https://auroras.art.br",
+   "ig": "auroras.art.br",
+   "info": "Casa modernista de Gian Carlo Gasperini onde Ricardo Kugelmas mora e realiza cerca de cinco mostras por ano, cruzando artistas brasileiros e internacionais."
+  },
+  "massape-projetos": {
+   "name": "Massapê Projetos",
+   "addr": "R. Fortunato, 68",
+   "b": "Santa Cecília",
+   "z": "Centro",
+   "tipo": "hibrido",
+   "site": "",
+   "ig": "massapeprojetos",
+   "info": "Plataforma de arte contemporânea gerida por artistas; galeria e ateliê compartilhado com Mano Penalva, Marcelo Pacheco, Marina Rodrigues, Fabiana Preti e Tchelo."
+  },
+  "espaco-republica": {
+   "name": "Espaço República",
+   "addr": "Av. São Luís, República ~",
+   "b": "República",
+   "z": "Centro",
+   "tipo": "hibrido",
+   "site": "",
+   "ig": "",
+   "info": "Núcleo cultural aberto em 2025 no centro histórico: cinco andares com ateliês privativos e coletivos, sala de cursos e andar expositivo."
+  },
+  "atelie397": {
+   "name": "Ateliê397",
+   "addr": "R. Cruzeiro, 802",
+   "b": "Barra Funda",
+   "z": "Centro",
+   "tipo": "hibrido",
+   "site": "https://atelie397.com",
+   "ig": "atelie397",
+   "info": "Desde 2003, um dos espaços independentes mais longevos da cidade: ateliê, residências e exposições de arte contemporânea."
+  },
+  "atelie-fidalga": {
+   "name": "Ateliê Fidalga",
+   "addr": "R. Fidalga, 299",
+   "b": "Vila Madalena",
+   "z": "Oeste",
+   "tipo": "hibrido",
+   "site": "https://ateliefidalga.com.br",
+   "ig": "",
+   "info": "Programa de formação e convivência entre artistas de diferentes gerações, com mostras coletivas periódicas."
+  },
+  "aparelha-luzia": {
+   "name": "Aparelha Luzia",
+   "addr": "R. Apa, 78",
+   "b": "Santa Cecília",
+   "z": "Centro",
+   "tipo": "hibrido",
+   "site": "",
+   "ig": "aparelhaluzia",
+   "info": "Quilombo urbano fundado em 2016: arte, cultura e política negra, com exposições, shows e encontros."
+  },
+  "galeria-cafe": {
+   "name": "Galeria Café",
+   "addr": "Praça Benedito Calixto, 103",
+   "b": "Pinheiros",
+   "z": "Oeste",
+   "tipo": "hibrido",
+   "site": "",
+   "ig": "",
+   "info": "Café e bar com andar térreo dedicado a exposições com curadoria da Dasartes; obras à venda."
+  },
+  "galeria-metropole": {
+   "name": "Galeria Metrópole",
+   "addr": "Av. São Luís, 187",
+   "b": "República",
+   "z": "Centro",
+   "tipo": "hibrido",
+   "site": "https://metropolegaleria.com.br",
+   "ig": "",
+   "info": "Edifício modernista transformado em polo criativo: lojas de design, ateliês, cafés e espaços de arte no centro."
   }
  },
  "atualizado": "2026-08-02"
