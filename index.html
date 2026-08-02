@@ -517,9 +517,10 @@
     </select>
     <select id="bairroSel"><option value="all">Todos os bairros</option></select>
     <select id="tipoSel">
-      <option value="all">Galerias + institucionais</option>
+      <option value="all">Todos os espaços</option>
       <option value="galeria">Só galerias</option>
       <option value="institucional">Só institucionais</option>
+      <option value="hibrido">Só híbridos</option>
     </select>
     <select id="venueSel"><option value="all">Todas as galerias/espaços</option></select>
     <select id="artistSel"><option value="all">Todos os artistas</option></select>
@@ -668,6 +669,7 @@ function selo(nome){
 document.getElementById('kpis').innerHTML=[
  [VENUES.filter(v=>v.tipo==='galeria').length,'Galerias mapeadas'],
  [VENUES.filter(v=>v.tipo==='institucional').length,'Espaços institucionais'],
+ ...(VENUES.some(v=>v.tipo==='hibrido')?[[VENUES.filter(v=>v.tipo==='hibrido').length,'Espaços híbridos']]:[]),
  [expos.filter(e=>e.st==='opening').length,'Aberturas confirmadas'],
  [expos.filter(e=>e.st!=='opening').length,'Mostras em cartaz'],
  [[...new Set(VENUES.map(v=>v.b))].length,'Bairros no mapa']

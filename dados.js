@@ -4,7 +4,9 @@
    ============================================================ */
 window.DATA = (function(){
 /* ================= VENUES =================
- tipo: galeria | institucional | feira  ·  ~ = endereço aproximado */
+ tipo: galeria | institucional | hibrido | feira  ·  ~ = endereço aproximado
+ hibrido = loja-conceito, café, ateliê ou espaço independente que mantém
+ programa expositivo com curadoria e visitação pública (ex.: Mata Lab). */
 const VENUES = [
  // --- Jardins / Cerqueira César / Jardim América / Jardim Paulista (Oeste) ---
  {name:"Galeria Luisa Strina",ig:"galerialuisastrina",site:"https://www.galerialuisastrina.com.br",addr:"R. Padre João Manuel, 755",b:"Cerqueira César",z:"Oeste",tipo:"galeria",lat:-23.5646,lng:-46.6683,info:"Fundada em 1974, decana da arte contemporânea no Brasil. Alfredo Jaar, Cildo Meireles, Leonilson."},
@@ -91,7 +93,9 @@ const VENUES = [
  {name:"Janaina Torres Galeria",addr:"R. Vitorino Carmilo, 427 ~",b:"Barra Funda",z:"Centro",tipo:"galeria",lat:-23.5322,lng:-46.6567,info:"Galeria com sedes em São Paulo e Nova York; contemporâneo brasileiro."},
  {name:"Sesc Pinheiros",ig:"sescpinheiros",site:"https://www.sescsp.org.br/unidades/pinheiros",addr:"R. Paes Leme, 195",b:"Pinheiros",z:"Oeste",tipo:"institucional",lat:-23.5665,lng:-46.7010,ing:{g:true,obs:"exposições gratuitas"},info:"Unidade do Sesc em Pinheiros; espaço expositivo no 2º andar."},
  {name:"Farol Santander",ig:"farolsantander",site:"https://www.farolsantander.com.br/sp",addr:"R. João Brícola, 24",b:"Centro",z:"Centro",tipo:"institucional",lat:-23.5462,lng:-46.6340,ing:{i:45,m:22.5,obs:"ingresso único dá acesso às exposições, ao mirante e à Pista do 21; 10% de desconto com cartão Santander",fonte:"farolsantander.com.br/sp/ingressos"},info:"Centro cultural no antigo edifício Altino Arantes, no centro histórico."},
- {name:"Cultura Artística",ig:"culturaartistica",site:"https://culturaartistica.org",addr:"R. Nestor Pestana, 196",b:"Consolação",z:"Centro",tipo:"institucional",lat:-23.5455,lng:-46.6440,ing:{g:true},info:"Teatro de Rino Levi; nova área expositiva inaugurada em 2026 com o programa Aberto Solo."}
+ {name:"Cultura Artística",ig:"culturaartistica",site:"https://culturaartistica.org",addr:"R. Nestor Pestana, 196",b:"Consolação",z:"Centro",tipo:"institucional",lat:-23.5455,lng:-46.6440,ing:{g:true},info:"Teatro de Rino Levi; nova área expositiva inaugurada em 2026 com o programa Aberto Solo."},
+ // --- HÍBRIDOS: lojas-conceito, cafés, ateliês e espaços independentes com programa expositivo ---
+ {name:"Mata Lab — Mata São Paulo",ig:"matasaopaulo",addr:"Al. Rio Claro, 260",b:"Bela Vista",z:"Centro",tipo:"hibrido",lat:-23.5642,lng:-46.6522,ing:{g:true,obs:"visitação gratuita"},info:"Loja-conceito de design e natureza com espaço expositivo próprio, o Mata Lab; mostras com curadoria e entrada franca."}
 ];
 
 /* ================= EXPOS ================= */
@@ -102,6 +106,7 @@ const EXPOS = [
  {t:"Quarto — coletiva",v:"Galeria Marília Razuk",ini:"2026-05-09",fim:"2026-08-08",d:"No Anexo, com Cristina Tolovi e Luana Fortes: o quarto como campo de projeção subjetiva."},
  {t:"Rajada encarnada — coletiva",v:"Casa de Cultura do Parque",ini:"2026-07-25",fim:"2026-10-25",d:"II Ciclo Expositivo em parceria com o ICCo. Quarta a domingo, 11h–18h."},
  {t:"Política da superfície — coletiva",v:"Casa de Cultura do Parque",ini:"2026-07-25",fim:"2026-10-25",d:"II Ciclo Expositivo em parceria com o ICCo. Quarta a domingo, 11h–18h."},
+ {t:"Natureza Tecida — Somos Um Único Fio",a:"Sandra Anselmi",v:"Mata Lab — Mata São Paulo",ini:"2026-06-10",fim:"2026-08-31",d:"Cogumelos monumentais e tramas de tricô ocupam o Mata Lab; curadoria de Lilian Pacce. Visitação gratuita."},
  {t:"Masao Yamamoto — individual",a:"Masao Yamamoto",v:"Galeria Marcelo Guarnieri",ini:"2026-08-01",fim:"2026-09-19",d:"Fotografias em pequeno formato do mestre japonês; poética do silêncio."},
  {t:"Ígneo Piaga — Thiago Martins de Melo",a:"Thiago Martins de Melo",v:"Almeida & Dale | Millan",ini:"2026-08-01",fim:"2026-09-12",d:"Pintura densa e mitologia amazônica no espaço Fradique.",img:"https://almeidaedale.com.br/wp-content/uploads/2026/07/thiago-martins-de-melo_260707eeo_30151_eoo.jpg",cred:"Cortesia Almeida & Dale"},
  {t:"ÇA — Rita Lessa",a:"Rita Lessa",v:"Almeida & Dale | Millan",ini:"2026-08-01",fim:"2026-09-12",d:"Individual da artista, em paralelo a Thiago Martins de Melo.",img:"https://almeidaedale.com.br/wp-content/uploads/2026/07/rita-lessa_29678_ph-eeo_02.jpg",cred:"Cortesia Almeida & Dale"},
