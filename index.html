@@ -798,7 +798,11 @@ ${(()=>{const g=ingressoDe(e.ven);return (e.ven.tipo!=='galeria'&&g.free)?`<div 
 }
 
 function focusVenue(n){const v=vByName[n];if(!v)return;
-  if(ehMobile()){openVenue(n);return;}
+  /* no mobile o mapa fica oculto no modo lista: rolar até ele levaria a tela ao topo.
+     se não houver mapa visível, a ficha do espaço abre no modal. */
+  const _m=document.getElementById('map');
+  const _visivel=_m&&_m.offsetParent!==null&&_m.offsetHeight>40;
+  if(ehMobile()||!_visivel){openVenue(n);return;}
   map.setView([v.lat,v.lng],15);
   if(markers[n]&&markers[n].getPopup())markers[n].openPopup();
   else{markers[n]=L.circleMarker([v.lat,v.lng],{radius:7,color:COLORS.dir,fillColor:COLORS.dir,fillOpacity:.85,weight:1}).addTo(map).bindPopup(popupHtml(v,null));markers[n].openPopup();}
@@ -1197,7 +1201,14 @@ const mx=BAIRRO_COUNTS[0][1];
   })();
 
   document.getElementById('upd').textContent=window.DATA.atualizado;
-if('serviceWorker' in navigator && location.protocol.indexOf('http')===0)navigator.serviceWorker.register('./sw.js');
+if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){
+  navigator.serviceWorker.register('./sw.js').then(reg=>{reg.update();
+    setInterval(()=>reg.update(),60*60*1000);}).catch(()=>{});
+  /* quando um SW novo assume, recarrega uma única vez para o usuário ver a versão nova */
+  let _rec=false;
+  navigator.serviceWorker.addEventListener('controllerchange',()=>{
+    if(_rec)return; _rec=true; location.reload();});
+}
 draw();
 </script>
 </body>
