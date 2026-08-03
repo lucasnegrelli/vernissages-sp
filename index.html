@@ -386,6 +386,31 @@
   #modal .links{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0 6px}
   #modal .exline{padding:11px 0;border-bottom:1px solid var(--hair);font-size:.85rem;color:var(--text2)}
   #modal .exline:last-child{border-bottom:0}
+  /* --- CTA: divulgue sua vernissage --- */
+  .cta{background:linear-gradient(135deg,rgba(232,193,90,.11),rgba(167,139,250,.09));
+    border:1px solid rgba(232,193,90,.42);border-radius:var(--r);padding:30px 32px;margin:34px 0 10px;
+    display:flex;gap:26px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+  .cta .ctatxt{min-width:260px;flex:1}
+  .cta h3{font-size:1.45rem;font-weight:600;letter-spacing:-.4px;line-height:1.2}
+  .cta p{color:var(--text2);font-size:.9rem;margin-top:7px;max-width:56ch}
+  .ctabtn{background:var(--accent);color:#14140f;border:0;border-radius:999px;
+    padding:16px 32px;font-size:1rem;font-weight:700;cursor:pointer;letter-spacing:.2px;
+    box-shadow:0 6px 22px rgba(232,193,90,.24);transition:.16s;white-space:nowrap}
+  .ctabtn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(232,193,90,.34)}
+  .ctahint{color:var(--muted);font-size:.76rem;margin-top:9px}
+  /* --- formulario --- */
+  .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:14px}
+  .fgrid .full{grid-column:1/-1}
+  .fld label{display:block;color:var(--muted);font-size:.72rem;text-transform:uppercase;
+    letter-spacing:.7px;margin-bottom:5px}
+  .fld input,.fld textarea,.fld select{width:100%;background:rgba(255,255,255,.045);
+    border:1px solid var(--line);border-radius:10px;color:var(--text);padding:10px 12px;
+    font-size:.87rem;font-family:inherit}
+  .fld input:focus,.fld textarea:focus,.fld select:focus{outline:none;border-color:var(--accent)}
+  .fld textarea{resize:vertical;min-height:66px}
+  .fereq{color:var(--accent2)}
+  .fmsg{font-size:.8rem;margin-top:10px;color:var(--accent2);min-height:18px}
+  @media(max-width:640px){.fgrid{grid-template-columns:1fr}.cta{padding:22px 20px}}
   #modal .exline .w{color:var(--muted);font-size:.76rem;display:block;margin-top:2px}
   #modal .close{position:absolute;top:16px;right:18px;width:30px;height:30px;border-radius:50%;
     border:1px solid var(--line);background:var(--glass);color:var(--muted);cursor:pointer;
@@ -566,6 +591,16 @@
       <p class="note">Clique num bairro para filtrar a agenda e o mapa.</p>
     </section>
   </div>
+
+  <section class="cta">
+    <div class="ctatxt">
+      <h3>Divulgue sua vernissage</h3>
+      <p>Galeria, ateliê, coletivo ou artista: mande sua abertura e ela entra na agenda,
+         no mapa e no envio de sexta — de graça. A curadoria é nossa, o espaço é seu.</p>
+      <div class="ctahint">Leva 1 minuto · sem cadastro · resposta em até 48h</div>
+    </div>
+    <button class="ctabtn" onclick="openForm()">Enviar minha vernissage</button>
+  </section>
 
   <footer>
     Posições e endereços com ~ são aproximados. Nem toda abertura tem vernissage pública — confirme nos canais de cada espaço.<br>
@@ -817,6 +852,59 @@ function openArtist(name){
   document.getElementById('modalBg').style.display='flex';
 }
 function closeArtist(){document.getElementById('modalBg').style.display='none'}
+
+/* ================= FORMULARIO: divulgue sua vernissage ================= */
+function openForm(){
+  const C=(window.DATA.contato)||{};
+  document.getElementById('modal').innerHTML=`<span class="close" onclick="closeArtist()">&times;</span>
+    <h3>Divulgue sua vernissage</h3>
+    <div class="sub">Preencha e escolha como enviar. Nada é publicado sem checagem.</div>
+    <div class="fgrid">
+      <div class="fld full"><label>Espaço / galeria <span class="fereq">*</span></label><input id="f_v" placeholder="Nome do espaço"></div>
+      <div class="fld full"><label>Título da exposição <span class="fereq">*</span></label><input id="f_t" placeholder="Nome da mostra"></div>
+      <div class="fld full"><label>Artista(s)</label><input id="f_a" placeholder="Separe por vírgula"></div>
+      <div class="fld"><label>Abertura <span class="fereq">*</span></label><input id="f_ini" type="date"></div>
+      <div class="fld"><label>Encerramento</label><input id="f_fim" type="date"></div>
+      <div class="fld full"><label>Endereço <span class="fereq">*</span></label><input id="f_end" placeholder="Rua, número, bairro"></div>
+      <div class="fld"><label>Instagram</label><input id="f_ig" placeholder="@perfil"></div>
+      <div class="fld"><label>Entrada</label><select id="f_ing"><option>Gratuita</option><option>Paga</option><option>A confirmar</option></select></div>
+      <div class="fld full"><label>Sobre a mostra / curadoria</label><textarea id="f_d" placeholder="Duas ou três linhas sobre o trabalho, curadoria, horário da abertura…"></textarea></div>
+      <div class="fld full"><label>Seu contato (e-mail ou WhatsApp) <span class="fereq">*</span></label><input id="f_c" placeholder="Para retornarmos se faltar alguma info"></div>
+    </div>
+    <div class="fmsg" id="f_msg"></div>
+    <div class="links">
+      ${C.wa?`<span class="btn add" onclick="sendForm('wa')">Enviar por WhatsApp</span>`:''}
+      <span class="btn add" onclick="sendForm('mail')">Enviar por e-mail</span>
+      <span class="btn" onclick="sendForm('copy')">Copiar texto</span>
+    </div>
+    <p class="note" style="margin-top:12px">Quer aparecer como <b>Destaque da semana</b> (topo do site e post exclusivo)?
+       Escreva "quero destaque" no campo acima — todo conteúdo pago entra sempre marcado como patrocinado.</p>`;
+  document.getElementById('modalBg').style.display='flex';
+}
+function formTexto(){
+  const g=id=>(document.getElementById(id).value||'').trim();
+  const req=[['f_v','espaço'],['f_t','título'],['f_ini','data de abertura'],['f_end','endereço'],['f_c','contato']];
+  const falta=req.filter(r=>!g(r[0])).map(r=>r[1]);
+  if(falta.length){document.getElementById('f_msg').textContent='Falta preencher: '+falta.join(', ')+'.';return null;}
+  document.getElementById('f_msg').textContent='';
+  const br=d=>d?d.split('-').reverse().join('/'):'';
+  return ['NOVA VERNISSAGE — Vernissages SP','',
+    'Espaço: '+g('f_v'),'Exposição: '+g('f_t'),
+    g('f_a')?'Artista(s): '+g('f_a'):'',
+    'Abertura: '+br(g('f_ini'))+(g('f_fim')?'  |  Até: '+br(g('f_fim')):''),
+    'Endereço: '+g('f_end'),
+    g('f_ig')?'Instagram: '+g('f_ig'):'',
+    'Entrada: '+g('f_ing'),
+    g('f_d')?'Sobre: '+g('f_d'):'',
+    '','Contato: '+g('f_c')].filter(Boolean).join('\n');
+}
+function sendForm(via){
+  const txt=formTexto(); if(!txt)return;
+  const C=(window.DATA.contato)||{};
+  if(via==='wa'&&C.wa) window.open('https://wa.me/'+C.wa+'?text='+encodeURIComponent(txt),'_blank');
+  else if(via==='mail') window.open('mailto:'+(C.email||'')+'?subject='+encodeURIComponent('Vernissage: '+document.getElementById('f_t').value)+'&body='+encodeURIComponent(txt),'_blank');
+  else navigator.clipboard.writeText(txt).then(()=>{document.getElementById('f_msg').textContent='Copiado! Cole no WhatsApp, e-mail ou DM do Instagram.';});
+}
 
 /* em foco: bloco editorial destacado (vira espaço patrocinado com f.publi=true) */
 function renderFoco(){
