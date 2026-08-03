@@ -378,7 +378,7 @@
     backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;
     align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto;overscroll-behavior:contain}
   #modal{background:rgba(20,20,26,.94);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
-    border:1px solid var(--line2);border-radius:var(--radius);padding:26px 28px;
+    border:1px solid var(--line2);border-radius:var(--radius);padding:22px 24px;
     width:min(620px,100%);margin:auto;position:relative;
     box-shadow:0 40px 90px -30px rgba(0,0,0,1)}
   #modal h3{font-size:1.3rem;font-weight:600;line-height:1.25;padding-right:34px;letter-spacing:-.3px}
@@ -387,27 +387,26 @@
   #modal .exline{padding:11px 0;border-bottom:1px solid var(--hair);font-size:.85rem;color:var(--text2)}
   #modal .exline:last-child{border-bottom:0}
   /* --- CTA: divulgue sua vernissage --- */
-  .cta{background:linear-gradient(135deg,rgba(232,193,90,.11),rgba(167,139,250,.09));
-    border:1px solid rgba(232,193,90,.42);border-radius:var(--r);padding:30px 32px;margin:34px 0 10px;
-    display:flex;gap:26px;align-items:center;justify-content:space-between;flex-wrap:wrap}
-  .cta .ctatxt{min-width:260px;flex:1}
-  .cta h3{font-size:1.45rem;font-weight:600;letter-spacing:-.4px;line-height:1.2}
-  .cta p{color:var(--text2);font-size:.9rem;margin-top:7px;max-width:56ch}
+  .cta{background:linear-gradient(135deg,rgba(232,193,90,.10),rgba(167,139,250,.07));
+    border:1px solid rgba(232,193,90,.34);display:flex;gap:16px;align-items:center;
+    justify-content:space-between;flex-wrap:wrap;padding:17px 19px;margin-top:14px}
+  .cta .ctatxt{min-width:190px;flex:1}
+  .cta h3{font-size:.98rem;font-weight:600;letter-spacing:-.2px}
+  .cta p{color:var(--text2);font-size:.81rem;margin-top:4px;line-height:1.45}
   .ctabtn{background:var(--accent);color:#14140f;border:0;border-radius:999px;
-    padding:16px 32px;font-size:1rem;font-weight:700;cursor:pointer;letter-spacing:.2px;
-    box-shadow:0 6px 22px rgba(232,193,90,.24);transition:.16s;white-space:nowrap}
-  .ctabtn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(232,193,90,.34)}
-  .ctahint{color:var(--muted);font-size:.76rem;margin-top:9px}
+    padding:10px 22px;font-size:.85rem;font-weight:700;cursor:pointer;white-space:nowrap;
+    box-shadow:0 4px 14px rgba(232,193,90,.2);transition:.15s}
+  .ctabtn:hover{transform:translateY(-1px);box-shadow:0 7px 20px rgba(232,193,90,.3)}
   /* --- formulario --- */
-  .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:14px}
+  .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}
   .fgrid .full{grid-column:1/-1}
   .fld label{display:block;color:var(--muted);font-size:.72rem;text-transform:uppercase;
     letter-spacing:.7px;margin-bottom:5px}
   .fld input,.fld textarea,.fld select{width:100%;background:rgba(255,255,255,.045);
     border:1px solid var(--line);border-radius:10px;color:var(--text);padding:10px 12px;
-    font-size:.87rem;font-family:inherit}
+    font-size:.84rem;font-family:inherit}
   .fld input:focus,.fld textarea:focus,.fld select:focus{outline:none;border-color:var(--accent)}
-  .fld textarea{resize:vertical;min-height:66px}
+  .fld textarea{resize:vertical;min-height:52px}
   .fereq{color:var(--accent2)}
   .fmsg{font-size:.8rem;margin-top:10px;color:var(--accent2);min-height:18px}
   @media(max-width:640px){.fgrid{grid-template-columns:1fr}.cta{padding:22px 20px}}
@@ -581,6 +580,13 @@
       <h2>Quem é o público · enquete anônima</h2>
       <div class="poll panel" id="poll"><p class="note" style="margin:0">Carregando enquete…</p></div>
       <div class="panel ritmo" id="ritmo"></div>
+      <div class="panel cta">
+        <div class="ctatxt">
+          <h3>Divulgue sua vernissage</h3>
+          <p>Sua abertura entra na agenda, no mapa e no envio de sexta — de graça.</p>
+        </div>
+        <button class="ctabtn" onclick="openForm()">Enviar</button>
+      </div>
     </section>
     <section>
       <h2>Galerias por bairro · FGV/ArteRef</h2>
@@ -591,16 +597,6 @@
       <p class="note">Clique num bairro para filtrar a agenda e o mapa.</p>
     </section>
   </div>
-
-  <section class="cta">
-    <div class="ctatxt">
-      <h3>Divulgue sua vernissage</h3>
-      <p>Galeria, ateliê, coletivo ou artista: mande sua abertura e ela entra na agenda,
-         no mapa e no envio de sexta — de graça. A curadoria é nossa, o espaço é seu.</p>
-      <div class="ctahint">Leva 1 minuto · sem cadastro · resposta em até 48h</div>
-    </div>
-    <button class="ctabtn" onclick="openForm()">Enviar minha vernissage</button>
-  </section>
 
   <footer>
     Posições e endereços com ~ são aproximados. Nem toda abertura tem vernissage pública — confirme nos canais de cada espaço.<br>
@@ -867,7 +863,7 @@ function openForm(){
     <div class="fgrid">
       <div class="fld full"><label>Espaço / galeria <span class="fereq">*</span></label><input id="f_v" placeholder="Nome do espaço"></div>
       <div class="fld full"><label>Título da exposição <span class="fereq">*</span></label><input id="f_t" placeholder="Nome da mostra"></div>
-      <div class="fld full"><label>Artista(s)</label><input id="f_a" placeholder="Separe por vírgula"></div>
+      <div class="fld"><label>Artista(s)</label><input id="f_a" placeholder="Separe por vírgula"></div>
       <div class="fld"><label>Abertura <span class="fereq">*</span></label><input id="f_ini" type="date"></div>
       <div class="fld"><label>Encerramento</label><input id="f_fim" type="date"></div>
       <div class="fld full"><label>Endereço <span class="fereq">*</span></label><input id="f_end" placeholder="Rua, número, bairro"></div>
