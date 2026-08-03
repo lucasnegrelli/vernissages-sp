@@ -853,6 +853,11 @@ function openArtist(name){
 }
 function closeArtist(){document.getElementById('modalBg').style.display='none'}
 
+/* o header usa backdrop-filter, que vira containing block e quebra position:fixed
+   dos descendentes — por isso o overlay precisa morar direto no body */
+(function(){const bg=document.getElementById('modalBg');
+ if(bg&&bg.parentElement!==document.body)document.body.appendChild(bg);})();
+
 /* ================= FORMULARIO: divulgue sua vernissage ================= */
 function openForm(){
   const C=(window.DATA.contato)||{};
