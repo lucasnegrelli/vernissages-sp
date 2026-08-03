@@ -466,7 +466,7 @@
    "v": "Galeria Nara Roesler",
    "ini": "2026-05-26",
    "fim": "2026-08-08",
-   "d": "Recorte do programa da galeria; curadoria de Agnaldo Farias.",
+   "d": "Recorte do programa da galeria.",
    "bairro": "Jardim Europa",
    "zona": "Oeste",
    "addr": "Av. Europa, 655",
@@ -483,7 +483,7 @@
    "v": "Galatea",
    "ini": "2026-06-09",
    "fim": "2026-08-08",
-   "d": "Redescoberta do escultor ítalo-brasileiro; curadoria de André Pitol (espaço Oscar Freire).",
+   "d": "Redescoberta do escultor ítalo-brasileiro.",
    "bairro": "Cerqueira César",
    "zona": "Oeste",
    "addr": "R. Oscar Freire, 379",
@@ -603,9 +603,9 @@
    "ini": "2026-06-10",
    "fim": "2026-08-01",
    "d": "Pintura e linguagem.",
-   "bairro": "Cerqueira César",
+   "bairro": "Pinheiros",
    "zona": "Oeste",
-   "addr": "R. Barão de Capanema, 343",
+   "addr": "R. Fradique Coutinho, 1500",
    "tipo": "galeria",
    "site": "https://fdag.com.br",
    "ig": "fortesdaloiagabriel",
@@ -620,9 +620,9 @@
    "ini": "2026-06-10",
    "fim": "2026-08-01",
    "d": "Esculturas em madeira.",
-   "bairro": "Cerqueira César",
+   "bairro": "Pinheiros",
    "zona": "Oeste",
-   "addr": "R. Barão de Capanema, 343",
+   "addr": "R. Fradique Coutinho, 1500",
    "tipo": "galeria",
    "site": "https://fdag.com.br",
    "ig": "fortesdaloiagabriel",
@@ -2214,13 +2214,13 @@
   },
   "fortes-d-aloia-e-gabriel-galeria": {
    "name": "Fortes D'Aloia & Gabriel — Galeria",
-   "addr": "R. Barão de Capanema, 343",
-   "b": "Cerqueira César",
+   "addr": "R. Fradique Coutinho, 1500",
+   "b": "Pinheiros",
    "z": "Oeste",
    "tipo": "galeria",
    "site": "https://fdag.com.br",
    "ig": "fortesdaloiagabriel",
-   "info": "Espaço FDAG Jardins (endereço atualizado pelo site da galeria). Ernesto Neto, Rivane Neuenschwander, Erika Verzutti. Espaço-irmão: Galpão (Barra Funda)."
+   "info": "Ernesto Neto, Rivane Neuenschwander, Erika Verzutti. Espaço-irmão: Galpão (Barra Funda)."
   },
   "galeria-estacao": {
    "name": "Galeria Estação",
@@ -2329,7 +2329,7 @@
    "z": "Centro",
    "tipo": "galeria",
    "site": "",
-   "ig": "",
+   "ig": "hoagaleria",
    "info": "Fundada por Igi Ayedun; foco em artistas negros e periféricos."
   },
   "galeria-jaqueline-martins": {
@@ -2339,7 +2339,7 @@
    "z": "Centro",
    "tipo": "galeria",
    "site": "",
-   "ig": "",
+   "ig": "galeriajaquelinemartins",
    "info": "SP e Bruxelas. Vanguardas dos anos 1970–80 e contemporâneo. Hudinilson Jr."
   },
   "a-gentil-carioca-sp": {
@@ -2579,7 +2579,7 @@
    "z": "Centro",
    "tipo": "institucional",
    "site": "https://casadopovo.org.br",
-   "ig": "",
+   "ig": "casadopovo",
    "info": "Centro cultural experimental no Bom Retiro."
   },
   "mab-faap": {
@@ -2780,7 +2780,7 @@
    "tipo": "hibrido",
    "site": "",
    "ig": "espacorepublica",
-   "info": "Núcleo cultural aberto em 2025 no centro histórico: cinco andares com ateliês privativos e coletivos, cursos, residência e andar expositivo. Sala expositiva Vera Helena."
+   "info": "Núcleo cultural aberto em 2025 no centro histórico: cinco andares com ateliês privativos e coletivos, cursos, residência e andar expositivo."
   },
   "atelie397": {
    "name": "Ateliê397",
@@ -2790,7 +2790,7 @@
    "tipo": "hibrido",
    "site": "https://atelie397.com",
    "ig": "atelie397",
-   "info": "Desde 2003, um dos espaços independentes mais longevos da cidade: ateliê, residências e exposições de arte contemporânea. Mantém o grupo de acompanhamento Clínica Geral."
+   "info": "Desde 2003, um dos espaços independentes mais longevos da cidade: ateliê, residências e exposições de arte contemporânea."
   },
   "atelie-fidalga": {
    "name": "Ateliê Fidalga",
