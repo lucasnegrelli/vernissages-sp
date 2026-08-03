@@ -238,7 +238,15 @@
     padding:20px 22px;margin-top:22px;box-shadow:var(--shadow);
     backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}
   .wkwrap h2{margin:0 0 14px;border:0;padding:0}
-  .wkrow{display:flex;gap:11px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x mandatory}
+  .wkscroll{position:relative}
+  .wkfade{position:absolute;right:0;top:0;bottom:12px;width:64px;pointer-events:none;
+    background:linear-gradient(to right,transparent,rgba(10,10,13,.94));opacity:0;transition:opacity .25s}
+  .wkfade.on{opacity:1}
+  .wkhint{font-size:.62rem;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;
+    color:var(--muted);border:1px solid var(--line);border-radius:20px;padding:3px 10px;
+    margin-left:10px;vertical-align:middle;display:none}
+  .wkrow{display:flex;gap:11px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch}
   .wk{flex:0 0 260px;scroll-snap-align:start;background:var(--glass2);border:1px solid var(--line);
     border-radius:var(--radius-sm);padding:13px 15px;cursor:pointer;transition:.2s}
   .wk:hover{border-color:var(--accent);transform:translateY(-2px);background:rgba(232,193,90,.07)}
@@ -452,6 +460,7 @@
     .foco h3{font-size:1.25rem}
     .wkwrap{padding:16px 16px}
     .wk{flex:0 0 76vw}
+    .wkhint{display:inline-block}
     .filtrobtn{display:inline-block}
     .filters.fechado select,.filters.fechado #nearBtn,
     .filters.fechado #freeBtn,.filters.fechado #favBtn{display:none}
@@ -510,8 +519,8 @@
   <div class="foco" id="foco"></div>
 
 <div class="wkwrap" id="wkwrap" style="display:none">
-    <h2>Aberturas · esta semana</h2>
-    <div class="wkrow" id="wkrow"></div>
+    <h2>Aberturas · esta semana <span class="wkhint" id="wkhint">deslize &rarr;</span></h2>
+    <div class="wkscroll"><div class="wkrow" id="wkrow"></div><div class="wkfade" id="wkfade"></div></div>
     <div class="share">
       <a class="btn add" id="waShare" target="_blank">Enviar no WhatsApp</a>
       <span class="btn" onclick="copyWeek()">Copiar agenda</span>
@@ -526,7 +535,7 @@
       <span class="dot" style="background:var(--red)"></span>últimos dias &nbsp;
       <span class="dot" style="background:var(--accent2)"></span>feira &nbsp;
       <span class="dot" style="background:#8b8b9a"></span>sem mostra nesta janela<br>
-      Clique num ponto ou card para detalhes; use <b>+ Roteiro</b> para montar um percurso a pé ou de carro.</div></span></h2>
+      Toque num ponto do mapa ou num card para ver a ficha do espaço.</div></span></h2>
   <div class="filters">
     <span id="statusFilters">
       <span class="chip on" data-st="all">Tudo</span>
@@ -720,7 +729,7 @@ function popupHtml(v,ex){
   let h=`<b>${v.name}</b><br>${v.addr} · ${v.b} (Zona ${v.z})<br><i>${v.info||''}</i>`;
   if(ex&&ex.length)h+='<hr style="border-color:#333">'+ex.map(e=>`▸ <b>${e.t}</b><br>&nbsp;&nbsp;${e.st==='opening'?'abre '+fmt(e.ini):'até '+(e.fim?fmt(e.fim):'—')}`).join('<br>');
   if(ingTxt(v))h+=`<br><i style="color:#9a9aa6">${ingTxt(v)}</i>`;
-h+=`<br>${v.site?`<a href="${v.site}" target="_blank">Site</a> · `:''}${v.ig?`<a href="https://instagram.com/${v.ig}" target="_blank">IG</a> · `:''}<a href="${gsearch(v.name+' galeria são paulo')}" target="_blank">Buscar</a> · <a href="${gmaps(v)}" target="_blank">Como chegar</a> · <a href="#" onclick="addStop('${v.name.replace(/'/g,"\\'")}');return false;">+ Roteiro</a>`;
+h+=`<br>${v.site?`<a href="${v.site}" target="_blank">Site</a> · `:''}${v.ig?`<a href="https://instagram.com/${v.ig}" target="_blank">IG</a> · `:''}<a href="${gsearch(v.name+' galeria são paulo')}" target="_blank">Buscar</a> · <a href="${gmaps(v)}" target="_blank">Como chegar</a>`;
   return h;
 }
 const gsearch=q=>'https://www.google.com/search?q='+encodeURIComponent(q);
@@ -763,8 +772,7 @@ ${(()=>{const g=ingressoDe(e.ven);return (e.ven.tipo!=='galeria'&&g.free)?`<div 
         ${e.ven.site?`<a class="btn" href="${e.ven.site}" target="_blank">Site</a>`:''}
         ${e.ven.ig?`<a class="btn" href="https://instagram.com/${e.ven.ig}" target="_blank">IG</a>`:''}
         <a class="btn" href="${gsearch(e.t+' '+e.ven.name)}" target="_blank">Info</a>
-        <a class="btn" href="${gmaps(e.ven)}" target="_blank">Rota</a>
-        <span class="btn add" onclick="addStop('${e.ven.name.replace(/'/g,"\\'")}')">+ Roteiro</span></div>
+        <a class="btn" href="${gmaps(e.ven)}" target="_blank">Rota</a></div>
     </div>`;
   }).join('')||'<p class="note">Nada encontrado com esses filtros.</p>';
 
@@ -781,15 +789,42 @@ ${(()=>{const g=ingressoDe(e.ven);return (e.ven.tipo!=='galeria'&&g.free)?`<div 
       if(st!=='all'||!matches(v,q))return;
       c=COLORS.dir;r=5;
     }
-    markers[v.name]=L.circleMarker([v.lat,v.lng],{radius:r,color:c,fillColor:c,fillOpacity:.85,weight:1})
-      .addTo(map).bindPopup(popupHtml(v,ex));
+    const _r=ehMobile()?Math.max(r+5,12):r;
+    const _mk=L.circleMarker([v.lat,v.lng],{radius:_r,color:c,fillColor:c,fillOpacity:.85,weight:1}).addTo(map);
+    if(ehMobile())_mk.on('click',()=>openVenue(v.name)); else _mk.bindPopup(popupHtml(v,ex));
+    markers[v.name]=_mk;
   });
   drawDir(q,zona,b,tipo,ven);
 }
 
-function focusVenue(n){const v=vByName[n];if(!v)return;map.setView([v.lat,v.lng],15);
-  if(markers[n])markers[n].openPopup();else{markers[n]=L.circleMarker([v.lat,v.lng],{radius:7,color:COLORS.dir,fillColor:COLORS.dir,fillOpacity:.85,weight:1}).addTo(map).bindPopup(popupHtml(v,null));markers[n].openPopup();}
+function focusVenue(n){const v=vByName[n];if(!v)return;
+  if(ehMobile()){openVenue(n);return;}
+  map.setView([v.lat,v.lng],15);
+  if(markers[n]&&markers[n].getPopup())markers[n].openPopup();
+  else{markers[n]=L.circleMarker([v.lat,v.lng],{radius:7,color:COLORS.dir,fillColor:COLORS.dir,fillOpacity:.85,weight:1}).addTo(map).bindPopup(popupHtml(v,null));markers[n].openPopup();}
   window.scrollTo({top:document.getElementById('map').offsetTop-20,behavior:'smooth'});}
+
+/* no celular o popup do Leaflet fica minúsculo e difícil de acertar:
+   o toque no marcador abre a ficha do espaço no modal */
+function ehMobile(){return window.matchMedia('(max-width:950px)').matches||('ontouchstart' in window);}
+function openVenue(n){
+  const v=vByName[n]; if(!v)return;
+  const shows=expos.filter(e=>e.ven&&e.ven.name===v.name);
+  const links=[v.site?['Site',v.site]:null, v.ig?['Instagram','https://instagram.com/'+v.ig]:null,
+    ['Como chegar',gmaps(v)], ['Buscar',gsearch(v.name+' galeria são paulo')]]
+    .filter(Boolean).map(l=>`<a class="btn" target="_blank" href="${l[1]}">${l[0]}</a>`).join('');
+  const ing=(typeof ingTxt==='function'&&ingTxt(v))?`<div class="sub" style="margin-top:6px">${ingTxt(v)}</div>`:'';
+  document.getElementById('modal').innerHTML=`<span class="close" onclick="closeArtist()">&times;</span>
+    <h3>${v.name}</h3>
+    <div class="sub">${v.addr} · ${v.b} · Zona ${v.z}</div>${ing}
+    ${v.info?`<div class="exline" style="border:0;padding-top:12px">${v.info}</div>`:''}
+    <div class="links">${links}</div>
+    ${shows.length?shows.map(e=>`<div class="exline"><b>${e.t}</b>${e.a?` — ${e.a}`:''}
+       <span class="w">${e.st==='opening'?'abre '+fmt(e.ini):'até '+(e.fim?fmt(e.fim):'—')}</span>
+       ${e.d?`<span class="w">${e.d}</span>`:''}</div>`).join('')
+      :'<div class="exline"><span class="w">Sem mostra na agenda desta janela.</span></div>'}`;
+  document.getElementById('modalBg').style.display='flex';
+}
 
 /* diretório */
 let sortK='b',sortAsc=true;
@@ -803,8 +838,7 @@ function drawDir(q,zona,b,tipo,ven){
     <td class="actions"><span class="fav ${favs.has(v.name)?'on':''}" onclick="toggleFav('${v.name.replace(/'/g,"\\'")}')" title="Favoritar">&#9829;</span>
       ${v.site?`<a class="btn" href="${v.site}" target="_blank">Site</a>`:`<a class="btn" href="${gsearch(v.name+' galeria são paulo')}" target="_blank">Buscar</a>`}
       ${v.ig?`<a class="btn" href="https://instagram.com/${v.ig}" target="_blank">IG</a>`:''}
-      <a class="btn" href="${gmaps(v)}" target="_blank">Rota</a>
-      <span class="btn add" onclick="addStop('${v.name.replace(/'/g,"\\'")}')">+ Roteiro</span></td></tr>`).join('');
+      <a class="btn" href="${gmaps(v)}" target="_blank">Rota</a></td></tr>`).join('');
   document.getElementById('dirtitle').textContent=`Diretório de Galerias e Espaços (${rows.length})`;
 }
 document.querySelectorAll('#dirTable th[data-k]').forEach(th=>th.onclick=()=>{
@@ -968,7 +1002,19 @@ const wk=expos.filter(e=>{const d=new Date(e.ini+'T12:00');return d<=end&&d>=sta
   const txt='Vernissages SP — aberturas da semana:\n'+wk.map(e=>`• ${fmt(e.ini)}${e.ini===HOJESTR?' (hoje!)':(new Date(e.ini+'T12:00')<TODAY?' (já abriu)':'')} — ${e.t} @ ${e.ven.name} (${e.ven.b})`).join('\n')+'\n\nAgenda completa, mapa e roteiros: https://vernissagessp.com.br/';
   window._wkTxt=txt;
   document.getElementById('waShare').href='https://wa.me/?text='+encodeURIComponent(txt);
+  setTimeout(wkFade,60);
 }
+function wkFade(){
+  const r=document.getElementById('wkrow'),f=document.getElementById('wkfade');
+  if(!r||!f)return;
+  const temMais=r.scrollWidth-r.clientWidth>8, noFim=r.scrollLeft+r.clientWidth>=r.scrollWidth-12;
+  f.classList.toggle('on',temMais&&!noFim);
+  const h=document.getElementById('wkhint'); if(h)h.style.visibility=temMais?'visible':'hidden';
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  const r=document.getElementById('wkrow'); if(r)r.addEventListener('scroll',wkFade,{passive:true});
+  window.addEventListener('resize',wkFade); setTimeout(wkFade,400);
+});
 function copyWeek(){navigator.clipboard.writeText(window._wkTxt||'').then(()=>alert('Agenda da semana copiada! Cole onde quiser.'))}
 
 /* favoritos + perto de mim */
