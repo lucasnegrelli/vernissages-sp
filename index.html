@@ -653,6 +653,20 @@
 </div>
 
 <script>
+/* rede de segurança: se qualquer coisa explodir, mostra o motivo na tela.
+   Uma tela preta e muda não dá pista nenhuma para consertar. */
+window.addEventListener('error',function(ev){
+  if(document.getElementById('erroFatal'))return;
+  if(!ev||!ev.message)return;
+  var d=document.createElement('div');
+  d.id='erroFatal';
+  d.style.cssText='position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#2a1416;'+
+    'color:#f5d6d0;font:13px/1.5 system-ui,sans-serif;padding:14px 16px;border-top:1px solid #f08a7a';
+  d.textContent='Algo falhou ao carregar: '+ev.message+
+    (ev.filename?(' — '+String(ev.filename).split('/').pop()+':'+ev.lineno):'');
+  (document.body||document.documentElement).appendChild(d);
+});
+
 const TODAY = new Date();
 const HOJESTR = new Date(TODAY.getTime()-TODAY.getTimezoneOffset()*6e4).toISOString().slice(0,10);
 
@@ -763,8 +777,24 @@ VENUES.map(v=>v.name).sort().forEach(n=>vSel.add(new Option(n,n)));
 [...new Set(expos.flatMap(e=>e.a?e.a.split(', '):[]))].sort((x,y)=>x.localeCompare(y,'pt')).forEach(n=>aSel.add(new Option(n,n)));
 
 /* map */
-const map=L.map('map').setView([-23.556,-46.668],12);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png',{attribution:'© OpenStreetMap © CARTO',maxZoom:18}).addTo(map);
+/* o Leaflet vem de um CDN externo. Se ele não carregar (rede da operadora,
+   bloqueio, falha do CDN), TODO o script morria aqui e a tela ficava preta.
+   Agora o mapa é opcional: sem ele, a agenda, os filtros e o diretório seguem
+   funcionando normalmente. */
+const TEM_MAPA = (typeof L !== 'undefined' && L && typeof L.map === 'function');
+let map=null;
+if(TEM_MAPA){
+  try{
+    map=L.map('map').setView([-23.556,-46.668],12);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png',
+      {attribution:'© OpenStreetMap © CARTO',maxZoom:18}).addTo(map);
+  }catch(_){ map=null; }
+}
+if(!map){
+  const cx=document.getElementById('map');
+  if(cx){cx.style.display='none';}
+  const bt=document.querySelector('.viewtoggle'); if(bt)bt.style.display='none';
+}
 let markers={};
 
 /* o título costuma repetir o nome do artista, que já aparece no campo próprio.
@@ -853,6 +883,7 @@ ${(()=>{const g=ingressoDe(e.ven);return (e.ven.tipo!=='galeria'&&g.free)?`<div 
       if(st!=='all'||!matches(v,q))return;
       c=COLORS.dir;r=5;
     }
+    if(!map)return;
     const _r=ehMobile()?Math.max(r+5,12):r;
     const _mk=L.circleMarker([v.lat,v.lng],{radius:_r,color:c,fillColor:c,fillOpacity:.85,weight:1}).addTo(map);
     if(ehMobile())_mk.on('click',()=>openVenue(v.name)); else _mk.bindPopup(popupHtml(v,ex));
@@ -865,7 +896,7 @@ function focusVenue(n){const v=vByName[n];if(!v)return;
   /* no mobile o mapa fica oculto no modo lista: rolar até ele levaria a tela ao topo.
      se não houver mapa visível, a ficha do espaço abre no modal. */
   const _m=document.getElementById('map');
-  const _visivel=_m&&_m.offsetParent!==null&&_m.offsetHeight>40;
+  const _visivel=map&&_m&&_m.offsetParent!==null&&_m.offsetHeight>40;
   if(ehMobile()||!_visivel){openVenue(n);return;}
   map.setView([v.lat,v.lng],15);
   if(markers[n]&&markers[n].getPopup())markers[n].openPopup();
@@ -1110,6 +1141,7 @@ document.getElementById('nearBtn').onclick=function(){
   navigator.geolocation.getCurrentPosition(p=>{
     userPos=[p.coords.latitude,p.coords.longitude];nearOn=true;
     btn.textContent='Perto de mim';btn.classList.add('on');
+    if(!map)return;
     userMarker=L.circleMarker(userPos,{radius:9,color:'#fff',fillColor:'#7da7d9',fillOpacity:.95,weight:2})
       .addTo(map).bindPopup('<b>Você está aqui</b>');
     map.setView(userPos,13);draw();
