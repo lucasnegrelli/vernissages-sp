@@ -1256,7 +1256,11 @@ const mx=BAIRRO_COUNTS[0][1];
   })();
 
   document.getElementById('upd').textContent=window.DATA.atualizado;
-if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){
+if(location.search.indexOf('sw=off')>=0 && 'serviceWorker' in navigator){
+  navigator.serviceWorker.getRegistrations().then(rs=>Promise.all(rs.map(r=>r.unregister())))
+    .then(()=>caches.keys().then(k=>Promise.all(k.map(x=>caches.delete(x)))))
+    .then(()=>{document.title='cache limpo';location.replace(location.pathname);});
+}else if('serviceWorker' in navigator && location.protocol.indexOf('http')===0){
   navigator.serviceWorker.register('./sw.js').then(reg=>{reg.update();
     setInterval(()=>reg.update(),60*60*1000);}).catch(()=>{});
   /* quando um SW novo assume, recarrega uma única vez para o usuário ver a versão nova */
