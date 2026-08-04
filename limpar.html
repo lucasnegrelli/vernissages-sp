@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Limpar cache — Vernissages SP</title>
+<meta name="robots" content="noindex">
+<style>
+  body{background:#0a0a0d;color:#f3f3f7;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;
+    display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;padding:24px;text-align:center}
+  .c{max-width:420px}
+  h1{font-size:1.1rem;font-weight:600;letter-spacing:3px;margin:0 0 18px}
+  p{color:#8b8b9a;line-height:1.65;font-size:.92rem;margin:0 0 8px}
+  .ok{color:#7fd8a0}.err{color:#f08a7a}
+  a{display:inline-block;margin-top:22px;background:#e8c15a;color:#0a0a0d;text-decoration:none;
+    padding:13px 26px;border-radius:999px;font-weight:700;font-size:.9rem}
+</style>
+</head>
+<body>
+<div class="c">
+  <h1>VERNISSAGES SP</h1>
+  <p id="s">Limpando os arquivos guardados no aparelho…</p>
+  <a id="ir" href="/" style="display:none">Abrir o site</a>
+</div>
+<script>
+/* página independente: não usa service worker nem dados.js.
+   serve para destravar aparelhos com cache antigo ou corrompido. */
+(async function(){
+  var s=document.getElementById('s'), ir=document.getElementById('ir'), passos=[];
+  try{
+    if('serviceWorker' in navigator){
+      var rs=await navigator.serviceWorker.getRegistrations();
+      for(var i=0;i<rs.length;i++){ await rs[i].unregister(); }
+      passos.push(rs.length+' service worker(s) removido(s)');
+    }
+    if(window.caches){
+      var ks=await caches.keys();
+      for(var j=0;j<ks.length;j++){ await caches.delete(ks[j]); }
+      passos.push(ks.length+' cache(s) apagado(s)');
+    }
+    try{ localStorage.removeItem('vspSeen'); }catch(e){}
+    s.innerHTML='<span class="ok">Pronto.</span><br>'+passos.join('<br>')+'<br><br>Abrindo o site…';
+    setTimeout(function(){ location.replace('/?limpo='+Date.now()); }, 1600);
+  }catch(e){
+    s.innerHTML='<span class="err">Não consegui limpar automaticamente.</span><br>'+
+      'No navegador, abra as configurações do site e use "Limpar dados".<br><small>'+e.message+'</small>';
+    ir.style.display='inline-block';
+  }
+})();
+</script>
+</body>
+</html>

@@ -657,7 +657,26 @@
 const TODAY = new Date();
 const HOJESTR = new Date(TODAY.getTime()-TODAY.getTimezoneOffset()*6e4).toISOString().slice(0,10);
 
+/* se dados.js não chegou (cache corrompido, rede caída), avisa em vez de
+   deixar a tela preta: o destructuring abaixo mataria o script inteiro. */
+if(!window.DATA||!window.DATA.venues){
+  document.body.innerHTML='<div style="max-width:480px;margin:22vh auto;padding:0 24px;'+
+    'font-family:system-ui,sans-serif;color:#f3f3f7;text-align:center;line-height:1.6">'+
+    '<div style="font-size:1.15rem;font-weight:600;letter-spacing:2px">VERNISSAGES SP</div>'+
+    '<p style="color:#8b8b9a;margin:14px 0 22px">Não foi possível carregar os dados da agenda. '+
+    'Isso costuma ser um arquivo antigo guardado no aparelho.</p>'+
+    '<a href="/limpar.html" style="display:inline-block;background:#e8c15a;color:#0a0a0d;'+
+    'text-decoration:none;padding:13px 26px;border-radius:999px;font-weight:700">Limpar e recarregar</a></div>';
+  throw new Error('dados indisponiveis');
+}
 const {venues:VENUES, expos:EXPOS, bairros:BAIRRO_COUNTS} = window.DATA;
+
+/* localStorage pode lançar exceção (aba anônima, cookies bloqueados, cota cheia).
+   sem proteção, uma exceção aqui derruba o script inteiro. */
+const LS={
+  get(k){try{return localStorage.getItem(k);}catch(_){return null;}},
+  set(k,v){try{localStorage.setItem(k,v);}catch(_){}}
+};
 
 /* ================= LOGIC ================= */
 const vByName={}; VENUES.forEach(v=>vByName[v.name]=v);
@@ -1077,8 +1096,8 @@ document.addEventListener('DOMContentLoaded',()=>{
 function copyWeek(){navigator.clipboard.writeText(window._wkTxt||'').then(()=>alert('Agenda da semana copiada! Cole onde quiser.'))}
 
 /* favoritos + perto de mim */
-let favs=new Set(JSON.parse(localStorage.getItem('vspFavs')||'[]')),favOnly=false,freeOnly=false,userPos=null,nearOn=false,userMarker=null;
-function toggleFav(n){favs.has(n)?favs.delete(n):favs.add(n);localStorage.setItem('vspFavs',JSON.stringify([...favs]));draw();}
+let favs=new Set((()=>{try{return JSON.parse(LS.get('vspFavs')||'[]');}catch(_){return [];}})()),favOnly=false,freeOnly=false,userPos=null,nearOn=false,userMarker=null;
+function toggleFav(n){favs.has(n)?favs.delete(n):favs.add(n);LS.set('vspFavs',JSON.stringify([...favs]));draw();}
 function distKm(v){const R=6371,dLa=(v.lat-userPos[0])*Math.PI/180,dLo=(v.lng-userPos[1])*Math.PI/180,
   x=Math.sin(dLa/2)**2+Math.cos(userPos[0]*Math.PI/180)*Math.cos(v.lat*Math.PI/180)*Math.sin(dLo/2)**2;
   return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));}
@@ -1100,8 +1119,8 @@ document.getElementById('nearBtn').onclick=function(){
 
 /* contador de visitas + enquete (Abacus — anônimo, sem cookies de rastreamento) */
 const ABC='https://abacus.jasoncameron.dev',NS='vernissages-sp-lucas';
-const jaVeio=localStorage.getItem('vspSeen');
-if(!jaVeio)localStorage.setItem('vspSeen','1');
+const jaVeio=LS.get('vspSeen');
+if(!jaVeio)LS.set('vspSeen','1');
 fetch(ABC+(jaVeio?'/get/':'/hit/')+NS+'/visitas').then(r=>r.json()).then(j=>{
   document.getElementById('vc').textContent=Number(j.value).toLocaleString('pt-BR');
   document.getElementById('visits').style.display='block';
@@ -1134,12 +1153,12 @@ const CORES=['var(--accent)','var(--accent2)','var(--violet)','var(--green)','va
   }
   function pollResults(){
     Promise.all(POLL.map(p=>fetch(ABC+'/get/'+NS+'/pub_'+p[0]).then(r=>r.json()).then(j=>Number(j.value)||0).catch(()=>0)))
-      .then(vs=>termometro(vs,localStorage.getItem('vspVote')))
-      .catch(()=>termometro(POLL.map(()=>0),localStorage.getItem('vspVote')));
+      .then(vs=>termometro(vs,LS.get('vspVote')))
+      .catch(()=>termometro(POLL.map(()=>0),LS.get('vspVote')));
   }
   function vote(k){
-    if(localStorage.getItem('vspVote'))return pollResults();
-    localStorage.setItem('vspVote',k);
+    if(LS.get('vspVote'))return pollResults();
+    LS.set('vspVote',k);
     fetch(ABC+'/hit/'+NS+'/pub_'+k).then(()=>pollResults()).catch(()=>pollResults());
   }
   pollResults();
