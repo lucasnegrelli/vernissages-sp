@@ -742,19 +742,20 @@ let markers={};
 
 /* o título costuma repetir o nome do artista, que já aparece no campo próprio.
    remove a repetição só quando sobra um título com sentido. */
-const GENERICO=/^(individual|coletiva|solo|individual do artista|mostra)$/i;
+const GENERICO=/^(individual|coletiva|solo|mostra|exposição)$/i;
 function tituloLimpo(e){
   if(!e.a)return e.t;
   const esc=x=>x.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
   let t=e.t;
-  e.a.split(', ').forEach(n=>{
-    n=n.trim(); if(!n)return;
-    let r=t.replace(new RegExp('\\s*[—–-]\\s*'+esc(n)+'\\s*$'),'').trim();   // "Título — Artista"
-    if(r&&r.length>2&&!GENERICO.test(r)){t=r;return;}
-    r=t.replace(new RegExp('^'+esc(n)+'\\s*:\\s*'),'').trim();               // "Artista: Título"
-    if(r&&r.length>2&&!GENERICO.test(r)){t=r;return;}
-    r=t.replace(new RegExp('^'+esc(n)+'\\s*[—–-]\\s*'),'').trim();           // "Artista — Título"
-    if(r&&r.length>3&&!GENERICO.test(r))t=r;
+  e.a.split(',').forEach(nome=>{
+    const n=nome.trim(); if(!n)return;
+    /* só vale se a regra realmente mudou o título e o que sobrou faz sentido */
+    const tenta=re=>{const r=t.replace(re,'').trim();
+      return (r!==t && r.length>=2 && !GENERICO.test(r)) ? r : null;};
+    const novoT = tenta(new RegExp('\\s*[—–\\-]\\s*'+esc(n)+'\\s*$'))      // "Título — Artista"
+              || tenta(new RegExp('^'+esc(n)+'\\s*:\\s*'))                   // "Artista: Título"
+              || tenta(new RegExp('^'+esc(n)+'\\s*[—–]\\s*'));               // "Artista — Título"
+    if(novoT)t=novoT;
   });
   return t||e.t;
 }
