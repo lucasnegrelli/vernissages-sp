@@ -997,14 +997,14 @@ function renderFoco(){
     const man=window.DATA.foco;
     /* patrocinio continua mandando: se publi:true, o bloco manual vence */
     let f=null, auto=false;
-    if(man&&man.t&&man.publi){ f=man; }
+    if(man&&man.t&&man.publi){ f=Object.assign({},man,{t:tituloLimpo({t:man.t,a:man.quem||''})}); }
     else{
       const pool=expos.filter(e=>e.img);
-      if(!pool.length){ if(man&&man.t){f=man;} else {el.style.display='none';return;} }
+      if(!pool.length){ if(man&&man.t){f=Object.assign({},man,{t:tituloLimpo({t:man.t,a:man.quem||''})});} else {el.style.display='none';return;} }
       else{
         const dia=Math.floor((Date.now()-3*3600e3)/864e5);
         const e=pool[dia%pool.length];
-        f={t:e.t,v:e.v,quem:e.a||'',txt:e.d||'',img:e.img,cred:e.cred||''};
+        f={t:tituloLimpo(e),v:e.v,quem:e.a||'',txt:e.d||'',img:e.img,cred:e.cred||''};
         auto=true;
       }
     }
@@ -1048,7 +1048,7 @@ const wk=expos.filter(e=>{const d=new Date(e.ini+'T12:00');return d<=end&&d>=sta
   if(!wk.length){w.style.display='none';return}
   w.style.display='block';
   document.getElementById('wkrow').innerHTML=wk.map(e=>`<div class="wk" onclick="focusVenue('${e.ven.name.replace(/'/g,"\\'")}')">
-    <div class="d">${fmt(e.ini)}${e.ini===HOJESTR?'<span class="nw hj">HOJE</span>':(new Date(e.ini+'T12:00')<TODAY?'<span class="nw">JÁ ABRIU</span>':'')}</div><div class="t">${e.t}</div><div class="v">${e.ven.name} · ${e.ven.b}</div></div>`).join('');
+    <div class="d">${fmt(e.ini)}${e.ini===HOJESTR?'<span class="nw hj">HOJE</span>':(new Date(e.ini+'T12:00')<TODAY?'<span class="nw">JÁ ABRIU</span>':'')}</div><div class="t">${tituloLimpo(e)}</div><div class="v">${e.ven.name} · ${e.ven.b}</div></div>`).join('');
   const txt='Vernissages SP — aberturas da semana:\n'+wk.map(e=>`• ${fmt(e.ini)}${e.ini===HOJESTR?' (hoje!)':(new Date(e.ini+'T12:00')<TODAY?' (já abriu)':'')} — ${e.t} @ ${e.ven.name} (${e.ven.b})`).join('\n')+'\n\nAgenda completa, mapa e roteiros: https://vernissagessp.com.br/';
   window._wkTxt=txt;
   document.getElementById('waShare').href='https://wa.me/?text='+encodeURIComponent(txt);
