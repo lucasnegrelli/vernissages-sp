@@ -1,53 +1,17 @@
-/* v5 — sem skipWaiting/clients.claim: combinados com recarga automática
-   na página, produziam laço infinito de reload no celular.
-   v4 — correção anterior:
-   a versão anterior podia devolver "undefined" quando a rede falhava e o item
-   não estava em cache, o que derruba a página inteira (tela em branco no celular).
-   Agora: só trata o próprio domínio, nunca devolve resposta vazia e tem
-   página de reserva para navegação offline. */
-const C='vsp-v5';
-const ESSENCIAIS=['./','./index.html','./dados.js','./manifest.webmanifest'];
+/* AUTODESTRUIÇÃO.
+   Este arquivo substitui o service worker anterior apenas para desinstalá-lo
+   dos aparelhos que já o registraram. Ele não intercepta nenhuma requisição:
+   apaga os caches, remove o próprio registro e sai de cena.
+   O site passou a ser um site comum, sem PWA. */
+self.addEventListener('install',()=>{ self.skipWaiting(); });
 
-self.addEventListener('install',e=>{
-  e.waitUntil(caches.open(C).then(c=>c.addAll(ESSENCIAIS).catch(()=>{})));
-});
-
-self.addEventListener('activate',e=>{
-  e.waitUntil(
-    caches.keys()
-      .then(k=>Promise.all(k.filter(x=>x!==C).map(x=>caches.delete(x))))
-  );
-});
-
-/* permite desligar o service worker pela página, em caso de emergência */
-self.addEventListener('message',e=>{
-  if(e.data==='desligar'){
-    self.registration.unregister().then(()=>caches.keys().then(k=>Promise.all(k.map(x=>caches.delete(x)))));
-  }
-});
-
-self.addEventListener('fetch',e=>{
-  const req=e.request;
-  if(req.method!=='GET')return;
-  let url;
-  try{url=new URL(req.url);}catch(_){return;}
-  /* fontes, tiles do mapa e imagens de galerias vão direto para a rede:
-     interceptá-los só cria pontos de falha */
-  if(url.origin!==self.location.origin)return;
-
-  e.respondWith((async()=>{
+self.addEventListener('activate',event=>{
+  event.waitUntil((async()=>{
     try{
-      const r=await fetch(req);
-      if(r&&r.ok){const cl=r.clone();caches.open(C).then(c=>c.put(req,cl)).catch(()=>{});}
-      return r;
-    }catch(_){
-      const emCache=await caches.match(req);
-      if(emCache)return emCache;
-      if(req.mode==='navigate'){
-        const home=await caches.match('./index.html')||await caches.match('./');
-        if(home)return home;
-      }
-      return new Response('',{status:504,statusText:'offline'});
-    }
+      const chaves=await caches.keys();
+      await Promise.all(chaves.map(k=>caches.delete(k)));
+    }catch(_){}
+    try{ await self.registration.unregister(); }catch(_){}
   })());
 });
+/* sem listener de 'fetch': as requisições vão direto para a rede */
