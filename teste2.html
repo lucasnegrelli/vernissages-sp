@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teste de renderização</title><meta name="robots" content="noindex">
+<style>
+  body{margin:0;background:#0a0a0d;color:#f3f3f7;font:15px/1.5 system-ui,sans-serif;padding:16px}
+  h1{font-size:17px;margin:0 0 14px}
+  .cx{position:relative;height:150px;border-radius:12px;margin-bottom:14px;overflow:hidden;
+      background:linear-gradient(135deg,#e8c15a,#c96f4a,#a78bfa)}
+  .ov{position:absolute;inset:22px;border-radius:10px;display:flex;align-items:center;
+      justify-content:center;font-weight:700;text-align:center;padding:10px;
+      background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.25)}
+  .comBlur{backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%)}
+  .fix{position:fixed;left:16px;right:16px;bottom:16px;padding:13px;border-radius:12px;
+       background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.3);
+       backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);text-align:center;font-weight:700}
+  p{color:#9a9aa6;font-size:13px}
+</style></head><body>
+<h1>Teste de renderização</h1>
+<p>Diga quais destes três blocos você consegue ler no celular.</p>
+
+<div class="cx"><div class="ov">BLOCO 1 — sem vidro fosco<br>(deve aparecer sempre)</div></div>
+<div class="cx"><div class="ov comBlur">BLOCO 2 — COM vidro fosco</div></div>
+<p style="margin-bottom:90px">Se o bloco 2 sumir, ficar preto ou piscar, o problema é o efeito de vidro fosco.</p>
+<div class="fix">BLOCO 3 — vidro fosco + camada fixa</div>
+</body></html>

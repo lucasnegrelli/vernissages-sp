@@ -511,6 +511,32 @@
     .chip{padding:6px 12px;font-size:.78rem}
   }
   @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+  /* ============================================================
+     backdrop-filter (vidro fosco) é aceleração de GPU. Em muitos aparelhos
+     Android — sobretudo combinado com position:sticky/fixed, como no header —
+     ele quebra a composição da tela: a página fica preta, pisca ao toque e
+     trava. Em telas de toque trocamos por fundos sólidos: mesmo layout,
+     mesma leitura, sem depender da GPU.
+     ============================================================ */
+  @media (max-width:1024px), (hover:none), (pointer:coarse){
+    header,#search,.card,.chip,.foco,.panel,.wkwrap,.dirwrap,#modal,#modalBg,
+    #routePanel,.navbtn,.navmenu,.infopop,.viewtoggle,select,th,.focoimg .cred,
+    .kpi,.wk,.btn{
+      backdrop-filter:none !important;
+      -webkit-backdrop-filter:none !important;
+    }
+    header{background:#0c0c10 !important}
+    .card,.panel,.foco,.wkwrap,.dirwrap,#modal,#routePanel,.navmenu,.infopop,.wk{
+      background:#131318 !important}
+    #modalBg{background:rgba(6,6,9,.94) !important}
+    #search,select,.chip,.navbtn,.viewtoggle,.btn{background:#17171d !important}
+    th{background:#131318 !important}
+    .focoimg .cred{background:rgba(10,10,13,.85) !important}
+    /* filtros/sombras pesadas também custam GPU */
+    *{box-shadow:none !important}
+    .card,.panel,.foco,.wkwrap,.dirwrap{border:1px solid rgba(255,255,255,.10) !important}
+  }
 </style>
 </head>
 <body>
