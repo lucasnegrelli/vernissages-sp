@@ -199,6 +199,18 @@
   .btn{display:inline-block;background:var(--glass2);border:1px solid var(--line);color:var(--text2);
     border-radius:20px;padding:5px 13px;font-size:.74rem;cursor:pointer;text-decoration:none;transition:.18s;white-space:nowrap}
   .btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(232,193,90,.09)}
+  .btn.ico{padding:5px 8px;line-height:0;display:inline-flex;align-items:center;justify-content:center}
+  .btn.ico svg{display:block}
+  .dobra>h2{position:relative}
+  @media(max-width:950px){
+    .dobra>h2{cursor:pointer;padding-right:30px;user-select:none}
+    .dobra>h2::after{content:'';position:absolute;right:6px;top:50%;width:9px;height:9px;
+      border-right:1.6px solid var(--muted);border-bottom:1.6px solid var(--muted);
+      transform:translateY(-70%) rotate(45deg);transition:transform .22s}
+    .dobra.aberta>h2::after{transform:translateY(-25%) rotate(225deg)}
+    .dobra .dobrac{display:none}
+    .dobra.aberta .dobrac{display:block}
+  }
   .btn.add{border-color:rgba(167,139,250,.4);color:var(--violet)}
   .btn.add:hover{background:rgba(167,139,250,.14);border-color:var(--violet);color:var(--violet)}
   .share{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
@@ -585,25 +597,22 @@
   <p class="note">Diretório com as principais galerias ativas verificadas + espaços institucionais. O estudo FGV/ArteRef contabiliza 67 galerias do mercado primário na cidade, mas a lista nominal completa não foi publicada — endereços marcados com ~ são aproximados; confirme antes de visitar.</p>
 
   <div class="prefoot">
-    <section>
+    <section class="dobra">
       <h2>Quem é o público · enquete anônima</h2>
+      <div class="dobrac">
       <div class="poll panel" id="poll"><p class="note" style="margin:0">Carregando enquete…</p></div>
       <div class="panel ritmo" id="ritmo"></div>
-      <div class="panel cta">
-        <div class="ctatxt">
-          <h3>Divulgue sua vernissage</h3>
-          <p>Sua abertura entra na agenda, no mapa e no envio de sexta — de graça.</p>
-        </div>
-        <button class="ctabtn" onclick="openForm()">Enviar</button>
       </div>
     </section>
-    <section>
+    <section class="dobra">
       <h2>Galerias por bairro · FGV/ArteRef</h2>
+      <div class="dobrac">
       <div class="panel">
         <div class="paineltopo"><span class="pt">Onde as galerias se concentram</span><span class="pn2" id="barsTotal"></span></div>
         <div class="bars" id="bars"></div>
       </div>
       <p class="note">Clique num bairro para filtrar a agenda e o mapa.</p>
+      </div>
     </section>
   </div>
 
@@ -698,11 +707,17 @@ function selo(nome){
     if(k===4) return '<path d="M'+(x-r)+' '+(y-r)+'L'+(x+r)+' '+(y+r)+'M'+(x+r)+' '+(y-r)+'L'+(x-r)+' '+(y+r)+'" stroke="'+col+'" stroke-width="3" stroke-linecap="round"/>';
     return '<rect x="'+(x-r)+'" y="'+(y-1.6)+'" width="'+(2*r)+'" height="3.2" rx="1.6" fill="'+col+'"/>';
   };
-  const g=q.map((p,i)=>forma(rnd(6),p[0],p[1],7+rnd(3),c[i%2]));
-  const gira=rnd(4)*90;
+  /* parede de galeria: obras penduradas, linha do chão e o visitante */
+  const obras=[[11,3],[19,2],[26,4]].map((o,i)=>{
+    const lg=7+rnd(5), al=8+rnd(7), x=o[0], y=26-al;
+    return '<rect x="'+x+'" y="'+y+'" width="'+lg+'" height="'+al+'" rx="1" fill="'+(i===rnd(3)?c[0]:'none')+
+           '" stroke="'+c[1]+'" stroke-width="1.5" opacity="'+(i===rnd(3)?'.9':'.55')+'"/>';
+  });
   return '<svg viewBox="0 0 '+N+' '+N+'" width="40" height="40" aria-hidden="true">'+
-    '<rect width="'+N+'" height="'+N+'" rx="11" fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.14)"/>'+
-    '<g opacity=".95" transform="rotate('+gira+' 24 24)">'+g.join('')+'</g></svg>';
+    '<rect width="'+N+'" height="'+N+'" rx="11" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.13)"/>'+
+    obras.join('')+
+    '<path d="M9 29h30" stroke="'+c[1]+'" stroke-width="1.4" opacity=".45" stroke-linecap="round"/>'+
+    '<circle cx="'+(15+rnd(18))+'" cy="34" r="2.4" fill="'+c[0]+'"/></svg>';
 }
 
 /* KPIs */
@@ -725,6 +740,24 @@ const map=L.map('map').setView([-23.556,-46.668],12);
 L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png',{attribution:'© OpenStreetMap © CARTO',maxZoom:18}).addTo(map);
 let markers={};
 
+/* o título costuma repetir o nome do artista, que já aparece no campo próprio.
+   remove a repetição só quando sobra um título com sentido. */
+const GENERICO=/^(individual|coletiva|solo|individual do artista|mostra)$/i;
+function tituloLimpo(e){
+  if(!e.a)return e.t;
+  const esc=x=>x.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  let t=e.t;
+  e.a.split(', ').forEach(n=>{
+    n=n.trim(); if(!n)return;
+    let r=t.replace(new RegExp('\\s*[—–-]\\s*'+esc(n)+'\\s*$'),'').trim();   // "Título — Artista"
+    if(r&&r.length>2&&!GENERICO.test(r)){t=r;return;}
+    r=t.replace(new RegExp('^'+esc(n)+'\\s*:\\s*'),'').trim();               // "Artista: Título"
+    if(r&&r.length>2&&!GENERICO.test(r)){t=r;return;}
+    r=t.replace(new RegExp('^'+esc(n)+'\\s*[—–-]\\s*'),'').trim();           // "Artista — Título"
+    if(r&&r.length>3&&!GENERICO.test(r))t=r;
+  });
+  return t||e.t;
+}
 function popupHtml(v,ex){
   let h=`<b>${v.name}</b><br>${v.addr} · ${v.b} (Zona ${v.z})<br><i>${v.info||''}</i>`;
   if(ex&&ex.length)h+='<hr style="border-color:#333">'+ex.map(e=>`▸ <b>${e.t}</b><br>&nbsp;&nbsp;${e.st==='opening'?'abre '+fmt(e.ini):'até '+(e.fim?fmt(e.fim):'—')}`).join('<br>');
@@ -732,6 +765,9 @@ function popupHtml(v,ex){
 h+=`<br>${v.site?`<a href="${v.site}" target="_blank">Site</a> · `:''}${v.ig?`<a href="https://instagram.com/${v.ig}" target="_blank">IG</a> · `:''}<a href="${gsearch(v.name+' galeria são paulo')}" target="_blank">Buscar</a> · <a href="${gmaps(v)}" target="_blank">Como chegar</a>`;
   return h;
 }
+const ICO={
+ site:'<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3.2 9.5h17.6M3.2 14.5h17.6M12 3.2c2.4 2.4 3.6 5.4 3.6 8.8s-1.2 6.4-3.6 8.8c-2.4-2.4-3.6-5.4-3.6-8.8S9.6 5.6 12 3.2z"/></svg>',
+ ig:'<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5.2"/><circle cx="12" cy="12" r="4"/><circle cx="17.1" cy="6.9" r="1.15" fill="currentColor" stroke="none"/></svg>'};
 const gsearch=q=>'https://www.google.com/search?q='+encodeURIComponent(q);
 
 function matches(v,q){return !q||[v.name,v.addr,v.b,v.z,v.info].join(' ').toLowerCase().includes(q)}
@@ -760,7 +796,7 @@ function draw(){
     const tag=e.ven.tipo==='feira'?'<span class="tag fair">FEIRA</span>':`<span class="tag ${e.st}">${STLBL[e.st]}</span>`;
     const dates=e.st==='opening'?`abre ${fmt(e.ini)}${e.fim?' · até '+fmt(e.fim):''}`:`até ${e.fim?fmt(e.fim):'—'}`;
     return `<div class="card ${cls}">
-      <div class="title" onclick="focusVenue('${e.ven.name.replace(/'/g,"\\'")}')">${e.t}</div>
+      <div class="title" onclick="focusVenue('${e.ven.name.replace(/'/g,"\\'")}')">${tituloLimpo(e)}</div>
       <div class="venue">${e.ven.name} · ${e.ven.b}</div>
       <div class="addr">${e.ven.addr}</div>
       ${e.a?`<div class="addr">${e.a.split(', ').map(n=>`<span class="artist" onclick="openArtist('${n.replace(/'/g,"\\'")}')">${n}</span>`).join(' · ')}</div>`:''}
@@ -769,8 +805,8 @@ ${(()=>{const g=ingressoDe(e.ven);return (e.ven.tipo!=='galeria'&&g.free)?`<div 
       <div class="meta">${tag}${ingTag(e.ven)}<span>${dates}</span>
         ${nearOn&&userPos?`<span class="dist">${distKm(e.ven).toFixed(1)} km</span>`:''}
         <span class="fav ${favs.has(e.ven.name)?'on':''}" onclick="toggleFav('${e.ven.name.replace(/'/g,"\\'")}')" title="Favoritar">&#9829;</span>
-        ${e.ven.site?`<a class="btn" href="${e.ven.site}" target="_blank">Site</a>`:''}
-        ${e.ven.ig?`<a class="btn" href="https://instagram.com/${e.ven.ig}" target="_blank">IG</a>`:''}
+        ${e.ven.site?`<a class="btn ico" href="${e.ven.site}" target="_blank" title="Site" aria-label="Site">${ICO.site}</a>`:''}
+        ${e.ven.ig?`<a class="btn ico" href="https://instagram.com/${e.ven.ig}" target="_blank" title="Instagram" aria-label="Instagram">${ICO.ig}</a>`:''}
         <a class="btn" href="${gsearch(e.t+' '+e.ven.name)}" target="_blank">Info</a>
         <a class="btn" href="${gmaps(e.ven)}" target="_blank">Rota</a></div>
     </div>`;
@@ -840,8 +876,8 @@ function drawDir(q,zona,b,tipo,ven){
     <td><span class="gname" onclick="focusVenue('${v.name.replace(/'/g,"\\'")}')">${v.name}</span></td>
     <td>${v.addr}</td><td>${v.b}</td><td class="zona">${v.z}</td><td class="zona">${v.tipo}</td>
     <td class="actions"><span class="fav ${favs.has(v.name)?'on':''}" onclick="toggleFav('${v.name.replace(/'/g,"\\'")}')" title="Favoritar">&#9829;</span>
-      ${v.site?`<a class="btn" href="${v.site}" target="_blank">Site</a>`:`<a class="btn" href="${gsearch(v.name+' galeria são paulo')}" target="_blank">Buscar</a>`}
-      ${v.ig?`<a class="btn" href="https://instagram.com/${v.ig}" target="_blank">IG</a>`:''}
+      ${v.site?`<a class="btn ico" href="${v.site}" target="_blank" title="Site" aria-label="Site">${ICO.site}</a>`:`<a class="btn" href="${gsearch(v.name+' galeria são paulo')}" target="_blank">Buscar</a>`}
+      ${v.ig?`<a class="btn ico" href="https://instagram.com/${v.ig}" target="_blank" title="Instagram" aria-label="Instagram">${ICO.ig}</a>`:''}
       <a class="btn" href="${gmaps(v)}" target="_blank">Rota</a></td></tr>`).join('');
   document.getElementById('dirtitle').textContent=`Diretório de Galerias e Espaços (${rows.length})`;
 }
@@ -1008,6 +1044,15 @@ const wk=expos.filter(e=>{const d=new Date(e.ini+'T12:00');return d<=end&&d>=sta
   document.getElementById('waShare').href='https://wa.me/?text='+encodeURIComponent(txt);
   setTimeout(wkFade,60);
 }
+/* no celular os painéis de análise abrem sob demanda, para não empurrar a agenda */
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.dobra>h2').forEach(h=>{
+    h.addEventListener('click',()=>{
+      if(!window.matchMedia('(max-width:950px)').matches)return;
+      h.parentElement.classList.toggle('aberta');
+    });
+  });
+});
 function wkFade(){
   const r=document.getElementById('wkrow'),f=document.getElementById('wkfade');
   if(!r||!f)return;
