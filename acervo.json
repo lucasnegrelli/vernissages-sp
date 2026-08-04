@@ -1507,7 +1507,8 @@
    "tipo": "institucional",
    "site": "https://ccbb.com.br",
    "ig": "ccbbsp",
-   "visto": "2026-08-04"
+   "visto": "2026-08-04",
+   "primeiroRegistro": "2026-08-04"
   },
   {
    "id": "o-fascinio-e-o-afeto-coletiva--galeria-nara-roesler",
@@ -1523,7 +1524,8 @@
    "tipo": "galeria",
    "site": "https://nararoesler.art",
    "ig": "galerianararoesler",
-   "visto": "2026-08-04"
+   "visto": "2026-08-04",
+   "primeiroRegistro": "2026-08-04"
   },
   {
    "id": "smoke-lucia-nogueira--gomide-e-co",
@@ -1539,7 +1541,8 @@
    "tipo": "galeria",
    "site": "https://gomideco.com.br",
    "ig": "gomideco",
-   "visto": "2026-08-04"
+   "visto": "2026-08-04",
+   "primeiroRegistro": "2026-08-04"
   },
   {
    "id": "quadros-ubirajara-ribeiro--gomide-e-co",
@@ -1555,7 +1558,8 @@
    "tipo": "galeria",
    "site": "https://gomideco.com.br",
    "ig": "gomideco",
-   "visto": "2026-08-04"
+   "visto": "2026-08-04",
+   "primeiroRegistro": "2026-08-04"
   },
   {
    "id": "eclodir-o-efemero-luisa-bresser--espaco-republica",
@@ -1571,7 +1575,8 @@
    "tipo": "hibrido",
    "site": "",
    "ig": "espacorepublica",
-   "visto": "2026-08-04"
+   "visto": "2026-08-04",
+   "primeiroRegistro": "2026-08-04"
   },
   {
    "id": "39-panorama-da-arte-brasileira-depois-que-tudo-foi-dito--mam-sao-paulo",
@@ -1587,7 +1592,8 @@
    "tipo": "institucional",
    "site": "https://mam.org.br",
    "ig": "mamsaopaulo",
-   "visto": "2026-08-04"
+   "visto": "2026-08-04",
+   "primeiroRegistro": "2026-08-04"
   }
  ],
  "artistas": {
