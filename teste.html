@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagnóstico — Vernissages SP</title>
+<meta name="robots" content="noindex">
+<style>
+  body{background:#fff;color:#111;font:16px/1.55 system-ui,-apple-system,sans-serif;margin:0;padding:18px}
+  h1{font-size:18px;margin:0 0 4px}
+  .p{font-size:13px;color:#555;margin:0 0 16px}
+  .l{border:1px solid #ddd;border-radius:8px;padding:11px 13px;margin-bottom:8px}
+  .ok{border-color:#1a7f37;background:#eaf6ec}
+  .no{border-color:#c00;background:#fdecea}
+  .t{font-weight:700;font-size:14px}
+  .d{font-size:12px;color:#444;word-break:break-all;margin-top:3px}
+  code{background:#f0f0f0;padding:1px 4px;border-radius:3px;font-size:12px}
+</style>
+</head>
+<body>
+<h1>Diagnóstico do Vernissages SP</h1>
+<p class="p">Esta página é HTML puro, sem depender de nada. Mande um print deste resultado.</p>
+<div id="r">
+  <div class="l ok"><div class="t">1. HTML e CSS — OK</div>
+    <div class="d">Se você está lendo isto com fundo branco, o servidor e o CSS funcionam.</div></div>
+</div>
+<script>
+(function(){
+  var r=document.getElementById('r');
+  function add(ok,titulo,detalhe){
+    var d=document.createElement('div');
+    d.className='l '+(ok?'ok':'no');
+    d.innerHTML='<div class="t">'+titulo+'</div><div class="d">'+detalhe+'</div>';
+    r.appendChild(d);
+  }
+  add(true,'2. JavaScript — OK','O navegador executa scripts.');
+  add(true,'3. Navegador',navigator.userAgent);
+  add(true,'4. Tela',window.innerWidth+' x '+window.innerHeight+' · densidade '+(window.devicePixelRatio||1));
+
+  var erros=[];
+  window.addEventListener('error',function(e){erros.push((e.message||'?')+' @ '+(e.filename||'?')+':'+(e.lineno||'?'));},true);
+
+  // 5. dados.js
+  var s=document.createElement('script'); s.src='dados.js?t='+Date.now();
+  s.onload=function(){
+    var n=(window.DATA&&window.DATA.venues)?window.DATA.venues.length:0;
+    add(n>0,'5. Arquivo de dados — '+(n>0?'OK':'FALHOU'),
+      n>0?(n+' espaços carregados · atualizado em '+window.DATA.atualizado):'carregou mas veio vazio');
+    depois();
+  };
+  s.onerror=function(){ add(false,'5. Arquivo de dados — FALHOU','dados.js não pôde ser baixado'); depois(); };
+  document.head.appendChild(s);
+
+  function depois(){
+    // 6. Leaflet (CDN externo)
+    var l=document.createElement('script');
+    l.src='https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js';
+    l.onload=function(){ add(typeof L!=='undefined','6. Biblioteca do mapa (CDN) — '+(typeof L!=='undefined'?'OK':'FALHOU'),'cdnjs.cloudflare.com'); fim(); };
+    l.onerror=function(){ add(false,'6. Biblioteca do mapa (CDN) — BLOQUEADA','cdnjs.cloudflare.com não carregou nesta rede'); fim(); };
+    document.head.appendChild(l);
+  }
+  function fim(){
+    // 7. fontes externas
+    var f=document.createElement('link'); f.rel='stylesheet';
+    f.href='https://fonts.googleapis.com/css2?family=Inter&display=swap';
+    f.onload=function(){ add(true,'7. Fontes (Google) — OK','fonts.googleapis.com'); rodape(); };
+    f.onerror=function(){ add(false,'7. Fontes (Google) — BLOQUEADA','fonts.googleapis.com não carregou'); rodape(); };
+    document.head.appendChild(f);
+  }
+  function rodape(){
+    setTimeout(function(){
+      add(erros.length===0,'8. Erros capturados — '+(erros.length===0?'nenhum':erros.length),
+        erros.length?erros.join('<br>'):'nenhum erro de script nesta página');
+      var sw='—';
+      if('serviceWorker' in navigator){
+        navigator.serviceWorker.getRegistrations().then(function(rs){
+          add(rs.length===0,'9. Service workers — '+rs.length,rs.length?'ainda há worker instalado':'nenhum (correto)');
+        });
+      }
+    },900);
+  }
+})();
+</script>
+</body>
+</html>
