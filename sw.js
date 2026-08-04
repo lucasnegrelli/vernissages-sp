@@ -1,21 +1,21 @@
-/* v4 — correção crítica:
+/* v5 — sem skipWaiting/clients.claim: combinados com recarga automática
+   na página, produziam laço infinito de reload no celular.
+   v4 — correção anterior:
    a versão anterior podia devolver "undefined" quando a rede falhava e o item
    não estava em cache, o que derruba a página inteira (tela em branco no celular).
    Agora: só trata o próprio domínio, nunca devolve resposta vazia e tem
    página de reserva para navegação offline. */
-const C='vsp-v4';
+const C='vsp-v5';
 const ESSENCIAIS=['./','./index.html','./dados.js','./manifest.webmanifest'];
 
 self.addEventListener('install',e=>{
   e.waitUntil(caches.open(C).then(c=>c.addAll(ESSENCIAIS).catch(()=>{})));
-  self.skipWaiting();
 });
 
 self.addEventListener('activate',e=>{
   e.waitUntil(
     caches.keys()
       .then(k=>Promise.all(k.filter(x=>x!==C).map(x=>caches.delete(x))))
-      .then(()=>self.clients.claim())
   );
 });
 
