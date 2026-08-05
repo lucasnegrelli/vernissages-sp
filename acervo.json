@@ -1609,7 +1609,8 @@
    "tipo": "galeria",
    "site": "https://galeriavermelho.com.br",
    "ig": "galeriavermelho",
-   "visto": "2026-08-05"
+   "visto": "2026-08-05",
+   "primeiroRegistro": "2026-08-05"
   },
   {
    "id": "ceu-de-concreto-luiz-carlos-paulino--central-galeria",
@@ -1625,7 +1626,8 @@
    "tipo": "galeria",
    "site": "https://www.centralgaleria.com",
    "ig": "centralgaleria",
-   "visto": "2026-08-05"
+   "visto": "2026-08-05",
+   "primeiroRegistro": "2026-08-05"
   }
  ],
  "artistas": {
