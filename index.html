@@ -238,6 +238,7 @@
     color:var(--text2);background:rgba(10,10,13,.6);border:1px solid var(--line);
     padding:3px 9px;border-radius:20px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
   .focolocal{color:var(--muted);font-size:.79rem;margin-top:4px}
+.focodata{color:var(--accent2);font-size:.75rem;font-weight:600;letter-spacing:.3px;margin-top:6px}
   .foco::before{content:'';position:absolute;inset:0;pointer-events:none;
     background:radial-gradient(70% 130% at 0% 0%,rgba(232,193,90,.10),transparent 60%)}
   .foco>*{position:relative}
@@ -1067,19 +1068,46 @@ function sendForm(via){
 }
 
 /* em foco: bloco editorial destacado (vira espaço patrocinado com f.publi=true) */
-function renderFoco(){
+const HOJE_ISO=new Date(Date.now()-3*3600e3).toISOString().slice(0,10);
+  function dataFoco(f){
+    if(!f.ini) return '';
+    const ate=f.fim?' → '+fmt(f.fim):'';
+    if(f.ini===HOJE_ISO) return 'Abre hoje · '+fmt(f.ini)+ate;
+    if(f.ini>HOJE_ISO)   return 'Abertura '+fmt(f.ini)+(f.fim?' · até '+fmt(f.fim):'');
+    return 'Em cartaz · '+fmt(f.ini)+(f.fim?ate:' · encerramento não divulgado');
+  }
+  function renderFoco(){
     const el=document.getElementById('foco'); if(!el) return;
     const man=window.DATA.foco;
     /* patrocinio continua mandando: se publi:true, o bloco manual vence */
     let f=null, auto=false;
     if(man&&man.t&&man.publi){ f=Object.assign({},man,{t:tituloLimpo({t:man.t,a:man.quem||''})}); }
     else{
-      const pool=expos.filter(e=>e.img);
-      if(!pool.length){ if(man&&man.t){f=Object.assign({},man,{t:tituloLimpo({t:man.t,a:man.quem||''})});} else {el.style.display='none';return;} }
+      /* Escolha do destaque. expos ja exclui mostras encerradas.
+         1) se DATA.destaques traz uma entrada com a data de hoje, ela manda;
+         2) senao escolhe sozinho, ignorando tudo que ja foi destaque em outro dia,
+            com prioridade para quem abre hoje, depois a abertura mais proxima. */
+      const hist=window.DATA.destaques||[];
+      const kOf=x=>x.t+'|'+x.v;
+      const fixo=hist.find(h=>h.d===HOJE_ISO);
+      const usados=new Set(hist.filter(h=>h.d<HOJE_ISO).map(h=>h.k));
+      let e=fixo?expos.find(x=>kOf(x)===fixo.k):null;
+      if(!e){
+        let livres=expos.filter(x=>!usados.has(kOf(x)));
+        if(!livres.length) livres=expos.slice();   /* acervo esgotado: recomeca o rodizio */
+        const rank=x=>x.ini===HOJE_ISO?0:(x.st==='opening'?1:2);
+        livres.sort((a,b)=>{
+          const ra=rank(a), rb=rank(b); if(ra!==rb) return ra-rb;
+          if(ra<2){ if(a.ini!==b.ini) return a.ini<b.ini?-1:1;      /* abertura mais proxima primeiro */
+                    return (b.img?1:0)-(a.img?1:0); }
+          const im=(b.img?1:0)-(a.img?1:0); if(im) return im;        /* em cartaz: com imagem na frente */
+          return a.ini<b.ini?1:-1;                                   /* e a mais recente */
+        });
+        e=livres[0];
+      }
+      if(!e){ if(man&&man.t){f=Object.assign({},man,{t:tituloLimpo({t:man.t,a:man.quem||''})});} else {el.style.display='none';return;} }
       else{
-        const dia=Math.floor((Date.now()-3*3600e3)/864e5);
-        const e=pool[dia%pool.length];
-        f={t:tituloLimpo(e),v:e.v,quem:e.a||'',txt:e.d||'',img:e.img,cred:e.cred||''};
+        f={t:tituloLimpo(e),v:e.v,quem:e.a||'',txt:e.d||'',img:e.img||'',cred:e.cred||'',ini:e.ini,fim:e.fim};
         auto=true;
       }
     }
@@ -1095,6 +1123,7 @@ function renderFoco(){
       '<h3>'+f.t+'</h3>'+
       (f.quem?'<div class="quem">'+f.quem+'</div>':'')+
       (v?'<div class="focolocal">'+v.name+' · '+v.b+'</div>':'')+
+      (f.ini?'<div class="focodata">'+dataFoco(f)+'</div>':'')+
       (f.txt?'<div class="txt">'+f.txt+'</div>':'')+
       '<div class="btns">'+
       (v?'<span class="btn add" onclick="focusVenue(\''+v.name.replace(/'/g,"\\'")+'\')">Ver no mapa</span>':'')+
@@ -1104,16 +1133,7 @@ function renderFoco(){
     el.style.display='';
   }
 renderFoco();
-  (function renderSelo(){
-    const v=window.FOCOV, box=document.getElementById('kpis');
-    if(!v||!box) return;
-    const d=document.createElement('div');
-    d.className='kpi kpiselo';
-    d.title=v.name+' — '+v.b;
-    d.innerHTML=selo(v.name)+'<span class="st"><b>'+v.name+'</b>espaço do dia</span>';
-    d.onclick=()=>focusVenue(v.name);
-    box.appendChild(d);
-  })();
+  /* o selo "espaco do dia" saiu da faixa de KPIs: a informacao ja aparece no bloco Em foco */
 
 /* vernissages da semana + compartilhar */
 function weekBanner(){
