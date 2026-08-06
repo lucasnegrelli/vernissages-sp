@@ -234,10 +234,25 @@ link:"https://www.galerialuisastrina.com.br/exhibitions",
 publi:false
 };
 
+/* ================= DESTAQUES JA USADOS =================
+Historico do bloco "Em foco", para nao repetir a mesma mostra.
+d = dia em que foi destaque (YYYY-MM-DD) · k = "titulo|venue", exatamente como no expo.
+A entrada com a data de hoje trava o destaque do dia. Sem ela, o site escolhe sozinho:
+primeiro quem abre hoje, depois a abertura mais proxima, ignorando tudo que ja apareceu
+em algum dia anterior. Quando o acervo se esgota, o rodizio recomeca.
+As entradas de 05/08 fecham o rodizio automatico antigo, que so girava entre as mostras
+com imagem e por isso repetia a cada cinco dias. */
+const DESTAQUES = [
+{d:"2026-08-05",k:"Ígneo Piaga — Thiago Martins de Melo|Almeida & Dale | Millan"},
+{d:"2026-08-05",k:"ÇA — Rita Lessa|Almeida & Dale | Millan"},
+{d:"2026-08-05",k:"Ojú-Inú — Ayrson Heráclito|Simões de Assis"},
+{d:"2026-08-06",k:"Eclodir o Efêmero — Luisa Bresser|Espaço República"}
+];
+
 /* ================= CONTATO =================
 Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, contato: CONTATO, atualizado: "06/08/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, bairros: BAIRRO_COUNTS };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "06/08/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, bairros: BAIRRO_COUNTS };
 })();
