@@ -241,12 +241,18 @@
 .focodata{color:var(--accent2);font-size:.75rem;font-weight:600;letter-spacing:.3px;margin-top:6px}
 .focoimg.gerada{background:#0a0a0d;display:block;overflow:hidden}
 .focoimg.gerada svg{width:100%;height:100%;display:block}
-.kpilista b{color:var(--accent)}
-.kpilista .listaacoes{display:flex;gap:12px;margin-top:4px}
-.kpilista .listalink{color:var(--accent2);cursor:pointer;font-weight:600;
-    text-decoration:underline;text-underline-offset:2px}
-.kpilista .listalink:hover{color:var(--accent)}
-.kpilista .listadica{opacity:.62;line-height:1.3;margin-top:2px}
+.kpimapa{padding:8px 6px 8px 10px;gap:5px;justify-content:center;align-items:center;cursor:crosshair}
+.kpimapa svg{width:100%;height:66px;display:block;overflow:visible}
+.kpimapa .cpt{fill:var(--muted);opacity:.40;transition:fill .18s,opacity .18s}
+.kpimapa .cpt.on{fill:var(--text2);opacity:.72}
+.kpimapa .cpt.hoje{fill:var(--accent);opacity:1}
+.kpimapa .cpt.ativo{fill:var(--accent2);opacity:1}
+.kpimapa .halo{fill:none;stroke:var(--accent);stroke-width:.6;pointer-events:none}
+.kpimapa .hit{fill:transparent;cursor:pointer}
+.kpimapa .cptlabel{font-size:.68rem;color:var(--muted);opacity:.8;white-space:nowrap;
+    overflow:hidden;text-overflow:ellipsis;max-width:100%;text-align:center}
+.kpimapa .cptlabel.ativo{color:var(--accent2);opacity:1}
+@media (prefers-reduced-motion:reduce){.kpimapa .halo{display:none}}
   .foco::before{content:'';position:absolute;inset:0;pointer-events:none;
     background:radial-gradient(70% 130% at 0% 0%,rgba(232,193,90,.10),transparent 60%)}
   .foco>*{position:relative}
@@ -1207,46 +1213,69 @@ function copyWeek(){navigator.clipboard.writeText(window._wkTxt||'').then(()=>al
 
 /* favoritos + perto de mim */
 let favs=new Set((()=>{try{return JSON.parse(LS.get('vspFavs')||'[]');}catch(_){return [];}})()),favOnly=false,freeOnly=false,userPos=null,nearOn=false,userMarker=null;
-function toggleFav(n){favs.has(n)?favs.delete(n):favs.add(n);LS.set('vspFavs',JSON.stringify([...favs]));draw();renderLista();}
+function toggleFav(n){favs.has(n)?favs.delete(n):favs.add(n);LS.set('vspFavs',JSON.stringify([...favs]));draw();}
 
-/* ---- sua lista: sexto item da faixa de numeros ----
-   Conta os espacos que a pessoa salvou, abre a agenda ja filtrada por eles
-   e monta um recado de WhatsApp com o que esta em cartaz em cada um. */
-function verLista(){
-  const b=document.getElementById('favBtn');
-  if(b&&!favOnly) b.click();
-  const alvo=document.getElementById('favBtn')||document.querySelector('.wrap h2');
-  if(alvo) alvo.scrollIntoView({behavior:'smooth',block:'center'});
-}
-function renderLista(){
+/* ---- constelacao SP: sexto item da faixa de numeros ----
+   Os enderecos plotados em escala real, sem contorno de cidade e sem ruas:
+   a nuvem de pontos desenha sozinha o circuito. Dourado pulsante abre hoje,
+   claro tem mostra em cartaz, apagado sem mostra no momento.
+   O mouse mostra o nome do espaco; o clique filtra a agenda por ele. */
+function renderConstelacao(){
   const box=document.getElementById('kpis'); if(!box) return;
-  let el=document.getElementById('kpiLista');
-  if(!el){ el=document.createElement('div'); el.className='kpi kpilista'; el.id='kpiLista'; box.appendChild(el); }
-  const n=favs.size;
-  if(!n){
-    el.innerHTML='<b>0</b>na sua lista<span class="listadica">salve espaços na agenda para montar seu roteiro</span>';
-    return;
-  }
-  el.innerHTML='<b>'+n+'</b>'+(n===1?'espaço na sua lista':'espaços na sua lista')+
-    '<span class="listaacoes">'+
-    '<span class="listalink" onclick="verLista()">ver</span>'+
-    '<a class="listalink" id="listaWa" target="_blank" rel="noopener">enviar</a></span>';
-  const nomes=[...favs].sort((a,b)=>a.localeCompare(b,'pt-BR'));
-  const txt='Vernissages SP — minha lista:\n'+nomes.map(nome=>{
-      const v=vByName[nome];
-      /* primeiro o que ainda vai abrir, depois o que esta em cartaz e fecha antes */
-      const meus=expos.filter(e=>e.v===nome).sort((a,b)=>{
-        const ra=a.st==='opening'?0:1, rb=b.st==='opening'?0:1;
-        if(ra!==rb) return ra-rb;
-        return ra===0 ? (a.ini<b.ini?-1:1) : ((a.fim||'9999')<(b.fim||'9999')?-1:1);
-      }).slice(0,3);
-      return '• '+nome+(v?' ('+v.b+')':'')+
-        (meus.length?'\n'+meus.map(e=>'   '+fmt(e.ini)+(e.fim?'–'+fmt(e.fim):'')+' — '+tituloLimpo(e)).join('\n'):'');
-    }).join('\n')+'\n\nAgenda completa, mapa e roteiros: https://vernissagessp.com.br/';
-  const wa=document.getElementById('listaWa');
-  if(wa) wa.href='https://wa.me/?text='+encodeURIComponent(txt);
+  const pts=VENUES.filter(v=>typeof v.lat==='number'&&typeof v.lng==='number');
+  if(!pts.length) return;
+  const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const lats=pts.map(v=>v.lat), lngs=pts.map(v=>v.lng);
+  const laMin=Math.min(...lats), laMax=Math.max(...lats);
+  const lnMin=Math.min(...lngs), lnMax=Math.max(...lngs);
+  const kx=Math.cos((laMin+laMax)/2*Math.PI/180);
+  const W=(lnMax-lnMin)*kx||1, H=(laMax-laMin)||1, PAD=4, VBW=100;
+  const VBH=Math.max(34,Math.round(100*H/W));
+  const X=v=>PAD+((v.lng-lnMin)*kx/W)*(VBW-PAD*2), Y=v=>PAD+((laMax-v.lat)/H)*(VBH-PAD*2);
+  const abre={}, cartaz={};
+  expos.forEach(e=>{
+    if(e.ini===HOJE_ISO) abre[e.v]=1;
+    if(e.ini&&e.ini<=HOJE_ISO&&(!e.fim||e.fim>=HOJE_ISO)) cartaz[e.v]=1;
+  });
+  let nHoje=0, pontos='', alvos='';
+  pts.forEach((v,i)=>{
+    const h=!!abre[v.name], on=!!cartaz[v.name]; if(h) nHoje++;
+    const cx=X(v).toFixed(2), cy=Y(v).toFixed(2), nome=esc(v.name);
+    if(h) pontos+='<circle class="halo" cx="'+cx+'" cy="'+cy+'" r="2.5">'+
+      '<animate attributeName="r" values="2.5;8" dur="2.8s" repeatCount="indefinite"/>'+
+      '<animate attributeName="opacity" values=".55;0" dur="2.8s" repeatCount="indefinite"/></circle>';
+    pontos+='<circle class="cpt'+(h?' hoje':(on?' on':''))+'" data-p="'+i+'" cx="'+cx+'" cy="'+cy+
+      '" r="'+(h?2.5:(on?1.55:1.15))+'"/>';
+    alvos+='<circle class="hit" data-i="'+i+'" data-v="'+nome+'" cx="'+cx+'" cy="'+cy+'" r="2.6">'+
+      '<title>'+nome+(v.b?' \u00b7 '+esc(v.b):'')+'</title></circle>';
+  });
+  const padrao=nHoje?(nHoje===1?'1 abre hoje':nHoje+' abrem hoje'):pts.length+' endere\u00e7os';
+  let el=document.getElementById('kpiMapa');
+  if(!el){ el=document.createElement('div'); el.className='kpi kpimapa'; el.id='kpiMapa'; box.appendChild(el); }
+  el.innerHTML='<svg viewBox="0 0 '+VBW+' '+VBH+'" preserveAspectRatio="xMidYMid meet" role="img" '+
+    'aria-label="Mapa dos espa\u00e7os de arte em S\u00e3o Paulo">'+pontos+alvos+'</svg>'+
+    '<span class="cptlabel" id="cptLabel">'+padrao+'</span>';
+  const lab=el.querySelector('#cptLabel');
+  let aceso=null;
+  el.onmouseover=ev=>{
+    const c=ev.target.closest('circle[data-v]'); if(!c) return;
+    lab.textContent=c.getAttribute('data-v'); lab.classList.add('ativo');
+    if(aceso) aceso.classList.remove('ativo');
+    aceso=el.querySelector('circle.cpt[data-p="'+c.getAttribute('data-i')+'"]');
+    if(aceso) aceso.classList.add('ativo');
+  };
+  el.onmouseleave=()=>{
+    lab.textContent=padrao; lab.classList.remove('ativo');
+    if(aceso){ aceso.classList.remove('ativo'); aceso=null; }
+  };
+  el.onclick=ev=>{
+    const c=ev.target.closest('circle[data-v]'); if(!c) return;
+    const s=document.getElementById('venueSel'); if(!s) return;
+    s.value=c.getAttribute('data-v'); draw();
+    s.scrollIntoView({behavior:'smooth',block:'center'});
+  };
 }
-renderLista();
+renderConstelacao();
 function distKm(v){const R=6371,dLa=(v.lat-userPos[0])*Math.PI/180,dLo=(v.lng-userPos[1])*Math.PI/180,
   x=Math.sin(dLa/2)**2+Math.cos(userPos[0]*Math.PI/180)*Math.cos(v.lat*Math.PI/180)*Math.sin(dLo/2)**2;
   return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));}
