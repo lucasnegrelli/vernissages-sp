@@ -239,6 +239,14 @@
     padding:3px 9px;border-radius:20px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
   .focolocal{color:var(--muted);font-size:.79rem;margin-top:4px}
 .focodata{color:var(--accent2);font-size:.75rem;font-weight:600;letter-spacing:.3px;margin-top:6px}
+.focoimg.gerada{background:#0a0a0d;display:block;overflow:hidden}
+.focoimg.gerada svg{width:100%;height:100%;display:block}
+.kpilista b{color:var(--accent)}
+.kpilista .listaacoes{display:flex;gap:12px;margin-top:4px}
+.kpilista .listalink{color:var(--accent2);cursor:pointer;font-weight:600;
+    text-decoration:underline;text-underline-offset:2px}
+.kpilista .listalink:hover{color:var(--accent)}
+.kpilista .listadica{opacity:.62;line-height:1.3;margin-top:2px}
   .foco::before{content:'';position:absolute;inset:0;pointer-events:none;
     background:radial-gradient(70% 130% at 0% 0%,rgba(232,193,90,.10),transparent 60%)}
   .foco>*{position:relative}
@@ -1076,6 +1084,30 @@ const HOJE_ISO=new Date(Date.now()-3*3600e3).toISOString().slice(0,10);
     if(f.ini>HOJE_ISO)   return 'Abertura '+fmt(f.ini)+(f.fim?' · até '+fmt(f.fim):'');
     return 'Em cartaz · '+fmt(f.ini)+(f.fim?ate:' · encerramento não divulgado');
   }
+  /* Capa gerada: garante que o bloco Em foco nunca fique sem imagem.
+     E so a rede de seguranca — a imagem de divulgacao real entra no campo img do expo. */
+  function capaFoco(f){
+    const nome=(f.t||'')+'·'+(f.v||'');
+    let s=2166136261>>>0;
+    for(let i=0;i<nome.length;i++){s^=nome.charCodeAt(i);s=Math.imul(s,16777619)>>>0;}
+    const rnd=n=>{s=(Math.imul(s,1664525)+1013904223)>>>0;return s%n;};
+    const cor=['#e8c15a','#c96f4a','#a78bfa','#7fd8a0','#8fb6f9'];
+    let a=rnd(5),b=rnd(5); if(b===a)b=(b+1+rnd(4))%5;
+    const g='capa'+(s%99999);
+    let marcas='';
+    for(let i=0;i<5;i++){
+      const x=70+rnd(460), y=50+rnd(260), r=26+rnd(66), k=rnd(3), col=(i%2)?cor[b]:cor[a];
+      if(k===0) marcas+='<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="none" stroke="'+col+'" stroke-width="1.2" opacity=".5"/>';
+      else if(k===1) marcas+='<rect x="'+(x-r)+'" y="'+(y-r)+'" width="'+(2*r)+'" height="'+(2*r)+'" fill="none" stroke="'+col+'" stroke-width="1.2" opacity=".4"/>';
+      else marcas+='<path d="M'+(x-r)+' '+(y+r)+'L'+x+' '+(y-r)+'L'+(x+r)+' '+(y+r)+'" fill="none" stroke="'+col+'" stroke-width="1.2" opacity=".45"/>';
+    }
+    return '<svg viewBox="0 0 600 360" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Capa gerada">'+
+      '<defs><linearGradient id="'+g+'" x1="0" y1="0" x2="1" y2="1">'+
+      '<stop offset="0" stop-color="'+cor[a]+'" stop-opacity=".22"/>'+
+      '<stop offset="1" stop-color="'+cor[b]+'" stop-opacity=".10"/></linearGradient></defs>'+
+      '<rect width="600" height="360" fill="#0a0a0d"/>'+
+      '<rect width="600" height="360" fill="url(#'+g+')"/>'+marcas+'</svg>';
+  }
   function renderFoco(){
     const el=document.getElementById('foco'); if(!el) return;
     const man=window.DATA.foco;
@@ -1114,10 +1146,12 @@ const HOJE_ISO=new Date(Date.now()-3*3600e3).toISOString().slice(0,10);
     const v=vByName[f.v]||null;
     window.FOCOV=v;
     const esc=s=>String(s||'').replace(/"/g,'&quot;');
-    el.className='foco'+(f.img?' comimg':'');
+    window.CAPAFOCO=capaFoco(f);
+    el.className='foco comimg';
     el.innerHTML=
-      (f.img?'<div class="focoimg"><img src="'+esc(f.img)+'" alt="'+esc(f.t)+'" loading="eager" onerror="this.closest(\'.focoimg\').remove();document.getElementById(\'foco\').classList.remove(\'comimg\')">'+
-        (f.cred?'<span class="cred">'+f.cred+'</span>':'')+'</div>':'')+
+      (f.img?'<div class="focoimg"><img src="'+esc(f.img)+'" alt="'+esc(f.t)+'" loading="eager" onerror="const b=this.closest(\'.focoimg\');b.classList.add(\'gerada\');b.innerHTML=window.CAPAFOCO">'+
+        (f.cred?'<span class="cred">'+f.cred+'</span>':'')+'</div>'
+           :'<div class="focoimg gerada">'+window.CAPAFOCO+'</div>')+
       '<div class="focotxt">'+
       '<div class="kicker">'+(f.publi?'Apoio<span class="selo">CONTEÚDO PATROCINADO</span>':'Em foco'+(auto?'<span class="selo">DESTAQUE DO DIA</span>':''))+'</div>'+
       '<h3>'+f.t+'</h3>'+
@@ -1173,7 +1207,46 @@ function copyWeek(){navigator.clipboard.writeText(window._wkTxt||'').then(()=>al
 
 /* favoritos + perto de mim */
 let favs=new Set((()=>{try{return JSON.parse(LS.get('vspFavs')||'[]');}catch(_){return [];}})()),favOnly=false,freeOnly=false,userPos=null,nearOn=false,userMarker=null;
-function toggleFav(n){favs.has(n)?favs.delete(n):favs.add(n);LS.set('vspFavs',JSON.stringify([...favs]));draw();}
+function toggleFav(n){favs.has(n)?favs.delete(n):favs.add(n);LS.set('vspFavs',JSON.stringify([...favs]));draw();renderLista();}
+
+/* ---- sua lista: sexto item da faixa de numeros ----
+   Conta os espacos que a pessoa salvou, abre a agenda ja filtrada por eles
+   e monta um recado de WhatsApp com o que esta em cartaz em cada um. */
+function verLista(){
+  const b=document.getElementById('favBtn');
+  if(b&&!favOnly) b.click();
+  const alvo=document.getElementById('favBtn')||document.querySelector('.wrap h2');
+  if(alvo) alvo.scrollIntoView({behavior:'smooth',block:'center'});
+}
+function renderLista(){
+  const box=document.getElementById('kpis'); if(!box) return;
+  let el=document.getElementById('kpiLista');
+  if(!el){ el=document.createElement('div'); el.className='kpi kpilista'; el.id='kpiLista'; box.appendChild(el); }
+  const n=favs.size;
+  if(!n){
+    el.innerHTML='<b>0</b>na sua lista<span class="listadica">salve espaços na agenda para montar seu roteiro</span>';
+    return;
+  }
+  el.innerHTML='<b>'+n+'</b>'+(n===1?'espaço na sua lista':'espaços na sua lista')+
+    '<span class="listaacoes">'+
+    '<span class="listalink" onclick="verLista()">ver</span>'+
+    '<a class="listalink" id="listaWa" target="_blank" rel="noopener">enviar</a></span>';
+  const nomes=[...favs].sort((a,b)=>a.localeCompare(b,'pt-BR'));
+  const txt='Vernissages SP — minha lista:\n'+nomes.map(nome=>{
+      const v=vByName[nome];
+      /* primeiro o que ainda vai abrir, depois o que esta em cartaz e fecha antes */
+      const meus=expos.filter(e=>e.v===nome).sort((a,b)=>{
+        const ra=a.st==='opening'?0:1, rb=b.st==='opening'?0:1;
+        if(ra!==rb) return ra-rb;
+        return ra===0 ? (a.ini<b.ini?-1:1) : ((a.fim||'9999')<(b.fim||'9999')?-1:1);
+      }).slice(0,3);
+      return '• '+nome+(v?' ('+v.b+')':'')+
+        (meus.length?'\n'+meus.map(e=>'   '+fmt(e.ini)+(e.fim?'–'+fmt(e.fim):'')+' — '+tituloLimpo(e)).join('\n'):'');
+    }).join('\n')+'\n\nAgenda completa, mapa e roteiros: https://vernissagessp.com.br/';
+  const wa=document.getElementById('listaWa');
+  if(wa) wa.href='https://wa.me/?text='+encodeURIComponent(txt);
+}
+renderLista();
 function distKm(v){const R=6371,dLa=(v.lat-userPos[0])*Math.PI/180,dLo=(v.lng-userPos[1])*Math.PI/180,
   x=Math.sin(dLa/2)**2+Math.cos(userPos[0]*Math.PI/180)*Math.cos(v.lat*Math.PI/180)*Math.sin(dLo/2)**2;
   return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));}
