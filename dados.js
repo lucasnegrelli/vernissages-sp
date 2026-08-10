@@ -129,7 +129,7 @@ const EXPOS = [
 {t:"ÇA — Rita Lessa",a:"Rita Lessa",v:"Almeida & Dale | Millan",ini:"2026-08-01",fim:"2026-09-12",d:"Individual da artista, em paralelo a Thiago Martins de Melo.",img:"https://almeidaedale.com.br/wp-content/uploads/2026/07/rita-lessa_29678_ph-eeo_02.jpg",cred:"Cortesia Almeida & Dale"},
 {t:"Mensageiro da Manhã — André Ricardo",a:"André Ricardo",v:"Almeida & Dale | Millan",ini:"2026-08-15",fim:"2026-09-19",d:"Individual do pintor paulistano anunciada pela galeria."},
 {t:"Abstenções (uma miragem, mas permanente) — Nino Kapanadze",a:"Nino Kapanadze",v:"Almeida & Dale | Millan",ini:"2026-08-15",fim:"2026-09-19",d:"Exposição individual anunciada pela galeria."},
-{t:"Bauci: a cidade e os olhos — Érica Magalhães",a:"Érica Magalhães",v:"Galeria Aura",ini:"2026-08-08",fim:"2026-09-23",d:"Esculturas que equilibram porcelana e concreto; texto curatorial de Tatiana Ferraz."},
+{t:"Bauci: a cidade e os olhos — Érica Magalhães",a:"Érica Magalhães",v:"Galeria Aura",ini:"2026-08-08",fim:"2026-09-23",d:"Esculturas que equilibram porcelana e concreto; texto curatorial de Tatiana Ferraz.",img:"https://images.squarespace-cdn.com/content/v1/5f7b807fac6ef802125e197b/de0a6f31-d0ce-4eaa-abe2-0b280fbdcf0f/25300_EM_FlavioFreire_high_4.jpg",cred:"Érica Magalhães, Sem título, 2026. Foto: Flavio Freire"},
 {t:"Perpétuo — Samuel Alves de Jesus",a:"Samuel Alves de Jesus",v:"Yehudi Hollander-Pappi",ini:"2026-07-21",fim:"2026-08-15",d:"Primeira individual do artista; o sal como matéria, corrosão e símbolo."},
 {t:"Contra Cena — MEXA",a:"MEXA",v:"Yehudi Hollander-Pappi",ini:"2026-07-21",fim:"2026-08-15",d:"Fotografias do coletivo MEXA sobre o que antecede e sucede a cena: camarins, esperas, intervalos."},
 {t:"Síntese — Arte e Tecnologia",v:"Itaú Cultural",ini:"2026-07-02",fim:"2026-08-31",d:"Coletiva com obras da Coleção Itaú de Arte e Tecnologia; curadoria de Leno Veras."},
@@ -214,11 +214,11 @@ const BAIRRO_COUNTS=[["Jardins",18],["Barra Funda",8],["Jardim Europa",7],["Pinh
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
 const FOCO = {
-t:"O Lado Escuro da Lua — Alfredo Jaar",
-v:"Galeria Luisa Strina",
-quem:"Alfredo Jaar",
-txt:"Dia 8 de agosto a Luisa Strina abre duas individuais na mesma noite. Jaar traz 48 trabalhos dos anos 1970 e 1980, feitos sob a ditadura de Pinochet — um conjunto raramente visto no Brasil, mais perto do documento do que do objeto de galeria. Na sala ao lado, Anna Maria Maiolino apresenta Presença. Vale reservar a noite inteira para os Jardins.",
-link:"https://www.galerialuisastrina.com.br/exhibitions",
+t:"Bauci: a cidade e os olhos — Érica Magalhães",
+v:"Galeria Aura",
+quem:"Érica Magalhães",
+txt:"Esculturas recentes, produzidas para a mostra, em que porcelanas sustentam blocos de concreto. Tatiana Ferraz, autora do texto curatorial, observa que os dois materiais partem do estado líquido e endurecem, mas assumem papéis opostos quando reunidos. Abriu em 8 de agosto e fica até 23 de setembro.",
+link:"https://aura.art.br/exposicoes-aura/exposicoes/bauci-a-cidade-e-os-olhos",
 publi:false
 };
 
@@ -229,9 +229,12 @@ A entrada com a data de hoje trava o destaque do dia. Sem ela, o site escolhe so
 primeiro quem abre hoje, depois a abertura mais proxima, ignorando tudo que ja apareceu
 em algum dia anterior. Quando o acervo se esgota, o rodizio recomeca.
 As entradas de 05/08 fecham o rodizio automatico antigo, que so girava entre as mostras
-com imagem e por isso repetia a cada cinco dias. */
+com imagem e por isso repetia a cada cinco dias.
+Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
+mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
-{d:"2026-08-10",k:"O Lado Escuro da Lua — Alfredo Jaar|Galeria Luisa Strina"},
+{d:"2026-08-10",k:"Bauci: a cidade e os olhos — Érica Magalhães|Galeria Aura"},
+{d:"2026-08-04",k:"O Lado Escuro da Lua — Alfredo Jaar|Galeria Luisa Strina"},
 {d:"2026-08-05",k:"Ígneo Piaga — Thiago Martins de Melo|Almeida & Dale | Millan"},
 {d:"2026-08-05",k:"ÇA — Rita Lessa|Almeida & Dale | Millan"},
 {d:"2026-08-05",k:"Ojú-Inú — Ayrson Heráclito|Simões de Assis"},
