@@ -188,13 +188,21 @@ function fonteDaSemana(sem){
 }
 
 /* Aviso honesto quando o .woff2 não está em /fontes/ */
-function conferirFontes(){
+async function conferirFontes(fonte){
   const box = document.getElementById('avisoFonte');
-  if (!document.fonts || !document.fonts.check) return;
-  const faltando = FONTES.filter(f => !document.fonts.check('700 82px "' + f + '"'));
+  if (!document.fonts || !document.fonts.load) return;
+  /* Só a fonte em uso importa. O navegador carrega @font-face sob demanda,
+     então testar as seis sempre acusaria cinco "ausentes" que na verdade
+     nunca foram pedidas — era falso positivo. */
+  const usadas = [...new Set(['Archivo', fonte].filter(Boolean))];
+  const faltando = [];
+  for (const f of usadas){
+    try { await document.fonts.load('700 82px "' + f + '"'); } catch(e){}
+    if (!document.fonts.check('700 82px "' + f + '"')) faltando.push(f);
+  }
   if (faltando.length){
     box.textContent = 'Fontes ausentes em /fontes/: ' + faltando.join(', ') +
-      '. Os slides estão usando a pilha do sistema. Ver fontes/LEIA.md para os arquivos .woff2.';
+      '. Os slides estão usando a pilha do sistema. Ver fontes/LEIA.md.';
     box.classList.add('on');
   } else { box.classList.remove('on'); }
 }
@@ -571,7 +579,7 @@ async function montar(){
 
   legendaCarrossel(casas, sel, periodo);
   st.textContent = ESTADO.slides.length + ' imagens montadas · fonte ' + fonte + ' · semana ' + sem;
-  conferirFontes();
+  await conferirFontes(fonte);
 }
 
 /* vsp-s<semana>-<dia da abertura>-slide-<nn> */
@@ -693,7 +701,6 @@ function copiar(){
 document.getElementById('trat').innerHTML =
   TRATAMENTOS.map(t => '<option value="' + t.id + '">' + t.n + '</option>').join('');
 document.getElementById('semana').value = '';   /* preenchido por montar(), a partir da data de abertura */
-if (document.fonts && document.fonts.ready) document.fonts.ready.then(conferirFontes);
 montar();
 </script>
 </body>
