@@ -680,7 +680,7 @@ function linhaExpo(e){
   partes.push(s + '.');
   /* o campo d as vezes já repete abertura e encerramento — não duplicar */
   const d = (e.d || '').trim().replace(/Abertura em [^;.]+[;.]\s*/i, '');
-  if (d) partes.push(d.replace(/\s+$/, '').replace(/\.?$/, '.'));
+  if (d) partes.push(d.charAt(0).toUpperCase() + d.slice(1).replace(/\s+$/, '').replace(/\.?$/, '.'));
   if (e.fim) partes.push('Até ' + fmtDia(e.fim) + '.');
   else if (!/encerramento n[ãa]o divulgado/i.test(d)) partes.push('Encerramento não divulgado.');
   return partes.join(' ');
