@@ -256,7 +256,13 @@ function carregarImagem(url){
 function cobrir(ctx, img, x, y, w, h){
   const r = Math.max(w / img.naturalWidth, h / img.naturalHeight);
   const dw = img.naturalWidth * r, dh = img.naturalHeight * r;
+  /* RECORTE OBRIGATORIO: canvas nao corta sozinho. Sem isto, quando a faixa e
+     menor que a imagem escalada, o excedente vaza para fora da faixa e cai em
+     cima do texto — foi o defeito do slide 8 da semana 02. */
+  ctx.save();
+  ctx.beginPath(); ctx.rect(x, y, w, h); ctx.clip();
   ctx.drawImage(img, x + (w - dw) / 2, y + (h - dh) / 2, dw, dh);
+  ctx.restore();
 }
 
 function pintarFundo(ctx, cor){ ctx.fillStyle = cor; ctx.fillRect(0, 0, W, H); }
@@ -839,6 +845,22 @@ function conferirSobreposicao(){
       if (bate(al[a], al[b])) ruins.push(i + 1);
     }
   });
+  /* a arte tambem invade: acha o fim real da obra no canvas e compara com o
+     topo do texto. Comparar so texto contra texto e cego para isso. */
+  document.querySelectorAll('.slide.comArte').forEach((s, i) => {
+    const cv = s.querySelector('.art'), marca = s.querySelector('.marca');
+    if (!cv || !marca) return;
+    try {
+      const col = cv.getContext('2d').getImageData(Math.round(cv.width / 2), 0, 1, cv.height).data;
+      let fim = 0;
+      for (let y = cv.height - 1; y >= 0; y--){
+        const k = y * 4;
+        if (!(Math.abs(col[k]-232) < 6 && Math.abs(col[k+1]-225) < 6 && Math.abs(col[k+2]-212) < 6)){ fim = y; break; }
+      }
+      if (fim > marca.offsetTop + 2) ruins.push(i + 1);
+    } catch (e) {}
+  });
+
   const unicos = [...new Set(ruins)];
   const box = document.getElementById('avisoLayout');
   if (unicos.length){
