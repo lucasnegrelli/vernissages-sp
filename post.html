@@ -272,7 +272,7 @@ function distanciaM(a, b){
   return Math.round(2 * R * Math.asin(Math.sqrt(s)));
 }
 
-/* agrupa as casas que da para emendar a pe (ate 900 m entre vizinhas) */
+/* agrupa as casas que da para emendar a pé (até 900 m entre vizinhas) */
 function trechosAPe(casas){
   const vs = casas.map(c => c.venue).filter(v => v && v.lat && v.lng);
   const usados = new Set(), grupos = [];
@@ -614,7 +614,7 @@ async function montar(){
     ESTADO.slides.push({ el: s, nome: nomeArquivo(sem, i + 2, dataBloco) });
   });
 
-  /* --- roteiro a pe --- */
+  /* --- roteiro a pé --- */
   if (aPe.length){
     const linhas = trechos.map(t => {
       const bairros = [...new Set(t.venues.map(v => v.b))].join(' / ');
@@ -625,7 +625,7 @@ async function montar(){
     const casasAPe = aPe.reduce((k, t) => k + t.venues.length, 0);
     const rot = addSlide('areia',
       '<div class="marca">VERNISSAGES SP</div>' +
-      '<div class="kick">a pe</div>' +
+      '<div class="kick">a pé</div>' +
       '<h3>' + casasAPe + ' casas<br>em ' + aPe.length + (aPe.length === 1 ? ' trecho' : ' trechos') + '</h3>' +
       linhas +
       '<div class="foot">' + (sel.length + 2) + '/' + total + '</div>', 'roteiro');
@@ -656,8 +656,8 @@ async function montar(){
   legendaCarrossel(casas, sel, periodo);
   if (aPe.length){
     const ta = document.getElementById('cap');
-    const linhas = aPe.map(t => t.venues.map(v => v.name).join(', ') + ' \u2014 ' + fmtDist(t.metros) + ' entre as mais distantes, a pe.');
-    ta.value = ta.value.replace('\n\n\u2014\n\nAgenda completa', '\n\nA pe\n' + linhas.join('\n') + '\n\n\u2014\n\nAgenda completa');
+    const linhas = aPe.map(t => t.venues.map(v => v.name).join(', ') + ' \u2014 ' + fmtDist(t.metros) + ' entre as mais distantes, a pé.');
+    ta.value = ta.value.replace('\n\n\u2014\n\nAgenda completa', '\n\nA pé\n' + linhas.join('\n') + '\n\n\u2014\n\nAgenda completa');
   }
   st.textContent = ESTADO.slides.length + ' imagens montadas · fonte ' + fonte + ' · semana ' + sem;
   await conferirFontes(fonte);
@@ -678,8 +678,11 @@ function linhaExpo(e){
   let s = e.t.replace(/ — .*/, '');
   if (e.a) s += ', de ' + e.a;
   partes.push(s + '.');
-  if (e.d) partes.push(e.d.replace(/\s+$/, '').replace(/\.?$/, '.'));
-  partes.push(e.fim ? 'Até ' + fmtDia(e.fim) + '.' : 'Encerramento não divulgado.');
+  /* o campo d as vezes já repete abertura e encerramento — não duplicar */
+  const d = (e.d || '').trim().replace(/Abertura em [^;.]+[;.]\s*/i, '');
+  if (d) partes.push(d.replace(/\s+$/, '').replace(/\.?$/, '.'));
+  if (e.fim) partes.push('Até ' + fmtDia(e.fim) + '.');
+  else if (!/encerramento n[ãa]o divulgado/i.test(d)) partes.push('Encerramento não divulgado.');
   return partes.join(' ');
 }
 
