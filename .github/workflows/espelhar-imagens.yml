@@ -1,0 +1,46 @@
+name: Espelhar imagens
+
+# Baixa para img/ toda imagem externa referenciada no dados.js e reescreve o
+# campo img para o caminho local. Roda no servidor, onde CORS não existe — é o
+# que faz o canvas do post.html conseguir exportar os slides.
+#
+# Não entra em laço: quando não sobra URL externa, o script não altera nada e o
+# passo de commit é pulado.
+
+on:
+  push:
+    branches: [main]
+    paths: ['dados.js']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: espelhar-imagens
+  cancel-in-progress: false
+
+jobs:
+  espelhar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Espelhar
+        run: node espelhar.js
+
+      - name: Commitar se houve mudança
+        run: |
+          if [ -z "$(git status --porcelain dados.js img)" ]; then
+            echo "Nada mudou."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dados.js img
+          git commit -m "espelha imagens externas para img/"
+          git push
