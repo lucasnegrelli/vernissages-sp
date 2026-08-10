@@ -18,7 +18,7 @@
 @font-face{font-family:'Switzer';src:url('fontes/Switzer-Variable.woff2') format('woff2');font-weight:100 900;font-display:swap}
 @font-face{font-family:'Space Grotesk';src:url('fontes/SpaceGrotesk-Variable.woff2') format('woff2');font-weight:300 700;font-display:swap}
 @font-face{font-family:'General Sans';src:url('fontes/GeneralSans-Variable.woff2') format('woff2');font-weight:200 700;font-display:swap}
-@font-face{font-family:'Instrument Sans';src:url('fontes/InstrumentSans-Variable.woff2') format('woff2');font-weight:400 700;font-display:swap}
+@font-face{font-family:'Instrument Sans';src:url('fontes/InstrumentSans-Variable.woff2') format('woff2'),url('fontes/InstrumentSans-VariableF.woff2') format('woff2');font-weight:400 700;font-display:swap}
 @font-face{font-family:'Bricolage Grotesque';src:url('fontes/BricolageGrotesque-Variable.woff2') format('woff2');font-weight:200 800;font-display:swap}
 
 :root{
@@ -402,13 +402,36 @@ function credito(expo, trat, temImagem){
 /* =================================================================
    4. SELEÇÃO
 ================================================================= */
+/* O carrossel é sobre o que ABRE, não sobre o que já abriu.
+   Pega o próximo bloco de aberturas à frente — a data mais próxima
+   e o que cair até 2 dias depois dela. Só cai para trás se não
+   houver nada marcado nas próximas duas semanas. */
 function selecionar(){
-  const ini = new Date(Date.now() - 3 * 864e5).toISOString().slice(0, 10);
-  const fim = new Date(Date.now() + 10 * 864e5).toISOString().slice(0, 10);
+  const limite = new Date(Date.now() + 14 * 864e5).toISOString().slice(0, 10);
+  const ord = (a, b) => a.ini.localeCompare(b.ini) || a.v.localeCompare(b.v);
+
+  const adiante = D.expos
+    .filter(e => e.ini && e.ini >= HOJE && e.ini <= limite && V[e.v])
+    .sort(ord);
+
+  if (adiante.length){
+    const primeira = adiante[0].ini;
+    const fimBloco = new Date(new Date(primeira + 'T12:00:00').getTime() + 2 * 864e5)
+      .toISOString().slice(0, 10);
+    return adiante.filter(e => e.ini <= fimBloco).slice(0, 10);
+  }
+
+  const atras = new Date(Date.now() - 7 * 864e5).toISOString().slice(0, 10);
   return D.expos
-    .filter(e => e.ini && e.ini >= ini && e.ini <= fim && V[e.v])
-    .sort((a, b) => a.ini.localeCompare(b.ini) || a.v.localeCompare(b.v))
-    .slice(0, 8);
+    .filter(e => e.ini && e.ini >= atras && e.ini < HOJE && V[e.v])
+    .sort(ord).reverse().slice(0, 8);
+}
+
+/* Semana do projeto, não semana ISO: s01 = abertura de 08/08/2026. */
+const SEMANA_UM = Date.parse('2026-08-08T12:00:00');
+function semanaProjeto(dataAbertura){
+  const d = Date.parse((dataAbertura || HOJE) + 'T12:00:00');
+  return Math.max(1, Math.floor((d - SEMANA_UM) / (7 * 864e5)) + 1);
 }
 
 /* agrupa por casa: galeria que abre duas mostras aparece uma vez */
@@ -429,13 +452,17 @@ async function montar(){
 
   const peca = document.getElementById('peca').value;
   const trat = document.getElementById('trat').value;
-  const sem  = Number(document.getElementById('semana').value) || semanaISO(new Date());
-  const fonte = fonteDaSemana(sem);
 
   const sel = selecionar();
   const casas = porCasa(sel);
-  const hoje = new Date();
-  const periodo = hoje.getDate() + ' de ' + MES[hoje.getMonth()];
+  const dataBloco = sel.length ? sel[0].ini : HOJE;
+
+  const campoSem = document.getElementById('semana');
+  const sem = Number(campoSem.value) || semanaProjeto(dataBloco);
+  campoSem.value = sem;
+  const fonte = fonteDaSemana(sem);
+
+  const periodo = fmtDia(dataBloco);
 
   ESTADO = { slides: [], sel, semana: sem, fonte, trat, casas };
 
@@ -485,7 +512,7 @@ async function montar(){
     '<div class="foot">vernissagessp.com.br</div>', 'capa');
   capa.style.setProperty('--titulo', "'Archivo'");   // trava da âncora
   desenharArte(capa.querySelector('.art'), 'chapado', []);
-  ESTADO.slides.push({ el: capa, nome: nomeArquivo(sem, 1) });
+  ESTADO.slides.push({ el: capa, nome: nomeArquivo(sem, 1, dataBloco) });
 
   /* --- um slide por mostra --- */
   sel.forEach((e, i) => {
@@ -520,7 +547,7 @@ async function montar(){
       chapa.style.background = 'linear-gradient(to top, rgba(34,37,42,.93) 42%, rgba(34,37,42,0))';
       s.insertBefore(chapa, s.querySelector('.txt'));
     }
-    ESTADO.slides.push({ el: s, nome: nomeArquivo(sem, i + 2) });
+    ESTADO.slides.push({ el: s, nome: nomeArquivo(sem, i + 2, dataBloco) });
   });
 
   /* --- final --- */
@@ -535,7 +562,7 @@ async function montar(){
   const cvFim = fim.querySelector('.art');
   cvFim.width = W; cvFim.height = H;
   pintarFundo(cvFim.getContext('2d'), GRAFITE);
-  ESTADO.slides.push({ el: fim, nome: nomeArquivo(sem, sel.length + 2) });
+  ESTADO.slides.push({ el: fim, nome: nomeArquivo(sem, sel.length + 2, dataBloco) });
 
   const semImg = sel.filter(e => !imgs.get(e)).length;
   document.getElementById('etica').textContent =
@@ -547,8 +574,9 @@ async function montar(){
   conferirFontes();
 }
 
-function nomeArquivo(sem, n){
-  const d = new Date();
+/* vsp-s<semana>-<dia da abertura>-slide-<nn> */
+function nomeArquivo(sem, n, data){
+  const d = new Date((data || HOJE) + 'T12:00:00');
   return 'vsp-s' + String(sem).padStart(2, '0') + '-' + DIA_ABREV[d.getDay()] + '-slide-' + String(n).padStart(2, '0');
 }
 
@@ -664,7 +692,7 @@ function copiar(){
 /* --- init --- */
 document.getElementById('trat').innerHTML =
   TRATAMENTOS.map(t => '<option value="' + t.id + '">' + t.n + '</option>').join('');
-document.getElementById('semana').value = semanaISO(new Date());
+document.getElementById('semana').value = '';   /* preenchido por montar(), a partir da data de abertura */
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(conferirFontes);
 montar();
 </script>
