@@ -83,6 +83,12 @@ label.f{display:flex;gap:8px;align-items:center;font-size:.8rem;color:var(--graf
 .slide .chapa{position:absolute;left:0;right:0;bottom:0;z-index:1}
 .slide.capa h3{font-size:96px}
 .slide.fim h3{font-size:74px}
+.slide.comArte .kick{margin-top:0}
+.slide.comArte h3{font-size:64px}
+.slide.comArte .desc{display:none}
+.slide .rota{font-family:var(--chassi);font-size:31px;line-height:1.4;margin-top:30px}
+.slide .rota b{font-weight:700}
+.slide .rota span{color:var(--grafite-medio);font-size:27px}
 
 textarea{width:100%;min-height:340px;background:var(--areia-clara);border:1px solid var(--linha);color:var(--grafite);border-radius:2px;padding:16px 18px;font-family:ui-monospace,'Cascadia Mono',Menlo,monospace;font-size:.84rem;line-height:1.7;resize:vertical}
 .hint{color:var(--grafite-medio);font-size:.78rem;margin-top:8px;max-width:75ch}
@@ -250,6 +256,52 @@ function cobrir(ctx, img, x, y, w, h){
 
 function pintarFundo(ctx, cor){ ctx.fillStyle = cor; ctx.fillRect(0, 0, W, H); }
 
+/* contain: a obra inteira cabe na faixa, sem corte */
+function conter(ctx, img, x, y, w, h){
+  const r = Math.min(w / img.naturalWidth, h / img.naturalHeight);
+  const dw = img.naturalWidth * r, dh = img.naturalHeight * r;
+  ctx.drawImage(img, x + (w - dw) / 2, y + (h - dh) / 2, dw, dh);
+}
+
+/* distancia em metros entre dois venues (haversine) */
+function distanciaM(a, b){
+  if (!a || !b || !a.lat || !a.lng || !b.lat || !b.lng) return null;
+  const R = 6371000, rad = x => x * Math.PI / 180;
+  const dLat = rad(b.lat - a.lat), dLng = rad(b.lng - a.lng);
+  const s = Math.sin(dLat/2)**2 + Math.cos(rad(a.lat)) * Math.cos(rad(b.lat)) * Math.sin(dLng/2)**2;
+  return Math.round(2 * R * Math.asin(Math.sqrt(s)));
+}
+
+/* agrupa as casas que da para emendar a pe (ate 900 m entre vizinhas) */
+function trechosAPe(casas){
+  const vs = casas.map(c => c.venue).filter(v => v && v.lat && v.lng);
+  const usados = new Set(), grupos = [];
+  vs.forEach(v => {
+    if (usados.has(v.name)) return;
+    const g = [v]; usados.add(v.name);
+    let cresceu = true;
+    while (cresceu){
+      cresceu = false;
+      vs.forEach(o => {
+        if (usados.has(o.name)) return;
+        if (g.some(x => { const d = distanciaM(x, o); return d !== null && d <= 900; })){
+          g.push(o); usados.add(o.name); cresceu = true;
+        }
+      });
+    }
+    grupos.push(g);
+  });
+  return grupos.map(g => {
+    let max = 0;
+    for (let i = 0; i < g.length; i++) for (let j = i + 1; j < g.length; j++){
+      const d = distanciaM(g[i], g[j]); if (d !== null && d > max) max = d;
+    }
+    return { venues: g, metros: max };
+  }).sort((a, b) => b.venues.length - a.venues.length);
+}
+
+const fmtDist = m => m < 1000 ? m + ' m' : (m / 1000).toFixed(1).replace('.', ',') + ' km';
+
 /* --- operações de pixel --- */
 function duotone(ctx, x, y, w, h){
   const d = ctx.getImageData(x, y, w, h), p = d.data;
@@ -320,10 +372,13 @@ function desenharArte(cv, trat, imgs){
   const alturaArte = Math.round(H * 0.56);
 
   switch (trat){
-    case 'sangria':
-      pintarFundo(ctx, GRAFITE);
-      cobrir(ctx, img, 0, 0, W, H);
-      return H;
+    case 'sangria': {
+      pintarFundo(ctx, AREIA);
+      ctx.fillStyle = GRAFITE;
+      ctx.fillRect(0, 0, W, alturaArte);
+      conter(ctx, img, 0, 0, W, alturaArte);   // obra inteira, sem corte
+      return alturaArte;
+    }
 
     case 'bloco':
       pintarFundo(ctx, GRAFITE);
@@ -464,6 +519,9 @@ async function montar(){
   const sel = selecionar();
   const casas = porCasa(sel);
   const dataBloco = sel.length ? sel[0].ini : HOJE;
+  const trechos = trechosAPe(casas);
+  const aPe = trechos.filter(t => t.venues.length > 1);
+  const total = sel.length + 2 + (aPe.length ? 1 : 0);
 
   const campoSem = document.getElementById('semana');
   const sem = Number(campoSem.value) || semanaProjeto(dataBloco);
@@ -540,7 +598,7 @@ async function montar(){
         '<br>' + esc(v.addr) + ', ' + esc(v.b) +
         '<br>' + (e.fim ? 'até ' + esc(fmtDia(e.fim)) : 'encerramento não divulgado') + '</div>' +
       (e.d ? '<div class="desc">' + esc(e.d.length > 165 ? e.d.slice(0, 165).replace(/\s+\S*$/, '') + '…' : e.d) + '</div>' : '') +
-      '<div class="foot">' + (i + 2) + '/' + (sel.length + 2) + '</div>' +
+      '<div class="foot">' + (i + 2) + '/' + total + '</div>' +
       (cred ? '<div class="cred">' + esc(cred) + '</div>' : ''),
       'mostra ' + (i + 1));
 
@@ -548,15 +606,33 @@ async function montar(){
     const alturaArte = desenharArte(s.querySelector('.art'), usado, [img, proxima]);
 
     /* chapa de proteção quando o texto cai sobre a imagem */
-    if (alturaArte >= H * 0.9){
-      const chapa = document.createElement('div');
-      chapa.className = 'chapa';
-      chapa.style.height = '58%';
-      chapa.style.background = 'linear-gradient(to top, rgba(34,37,42,.93) 42%, rgba(34,37,42,0))';
-      s.insertBefore(chapa, s.querySelector('.txt'));
+    /* obra e texto em faixas separadas — nada por cima da obra */
+    if (alturaArte > 0){
+      s.classList.add('comArte');
+      s.querySelector('.txt').style.paddingTop = (alturaArte + 52) + 'px';
     }
     ESTADO.slides.push({ el: s, nome: nomeArquivo(sem, i + 2, dataBloco) });
   });
+
+  /* --- roteiro a pe --- */
+  if (aPe.length){
+    const linhas = trechos.map(t => {
+      const bairros = [...new Set(t.venues.map(v => v.b))].join(' / ');
+      const nomes = t.venues.map(v => v.name).join(', ');
+      if (t.venues.length === 1) return '<div class="rota"><b>' + esc(bairros) + '</b><br><span>' + esc(nomes) + '</span></div>';
+      return '<div class="rota"><b>' + esc(bairros) + '</b><br>' + esc(nomes) + '<br><span>' + esc(fmtDist(t.metros) + ' entre as mais distantes') + '</span></div>';
+    }).join('');
+    const casasAPe = aPe.reduce((k, t) => k + t.venues.length, 0);
+    const rot = addSlide('areia',
+      '<div class="marca">VERNISSAGES SP</div>' +
+      '<div class="kick">a pe</div>' +
+      '<h3>' + casasAPe + ' casas<br>em ' + aPe.length + (aPe.length === 1 ? ' trecho' : ' trechos') + '</h3>' +
+      linhas +
+      '<div class="foot">' + (sel.length + 2) + '/' + total + '</div>', 'roteiro');
+    rot.style.setProperty('--titulo', "'" + fonte + "'");
+    desenharArte(rot.querySelector('.art'), 'chapado', []);
+    ESTADO.slides.push({ el: rot, nome: nomeArquivo(sem, sel.length + 2, dataBloco) });
+  }
 
   /* --- final --- */
   const fim = addSlide('grafite fim',
@@ -570,7 +646,7 @@ async function montar(){
   const cvFim = fim.querySelector('.art');
   cvFim.width = W; cvFim.height = H;
   pintarFundo(cvFim.getContext('2d'), GRAFITE);
-  ESTADO.slides.push({ el: fim, nome: nomeArquivo(sem, sel.length + 2, dataBloco) });
+  ESTADO.slides.push({ el: fim, nome: nomeArquivo(sem, ESTADO.slides.length + 1, dataBloco) });
 
   const semImg = sel.filter(e => !imgs.get(e)).length;
   document.getElementById('etica').textContent =
@@ -578,6 +654,11 @@ async function montar(){
     (semImg ? ' ' + semImg + ' ' + (semImg === 1 ? 'mostra caiu' : 'mostras caíram') + ' no chapado tipográfico por falta de imagem utilizável (ausente ou sem CORS).' : '');
 
   legendaCarrossel(casas, sel, periodo);
+  if (aPe.length){
+    const ta = document.getElementById('cap');
+    const linhas = aPe.map(t => t.venues.map(v => v.name).join(', ') + ' \u2014 ' + fmtDist(t.metros) + ' entre as mais distantes, a pe.');
+    ta.value = ta.value.replace('\n\n\u2014\n\nAgenda completa', '\n\nA pe\n' + linhas.join('\n') + '\n\n\u2014\n\nAgenda completa');
+  }
   st.textContent = ESTADO.slides.length + ' imagens montadas · fonte ' + fonte + ' · semana ' + sem;
   await conferirFontes(fonte);
 }
