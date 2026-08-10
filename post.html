@@ -86,6 +86,8 @@ label.f{display:flex;gap:8px;align-items:center;font-size:.8rem;color:var(--graf
 .slide.comArte .kick{margin-top:0}
 .slide.comArte h3{font-size:64px}
 .slide.comArte .desc{display:none}
+.slide.comArte .servico{font-size:26px;line-height:1.38;margin-top:18px}
+.slide.comArte .sub{font-size:32px;margin-top:20px}
 .slide.comArte .txt{padding-bottom:150px}
 .slide.comArte .foot{left:auto;right:84px;text-align:right}
 .slide .rota{font-family:var(--chassi);font-size:31px;line-height:1.4;margin-top:30px}
@@ -371,7 +373,7 @@ function desenharArte(cv, trat, imgs){
 
   if (trat === 'chapado' || !img){ pintarFundo(ctx, AREIA); return 0; }
 
-  const alturaArte = Math.round(H * 0.56);
+  const alturaArte = Math.round(H * 0.50);   // faixa de texto precisa caber titulo de 2 linhas
 
   switch (trat){
     case 'sangria': {
