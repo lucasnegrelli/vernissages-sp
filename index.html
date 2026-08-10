@@ -552,6 +552,14 @@
     *{box-shadow:none !important}
     .card,.panel,.foco,.wkwrap,.dirwrap{border:1px solid rgba(255,255,255,.10) !important}
   }
+/* capa gerada: campo silencioso */
+  .focoimg.gerada svg circle,.focoimg.gerada svg polygon,.focoimg.gerada svg line,
+  .focoimg.gerada svg path,.focoimg.gerada svg polyline,
+  .focoimg.gerada svg rect[stroke]:not([fill^="url"]){display:none!important}
+  .focoimg.gerada::after{content:'';position:absolute;inset:0;pointer-events:none;
+    background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.020) 0 2px,transparent 2px 9px)}
+  .focoimg.gerada{position:relative}
+
 </style>
 </head>
 <body>
