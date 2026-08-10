@@ -106,6 +106,7 @@ textarea{width:100%;min-height:340px;background:var(--areia-clara);border:1px so
 <p class="lead">Carrossel 4:5 montado a partir da agenda de hoje. Baixe as imagens, copie a legenda e publique. Nada aqui é enviado para lugar nenhum — tudo é gerado no seu navegador.</p>
 
 <div class="aviso" id="avisoFonte"></div>
+<div class="aviso" id="avisoLayout"></div>
 
 <h2>Montagem</h2>
 <div class="bar">
@@ -700,6 +701,7 @@ async function montar(){
   }
   st.textContent = ESTADO.slides.length + ' imagens montadas · fonte ' + fonte + ' · semana ' + sem;
   await conferirFontes(fonte);
+  conferirSobreposicao();
 }
 
 /* vsp-s<semana>-<dia da abertura>-slide-<nn> */
@@ -772,6 +774,8 @@ function legendaLembrete(casas, sel){
 ================================================================= */
 async function baixarTudo(){
   const st = document.getElementById('st');
+  const ruins = conferirSobreposicao();
+  if (ruins.length && !confirm('Slide ' + ruins.join(', ') + ' com texto sobreposto. Baixar mesmo assim?')) { st.textContent = 'download cancelado — corrija o slide ' + ruins.join(', '); return; }
   for (let i = 0; i < ESTADO.slides.length; i++){
     const { el, nome } = ESTADO.slides[i];
     st.textContent = 'gerando imagem ' + (i + 1) + ' de ' + ESTADO.slides.length + '…';
@@ -818,6 +822,30 @@ function copiar(){
   navigator.clipboard.writeText(ta.value)
     .then(() => { document.getElementById('st2').textContent = 'legenda copiada'; },
           () => { document.execCommand('copy'); document.getElementById('st2').textContent = 'legenda copiada'; });
+}
+
+/* Guarda de sobreposicao: roda a cada montagem e trava o download se algum
+   texto colidir. Existe porque defeito de layout so aparece olhando, e
+   olhar depois de publicar e tarde. */
+function conferirSobreposicao(){
+  const bate = (a, b) => { const x = a.getBoundingClientRect(), y = b.getBoundingClientRect();
+    return !(x.right <= y.left || x.left >= y.right || x.bottom <= y.top || x.top >= y.bottom); };
+  const ruins = [];
+  document.querySelectorAll('.slide').forEach((s, i) => {
+    const al = [...s.querySelectorAll('.marca,.kick,h3,.sub,.servico,.desc,.rule,.rota,.foot,.cred')]
+      .filter(el => el.offsetHeight > 0 && el.offsetWidth > 0 && getComputedStyle(el).display !== 'none');
+    for (let a = 0; a < al.length; a++) for (let b = a + 1; b < al.length; b++){
+      if (al[a].contains(al[b]) || al[b].contains(al[a])) continue;
+      if (bate(al[a], al[b])) ruins.push(i + 1);
+    }
+  });
+  const unicos = [...new Set(ruins)];
+  const box = document.getElementById('avisoLayout');
+  if (unicos.length){
+    box.textContent = 'Texto sobrepondo no slide ' + unicos.join(', ') + '. Nao publique assim: monte de novo, troque o tratamento ou encurte a descricao.';
+    box.classList.add('on');
+  } else { box.classList.remove('on'); box.textContent = ''; }
+  return unicos;
 }
 
 /* --- init --- */
