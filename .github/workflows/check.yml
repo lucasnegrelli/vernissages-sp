@@ -1,0 +1,44 @@
+name: valida dados.js
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # O validador tem que estar de pe antes de validar qualquer coisa.
+      - name: testes do proprio validador
+        run: node check.test.js
+
+      # Checagens que dependem do calendario (carimbo do dia, destaque de hoje,
+      # mostras encerradas, editais vencidos) so travam quando o commit mexe no
+      # dados.js. Assim um push de README numa terca qualquer nao fica vermelho.
+      - name: o commit mexeu no dados.js?
+        id: diff
+        run: |
+          if git rev-parse HEAD^ >/dev/null 2>&1 \
+             && git diff --name-only HEAD^ HEAD | grep -qx 'dados.js'; then
+            echo "mudou=1" >> "$GITHUB_OUTPUT"
+          else
+            echo "mudou=0" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: validacao estrutural
+        if: steps.diff.outputs.mudou == '0'
+        run: node check.js
+
+      - name: validacao completa (rotina do dia)
+        if: steps.diff.outputs.mudou == '1'
+        run: node check.js --exige-hoje
