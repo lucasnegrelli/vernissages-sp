@@ -260,6 +260,15 @@ function cobrir(ctx, img, x, y, w, h){
 
 function pintarFundo(ctx, cor){ ctx.fillStyle = cor; ctx.fillRect(0, 0, W, H); }
 
+/* luminancia media de uma faixa do canvas (0..1), amostrada */
+function lumMedia(ctx, x, y, w, h){
+  const d = ctx.getImageData(x, y, w, h).data;
+  let s = 0, k = 0;
+  for (let i = 0; i < d.length; i += 4 * 32){ s += (0.299*d[i] + 0.587*d[i+1] + 0.114*d[i+2]) / 255; k++; }
+  return k ? s / k : 1;
+}
+function contraste(a, b){ const x = Math.max(a,b) + 0.05, y = Math.min(a,b) + 0.05; return x / y; }
+
 /* contain: a obra inteira cabe na faixa, sem corte */
 function conter(ctx, img, x, y, w, h){
   const r = Math.min(w / img.naturalWidth, h / img.naturalHeight);
@@ -366,21 +375,19 @@ function contorno(ctx, x, y, w, h){
 
 /* Desenha a camada de arte. Devolve a altura ocupada pela imagem
    (para a chapa de texto) ou 0 quando não há imagem. */
-function desenharArte(cv, trat, imgs){
+function desenharArte(cv, trat, imgs, alturaForcada){
   const ctx = cv.getContext('2d');
   cv.width = W; cv.height = H;
   const img = imgs[0];
 
   if (trat === 'chapado' || !img){ pintarFundo(ctx, AREIA); return 0; }
 
-  const alturaArte = Math.round(H * 0.50);   // faixa de texto precisa caber titulo de 2 linhas
+  const alturaArte = alturaForcada || Math.round(H * 0.50);
 
   switch (trat){
     case 'sangria': {
       pintarFundo(ctx, AREIA);
-      ctx.fillStyle = GRAFITE;
-      ctx.fillRect(0, 0, W, alturaArte);
-      conter(ctx, img, 0, 0, W, alturaArte);   // obra inteira, sem corte
+      cobrir(ctx, img, 0, 0, W, alturaArte);   // a faixa ja vem na proporcao da obra: preenche sem borda
       return alturaArte;
     }
 
@@ -609,13 +616,39 @@ async function montar(){
       'mostra ' + (i + 1));
 
     s.style.setProperty('--titulo', "'" + fonte + "'");
-    const alturaArte = desenharArte(s.querySelector('.art'), usado, [img, proxima]);
+    const cv = s.querySelector('.art'), txt = s.querySelector('.txt');
+    let sangriaTotal = false;
 
-    /* chapa de proteção quando o texto cai sobre a imagem */
-    /* obra e texto em faixas separadas — nada por cima da obra */
-    if (alturaArte > 0){
-      s.classList.add('comArte');
-      s.querySelector('.txt').style.paddingTop = (alturaArte + 52) + 'px';
+    /* Sangria total: so quando a obra tem altura para preencher o slide inteiro
+       E a metade de baixo e escura o bastante para o texto claro passar de
+       4.5:1. Medido, nao chutado — se nao passar, cai na faixa. */
+    if (img && usado === 'sangria' && Math.round(W * img.naturalHeight / img.naturalWidth) >= H){
+      const ctx = cv.getContext('2d');
+      cv.width = W; cv.height = H;
+      pintarFundo(ctx, GRAFITE);
+      cobrir(ctx, img, 0, 0, W, H);
+      if (contraste(lumMedia(ctx, 0, Math.round(H * 0.5), W, Math.round(H * 0.5)), 0.93) >= 4.5){
+        sangriaTotal = true;
+        s.classList.remove('areia');
+        s.classList.add('grafite');
+      }
+    }
+
+    if (!sangriaTotal){
+      let alturaArte = 0;
+      if (img && usado !== 'chapado'){
+        /* faixa sob medida: mede o texto real deste slide, devolve o resto para
+           a obra e limita pela altura natural da imagem — assim o cover preenche
+           exato, sem borda solida e sem corte alem do necessario */
+        s.classList.add('comArte');
+        txt.style.paddingTop = '0px';
+        const filhos = [...txt.children].filter(el => !el.classList.contains('cred') && !el.classList.contains('foot'));
+        const fimTexto = filhos.reduce((k, el) => Math.max(k, el.offsetTop + el.offsetHeight), 0);
+        const natural = Math.round(W * img.naturalHeight / img.naturalWidth);
+        alturaArte = Math.max(Math.round(H * 0.30), Math.min(H - fimTexto - 206, natural));
+        txt.style.paddingTop = (alturaArte + 52) + 'px';
+      }
+      desenharArte(cv, usado, [img, proxima], alturaArte);
     }
     ESTADO.slides.push({ el: s, nome: nomeArquivo(sem, i + 2, dataBloco) });
   });
