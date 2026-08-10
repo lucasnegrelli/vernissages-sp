@@ -111,11 +111,12 @@ const VENUES = [
 
 /* ================= EXPOS ================= */
 const EXPOS = [
+{t:"Sem Palavras — Vânia Mignone",a:"Vânia Mignone",v:"Casa Triângulo",ini:"2026-08-08",fim:"2026-09-19",d:"Individual com 17 pinturas inéditas. A artista trabalha com MDF e colagem e integra palavras à composição das cenas.",img:"",cred:""},
+{t:"Uma língua nova",a:"Arnold Schmidt, Aurelino dos Santos, Clovis Aparecido dos Santos, Enio Sérgio, Esther Morgannah, Josef Hofer, Ranchinho",v:"Galeria Estação",ini:"2026-08-25",fim:"2026-09-26",d:"Coletiva com curadoria de José Augusto Ribeiro. Reúne 60 obras de artistas diagnosticados com transtornos mentais e deficiência intelectual.",img:"",cred:""},
 {t:"Verso: na encruzilhada da revolta — Ravioli e Ussami",a:"Frederico Ravioli, Gabriel Ussami",v:"Galeria Vermelho",ini:"2026-07-30",fim:"2026-08-07",d:"Abertura 30/07, 19h–22h, com DJ sets de Cashu e Regis. Dez pinturas sobre cartazes de ponto de ônibus; texto de Caio Bonifácio."},
 {t:"To Love — Claudia Andujar e George Love",a:"Claudia Andujar, George Love",v:"Galeria Vermelho",ini:"2026-08-15",fim:null,d:"Curadoria de Eder Chiodetto sobre a produção experimental de George Love e seu diálogo com Claudia Andujar nos anos 1960 e 1970. A mostra marca o início da representação do Arquivo de George Love pela galeria. Abertura em 15 de agosto; encerramento não divulgado."},
 {t:"No meio da pedra — André Vargas",a:"André Vargas",v:"Galeria Vermelho",ini:"2026-08-15",fim:null,d:"Segunda individual do artista na galeria. Abertura em 15 de agosto; encerramento não divulgado."},
 {t:"Ocupação JAMAC",a:"JAMAC — Jardim Miriam Arte Clube",v:"Galeria Vermelho",ini:"2024-10-04",fim:"2026-12-19",d:"O coletivo fundado por Mônica Nador em 2004 ocupa a banca da galeria com os projetos Inventários e Aprender algo novo. Quinta e sexta, 12h–18h; sábado, 11h–17h."},
-{t:"Omẽ Mahsã – Seres invisíveis — Daiara Tukano",a:"Daiara Tukano",v:"Almeida & Dale | Millan",ini:"2026-07-04",fim:"2026-08-01",d:"Cerca de 20 pinturas inéditas sobre seres ligados ao ar na cosmologia Yepá Mahsã."},
 {t:"Inverno dentro do bosque — coletiva",v:"Luciana Brito Galeria",ini:"2026-07-04",fim:"2026-08-08",d:"Coletiva de inverno na casa modernista de Rino Levi."},
 {t:"Quarto — coletiva",v:"Galeria Marília Razuk",ini:"2026-05-09",fim:"2026-08-08",d:"No Anexo, com Cristina Tolovi e Luana Fortes: o quarto como campo de projeção subjetiva."},
 {t:"Rajada encarnada — coletiva",v:"Casa de Cultura do Parque",ini:"2026-07-25",fim:"2026-10-25",d:"II Ciclo Expositivo em parceria com o ICCo. Quarta a domingo, 11h–18h."},
@@ -137,38 +138,26 @@ const EXPOS = [
 {t:"Joan Miró: Mestre das Formas",a:"Joan Miró",v:"MAB FAAP",ini:"2026-08-07",fim:"2026-10-12",d:"140 obras originais do catalão, várias inéditas no Brasil. Ingresso pago, vendido em mmf26.com.br."},
 {t:"O Lado Escuro da Lua — Alfredo Jaar",a:"Alfredo Jaar",v:"Galeria Luisa Strina",ini:"2026-08-08",fim:"2026-09-19",d:"Novo projeto do artista chileno, Leão de Ouro de Veneza.",img:"https://static-assets.artlogic.net/w_1200,h_630,c_fill,f_auto,fl_lossy,q_auto/ws-galerialuisastrina/usr/images/exhibitions/main_image_override/293/aj_public_001-web.jpg",cred:"Cortesia Galeria Luisa Strina"},
 {t:"SP-Arte Rotas 2026 · 5ª edição",v:"ARCA",ini:"2026-08-26",fim:"2026-08-30",d:"~70 expositores; direção artística de Bernardo Mosqueira; foco América Latina. Dia 26 só convidados; 27–28 (13h–20h), 29 (12h–20h), 30 (12h–19h)."},
-{t:"Viver tecendo — Claudia Alarcón e Silät",a:"Claudia Alarcón",v:"MASP",ini:"2026-03-06",fim:"2026-08-02",d:"Tecelagens do coletivo wichí (Argentina)."},
-{t:"Pop andino — La Chola Poblete",a:"La Chola Poblete",v:"MASP",ini:"2026-03-06",fim:"2026-08-02",d:"Primeira individual da artista argentina no Brasil."},
-{t:"O princípio do conhecimento — Santiago Yahuarcani",a:"Santiago Yahuarcani",v:"MASP",ini:"2026-04-02",fim:"2026-08-02",d:"Pintura uitoto sobre llanchama."},
-{t:"Democracia radical — Colectivo Acciones de Arte",a:"Colectivo Acciones de Arte (CADA)",v:"MASP",ini:"2026-04-07",fim:"2026-08-02",d:"Ações do CADA contra a ditadura chilena."},
 {t:"Matéria e Energia — Damián Ortega",a:"Damián Ortega",v:"MASP",ini:"2026-05-15",fim:"2026-09-13",d:"Três décadas do escultor mexicano."},
 {t:"Acervo em Transformação: Doações Recentes",v:"MASP",ini:"2026-05-15",fim:"2026-09-13",d:"Curadoria Adriano Pedrosa e equipe."},
 {t:"confluências — Carolina Caycedo",a:"Carolina Caycedo",v:"MASP",ini:"2026-07-03",fim:"2026-10-04",d:"Rios, represas e resistência socioambiental."},
 {t:"Casa María Lionza — Sol Calero",a:"Sol Calero",v:"MASP",ini:"2026-07-03",fim:"2027-01-30",d:"Instalação de longa duração da venezuelana."},
-{t:"Knockout! — Pascale Marthine Tayou",a:"Pascale Marthine Tayou",v:"Pinacoteca de São Paulo",ini:"2026-03-07",fim:"2026-08-02",d:"Instalações do camaronês na Pina Contemporânea."},
-{t:"a mãe contempla o mar — Cristina Salgado",a:"Cristina Salgado",v:"Pinacoteca de São Paulo",ini:"2026-03-07",fim:"2026-08-02",d:"Escultura e imagem materna."},
 {t:"O que elas viram — coletiva",v:"IMS Paulista",ini:"2026-03-17",fim:"2026-08-03",d:"Fotógrafas pioneiras no acervo IMS."},
 {t:"Pele Azul — Vivian Caccuri",a:"Vivian Caccuri",v:"CCBB São Paulo",ini:"2026-04-29",fim:"2026-08-03",d:"Som, mosquitos e ecologia no Espaço Anexo."},
 {t:"Atlântico Sertão — coletiva",v:"CCBB São Paulo",ini:"2026-04-15",fim:"2026-08-03",d:"Mais de 70 artistas de diferentes regiões do país em seis núcleos; o sertão como território ampliado."},
-{t:"Plantas em Movimento — Burle Marx",a:"Roberto Burle Marx",v:"Museu Judaico de São Paulo",ini:"2026-04-30",fim:"2026-08-02",d:"Paisagismo e botânica em movimento."},
 {t:"Estrelas Escolhidas — Luiz Zerbini",a:"Luiz Zerbini",v:"Instituto Tomie Ohtake",ini:"2026-06-26",fim:"2026-08-16",d:"~230 obras: monotipias, pinturas e instalações da última década."},
 {t:"Antes da Forma, o Encanto — Mônica Ventura",a:"Mônica Ventura",v:"Galeria Nara Roesler",ini:"2026-05-26",fim:"2026-08-08",d:"Cosmologias afro-ameríndias e geometria."},
 {t:"O fascínio e o afeto — coletiva",v:"Galeria Nara Roesler",ini:"2026-05-26",fim:"2026-08-08",d:"Recorte do programa da galeria, com curadoria de Agnaldo Farias."},
 {t:"Alfabeto solare — Edival Ramosa",a:"Edival Ramosa",v:"Galatea",ini:"2026-06-09",fim:"2026-08-08",d:"Redescoberta do escultor ítalo-brasileiro; curadoria de André Pitol. Espaço Oscar Freire."},
-{t:"Terra, cores naturais… — Tito Terapia",a:"Tito Terapia",v:"Galatea",ini:"2026-05-12",fim:"2026-07-30",d:"Pigmentos naturais e pertencimento (espaço Padre João Manuel)."},
 {t:"Fluxos — Janet Vollebregt",a:"Janet Vollebregt",v:"Galeria Luis Maluf",ini:"2026-05-16",fim:"2026-08-08",d:"Individual da artista holandesa-brasileira."},
 {t:"Almir Mavignier: Acaso Determinado",a:"Almir Mavignier",v:"DAN Galeria",ini:"2026-05-23",fim:"2026-08-15",d:"Concretismo e op art (DAN Contemporânea)."},
 {t:"Surrealismos: Arte para Além da Razão",v:"Pinakotheke São Paulo",ini:"2026-05-16",fim:"2026-08-15",d:"Curadoria Max Perlingeiro e Tadeu Chiarelli."},
 {t:"Oposições Geométricas — coletiva",v:"Paulo Kuczynski Escritório de Arte",ini:"2026-05-16",fim:"2026-08-22",d:"Geometrias em diálogo (Mavignier e outros)."},
-{t:"Água da Mata (Miguel Penha) + Gunga Guerra",a:"Miguel Penha, Gunga Guerra",v:"Zipper Galeria",ini:"2026-06-01",fim:"2026-08-01",d:"Duas mostras simultâneas; entrada gratuita."},
-{t:"A palavra errada — Rebecca Watson Horn",a:"Rebecca Watson Horn",v:"Fortes D'Aloia & Gabriel — Galeria",ini:"2026-06-10",fim:"2026-08-01",d:"Pintura e linguagem."},
-{t:"Fugido — Anderson Borba",a:"Anderson Borba",v:"Fortes D'Aloia & Gabriel — Galeria",ini:"2026-06-10",fim:"2026-08-01",d:"Esculturas em madeira."},
 {t:"Peças Frias — O Desenho — Iran do Espírito Santo",a:"Iran do Espírito Santo",v:"Fortes D'Aloia & Gabriel — Galeria",ini:"2026-06-30",fim:"2026-08-08",d:"Desenhos do artista na unidade FDAG Jardins."},
 {t:"Uma Folha Translúcida no Lugar dos Olhos — D. Steegmann Mangrané",a:"Daniel Steegmann Mangrané",v:"Mendes Wood DM — Casa Iramaia",ini:"2026-04-07",fim:"2026-08-08",d:"Ecologia e percepção."},
 {t:"Geologia da forma — Germana Monte-Mór",a:"Germana Monte-Mór",v:"Galeria Leme",ini:"2026-06-25",fim:"2026-08-21",d:"Obras dos anos 90."},
 {t:"nem mais nem menos — Carlos Zilio",a:"Carlos Zilio",v:"Galeria Raquel Arnaud",ini:"2026-06-10",fim:"2026-08-22",d:"Pinturas recentes."},
 {t:"Etéreas — Chaim, Weffort, Giacomini, Belém",a:"Carla Chaim, Marina Weffort, Amalia Giacomini, Laura Belém",v:"Galeria Raquel Arnaud",ini:"2026-06-11",fim:"2026-08-22",d:"Coletiva sobre leveza e matéria."},
-{t:"Mão Amiga — José Bento",a:"José Bento",v:"A Gentil Carioca SP",ini:"2026-05-23",fim:"2026-08-01",d:"Madeira e ofício."},
 {t:"Presença — Anna Maria Maiolino",a:"Anna Maria Maiolino",v:"Galeria Luisa Strina",ini:"2026-08-08",fim:"2026-09-19",d:"Individual da artista ítalo-brasileira; abre na mesma noite que Alfredo Jaar.",img:"https://static-assets.artlogic.net/w_1200,h_630,c_fill,f_auto,fl_lossy,q_auto/ws-galerialuisastrina/usr/images/exhibitions/main_image_override/292/ana-maria-maiolino_29814_ph-julia-thompson_01-copiar.jpg",cred:"Cortesia Galeria Luisa Strina"},
 {t:"Ojú-Inú — Ayrson Heráclito",a:"Ayrson Heráclito",v:"Simões de Assis",ini:"2026-08-08",fim:"2026-09-12",d:"Corpo, ritual e memória afro-atlântica no espaço dos Jardins.",img:"https://simoesdeassis.com/images/exposicao/1785428510-260727eeo-simoes-067.jpg",cred:"Cortesia Simões de Assis"},
 {t:"Smoke — Lucia Nogueira",a:"Lucia Nogueira",v:"Gomide&Co",ini:"2026-08-07",fim:"2026-10-03",d:"Individual da artista no espaço da Avenida Paulista, organizada com o espólio de Lucia Nogueira."},
@@ -189,7 +178,6 @@ const EXPOS = [
 {t:"um ato fotográfico — Alice Yura",a:"Alice Yura",v:"Pinacoteca de São Paulo",ini:"2026-04-11",fim:"2026-09-13",d:"Fotografia, arquivo e memória (Pina Contemporânea)."},
 {t:"Ibirapema — Olinda Tupinambá",a:"Olinda Tupinambá",v:"Pinacoteca de São Paulo",ini:"2026-04-11",fim:"2026-12-27",d:"Videoinstalação na Sala de Vídeo da Pina Luz."},
 {t:"Macunaíma é Duwid",v:"Pinacoteca de São Paulo",ini:"2026-03-28",fim:"2026-09-13",d:"Coletiva que revisita Mário de Andrade em diálogo com artistas indígenas (Pina Estação)."},
-{t:"Miss Ceilingfan – ad nauseam — Joeun Kim Aatchim",a:"Joeun Kim Aatchim",v:"Almeida & Dale | Millan",ini:"2026-07-04",fim:"2026-08-01",d:"Individual da artista coreano-americana no espaço Fradique."},
 {t:"Primeiro Mergulho — Beatriz Buendia",a:"Beatriz Buendia",v:"GRUTA Espaço de Arte Contemporânea",ini:"2026-07-11",fim:"2026-08-08",d:"Primeira individual da artista no espaço da Barra Funda."},
 {t:"Solange Pessoa: outras escalas",a:"Solange Pessoa",v:"Itaú Cultural",ini:"2026-08-04",fim:"2026-11-01",d:"150 desenhos inéditos, filmes experimentais e uma instalação da artista mineira."},
 {t:"Delírio Tropical – Recanto",v:"Sesc Pinheiros",ini:"2026-05-06",fim:"2026-10-12",d:"Cerca de 280 obras de 130 artistas de todas as regiões; curadoria de Orlando Maneschy e Keyla Sobral."},
@@ -243,6 +231,7 @@ em algum dia anterior. Quando o acervo se esgota, o rodizio recomeca.
 As entradas de 05/08 fecham o rodizio automatico antigo, que so girava entre as mostras
 com imagem e por isso repetia a cada cinco dias. */
 const DESTAQUES = [
+{d:"2026-08-10",k:"O Lado Escuro da Lua — Alfredo Jaar|Galeria Luisa Strina"},
 {d:"2026-08-05",k:"Ígneo Piaga — Thiago Martins de Melo|Almeida & Dale | Millan"},
 {d:"2026-08-05",k:"ÇA — Rita Lessa|Almeida & Dale | Millan"},
 {d:"2026-08-05",k:"Ojú-Inú — Ayrson Heráclito|Simões de Assis"},
@@ -254,5 +243,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "06/08/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, bairros: BAIRRO_COUNTS };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "10/08/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, bairros: BAIRRO_COUNTS };
 })();
