@@ -586,10 +586,12 @@ async function montar(){
     const img = imgs.get(e);
     const usado = img ? trat : 'chapado';           // fallback ético
     const proxima = imgs.get(sel[i + 1]) || null;
-    const escuro = img && (usado === 'sangria' || usado === 'bloco' || usado === 'contorno' || usado === 'duotone');
+    /* so e tema escuro quem deixa a FAIXA DE TEXTO escura: contorno e duotone
+       pintam o fundo inteiro de grafite. Os outros deixam areia embaixo. */
+    const escuro = img && (usado === 'contorno' || usado === 'duotone');
     const cred = credito(e, usado, !!img);
 
-    const s = addSlide('' + (escuro && usado !== 'bloco' ? 'grafite' : 'areia'),
+    const s = addSlide(escuro ? 'grafite' : 'areia',
       '<div class="marca">VERNISSAGES SP</div>' +
       '<div class="kick">' + (e.ini > HOJE ? 'abre ' + esc(fmtCurto(e.ini)) : 'em cartaz') + '</div>' +
       '<h3>' + esc(e.t.replace(/ — .*/, '')) + '</h3>' +
