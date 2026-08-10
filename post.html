@@ -8,151 +8,664 @@
 <script src="dados.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
-:root{--bg:#0e0e11;--panel:#17171c;--panel2:#1e1e25;--border:#2a2a33;--text:#ececf0;--muted:#9a9aa6;--accent:#e8c15a;--accent2:#c96f4a;--green:#7fb98a;--blue:#7da7d9}
+/* ---------------------------------------------------------------
+   FONTES — chassi Archivo fixo, título rotaciona entre seis grotescas.
+   Arquivos locais em /fontes/. Sem CDN: o kit precisa rodar offline.
+   Faltando o .woff2, o navegador cai na pilha de sistema e a página
+   avisa no topo. Ver fontes/LEIA.md.
+----------------------------------------------------------------*/
+@font-face{font-family:'Archivo';src:url('fontes/Archivo-Variable.woff2') format('woff2');font-weight:100 900;font-display:swap}
+@font-face{font-family:'Switzer';src:url('fontes/Switzer-Variable.woff2') format('woff2');font-weight:100 900;font-display:swap}
+@font-face{font-family:'Space Grotesk';src:url('fontes/SpaceGrotesk-Variable.woff2') format('woff2');font-weight:300 700;font-display:swap}
+@font-face{font-family:'General Sans';src:url('fontes/GeneralSans-Variable.woff2') format('woff2');font-weight:200 700;font-display:swap}
+@font-face{font-family:'Instrument Sans';src:url('fontes/InstrumentSans-Variable.woff2') format('woff2');font-weight:400 700;font-display:swap}
+@font-face{font-family:'Bricolage Grotesque';src:url('fontes/BricolageGrotesque-Variable.woff2') format('woff2');font-weight:200 800;font-display:swap}
+
+:root{
+  --areia:#E8E1D4;
+  --areia-clara:#F4F0E8;
+  --grafite:#22252A;
+  --grafite-medio:#6B7078;
+  --linha:rgba(34,37,42,.16);
+  --chassi:'Archivo',ui-sans-serif,system-ui,'Segoe UI',sans-serif;
+}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,'Segoe UI',sans-serif;line-height:1.6}
-.top{border-bottom:1px solid var(--border);padding:20px 26px}
-.top a{color:var(--text);text-decoration:none;font-weight:600;letter-spacing:2.5px}
-.top a span{color:var(--accent)}
+body{background:var(--areia);color:var(--grafite);font-family:var(--chassi);line-height:1.6}
+
+.top{border-bottom:1px solid var(--linha);padding:20px 26px}
+.top a{color:var(--grafite);text-decoration:none;font-weight:700;letter-spacing:2.5px;font-size:.9rem}
 .wrap{max-width:1180px;margin:0 auto;padding:30px 26px 70px}
-h1{font-size:1.6rem;font-weight:600;margin-bottom:6px}
-.lead{color:var(--muted);font-size:.9rem;margin-bottom:22px;max-width:70ch}
-h2{font-size:.78rem;text-transform:uppercase;letter-spacing:1.8px;color:var(--muted);margin:34px 0 14px;padding-bottom:9px;border-bottom:1px solid var(--border)}
-.btn{background:var(--panel2);border:1px solid var(--border);color:var(--blue);border-radius:16px;padding:9px 18px;font-size:.86rem;cursor:pointer;font-family:inherit}
-.btn:hover{border-color:var(--blue)}
-.btn.main{background:var(--accent);color:#111;border-color:var(--accent);font-weight:600}
+h1{font-size:1.6rem;font-weight:600;margin-bottom:6px;letter-spacing:-.02em}
+.lead{color:var(--grafite-medio);font-size:.9rem;margin-bottom:22px;max-width:70ch}
+h2{font-size:.72rem;text-transform:uppercase;letter-spacing:1.8px;color:var(--grafite-medio);margin:34px 0 14px;padding-bottom:9px;border-bottom:1px solid var(--linha)}
+.btn{background:transparent;border:1px solid var(--linha);color:var(--grafite);border-radius:2px;padding:9px 18px;font-size:.86rem;cursor:pointer;font-family:inherit}
+.btn:hover{border-color:var(--grafite)}
+.btn.main{background:var(--grafite);color:var(--areia-clara);border-color:var(--grafite);font-weight:600}
 .bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
-.status{color:var(--muted);font-size:.82rem}
+.status{color:var(--grafite-medio);font-size:.82rem}
+select,input[type=number]{font-family:inherit;font-size:.86rem;padding:8px 10px;border:1px solid var(--linha);background:var(--areia-clara);color:var(--grafite);border-radius:2px}
+label.f{display:flex;gap:8px;align-items:center;font-size:.8rem;color:var(--grafite-medio)}
+.aviso{background:var(--grafite);color:var(--areia-clara);padding:10px 16px;font-size:.8rem;border-radius:2px;margin-bottom:16px;display:none}
+.aviso.on{display:block}
+
+/* --- tira de slides: 1080x1350 reduzido na tela --- */
 .slides{display:flex;gap:18px;overflow-x:auto;padding:14px 0 20px}
 .slidebox{flex:0 0 auto}
-.slidebox .cap{color:var(--muted);font-size:.75rem;margin-bottom:6px;text-align:center}
-/* o slide é 1080x1080 renderizado a 0,37 de escala na tela */
-.slide{width:1080px;height:1080px;background:#0e0e11;padding:80px 76px;display:flex;flex-direction:column;position:relative;transform:scale(.37);transform-origin:top left}
-.shell{width:400px;height:400px;overflow:hidden}
-.slide .marca{font-size:30px;letter-spacing:7px;font-weight:600;color:#ececf0}
-.slide .marca b{color:var(--accent);font-weight:600}
-.slide .kick{margin-top:auto;font-size:26px;letter-spacing:5px;text-transform:uppercase;color:var(--accent);font-weight:700}
-.slide h3{font-size:78px;line-height:1.06;font-weight:600;letter-spacing:-2px;margin-top:18px}
-.slide .sub{font-size:34px;color:var(--accent2);margin-top:26px;line-height:1.3}
-.slide .info{font-size:28px;color:#9a9aa6;margin-top:16px;line-height:1.45}
-.slide .desc{font-size:30px;color:#c3c3cd;margin-top:30px;line-height:1.4}
-.slide .pill{display:inline-block;align-self:flex-start;font-size:24px;font-weight:700;letter-spacing:1px;padding:8px 22px;border-radius:30px;margin-top:34px}
-.slide .pill.free{background:rgba(127,185,138,.16);color:var(--green)}
-.slide .pill.paid{background:rgba(125,167,217,.14);color:var(--blue)}
-.slide .foot{margin-top:auto;font-size:26px;color:#6f6f7a;letter-spacing:1px}
-.slide .rule{height:4px;background:var(--accent);width:110px;margin-top:30px}
+.slidebox .cap{color:var(--grafite-medio);font-size:.75rem;margin-bottom:6px;text-align:center}
+.shell{width:324px;height:405px;overflow:hidden;border:1px solid var(--linha)}
+.slide{width:1080px;height:1350px;background:var(--areia);position:relative;overflow:hidden;
+       transform:scale(.3);transform-origin:top left;display:flex;flex-direction:column}
+
+/* camada de arte */
+.slide .art{position:absolute;inset:0;width:1080px;height:1350px}
+.slide .txt{position:relative;z-index:2;display:flex;flex-direction:column;height:100%;padding:88px 84px}
+
+/* tipografia do slide */
+.slide .marca{font-family:var(--chassi);font-size:26px;letter-spacing:7px;font-weight:700;text-transform:uppercase}
+.slide .kick{font-family:var(--chassi);font-size:24px;letter-spacing:5px;text-transform:uppercase;font-weight:700;margin-top:auto}
+.slide h3{font-size:82px;line-height:1.04;font-weight:700;letter-spacing:-.03em;margin-top:20px;font-family:var(--titulo,var(--chassi))}
+.slide .sub{font-family:var(--chassi);font-size:34px;margin-top:24px;line-height:1.3;font-weight:500}
+.slide .servico{font-family:var(--chassi);font-size:27px;margin-top:22px;line-height:1.45;color:var(--grafite-medio)}
+.slide .desc{font-family:var(--chassi);font-size:29px;margin-top:26px;line-height:1.42}
+.slide .rule{height:4px;width:110px;margin-top:28px;background:currentColor}
+.slide .foot{font-family:var(--chassi);font-size:24px;letter-spacing:1px;margin-top:auto;padding-top:26px}
+.slide .cred{font-family:var(--chassi);position:absolute;left:84px;right:84px;bottom:36px;font-size:19px;line-height:1.35;letter-spacing:.3px;z-index:3}
+
+/* temas de slide */
+.slide.areia{background:var(--areia);color:var(--grafite)}
+.slide.areia .servico{color:var(--grafite-medio)}
+.slide.areia .cred{color:var(--grafite-medio)}
+.slide.grafite{background:var(--grafite);color:var(--areia-clara)}
+.slide.grafite .servico{color:#A9AEB6}
+.slide.grafite .cred{color:#A9AEB6}
+
+/* chapa de proteção do texto sobre imagem */
+.slide .chapa{position:absolute;left:0;right:0;bottom:0;z-index:1}
 .slide.capa h3{font-size:96px}
-.slide.cta h3{font-size:72px}
-.slide .big{font-size:150px;font-weight:700;color:var(--accent);letter-spacing:-4px;line-height:1}
-textarea{width:100%;min-height:290px;background:var(--panel);border:1px solid var(--border);color:var(--text);border-radius:12px;padding:16px 18px;font-family:inherit;font-size:.9rem;line-height:1.65;resize:vertical}
-.hint{color:var(--muted);font-size:.78rem;margin-top:8px}
+.slide.fim h3{font-size:74px}
+
+textarea{width:100%;min-height:340px;background:var(--areia-clara);border:1px solid var(--linha);color:var(--grafite);border-radius:2px;padding:16px 18px;font-family:ui-monospace,'Cascadia Mono',Menlo,monospace;font-size:.84rem;line-height:1.7;resize:vertical}
+.hint{color:var(--grafite-medio);font-size:.78rem;margin-top:8px;max-width:75ch}
+.etica{border-left:3px solid var(--grafite);padding:10px 0 10px 16px;margin:18px 0;font-size:.82rem;color:var(--grafite-medio);max-width:75ch}
 </style>
 </head>
 <body>
-<div class="top"><a href="./">VERNISSAGES <span>SP</span></a></div>
+<div class="top"><a href="./">VERNISSAGES SP</a></div>
 <div class="wrap">
 <h1>Kit de post do dia</h1>
-<p class="lead">Carrossel pronto no visual do site, montado a partir da agenda de hoje. Baixe as imagens, copie a legenda e publique. Nada aqui é enviado para lugar nenhum — tudo é gerado no seu navegador.</p>
+<p class="lead">Carrossel 4:5 montado a partir da agenda de hoje. Baixe as imagens, copie a legenda e publique. Nada aqui é enviado para lugar nenhum — tudo é gerado no seu navegador.</p>
 
-<h2>Carrossel</h2>
+<div class="aviso" id="avisoFonte"></div>
+
+<h2>Montagem</h2>
 <div class="bar">
-<button class="btn main" onclick="baixarTudo()">Baixar todas as imagens</button>
-<button class="btn" onclick="montar()">Montar de novo</button>
-<span class="status" id="st"></span>
+  <label class="f">Peça
+    <select id="peca">
+      <option value="carrossel">Carrossel da agenda</option>
+      <option value="lembrete">Lembrete (imagem única)</option>
+    </select>
+  </label>
+  <label class="f">Tratamento
+    <select id="trat"></select>
+  </label>
+  <label class="f">Semana
+    <input type="number" id="semana" min="1" max="53" style="width:70px">
+  </label>
+  <button class="btn" onclick="montar()">Montar de novo</button>
 </div>
+<div class="bar">
+  <button class="btn main" onclick="baixarTudo()">Baixar todas as imagens</button>
+  <span class="status" id="st"></span>
+</div>
+
+<div class="etica" id="etica"></div>
+
 <div class="slides" id="slides"></div>
 
 <h2>Legenda</h2>
 <textarea id="cap"></textarea>
 <div class="bar" style="margin-top:12px">
-<button class="btn main" onclick="copiar()">Copiar legenda</button>
-<span class="status" id="st2"></span>
+  <button class="btn main" onclick="copiar()">Copiar legenda</button>
+  <button class="btn" onclick="baixarLegendas()">Baixar LEGENDAS.md</button>
+  <span class="status" id="st2"></span>
 </div>
-<p class="hint">Dica: no Instagram, poste o carrossel entre 18h e 21h — é quando o público de arte está rolando o feed. Marque as galerias citadas para elas repostarem nos stories.</p>
+<p class="hint">Poste o carrossel na terça, início da noite; o lembrete na sexta. Marque as galerias citadas. Horário de abertura só entra na legenda se a casa divulgou — não infira.</p>
 </div>
 
 <script>
-const D=window.DATA, V={}; D.venues.forEach(v=>V[v.name]=v);
-const HOJE=new Date(Date.now()-3*3600e3).toISOString().slice(0,10);
-const fmt=d=>d.split('-').reverse().slice(0,2).join('/');
-const brl=n=>'R$ '+Number(n).toFixed(2).replace('.',',').replace(',00','');
-function ing(v){ if(v.ing) return v.ing; if(v.tipo==='galeria') return {g:true}; return {conf:true}; }
-function ingTxt(v){ const g=ing(v); if(g.g) return 'ENTRADA GRATUITA'; if(g.conf) return 'INGRESSO A CONFIRMAR'; return brl(g.i)+(g.m?' · MEIA '+brl(g.m):''); }
-const MES=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+"use strict";
+/* =================================================================
+   VERNISSAGES SP · kit de post
+   Especificação: POSTS.md (pasta do projeto)
+   4:5 — 1080x1350. Chassi Archivo fixo. Título rotaciona entre seis
+   grotescas irmãs, uma por carrossel, sem repetir em semanas seguidas.
+   AGENDA sempre em Archivo. Dez tratamentos, um por carrossel.
+================================================================= */
 
-/* seleção: aberturas de -3 a +10 dias, no máximo 6 */
+const D = window.DATA, V = {};
+D.venues.forEach(v => V[v.name] = v);
+
+const W = 1080, H = 1350;
+const AREIA = '#E8E1D4', AREIA_CLARA = '#F4F0E8', GRAFITE = '#22252A', GRAFITE_MEDIO = '#6B7078';
+
+const HOJE = new Date(Date.now() - 3 * 3600e3).toISOString().slice(0, 10);
+const MES = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+const DIA_ABREV = ['dom','seg','ter','qua','qui','sex','sab'];
+const DIA_EXT = ['domingo','segunda','terça','quarta','quinta','sexta','sábado'];
+
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+/* o campo ig do dados.js vem ora como "@casa", ora como "casa",
+   ora como URL do perfil — normaliza para o arroba puro */
+const arroba = ig => { if (!ig) return ''; const m = String(ig).trim().match(/(?:instagram\.com\/)?@?([A-Za-z0-9._]+)\/?$/); return m ? '@' + m[1] : ''; };
+const fmtDia = d => { const [a,m,x] = d.split('-'); return Number(x) + ' de ' + MES[Number(m)-1]; };
+const fmtCurto = d => d.split('-').reverse().slice(0,2).join('/');
+
+/* ---------- semana ISO ---------- */
+function semanaISO(dt){
+  const d = new Date(Date.UTC(dt.getFullYear(), dt.getMonth(), dt.getDate()));
+  d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
+  const a = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  return Math.ceil(((d - a) / 864e5 + 1) / 7);
+}
+
+/* =================================================================
+   1. TIPOGRAFIA — as duas travas
+================================================================= */
+const FONTES = ['Archivo','Switzer','Space Grotesk','General Sans','Instrument Sans','Bricolage Grotesque'];
+
+/* Determinístico pelo número da semana, com a trava de não repetir a
+   fonte da semana anterior. O localStorage guarda só a última usada. */
+function fonteDaSemana(sem){
+  let idx = sem % FONTES.length;
+  let anterior = null;
+  try { anterior = JSON.parse(localStorage.getItem('vsp-fonte') || 'null'); } catch(e){}
+  if (anterior && anterior.semana !== sem && anterior.fonte === FONTES[idx]) {
+    idx = (idx + 1) % FONTES.length;              // trava: sem repetir em semanas seguidas
+  }
+  const fonte = FONTES[idx];
+  try { localStorage.setItem('vsp-fonte', JSON.stringify({ semana: sem, fonte })); } catch(e){}
+  return fonte;
+}
+
+/* Aviso honesto quando o .woff2 não está em /fontes/ */
+function conferirFontes(){
+  const box = document.getElementById('avisoFonte');
+  if (!document.fonts || !document.fonts.check) return;
+  const faltando = FONTES.filter(f => !document.fonts.check('700 82px "' + f + '"'));
+  if (faltando.length){
+    box.textContent = 'Fontes ausentes em /fontes/: ' + faltando.join(', ') +
+      '. Os slides estão usando a pilha do sistema. Ver fontes/LEIA.md para os arquivos .woff2.';
+    box.classList.add('on');
+  } else { box.classList.remove('on'); }
+}
+
+/* =================================================================
+   2. TRATAMENTOS
+   Um por carrossel. O 10 (chapado tipográfico) é o fallback ético:
+   entra sozinho sempre que não houver imagem utilizável.
+================================================================= */
+const TRATAMENTOS = [
+  { id:'sangria',   n:'1 · Sangria limpa',        alteraObra:false },
+  { id:'bloco',     n:'2 · Bloco sobreposto',     alteraObra:false },
+  { id:'grade',     n:'3 · Grade',                alteraObra:true  },
+  { id:'diptico',   n:'4 · Díptico',              alteraObra:false },
+  { id:'grao',      n:'5 · Grão / meio-tom',      alteraObra:true  },
+  { id:'contorno',  n:'6 · Contorno',             alteraObra:true  },
+  { id:'detalhe',   n:'7 · Detalhe ampliado',     alteraObra:true  },
+  { id:'duotone',   n:'8 · Duotone areia-grafite',alteraObra:true  },
+  { id:'passe',     n:'9 · Passe-partout',        alteraObra:false },
+  { id:'chapado',   n:'10 · Chapado tipográfico', alteraObra:false }
+];
+const T = id => TRATAMENTOS.find(t => t.id === id) || TRATAMENTOS[0];
+
+/* Carrega respeitando CORS. Canvas sujo não exporta — se o servidor da
+   imagem não manda ACAO, tratamos como "sem imagem utilizável" e o
+   slide cai no chapado tipográfico. Nunca inventamos imagem. */
+function carregarImagem(url){
+  return new Promise(res => {
+    if (!url) return res(null);
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.referrerPolicy = 'no-referrer';
+    img.onload = () => res(img);
+    img.onerror = () => res(null);
+    img.src = url;
+    setTimeout(() => { if (!img.complete || !img.naturalWidth) res(null); }, 8000);
+  });
+}
+
+function cobrir(ctx, img, x, y, w, h){
+  const r = Math.max(w / img.naturalWidth, h / img.naturalHeight);
+  const dw = img.naturalWidth * r, dh = img.naturalHeight * r;
+  ctx.drawImage(img, x + (w - dw) / 2, y + (h - dh) / 2, dw, dh);
+}
+
+function pintarFundo(ctx, cor){ ctx.fillStyle = cor; ctx.fillRect(0, 0, W, H); }
+
+/* --- operações de pixel --- */
+function duotone(ctx, x, y, w, h){
+  const d = ctx.getImageData(x, y, w, h), p = d.data;
+  const a = [232,225,212], b = [34,37,42];
+  for (let i = 0; i < p.length; i += 4){
+    const l = (0.299*p[i] + 0.587*p[i+1] + 0.114*p[i+2]) / 255;
+    p[i]   = b[0] + (a[0]-b[0]) * l;
+    p[i+1] = b[1] + (a[1]-b[1]) * l;
+    p[i+2] = b[2] + (a[2]-b[2]) * l;
+  }
+  ctx.putImageData(d, x, y);
+}
+
+function meioTom(ctx, x, y, w, h){
+  const src = ctx.getImageData(x, y, w, h), p = src.data;
+  ctx.fillStyle = AREIA_CLARA; ctx.fillRect(x, y, w, h);
+  ctx.fillStyle = GRAFITE;
+  const passo = 6;
+  for (let j = 0; j < h; j += passo){
+    for (let i = 0; i < w; i += passo){
+      const k = (j * w + i) * 4;
+      const l = (0.299*p[k] + 0.587*p[k+1] + 0.114*p[k+2]) / 255;
+      const r = (1 - l) * (passo / 2) * 1.05;
+      if (r > 0.35){
+        ctx.beginPath();
+        ctx.arc(x + i + passo/2, y + j + passo/2, r, 0, 6.2832);
+        ctx.fill();
+      }
+    }
+  }
+}
+
+function contorno(ctx, x, y, w, h){
+  const src = ctx.getImageData(x, y, w, h), p = src.data;
+  const lum = new Float32Array(w * h);
+  for (let i = 0, k = 0; i < p.length; i += 4, k++)
+    lum[k] = 0.299*p[i] + 0.587*p[i+1] + 0.114*p[i+2];
+  const out = ctx.createImageData(w, h), q = out.data;
+  for (let j = 1; j < h - 1; j++){
+    for (let i = 1; i < w - 1; i++){
+      const k = j * w + i;
+      const gx = -lum[k-w-1] - 2*lum[k-1] - lum[k+w-1] + lum[k-w+1] + 2*lum[k+1] + lum[k+w+1];
+      const gy = -lum[k-w-1] - 2*lum[k-w] - lum[k-w+1] + lum[k+w-1] + 2*lum[k+w] + lum[k+w+1];
+      const g = Math.hypot(gx, gy);
+      const on = g > 90;
+      const o = k * 4;
+      q[o] = 232; q[o+1] = 225; q[o+2] = 212; q[o+3] = on ? 255 : 0;
+    }
+  }
+  ctx.putImageData(src, x, y);
+  ctx.globalAlpha = .9;
+  const tmp = document.createElement('canvas');
+  tmp.width = w; tmp.height = h;
+  tmp.getContext('2d').putImageData(out, 0, 0);
+  ctx.drawImage(tmp, x, y);
+  ctx.globalAlpha = 1;
+}
+
+/* Desenha a camada de arte. Devolve a altura ocupada pela imagem
+   (para a chapa de texto) ou 0 quando não há imagem. */
+function desenharArte(cv, trat, imgs){
+  const ctx = cv.getContext('2d');
+  cv.width = W; cv.height = H;
+  const img = imgs[0];
+
+  if (trat === 'chapado' || !img){ pintarFundo(ctx, AREIA); return 0; }
+
+  const alturaArte = Math.round(H * 0.56);
+
+  switch (trat){
+    case 'sangria':
+      pintarFundo(ctx, GRAFITE);
+      cobrir(ctx, img, 0, 0, W, H);
+      return H;
+
+    case 'bloco':
+      pintarFundo(ctx, GRAFITE);
+      cobrir(ctx, img, 0, 0, W, H);
+      ctx.fillStyle = AREIA;
+      ctx.fillRect(0, Math.round(H * 0.62), W, Math.round(H * 0.38));
+      return Math.round(H * 0.62);
+
+    case 'grade': {
+      pintarFundo(ctx, AREIA);
+      cobrir(ctx, img, 0, 0, W, alturaArte);
+      ctx.strokeStyle = AREIA; ctx.lineWidth = 1;
+      const cols = 3, rows = 4;
+      for (let i = 1; i < cols; i++){
+        ctx.beginPath(); ctx.moveTo(i * W / cols, 0); ctx.lineTo(i * W / cols, alturaArte); ctx.stroke();
+      }
+      for (let j = 1; j < rows; j++){
+        ctx.beginPath(); ctx.moveTo(0, j * alturaArte / rows); ctx.lineTo(W, j * alturaArte / rows); ctx.stroke();
+      }
+      return alturaArte;
+    }
+
+    case 'diptico': {
+      pintarFundo(ctx, AREIA);
+      const b = imgs[1] || img;
+      cobrir(ctx, img, 0, 0, W / 2 - 1, alturaArte);
+      cobrir(ctx, b, W / 2 + 1, 0, W / 2 - 1, alturaArte);
+      ctx.fillStyle = AREIA; ctx.fillRect(W / 2 - 1, 0, 2, alturaArte);
+      return alturaArte;
+    }
+
+    case 'grao':
+      pintarFundo(ctx, AREIA_CLARA);
+      cobrir(ctx, img, 0, 0, W, alturaArte);
+      meioTom(ctx, 0, 0, W, alturaArte);
+      return alturaArte;
+
+    case 'contorno':
+      pintarFundo(ctx, GRAFITE);
+      cobrir(ctx, img, 0, 0, W, alturaArte);
+      contorno(ctx, 0, 0, W, alturaArte);
+      return alturaArte;
+
+    case 'detalhe': {
+      pintarFundo(ctx, AREIA);
+      const sw = img.naturalWidth / 3, sh = img.naturalHeight / 3;
+      ctx.drawImage(img, (img.naturalWidth - sw) / 2, (img.naturalHeight - sh) / 2, sw, sh, 0, 0, W, alturaArte);
+      const tw = 190, th = Math.round(tw * img.naturalHeight / img.naturalWidth);
+      ctx.fillStyle = AREIA;
+      ctx.fillRect(W - tw - 46, alturaArte - th - 46, tw + 12, th + 12);
+      ctx.drawImage(img, W - tw - 40, alturaArte - th - 40, tw, th);
+      return alturaArte;
+    }
+
+    case 'duotone':
+      pintarFundo(ctx, GRAFITE);
+      cobrir(ctx, img, 0, 0, W, alturaArte);
+      duotone(ctx, 0, 0, W, alturaArte);
+      return alturaArte;
+
+    case 'passe': {
+      pintarFundo(ctx, AREIA);
+      const m = 150, aw = W - m * 2, ah = Math.round(alturaArte - m);
+      const r = Math.min(aw / img.naturalWidth, ah / img.naturalHeight);
+      const dw = img.naturalWidth * r, dh = img.naturalHeight * r;
+      ctx.drawImage(img, (W - dw) / 2, m / 2 + (ah - dh) / 2, dw, dh);
+      return alturaArte;
+    }
+  }
+  pintarFundo(ctx, AREIA);
+  return 0;
+}
+
+/* =================================================================
+   3. CRÉDITO — regra ética
+   Tratamento que altera a obra obriga o crédito a dizer isso.
+================================================================= */
+function credito(expo, trat, temImagem){
+  if (!temImagem) return '';
+  const base = (expo.cred || 'Divulgação').trim().replace(/\.$/, '');
+  return T(trat).alteraObra ? base + ' · Tratamento Vernissages SP' : base;
+}
+
+/* =================================================================
+   4. SELEÇÃO
+================================================================= */
 function selecionar(){
- const ini=new Date(Date.now()-3*864e5).toISOString().slice(0,10);
- const fim=new Date(Date.now()+10*864e5).toISOString().slice(0,10);
- return D.expos.filter(e=>e.ini>=ini&&e.ini<=fim&&V[e.v])
-   .sort((a,b)=>a.ini.localeCompare(b.ini)).slice(0,6);
+  const ini = new Date(Date.now() - 3 * 864e5).toISOString().slice(0, 10);
+  const fim = new Date(Date.now() + 10 * 864e5).toISOString().slice(0, 10);
+  return D.expos
+    .filter(e => e.ini && e.ini >= ini && e.ini <= fim && V[e.v])
+    .sort((a, b) => a.ini.localeCompare(b.ini) || a.v.localeCompare(b.v))
+    .slice(0, 8);
 }
 
-function slideHTML(inner,cls){ return '<div class="slidebox"><div class="cap"></div><div class="shell"><div class="slide '+(cls||'')+'">'+inner+'</div></div></div>'; }
-
-function montar(){
- const sel=selecionar(); const box=document.getElementById('slides'); const hoje=new Date();
- const per=hoje.getDate()+' de '+MES[hoje.getMonth()];
- let html='';
- html+=slideHTML('<div class="marca">VERNISSAGES <b>SP</b></div>'+
-  '<div class="kick">agenda · '+per+'</div>'+
-  '<h3>'+sel.length+' aberturas<br>pra ver agora<br>em São Paulo</h3>'+
-  '<div class="rule"></div>'+
-  '<div class="foot">arrasta pro lado →</div>','capa');
- sel.forEach((e,i)=>{
-  const v=V[e.v]; const g=ing(v);
-  html+=slideHTML('<div class="marca">VERNISSAGES <b>SP</b></div>'+
-   '<div class="kick">'+(e.ini>HOJE?'abre '+fmt(e.ini):'em cartaz')+'</div>'+
-   '<h3>'+e.t.replace(/ — .*/,'')+'</h3>'+
-   (e.a?'<div class="sub">'+e.a+'</div>':'')+
-   '<div class="info">'+v.name+' · '+v.b+'<br>'+(e.fim?'até '+fmt(e.fim):'sem data de encerramento')+'</div>'+
-   (e.d?'<div class="desc">'+(e.d.length>150?e.d.slice(0,150)+'…':e.d)+'</div>':'')+
-   (v.tipo==='galeria'?'':'<div class="pill '+(g.g?'free':'paid')+'">'+ingTxt(v)+'</div>')+
-   '<div class="foot">'+(i+1)+'/'+(sel.length+1)+'</div>');
- });
- html+=slideHTML('<div class="marca">VERNISSAGES <b>SP</b></div>'+
-  '<div class="kick">agenda completa</div>'+
-  '<h3>Mapa, roteiro<br>e agenda diária</h3>'+
-  '<div class="sub">no link da bio</div>'+
-  '<div class="rule"></div>'+
-  '<div class="foot">vernissages sp · atualizado todo dia</div>','cta');
- box.innerHTML=html;
- [...box.querySelectorAll('.cap')].forEach((c,i)=>c.textContent=i===0?'capa':(i<=sel.length?'mostra '+i:'final'));
- legenda(sel,per);
- document.getElementById('st').textContent=(sel.length+2)+' imagens montadas';
+/* agrupa por casa: galeria que abre duas mostras aparece uma vez */
+function porCasa(sel){
+  const m = new Map();
+  sel.forEach(e => { if (!m.has(e.v)) m.set(e.v, []); m.get(e.v).push(e); });
+  return [...m.entries()].map(([v, expos]) => ({ venue: V[v], expos }));
 }
 
-function legenda(sel,per){
- const linhas=sel.map(e=>{const v=V[e.v];const g=ing(v);
-  return '• '+e.t.replace(/ — .*/,'')+' — '+v.name+' ('+v.b+')\n  '+(e.ini>HOJE?'abre '+fmt(e.ini):'em cartaz')+(e.fim?' · até '+fmt(e.fim):'')+(v.tipo==='galeria'?'':' · '+(g.g?'grátis':(g.conf?'ingresso a confirmar':brl(g.i))));});
- const tags='#vernissagessp #arteemsaopaulo #exposicoessp #galeriasdearte #artecontemporanea #saopaulo #agendacultural #artebrasileira #vernissage #ovaledoartes';
- document.getElementById('cap').value=
-  'Agenda de '+per+' — o que abre e o que dá pra ver essa semana em São Paulo 🥂\n\n'+
-  linhas.join('\n')+'\n\n'+
-  'Agenda completa, mapa das galerias e roteiro a pé no link da bio. Atualizado todo dia.\n\n'+tags;
+/* =================================================================
+   5. MONTAGEM
+================================================================= */
+let ESTADO = { slides: [], sel: [], semana: 0, fonte: 'Archivo', trat: 'sangria' };
+
+async function montar(){
+  const st = document.getElementById('st');
+  st.textContent = 'montando…';
+
+  const peca = document.getElementById('peca').value;
+  const trat = document.getElementById('trat').value;
+  const sem  = Number(document.getElementById('semana').value) || semanaISO(new Date());
+  const fonte = fonteDaSemana(sem);
+
+  const sel = selecionar();
+  const casas = porCasa(sel);
+  const hoje = new Date();
+  const periodo = hoje.getDate() + ' de ' + MES[hoje.getMonth()];
+
+  ESTADO = { slides: [], sel, semana: sem, fonte, trat, casas };
+
+  /* pré-carrega as imagens uma vez só */
+  const imgs = new Map();
+  for (const e of sel) imgs.set(e, await carregarImagem(e.img));
+
+  const box = document.getElementById('slides');
+  box.innerHTML = '';
+
+  const addSlide = (cls, inner, rotulo) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'slidebox';
+    wrap.innerHTML = '<div class="cap">' + esc(rotulo) + '</div><div class="shell">' +
+      '<div class="slide ' + cls + '"><canvas class="art"></canvas><div class="txt">' + inner + '</div></div></div>';
+    box.appendChild(wrap);
+    return wrap.querySelector('.slide');
+  };
+
+  if (peca === 'lembrete'){
+    const dia = sel.length ? sel[0].ini : HOJE;
+    const dt = new Date(dia + 'T12:00:00');
+    const s = addSlide('areia',
+      '<div class="marca">VERNISSAGES SP</div>' +
+      '<div class="kick">lembrete</div>' +
+      '<h3>Amanhã, ' + esc(DIA_EXT[dt.getDay()]) + '<br>' + esc(fmtDia(dia)) + '</h3>' +
+      '<div class="sub">' + sel.length + ' ' + (sel.length === 1 ? 'abertura' : 'aberturas') +
+        ' em ' + casas.length + ' ' + (casas.length === 1 ? 'endereço' : 'endereços') + '</div>' +
+      '<div class="servico">' + casas.map(c => esc(c.venue.b)).filter((v,i,a) => a.indexOf(v) === i).join(' · ') + '</div>' +
+      '<div class="rule"></div>' +
+      '<div class="foot">vernissagessp.com.br</div>', 'lembrete');
+    s.style.setProperty('--titulo', "'" + fonte + "'");
+    desenharArte(s.querySelector('.art'), 'chapado', []);
+    ESTADO.slides.push({ el: s, nome: 'vsp-s' + String(sem).padStart(2,'0') + '-sex-lembrete' });
+    legendaLembrete(casas, sel);
+    st.textContent = '1 imagem montada · fonte ' + fonte;
+    return;
+  }
+
+  /* --- capa: AGENDA trava em Archivo --- */
+  const capa = addSlide('areia capa',
+    '<div class="marca">VERNISSAGES SP</div>' +
+    '<div class="kick">agenda · semana ' + String(sem).padStart(2,'0') + '</div>' +
+    '<h3>' + sel.length + ' ' + (sel.length === 1 ? 'abertura' : 'aberturas') + '<br>em São Paulo</h3>' +
+    '<div class="sub">' + esc(periodo) + ' · ' + casas.length + ' ' + (casas.length === 1 ? 'endereço' : 'endereços') + '</div>' +
+    '<div class="rule"></div>' +
+    '<div class="foot">vernissagessp.com.br</div>', 'capa');
+  capa.style.setProperty('--titulo', "'Archivo'");   // trava da âncora
+  desenharArte(capa.querySelector('.art'), 'chapado', []);
+  ESTADO.slides.push({ el: capa, nome: nomeArquivo(sem, 1) });
+
+  /* --- um slide por mostra --- */
+  sel.forEach((e, i) => {
+    const v = V[e.v];
+    const img = imgs.get(e);
+    const usado = img ? trat : 'chapado';           // fallback ético
+    const proxima = imgs.get(sel[i + 1]) || null;
+    const escuro = img && (usado === 'sangria' || usado === 'bloco' || usado === 'contorno' || usado === 'duotone');
+    const cred = credito(e, usado, !!img);
+
+    const s = addSlide('' + (escuro && usado !== 'bloco' ? 'grafite' : 'areia'),
+      '<div class="marca">VERNISSAGES SP</div>' +
+      '<div class="kick">' + (e.ini > HOJE ? 'abre ' + esc(fmtCurto(e.ini)) : 'em cartaz') + '</div>' +
+      '<h3>' + esc(e.t.replace(/ — .*/, '')) + '</h3>' +
+      (e.a ? '<div class="sub">' + esc(e.a) + '</div>' : '') +
+      '<div class="servico">' + esc(v.name) + (arroba(v.ig) ? ' ' + esc(arroba(v.ig)) : '') +
+        '<br>' + esc(v.addr) + ', ' + esc(v.b) +
+        '<br>' + (e.fim ? 'até ' + esc(fmtDia(e.fim)) : 'encerramento não divulgado') + '</div>' +
+      (e.d ? '<div class="desc">' + esc(e.d.length > 165 ? e.d.slice(0, 165).replace(/\s+\S*$/, '') + '…' : e.d) + '</div>' : '') +
+      '<div class="foot">' + (i + 2) + '/' + (sel.length + 2) + '</div>' +
+      (cred ? '<div class="cred">' + esc(cred) + '</div>' : ''),
+      'mostra ' + (i + 1));
+
+    s.style.setProperty('--titulo', "'" + fonte + "'");
+    const alturaArte = desenharArte(s.querySelector('.art'), usado, [img, proxima]);
+
+    /* chapa de proteção quando o texto cai sobre a imagem */
+    if (alturaArte >= H * 0.9){
+      const chapa = document.createElement('div');
+      chapa.className = 'chapa';
+      chapa.style.height = '58%';
+      chapa.style.background = 'linear-gradient(to top, rgba(34,37,42,.93) 42%, rgba(34,37,42,0))';
+      s.insertBefore(chapa, s.querySelector('.txt'));
+    }
+    ESTADO.slides.push({ el: s, nome: nomeArquivo(sem, i + 2) });
+  });
+
+  /* --- final --- */
+  const fim = addSlide('grafite fim',
+    '<div class="marca">VERNISSAGES SP</div>' +
+    '<div class="kick">agenda completa</div>' +
+    '<h3>Mapa, roteiro<br>e agenda diária</h3>' +
+    '<div class="sub">vernissagessp.com.br</div>' +
+    '<div class="rule"></div>' +
+    '<div class="foot">atualizado todo dia</div>', 'final');
+  fim.style.setProperty('--titulo', "'Archivo'");
+  const cvFim = fim.querySelector('.art');
+  cvFim.width = W; cvFim.height = H;
+  pintarFundo(cvFim.getContext('2d'), GRAFITE);
+  ESTADO.slides.push({ el: fim, nome: nomeArquivo(sem, sel.length + 2) });
+
+  const semImg = sel.filter(e => !imgs.get(e)).length;
+  document.getElementById('etica').textContent =
+    'Tratamento: ' + T(trat).n + (T(trat).alteraObra ? ' — altera a obra, crédito recebe "Tratamento Vernissages SP".' : ' — não altera a obra.') +
+    (semImg ? ' ' + semImg + ' ' + (semImg === 1 ? 'mostra caiu' : 'mostras caíram') + ' no chapado tipográfico por falta de imagem utilizável (ausente ou sem CORS).' : '');
+
+  legendaCarrossel(casas, sel, periodo);
+  st.textContent = ESTADO.slides.length + ' imagens montadas · fonte ' + fonte + ' · semana ' + sem;
+  conferirFontes();
 }
 
+function nomeArquivo(sem, n){
+  const d = new Date();
+  return 'vsp-s' + String(sem).padStart(2, '0') + '-' + DIA_ABREV[d.getDay()] + '-slide-' + String(n).padStart(2, '0');
+}
+
+/* =================================================================
+   6. LEGENDAS — voz do ESTILO.md, estrutura do POSTS.md
+   Sem emoji, sem exclamação, sem adjetivo comercial, sem hashtag.
+================================================================= */
+function linhaExpo(e){
+  const partes = [];
+  let s = e.t.replace(/ — .*/, '');
+  if (e.a) s += ', de ' + e.a;
+  partes.push(s + '.');
+  if (e.d) partes.push(e.d.replace(/\s+$/, '').replace(/\.?$/, '.'));
+  partes.push(e.fim ? 'Até ' + fmtDia(e.fim) + '.' : 'Encerramento não divulgado.');
+  return partes.join(' ');
+}
+
+function legendaCarrossel(casas, sel, periodo){
+  const dias = [...new Set(sel.map(e => e.ini))];
+  let abertura;
+  if (dias.length === 1){
+    const dt = new Date(dias[0] + 'T12:00:00');
+    abertura = sel.length + (sel.length === 1 ? ' abertura' : ' aberturas') + ' em São Paulo ' +
+      (DIA_EXT[dt.getDay()] === 'sábado' || DIA_EXT[dt.getDay()] === 'domingo' ? 'no ' : 'na ') +
+      DIA_EXT[dt.getDay()] + ', ' + fmtDia(dias[0]) + '.';
+  } else {
+    abertura = sel.length + (sel.length === 1 ? ' abertura' : ' aberturas') + ' em São Paulo, em ' +
+      casas.length + (casas.length === 1 ? ' endereço' : ' endereços') + ', a partir de ' + periodo + '.';
+  }
+
+  const blocos = casas.map(c => {
+    const v = c.venue;
+    const cab = v.name + (arroba(v.ig) ? ' ' + arroba(v.ig) : '') + ' — ' + v.addr + ', ' + v.b;
+    return cab + '\n' + c.expos.map(linhaExpo).join('\n');
+  });
+
+  document.getElementById('cap').value =
+    abertura + '\n\n' + blocos.join('\n\n') +
+    '\n\n—\n\nAgenda completa das aberturas de São Paulo: vernissagessp.com.br';
+}
+
+function legendaLembrete(casas, sel){
+  const dia = sel.length ? sel[0].ini : HOJE;
+  const dt = new Date(dia + 'T12:00:00');
+  const porBairro = new Map();
+  casas.forEach(c => {
+    if (!porBairro.has(c.venue.b)) porBairro.set(c.venue.b, []);
+    porBairro.get(c.venue.b).push(c.venue.name);
+  });
+  const linhas = [...porBairro.entries()].map(([b, nomes]) => b + ' — ' + nomes.join(' e ') + '.');
+
+  document.getElementById('cap').value =
+    'Amanhã, ' + DIA_EXT[dt.getDay()] + ' ' + fmtDia(dia) + ', ' + sel.length +
+    (sel.length === 1 ? ' abertura' : ' aberturas') + ' em ' + casas.length +
+    (casas.length === 1 ? ' endereço' : ' endereços') + '.\n\n' +
+    linhas.join('\n') +
+    '\n\nEndereços e mapa de cada abertura no site.\n\n—\n\nAgenda completa das aberturas de São Paulo: vernissagessp.com.br';
+}
+
+/* =================================================================
+   7. EXPORTAÇÃO — 1080x1350
+================================================================= */
 async function baixarTudo(){
- const slides=[...document.querySelectorAll('.slide')];
- const st=document.getElementById('st');
- for(let i=0;i<slides.length;i++){
-  st.textContent='gerando imagem '+(i+1)+' de '+slides.length+'…';
-  const el=slides[i]; const antes=el.style.transform; el.style.transform='none';
-  const canvas=await html2canvas(el,{backgroundColor:'#0e0e11',width:1080,height:1080,scale:1,logging:false});
-  el.style.transform=antes;
-  const a=document.createElement('a');
-  a.download='vernissages-sp-'+String(i+1).padStart(2,'0')+'.png';
-  a.href=canvas.toDataURL('image/png'); a.click();
-  await new Promise(r=>setTimeout(r,400));
- }
- st.textContent='pronto — '+slides.length+' imagens na sua pasta de downloads';
+  const st = document.getElementById('st');
+  for (let i = 0; i < ESTADO.slides.length; i++){
+    const { el, nome } = ESTADO.slides[i];
+    st.textContent = 'gerando imagem ' + (i + 1) + ' de ' + ESTADO.slides.length + '…';
+    const antes = el.style.transform;
+    el.style.transform = 'none';
+    let canvas;
+    try {
+      canvas = await html2canvas(el, { backgroundColor: null, width: W, height: H, scale: 1, logging: false, useCORS: true });
+    } catch(err){
+      el.style.transform = antes;
+      st.textContent = 'falhou no slide ' + (i + 1) + ': ' + err.message;
+      return;
+    }
+    el.style.transform = antes;
+    const a = document.createElement('a');
+    a.download = nome + '.png';
+    a.href = canvas.toDataURL('image/png');
+    a.click();
+    await new Promise(r => setTimeout(r, 400));
+  }
+  st.textContent = 'pronto — ' + ESTADO.slides.length + ' imagens na sua pasta de downloads';
+}
+
+function baixarLegendas(){
+  const sem = ESTADO.semana;
+  const peca = document.getElementById('peca').value;
+  const md = '# Semana ' + String(sem).padStart(2, '0') + '\n\n' +
+    '**Peça:** ' + (peca === 'lembrete' ? 'Lembrete' : 'Carrossel da agenda') + '\n' +
+    '**Tratamento:** ' + T(ESTADO.trat).n + '\n' +
+    '**Fonte do título:** ' + ESTADO.fonte + '\n' +
+    '**Recorte:** 4:5\n' +
+    '**Arquivos:** ' + ESTADO.slides.map(s => s.nome + '.jpg').join(', ') + '\n\n' +
+    '### Legenda\n\n```\n' + document.getElementById('cap').value + '\n```\n\n' +
+    '## Notas de apuração\n\n- Horário das aberturas: só registrar se a casa divulgou.\n';
+  const a = document.createElement('a');
+  a.download = 'LEGENDAS.md';
+  a.href = URL.createObjectURL(new Blob([md], { type: 'text/markdown' }));
+  a.click();
 }
 
 function copiar(){
- const ta=document.getElementById('cap'); ta.select();
- navigator.clipboard.writeText(ta.value).then(()=>{document.getElementById('st2').textContent='legenda copiada';},
-  ()=>{document.execCommand('copy');document.getElementById('st2').textContent='legenda copiada';});
+  const ta = document.getElementById('cap');
+  ta.select();
+  navigator.clipboard.writeText(ta.value)
+    .then(() => { document.getElementById('st2').textContent = 'legenda copiada'; },
+          () => { document.execCommand('copy'); document.getElementById('st2').textContent = 'legenda copiada'; });
 }
+
+/* --- init --- */
+document.getElementById('trat').innerHTML =
+  TRATAMENTOS.map(t => '<option value="' + t.id + '">' + t.n + '</option>').join('');
+document.getElementById('semana').value = semanaISO(new Date());
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(conferirFontes);
 montar();
 </script>
 </body>
