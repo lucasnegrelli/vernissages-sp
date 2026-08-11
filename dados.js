@@ -142,9 +142,6 @@ const EXPOS = [
 {t:"Acervo em Transformação: Doações Recentes",v:"MASP",ini:"2026-05-15",fim:"2026-09-13",d:"Curadoria Adriano Pedrosa e equipe."},
 {t:"confluências — Carolina Caycedo",a:"Carolina Caycedo",v:"MASP",ini:"2026-07-03",fim:"2026-10-04",d:"Rios, represas e resistência socioambiental."},
 {t:"Casa María Lionza — Sol Calero",a:"Sol Calero",v:"MASP",ini:"2026-07-03",fim:"2027-01-30",d:"Instalação de longa duração da venezuelana."},
-{t:"O que elas viram — coletiva",v:"IMS Paulista",ini:"2026-03-17",fim:"2026-08-03",d:"Fotógrafas pioneiras no acervo IMS."},
-{t:"Pele Azul — Vivian Caccuri",a:"Vivian Caccuri",v:"CCBB São Paulo",ini:"2026-04-29",fim:"2026-08-03",d:"Som, mosquitos e ecologia no Espaço Anexo."},
-{t:"Atlântico Sertão — coletiva",v:"CCBB São Paulo",ini:"2026-04-15",fim:"2026-08-03",d:"Mais de 70 artistas de diferentes regiões do país em seis núcleos; o sertão como território ampliado."},
 {t:"Estrelas Escolhidas — Luiz Zerbini",a:"Luiz Zerbini",v:"Instituto Tomie Ohtake",ini:"2026-06-26",fim:"2026-08-16",d:"~230 obras: monotipias, pinturas e instalações da última década."},
 {t:"Antes da Forma, o Encanto — Mônica Ventura",a:"Mônica Ventura",v:"Galeria Nara Roesler",ini:"2026-05-26",fim:"2026-08-08",d:"Cosmologias afro-ameríndias e geometria."},
 {t:"O fascínio e o afeto — coletiva",v:"Galeria Nara Roesler",ini:"2026-05-26",fim:"2026-08-08",d:"Recorte do programa da galeria, com curadoria de Agnaldo Farias."},
@@ -214,12 +211,12 @@ const BAIRRO_COUNTS=[["Jardins",18],["Barra Funda",8],["Jardim Europa",7],["Pinh
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
 const FOCO = {
-t:"Bauci: a cidade e os olhos — Érica Magalhães",
-v:"Galeria Aura",
-quem:"Érica Magalhães",
-txt:"Esculturas recentes, produzidas para a mostra, em que porcelanas sustentam blocos de concreto. Tatiana Ferraz, autora do texto curatorial, observa que os dois materiais partem do estado líquido e endurecem, mas assumem papéis opostos quando reunidos. Abriu em 8 de agosto e fica até 23 de setembro.",
-link:"https://aura.art.br/exposicoes-aura/exposicoes/bauci-a-cidade-e-os-olhos",
-publi:false
+  t: "To Love — Claudia Andujar e George Love",
+  v: "Galeria Vermelho",
+  quem: "Claudia Andujar e George Love",
+  txt: "Curadoria de Eder Chiodetto sobre a produção experimental de George Love e seu diálogo com Claudia Andujar nos anos 1960 e 1970. A mostra marca o início da representação do Arquivo de George Love pela galeria. Abre em 15 de agosto; encerramento não divulgado.",
+  link: "https://galeriavermelho.com.br",
+  publi: false
 };
 
 /* ================= DESTAQUES JA USADOS =================
@@ -233,6 +230,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+{d:"2026-08-11",k:"To Love — Claudia Andujar e George Love|Galeria Vermelho"},
 {d:"2026-08-10",k:"Bauci: a cidade e os olhos — Érica Magalhães|Galeria Aura"},
 {d:"2026-08-04",k:"O Lado Escuro da Lua — Alfredo Jaar|Galeria Luisa Strina"},
 {d:"2026-08-05",k:"Ígneo Piaga — Thiago Martins de Melo|Almeida & Dale | Millan"},
@@ -246,5 +244,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "10/08/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, bairros: BAIRRO_COUNTS };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "11/08/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, bairros: BAIRRO_COUNTS };
 })();
