@@ -211,11 +211,11 @@ const BAIRRO_COUNTS=[["Jardins",18],["Barra Funda",8],["Jardim Europa",7],["Pinh
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
 const FOCO = {
-  t: "To Love — Claudia Andujar e George Love",
-  v: "Galeria Vermelho",
-  quem: "Claudia Andujar e George Love",
-  txt: "Curadoria de Eder Chiodetto sobre a produção experimental de George Love e seu diálogo com Claudia Andujar nos anos 1960 e 1970. A mostra marca o início da representação do Arquivo de George Love pela galeria. Abre em 15 de agosto; encerramento não divulgado.",
-  link: "https://galeriavermelho.com.br",
+  t: "Céu de concreto — Luiz Carlos Paulino",
+  v: "Central Galeria",
+  quem: "Luiz Carlos Paulino",
+  txt: "Individual de Luiz Carlos Paulino com texto crítico de Lilia Moritz Schwarcz. Abre em 15 de agosto e segue até 19 de setembro.",
+  link: "https://www.centralgaleria.com",
   publi: false
 };
 
@@ -230,6 +230,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  { d: "2026-08-12", k: "Céu de concreto — Luiz Carlos Paulino|Central Galeria" },
 {d:"2026-08-11",k:"To Love — Claudia Andujar e George Love|Galeria Vermelho"},
 {d:"2026-08-10",k:"Bauci: a cidade e os olhos — Érica Magalhães|Galeria Aura"},
 {d:"2026-08-04",k:"O Lado Escuro da Lua — Alfredo Jaar|Galeria Luisa Strina"},
@@ -244,5 +245,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "11/08/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, bairros: BAIRRO_COUNTS };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "12/08/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, bairros: BAIRRO_COUNTS };
 })();
