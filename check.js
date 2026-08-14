@@ -299,7 +299,57 @@ function validarSync(DATA, opts) {
 
 /* ---------- validacao da imagem (rede) ---------- */
 
+/* Caminho relativo (ex.: img/obra.jpg) aponta para arquivo do proprio repo.
+   No navegador o fetch resolve contra a pagina; no Node ele nao resolve e
+   quebra com "Failed to parse URL". Por isso, quando o caminho e relativo e
+   estamos no Node, conferimos o arquivo em disco: mesma garantia de antes
+   (existe, e imagem de verdade, nao e SVG e tem peso de obra). */
+function ehAbsoluta(u) {
+  return /^https?:\/\//i.test(u) || String(u).indexOf("//") === 0;
+}
+
+function validarImagemLocal(rel) {
+  var fs, path;
+  try {
+    fs = require("fs");
+    path = require("path");
+  } catch (e) {
+    return { ok: false, motivo: "caminho relativo e sem base para resolver: " + rel };
+  }
+  var limpo = String(rel).split("?")[0].split("#")[0].replace(/^\.?\//, "");
+  var bases = [process.cwd()];
+  if (typeof __dirname !== "undefined") bases.push(__dirname);
+  var alvo = null;
+  for (var i = 0; i < bases.length; i++) {
+    var tent = path.resolve(bases[i], limpo);
+    if (fs.existsSync(tent)) { alvo = tent; break; }
+  }
+  if (!alvo) return { ok: false, motivo: "arquivo nao existe no repo: " + limpo };
+
+  var buf = fs.readFileSync(alvo);
+  var kb = Math.round(buf.length / 1024);
+  var hex = buf.slice(0, 12).toString("hex");
+  if (/\.svgz?$/i.test(limpo) || buf.slice(0, 400).toString("utf8").indexOf("<svg") !== -1) {
+    return { ok: false, motivo: "SVG. Quase sempre e logo ou forma geometrica, nao a obra." };
+  }
+  var ehImagem =
+    hex.indexOf("ffd8ff") === 0 ||
+    hex.indexOf("89504e47") === 0 ||
+    hex.indexOf("47494638") === 0 ||
+    (hex.indexOf("52494646") === 0 && buf.slice(8, 12).toString("latin1") === "WEBP");
+  if (!ehImagem) {
+    return { ok: false, motivo: "arquivo nao e imagem reconhecivel (jpeg, png, gif ou webp)" };
+  }
+  if (buf.length < 15000) {
+    return { ok: false, motivo: "so " + kb + " KB. Provavel logo, icone ou placeholder." };
+  }
+  return { ok: true, motivo: "arquivo local, " + kb + " KB" };
+}
+
 function validarImagem(url, doFetch) {
+  if (!ehAbsoluta(url) && typeof require !== "undefined") {
+    return Promise.resolve(validarImagemLocal(url));
+  }
   return doFetch(url, { method: "GET", redirect: "follow" }).then(function (res) {
     if (!res.ok) return { ok: false, motivo: "HTTP " + res.status };
     var ct = (res.headers.get("content-type") || "").toLowerCase();
