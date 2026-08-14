@@ -211,11 +211,11 @@ const BAIRRO_COUNTS=[["Jardins",18],["Barra Funda",8],["Jardim Europa",7],["Pinh
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
 const FOCO = {
-  t: "Tudo que eu sei, eu aprendi à noite — Luísa Matsushita",
-  v: "Cultura Artística",
-  quem: "Luísa Matsushita",
-  txt: "Pinturas inéditas de Luísa Matsushita sobre o centro e a noite paulistana. Estreia do programa Aberto Solo; abre em 15 de agosto e segue até 27 de setembro.",
-  link: "https://culturaartistica.org",
+  t: "Mensageiro da Manhã — André Ricardo",
+  v: "Almeida & Dale | Millan",
+  quem: "André Ricardo",
+  txt: "Individual de André Ricardo, pintor paulistano, na Almeida & Dale | Millan. Abre em 15 de agosto e segue até 19 de setembro.",
+  link: "https://almeidaedale.com.br",
   publi: false
 };
 
@@ -230,6 +230,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  { d: "2026-08-14", k: "Mensageiro da Manhã — André Ricardo|Almeida & Dale | Millan" },
   { d: "2026-08-13", k: "Tudo que eu sei, eu aprendi à noite — Luísa Matsushita|Cultura Artística" },
   { d: "2026-08-12", k: "Céu de concreto — Luiz Carlos Paulino|Central Galeria" },
 {d:"2026-08-11",k:"To Love — Claudia Andujar e George Love|Galeria Vermelho"},
@@ -246,5 +247,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "13/08/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, bairros: BAIRRO_COUNTS };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "14/08/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, bairros: BAIRRO_COUNTS };
 })();
