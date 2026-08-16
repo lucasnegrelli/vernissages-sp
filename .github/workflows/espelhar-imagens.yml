@@ -43,4 +43,17 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add dados.js img
           git commit -m "espelha imagens externas para img/"
-          git push
+          # outros workflows (valida/gerar acervo) também podem empurrar pra
+          # main no mesmo instante; tenta empurrar com rebase algumas vezes
+          # antes de desistir, em vez de falhar no primeiro conflito de ref.
+          for i in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "push rejeitado, tentativa $i — rebaseando e tentando de novo"
+            git fetch origin main
+            git rebase origin/main || exit 1
+            sleep 3
+          done
+          echo "Falhou ao empurrar após 5 tentativas."
+          exit 1
