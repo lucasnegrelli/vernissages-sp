@@ -1688,10 +1688,10 @@
    "v": "Baró Galeria",
    "ini": "2026-08-20",
    "fim": "2026-09-03",
-   "d": "Primeira individual da artista japonesa na América do Sul: cerca de quinze pinturas feitas durante residência em São Paulo. Mostra pop-up no Taller Zaragoza, depois da transferência da sede da Baró para a Espanha. Endereço a confirmar.",
-   "bairro": "Santa Cecília",
-   "zona": "Centro",
-   "addr": "Sede transferida para a Espanha; mostras em SP no formato pop-up (endereço a confirmar)",
+   "d": "Primeira individual da artista japonesa na América do Sul: cerca de quinze pinturas feitas durante residência em São Paulo. Mostra pop-up no Taller Zaragoza (Jardim Europa), depois da transferência da sede da Baró para a Espanha. Pintura ao vivo na abertura, dia 20, das 18h às 21h. Curadoria de Ana Carolina Ralston.",
+   "bairro": "Jardim Europa",
+   "zona": "Oeste",
+   "addr": "R. Amauri, 62 (pop-up Taller Zaragoza)",
    "tipo": "galeria",
    "site": "https://barogaleria.com",
    "ig": "barogaleria",
@@ -2952,13 +2952,13 @@
   },
   "baro-galeria": {
    "name": "Baró Galeria",
-   "addr": "Sede transferida para a Espanha; mostras em SP no formato pop-up (endereço a confirmar)",
-   "b": "Santa Cecília",
-   "z": "Centro",
+   "addr": "R. Amauri, 62 (pop-up Taller Zaragoza)",
+   "b": "Jardim Europa",
+   "z": "Oeste",
    "tipo": "galeria",
    "site": "https://barogaleria.com",
    "ig": "barogaleria",
-   "info": "Dirigida por Maria Baró. A sede foi transferida para a Espanha; a galeria mantém programa em São Paulo por meio de mostras temporárias. Diálogo Brasil–Espanha–América Latina."
+   "info": "Dirigida por Maria Baró. Sede transferida para a Espanha; retomou presença em São Paulo em 2026 com pop-up no Taller Zaragoza, em Jardim Europa. Diálogo Brasil–Espanha–América Latina."
   },
   "a7ma-galeria": {
    "name": "A7MA Galeria",
