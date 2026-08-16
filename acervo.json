@@ -1797,7 +1797,8 @@
    "tipo": "institucional",
    "site": "",
    "ig": "",
-   "visto": "2026-08-16"
+   "visto": "2026-08-16",
+   "primeiroRegistro": "2026-08-16"
   },
   {
    "id": "arteonica-da-paisagem-aldir-mendes-de-souza--galeria-contempo",
@@ -1813,7 +1814,8 @@
    "tipo": "galeria",
    "site": "https://galeriacontempo.com.br",
    "ig": "",
-   "visto": "2026-08-16"
+   "visto": "2026-08-16",
+   "primeiroRegistro": "2026-08-16"
   },
   {
    "id": "onda-avalanche-vulcao-mauro-restiffe--fortes-d-aloia-e-gabriel-galeria",
@@ -1829,7 +1831,8 @@
    "tipo": "galeria",
    "site": "https://fdag.com.br",
    "ig": "fortesdaloiagabriel",
-   "visto": "2026-08-16"
+   "visto": "2026-08-16",
+   "primeiroRegistro": "2026-08-16"
   },
   {
    "id": "no-encalco-do-liquen-tania-ximena--galatea",
@@ -1845,7 +1848,8 @@
    "tipo": "galeria",
    "site": "https://galatea.art",
    "ig": "galatea.art_",
-   "visto": "2026-08-16"
+   "visto": "2026-08-16",
+   "primeiroRegistro": "2026-08-16"
   },
   {
    "id": "a-fibra-que-conduz-ao-significado-tamara-roman--espaco-republica",
@@ -1861,7 +1865,8 @@
    "tipo": "hibrido",
    "site": "",
    "ig": "espacorepublica",
-   "visto": "2026-08-16"
+   "visto": "2026-08-16",
+   "primeiroRegistro": "2026-08-16"
   }
  ],
  "artistas": {
@@ -2957,13 +2962,13 @@
   },
   "a7ma-galeria": {
    "name": "A7MA Galeria",
-   "addr": "R. Harmonia, 239 ~",
+   "addr": "R. Medeiros de Albuquerque, 250",
    "b": "Vila Madalena",
    "z": "Oeste",
    "tipo": "galeria",
-   "site": "",
-   "ig": "",
-   "info": "Arte urbana e cultura de rua na Vila Madalena."
+   "site": "https://a7ma.com.br",
+   "ig": "a7magaleria",
+   "info": "Arte urbana e cultura de rua na Vila Madalena. Divulga majoritariamente pelo Instagram."
   },
   "amoa-konoya-arte-indigena": {
    "name": "Amoa Konoya Arte Indígena",
