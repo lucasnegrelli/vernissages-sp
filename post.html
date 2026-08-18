@@ -113,6 +113,8 @@ textarea{width:100%;min-height:340px;background:var(--areia-clara);border:1px so
   <label class="f">Peça
     <select id="peca">
       <option value="carrossel">Carrossel da agenda</option>
+      <option value="destaque">Destaque (uma mostra)</option>
+      <option value="nota">Nota (texto, sem imagem)</option>
       <option value="lembrete">Lembrete (imagem única)</option>
     </select>
   </label>
@@ -123,6 +125,19 @@ textarea{width:100%;min-height:340px;background:var(--areia-clara);border:1px so
     <input type="number" id="semana" min="1" max="53" style="width:70px">
   </label>
   <button class="btn" onclick="montar()">Montar de novo</button>
+</div>
+<div class="bar" id="linhaDestaque" style="display:none">
+  <label class="f">Mostra
+    <select id="mostraDestaque" style="min-width:420px"></select>
+  </label>
+</div>
+<div class="bar" id="linhaNota" style="display:none">
+  <label class="f" style="flex:1;min-width:320px">Texto da nota
+    <input type="text" id="textoNota" placeholder="Frase objetiva sobre o meio, com fonte verificável" style="width:100%;font-family:inherit;font-size:.86rem;padding:8px 10px;border:1px solid var(--linha);background:var(--areia-clara);color:var(--grafite);border-radius:2px">
+  </label>
+  <label class="f">Fonte
+    <input type="text" id="fonteNota" placeholder="ex.: comunicado da galeria, materia X" style="width:260px;font-family:inherit;font-size:.86rem;padding:8px 10px;border:1px solid var(--linha);background:var(--areia-clara);color:var(--grafite);border-radius:2px">
+  </label>
 </div>
 <div class="bar">
   <button class="btn main" onclick="baixarTudo()">Baixar todas as imagens</button>
@@ -140,7 +155,7 @@ textarea{width:100%;min-height:340px;background:var(--areia-clara);border:1px so
   <button class="btn" onclick="baixarLegendas()">Baixar LEGENDAS.md</button>
   <span class="status" id="st2"></span>
 </div>
-<p class="hint">Poste o carrossel na terça, início da noite; o lembrete na sexta. Marque as galerias citadas. Horário de abertura só entra na legenda se a casa divulgou — não infira.</p>
+<p class="hint">Peça e dia seguem o EDITORIAL.md: carrossel na terça, destaque segunda/quarta/quinta, nota quando houver algo real pra comentar, lembrete na sexta. Marque as galerias citadas. Horário de abertura só entra na legenda se a casa divulgou — não infira.</p>
 </div>
 
 <script>
@@ -508,6 +523,18 @@ function selecionar(){
     .sort(ord).reverse().slice(0, 8);
 }
 
+/* candidatas a destaque: o que ainda vai abrir entra primeiro (por data de
+   abertura), o que ja esta em cartaz entra depois (por data de encerramento,
+   quem fecha antes primeiro) — prioriza novidade sem esconder o que ja abriu. */
+function candidatosDestaque(){
+  const limite = new Date(Date.now() + 21 * 864e5).toISOString().slice(0, 10);
+  const abre = D.expos.filter(e => e.ini && e.ini > HOJE && e.ini <= limite && V[e.v])
+    .sort((a, b) => a.ini.localeCompare(b.ini));
+  const cartaz = D.expos.filter(e => e.ini && e.ini <= HOJE && (!e.fim || e.fim >= HOJE) && V[e.v])
+    .sort((a, b) => (a.fim || '9999').localeCompare(b.fim || '9999'));
+  return [...abre, ...cartaz];
+}
+
 /* Semana do projeto, não semana ISO: s01 = abertura de 08/08/2026. */
 const SEMANA_UM = Date.parse('2026-08-08T12:00:00');
 function semanaProjeto(dataAbertura){
@@ -520,6 +547,67 @@ function porCasa(sel){
   const m = new Map();
   sel.forEach(e => { if (!m.has(e.v)) m.set(e.v, []); m.get(e.v).push(e); });
   return [...m.entries()].map(([v, expos]) => ({ venue: V[v], expos }));
+}
+
+/* Aplica a arte (imagem tratada ou chapado) num slide ja criado por addSlide,
+   com a mesma logica de sangria total / faixa sob medida usada em toda peca
+   que mostra uma obra so. Compartilhada entre carrossel, destaque e lembrete. */
+function aplicarArte(s, img, proxima, usado){
+  const cv = s.querySelector('.art'), txt = s.querySelector('.txt');
+  let sangriaTotal = false;
+
+  if (img && usado === 'sangria' && Math.round(W * img.naturalHeight / img.naturalWidth) >= H){
+    const ctx = cv.getContext('2d');
+    cv.width = W; cv.height = H;
+    pintarFundo(ctx, GRAFITE);
+    cobrir(ctx, img, 0, 0, W, H);
+    if (contraste(lumMedia(ctx, 0, Math.round(H * 0.5), W, Math.round(H * 0.5)), 0.93) >= 4.5){
+      sangriaTotal = true;
+      s.classList.remove('areia');
+      s.classList.add('grafite');
+    }
+  }
+
+  if (!sangriaTotal){
+    let alturaArte = 0;
+    if (img && usado !== 'chapado'){
+      s.classList.add('comArte');
+      txt.style.paddingTop = '0px';
+      const filhos = [...txt.children].filter(el => !el.classList.contains('cred') && !el.classList.contains('foot'));
+      const fimTexto = filhos.reduce((k, el) => Math.max(k, el.offsetTop + el.offsetHeight), 0);
+      const natural = Math.round(W * img.naturalHeight / img.naturalWidth);
+      alturaArte = Math.max(Math.round(H * 0.30), Math.min(H - fimTexto - 206, natural));
+      txt.style.paddingTop = (alturaArte + 52) + 'px';
+    }
+    desenharArte(cv, usado, [img, proxima], alturaArte);
+  }
+  return sangriaTotal;
+}
+
+/* Slide de uma unica mostra: capa/servico/descricao + arte tratada. Usado
+   pelo carrossel (um por mostra) e pela peca destaque (um so). */
+function montarSlideObra(o){
+  const usado = o.img ? o.trat : 'chapado';
+  const escuro = o.img && (usado === 'contorno' || usado === 'duotone');
+  const cred = credito(o.e, usado, !!o.img);
+  const lim = o.descLen || 165;
+
+  const s = addSlide(escuro ? 'grafite' : 'areia',
+    '<div class="marca">VERNISSAGES SP</div>' +
+    '<div class="kick">' + o.kicker + '</div>' +
+    '<h3>' + esc(o.e.t.replace(/ — .*/, '')) + '</h3>' +
+    (o.e.a ? '<div class="sub">' + esc(o.e.a) + '</div>' : '') +
+    '<div class="servico">' + esc(o.v.name) + (arroba(o.v.ig) ? ' ' + esc(arroba(o.v.ig)) : '') +
+      '<br>' + esc(o.v.addr) + ', ' + esc(o.v.b) +
+      '<br>' + (o.e.fim ? 'até ' + esc(fmtDia(o.e.fim)) : 'encerramento não divulgado') + '</div>' +
+    (o.e.d ? '<div class="desc">' + esc(o.e.d.length > lim ? o.e.d.slice(0, lim).replace(/\s+\S*$/, '') + '…' : o.e.d) + '</div>' : '') +
+    '<div class="foot">' + o.foot + '</div>' +
+    (cred ? '<div class="cred">' + esc(cred) + '</div>' : ''),
+    o.rotulo);
+
+  s.style.setProperty('--titulo', "'" + o.fonte + "'");
+  aplicarArte(s, o.img, o.proxima, usado);
+  return s;
 }
 
 /* =================================================================
@@ -550,10 +638,6 @@ async function montar(){
 
   ESTADO = { slides: [], sel, semana: sem, fonte, trat, casas };
 
-  /* pré-carrega as imagens uma vez só */
-  const imgs = new Map();
-  for (const e of sel) imgs.set(e, await carregarImagem(e.img));
-
   const box = document.getElementById('slides');
   box.innerHTML = '';
 
@@ -566,10 +650,61 @@ async function montar(){
     return wrap.querySelector('.slide');
   };
 
+  if (peca === 'nota'){
+    const texto = document.getElementById('textoNota').value.trim();
+    const fonteTxt = document.getElementById('fonteNota').value.trim();
+    if (!texto){ st.textContent = 'preencha o texto da nota antes de montar'; return; }
+    const s = addSlide('grafite',
+      '<div class="marca">VERNISSAGES SP</div>' +
+      '<div class="kick">nota</div>' +
+      '<h3 style="font-size:58px;line-height:1.2">' + esc(texto) + '</h3>' +
+      (fonteTxt ? '<div class="servico">Fonte: ' + esc(fonteTxt) + '</div>' : '') +
+      '<div class="rule"></div>' +
+      '<div class="foot">vernissagessp.com.br</div>', 'nota');
+    s.style.setProperty('--titulo', "'" + fonte + "'");
+    const cvNota = s.querySelector('.art');
+    cvNota.width = W; cvNota.height = H;
+    pintarFundo(cvNota.getContext('2d'), GRAFITE);
+    ESTADO.slides.push({ el: s, nome: 'vsp-s' + String(sem).padStart(2,'0') + '-' + DIA_ABREV[new Date().getDay()] + '-nota' });
+    legendaNota(texto, fonteTxt);
+    st.textContent = '1 imagem montada (nota) · fonte ' + fonte;
+    return;
+  }
+
+  if (peca === 'destaque'){
+    const candidatos = candidatosDestaque();
+    const idx = Number(document.getElementById('mostraDestaque').value || 0);
+    const e = candidatos[idx];
+    if (!e){ st.textContent = 'nenhuma mostra disponível para destaque no momento'; return; }
+    const v = V[e.v];
+    const img = await carregarImagem(e.img);
+    const s = montarSlideObra({
+      e, v, img, proxima: null, trat, fonte,
+      kicker: 'destaque',
+      foot: 'vernissagessp.com.br',
+      rotulo: 'destaque',
+      descLen: 220
+    });
+    ESTADO.slides.push({ el: s, nome: 'vsp-s' + String(sem).padStart(2,'0') + '-' + DIA_ABREV[new Date().getDay()] + '-destaque' });
+    legendaDestaque(e, v);
+    document.getElementById('etica').textContent = img ? '' :
+      'Sem imagem utilizável para esta mostra — caiu no chapado tipográfico.';
+    st.textContent = '1 imagem montada (destaque) · fonte ' + fonte;
+    return;
+  }
+
+  /* pré-carrega as imagens uma vez só — só o carrossel precisa de todas de uma vez */
+  const imgs = new Map();
+  for (const e of sel) imgs.set(e, await carregarImagem(e.img));
+
   if (peca === 'lembrete'){
     const dia = sel.length ? sel[0].ini : HOJE;
     const dt = new Date(dia + 'T12:00:00');
-    const s = addSlide('areia',
+    const topo = sel[0] || null;
+    const img = topo ? imgs.get(topo) : null;
+    const usado = img ? trat : 'chapado';
+    const escuro = img && (usado === 'contorno' || usado === 'duotone');
+    const s = addSlide(escuro ? 'grafite' : 'areia',
       '<div class="marca">VERNISSAGES SP</div>' +
       '<div class="kick">lembrete</div>' +
       '<h3>Amanhã, ' + esc(DIA_EXT[dt.getDay()]) + '<br>' + esc(fmtDia(dia)) + '</h3>' +
@@ -579,7 +714,7 @@ async function montar(){
       '<div class="rule"></div>' +
       '<div class="foot">vernissagessp.com.br</div>', 'lembrete');
     s.style.setProperty('--titulo', "'" + fonte + "'");
-    desenharArte(s.querySelector('.art'), 'chapado', []);
+    aplicarArte(s, img, null, usado);
     ESTADO.slides.push({ el: s, nome: 'vsp-s' + String(sem).padStart(2,'0') + '-sex-lembrete' });
     legendaLembrete(casas, sel);
     st.textContent = '1 imagem montada · fonte ' + fonte;
@@ -602,61 +737,13 @@ async function montar(){
   sel.forEach((e, i) => {
     const v = V[e.v];
     const img = imgs.get(e);
-    const usado = img ? trat : 'chapado';           // fallback ético
     const proxima = imgs.get(sel[i + 1]) || null;
-    /* so e tema escuro quem deixa a FAIXA DE TEXTO escura: contorno e duotone
-       pintam o fundo inteiro de grafite. Os outros deixam areia embaixo. */
-    const escuro = img && (usado === 'contorno' || usado === 'duotone');
-    const cred = credito(e, usado, !!img);
-
-    const s = addSlide(escuro ? 'grafite' : 'areia',
-      '<div class="marca">VERNISSAGES SP</div>' +
-      '<div class="kick">' + (e.ini > HOJE ? 'abre ' + esc(fmtCurto(e.ini)) : 'em cartaz') + '</div>' +
-      '<h3>' + esc(e.t.replace(/ — .*/, '')) + '</h3>' +
-      (e.a ? '<div class="sub">' + esc(e.a) + '</div>' : '') +
-      '<div class="servico">' + esc(v.name) + (arroba(v.ig) ? ' ' + esc(arroba(v.ig)) : '') +
-        '<br>' + esc(v.addr) + ', ' + esc(v.b) +
-        '<br>' + (e.fim ? 'até ' + esc(fmtDia(e.fim)) : 'encerramento não divulgado') + '</div>' +
-      (e.d ? '<div class="desc">' + esc(e.d.length > 165 ? e.d.slice(0, 165).replace(/\s+\S*$/, '') + '…' : e.d) + '</div>' : '') +
-      '<div class="foot">' + (i + 2) + '/' + total + '</div>' +
-      (cred ? '<div class="cred">' + esc(cred) + '</div>' : ''),
-      'mostra ' + (i + 1));
-
-    s.style.setProperty('--titulo', "'" + fonte + "'");
-    const cv = s.querySelector('.art'), txt = s.querySelector('.txt');
-    let sangriaTotal = false;
-
-    /* Sangria total: so quando a obra tem altura para preencher o slide inteiro
-       E a metade de baixo e escura o bastante para o texto claro passar de
-       4.5:1. Medido, nao chutado — se nao passar, cai na faixa. */
-    if (img && usado === 'sangria' && Math.round(W * img.naturalHeight / img.naturalWidth) >= H){
-      const ctx = cv.getContext('2d');
-      cv.width = W; cv.height = H;
-      pintarFundo(ctx, GRAFITE);
-      cobrir(ctx, img, 0, 0, W, H);
-      if (contraste(lumMedia(ctx, 0, Math.round(H * 0.5), W, Math.round(H * 0.5)), 0.93) >= 4.5){
-        sangriaTotal = true;
-        s.classList.remove('areia');
-        s.classList.add('grafite');
-      }
-    }
-
-    if (!sangriaTotal){
-      let alturaArte = 0;
-      if (img && usado !== 'chapado'){
-        /* faixa sob medida: mede o texto real deste slide, devolve o resto para
-           a obra e limita pela altura natural da imagem — assim o cover preenche
-           exato, sem borda solida e sem corte alem do necessario */
-        s.classList.add('comArte');
-        txt.style.paddingTop = '0px';
-        const filhos = [...txt.children].filter(el => !el.classList.contains('cred') && !el.classList.contains('foot'));
-        const fimTexto = filhos.reduce((k, el) => Math.max(k, el.offsetTop + el.offsetHeight), 0);
-        const natural = Math.round(W * img.naturalHeight / img.naturalWidth);
-        alturaArte = Math.max(Math.round(H * 0.30), Math.min(H - fimTexto - 206, natural));
-        txt.style.paddingTop = (alturaArte + 52) + 'px';
-      }
-      desenharArte(cv, usado, [img, proxima], alturaArte);
-    }
+    const s = montarSlideObra({
+      e, v, img, proxima, trat, fonte,
+      kicker: (e.ini > HOJE ? 'abre ' + esc(fmtCurto(e.ini)) : 'em cartaz'),
+      foot: (i + 2) + '/' + total,
+      rotulo: 'mostra ' + (i + 1)
+    });
     ESTADO.slides.push({ el: s, nome: nomeArquivo(sem, i + 2, dataBloco) });
   });
 
@@ -757,6 +844,28 @@ function legendaCarrossel(casas, sel, periodo){
     '\n\n—\n\nAgenda completa das aberturas de São Paulo: vernissagessp.com.br';
 }
 
+/* legenda no formato do ESTILO.md: titulo/artista, conceito, servico, assinatura */
+function legendaDestaque(e, v){
+  const titulo = e.t.replace(/ — .*/, '') + (e.a ? '  ·  ' + e.a : '');
+  const periodo = 'Período: ' + (e.ini ? fmtDia(e.ini) : 'data não divulgada') +
+    (e.fim ? ' a ' + fmtDia(e.fim) : (e.ini ? '. Encerramento não divulgado' : ''));
+  document.getElementById('cap').value =
+    titulo + '\n\n' +
+    (e.d ? e.d.trim() + '\n\n' : '') +
+    '—\n\n' +
+    periodo + '\n' +
+    'Local: ' + v.name + '\n' +
+    'Endereço: ' + v.addr + ' — ' + v.b +
+    '\n\nAgenda completa das aberturas de São Paulo: vernissagessp.com.br';
+}
+
+function legendaNota(texto, fonteTxt){
+  document.getElementById('cap').value =
+    texto.trim() +
+    (fonteTxt ? '\n\nFonte: ' + fonteTxt.trim() : '') +
+    '\n\n—\n\nAgenda completa das aberturas de São Paulo: vernissagessp.com.br';
+}
+
 function legendaLembrete(casas, sel){
   const dia = sel.length ? sel[0].ini : HOJE;
   const dt = new Date(dia + 'T12:00:00');
@@ -808,8 +917,9 @@ async function baixarTudo(){
 function baixarLegendas(){
   const sem = ESTADO.semana;
   const peca = document.getElementById('peca').value;
+  const nomePeca = { carrossel: 'Carrossel da agenda', destaque: 'Destaque', nota: 'Nota', lembrete: 'Lembrete' }[peca] || peca;
   const md = '# Semana ' + String(sem).padStart(2, '0') + '\n\n' +
-    '**Peça:** ' + (peca === 'lembrete' ? 'Lembrete' : 'Carrossel da agenda') + '\n' +
+    '**Peça:** ' + nomePeca + '\n' +
     '**Tratamento:** ' + T(ESTADO.trat).n + '\n' +
     '**Fonte do título:** ' + ESTADO.fonte + '\n' +
     '**Recorte:** 4:5\n' +
@@ -874,6 +984,22 @@ function conferirSobreposicao(){
 document.getElementById('trat').innerHTML =
   TRATAMENTOS.map(t => '<option value="' + t.id + '">' + t.n + '</option>').join('');
 document.getElementById('semana').value = '';   /* preenchido por montar(), a partir da data de abertura */
+
+function atualizarCampos(){
+  const p = document.getElementById('peca').value;
+  document.getElementById('linhaDestaque').style.display = p === 'destaque' ? '' : 'none';
+  document.getElementById('linhaNota').style.display = p === 'nota' ? '' : 'none';
+}
+document.getElementById('peca').addEventListener('change', atualizarCampos);
+
+const CANDIDATOS_DESTAQUE = candidatosDestaque();
+document.getElementById('mostraDestaque').innerHTML = CANDIDATOS_DESTAQUE.length
+  ? CANDIDATOS_DESTAQUE.map((e, i) => '<option value="' + i + '">' +
+      esc(e.t.replace(/ — .*/, '')) + ' — ' + esc(V[e.v].name) +
+      (e.ini > HOJE ? ' (abre ' + esc(fmtCurto(e.ini)) + ')' : ' (em cartaz)') + '</option>').join('')
+  : '<option value="">nenhuma mostra disponível</option>';
+atualizarCampos();
+
 montar();
 </script>
 </body>
