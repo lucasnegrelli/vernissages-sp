@@ -87,6 +87,7 @@ sempre no canto inferior esquerdo. Numeração do slide no canto oposto.
 
 ## 5. Ferramenta
 
-`gerador-posts.html` monta os quatro slides e a legenda a partir dos campos da
-exposição, exporta os PNG em tamanho real e aplica esta identidade
-automaticamente.
+`post.html` monta os slides e a legenda a partir dos campos da exposição,
+exporta os PNG em tamanho real e aplica esta identidade automaticamente.
+Quatro peças — carrossel, destaque, nota, lembrete — descritas em
+`EDITORIAL.md`, que também define a cadência semanal e mensal.
