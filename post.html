@@ -586,6 +586,12 @@ function aplicarArte(s, img, proxima, usado){
 
 /* Slide de uma unica mostra: capa/servico/descricao + arte tratada. Usado
    pelo carrossel (um por mostra) e pela peca destaque (um so). */
+/* addSlide e declarado aqui, em escopo de modulo, e atribuido dentro de montar().
+   montarSlideObra vive fora de montar() e precisa enxergar a funcao: quando ela
+   era const local de montar(), toda peca que passa por aqui quebrava com
+   ReferenceError e a montagem parava na capa. */
+let addSlide;
+
 function montarSlideObra(o){
   const usado = o.img ? o.trat : 'chapado';
   const escuro = o.img && (usado === 'contorno' || usado === 'duotone');
@@ -641,7 +647,7 @@ async function montar(){
   const box = document.getElementById('slides');
   box.innerHTML = '';
 
-  const addSlide = (cls, inner, rotulo) => {
+  addSlide = (cls, inner, rotulo) => {
     const wrap = document.createElement('div');
     wrap.className = 'slidebox';
     wrap.innerHTML = '<div class="cap">' + esc(rotulo) + '</div><div class="shell">' +
@@ -816,7 +822,7 @@ function linhaExpo(e){
   const d = (e.d || '').trim().replace(/Abertura em [^;.]+[;.]\s*/i, '');
   if (d) partes.push(d.charAt(0).toUpperCase() + d.slice(1).replace(/\s+$/, '').replace(/\.?$/, '.'));
   if (e.fim) partes.push('Até ' + fmtDia(e.fim) + '.');
-  else if (!/encerramento n[ãa]o divulgado/i.test(d)) partes.push('Encerramento não divulgado.');
+  else if (!/encerramento n[ãa]o divulgad[oa]/i.test(d)) partes.push('Encerramento não divulgado.');
   return partes.join(' ');
 }
 
@@ -923,7 +929,7 @@ function baixarLegendas(){
     '**Tratamento:** ' + T(ESTADO.trat).n + '\n' +
     '**Fonte do título:** ' + ESTADO.fonte + '\n' +
     '**Recorte:** 4:5\n' +
-    '**Arquivos:** ' + ESTADO.slides.map(s => s.nome + '.jpg').join(', ') + '\n\n' +
+    '**Arquivos:** ' + ESTADO.slides.map(s => s.nome + '.png').join(', ') + '\n\n' +
     '### Legenda\n\n```\n' + document.getElementById('cap').value + '\n```\n\n' +
     '## Notas de apuração\n\n- Horário das aberturas: só registrar se a casa divulgou.\n';
   const a = document.createElement('a');
@@ -944,8 +950,12 @@ function copiar(){
    texto colidir. Existe porque defeito de layout so aparece olhando, e
    olhar depois de publicar e tarde. */
 function conferirSobreposicao(){
-  const bate = (a, b) => { const x = a.getBoundingClientRect(), y = b.getBoundingClientRect();
-    return !(x.right <= y.left || x.left >= y.right || x.bottom <= y.top || x.top >= y.bottom); };
+  /* tolerancia de meio pixel: elemento que termina exatamente onde o proximo
+     comeca (folga zero, normal na coluna flex quando a arte e alta) devolvia
+     delta -0.0000001 no getBoundingClientRect sob escala 0.3 e era acusado como
+     sobreposicao. Colisao de verdade passa de 1px com folga. */
+  const bate = (a, b) => { const x = a.getBoundingClientRect(), y = b.getBoundingClientRect(), t = 0.5;
+    return !(x.right <= y.left + t || x.left >= y.right - t || x.bottom <= y.top + t || x.top >= y.bottom - t); };
   const ruins = [];
   document.querySelectorAll('.slide').forEach((s, i) => {
     const al = [...s.querySelectorAll('.marca,.kick,h3,.sub,.servico,.desc,.rule,.rota,.foot,.cred')]
