@@ -206,13 +206,13 @@ const BAIRRO_COUNTS=[["Jardins",18],["Barra Funda",8],["Jardim Europa",7],["Pinh
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-   t: "Sem Palavras — Vânia Mignone",
-   v: "Casa Triângulo",
-   quem: "Vânia Mignone",
-   txt: "Individual com dezessete pinturas inéditas. Mignone trabalha sobre MDF, combina pintura e colagem e integra palavras à composição das cenas. Até 19 de setembro.",
-   link: "https://www.casatriangulo.com",
-   publi: false
- };
+  t: "Tudo que inventei aconteceu — Flávia Junqueira",
+  v: "Zipper Galeria",
+  quem: "Flávia Junqueira",
+  txt: "Individual com fotografias inéditas, produzidas ao longo de um mês em Nova York. Até 19 de setembro.",
+  link: "https://www.zippergaleria.com.br",
+  publi: false
+};
 
 /* ================= DESTAQUES JA USADOS =================
 Historico do bloco "Em foco", para nao repetir a mesma mostra.
@@ -225,6 +225,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+   {d:"2026-08-19", k:"Tudo que inventei aconteceu — Flávia Junqueira|Zipper Galeria"},
    {d:"2026-08-18", k:"Sem Palavras — Vânia Mignone|Casa Triângulo"},
   {d:"2026-08-17", k:"Playful, Stormy, Continuing — Ayako Rokkaku|Baró Galeria"},
   {d:"2026-08-16",k:"Arteônica da Paisagem — Aldir Mendes de Souza|Galeria Contempo"},
@@ -246,5 +247,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "18/08/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, bairros: BAIRRO_COUNTS };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "19/08/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, bairros: BAIRRO_COUNTS };
 })();
