@@ -84,7 +84,19 @@ isso em negrito no resumo.
 
 Único momento da semana que abre agregador, site de venue e Instagram. Teto por
 execução, não ultrapasse: **3 agregadores, 10 sites em rodízio, 8 perfis**.
-Anote onde o rodízio parou — a próxima semana continua dali.
+
+**Comece rodando `node radar.js`.** Ele cruza o `dados.js` com o `acervo.json` e
+escreve `PENDENTE/RADAR.md` com a fila do rodízio — quem nunca teve mostra
+registrada primeiro, depois quem está há mais tempo sem nada. Isso substitui o
+"anote onde o rodízio parou", que nunca foi anotado por não haver onde.
+
+Encare o número que ele mostra. Em 20/08 eram **36 das 91 casas sem uma única
+mostra registrada** — e não só espaço independente: Almeida & Dale, Choque
+Cultural, Kogan Amaro e Galeria Lume estavam na lista. Com 91 casas e teto de 10
+sites, cada venue é visitado a cada nove semanas, e mostra de galeria dura seis
+a oito. **O rodízio é mais lento que o ciclo das exposições.** Não dá para
+resolver isso varrendo com mais vontade; ou o mapa encolhe, ou as casas passam a
+mandar a abertura.
 
 Agregadores: `artequeacontece.com.br/eventos/categoria/sao-paulo/AAAA-MM/`,
 `ocula.com/cities/brazil/sao-paulo-art-galleries/exhibitions/`,
