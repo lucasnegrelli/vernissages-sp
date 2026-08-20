@@ -34,6 +34,11 @@ var JANELA_ENCERRADAS = 7;
 // Dias em que uma mesma galeria nao pode voltar ao bloco Em foco.
 var JANELA_VARIEDADE = 7;
 
+// Minimo de caracteres no campo d para a mostra ter o que virar legenda.
+// Medido em 20/08: 20 das 57 mostras em cartaz ficavam abaixo disso, com
+// coisas como "Pinturas recentes." — e era dai que vinha a repeticao do social.
+var MIN_DESC = 60;
+
 // Vocabulario proibido pelo ESTILO.md. Comparado sem acento e sem caixa.
 var PROIBIDOS = [
   "imperdivel", "incrivel", "venha conferir", "nao pode faltar",
@@ -189,6 +194,23 @@ function validarSync(DATA, opts) {
     }
     if (!e.a) r.aviso("A02", ref + ": campo de artistas (a) vazio.");
     if (!e.img) r.aviso("A03", ref + ": sem imagem.");
+
+    /* A07 — descricao curta demais para virar legenda.
+     *
+     * O campo d e a unica materia-prima do texto da peca. Quando ele diz so
+     * "Pinturas recentes." ou "Obras dos anos 90.", nao existe redacao que
+     * salve: a legenda sai igual a de ontem porque o dado e igual ao de ontem.
+     * Era essa a causa da repeticao do social, nao o layout.
+     *
+     * O modelo esta no ESTILO.md: "48 trabalhos realizados entre 1974 e 1981,
+     * no Chile sob a ditadura militar" — um numero, um periodo, um lugar. O
+     * comprimento e so um proxy grosseiro disso, mas e o unico que da para
+     * medir sem interpretar o texto. Nao trava publicacao: quem desempata e a
+     * Fase 2, que desoprioriza a mostra na hora de escolher o destaque. */
+    if (!e.d || String(e.d).trim().length < MIN_DESC) {
+      r.aviso("A07", ref + ": descricao com " + (e.d ? String(e.d).trim().length : 0) +
+        " caracteres, abaixo de " + MIN_DESC + ". Falta um fato conferivel (numero, periodo, material, curadoria).");
+    }
   });
 
   /* --- E14..E19: bloco Em foco e historico --- */

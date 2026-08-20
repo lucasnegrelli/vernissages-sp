@@ -23,7 +23,7 @@ Uma tarefa, um runbook, publicação por git.
 |---|---|
 | Sequência operacional, publicação, falha, resumo | **este arquivo** |
 | Voz, vocabulário, o que é proibido escrever | `ESTILO.md` |
-| Grade semanal de social, peças, regra de variedade | `EDITORIAL.md` |
+| Formatos de social, gatilhos, travas anti-repetição | `EDITORIAL.md` |
 | Sistema visual dos slides, paleta, tratamentos | `POSTS.md` |
 | Regras de dado que reprovam publicação | `check.js` |
 
@@ -114,6 +114,21 @@ errado é pior que crédito ausente.
 Basta pôr a URL externa no campo `img` — o workflow `espelhar-imagens` baixa
 pra `img/` e reescreve o campo sozinho no push.
 
+### Um fato conferível por mostra
+
+Não basta data, endereço e imagem. **Toda mostra precisa de um dado concreto no
+campo `d`** — um número, um período, um material, uma curadoria assinada. O
+modelo está no `ESTILO.md`: *"48 trabalhos realizados entre 1974 e 1981, no
+Chile sob a ditadura militar"*.
+
+Isso não é capricho de redação, é o gargalo real do social: em 20/08, 20 das 57
+mostras em cartaz tinham `d` com menos de 60 caracteres, coisas como "Pinturas
+recentes." — e daí não sai legenda que preste. O `check.js` acusa com `A07`.
+
+Mostra sem esse dado entra na agenda do site normalmente, mas **não é candidata
+a destaque nem a peça de social**. Prefira gastar a página extra levantando o
+fato de uma mostra a acrescentar mais uma mostra oca à lista.
+
 Nesta fase não toque em `foco` nem em `destaques`: são da Fase 2.
 
 ## Fase 2 — destaque do site (todo dia)
@@ -124,7 +139,13 @@ abertura mais próxima, para trás ou para frente.
 Exclua: toda chave já em `destaques`; a mostra que está no `foco` agora; toda
 mostra cuja galeria esteve em foco nos últimos 7 dias.
 
-**Só é elegível expo com `img` e `cred` preenchidos.** Sem candidata, não force:
+**Só é elegível expo com `img` e `cred` preenchidos.** Entre as elegíveis,
+**desempate pelo campo `d`**: mostra que o `check.js` acusou com `A07`
+(descrição abaixo de 60 caracteres) vai para o fim da fila, porque a legenda
+dela sai igual à de ontem. Se todas as candidatas estiverem com `A07`, publique
+mesmo assim e registre a lista no resumo — é dívida de varredura, não de hoje.
+
+Sem candidata, não force:
 mantenha o `foco`, não commite, e relate SEM CANDIDATA listando os títulos
 barrados por falta de imagem — o domingo começa por essa lista.
 
@@ -156,8 +177,19 @@ em https://github.com/lucasnegrelli/vernissages-sp/actions.
 
 ## Fase 4 — peça de social (todo dia)
 
-Grade em `EDITORIAL.md` §Calendário — ela manda, e o Lucas pode tê-la editado
-entre uma execução e outra, então leia antes.
+**Não existe mais grade por dia da semana.** Desde 20/08 o `EDITORIAL.md`
+trabalha com dois slots e gatilho: slot A de manhã (serviço, sai sempre) e
+slot B à noite (tese, só sai se um gatilho acender). Leia o catálogo de
+formatos antes de montar — o Lucas pode tê-lo editado entre uma execução e
+outra, e a ordem de prioridade dentro de cada slot importa.
+
+Duas coisas que mudam a operação:
+
+- **Slot B vazio é resultado correto.** Não force peça de enchimento; foi ela
+  que criou a repetição de agosto. Relate o slot vazio no resumo.
+- **Antes de montar, confira a trava de conteúdo.** Se o formato escolhido vai
+  listar as mesmas mostras da última vez que ele rodou, ele não sai — mesmo que
+  a data seja outra. O histórico está em `SOCIAL/HISTORICO-DESTAQUE-SOCIAL.md`.
 
 Histórico anti-repetição: `SOCIAL/HISTORICO-DESTAQUE-SOCIAL.md` (uma linha
 `AAAA-MM-DD | Venue | Título`). Ao montar `destaque`, exclua venue das últimas 2
@@ -223,8 +255,9 @@ o destaque do site nem a peça de social. Entregue o que deu e relate o resto.
 - **FALHOU** — qualquer outra coisa.
 
 Depois, uma linha por fase que rodou: o que o site ganhou, que peça de social
-saiu e por quê, onde o arquivo ficou, o que ficou pendente. Última linha sempre
-lembrando que a postagem é manual.
+saiu e por quê, onde o arquivo ficou, o que ficou pendente. Na Fase 4, diga
+**qual gatilho acendeu** em cada slot — e, se o slot B ficou vazio, diga que
+ficou e por quê. Última linha sempre lembrando que a postagem é manual.
 
 Nunca relate sucesso sem prova.
 

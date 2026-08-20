@@ -81,7 +81,20 @@ var casos = [
 
   ["E22 adjetivo comercial", function (D) { D.expos[0].d = "Mostra imperdivel na cidade."; return D; }, "E22"],
   ["E22 exclamacao", function (D) { D.foco.txt = "Abriu ontem!"; return D; }, "E22"],
-  ["E22 emoji", function (D) { D.expos[0].d = "Esculturas de porcelana \u{1F3A8}"; return D; }, "E22"]
+  ["E22 emoji", function (D) { D.expos[0].d = "Esculturas de porcelana \u{1F3A8}"; return D; }, "E22"],
+
+  /* A07 e aviso, nao erro: descricao curta nao trava publicacao, so tira a
+     mostra da frente na hora de escolher destaque. Os dois casos andam juntos
+     de proposito — o segundo garante que o limiar nao vira ruido em cima de
+     descricao boa. */
+  ["A07 descricao curta demais",
+    function (D) { D.expos[0].d = "Pinturas recentes."; return D; }, "AVISO:A07"],
+  ["A07 nao acusa descricao com fato concreto",
+    function (D) {
+      D.expos.forEach(function (e) {
+        e.d = "Reune 48 trabalhos realizados entre 1974 e 1981, com curadoria de Ana Souza.";
+      });
+      return D; }, "SEM_AVISO:A07"]
 ];
 
 var falhas = 0;
@@ -91,9 +104,15 @@ casos.forEach(function (c) {
   var r = VSP.validarSync(D, { hoje: HOJE });
   var codigos = r.erros.map(function (e) { return e.codigo; });
 
+  var avisosCod = r.avisos.map(function (a) { return a.codigo; });
+
   var passou;
   if (esperado === null) {
     passou = r.erros.length === 0;
+  } else if (esperado.indexOf("AVISO:") === 0) {
+    passou = avisosCod.indexOf(esperado.slice(6)) !== -1;
+  } else if (esperado.indexOf("SEM_AVISO:") === 0) {
+    passou = avisosCod.indexOf(esperado.slice(10)) === -1;
   } else if (esperado === "SEM_ERRO_DATADO") {
     var brando = VSP.validarSync(D, { hoje: HOJE, exigeHoje: false });
     passou = codigos.indexOf("E03") !== -1 &&

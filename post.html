@@ -116,6 +116,7 @@ textarea{width:100%;min-height:340px;background:var(--areia-clara);border:1px so
       <option value="destaque">Destaque (uma mostra)</option>
       <option value="nota">Nota (texto, sem imagem)</option>
       <option value="lembrete">Lembrete (imagem única)</option>
+      <option value="saidecartaz">Sai de cartaz (encerram em breve)</option>
     </select>
   </label>
   <label class="f">Tratamento
@@ -535,6 +536,38 @@ function candidatosDestaque(){
   return [...abre, ...cartaz];
 }
 
+/* SAI DE CARTAZ — o que está morrendo, não o que está nascendo.
+ *
+ * Galeria anuncia abertura; ninguém anuncia encerramento. É a única informação
+ * da agenda que tem prazo, e por isso a única que obriga o leitor a se mexer —
+ * além de ser o formato em que o nosso dado vale mais que o post da própria
+ * casa, que não tem interesse nenhum em lembrar que a mostra vai acabar.
+ *
+ * O nome não é "última chance" de propósito: essa expressão está na lista de
+ * PROIBIDOS do check.js, junto com "corra para" e "imperdível". "Sai de cartaz"
+ * é o termo da imprensa cultural e diz o mesmo fato sem o registro de venda.
+ *
+ * Janela adaptativa: sete dias, que é o que soa urgente de verdade. Se render
+ * menos de três mostras, abre para catorze em vez de publicar uma peça magra. */
+function selecionarSaiDeCartaz(){
+  const emDias = n => new Date(Date.now() + n * 864e5).toISOString().slice(0, 10);
+  const naJanela = limite => D.expos
+    .filter(e => e.fim && e.fim >= HOJE && e.fim <= limite && e.ini <= HOJE && V[e.v])
+    .sort((a, b) => a.fim.localeCompare(b.fim) || a.v.localeCompare(b.v));
+
+  const curta = naJanela(emDias(7));
+  return (curta.length >= 3 ? curta : naJanela(emDias(14))).slice(0, 5);
+}
+
+const diasAte = data => Math.round((Date.parse(data + 'T12:00:00') - Date.parse(HOJE + 'T12:00:00')) / 864e5);
+
+/* Prazo em palavra, não em número solto: "faltam 0 dias" não é português. */
+function rotuloPrazo(n){
+  if (n <= 0) return 'último dia';
+  if (n === 1) return 'fecha amanhã';
+  return 'faltam ' + n + ' dias';
+}
+
 /* Semana do projeto, não semana ISO: s01 = abertura de 08/08/2026. */
 const SEMANA_UM = Date.parse('2026-08-08T12:00:00');
 function semanaProjeto(dataAbertura){
@@ -696,6 +729,49 @@ async function montar(){
     document.getElementById('etica').textContent = img ? '' :
       'Sem imagem utilizável para esta mostra — caiu no chapado tipográfico.';
     st.textContent = '1 imagem montada (destaque) · fonte ' + fonte;
+    return;
+  }
+
+  if (peca === 'saidecartaz'){
+    const fila = selecionarSaiDeCartaz();
+    if (!fila.length){
+      st.textContent = 'nenhuma mostra encerrando nas próximas duas semanas — não force a peça';
+      return;
+    }
+    const totalUC = fila.length + 1;
+    const dia = DIA_ABREV[new Date().getDay()];
+    const nomeUC = n => 'vsp-s' + String(sem).padStart(2, '0') + '-' + dia + '-saidecartaz-' + String(n).padStart(2, '0');
+
+    const capa = addSlide('areia capa',
+      '<div class="marca">VERNISSAGES SP</div>' +
+      '<div class="kick">sai de cartaz</div>' +
+      '<h3>' + fila.length + (fila.length === 1 ? ' mostra<br>encerra' : ' mostras<br>encerram') + '</h3>' +
+      '<div class="sub">' + esc(rotuloPrazo(diasAte(fila[0].fim))) + ' para a primeira</div>' +
+      '<div class="rule"></div>' +
+      '<div class="foot">vernissagessp.com.br</div>', 'capa');
+    capa.style.setProperty('--titulo', "'Archivo'");
+    desenharArte(capa.querySelector('.art'), 'chapado', []);
+    ESTADO.slides.push({ el: capa, nome: nomeUC(1) });
+
+    let semImagem = 0;
+    for (let i = 0; i < fila.length; i++){
+      const e = fila[i];
+      const img = await carregarImagem(e.img);
+      if (!img) semImagem++;
+      const s = montarSlideObra({
+        e, v: V[e.v], img, proxima: null, trat, fonte,
+        kicker: rotuloPrazo(diasAte(e.fim)),
+        foot: (i + 2) + '/' + totalUC,
+        rotulo: 'encerra ' + fmtCurto(e.fim)
+      });
+      ESTADO.slides.push({ el: s, nome: nomeUC(i + 2) });
+    }
+
+    legendaSaiDeCartaz(fila);
+    document.getElementById('etica').textContent = semImagem
+      ? semImagem + (semImagem === 1 ? ' mostra caiu' : ' mostras caíram') + ' no chapado tipográfico por falta de imagem.'
+      : '';
+    st.textContent = totalUC + ' imagens montadas (sai de cartaz) · fonte ' + fonte;
     return;
   }
 
@@ -865,6 +941,27 @@ function legendaDestaque(e, v){
     '\n\nAgenda completa das aberturas de São Paulo: vernissagessp.com.br';
 }
 
+/* A legenda do sai de cartaz é lista de prazo, não texto curatorial: quem lê
+   está decidindo o fim de semana. Prazo primeiro, título depois, endereço no
+   fim — a ordem inversa da peça de destaque, de propósito. */
+function legendaSaiDeCartaz(fila){
+  const abre = fila.length + (fila.length === 1 ? ' mostra encerra' : ' mostras encerram') +
+    ' em São Paulo nos próximos dias.';
+
+  const linhas = fila.map(e => {
+    const v = V[e.v];
+    const prazo = rotuloPrazo(diasAte(e.fim));
+    const cab = prazo.charAt(0).toUpperCase() + prazo.slice(1) + ' — ' + fmtDia(e.fim);
+    const titulo = e.t.replace(/ — .*/, '') + (e.a ? ', de ' + e.a : '') + '.';
+    const local = v.name + (arroba(v.ig) ? ' ' + arroba(v.ig) : '') + ' — ' + v.addr + ', ' + v.b + '.';
+    return cab + '\n' + titulo + '\n' + local;
+  });
+
+  document.getElementById('cap').value =
+    abre + '\n\n' + linhas.join('\n\n') +
+    '\n\n—\n\nAgenda completa das aberturas de São Paulo: vernissagessp.com.br';
+}
+
 function legendaNota(texto, fonteTxt){
   document.getElementById('cap').value =
     texto.trim() +
@@ -923,7 +1020,7 @@ async function baixarTudo(){
 function baixarLegendas(){
   const sem = ESTADO.semana;
   const peca = document.getElementById('peca').value;
-  const nomePeca = { carrossel: 'Carrossel da agenda', destaque: 'Destaque', nota: 'Nota', lembrete: 'Lembrete' }[peca] || peca;
+  const nomePeca = { carrossel: 'Carrossel da agenda', destaque: 'Destaque', nota: 'Nota', lembrete: 'Lembrete', saidecartaz: 'Sai de cartaz' }[peca] || peca;
   const md = '# Semana ' + String(sem).padStart(2, '0') + '\n\n' +
     '**Peça:** ' + nomePeca + '\n' +
     '**Tratamento:** ' + T(ESTADO.trat).n + '\n' +
