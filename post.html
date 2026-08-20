@@ -742,7 +742,15 @@ async function montar(){
     const dia = DIA_ABREV[new Date().getDay()];
     const nomeUC = n => 'vsp-s' + String(sem).padStart(2, '0') + '-' + dia + '-saidecartaz-' + String(n).padStart(2, '0');
 
-    const capa = addSlide('areia capa',
+    /* A capa leva a obra da primeira mostra da fila, não o chapado.
+       O `ESTILO.md` §4 define o slide 01 como isca — "detalhe fechado da obra" —
+       e a capa chapada do carrossel deixava 60% do quadro vazio, que era a
+       reclamação de 19/08 sobre a peça sair delicada demais. Se a primeira da
+       fila não tiver imagem, cai no chapado, que é o fallback correto. */
+    const imgCapa = await carregarImagem(fila[0].img);
+    const usadoCapa = imgCapa ? trat : 'chapado';
+    const escuroCapa = imgCapa && (usadoCapa === 'contorno' || usadoCapa === 'duotone');
+    const capa = addSlide((escuroCapa ? 'grafite' : 'areia') + ' capa',
       '<div class="marca">VERNISSAGES SP</div>' +
       '<div class="kick">sai de cartaz</div>' +
       '<h3>' + fila.length + (fila.length === 1 ? ' mostra<br>encerra' : ' mostras<br>encerram') + '</h3>' +
@@ -750,7 +758,7 @@ async function montar(){
       '<div class="rule"></div>' +
       '<div class="foot">vernissagessp.com.br</div>', 'capa');
     capa.style.setProperty('--titulo', "'Archivo'");
-    desenharArte(capa.querySelector('.art'), 'chapado', []);
+    aplicarArte(capa, imgCapa, null, usadoCapa);
     ESTADO.slides.push({ el: capa, nome: nomeUC(1) });
 
     let semImagem = 0;
@@ -952,7 +960,12 @@ function legendaSaiDeCartaz(fila){
     const v = V[e.v];
     const prazo = rotuloPrazo(diasAte(e.fim));
     const cab = prazo.charAt(0).toUpperCase() + prazo.slice(1) + ' — ' + fmtDia(e.fim);
-    const titulo = e.t.replace(/ — .*/, '') + (e.a ? ', de ' + e.a : '') + '.';
+    /* "Sala de Vídeo: Regina José Galindo, de Regina José Galindo" — não.
+       Quando o título já carrega o nome do artista, o ", de" sobra. */
+    const nome = e.t.replace(/ — .*/, '');
+    const primeiro = (e.a || '').split(',')[0].trim();
+    const repete = primeiro && nome.toLowerCase().includes(primeiro.toLowerCase());
+    const titulo = nome + (e.a && !repete ? ', de ' + e.a : '') + '.';
     const local = v.name + (arroba(v.ig) ? ' ' + arroba(v.ig) : '') + ' — ' + v.addr + ', ' + v.b + '.';
     return cab + '\n' + titulo + '\n' + local;
   });

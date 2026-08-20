@@ -107,6 +107,13 @@ As três valem juntas. A primeira já existia; as outras duas são a novidade.
 2. **Formato** — o mesmo formato não repete em 3 dias no mesmo slot, exceto
    `A2` e `A5`, que são serviço contínuo. `A1` fura a fila sempre que acende:
    abertura no dia é a notícia.
+
+   **Exceção descoberta em 20/08, na primeira execução real:** `A2` fura o `A1`
+   quando houver mostra encerrando em **dois dias ou menos**. A razão é a vida
+   útil da informação — abertura tem oito semanas pela frente e a galeria mesma
+   divulga; encerramento tem dois dias e ninguém divulga. Naquele dia abria a
+   individual da Tania Ximena na Galatea e fechavam três mostras no sábado. O
+   aviso de fechamento não tinha outro dia para sair.
 3. **Conteúdo** — a peça não sai se a lista dela for igual à da última vez que
    o formato rodou. `sai de cartaz` com as mesmas três mostras de anteontem não
    é peça nova, é a mesma peça com data diferente.

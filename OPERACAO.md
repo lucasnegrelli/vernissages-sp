@@ -223,7 +223,12 @@ Duas coisas que mudam a operação:
 
 Histórico anti-repetição: `SOCIAL/HISTORICO-DESTAQUE-SOCIAL.md` (uma linha
 `AAAA-MM-DD | Venue | Título`). Ao montar `destaque`, exclua venue das últimas 2
-entradas e a que está em `foco`. Depois **acrescente a linha do dia**.
+entradas e a que está em `foco`.
+
+**A linha do dia é escrita na Fase 5, depois do PNG estar em disco — nunca
+agora.** Em 20/08 a rotina escreveu o histórico, morreu antes de montar e
+deixou a Galeria Marcelo Guarnieri bloqueada por dois turnos por causa de uma
+peça que não existe. Histórico é registro do que saiu, não do que se pretendia.
 
 Monte pelo renderizador headless, não pelo navegador:
 
@@ -248,6 +253,9 @@ destaque/nota/carrossel, amanhã para lembrete). Acrescente a legenda ao
 `LEGENDAS.md` da pasta como seção `## <Peça> — <hora>`, e escreva embaixo as
 **notas de apuração**: de onde veio cada dado, por que a peça foi escolhida, o
 que foi corrigido à mão. É esse bloco que permite auditar o post depois.
+
+**Só agora** acrescente a linha do dia ao `SOCIAL/HISTORICO-DESTAQUE-SOCIAL.md`,
+com o arquivo já salvo. Uma linha por peça que de fato saiu.
 
 PNG exportado passa de 4 MB. Recomprima antes de fechar:
 
