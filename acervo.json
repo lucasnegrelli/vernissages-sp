@@ -126,7 +126,7 @@
    "v": "Almeida & Dale | Millan",
    "ini": "2026-08-01",
    "fim": "2026-09-12",
-   "d": "Pintura densa e mitologia amazônica no espaço Fradique.",
+   "d": "Pintura densa e mitologia amazônica no espaço Fradique 1430, com curadoria de Chico Soll.",
    "bairro": "Pinheiros",
    "zona": "Oeste",
    "addr": "R. Fradique Coutinho, 1360",
@@ -182,7 +182,7 @@
    "zona": "Oeste",
    "addr": "R. Padre João Manuel, 755",
    "tipo": "galeria",
-   "site": "https://www.galerialuisastrina.com.br",
+   "site": "https://www.luisastrina.com.br",
    "ig": "galerialuisastrina",
    "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-30"
@@ -279,7 +279,7 @@
    "v": "MASP",
    "ini": "2026-05-15",
    "fim": "2026-09-13",
-   "d": "Três décadas do escultor mexicano.",
+   "d": "Três décadas em fotografia, vídeo, escultura e instalação, com objetos do cotidiano desmontados e suspensos no espaço. Curadoria de Adriano Pedrosa, Rodrigo Moura e Yudi Rafael.",
    "bairro": "Bela Vista",
    "zona": "Centro",
    "addr": "Av. Paulista, 1578",
@@ -292,11 +292,11 @@
   {
    "id": "acervo-em-transformacao-doacoes-recentes--masp",
    "t": "Acervo em Transformação: Doações Recentes",
-   "a": "",
+   "a": "Adriana Varejão, Anna Bella Geiger, Bruno Baptistelli, Emanuel Nassar, José Patrício, Judy Chicago, Mateo López, Rochelle Costi, Sandra Cinto, Sérgio Sister, Sergej Jensen, Valdirlei Dias Nunes, Vik Muniz",
    "v": "MASP",
    "ini": "2026-05-15",
    "fim": "2026-09-13",
-   "d": "Curadoria Adriano Pedrosa e equipe.",
+   "d": "Vinte e seis obras doadas ao museu desde 2020, de treze artistas. Curadoria de Adriano Pedrosa e Amanda Carneiro.",
    "bairro": "Bela Vista",
    "zona": "Centro",
    "addr": "Av. Paulista, 1578",
@@ -313,7 +313,7 @@
    "v": "MASP",
    "ini": "2026-07-03",
    "fim": "2026-10-04",
-   "d": "Rios, represas e resistência socioambiental.",
+   "d": "Fotografia, instalação, vídeo, performance e desenho no cruzamento entre arte, saberes ribeirinhos e movimentos sociais. Curadoria de Isabella Rjeille.",
    "bairro": "Bela Vista",
    "zona": "Centro",
    "addr": "Av. Paulista, 1578",
@@ -330,7 +330,7 @@
    "v": "MASP",
    "ini": "2026-07-03",
    "fim": "2027-01-30",
-   "d": "Instalação de longa duração da venezuelana.",
+   "d": "Pavilhão no Vão Livre em dezesseis cores, com padrões pintados à mão e mosaicos, em referência a Lina Bo Bardi e às fachadas nordestinas. Curadoria de Adriano Pedrosa e Laura Cosendey.",
    "bairro": "Bela Vista",
    "zona": "Centro",
    "addr": "Av. Paulista, 1578",
@@ -636,7 +636,7 @@
    "v": "Galeria Leme",
    "ini": "2026-06-25",
    "fim": "2026-08-21",
-   "d": "Obras dos anos 90.",
+   "d": "Trabalhos dos anos 1990 em asfalto sobre papel de arroz, papel manteiga e tecido de algodão. Curadoria de Diego Matos.",
    "bairro": "Butantã",
    "zona": "Oeste",
    "addr": "Av. Valdemar Ferreira, 130",
@@ -653,7 +653,7 @@
    "v": "Galeria Raquel Arnaud",
    "ini": "2026-06-10",
    "fim": "2026-08-22",
-   "d": "Pinturas recentes.",
+   "d": "Pinturas recentes de paleta restrita ao preto e branco, algumas monocromáticas. Ensaio de Tadeu Chiarelli.",
    "bairro": "Vila Madalena",
    "zona": "Oeste",
    "addr": "R. Fidalga, 125",
@@ -670,7 +670,7 @@
    "v": "Galeria Raquel Arnaud",
    "ini": "2026-06-11",
    "fim": "2026-08-22",
-   "d": "Coletiva sobre leveza e matéria.",
+   "d": "Curadoria de Paula Borghi. Desenho branco sobre branco, grafite e incenso em papel japonês, trabalho têxtil e escultura.",
    "bairro": "Vila Madalena",
    "zona": "Oeste",
    "addr": "R. Fidalga, 125",
@@ -709,7 +709,7 @@
    "zona": "Oeste",
    "addr": "R. Padre João Manuel, 755",
    "tipo": "galeria",
-   "site": "https://www.galerialuisastrina.com.br",
+   "site": "https://www.luisastrina.com.br",
    "ig": "galerialuisastrina",
    "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-31"
@@ -734,11 +734,11 @@
   {
    "id": "flores-e-vasos-coletiva--luciana-brito-galeria",
    "t": "Flores e Vasos — coletiva",
-   "a": "",
+   "a": "Rochelle Costi, Gaspar Gasparian, Robert Mapplethorpe",
    "v": "Luciana Brito Galeria",
    "ini": "2026-08-22",
    "fim": "2026-10-17",
-   "d": "Coletiva com curadoria de Nessia Pope.",
+   "d": "Curadoria de Nessia Pope. Fotografias de 1947 a 2020 em torno do gênero, entre vintages, prata e jato de tinta.",
    "bairro": "Jardim Europa",
    "zona": "Oeste",
    "addr": "Av. Nove de Julho, 5162",
@@ -755,7 +755,7 @@
    "v": "Luciana Brito Galeria",
    "ini": "2026-08-22",
    "fim": "2026-10-17",
-   "d": "Individual da artista brasileira radicada na Suíça.",
+   "d": "Gravuras, colagens e assemblages de resina mineral, mais uma instalação feita com o cineasta Michel Favre para a casa modernista de Rino Levi.",
    "bairro": "Jardim Europa",
    "zona": "Oeste",
    "addr": "Av. Nove de Julho, 5162",
@@ -772,10 +772,10 @@
    "v": "Janaina Torres Galeria",
    "ini": "2026-08-15",
    "fim": "2026-10-17",
-   "d": "Mostra na sede da Barra Funda.",
+   "d": "Vinte e seis artistas de gerações diferentes, com curadoria de Heloisa Amaral Peixoto, nos dez anos da galeria.",
    "bairro": "Barra Funda",
    "zona": "Centro",
-   "addr": "R. Vitorino Carmilo, 427 ~",
+   "addr": "R. Vitorino Carmilo, 427",
    "tipo": "galeria",
    "site": "https://janainatorres.com.br",
    "ig": "janainatorresgaleria",
@@ -789,7 +789,7 @@
    "v": "MASP",
    "ini": "2026-07-03",
    "fim": "2026-08-23",
-   "d": "Vídeo-performances da artista guatemalteca.",
+   "d": "Registro em duas telas da performance Deportada (2024), em que a artista veste todas as roupas de uma mulher deportada de Nova York. Curadoria de Bruna Fernanda.",
    "bairro": "Bela Vista",
    "zona": "Centro",
    "addr": "Av. Paulista, 1578",
@@ -857,7 +857,7 @@
    "v": "Pinacoteca de São Paulo",
    "ini": "2026-04-11",
    "fim": "2026-11-08",
-   "d": "Primeira individual do artista (Pina Luz).",
+   "d": "Mais de 50 pinturas dos anos 1950 e 1960, entre naufrágios, conflitos urbanos e cenas de rua. Primeira mostra institucional do artista autodidata carioca.",
    "bairro": "Luz",
    "zona": "Centro",
    "addr": "Praça da Luz, 2",
@@ -874,7 +874,7 @@
    "v": "Pinacoteca de São Paulo",
    "ini": "2026-04-11",
    "fim": "2026-09-13",
-   "d": "Fotografia, arquivo e memória (Pina Contemporânea).",
+   "d": "Dois ensaios fotográficos com álbuns, fotos de arquivo, objetos e documentos, mais um estúdio aberto ao público, na Galeria Praça da Pina Contemporânea.",
    "bairro": "Luz",
    "zona": "Centro",
    "addr": "Praça da Luz, 2",
@@ -891,7 +891,7 @@
    "v": "Pinacoteca de São Paulo",
    "ini": "2026-04-11",
    "fim": "2026-12-27",
-   "d": "Videoinstalação na Sala de Vídeo da Pina Luz.",
+   "d": "Filme de 2022 comissionado para a mostra Atos Modernos, com a transformação em onça como método. Curadoria de Ana Paula Lopes.",
    "bairro": "Luz",
    "zona": "Centro",
    "addr": "Praça da Luz, 2",
@@ -993,7 +993,7 @@
    "v": "Almeida & Dale | Millan",
    "ini": "2026-08-15",
    "fim": "2026-09-19",
-   "d": "Exposição individual anunciada pela galeria.",
+   "d": "Individual da artista com curadoria de Cristiano Raimondi, no espaço Fradique 1360.",
    "bairro": "Pinheiros",
    "zona": "Oeste",
    "addr": "R. Fradique Coutinho, 1360",
@@ -1095,7 +1095,7 @@
    "v": "Mendes Wood DM",
    "ini": "2026-08-22",
    "fim": "2026-11-06",
-   "d": "Individual do artista no espaço da Barra Funda.",
+   "d": "Primeira individual do artista em São Paulo: 23 obras em pedra-sabão, entre escultura, relevo, instalação e performance. Ensaio de Carlos Quijon Jr.",
    "bairro": "Barra Funda",
    "zona": "Centro",
    "addr": "R. Barra Funda, 216",
@@ -1112,7 +1112,7 @@
    "v": "Mendes Wood DM",
    "ini": "2026-08-22",
    "fim": "2026-11-06",
-   "d": "Pintura em pequeno formato do artista francês.",
+   "d": "Dez pinturas de pequeno formato, a maioria entre 10 e 20 centímetros. Texto de Renato Menezes.",
    "bairro": "Barra Funda",
    "zona": "Centro",
    "addr": "R. Barra Funda, 216",
@@ -1637,7 +1637,7 @@
    "v": "Museu da Imigração",
    "ini": "2026-07-10",
    "fim": "2026-10-06",
-   "d": "Bordados da artista no Museu da Imigração.",
+   "d": "Cerca de 100 peças em bordado, retalho, crochê e pintura, algumas feitas com os filhos, OSGEMEOS, que assinam a curadoria. Primeira individual da artista no Brasil.",
    "bairro": "Mooca",
    "zona": "Leste",
    "addr": "R. Visconde de Parnaíba, 1316 ~",
@@ -1756,7 +1756,7 @@
    "v": "Galatea",
    "ini": "2026-08-20",
    "fim": "2026-10-17",
-   "d": "Individual da artista, no espaço Padre João Manuel. ",
+   "d": "Individual da artista no espaço da Oscar Freire, com texto crítico de Miguel A. López.",
    "bairro": "Cerqueira César",
    "zona": "Oeste",
    "addr": "R. Oscar Freire, 379",
@@ -2468,6 +2468,97 @@
    "mostras": [
     "a-fibra-que-conduz-ao-significado-tamara-roman--espaco-republica"
    ]
+  },
+  "adriana-varejao": {
+   "nome": "Adriana Varejão",
+   "mostras": [
+    "acervo-em-transformacao-doacoes-recentes--masp"
+   ]
+  },
+  "anna-bella-geiger": {
+   "nome": "Anna Bella Geiger",
+   "mostras": [
+    "acervo-em-transformacao-doacoes-recentes--masp"
+   ]
+  },
+  "bruno-baptistelli": {
+   "nome": "Bruno Baptistelli",
+   "mostras": [
+    "acervo-em-transformacao-doacoes-recentes--masp"
+   ]
+  },
+  "emanuel-nassar": {
+   "nome": "Emanuel Nassar",
+   "mostras": [
+    "acervo-em-transformacao-doacoes-recentes--masp"
+   ]
+  },
+  "jose-patricio": {
+   "nome": "José Patrício",
+   "mostras": [
+    "acervo-em-transformacao-doacoes-recentes--masp"
+   ]
+  },
+  "judy-chicago": {
+   "nome": "Judy Chicago",
+   "mostras": [
+    "acervo-em-transformacao-doacoes-recentes--masp"
+   ]
+  },
+  "mateo-lopez": {
+   "nome": "Mateo López",
+   "mostras": [
+    "acervo-em-transformacao-doacoes-recentes--masp"
+   ]
+  },
+  "rochelle-costi": {
+   "nome": "Rochelle Costi",
+   "mostras": [
+    "acervo-em-transformacao-doacoes-recentes--masp",
+    "flores-e-vasos-coletiva--luciana-brito-galeria"
+   ]
+  },
+  "sandra-cinto": {
+   "nome": "Sandra Cinto",
+   "mostras": [
+    "acervo-em-transformacao-doacoes-recentes--masp"
+   ]
+  },
+  "sergio-sister": {
+   "nome": "Sérgio Sister",
+   "mostras": [
+    "acervo-em-transformacao-doacoes-recentes--masp"
+   ]
+  },
+  "sergej-jensen": {
+   "nome": "Sergej Jensen",
+   "mostras": [
+    "acervo-em-transformacao-doacoes-recentes--masp"
+   ]
+  },
+  "valdirlei-dias-nunes": {
+   "nome": "Valdirlei Dias Nunes",
+   "mostras": [
+    "acervo-em-transformacao-doacoes-recentes--masp"
+   ]
+  },
+  "vik-muniz": {
+   "nome": "Vik Muniz",
+   "mostras": [
+    "acervo-em-transformacao-doacoes-recentes--masp"
+   ]
+  },
+  "gaspar-gasparian": {
+   "nome": "Gaspar Gasparian",
+   "mostras": [
+    "flores-e-vasos-coletiva--luciana-brito-galeria"
+   ]
+  },
+  "robert-mapplethorpe": {
+   "nome": "Robert Mapplethorpe",
+   "mostras": [
+    "flores-e-vasos-coletiva--luciana-brito-galeria"
+   ]
   }
  },
  "venues": {
@@ -2477,7 +2568,7 @@
    "b": "Cerqueira César",
    "z": "Oeste",
    "tipo": "galeria",
-   "site": "https://www.galerialuisastrina.com.br",
+   "site": "https://www.luisastrina.com.br",
    "ig": "galerialuisastrina",
    "info": "Fundada em 1974, decana da arte contemporânea no Brasil. Alfredo Jaar, Cildo Meireles, Leonilson."
   },
@@ -3193,7 +3284,7 @@
   },
   "janaina-torres-galeria": {
    "name": "Janaina Torres Galeria",
-   "addr": "R. Vitorino Carmilo, 427 ~",
+   "addr": "R. Vitorino Carmilo, 427",
    "b": "Barra Funda",
    "z": "Centro",
    "tipo": "galeria",
