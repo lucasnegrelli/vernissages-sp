@@ -188,6 +188,18 @@ const EXPOS = [
 {t:"A Fibra que conduz ao significado — Tamara Roman",a:"Tamara Roman",v:"Espaço República",ini:"2026-08-22",fim:"2026-09-09",d:"Curadoria de Liliam Barboza. Vernissage em 22 de agosto, das 11h às 17h; visitação de quarta a sábado, na Sala Vera Helena.",img:"",cred:""}
 ];
 
+/* ================= IMERSIVAS =================
+Experiencias imersivas comerciais - nao sao mostra com curadoria, sao produto
+pago. Entram no escopo do site por decisao do Lucas em 11/08/2026, mas em array
+proprio: misturar com EXPOS estragaria a agenda, que e so galeria e museu com
+curadoria. Mesma estrutura de EXPOS, mais o campo `valor` (ingresso), que aqui
+e obrigatorio. */
+const IMERSIVAS = [
+{t:"Horizonte de Quéops: Viagem ao Antigo Egito",v:"Espaço Cultura VR",ini:"2025-12-19",fim:"2026-09-21",d:"Expedição imersiva de realidade virtual sobre o Egito Antigo, em parceria com Peter Der Manuelian, egiptólogo de Harvard. Quinta a segunda, 10h-21h20.",valor:"A partir de R$ 88 (meia R$ 44)",addr:"Shopping Cidade São Paulo, Av. Paulista",b:"Bela Vista",fonte:"icarabe.org, espacoculturavr.com.br"},
+{t:"O Brasil de Tarsila",a:"Tarsila do Amaral",v:"Nubank Arte Lab",ini:"2026-08-15",fim:"2026-10-31",d:"Maior exposição imersiva já dedicada à artista: cerca de 40 obras em projeção 360° distribuídas por dez salas, com trilha sonora e recursos sensoriais. Marca os 140 anos de nascimento da artista e inaugura o Nubank Arte Lab. Quarta a segunda e feriados, 10h-22h.",valor:"conferir no site - nao divulgado nas fontes consultadas",addr:"Conjunto Nacional, Av. Paulista",b:"Bela Vista",fonte:"dasartes.com.br, jammusical.com"}
+];
+
+
 /* ================= EDITAIS =================
 cat: fomento | residencia | premio | chamada
 prazo: YYYY-MM-DD · null = fluxo continuo (sem data de encerramento divulgada)
@@ -247,5 +259,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "19/08/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, bairros: BAIRRO_COUNTS };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "19/08/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS };
 })();
