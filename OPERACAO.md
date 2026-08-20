@@ -129,6 +129,24 @@ Mostra sem esse dado entra na agenda do site normalmente, mas **não é candidat
 a destaque nem a peça de social**. Prefira gastar a página extra levantando o
 fato de uma mostra a acrescentar mais uma mostra oca à lista.
 
+**Onde procurar, nesta ordem:**
+
+1. A página da própria mostra no site do venue. Repare que ela quase nunca está
+   linkada na home: a Almeida & Dale usa `/exposicoes/<slug>/`, a Galeria
+   Dezoito usa `/<titulosemespaco>/`, MASP e Pinacoteca renderizam bem em
+   `/exposicoes/<slug>` mesmo com o índice quebrado. Busque pelo nome da mostra
+   em vez de navegar pelo índice.
+2. A aba de textos críticos do venue, quando existir. É lá que estão o número de
+   obras e a técnica.
+3. **Não achou no site oficial? Vá para os agregadores** — Arte Que Acontece,
+   Dasartes, Guia das Artes, Mapa das Artes. Eles frequentemente publicam o
+   release inteiro que a galeria não pôs no próprio site.
+
+Uma ressalva que não se contorna: agregador serve como **fonte de fato**, nunca
+como fonte de link sem conferência. Em 20/08 o Arte Que Acontece anunciava
+`hoatour.art` como site da HOA Galeria; o domínio tinha caído e servia um
+cassino. Fato do release, pode usar. URL, só depois de abrir.
+
 Nesta fase não toque em `foco` nem em `destaques`: são da Fase 2.
 
 ## Fase 2 — destaque do site (todo dia)
