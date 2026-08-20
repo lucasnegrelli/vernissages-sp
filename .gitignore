@@ -20,8 +20,9 @@
 # Scratch de ferramenta: renderizador headless e node_modules.
 /.render/
 
-# Ferramenta em desenvolvimento, decisão pendente (ver PENDENTE/LEIA.md §2).
-# Acerta 1 em 14 hoje; precisa da virada pra headless antes de virar oficial.
-/descobrir-imagens.js
+# O descobrir-imagens.js saiu daqui em 20/08: a condição que este arquivo
+# mesmo tinha escrito ("precisa da virada pra headless antes de virar oficial")
+# foi cumprida. Passou de ~3 para 17 propostas em 45 mostras e virou ferramenta
+# como o gerar.js, o check.js e o espelhar.js. Não guarda segredo nenhum.
 
 desktop.ini

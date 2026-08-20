@@ -655,6 +655,17 @@
   </div>
   <p class="note">Diretório com as principais galerias ativas verificadas + espaços institucionais. O estudo FGV/ArteRef contabiliza 67 galerias do mercado primário na cidade, mas a lista nominal completa não foi publicada — endereços marcados com ~ são aproximados; confirme antes de visitar.</p>
 
+  <section class="dobra" id="imersivas" hidden>
+    <h2>Experiências imersivas · ingresso pago</h2>
+    <div class="dobrac">
+      <div class="panel">
+        <div class="paineltopo"><span class="pt">Fora da agenda curada</span><span class="pn2" id="imersivasN"></span></div>
+        <div id="imersivasLista"></div>
+      </div>
+      <p class="note">Projeção e realidade virtual em operação comercial, com bilheteria. Ficam aqui, e não na agenda, porque não são programa de galeria nem de instituição — quem procura acha, sem disputar espaço com o circuito.</p>
+    </div>
+  </section>
+
   <div class="prefoot">
     <section class="dobra">
       <h2>Quem é o público · enquete anônima</h2>
@@ -664,10 +675,10 @@
       </div>
     </section>
     <section class="dobra">
-      <h2>Galerias por bairro · FGV/ArteRef</h2>
+      <h2>Espaços por bairro · nossa base</h2>
       <div class="dobrac">
       <div class="panel">
-        <div class="paineltopo"><span class="pt">Onde as galerias se concentram</span><span class="pn2" id="barsTotal"></span></div>
+        <div class="paineltopo"><span class="pt">Onde o circuito se concentra</span><span class="pn2" id="barsTotal"></span></div>
         <div class="bars" id="bars"></div>
       </div>
       <p class="note">Clique num bairro para filtrar a agenda e o mapa.</p>
@@ -735,6 +746,12 @@ if(!window.DATA||!window.DATA.venues){
   throw new Error('dados indisponiveis');
 }
 const {venues:VENUES, expos:EXPOS, bairros:BAIRRO_COUNTS} = window.DATA;
+
+/* O rodapé conta por bairro agrupado ("Jardins" é o circuito, não um bairro do
+   IBGE) e o filtro do diretório precisa falar a mesma língua — senão clicar na
+   barra some com três quartos das galerias. Uma função só, dos dois lados. */
+const GRUPO_BAIRRO = window.DATA.grupoBairro || {};
+const bairroLabel = v => GRUPO_BAIRRO[v.b] || v.b;
 
 /* localStorage pode lançar exceção (aba anônima, cookies bloqueados, cota cheia).
    sem proteção, uma exceção aqui derruba o script inteiro. */
@@ -824,7 +841,7 @@ document.getElementById('kpis').innerHTML=[
 
 /* selects */
 const bSel=document.getElementById('bairroSel'),vSel=document.getElementById('venueSel'),aSel=document.getElementById('artistSel');
-[...new Set(VENUES.map(v=>v.b))].sort().forEach(b=>bSel.add(new Option(b,b)));
+[...new Set(VENUES.map(bairroLabel))].sort((a,b)=>a.localeCompare(b,'pt-BR')).forEach(b=>bSel.add(new Option(b,b)));
 VENUES.map(v=>v.name).sort().forEach(n=>vSel.add(new Option(n,n)));
 [...new Set(expos.flatMap(e=>e.a?e.a.split(', '):[]))].sort((x,y)=>x.localeCompare(y,'pt')).forEach(n=>aSel.add(new Option(n,n)));
 
@@ -890,7 +907,7 @@ function draw(){
 
   Object.values(markers).forEach(m=>map.removeLayer(m));markers={};
 
-  const okV=v=>(zona==='all'||v.z===zona)&&(b==='all'||v.b===b)&&(tipo==='all'||v.tipo===tipo||v.tipo==='feira')&&(ven==='all'||v.name===ven)&&(!favOnly||favs.has(v.name))&&(!freeOnly||ehGratis(v));
+  const okV=v=>(zona==='all'||v.z===zona)&&(b==='all'||bairroLabel(v)===b)&&(tipo==='all'||v.tipo===tipo||v.tipo==='feira')&&(ven==='all'||v.name===ven)&&(!favOnly||favs.has(v.name))&&(!freeOnly||ehGratis(v));
 
   const okA=e=>art==='all'||(e.a||'').split(', ').includes(art);
   let list=expos.filter(e=>okV(e.ven)&&okA(e)&&(st==='all'||e.st===st));
@@ -1366,11 +1383,38 @@ const mx=BAIRRO_COUNTS[0][1];
     `<div class="barrow"><div class="bn" onclick="barFilter('${b}')">${b}</div><div><div class="bar" style="width:${n/mx*100}%"></div></div><div class="bv">${n}</div></div>`).join('');
   (function(){
     const bt=document.getElementById('barsTotal');
-    if(bt) bt.textContent=BAIRRO_COUNTS.reduce((a,c)=>a+c[1],0)+' galerias · '+BAIRRO_COUNTS.length+' bairros';
+    /* conta o VENUES inteiro — galeria, institucional, híbrido e feira —,
+       então "espaços", não "galerias". */
+    if(bt) bt.textContent=BAIRRO_COUNTS.reduce((a,c)=>a+c[1],0)+' espaços · '+BAIRRO_COUNTS.length+' bairros';
   })();
+/* ---------- experiências imersivas ----------
+   A categoria estava no dados.js e exposta no return desde 11/08 sem ninguém
+   consumir: dado morto. Entra aqui, e não na agenda, de propósito — é operação
+   comercial com bilheteria, não programa curado, e misturar as duas coisas é
+   exatamente o que a linha editorial do projeto não quer. Some sozinha quando
+   o array esvazia ou tudo encerra. */
+(function(){
+  const sec = document.getElementById('imersivas');
+  if (!sec) return;
+  const hoje = new Date(TODAY.getTime() - TODAY.getTimezoneOffset()*60000).toISOString().slice(0,10);
+  const IM = (window.DATA.imersivas || []).filter(x => !x.fim || x.fim >= hoje);
+  if (!IM.length) return;
+  const es = s => String(s==null?'':s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const dt = s => s ? s.split('-').reverse().join('/') : '';
+  sec.hidden = false;
+  document.getElementById('imersivasN').textContent = IM.length + ' em cartaz';
+  document.getElementById('imersivasLista').innerHTML = IM.map((x, i) => `
+    <div style="padding:12px 0;${i ? 'border-top:1px solid var(--hair)' : ''}">
+      <div style="font-weight:600">${es(x.t)}</div>
+      <div class="zona">${es(x.v)}${x.b ? ' · ' + es(x.b) : ''}${x.fim ? ' · até ' + dt(x.fim) : ''}</div>
+      <div class="zona">${es(x.valor || 'ingresso a confirmar')}</div>
+    </div>`).join('');
+})();
+
   function barFilter(b){
-  const map2={"Jardins":"Jardim Paulista"};
-  const opt=[...bSel.options].find(o=>o.value===b||o.value===map2[b]);
+  /* A barra e o select usam o mesmo rótulo agrupado, então o de-para que
+     existia aqui (e só cobria "Jardins" → Jardim Paulista) não é mais preciso. */
+  const opt=[...bSel.options].find(o=>o.value===b);
   bSel.value=opt?opt.value:'all';draw();
   window.scrollTo({top:0,behavior:'smooth'});
 }
