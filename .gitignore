@@ -1,0 +1,23 @@
+# Material de trabalho local — não faz parte do site publicado.
+#
+# A pasta de trabalho passou a ser um clone do repositório em 19/08/2026.
+# Antes disso ela era uma cópia solta, e os arquivos derivavam nos dois
+# sentidos sem ninguém notar: o post.html local ficou 4 correções à frente
+# do que estava no ar (inclusive o bug do addSlide, que quebrou o gerador
+# por dias) enquanto o POSTS.md acumulava 161 linhas que só existiam aqui.
+# Com o clone, `git status` mostra a deriva na hora.
+
+# Peças montadas, legendas e histórico de publicação — arquivo do Lucas.
+/SOCIAL/
+
+# Arte-fonte e identidade visual.
+/LOGO/
+/MAPA_GALERIAS.psd
+
+# Material em triagem (imagens garimpadas antes de virar img/).
+/PENDENTE/
+
+# Scratch de ferramenta: renderizador headless e node_modules.
+/.render/
+
+desktop.ini
