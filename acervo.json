@@ -80,9 +80,9 @@
    "zona": "Oeste",
    "addr": "Av. Prof. Fonseca Rodrigues, 1300",
    "tipo": "institucional",
-   "site": "",
-   "ig": "",
-   "visto": "2026-08-19",
+   "site": "https://ccparque.com.br",
+   "ig": "casadeculturadoparque",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-30"
   },
   {
@@ -97,9 +97,9 @@
    "zona": "Oeste",
    "addr": "Av. Prof. Fonseca Rodrigues, 1300",
    "tipo": "institucional",
-   "site": "",
-   "ig": "",
-   "visto": "2026-08-19",
+   "site": "https://ccparque.com.br",
+   "ig": "casadeculturadoparque",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-30"
   },
   {
@@ -116,7 +116,7 @@
    "tipo": "galeria",
    "site": "https://www.galeriamarceloguarnieri.com.br",
    "ig": "galeriamarceloguarnieri",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-30"
   },
   {
@@ -133,7 +133,7 @@
    "tipo": "galeria",
    "site": "https://almeidaedale.com.br",
    "ig": "galeriamillan",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-30"
   },
   {
@@ -150,7 +150,7 @@
    "tipo": "galeria",
    "site": "https://galeriadezoito.com",
    "ig": "",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-30"
   },
   {
@@ -167,7 +167,7 @@
    "tipo": "institucional",
    "site": "https://www.faap.br/museu",
    "ig": "",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-30"
   },
   {
@@ -184,7 +184,7 @@
    "tipo": "galeria",
    "site": "https://www.galerialuisastrina.com.br",
    "ig": "galerialuisastrina",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-30"
   },
   {
@@ -201,7 +201,7 @@
    "tipo": "feira",
    "site": "https://www.sp-arte.com",
    "ig": "sp_arte",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-30"
   },
   {
@@ -286,7 +286,7 @@
    "tipo": "institucional",
    "site": "https://masp.org.br",
    "ig": "masp",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-30"
   },
   {
@@ -303,7 +303,7 @@
    "tipo": "institucional",
    "site": "https://masp.org.br",
    "ig": "masp",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-30"
   },
   {
@@ -320,7 +320,7 @@
    "tipo": "institucional",
    "site": "https://masp.org.br",
    "ig": "masp",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-30"
   },
   {
@@ -337,7 +337,7 @@
    "tipo": "institucional",
    "site": "https://masp.org.br",
    "ig": "masp",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-30"
   },
   {
@@ -439,7 +439,7 @@
    "tipo": "institucional",
    "site": "https://www.institutotomieohtake.org.br",
    "ig": "institutotomieohtake",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-30"
   },
   {
@@ -541,7 +541,7 @@
    "tipo": "galeria",
    "site": "https://www.dangaleria.com.br",
    "ig": "dangaleria",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-30"
   },
   {
@@ -558,7 +558,7 @@
    "tipo": "galeria",
    "site": "https://www.pinakotheke.com.br",
    "ig": "",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-30"
   },
   {
@@ -569,13 +569,13 @@
    "ini": "2026-05-16",
    "fim": "2026-08-22",
    "d": "Geometrias em diálogo (Mavignier e outros).",
-   "bairro": "Cerqueira César",
+   "bairro": "Jardim Paulista",
    "zona": "Oeste",
-   "addr": "Al. Ministro Rocha Azevedo ~",
+   "addr": "Al. Lorena, 1661",
    "tipo": "galeria",
-   "site": "",
-   "ig": "",
-   "visto": "2026-08-19",
+   "site": "https://www.pkgaleria.com",
+   "ig": "pkgaleria",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-30"
   },
   {
@@ -643,7 +643,7 @@
    "tipo": "galeria",
    "site": "https://galerialeme.com",
    "ig": "galerialeme",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-30"
   },
   {
@@ -660,7 +660,7 @@
    "tipo": "galeria",
    "site": "https://www.raquelarnaud.com",
    "ig": "galeriaraquelarnaud",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-30"
   },
   {
@@ -677,7 +677,7 @@
    "tipo": "galeria",
    "site": "https://www.raquelarnaud.com",
    "ig": "galeriaraquelarnaud",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-30"
   },
   {
@@ -711,7 +711,7 @@
    "tipo": "galeria",
    "site": "https://www.galerialuisastrina.com.br",
    "ig": "galerialuisastrina",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-31"
   },
   {
@@ -728,7 +728,7 @@
    "tipo": "galeria",
    "site": "https://simoesdeassis.com",
    "ig": "simoesdeassis",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-31"
   },
   {
@@ -745,7 +745,7 @@
    "tipo": "galeria",
    "site": "https://lucianabritogaleria.com.br",
    "ig": "lucianabritogaleria",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-31"
   },
   {
@@ -762,7 +762,7 @@
    "tipo": "galeria",
    "site": "https://lucianabritogaleria.com.br",
    "ig": "lucianabritogaleria",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-31"
   },
   {
@@ -779,7 +779,7 @@
    "tipo": "galeria",
    "site": "https://janainatorres.com.br",
    "ig": "janainatorresgaleria",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-31"
   },
   {
@@ -796,7 +796,7 @@
    "tipo": "institucional",
    "site": "https://masp.org.br",
    "ig": "masp",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-31"
   },
   {
@@ -813,7 +813,7 @@
    "tipo": "institucional",
    "site": "https://pinacoteca.org.br",
    "ig": "pinasp",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-31"
   },
   {
@@ -830,7 +830,7 @@
    "tipo": "institucional",
    "site": "https://pinacoteca.org.br",
    "ig": "pinasp",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-31"
   },
   {
@@ -847,7 +847,7 @@
    "tipo": "institucional",
    "site": "https://pinacoteca.org.br",
    "ig": "pinasp",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-31"
   },
   {
@@ -864,7 +864,7 @@
    "tipo": "institucional",
    "site": "https://pinacoteca.org.br",
    "ig": "pinasp",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-31"
   },
   {
@@ -881,7 +881,7 @@
    "tipo": "institucional",
    "site": "https://pinacoteca.org.br",
    "ig": "pinasp",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-31"
   },
   {
@@ -898,7 +898,7 @@
    "tipo": "institucional",
    "site": "https://pinacoteca.org.br",
    "ig": "pinasp",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-31"
   },
   {
@@ -915,7 +915,7 @@
    "tipo": "institucional",
    "site": "https://pinacoteca.org.br",
    "ig": "pinasp",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-31"
   },
   {
@@ -966,7 +966,7 @@
    "tipo": "galeria",
    "site": "https://almeidaedale.com.br",
    "ig": "galeriamillan",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-01"
   },
   {
@@ -983,7 +983,7 @@
    "tipo": "galeria",
    "site": "https://almeidaedale.com.br",
    "ig": "galeriamillan",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-01"
   },
   {
@@ -1000,7 +1000,7 @@
    "tipo": "galeria",
    "site": "https://almeidaedale.com.br",
    "ig": "galeriamillan",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-01"
   },
   {
@@ -1017,7 +1017,7 @@
    "tipo": "galeria",
    "site": "https://aura.art.br",
    "ig": "aura.galeria",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-01"
   },
   {
@@ -1034,7 +1034,7 @@
    "tipo": "galeria",
    "site": "https://yehudihollanderpappi.com",
    "ig": "",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-01"
   },
   {
@@ -1051,7 +1051,7 @@
    "tipo": "galeria",
    "site": "https://yehudihollanderpappi.com",
    "ig": "",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-01"
   },
   {
@@ -1068,7 +1068,7 @@
    "tipo": "institucional",
    "site": "https://www.itaucultural.org.br",
    "ig": "itaucultural",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-01"
   },
   {
@@ -1102,7 +1102,7 @@
    "tipo": "galeria",
    "site": "https://mendeswooddm.com",
    "ig": "mendeswooddm",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-31"
   },
   {
@@ -1119,7 +1119,7 @@
    "tipo": "galeria",
    "site": "https://mendeswooddm.com",
    "ig": "mendeswooddm",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-31"
   },
   {
@@ -1153,7 +1153,7 @@
    "tipo": "institucional",
    "site": "https://www.itaucultural.org.br",
    "ig": "itaucultural",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-02"
   },
   {
@@ -1170,7 +1170,7 @@
    "tipo": "institucional",
    "site": "https://www.sescsp.org.br/unidades/pinheiros",
    "ig": "sescpinheiros",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-02"
   },
   {
@@ -1187,7 +1187,7 @@
    "tipo": "institucional",
    "site": "https://culturaartistica.org",
    "ig": "culturaartistica",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-02"
   },
   {
@@ -1204,7 +1204,7 @@
    "tipo": "institucional",
    "site": "https://www.farolsantander.com.br/sp",
    "ig": "farolsantander",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-02"
   },
   {
@@ -1221,7 +1221,7 @@
    "tipo": "galeria",
    "site": "https://mendeswooddm.com",
    "ig": "",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-02"
   },
   {
@@ -1238,7 +1238,7 @@
    "tipo": "galeria",
    "site": "https://www.zippergaleria.com.br",
    "ig": "zippergaleria",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-02"
   },
   {
@@ -1255,7 +1255,7 @@
    "tipo": "galeria",
    "site": "https://www.zippergaleria.com.br",
    "ig": "zippergaleria",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-02"
   },
   {
@@ -1289,7 +1289,7 @@
    "tipo": "hibrido",
    "site": "",
    "ig": "matalabsp",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-02"
   },
   {
@@ -1306,7 +1306,7 @@
    "tipo": "hibrido",
    "site": "https://auroras.art.br",
    "ig": "auroras.art.br",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-02"
   },
   {
@@ -1321,9 +1321,9 @@
    "zona": "Oeste",
    "addr": "Av. Prof. Fonseca Rodrigues, 1300",
    "tipo": "institucional",
-   "site": "",
-   "ig": "",
-   "visto": "2026-08-19",
+   "site": "https://ccparque.com.br",
+   "ig": "casadeculturadoparque",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-03"
   },
   {
@@ -1373,7 +1373,7 @@
    "tipo": "galeria",
    "site": "https://www.casatriangulo.com",
    "ig": "casatriangulo",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-03"
   },
   {
@@ -1390,7 +1390,7 @@
    "tipo": "hibrido",
    "site": "",
    "ig": "massape_projetos",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-03"
   },
   {
@@ -1457,7 +1457,7 @@
    "tipo": "galeria",
    "site": "https://gomideco.com.br",
    "ig": "gomideco",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-04"
   },
   {
@@ -1474,7 +1474,7 @@
    "tipo": "galeria",
    "site": "https://gomideco.com.br",
    "ig": "gomideco",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-04"
   },
   {
@@ -1491,7 +1491,7 @@
    "tipo": "hibrido",
    "site": "",
    "ig": "espacorepublica",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-04"
   },
   {
@@ -1508,7 +1508,7 @@
    "tipo": "institucional",
    "site": "https://mam.org.br",
    "ig": "mamsaopaulo",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-04"
   },
   {
@@ -1525,7 +1525,7 @@
    "tipo": "galeria",
    "site": "https://galeriavermelho.com.br",
    "ig": "galeriavermelho",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-05"
   },
   {
@@ -1542,7 +1542,7 @@
    "tipo": "galeria",
    "site": "https://www.centralgaleria.com",
    "ig": "centralgaleria",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-05"
   },
   {
@@ -1559,7 +1559,7 @@
    "tipo": "galeria",
    "site": "https://galeriavermelho.com.br",
    "ig": "galeriavermelho",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-06"
   },
   {
@@ -1576,7 +1576,7 @@
    "tipo": "galeria",
    "site": "https://galeriavermelho.com.br",
    "ig": "galeriavermelho",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-06"
   },
   {
@@ -1593,7 +1593,7 @@
    "tipo": "institucional",
    "site": "https://www.itaucultural.org.br",
    "ig": "itaucultural",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-06"
   },
   {
@@ -1610,7 +1610,7 @@
    "tipo": "galeria",
    "site": "https://barogaleria.com",
    "ig": "barogaleria",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-07-31"
   },
   {
@@ -1627,7 +1627,7 @@
    "tipo": "institucional",
    "site": "https://www.mis-sp.org.br",
    "ig": "mis_sp",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-06"
   },
   {
@@ -1644,7 +1644,7 @@
    "tipo": "institucional",
    "site": "https://museudaimigracao.org.br",
    "ig": "museudaimigracao",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-06"
   },
   {
@@ -1661,7 +1661,7 @@
    "tipo": "institucional",
    "site": "https://www.mac.usp.br",
    "ig": "",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-06"
   },
   {
@@ -1678,7 +1678,7 @@
    "tipo": "hibrido",
    "site": "",
    "ig": "",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-06"
   },
   {
@@ -1695,7 +1695,7 @@
    "tipo": "galeria",
    "site": "https://www.galeriaestacao.com.br",
    "ig": "galeriaestacao",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-10"
   },
   {
@@ -1710,9 +1710,9 @@
    "zona": "Oeste",
    "addr": "Vila Anastácio, complexo Ceagesp (endereço exato a confirmar)",
    "tipo": "institucional",
-   "site": "",
-   "ig": "",
-   "visto": "2026-08-19",
+   "site": "https://galpaodalapa.art.br",
+   "ig": "galpaodalapa",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-16"
   },
   {
@@ -1729,7 +1729,7 @@
    "tipo": "galeria",
    "site": "https://galeriacontempo.com.br",
    "ig": "",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-16"
   },
   {
@@ -1746,7 +1746,7 @@
    "tipo": "galeria",
    "site": "https://fdag.com.br",
    "ig": "fortesdaloiagabriel",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-16"
   },
   {
@@ -1763,7 +1763,7 @@
    "tipo": "galeria",
    "site": "https://galatea.art",
    "ig": "galatea.art_",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-16"
   },
   {
@@ -1780,7 +1780,7 @@
    "tipo": "hibrido",
    "site": "",
    "ig": "espacorepublica",
-   "visto": "2026-08-19",
+   "visto": "2026-08-20",
    "primeiroRegistro": "2026-08-16"
   }
  ],
@@ -2557,8 +2557,8 @@
    "b": "Jardim Paulista",
    "z": "Oeste",
    "tipo": "galeria",
-   "site": "",
-   "ig": "",
+   "site": "https://luismaluf.com",
+   "ig": "luis_maluf",
    "info": "Arte contemporânea brasileira emergente."
   },
   "choque-cultural": {
@@ -2593,22 +2593,22 @@
   },
   "verve-galeria": {
    "name": "Verve Galeria",
-   "addr": "Al. Lorena, 1257 ~",
-   "b": "Jardim Paulista",
-   "z": "Oeste",
+   "addr": "Av. São Luís, 192 — Ed. Louvre, sobreloja 06",
+   "b": "República",
+   "z": "Centro",
    "tipo": "galeria",
-   "site": "",
-   "ig": "",
-   "info": "Contemporâneo; forte presença em feiras nacionais."
+   "site": "https://www.vervegaleria.com",
+   "ig": "vervegaleria",
+   "info": "Contemporâneo; forte presença em feiras nacionais. Fica no Edifício Louvre, no centro — não nos Jardins."
   },
   "galeria-berenice-arvani": {
    "name": "Galeria Berenice Arvani",
-   "addr": "R. Oscar Freire, 540 ~",
+   "addr": "R. Oscar Freire, 540",
    "b": "Cerqueira César",
    "z": "Oeste",
    "tipo": "galeria",
-   "site": "",
-   "ig": "",
+   "site": "https://galeriaberenicearvani.com",
+   "ig": "galeriaberenicearvani",
    "info": "Modernos e contemporâneos brasileiros."
   },
   "galeria-superficie": {
@@ -2623,12 +2623,12 @@
   },
   "paulo-kuczynski-escritorio-de-arte": {
    "name": "Paulo Kuczynski Escritório de Arte",
-   "addr": "Al. Ministro Rocha Azevedo ~",
-   "b": "Cerqueira César",
+   "addr": "Al. Lorena, 1661",
+   "b": "Jardim Paulista",
    "z": "Oeste",
    "tipo": "galeria",
-   "site": "",
-   "ig": "",
+   "site": "https://www.pkgaleria.com",
+   "ig": "pkgaleria",
    "info": "Mercado secundário de alto nível; mostras curadas."
   },
   "ricardo-camargo-galeria": {
@@ -2638,7 +2638,7 @@
    "z": "Oeste",
    "tipo": "galeria",
    "site": "",
-   "ig": "",
+   "ig": "ricardocamargogaleria",
    "info": "Arte brasileira moderna."
   },
   "monica-filgueiras-galeria": {
@@ -2653,12 +2653,12 @@
   },
   "danielian-sao-paulo": {
    "name": "Danielian São Paulo",
-   "addr": "Jardins (endereço a confirmar)",
+   "addr": "R. Estados Unidos, 2114 e 2157",
    "b": "Jardim Paulista",
    "z": "Oeste",
    "tipo": "galeria",
-   "site": "",
-   "ig": "",
+   "site": "https://www.danielian.com.br",
+   "ig": "danielian_galeria",
    "info": "Galeria carioca com espaço recente em SP."
   },
   "galeria-nara-roesler": {
@@ -2747,8 +2747,8 @@
    "b": "Alto de Pinheiros",
    "z": "Oeste",
    "tipo": "institucional",
-   "site": "",
-   "ig": "",
+   "site": "https://ccparque.com.br",
+   "ig": "casadeculturadoparque",
    "info": "Centro cultural em Alto de Pinheiros; ciclos expositivos em parceria com o ICCo."
   },
   "galeria-raquel-arnaud": {
@@ -2777,7 +2777,7 @@
    "b": "Vila Madalena",
    "z": "Oeste",
    "tipo": "galeria",
-   "site": "",
+   "site": "https://marlimatsumoto.com.br",
    "ig": "",
    "info": "Galeria + anexo experimental."
   },
@@ -2828,8 +2828,8 @@
    "z": "Centro",
    "tipo": "galeria",
    "site": "",
-   "ig": "",
-   "info": "Fundada por Igi Ayedun; foco em artistas negros e periféricos. Perfil de Instagram a confirmar."
+   "ig": "hoa.goooold",
+   "info": "Fundada por Igi Ayedun; foco em artistas negros e periféricos. Endereço a confirmar: guias da cidade dão Barra Funda. O domínio hoatour.art caiu e hoje serve outra coisa — não use."
   },
   "galeria-jaqueline-martins": {
    "name": "Galeria Jaqueline Martins",
@@ -2853,13 +2853,13 @@
   },
   "se-galeria": {
    "name": "Sé Galeria",
-   "addr": "Centro ~",
-   "b": "Sé",
-   "z": "Centro",
+   "addr": "Al. Lorena, 1257 (Vila Modernista, casa 2)",
+   "b": "Jardim Paulista",
+   "z": "Oeste",
    "tipo": "galeria",
-   "site": "",
+   "site": "https://www.segaleria.com.br",
    "ig": "",
-   "info": "Programa experimental no centro histórico."
+   "info": "Nasceu no centro histórico e mudou para os Jardins em 2019; o nome ficou."
   },
   "baro-galeria": {
    "name": "Baró Galeria",
@@ -2917,8 +2917,8 @@
    "b": "Pinheiros",
    "z": "Oeste",
    "tipo": "galeria",
-   "site": "",
-   "ig": "",
+   "site": "https://adelina.org.br",
+   "ig": "adelinainstituto",
    "info": "Arte contemporânea com foco em novos diálogos e pertencimento."
   },
   "arte-infinita": {
@@ -2938,7 +2938,7 @@
    "z": "Oeste",
    "tipo": "galeria",
    "site": "",
-   "ig": "",
+   "ig": "arteedicoes_galeria",
    "info": "Gravuras e edições: Hirst, Kapoor, Opie, Sonia Gomes, Leda Catunda."
   },
   "a-casa-das-artes": {
@@ -2967,7 +2967,7 @@
    "b": "Itaim Bibi",
    "z": "Sul",
    "tipo": "galeria",
-   "site": "",
+   "site": "https://galeriamariocohen.com.br",
    "ig": "",
    "info": "Pop e contemporâneo internacional."
   },
@@ -3147,7 +3147,7 @@
    "b": "Ibirapuera",
    "z": "Sul",
    "tipo": "institucional",
-   "site": "",
+   "site": "https://www.parquedoibirapuera.org/oca/",
    "ig": "",
    "info": "Pavilhão de Niemeyer para grandes mostras."
   },
@@ -3318,7 +3318,7 @@
    "z": "Oeste",
    "tipo": "hibrido",
    "site": "",
-   "ig": "",
+   "ig": "galeriacafesp",
    "info": "Café e bar com andar térreo dedicado a exposições com curadoria da Dasartes; obras à venda."
   },
   "galeria-metropole": {
@@ -3377,8 +3377,8 @@
    "b": "Vila Anastácio",
    "z": "Oeste",
    "tipo": "institucional",
-   "site": "",
-   "ig": "",
+   "site": "https://galpaodalapa.art.br",
+   "ig": "galpaodalapa",
    "info": "Coleção privada de arte contemporânea brasileira (mais de 2.000 obras, reunida por Andrea Pereira e José Olympio) instalada em galpão histórico do complexo Ceagesp. Visitas guiadas gratuitas mediante agendamento, quintas e sábados."
   },
   "galeria-contempo": {
@@ -3392,5 +3392,5 @@
    "info": "Dirigida por Marcia e Mônica Felmanas; em 2026 promoveu o retorno da obra de Aldir Mendes de Souza ao circuito expositivo."
   }
  },
- "atualizado": "2026-08-19"
+ "atualizado": "2026-08-20"
 }
