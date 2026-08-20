@@ -34,8 +34,32 @@ depois este arquivo. Divergência encontrada vai no resumo — não se contorna.
 
 - Pasta de trabalho **é** o clone: `C:\Users\lucas\Desktop\Negrelli\Artes\VernissagesSP`
 - `gh` autenticado como `lucasnegrelli` (escopo `repo`) — `git push` funciona direto
+- `main` rastreia `origin/main` (upstream configurado em 20/08). Sem isso o
+  `git pull --rebase` da Fase 0 morre antes de começar. Se algum dia voltar a
+  reclamar de "no tracking information", rode
+  `git branch --set-upstream-to=origin/main main` e siga.
 - Node 20+ disponível; `.render/` tem puppeteer-core e sharp instalados
 - `SOCIAL/`, `LOGO/`, `PENDENTE/` e `MAPA_GALERIAS.psd` estão fora do versionamento
+
+## Quem mais escreve no repositório
+
+Você não é o único que empurra pra `main`. Três workflows fazem isso sozinhos:
+
+| Workflow | Dispara quando | O que faz |
+|---|---|---|
+| `Espelhar imagens` | push que mexe em `dados.js` | baixa `img` externa pra `img/` e reescreve o campo |
+| `Gerar acervo e paginas` | push em `dados.js`/`gerar.js`, e 11h de SP todo dia | regenera `acervo.json`, `m/`, `a/`, `arquivo.html`, `sitemap.xml` |
+| `valida dados.js` | todo push e todo PR | roda `check.test.js` e `check.js`; não escreve nada |
+
+Os dois primeiros commitam e empurram, então **o clone local fica atrás minutos
+depois do seu próprio push** — é por isso que a Fase 0 sempre começa por
+`git pull --rebase`. Os dois têm rebase-com-retry desde 20/08; antes disso o
+gerador morria quando o espelhador ganhava a corrida.
+
+Consequência prática: **nunca edite à mão `acervo.json`, `sitemap.xml`, `m/` ou
+`a/`** esperando que fique. Eles são gerados. A exceção é remover do acervo uma
+mostra duplicada — aí edite `acervo.json`, apague a página órfã em `m/` com
+`git rm` e rode `node gerar.js`, senão o sitemap continua anunciando a URL morta.
 
 ---
 

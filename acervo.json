@@ -630,23 +630,6 @@
    "primeiroRegistro": "2026-07-30"
   },
   {
-   "id": "uma-folha-translucida-no-lugar-dos-olhos-d-steegmann-mangrane--mendes-wood-dm",
-   "t": "Uma Folha Translúcida no Lugar dos Olhos — D. Steegmann Mangrané",
-   "a": "Daniel Steegmann Mangrané",
-   "v": "Mendes Wood DM",
-   "ini": "2026-04-07",
-   "fim": "2026-08-08",
-   "d": "Ecologia e percepção.",
-   "bairro": "Barra Funda",
-   "zona": "Centro",
-   "addr": "R. Barra Funda, 216",
-   "tipo": "galeria",
-   "site": "https://mendeswooddm.com",
-   "ig": "mendeswooddm",
-   "visto": "2026-08-01",
-   "primeiroRegistro": "2026-07-30"
-  },
-  {
    "id": "geologia-da-forma-germana-monte-mor--galeria-leme",
    "t": "Geologia da forma — Germana Monte-Mór",
    "a": "Germana Monte-Mór",
@@ -780,74 +763,6 @@
    "site": "https://lucianabritogaleria.com.br",
    "ig": "lucianabritogaleria",
    "visto": "2026-08-19",
-   "primeiroRegistro": "2026-07-31"
-  },
-  {
-   "id": "daniel-jorge-individual--mendes-wood-dm",
-   "t": "Daniel Jorge — individual",
-   "a": "Daniel Jorge",
-   "v": "Mendes Wood DM",
-   "ini": "2026-08-22",
-   "fim": "2026-11-06",
-   "d": "Individual do artista no espaço da Barra Funda.",
-   "bairro": "Barra Funda",
-   "zona": "Centro",
-   "addr": "R. Barra Funda, 216",
-   "tipo": "galeria",
-   "site": "https://mendeswooddm.com",
-   "ig": "mendeswooddm",
-   "visto": "2026-08-01",
-   "primeiroRegistro": "2026-07-31"
-  },
-  {
-   "id": "deboussole-est-le-mot-exact-jean-claracq--mendes-wood-dm-casa-iramaia",
-   "t": "Déboussolé est le mot exact — Jean Claracq",
-   "a": "Jean Claracq",
-   "v": "Mendes Wood DM — Casa Iramaia",
-   "ini": "2026-08-22",
-   "fim": "2026-11-06",
-   "d": "Pintura em pequeno formato do artista francês.",
-   "bairro": "Jardim Europa",
-   "zona": "Oeste",
-   "addr": "R. Iramaia, Jardim Europa (a confirmar)",
-   "tipo": "galeria",
-   "site": "https://mendeswooddm.com",
-   "ig": "",
-   "visto": "2026-08-01",
-   "primeiroRegistro": "2026-07-31"
-  },
-  {
-   "id": "sendo-lygia-pape--mendes-wood-dm",
-   "t": "Sendo — Lygia Pape",
-   "a": "Lygia Pape",
-   "v": "Mendes Wood DM",
-   "ini": "2026-04-07",
-   "fim": "2026-08-08",
-   "d": "Mostra dedicada à artista neoconcreta, em dois endereços da galeria.",
-   "bairro": "Barra Funda",
-   "zona": "Centro",
-   "addr": "R. Barra Funda, 216",
-   "tipo": "galeria",
-   "site": "https://mendeswooddm.com",
-   "ig": "mendeswooddm",
-   "visto": "2026-08-01",
-   "primeiroRegistro": "2026-07-31"
-  },
-  {
-   "id": "playful-stormy-continuing--baro-galeria",
-   "t": "Playful, Stormy, Continuing",
-   "a": "",
-   "v": "Baró Galeria",
-   "ini": "2026-08-20",
-   "fim": "2026-09-03",
-   "d": "Coletiva na sede da Rua Amauri.",
-   "bairro": "Santa Cecília",
-   "zona": "Centro",
-   "addr": "Santa Cecília (galpão de 1.500 m²) ~",
-   "tipo": "galeria",
-   "site": "https://barogaleria.com",
-   "ig": "barogaleria",
-   "visto": "2026-08-05",
    "primeiroRegistro": "2026-07-31"
   },
   {
@@ -1169,9 +1084,9 @@
    "addr": "R. Iramaia, Jardim Europa (a confirmar)",
    "tipo": "galeria",
    "site": "https://mendeswooddm.com",
-   "ig": "",
+   "ig": "mendeswooddm",
    "visto": "2026-08-15",
-   "primeiroRegistro": "2026-08-02"
+   "primeiroRegistro": "2026-07-30"
   },
   {
    "id": "cantaria-daniel-jorge--mendes-wood-dm",
@@ -1188,7 +1103,7 @@
    "site": "https://mendeswooddm.com",
    "ig": "mendeswooddm",
    "visto": "2026-08-19",
-   "primeiroRegistro": "2026-08-02"
+   "primeiroRegistro": "2026-07-31"
   },
   {
    "id": "deboussole-est-le-mot-exact-jean-claracq--mendes-wood-dm",
@@ -1205,7 +1120,7 @@
    "site": "https://mendeswooddm.com",
    "ig": "mendeswooddm",
    "visto": "2026-08-19",
-   "primeiroRegistro": "2026-08-02"
+   "primeiroRegistro": "2026-07-31"
   },
   {
    "id": "sendo-lygia-pape--mendes-wood-dm-casa-iramaia",
@@ -1220,9 +1135,9 @@
    "addr": "R. Iramaia, Jardim Europa (a confirmar)",
    "tipo": "galeria",
    "site": "https://mendeswooddm.com",
-   "ig": "",
+   "ig": "mendeswooddm",
    "visto": "2026-08-15",
-   "primeiroRegistro": "2026-08-02"
+   "primeiroRegistro": "2026-07-31"
   },
   {
    "id": "solange-pessoa-outras-escalas--itau-cultural",
@@ -1696,7 +1611,7 @@
    "site": "https://barogaleria.com",
    "ig": "barogaleria",
    "visto": "2026-08-19",
-   "primeiroRegistro": "2026-08-06"
+   "primeiroRegistro": "2026-07-31"
   },
   {
    "id": "territorio-de-passagem-ruchita--mis-museu-da-imagem-e-do-som",
@@ -2047,7 +1962,6 @@
   "daniel-steegmann-mangrane": {
    "nome": "Daniel Steegmann Mangrané",
    "mostras": [
-    "uma-folha-translucida-no-lugar-dos-olhos-d-steegmann-mangrane--mendes-wood-dm",
     "uma-folha-translucida-no-lugar-dos-olhos-d-steegmann-mangrane--mendes-wood-dm-casa-iramaia"
    ]
   },
@@ -2114,21 +2028,18 @@
   "daniel-jorge": {
    "nome": "Daniel Jorge",
    "mostras": [
-    "daniel-jorge-individual--mendes-wood-dm",
     "cantaria-daniel-jorge--mendes-wood-dm"
    ]
   },
   "jean-claracq": {
    "nome": "Jean Claracq",
    "mostras": [
-    "deboussole-est-le-mot-exact-jean-claracq--mendes-wood-dm-casa-iramaia",
     "deboussole-est-le-mot-exact-jean-claracq--mendes-wood-dm"
    ]
   },
   "lygia-pape": {
    "nome": "Lygia Pape",
    "mostras": [
-    "sendo-lygia-pape--mendes-wood-dm",
     "sendo-lygia-pape--mendes-wood-dm-casa-iramaia"
    ]
   },
