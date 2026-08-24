@@ -99,6 +99,46 @@ function medir(rel) {
   return sharp(path.resolve(RAIZ, rel)).metadata().then(m => ({ w: m.width, h: m.height }));
 }
 
+/* ---------- paletas ----------
+
+   Uma tentativa descartada, registrada para nao ser repetida: derivar o fundo
+   da cor dominante da propria obra. A ideia era um preto diferente por peca,
+   tingido pelo trabalho que ela mostra. Falhou tres vezes, por um motivo que
+   so aparece depois de medir — a imagem de divulgacao de galeria e quase
+   sempre vista de sala, e ali a cor de maior area e parede branca e piso de
+   madeira, nao a obra. Media de matiz dava o mesmo laranja em nove obras
+   diferentes; moda de histograma devolvia o ouro da filigrana da Bauci em vez
+   do azul-cobalto, porque o cobalto profundo cai abaixo do piso de
+   luminosidade e e filtrado junto com a sombra.
+
+   O que ficou no lugar e mais simples e diz mais: cada formato tem a sua
+   superficie, escolhida pelo que o formato faz.
+
+   - `escuro`  — rima e aproximacao. A obra isolada no escuro, sala de museu.
+   - `papel`   — deriva. Mapa se imprime, se dobra e se leva no bolso; ele nao
+                 pertence a sala escura, pertence a rua. E, no feed, uma peca
+                 clara depois de duas escuras abre respiro em vez de somar
+                 ruido. */
+
+const PALETAS = {
+  escuro: { fundo: '#0B0B0C', texto: '#EDEAE4', meio: '#8C8A84', fraco: '#6E6C67',
+            apagado: '#46443F', traco: '#5C5A55' },
+  papel:  { fundo: '#E9E5DC', texto: '#17161A', meio: '#4A4844', fraco: '#6B6862',
+            apagado: '#94908A', traco: '#9C978E' }
+};
+
+function cssPaleta(p) {
+  return `.slide{background:${p.fundo};color:${p.texto}}
+    .slide .kick,.slide .pag{color:${p.fraco}}
+    .slide .marca{color:${p.apagado}}
+    .slide .quem{color:${p.meio}}
+    .slide .serv{color:${p.fraco}}
+    .slide .cred{color:${p.apagado}}
+    .slide .arg{color:${p.meio}}
+    .slide .arg .virada,.slide .tese,.slide .arg b{color:${p.texto}}
+    .slide .risco{background:${p.apagado}}`;
+}
+
 /* ---------- sistema visual ----------
 
    Uma familia so, dois registros: Switzer em 300 para o que se le devagar e em
@@ -140,7 +180,19 @@ const esc = s => String(s == null ? '' : s)
 
 const MES = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
 const porExtenso = iso => { const p = iso.split('-'); return Number(p[2]) + ' de ' + MES[Number(p[1]) - 1]; };
+const porExtensoAno = iso => { const p = iso.split('-'); return Number(p[2]) + ' de ' + MES[Number(p[1]) - 1] + ' de ' + p[0]; };
 const arroba = ig => ig ? '@' + ig : '';
+
+/* A data que a peca carimba e a data em que ela SAI, nunca a do dia em que foi
+   montada. Uma peca gerada na segunda e publicada na quarta dizia "conferido
+   em 24 de agosto" na quarta-feira dia 26 — o leitor le atraso onde nao ha, e
+   a marca perde exatamente a credibilidade que a linha pretende construir.
+   Passar isso a mao no config era garantir que uma hora alguem esqueceria. */
+function carimbo(cfg, dataRef) {
+  if (cfg.conferidoEm === false) return '';
+  if (typeof cfg.conferidoEm === 'string') return cfg.conferidoEm;
+  return porExtensoAno(dataRef);
+}
 
 /* Titulo sem o sufixo do artista, que na base vem depois do travessao.
    "Masao Yamamoto — individual" vira "Masao Yamamoto" — e ai a linha de
@@ -290,4 +342,5 @@ if (require.main === module) {
 }
 
 module.exports = { carregarDados, acharExpo, exigirObra, medir, chave, RAIZ,
-                   CSS, esc, porExtenso, arroba, tituloCurto, autoria };
+                   CSS, esc, porExtenso, porExtensoAno, carimbo, arroba,
+                   tituloCurto, autoria, PALETAS, cssPaleta };

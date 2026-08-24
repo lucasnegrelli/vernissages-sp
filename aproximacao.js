@@ -50,7 +50,7 @@ const fs = require('fs');
 const path = require('path');
 const base = require('./rima.js');
 const { carregarDados, acharExpo, exigirObra, medir, chave, RAIZ,
-        CSS, esc, porExtenso, arroba, tituloCurto, autoria } = base;
+        CSS, esc, porExtenso, carimbo, arroba, tituloCurto, autoria } = base;
 
 const W = 1080, H = 1350;
 
@@ -134,7 +134,7 @@ function montarHTML(o, cfg) {
           ${esc(o.v.addr)}, ${esc(o.v.b)}<br>
           ${o.e.fim ? 'até ' + esc(porExtenso(o.e.fim)) : 'encerramento não divulgado'}</div>
       </div>
-      <div class="serv" style="margin-top:70px;color:#46443F;font-size:19px">Endereço e prazo conferidos na base do Vernissages SP em ${esc(cfg.conferidoEm)}.</div>
+      ${cfg.carimbo ? '<div class="serv" style="margin-top:70px;color:#46443F;font-size:19px">Endereço e prazo conferidos na base do Vernissages SP em ' + esc(cfg.carimbo) + '.</div>' : ''}
     </div>
     <div class="marca">vernissagessp.com.br</div>
     <div class="pag">${total}/${total}</div>
@@ -151,6 +151,7 @@ async function principal() {
   const flag = (n, p) => { const a = argv.filter(x => x.startsWith('--' + n + '=')) [0]; return a ? a.split('=').slice(1).join('=') : p; };
   const cfg = JSON.parse(fs.readFileSync(path.resolve(flag('config')), 'utf8'));
   const saida = path.resolve(RAIZ, flag('out', '.'));
+  cfg.carimbo = carimbo(cfg, flag('date', new Date().toISOString().slice(0, 10)));
 
   const DATA = carregarDados();
   const V = {}; DATA.venues.forEach(v => V[v.name] = v);

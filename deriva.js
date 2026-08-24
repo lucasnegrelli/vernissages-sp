@@ -44,7 +44,8 @@ const fs = require('fs');
 const path = require('path');
 const base = require('./rima.js');
 const { carregarDados, acharExpo, exigirObra, medir, chave, RAIZ,
-        CSS, esc, porExtenso, arroba, tituloCurto, autoria } = base;
+        CSS, esc, porExtenso, carimbo, arroba, tituloCurto, autoria,
+        PALETAS, cssPaleta } = base;
 
 const W = 1080, H = 1350;
 const RAIO_CLUSTER = 750;   // metros: o que se atravessa sem pensar
@@ -138,7 +139,7 @@ function apertar(membros, teto) {
    satelite, nenhuma marca de servico de mapa. Em 700 metros a curvatura da
    Terra e irrelevante, entao basta uma equiretangular com a longitude
    corrigida pelo cosseno da latitude — o quarteirao sai com a proporcao certa. */
-function svgMapa(paradas, largura, altura, margem) {
+function svgMapa(paradas, largura, altura, margem, fundo) {
   const lat0 = paradas.reduce((s, p) => s + p.v.lat, 0) / paradas.length;
   const k = Math.cos(rad(lat0));
   const px = paradas.map(p => ({ x: p.v.lng * k, y: -p.v.lat }));
@@ -163,26 +164,27 @@ function svgMapa(paradas, largura, altura, margem) {
 
   const fio = pt.map((p, i) => (i ? 'L' : 'M') + p.x.toFixed(1) + ' ' + p.y.toFixed(1)).join(' ');
 
+  const pal = fundo;
   let s = '<svg width="' + largura + '" height="' + altura + '" viewBox="0 0 ' + largura + ' ' + altura + '">';
-  s += '<path d="' + fio + '" fill="none" stroke="#5C5A55" stroke-width="1.5" ' +
+  s += '<path d="' + fio + '" fill="none" stroke="' + pal.traco + '" stroke-width="1.5" ' +
        'stroke-dasharray="7 7" stroke-linecap="round" stroke-linejoin="round"/>';
   pt.forEach((p, i) => {
     s += '<circle cx="' + p.x.toFixed(1) + '" cy="' + p.y.toFixed(1) + '" r="9" ' +
-         'fill="#0B0B0C" stroke="#EDEAE4" stroke-width="1.5"/>';
+         'fill="' + pal.fundo + '" stroke="' + pal.texto + '" stroke-width="1.5"/>';
     s += '<text x="' + (p.x + 20).toFixed(1) + '" y="' + (p.y + 7).toFixed(1) + '" ' +
-         'fill="#EDEAE4" font-family="Switzer" font-size="26" font-weight="500">' + (i + 1) + '</text>';
+         'fill="' + pal.texto + '" font-family="Switzer" font-size="26" font-weight="500">' + (i + 1) + '</text>';
   });
   /* Escala no canto inferior esquerdo, como manda a convencao cartografica.
      Tentei ancora-la ao traçado e ela colidiu com a ultima parada — o percurso
      muda a cada peca e o canto e o unico ponto que nenhum deles ocupa. */
   const by = altura - 10, bx = 0;
   s += '<line x1="' + bx + '" y1="' + by + '" x2="' + (bx + barra).toFixed(1) + '" y2="' + by +
-       '" stroke="#5C5A55" stroke-width="1.5"/>';
-  s += '<line x1="' + bx + '" y1="' + (by - 5) + '" x2="' + bx + '" y2="' + (by + 5) + '" stroke="#5C5A55" stroke-width="1.5"/>';
+       '" stroke="' + pal.traco + '" stroke-width="1.5"/>';
+  s += '<line x1="' + bx + '" y1="' + (by - 5) + '" x2="' + bx + '" y2="' + (by + 5) + '" stroke="' + pal.traco + '" stroke-width="1.5"/>';
   s += '<line x1="' + (bx + barra).toFixed(1) + '" y1="' + (by - 5) + '" x2="' + (bx + barra).toFixed(1) +
-       '" y2="' + (by + 5) + '" stroke="#5C5A55" stroke-width="1.5"/>';
+       '" y2="' + (by + 5) + '" stroke="' + pal.traco + '" stroke-width="1.5"/>';
   s += '<text x="' + (bx + barra + 14).toFixed(1) + '" y="' + (by + 6) +
-       '" fill="#5C5A55" font-family="Switzer" font-size="20" font-weight="400">' + alvo + ' m</text>';
+       '" fill="' + pal.traco + '" font-family="Switzer" font-size="20" font-weight="400">' + alvo + ' m</text>';
   s += '</svg>';
   return s;
 }
@@ -192,7 +194,7 @@ function svgMapa(paradas, largura, altura, margem) {
 function slideMapa(paradas, cfg, total) {
   return `<div class="slide">
     <div class="kick">deriva</div>
-    <div style="position:absolute;left:88px;top:186px">${svgMapa(paradas, 904, 800, 30)}</div>
+    <div style="position:absolute;left:88px;top:186px">${svgMapa(paradas, 904, 800, 30, cfg.paleta)}</div>
     <div class="tese" style="top:1042px;width:880px;font-size:46px">${esc(cfg.tese)}</div>
     <div class="marca">Vernissages SP</div>
     <div class="pag">1/${total}</div>
@@ -206,7 +208,7 @@ function slideParada(p, n, total, distAnterior) {
   const quem = autoria(p.e);
   return `<div class="slide">
     <div style="position:absolute;left:88px;top:74px;font-family:'Switzer';font-size:104px;
-                font-weight:300;letter-spacing:-.04em;line-height:1;color:#EDEAE4">${String(n).padStart(2, '0')}</div>
+                font-weight:300;letter-spacing:-.04em;line-height:1">${String(n).padStart(2, '0')}</div>
     ${distAnterior != null ? '<div class="kick" style="left:auto;right:88px;top:112px">≈ ' +
       distAnterior + ' m a pé</div>' : '<div class="kick" style="left:auto;right:88px;top:112px">ponto de partida</div>'}
     <img class="obra" src="${esc(p.rel)}" style="left:${Math.round((W - w) / 2)}px;top:${Math.round(250 + (cy - h) / 2)}px;width:${w}px;height:${h}px">
@@ -221,25 +223,26 @@ function slideParada(p, n, total, distAnterior) {
 }
 
 function slideFecho(paradas, totalMetros, cfg, total) {
+  const pal = cfg.paleta;
   const minutos = Math.round(totalMetros / 1.25 / 60);   // 1,25 m/s, passo de quem para para olhar
   const linhas = paradas.map((p, i) =>
-    '<div style="margin-bottom:22px"><span style="color:#6E6C67">' + String(i + 1).padStart(2, '0') +
+    '<div style="margin-bottom:22px"><span style="color:' + pal.fraco + '">' + String(i + 1).padStart(2, '0') +
     '</span>&nbsp;&nbsp;' + esc(p.v.name) + '<br>' +
-    '<span style="font-size:21px;color:#6E6C67">' + esc(p.v.addr) + ', ' + esc(p.v.b) +
+    '<span style="font-size:21px;color:' + pal.fraco + '">' + esc(p.v.addr) + ', ' + esc(p.v.b) +
     ' · até ' + (p.e.fim ? esc(porExtenso(p.e.fim)) : 'sem data') + '</span></div>').join('');
 
   return `<div class="slide">
     <div class="kick">o percurso</div>
     <div class="risco" style="top:150px"></div>
     <div class="ficha" style="top:214px">
-      <div style="font-size:26px;font-weight:300;line-height:1.45;color:#B9B6AF">${linhas}</div>
+      <div style="font-size:26px;font-weight:300;line-height:1.45;color:${pal.texto}">${linhas}</div>
       <div class="arg" style="position:static;width:auto;font-size:33px;margin-top:0">
         <span class="virada" style="margin-top:52px;font-size:44px">${esc(cfg.virada)}</span>
       </div>
-      <div class="serv" style="margin-top:44px;color:#46443F;font-size:19px">
+      <div class="serv" style="margin-top:44px;color:${pal.apagado};font-size:19px">
         ${paradas.length} casas · ≈ ${(totalMetros / 1000).toFixed(1).replace('.', ',')} km · cerca de ${minutos} minutos de caminhada.<br>
-        Distâncias em linha reta entre as coordenadas das casas: a calçada é um pouco mais longa.<br>
-        Endereços e prazos conferidos na base do Vernissages SP em ${esc(cfg.conferidoEm)}.
+        Distâncias em linha reta entre as coordenadas das casas: a calçada é um pouco mais longa.${
+          cfg.carimbo ? '<br>Endereços e prazos conferidos na base do Vernissages SP em ' + esc(cfg.carimbo) + '.' : ''}
       </div>
     </div>
     <div class="marca">vernissagessp.com.br</div>
@@ -253,6 +256,7 @@ function montarHTML(paradas, totalMetros, cfg) {
   paradas.forEach((p, i) => { s += slideParada(p, i + 1, total, i ? p.distAnterior : null); });
   s += slideFecho(paradas, totalMetros, cfg, total);
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>${CSS}
+    ${cssPaleta(cfg.paleta)}
     .slide .obra{position:absolute}
     svg text{font-family:'Switzer',sans-serif}</style></head><body>${s}</body></html>`;
 }
@@ -288,6 +292,7 @@ async function principal() {
 
   const cfg = JSON.parse(fs.readFileSync(path.resolve(flag('config')), 'utf8'));
   const saida = path.resolve(RAIZ, flag('out', '.'));
+  cfg.carimbo = carimbo(cfg, hoje);   // data da peca, nao do dia em que rodou
 
   /* A curadoria escolhe as casas; a matematica escolhe a ordem. */
   let sel;
@@ -317,6 +322,8 @@ async function principal() {
   paradas.forEach((p, i) => {
     p.distAnterior = i ? Math.round(metros(paradas[i - 1].v, p.v) / 10) * 10 : null;
   });
+
+  cfg.paleta = PALETAS[cfg.paleta] || PALETAS.papel;
 
   console.log('percurso de ' + paradas.length + ' paradas · ' + Math.round(total) + ' m');
   paradas.forEach((p, i) => console.log('  ' + (i + 1) + '. ' + p.v.name +
