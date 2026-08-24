@@ -289,4 +289,5 @@ if (require.main === module) {
   principal().catch(e => { console.error('\nABORTADO — ' + e.message + '\n'); process.exit(1); });
 }
 
-module.exports = { carregarDados, acharExpo, exigirObra, medir, chave, RAIZ };
+module.exports = { carregarDados, acharExpo, exigirObra, medir, chave, RAIZ,
+                   CSS, esc, porExtenso, arroba, tituloCurto, autoria };
