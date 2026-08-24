@@ -124,7 +124,12 @@ const PALETAS = {
   escuro: { fundo: '#0B0B0C', texto: '#EDEAE4', meio: '#8C8A84', fraco: '#6E6C67',
             apagado: '#46443F', traco: '#5C5A55' },
   papel:  { fundo: '#E9E5DC', texto: '#17161A', meio: '#4A4844', fraco: '#6B6862',
-            apagado: '#94908A', traco: '#9C978E' }
+            apagado: '#94908A', traco: '#9C978E' },
+  /* `cal` e mais claro e mais duro que `papel`: nao e papel de guia, e cartao
+     de instrucao. Serve ao formato `instrucoes`, onde o texto e o objeto e
+     nao ha obra para aquecer o quadro. */
+  cal:    { fundo: '#F5F3EE', texto: '#101013', meio: '#3B3A38', fraco: '#6A6864',
+            apagado: '#A7A39C', traco: '#B0ACA4' }
 };
 
 function cssPaleta(p) {
