@@ -48,8 +48,8 @@
 const fs = require('fs');
 const path = require('path');
 const base = require('./rima.js');
-const { carregarDados, acharExpo, RAIZ, CSS, esc, porExtenso, carimbo,
-        arroba, tituloCurto, autoria, PALETAS, cssPaleta } = base;
+const { carregarDados, acharExpo, exigirObra, medir, RAIZ, CSS, esc, porExtenso,
+        carimbo, arroba, tituloCurto, autoria, PALETAS, cssPaleta } = base;
 
 const W = 1080, H = 1350;
 
@@ -72,45 +72,66 @@ const W = 1080, H = 1350;
    movimento, e a garantia de que a peca continua servindo para achar o
    endereco. */
 
+/* O que se move e a obra.
+ *
+ * A versao anterior movia um numeral gigante de canto a canto e nao mostrava
+ * obra nenhuma — eu tinha decidido que "event score e texto por definicao" e
+ * usei isso para justificar duas pecas seguidas sem imagem, contrariando a
+ * regra do projeto. Era purismo: um formato que manda ir olhar obra precisa
+ * mostrar a obra.
+ *
+ * Agora a obra e o elemento que muda de tamanho e de canto a cada instrucao, e
+ * o numeral volta a ser etiqueta pequena. O carrossel continua sendo um
+ * movimento, mas o que se move tem conteudo.
+ *
+ * A ultima composicao nao tem obra, e e a unica: a instrucao 07 manda ir
+ * sozinho e nao fotografar nada. Ali a ausencia de imagem e o argumento, nao
+ * uma regra de sistema. */
+
+/* As medidas sao apertadas de proposito: o bloco de texto carrega instrucao,
+   numero e ficha tecnica, e tem de terminar acima do rodape em qualquer uma
+   das sete. Cada composicao declara o proprio corpo de texto — na primeira
+   versao isso era inferido por regex da largura, e a ficha da instrucao 01
+   atropelou a assinatura. */
 const COMPOSICOES = [
-  // 01 — numero alto na esquerda, texto embaixo
-  { num: 'left:88px;top:104px;font-size:300px',
-    txt: 'left:88px;right:150px;top:560px', al: 'left' },
-  // 02 — inverte: texto no alto, numero embaixo na direita
-  { num: 'right:88px;bottom:250px;font-size:300px',
-    txt: 'left:88px;right:150px;top:210px', al: 'left' },
-  // 03 — numero grande no centro, texto por cima
-  { num: 'left:0;right:0;top:300px;font-size:560px;text-align:center',
-    txt: 'left:120px;right:120px;top:470px', al: 'center', sobre: true },
-  // 04 — numero alto na direita, texto embaixo alinhado a direita
-  { num: 'right:88px;top:104px;font-size:300px',
-    txt: 'left:150px;right:88px;top:560px', al: 'right' },
-  // 05 — numero embaixo na esquerda, texto no alto a direita
-  { num: 'left:88px;bottom:250px;font-size:300px',
-    txt: 'left:150px;right:88px;top:210px', al: 'right' },
-  // 06 — numero sangra pela borda esquerda, texto encostado nele
-  { num: 'left:-120px;top:280px;font-size:520px',
-    txt: 'left:420px;right:88px;top:380px', al: 'left' },
-  // 07 — a ultima recolhe: numero pequeno, texto centrado, muito ar
-  { num: 'left:0;right:0;top:180px;font-size:96px;text-align:center',
-    txt: 'left:130px;right:130px;top:470px', al: 'center' }
+  // 01 — obra sangra o topo, texto embaixo em largura cheia
+  { obra: 'left:0;top:0;width:1080px;height:560px',
+    txt: 'left:88px;right:88px;top:636px', al: 'left', corpo: 42 },
+  // 02 — obra em coluna na direita, altura inteira; texto na esquerda
+  { obra: 'right:0;top:0;width:440px;height:1350px',
+    txt: 'left:88px;width:470px;top:264px', al: 'left', corpo: 33,
+    pCss: 'left:400px;right:auto;bottom:84px' },
+  // 03 — obra pequena e centrada no alto, texto centrado embaixo
+  { obra: 'left:340px;top:130px;width:400px;height:400px',
+    txt: 'left:120px;right:120px;top:606px', al: 'center', corpo: 40 },
+  // 04 — inverte a 01: texto no alto, obra sangrando o rodape.
+  //      Assinatura sobe para o topo, senao some dentro da imagem.
+  { obra: 'left:0;bottom:0;width:1080px;height:560px',
+    txt: 'left:88px;right:88px;top:168px', al: 'left', corpo: 42,
+    mCss: 'left:88px;top:84px;bottom:auto', pCss: 'right:88px;top:84px;bottom:auto' },
+  // 05 — obra em coluna na esquerda, texto na direita
+  { obra: 'left:0;top:0;width:440px;height:1350px',
+    txt: 'left:570px;right:88px;top:264px', al: 'left', corpo: 33,
+    mCss: 'left:570px;bottom:84px' },
+  // 06 — obra alta fora do eixo, no alto a direita; texto embaixo
+  { obra: 'right:88px;top:150px;width:420px;height:540px',
+    txt: 'left:88px;right:88px;top:766px', al: 'left', corpo: 42 },
+  // 07 — sem obra. A instrucao manda nao fotografar.
+  { txt: 'left:130px;right:130px;top:470px', al: 'center', corpo: 46 }
 ];
 
-function numeral(txt, cfg, estilo, sobre) {
-  return `<div style="position:absolute;${estilo};font-family:'Switzer';font-weight:200;
-    letter-spacing:-.05em;line-height:.82;color:transparent;pointer-events:none;
-    -webkit-text-stroke:${sobre ? 1 : 1.5}px ${sobre ? cfg.paleta.traco : cfg.paleta.apagado}">${txt}</div>`;
-}
-
-function slideCapa(cfg, total) {
+/* A capa mostra a primeira obra do percurso, em faixa alta: o carrossel
+   comeca dizendo que ha o que ver, nao so o que ler. */
+function slideCapa(itens, cfg, total) {
+  const p = itens[0];
   return `<div class="slide">
-    <div class="kick">instruções</div>
-    ${numeral(String(total - 1).padStart(2, '0'), cfg, 'right:70px;top:150px;font-size:420px')}
-    <div style="position:absolute;left:88px;right:88px;bottom:210px">
-      <div style="font-size:52px;font-weight:300;line-height:1.16;letter-spacing:-.02em;
+    ${p.rel ? '<img class="obra" src="' + esc(p.rel) + '" style="left:0;top:0;width:1080px;height:560px">' : ''}
+    <div class="kick" style="top:${p.rel ? 620 : 88}px">instruções</div>
+    <div style="position:absolute;left:88px;right:88px;top:${p.rel ? 700 : 300}px">
+      <div style="font-size:50px;font-weight:300;line-height:1.16;letter-spacing:-.02em;
                   color:${cfg.paleta.texto}">${esc(cfg.titulo)}</div>
-      <div style="font-size:26px;font-weight:300;line-height:1.5;margin-top:44px;
-                  color:${cfg.paleta.meio}">${cfg.nota.map(p => '<p style="margin-bottom:22px">' + esc(p) + '</p>').join('')}</div>
+      <div style="font-size:25px;font-weight:300;line-height:1.5;margin-top:38px;
+                  color:${cfg.paleta.meio}">${cfg.nota.map(x => '<p style="margin-bottom:20px">' + esc(x) + '</p>').join('')}</div>
     </div>
     <div class="marca">Vernissages SP</div>
     <div class="pag">1/${total}</div>
@@ -119,23 +140,30 @@ function slideCapa(cfg, total) {
 
 function slideInstrucao(it, cfg, n, total, ultimo) {
   const c = COMPOSICOES[(it.n - 1) % COMPOSICOES.length];
-  const linha = it.e
-    ? esc(tituloCurto(it.e)) + (autoria(it.e) ? ', de ' + esc(autoria(it.e)) : '') +
-      ' · ' + esc(it.v.name) + (it.v.ig ? ' ' + esc(arroba(it.v.ig)) : '') +
-      '<br>' + esc(it.v.addr) + ', ' + esc(it.v.b) +
-      (it.e.fim ? ' · até ' + esc(porExtenso(it.e.fim)) : '')
+  /* Texto muito longo encolhe mais um degrau, para nao encostar no rodape. */
+  const corpo = it.texto.length > 215 ? c.corpo - 4 : c.corpo;
+
+  const ficha = it.e
+    ? '<div style="font-size:20px;font-weight:300;line-height:1.5;margin-top:34px;color:' + cfg.paleta.fraco + '">' +
+      esc(tituloCurto(it.e)) + (autoria(it.e) ? ', de ' + esc(autoria(it.e)) : '') + '<br>' +
+      esc(it.v.name) + (it.v.ig ? ' ' + esc(arroba(it.v.ig)) : '') + '<br>' +
+      esc(it.v.addr) + ', ' + esc(it.v.b) +
+      (it.e.fim ? ' · até ' + esc(porExtenso(it.e.fim)) : '') +
+      '<span style="display:block;margin-top:12px;color:' + cfg.paleta.apagado + ';font-size:17px">' +
+      esc(it.e.cred) + '</span></div>'
     : '';
-  const corpo = it.texto.length > 210 ? 40 : it.texto.length > 150 ? 44 : 48;
 
   return `<div class="slide">
-    ${numeral(String(it.n).padStart(2, '0'), cfg, c.num, c.sobre)}
-    <div style="position:absolute;${c.txt};text-align:${c.al};font-size:${corpo}px;
-                font-weight:300;line-height:1.3;letter-spacing:-.015em;
-                color:${cfg.paleta.texto}">${esc(it.texto)}</div>
-    ${linha ? '<div style="position:absolute;left:88px;right:88px;bottom:168px;text-align:' + c.al +
-      ';font-size:21px;font-weight:300;line-height:1.5;color:' + cfg.paleta.fraco + '">' + linha + '</div>' : ''}
-    <div class="marca">${ultimo ? 'vernissagessp.com.br' : 'Vernissages SP'}</div>
-    <div class="pag">${n}/${total}</div>
+    ${c.obra && it.rel ? '<img class="obra" src="' + esc(it.rel) + '" style="' + c.obra + '">' : ''}
+    <div style="position:absolute;${c.txt};text-align:${c.al}">
+      <div style="font-family:'Switzer';font-size:26px;font-weight:400;letter-spacing:.22em;
+                  color:${cfg.paleta.apagado};margin-bottom:26px">${String(it.n).padStart(2, '0')}</div>
+      <div style="font-size:${corpo}px;font-weight:300;line-height:1.3;letter-spacing:-.015em;
+                  color:${cfg.paleta.texto}">${esc(it.texto)}</div>
+      ${ficha}
+    </div>
+    <div class="marca"${c.mCss ? ' style="' + c.mCss + '"' : ''}>${ultimo ? 'vernissagessp.com.br' : 'Vernissages SP'}</div>
+    <div class="pag"${c.pCss ? ' style="' + c.pCss + '"' : ''}>${n}/${total}</div>
   </div>`;
 }
 
@@ -147,10 +175,11 @@ function slideInstrucao(it, cfg, n, total, ultimo) {
    era o fecho. */
 function montarHTML(itens, cfg) {
   const total = itens.length + 1;
-  let s = slideCapa(cfg, total);
+  let s = slideCapa(itens, cfg, total);
   itens.forEach((it, i) => { s += slideInstrucao(it, cfg, i + 2, total, i === itens.length - 1); });
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>${CSS}
-    ${cssPaleta(cfg.paleta)}</style></head><body>${s}</body></html>`;
+    ${cssPaleta(cfg.paleta)}
+    .slide .obra{position:absolute;object-fit:cover}</style></head><body>${s}</body></html>`;
 }
 
 /* ---------- execucao ---------- */
@@ -187,6 +216,10 @@ async function principal() {
     it.e = e;
     it.v = V[e.v];
     if (!it.v) throw new Error('Venue fora da base: ' + e.v);
+    /* Instrucao que manda ir olhar obra tem de mostrar a obra. Mesma trava dos
+       outros formatos, e a razao de a peca ter sido refeita: a primeira versao
+       nao tinha imagem nenhuma. */
+    it.rel = exigirObra(e);
     return it;
   });
 
