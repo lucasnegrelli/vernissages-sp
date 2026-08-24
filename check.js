@@ -90,6 +90,40 @@ function temEmoji(s) {
 
 function chave(t, v) { return t + "|" + v; }
 
+/* Medicao de dimensao. Mora no medir-imagem.js para que o validador e o
+   descobrir-imagens digam a mesma coisa com as mesmas palavras. O require vai
+   dentro da funcao e sob try porque este arquivo tambem e carregado no
+   navegador, onde nao ha fs — la a checagem simplesmente nao roda, como ja
+   acontece com a leitura do arquivo local. */
+function moduloImagem() {
+  try {
+    if (typeof require === "undefined") return null;
+    return require("./medir-imagem.js");
+  } catch (e) { return null; }
+}
+
+function medirLocal(rel) {
+  if (!rel || /^https?:\/\//i.test(rel) || String(rel).indexOf("//") === 0) return null;
+  var mod = moduloImagem();
+  if (!mod) return null;
+  try {
+    var fs = require("fs"), path = require("path");
+    var limpo = String(rel).split("?")[0].split("#")[0].replace(/^\.?\//, "");
+    var bases = [process.cwd()];
+    if (typeof __dirname !== "undefined") bases.push(__dirname);
+    for (var i = 0; i < bases.length; i++) {
+      var tent = path.resolve(bases[i], limpo);
+      if (fs.existsSync(tent)) return mod.medirArquivo(tent);
+    }
+  } catch (e) {}
+  return null;
+}
+
+function diagnosticarDim(dim) {
+  var mod = moduloImagem();
+  return mod ? mod.diagnosticar(dim) : { grau: "desconhecido", msg: "" };
+}
+
 /* ---------- coletor de resultado ---------- */
 
 function Relatorio() {
@@ -194,6 +228,24 @@ function validarSync(DATA, opts) {
     }
     if (!e.a) r.aviso("A02", ref + ": campo de artistas (a) vazio.");
     if (!e.img) r.aviso("A03", ref + ": sem imagem.");
+
+    /* A08/A09 — a imagem existe, mas em que tamanho?
+     *
+     * Ate 24/08/2026 nada aqui olhava a dimensao, so o peso. O resultado,
+     * medido naquele dia: de 33 mostras em cartaz com imagem espelhada, 26
+     * estavam em 1200x630 — a medida padrao de og:image, que e o card de
+     * preview de link e nao a reproducao da obra. Todas passavam: tem mais de
+     * 15 KB, sao imagem de verdade, nao sao SVG.
+     *
+     * Isso nao trava publicacao, porque imagem de card ainda serve de capa. O
+     * que ela nao aguenta e recorte fechado: o formato `aproximacao` recusa
+     * sozinho, e a agenda do site fica com obra de baixa resolucao no popup. */
+    var dimen = medirLocal(e.img);
+    if (dimen) {
+      var dg = diagnosticarDim(dimen);
+      if (dg.grau === "cartao") r.aviso("A08", ref + ": " + dg.msg);
+      else if (dg.grau === "curta") r.aviso("A09", ref + ": " + dg.msg);
+    }
 
     /* A07 — descricao curta demais para virar legenda.
      *

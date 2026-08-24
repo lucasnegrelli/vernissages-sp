@@ -113,15 +113,54 @@ por lá). **Nunca use URL de imagem do CDN do Instagram: expira.**
 
 ### Imagens — a parte que mais importa
 
-Sem imagem, a peça do dia cai no chapado tipográfico. Para cada expo sem `img`,
-procure nesta ordem: site oficial do venue → release/press kit → matéria de
-imprensa (`og:image`) → post do Instagram do venue.
+Sem imagem, não há peça: os formatos novos (`rima.js`, `aproximacao.js`)
+abortam em vez de cair no chapado tipográfico.
 
-**Abra a URL e olhe a imagem.** O `check.js` confere tamanho e content-type, mas
-não sabe o que a imagem mostra — logotipo, placeholder e forma geométrica passam
-no validador e estragam o post. Preencha `cred` com o crédito exato da fonte; se
-a fonte só diz "Divulgação", use "Divulgação". Nunca invente autoria: crédito
-errado é pior que crédito ausente.
+**A ordem de busca mudou em 24/08/2026.** Ela era "site oficial → release →
+matéria de imprensa (`og:image`) → Instagram", e na prática o `og:image` virou
+a fonte padrão, porque é o primeiro lugar onde qualquer raspador olha. O
+resultado, medido naquele dia: das 33 mostras em cartaz com imagem espelhada,
+**26 estavam em 1200×630**. Essa medida não é reprodução de obra — é o card de
+preview que o site gera para o link ficar bonito no WhatsApp.
+
+A ordem correta, do melhor para o pior:
+
+1. **Viewing room ou página da obra** no site do venue. É onde mora a
+   reprodução em alta.
+2. **O lightbox da página da mostra.** Muita galeria exibe a imagem em 740 px e
+   pendura a de 2400 px no link de ampliar. Comprovado em 24/08 na Gomide&Co:
+   o `og:image` entregava 1200×630 e o link de lightbox, a **mesma imagem em
+   2400×1601**.
+3. **Press kit ou release.**
+4. **`og:image`** — só quando não houver nada acima, e sabendo que serve de capa
+   e não aguenta recorte fechado.
+
+O `descobrir-imagens.js` já faz essa ordem sozinho: colhe `srcset`, `<picture>`,
+atributos de lazy-loading, link de lightbox e JSON-LD, mede cada candidata
+lendo os primeiros bytes e escolhe a maior — `og:image` só ganha se for a única.
+O relatório marca cada proposta com `✓` (serve para tudo), `~` (só capa) ou
+`✗ card`.
+
+Para auditar uma casa sem rodar a varredura inteira:
+
+```
+node descobrir-imagens.js --testar-url https://galeria.com/exposicoes/a-mostra
+```
+
+**Régua de tamanho.** 1600 px de largura é o piso para recorte fechado; abaixo
+disso a imagem serve de capa e nada mais. O `check.js` acusa com `A08` quando a
+dimensão é assinatura de card social e com `A09` quando é curta demais. Nenhum
+dos dois trava publicação — travam formato.
+
+**Abra a URL e olhe a imagem.** Nenhuma dessas contas sabe o que a imagem
+mostra: logotipo, flyer de divulgação e vista de sala passam em todos os
+validadores e estragam a peça. Em 24/08 a mostra do Coletivo Poíesis estava com
+o cartaz da exposição no campo `img` — 1200×821, peso de sobra, e ilegível
+dentro de um slide que já tem tipografia própria.
+
+Preencha `cred` com o crédito exato da fonte; se a fonte só diz "Divulgação",
+use "Divulgação". Nunca invente autoria: crédito errado é pior que crédito
+ausente.
 
 Basta pôr a URL externa no campo `img` — o workflow `espelhar-imagens` baixa
 pra `img/` e reescreve o campo sozinho no push.
