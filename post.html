@@ -628,7 +628,10 @@ let addSlide;
 function montarSlideObra(o){
   const usado = o.img ? o.trat : 'chapado';
   const escuro = o.img && (usado === 'contorno' || usado === 'duotone');
-  const cred = credito(o.e, usado, !!o.img);
+  /* No chapado a obra nao entra no slide. Creditar imagem que nao esta ali e
+     credito errado — e, na pratica, o texto caia por cima do rodape. Descoberto
+     em 24/08 ao montar a peca B1 em chapado com imagem carregada. */
+  const cred = credito(o.e, usado, !!o.img && usado !== 'chapado');
   const lim = o.descLen || 165;
 
   const s = addSlide(escuro ? 'grafite' : 'areia',
