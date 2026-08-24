@@ -120,20 +120,64 @@ function medir(rel) {
                  clara depois de duas escuras abre respiro em vez de somar
                  ruido. */
 
+/* Seis superficies, tres escuras e tres claras.
+ *
+ * Ate 30/08 existiam so tres e a semana inteira saiu praticamente preta —
+ * cinco dos sete formatos usavam `escuro`. Variedade de superficie nao e
+ * enfeite: no feed, sete pecas do mesmo tom viram uma mancha so, e a pessoa
+ * para de distinguir os dias.
+ *
+ * O que nao muda: nenhuma tem cor de acento, todas trabalham por temperatura
+ * e luminosidade. A cor continua vindo das obras. */
 const PALETAS = {
+  /* --- escuras --- */
   escuro: { fundo: '#0B0B0C', texto: '#EDEAE4', meio: '#8C8A84', fraco: '#6E6C67',
             apagado: '#46443F', traco: '#5C5A55' },
+  /* Azul-noite. Esfria a peca sem virar azul: bom para diagrama e para obra
+     de cor quente, que salta contra ele. */
+  tinta:  { fundo: '#0A0D12', texto: '#E6EAF0', meio: '#818991', fraco: '#6B737E',
+            apagado: '#414852', traco: '#525A65' },
+  /* Terra escura. Aquece, e assenta bem sob pintura e barro. */
+  barro:  { fundo: '#14100D', texto: '#EFE8DE', meio: '#928878', fraco: '#776E60',
+            apagado: '#4B443A', traco: '#5E5648' },
+
+  /* --- claras --- */
   papel:  { fundo: '#E9E5DC', texto: '#17161A', meio: '#4A4844', fraco: '#6B6862',
             apagado: '#94908A', traco: '#9C978E' },
-  /* `cal` e mais claro e mais duro que `papel`: nao e papel de guia, e cartao
-     de instrucao. Serve ao formato `instrucoes`, onde o texto e o objeto e
-     nao ha obra para aquecer o quadro. */
+  /* Mais claro e mais duro que `papel`: nao e papel de guia, e cartao. */
   cal:    { fundo: '#F5F3EE', texto: '#101013', meio: '#3B3A38', fraco: '#6A6864',
-            apagado: '#A7A39C', traco: '#B0ACA4' }
+            apagado: '#A7A39C', traco: '#B0ACA4' },
+  /* Bege medio quente, o mais "impresso" dos tres: parece papel de catalogo
+     antigo, e e o unico claro que aguenta obra colorida sem lavar. */
+  linho:  { fundo: '#DCD3C2', texto: '#1B1712', meio: '#4B4437', fraco: '#6E6555',
+            apagado: '#958973', traco: '#9E9280' }
 };
 
-function cssPaleta(p) {
-  return `.slide{background:${p.fundo};color:${p.texto}}
+/* Grao.
+ *
+ * Textura, nao ruido: um SVG de turbulencia em opacidade muito baixa, por cima
+ * do fundo e por baixo de tudo. Serve para tirar o aspecto de tela chapada, que
+ * e o que mais denuncia peca feita em navegador. Em tela pequena quase nao se
+ * ve; e justamente o ponto. */
+function grao(intensidade) {
+  const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180">' +
+    '<filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="3" stitchTiles="stitch"/>' +
+    '<feColorMatrix type="saturate" values="0"/></filter>' +
+    '<rect width="180" height="180" filter="url(#g)" opacity="1"/></svg>';
+  /* Camada por cima de tudo, inclusive das obras — grao de papel nao respeita
+     moldura. A primeira versao punha o grao atras e empurrava os filhos com
+     `.slide > *{position:relative}`; aquilo anulou o position:absolute de todo
+     mundo e a assinatura foi parar no meio do texto. Aqui nada do layout e
+     tocado: e um ::after inerte. */
+  return `.slide::after{content:'';position:absolute;inset:0;z-index:9;pointer-events:none;
+    background-image:url("data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}");
+    background-size:180px 180px;opacity:${intensidade};mix-blend-mode:overlay}`;
+}
+
+function cssPaleta(p, textura) {
+  const g = textura === false ? '' : grao(textura == null ? 0.05 : textura);
+  return `${g}
+    .slide{background:${p.fundo};color:${p.texto}}
     .slide .kick,.slide .pag{color:${p.fraco}}
     .slide .marca{color:${p.apagado}}
     .slide .quem{color:${p.meio}}
@@ -348,4 +392,4 @@ if (require.main === module) {
 
 module.exports = { carregarDados, acharExpo, exigirObra, medir, chave, RAIZ,
                    CSS, esc, porExtenso, porExtensoAno, carimbo, arroba,
-                   tituloCurto, autoria, PALETAS, cssPaleta };
+                   tituloCurto, autoria, PALETAS, cssPaleta, grao };

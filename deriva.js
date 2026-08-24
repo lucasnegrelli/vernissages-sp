@@ -256,7 +256,7 @@ function montarHTML(paradas, totalMetros, cfg) {
   paradas.forEach((p, i) => { s += slideParada(p, i + 1, total, i ? p.distAnterior : null); });
   s += slideFecho(paradas, totalMetros, cfg, total);
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>${CSS}
-    ${cssPaleta(cfg.paleta)}
+    ${cssPaleta(cfg.paleta, cfg.textura)}
     .slide .obra{position:absolute}
     svg text{font-family:'Switzer',sans-serif}</style></head><body>${s}</body></html>`;
 }

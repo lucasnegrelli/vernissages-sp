@@ -196,7 +196,7 @@ function slideFonte(L, cfg, total) {
 function montarHTML(L, cfg) {
   const total = 5;
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>${CSS}
-    ${cssPaleta(cfg.paleta)}</style></head><body>` +
+    ${cssPaleta(cfg.paleta, cfg.textura)}</style></head><body>` +
     slideZero(L, cfg, total) + slidePorque(L, cfg, total) + slidePrecos(L, cfg, total) +
     slidePorta(cfg, total) + slideFonte(L, cfg, total) +
     `</body></html>`;

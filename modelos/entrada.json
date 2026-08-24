@@ -1,0 +1,13 @@
+{
+  "nome": "entrada",
+  "paleta": "tinta",
+  "textura": 0.05,
+  "virada": "A barreira nunca foi o preço. É não saber que dá para empurrar a porta.",
+  "porta": [
+    "Não há bilheteria, catraca nem lista. Se a porta de vidro estiver fechada, ela é só pesada, ou tem campainha. Tocar é o procedimento normal, não um incômodo.",
+    "Quem está na mesa da entrada é o galerista ou um assistente. Vão dizer bom dia e voltar ao computador. Ninguém vai te abordar.",
+    "Você pode ficar três minutos e ir embora. Pode voltar no dia seguinte. Pode não dizer nada sobre o que viu.",
+    "Perguntar preço não é falta de educação, e não obriga a nada. A galeria vive disso, e quase sempre há uma lista de preços impressa que ela entrega sem cerimônia.",
+    "A maioria fecha aos domingos e nas segundas, e muitas fecham entre 13h e 14h. Sábado costuma ter horário reduzido."
+  ]
+}

@@ -50,7 +50,8 @@ const fs = require('fs');
 const path = require('path');
 const base = require('./rima.js');
 const { carregarDados, acharExpo, exigirObra, medir, chave, RAIZ,
-        CSS, esc, porExtenso, carimbo, arroba, tituloCurto, autoria } = base;
+        CSS, esc, porExtenso, carimbo, arroba, tituloCurto, autoria,
+        PALETAS, cssPaleta } = base;
 
 const W = 1080, H = 1350;
 
@@ -141,6 +142,7 @@ function montarHTML(o, cfg) {
   </div>`;
 
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>${CSS}
+    ${cssPaleta(cfg.paleta, cfg.textura)}
     .slide .obra{position:absolute}</style></head><body>` +
     recortes + slideInteira(o, total - 2, total) + leitura + onde +
     `</body></html>`;
@@ -152,6 +154,7 @@ async function principal() {
   const cfg = JSON.parse(fs.readFileSync(path.resolve(flag('config')), 'utf8'));
   const saida = path.resolve(RAIZ, flag('out', '.'));
   cfg.carimbo = carimbo(cfg, flag('date', new Date().toISOString().slice(0, 10)));
+  cfg.paleta = PALETAS[cfg.paleta] || PALETAS.escuro;
 
   const DATA = carregarDados();
   const V = {}; DATA.venues.forEach(v => V[v.name] = v);

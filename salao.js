@@ -174,7 +174,7 @@ function montarHTML(L, cfg) {
       Math.min(de + POR_PAGINA, L.obras.length));
   }
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>${CSS}
-    ${cssPaleta(cfg.paleta)}</style></head><body>${s}</body></html>`;
+    ${cssPaleta(cfg.paleta, cfg.textura)}</style></head><body>${s}</body></html>`;
 }
 
 /* ---------- execucao ---------- */

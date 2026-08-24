@@ -1,0 +1,12 @@
+{
+  "nome": "role",
+  "paleta": "barro",
+  "textura": 0.07,
+  "titulo": "Três rolês prontos para hoje. Escolha pelo lugar onde você está.",
+  "chamada": "Todas as paradas têm mostra em cartaz e obra para ver. Nenhuma casa se repete entre os três.",
+  "rodape": [
+    "Galeria fecha cedo no sábado, e muitas fecham no meio da tarde. A maioria das casas não publica o horário de sábado no site — confira antes de sair, principalmente se for depois das 14h.",
+    "Nenhuma delas cobra entrada."
+  ],
+  "virada": "Você não precisa fazer o rolê inteiro. Uma parada já é um sábado melhor que a maioria."
+}

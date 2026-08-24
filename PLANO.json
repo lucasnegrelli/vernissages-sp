@@ -1,0 +1,38 @@
+{
+  "titulo": "Semana de 31/08 a 06/09/2026",
+
+  "_leiame": [
+    "Este arquivo manda no que o `node semana.js` gera. Cada item de `posts` vira uma peça.",
+    "campos: data (AAAA-MM-DD) · formato · paleta · textura (0 a 0.12, ou false) · ordem (1 = manhã) · nome (prefixo do arquivo)",
+    "`pular: true` desliga um item sem apagá-lo.",
+    "`ajustes` sobrescreve qualquer campo do modelo naquele dia — por exemplo o texto da virada.",
+    "rima e aproximacao exigem config escrito à mão em SOCIAL/MM/DD/. Os outros cinco copiam de modelos/ sozinhos.",
+    "Paletas: escuro, tinta, barro (escuras) · papel, cal, linho (claras).",
+    "Comece com `node semana.js --seco` para ver o que falta antes de gerar imagem."
+  ],
+
+  "fora": [
+    "Terra que Desmancha, Evapora e Solidifica — Coletivo Poíesis|Vazio Criativo"
+  ],
+
+  "posts": [
+    { "data": "2026-08-31", "formato": "rima",        "ordem": 1, "paleta": "escuro", "textura": 0.05 },
+    { "data": "2026-08-31", "formato": "duracao",     "ordem": 2, "paleta": "tinta",  "textura": 0.05 },
+
+    { "data": "2026-09-01", "formato": "aproximacao", "ordem": 1, "paleta": "linho",  "textura": 0.09 },
+
+    { "data": "2026-09-02", "formato": "deriva",      "ordem": 1, "paleta": "papel",  "textura": 0.07 },
+    { "data": "2026-09-02", "formato": "salao",       "ordem": 2, "paleta": "escuro", "textura": 0.06 },
+
+    { "data": "2026-09-03", "formato": "entrada",     "ordem": 1, "paleta": "tinta",  "textura": 0.05 },
+
+    { "data": "2026-09-04", "formato": "salao",       "ordem": 1, "paleta": "barro",  "textura": 0.07,
+      "nome": "salao-sexta" },
+
+    { "data": "2026-09-05", "formato": "role",        "ordem": 1, "paleta": "barro",  "textura": 0.07 },
+    { "data": "2026-09-05", "formato": "deriva",      "ordem": 2, "paleta": "cal",    "textura": 0.06,
+      "nome": "deriva-noite" },
+
+    { "data": "2026-09-06", "formato": "duracao",     "ordem": 1, "paleta": "tinta",  "textura": 0.05 }
+  ]
+}

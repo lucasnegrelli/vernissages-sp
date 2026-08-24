@@ -264,7 +264,7 @@ function montarHTML(roles, cfg) {
   roles.forEach((r, i) => { s += slideRole(r, cfg, i + 2, total, i + 1); });
   s += slideFecho(roles, cfg, total);
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>${CSS}
-    ${cssPaleta(cfg.paleta)}</style></head><body>${s}</body></html>`;
+    ${cssPaleta(cfg.paleta, cfg.textura)}</style></head><body>${s}</body></html>`;
 }
 
 /* ---------- execucao ---------- */

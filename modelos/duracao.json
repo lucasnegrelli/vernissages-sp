@@ -1,0 +1,11 @@
+{
+  "nome": "duracao",
+  "paleta": "tinta",
+  "textura": 0.05,
+  "limiteUrgente": 14,
+  "texto": [
+    "Cada linha é uma mostra em cartaz agora. Elas estão ordenadas por data de encerramento — as que morrem primeiro no topo. A vertical é hoje.",
+    "As linhas curtas e claras são galerias. As longas e apagadas são museus e centros culturais. A cidade tem duas velocidades sobrepostas, e ninguém avisa qual você está olhando."
+  ],
+  "virada": "Metade do que está em cartaz numa galeria hoje acaba dentro de três semanas."
+}

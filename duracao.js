@@ -195,36 +195,69 @@ function slideLeitura(L, cfg, total) {
   </div>`;
 }
 
-function slideUrgente(L, cfg, total, limite) {
-  const fila = L.linhas.filter(l => l.resta <= limite);
-  const linhas = fila.map(l => `
-    <div style="display:flex;gap:18px;margin-bottom:17px">
-      <span style="min-width:96px;color:${cfg.paleta.texto};font-weight:400">${l.resta === 0 ? 'hoje' : l.resta === 1 ? 'amanhã' : l.resta + ' dias'}</span>
-      <span style="flex:1">${esc(tituloCurto(l.e))}${autoria(l.e) ? ', de ' + esc(autoria(l.e)) : ''}
-        <span style="display:block;font-size:18px;color:${cfg.paleta.fraco};margin-top:2px">${esc(l.v.name)}${l.v.ig ? ' ' + esc(arroba(l.v.ig)) : ''}</span></span>
-    </div>`).join('');
+/* Lista paginada.
+ *
+ * A primeira versao punha as 14 numa pagina so e elas transbordaram por cima
+ * do rodape — em parte porque "Acervo em Transformacao" traz treze artistas no
+ * campo `a` e sozinha ocupava quatro linhas. Duas correcoes: pagina a cada
+ * POR_PAGINA e trunca autoria comprida, que numa lista de prazo nao e o
+ * assunto. O nome completo continua no site. */
+const POR_PAGINA = 8;
+const TETO_AUTORIA = 52;
 
-  return `<div class="slide">
-    <div class="kick">acabam em ${limite} dias</div>
-    <div class="risco" style="top:150px"></div>
-    <div style="position:absolute;left:88px;right:88px;top:212px;font-size:22px;
-                font-weight:300;line-height:1.36;color:${cfg.paleta.texto}">${linhas}</div>
-    <div style="position:absolute;left:88px;right:88px;bottom:150px;font-size:20px;
-                font-weight:300;line-height:1.55;color:${cfg.paleta.apagado}">
-      ${fila.length} de ${L.linhas.length} mostras em cartaz. As outras ${L.linhas.length - fila.length} têm mais tempo${L.semFim.length ? ', e ' + L.semFim.length + ' não divulgaram data de encerramento' : ''}.
-    </div>
-    <div class="marca">vernissagessp.com.br</div>
-    <div class="pag">${total}/${total}</div>
-  </div>`;
+function autoriaCurta(e) {
+  const a = autoria(e);
+  if (!a) return '';
+  if (a.length <= TETO_AUTORIA) return a;
+  const corte = a.slice(0, TETO_AUTORIA);
+  const virg = corte.lastIndexOf(',');
+  return (virg > 20 ? corte.slice(0, virg) : corte.trim()) + ' e outros';
+}
+
+function slidesUrgente(L, cfg, primeira, total, limite) {
+  const fila = L.linhas.filter(l => l.resta <= limite);
+  const paginas = Math.max(1, Math.ceil(fila.length / POR_PAGINA));
+  let s = '';
+
+  for (let p = 0; p < paginas; p++) {
+    const fatia = fila.slice(p * POR_PAGINA, (p + 1) * POR_PAGINA);
+    const linhas = fatia.map(l => `
+      <div style="display:flex;gap:18px;margin-bottom:19px">
+        <span style="min-width:96px;color:${cfg.paleta.texto};font-weight:400">${l.resta === 0 ? 'hoje' : l.resta === 1 ? 'amanhã' : l.resta + ' dias'}</span>
+        <span style="flex:1">${esc(tituloCurto(l.e))}${autoriaCurta(l.e) ? ', de ' + esc(autoriaCurta(l.e)) : ''}
+          <span style="display:block;font-size:18px;color:${cfg.paleta.fraco};margin-top:2px">${esc(l.v.name)}${l.v.ig ? ' ' + esc(arroba(l.v.ig)) : ''}</span></span>
+      </div>`).join('');
+
+    const ultima = p === paginas - 1;
+    s += `<div class="slide">
+      <div class="kick">acabam em ${limite} dias${paginas > 1 ? ' · ' + (p + 1) + ' de ' + paginas : ''}</div>
+      <div class="risco" style="top:150px"></div>
+      <div style="position:absolute;left:88px;right:88px;top:212px;font-size:22px;
+                  font-weight:300;line-height:1.36;color:${cfg.paleta.texto}">${linhas}</div>
+      ${ultima ? '<div style="position:absolute;left:88px;right:88px;bottom:150px;font-size:20px;' +
+        'font-weight:300;line-height:1.55;color:' + cfg.paleta.apagado + '">' +
+        fila.length + ' de ' + L.linhas.length + ' mostras em cartaz. As outras ' + (L.linhas.length - fila.length) +
+        ' têm mais tempo' + (L.semFim.length ? ', e ' + L.semFim.length + ' não divulgaram data de encerramento' : '') +
+        '.</div>' : ''}
+      <div class="marca">${ultima ? 'vernissagessp.com.br' : 'Vernissages SP'}</div>
+      <div class="pag">${primeira + p}/${total}</div>
+    </div>`;
+  }
+  return s;
+}
+
+function paginasUrgente(L, limite) {
+  return Math.max(1, Math.ceil(L.linhas.filter(l => l.resta <= limite).length / POR_PAGINA));
 }
 
 function montarHTML(L, hoje, cfg) {
-  const total = 3;
+  const limite = cfg.limiteUrgente || 14;
+  const total = 2 + paginasUrgente(L, limite);
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>${CSS}
-    ${cssPaleta(cfg.paleta)}
+    ${cssPaleta(cfg.paleta, cfg.textura)}
     svg text{font-family:'Switzer',sans-serif}</style></head><body>` +
     slideDiagrama(L, hoje, cfg, total) + slideLeitura(L, cfg, total) +
-    slideUrgente(L, cfg, total, cfg.limiteUrgente || 14) +
+    slidesUrgente(L, cfg, 3, total, limite) +
     `</body></html>`;
 }
 
