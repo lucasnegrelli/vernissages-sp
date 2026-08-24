@@ -129,8 +129,6 @@ const EXPOS = [
 {t:"Mensageiro da Manhã — André Ricardo",a:"André Ricardo",v:"Almeida & Dale | Millan",ini:"2026-08-15",fim:"2026-09-19",d:"Nove pinturas a têmpera e o primeiro conjunto de monotipias do artista, com formas trazidas da luz da Ilha do Ferro, no sertão alagoano. Texto de Renato Menezes.",img:"img/mensageiro-da-manha-almeida-dale-millan.jpg",cred:"Cortesia Almeida & Dale"},
 {t:"Abstenções (uma miragem, mas permanente) — Nino Kapanadze",a:"Nino Kapanadze",v:"Almeida & Dale | Millan",ini:"2026-08-15",fim:"2026-09-19",d:"Individual da artista com curadoria de Cristiano Raimondi, no espaço Fradique 1360.",img:"img/abstencoes-uma-miragem-mas-permanente-almeida-dale-millan.jpg",cred:"Cortesia Almeida & Dale"},
 {t:"Bauci: a cidade e os olhos — Érica Magalhães",a:"Érica Magalhães",v:"Galeria Aura",ini:"2026-08-08",fim:"2026-09-23",d:"Esculturas que equilibram porcelana e concreto; texto curatorial de Tatiana Ferraz.",img:"img/bauci-a-cidade-e-os-olhos-galeria-aura.webp",cred:"Érica Magalhães, Sem título, 2026. Foto: Flavio Freire"},
-{t:"Perpétuo — Samuel Alves de Jesus",a:"Samuel Alves de Jesus",v:"Yehudi Hollander-Pappi",ini:"2026-07-21",fim:"2026-08-15",d:"Primeira individual do artista; o sal como matéria, corrosão e símbolo."},
-{t:"Contra Cena — MEXA",a:"MEXA",v:"Yehudi Hollander-Pappi",ini:"2026-07-21",fim:"2026-08-15",d:"Fotografias do coletivo MEXA sobre o que antecede e sucede a cena: camarins, esperas, intervalos."},
 {t:"Síntese — Arte e Tecnologia",v:"Itaú Cultural",ini:"2026-07-02",fim:"2026-08-31",d:"Coletiva com obras da Coleção Itaú de Arte e Tecnologia; curadoria de Leno Veras."},
 {t:"Brasil das Múltiplas Faces",v:"Itaú Cultural",ini:"2025-10-22",fim:"2027-10-31",d:"Mostra de longa duração com obras do acervo do Itaú Cultural. Entrada gratuita."},
 {t:"Habitar a paisagem — Flavia Fabbriziani",a:"Flavia Fabbriziani",v:"Galeria Dezoito",ini:"2026-08-05",fim:"2026-09-05",d:"Pintura entre abstração e figuração, por acúmulo de matéria, apagamentos e camadas espessas de tinta. Curadoria de Jurandy Valença, a partir de Didi-Huberman."},
@@ -141,9 +139,6 @@ const EXPOS = [
 {t:"Acervo em Transformação: Doações Recentes",a:"Adriana Varejão, Anna Bella Geiger, Bruno Baptistelli, Emanuel Nassar, José Patrício, Judy Chicago, Mateo López, Rochelle Costi, Sandra Cinto, Sérgio Sister, Sergej Jensen, Valdirlei Dias Nunes, Vik Muniz",v:"MASP",ini:"2026-05-15",fim:"2026-09-13",d:"Vinte e seis obras doadas ao museu desde 2020, de treze artistas. Curadoria de Adriano Pedrosa e Amanda Carneiro."},
 {t:"confluências — Carolina Caycedo",a:"Carolina Caycedo",v:"MASP",ini:"2026-07-03",fim:"2026-10-04",d:"Fotografia, instalação, vídeo, performance e desenho no cruzamento entre arte, saberes ribeirinhos e movimentos sociais. Curadoria de Isabella Rjeille."},
 {t:"Casa María Lionza — Sol Calero",a:"Sol Calero",v:"MASP",ini:"2026-07-03",fim:"2027-01-30",d:"Pavilhão no Vão Livre em dezesseis cores, com padrões pintados à mão e mosaicos, em referência a Lina Bo Bardi e às fachadas nordestinas. Curadoria de Adriano Pedrosa e Laura Cosendey."},
-{t:"Estrelas Escolhidas — Luiz Zerbini",a:"Luiz Zerbini",v:"Instituto Tomie Ohtake",ini:"2026-06-26",fim:"2026-08-16",d:"~230 obras: monotipias, pinturas e instalações da última década."},
-{t:"Almir Mavignier: Acaso Determinado",a:"Almir Mavignier",v:"DAN Galeria",ini:"2026-05-23",fim:"2026-08-15",d:"Concretismo e op art (DAN Contemporânea).",img:"img/almir-mavignier-acaso-determinado-dan-galeria.jpg",cred:"Cortesia DAN Galeria"},
-{t:"Surrealismos: Arte para Além da Razão",v:"Pinakotheke São Paulo",ini:"2026-05-16",fim:"2026-08-15",d:"Curadoria Max Perlingeiro e Tadeu Chiarelli.",img:"img/surrealismos-arte-para-alem-da-razao-pinakotheke-sao-paulo.webp",cred:"Cortesia Pinakotheke Sao Paulo"},
 {t:"Oposições Geométricas — coletiva",a:"Almir Mavignier, Arthur Luiz Piza",v:"Paulo Kuczynski Escritório de Arte",ini:"2026-05-16",fim:"2026-08-22",d:"Almir Mavignier e Arthur Luiz Piza em diálogo, de uma coleção reunida na Europa ao longo de 15 anos. Texto curatorial de Paulo Venancio Filho."},
 {t:"Geologia da forma — Germana Monte-Mór",a:"Germana Monte-Mór",v:"Galeria Leme",ini:"2026-06-25",fim:"2026-08-21",d:"Trabalhos dos anos 1990 em asfalto sobre papel de arroz, papel manteiga e tecido de algodão. Curadoria de Diego Matos.",img:"img/geologia-da-forma-galeria-leme.webp",cred:"Foto Filipe Berndt / Cortesia Galeria Leme"},
 {t:"nem mais nem menos — Carlos Zilio",a:"Carlos Zilio",v:"Galeria Raquel Arnaud",ini:"2026-06-10",fim:"2026-08-22",d:"Pinturas recentes de paleta restrita ao preto e branco, algumas monocromáticas. Ensaio de Tadeu Chiarelli.",img:"img/nem-mais-nem-menos-galeria-raquel-arnaud.jpg",cred:"Cortesia Galeria Raquel Arnaud"},
@@ -175,7 +170,6 @@ const EXPOS = [
 {t:"Tudo que inventei aconteceu — Flávia Junqueira",a:"Flávia Junqueira",v:"Zipper Galeria",ini:"2026-08-08",fim:"2026-09-19",d:"Fotografias inéditas produzidas ao longo de um mês em Nova York.",img:"img/tudo-que-inventei-aconteceu-zipper-galeria.webp",cred:"Cortesia Zipper Galeria"},
 {t:"No corpo e na paisagem, o que resta é o pó — Henrique Detomi",a:"Henrique Detomi",v:"Zipper Galeria",ini:"2026-08-08",fim:"2026-09-19",d:"Pintura a partir da caminhada e da terra aberta do interior de Minas.",img:"img/no-corpo-e-na-paisagem-o-que-resta-e-o-po-zipper-galeria.webp",cred:"Cortesia Zipper Galeria"},
 {t:"Acontecimentos de Corpos — Novas Poéticas",a:"Ana Kawajiri, Antonio Dorta, Carolina Neves, Raphael Dea Toledo, Giba Gomes, Giovanna Mitrani, Ieda Iane, Karla Koehler, Mariana Longo, Marion De Martino, Neyde Joppert, Nicole Leite",v:"Massapê Projetos",ini:"2026-08-01",fim:null,d:"Coletiva do programa Novas Poéticas com 12 artistas de diferentes regiões do Brasil; curadoria de Thais Bambozzi e Omar Porto. Continuação de itinerância iniciada em Buenos Aires. Visitação de segunda a sexta, com agendamento. Data de encerramento não divulgada."},
-{t:"Eclodir o Efêmero — Luisa Bresser",a:"Luisa Bresser",v:"Espaço República",ini:"2026-08-06",fim:"2026-08-15",d:"Primeira individual da artista, com curadoria de Andrés I. M. Hernández: 43 obras entre cerâmica, arte têxtil, fotografia, vídeo e instalação. Vernissage em 6 de agosto, às 18h, na Sala Vera Helena; visitação de 7 a 15 de agosto, das 11h às 17h. Entrada gratuita.",img:"img/eclodir-o-efemero-espaco-republica.jpg",cred:"Divulgação"},
 {t:"Território de passagem — Ruchita",a:"Ruchita",v:"MIS — Museu da Imagem e do Som",ini:"2026-07-11",fim:"2026-08-24",d:"Primeira individual de Ruchita em São Paulo: videoartes e séries fotográficas. Curadoria de Brunno Almeida Maia; direção de arte e expografia de Leandro Leão.",img:"img/territorio-de-passagem-mis-museu-da-imagem-e-do-som.jpg",cred:"Cortesia MIS - Museu da Imagem e do Som"},
 {t:"Assim Bordei Meus Sonhos: Margarida L. Kanciukaitis Pandolfo",a:"Margarida L. Kanciukaitis Pandolfo",v:"Museu da Imigração",ini:"2026-07-10",fim:"2026-10-06",d:"Cerca de 100 peças em bordado, retalho, crochê e pintura, algumas feitas com os filhos, OSGEMEOS, que assinam a curadoria. Primeira individual da artista no Brasil.",img:"img/assim-bordei-meus-sonhos-margarida-l-kanciukaitis-pandolfo-m.png",cred:"Cortesia Museu da Imigracao"},
 {t:"Beijo de Língua — Nelson Felix",a:"Nelson Felix",v:"MAC USP",ini:"2026-05-30",fim:"2026-11-29",d:"Individual do escultor carioca no MAC USP. Entrada gratuita."},
@@ -234,11 +228,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "No encalço do líquen — Tania Ximena",
-  v: "Galatea",
-  quem: "Tania Ximena",
-  txt: "Individual da artista no espaço da Oscar Freire, com texto crítico de Miguel A. López. Abertura em 20 de agosto, até 17 de outubro.",
-  link: "https://galatea.art/exhibitions/259",
+  t: "Pequeno mapa do tempo — Paula Siebra",
+  v: "Mendes Wood DM — Casa Iramaia",
+  quem: "Paula Siebra",
+  txt: "Pinturas a óleo sobre os ciclos de chuva, festa, vento e seca em Fortaleza. Abertura em 25 de agosto, até 24 de outubro.",
+  link: "https://mendeswooddm.com",
   publi: false
 };
 
@@ -253,6 +247,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-08-24", k:"Pequeno mapa do tempo — Paula Siebra|Mendes Wood DM — Casa Iramaia"},
   {d:"2026-08-20", k:"No encalço do líquen — Tania Ximena|Galatea"},
    {d:"2026-08-19", k:"Tudo que inventei aconteceu — Flávia Junqueira|Zipper Galeria"},
    {d:"2026-08-18", k:"Sem Palavras — Vânia Mignone|Casa Triângulo"},
@@ -276,5 +271,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "20/08/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "24/08/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
