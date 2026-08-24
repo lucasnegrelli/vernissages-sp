@@ -1,206 +1,98 @@
 # OPERACAO.md — como o Vernissages SP roda sozinho
 
-Fonte única da rotina diária. A tarefa agendada `vernissages-sp` (00:00, todo
-dia) não repete nada disto: ela aponta para cá. Se uma regra vale para mais de
-uma fase, ela mora aqui e em nenhum outro lugar.
+Fonte única da rotina. Duas tarefas agendadas apontam para cá e **não repetem
+nada deste arquivo**:
 
-## Por que este arquivo existe
+| tarefa | quando | o que faz | seção |
+|---|---|---|---|
+| `vsp-site` | todo dia, 00:00 | destaque do site e publicação | [Parte 1](#parte-1--rotina-diária-vsp-site) |
+| `vsp-semana` | domingo | varredura e o lote de social da semana | [Parte 2](#parte-2--rotina-de-domingo-vsp-semana) |
 
-Até 19/08/2026 a operação estava em três tarefas agendadas (`agenda-vernissages-sp`,
-`vernissages-varredura-semanal`, `vsp-social-diario`) que repetiam entre si, quase
-palavra por palavra, como ler a base, como validar, como publicar, o que fazer ao
-falhar e o formato do resumo. Mudar uma regra exigia editar dois ou três arquivos,
-e quando alguém esquecia um, as tarefas passavam a discordar. Além disso, as duas
-do site publicavam pelo editor web do GitHub — select-all sintético no CodeMirror,
-colagem por ClipboardEvent, espera de CDN — quando a pasta local já é um clone com
-`gh` autenticado.
+Regra que vale para as duas mora em [Parte 3](#parte-3--vale-para-as-duas), e
+em nenhum outro lugar.
 
-Uma tarefa, um runbook, publicação por git.
+## Por que este arquivo existe, e por que continua sendo um só
+
+Até 19/08/2026 a operação estava em três tarefas (`agenda-vernissages-sp`,
+`vernissages-varredura-semanal`, `vsp-social-diario`) que repetiam entre si,
+quase palavra por palavra, como ler a base, como validar, como publicar e o que
+fazer ao falhar. Mudar uma regra exigia editar três arquivos, e quando alguém
+esquecia um, as tarefas passavam a discordar.
+
+Em 24/08 tudo virou **uma** tarefa. Funcionou, mas ela carregava a decisão da
+peça de social todo dia — e decisão de design tomada durante a execução foi o
+que gerou refação atrás de refação.
+
+Em 30/08 a operação foi separada de novo, **em duas**, por um motivo diferente
+do de agosto: agora as duas fazem coisas genuinamente distintas, e o social
+virou lote semanal determinístico (`PLANO.json` + `semana.js`). O que **não**
+mudou é a lição: **um runbook só.** Se uma regra vale para as duas, ela mora na
+Parte 3.
 
 ## Mapa de quem manda em quê
 
 | Assunto | Arquivo |
 |---|---|
 | Sequência operacional, publicação, falha, resumo | **este arquivo** |
-| Voz, vocabulário, o que é proibido escrever | `ESTILO.md` |
-| Formatos de social, gatilhos, travas anti-repetição | `EDITORIAL.md` |
-| Sistema visual dos slides, paleta, tratamentos | `POSTS.md` |
+| Como gerar o social em lote, paletas, plano da semana | `COMOGERAR.md` |
+| O que sai em cada dia da próxima semana | `PLANO.json` |
 | Regras de dado que reprovam publicação | `check.js` |
+| Voz e vocabulário proibido | `ESTILO.md` |
 
 Conflito entre eles: `check.js` ganha de tudo (é executável), depois `ESTILO.md`,
 depois este arquivo. Divergência encontrada vai no resumo — não se contorna.
 
+**`EDITORIAL.md` e `POSTS.md` estão obsoletos.** Descrevem os formatos antigos
+(carrossel, destaque, nota, lembrete, sai de cartaz), aposentados em 24/08 e
+substituídos pelos sete geradores. Não os siga; não os apaguei porque a decisão
+é do Lucas.
+
 ## Ambiente
 
 - Pasta de trabalho **é** o clone: `C:\Users\lucas\Desktop\Negrelli\Artes\VernissagesSP`
-- `gh` autenticado como `lucasnegrelli` (escopo `repo`) — `git push` funciona direto
-- `main` rastreia `origin/main` (upstream configurado em 20/08). Sem isso o
-  `git pull --rebase` da Fase 0 morre antes de começar. Se algum dia voltar a
-  reclamar de "no tracking information", rode
-  `git branch --set-upstream-to=origin/main main` e siga.
-- Node 20+ disponível; `.render/` tem puppeteer-core e sharp instalados
+- `gh` autenticado como `lucasnegrelli` — `git push` funciona direto
+- `main` rastreia `origin/main`. Se voltar a reclamar de "no tracking
+  information", rode `git branch --set-upstream-to=origin/main main` e siga
+- Node 20+; `.render/` tem puppeteer-core e sharp instalados
 - `SOCIAL/`, `LOGO/`, `PENDENTE/` e `MAPA_GALERIAS.psd` estão fora do versionamento
 
 ## Quem mais escreve no repositório
 
-Você não é o único que empurra pra `main`. Três workflows fazem isso sozinhos:
+Três workflows empurram para `main` sozinhos:
 
 | Workflow | Dispara quando | O que faz |
 |---|---|---|
 | `Espelhar imagens` | push que mexe em `dados.js` | baixa `img` externa pra `img/` e reescreve o campo |
-| `Gerar acervo e paginas` | push em `dados.js`/`gerar.js`, e 11h de SP todo dia | regenera `acervo.json`, `m/`, `a/`, `arquivo.html`, `sitemap.xml` |
+| `Gerar acervo e paginas` | push em `dados.js`/`gerar.js`, e 11h de SP | regenera `acervo.json`, `m/`, `a/`, `arquivo.html`, `sitemap.xml` |
 | `valida dados.js` | todo push e todo PR | roda `check.test.js` e `check.js`; não escreve nada |
 
-Os dois primeiros commitam e empurram, então **o clone local fica atrás minutos
-depois do seu próprio push** — é por isso que a Fase 0 sempre começa por
-`git pull --rebase`. Os dois têm rebase-com-retry desde 20/08; antes disso o
-gerador morria quando o espelhador ganhava a corrida.
+Os dois primeiros commitam, então **o clone local fica atrás minutos depois do
+seu próprio push** — por isso toda rotina começa por `git pull --rebase`.
 
-Consequência prática: **nunca edite à mão `acervo.json`, `sitemap.xml`, `m/` ou
-`a/`** esperando que fique. Eles são gerados. A exceção é remover do acervo uma
-mostra duplicada — aí edite `acervo.json`, apague a página órfã em `m/` com
-`git rm` e rode `node gerar.js`, senão o sitemap continua anunciando a URL morta.
+**Nunca edite à mão `acervo.json`, `sitemap.xml`, `m/` ou `a/`.** São gerados.
 
 ---
 
-## Fase 0 — sincronizar (sempre)
+# PARTE 1 — Rotina diária (`vsp-site`)
+
+Roda todo dia, inclusive domingo. **Não toca em social.** É curta de propósito:
+o dia inteiro dela cabe em três fases.
+
+## D0 — sincronizar
 
 ```
 cd C:\Users\lucas\Desktop\Negrelli\Artes\VernissagesSP
 git pull --rebase
 ```
 
-Se o pull conflitar, **pare**: relate FALHOU com o arquivo em conflito. Nunca
-resolva conflito de `dados.js` no automático — os workflows de acervo também
-empurram pra main e um merge errado apaga mostra.
+Conflito no pull: **pare** e relate FALHOU com o arquivo em conflito. Nunca
+resolva conflito de `dados.js` no automático — os workflows também empurram
+para main e um merge errado apaga mostra.
 
-Leia `dados.js` do disco (já é a versão publicada). Não busque o raw do GitHub:
-isso era necessário quando a pasta não era clone.
+Leia `dados.js` do disco. Se `atualizado` estiver 2 dias ou mais atrasado, a
+rotina esteve parada — diga isso em negrito no resumo.
 
-Se `atualizado` estiver 2 dias ou mais atrasado, a rotina esteve parada — diga
-isso em negrito no resumo.
-
-## Fase 1 — varredura (SÓ NO DOMINGO)
-
-Único momento da semana que abre agregador, site de venue e Instagram. Teto por
-execução, não ultrapasse: **3 agregadores, 10 sites em rodízio, 8 perfis**.
-
-**Comece rodando `node radar.js`.** Ele cruza o `dados.js` com o `acervo.json` e
-escreve `PENDENTE/RADAR.md` com a fila do rodízio — quem nunca teve mostra
-registrada primeiro, depois quem está há mais tempo sem nada. Isso substitui o
-"anote onde o rodízio parou", que nunca foi anotado por não haver onde.
-
-Encare o número que ele mostra. Em 20/08 eram **36 das 91 casas sem uma única
-mostra registrada** — e não só espaço independente: Almeida & Dale, Choque
-Cultural, Kogan Amaro e Galeria Lume estavam na lista. Com 91 casas e teto de 10
-sites, cada venue é visitado a cada nove semanas, e mostra de galeria dura seis
-a oito. **O rodízio é mais lento que o ciclo das exposições.** Não dá para
-resolver isso varrendo com mais vontade; ou o mapa encolhe, ou as casas passam a
-mandar a abertura.
-
-Agregadores: `artequeacontece.com.br/eventos/categoria/sao-paulo/AAAA-MM/`,
-`ocula.com/cities/brazil/sao-paulo-art-galleries/exhibitions/`,
-`guiadasartes.com.br/sao-paulo/sao-paulo/exposicoes`.
-
-**Sempre confirme a cidade** — galeria com filial fora de SP aparece nos
-agregadores como se fosse daqui (em 10/08 "O espaço e o lugar", da DAN, era em
-Votorantim).
-
-Instagram: priorize `tipo: hibrido` e independentes (Mata Lab, Auroras, Massapê,
-Ateliê397, Aparelha Luzia, Espaço República, Galeria Café, Ateliê Fidalga,
-Galeria Metrópole, GRUTA, HOA, Sé Galeria, Casa do Povo, A7MA — esta só divulga
-por lá). **Nunca use URL de imagem do CDN do Instagram: expira.**
-
-### Imagens — a parte que mais importa
-
-Sem imagem, não há peça: os formatos novos (`rima.js`, `aproximacao.js`)
-abortam em vez de cair no chapado tipográfico.
-
-**A ordem de busca mudou em 24/08/2026.** Ela era "site oficial → release →
-matéria de imprensa (`og:image`) → Instagram", e na prática o `og:image` virou
-a fonte padrão, porque é o primeiro lugar onde qualquer raspador olha. O
-resultado, medido naquele dia: das 33 mostras em cartaz com imagem espelhada,
-**26 estavam em 1200×630**. Essa medida não é reprodução de obra — é o card de
-preview que o site gera para o link ficar bonito no WhatsApp.
-
-A ordem correta, do melhor para o pior:
-
-1. **Viewing room ou página da obra** no site do venue. É onde mora a
-   reprodução em alta.
-2. **O lightbox da página da mostra.** Muita galeria exibe a imagem em 740 px e
-   pendura a de 2400 px no link de ampliar. Comprovado em 24/08 na Gomide&Co:
-   o `og:image` entregava 1200×630 e o link de lightbox, a **mesma imagem em
-   2400×1601**.
-3. **Press kit ou release.**
-4. **`og:image`** — só quando não houver nada acima, e sabendo que serve de capa
-   e não aguenta recorte fechado.
-
-O `descobrir-imagens.js` já faz essa ordem sozinho: colhe `srcset`, `<picture>`,
-atributos de lazy-loading, link de lightbox e JSON-LD, mede cada candidata
-lendo os primeiros bytes e escolhe a maior — `og:image` só ganha se for a única.
-O relatório marca cada proposta com `✓` (serve para tudo), `~` (só capa) ou
-`✗ card`.
-
-Para auditar uma casa sem rodar a varredura inteira:
-
-```
-node descobrir-imagens.js --testar-url https://galeria.com/exposicoes/a-mostra
-```
-
-**Régua de tamanho.** 1600 px de largura é o piso para recorte fechado; abaixo
-disso a imagem serve de capa e nada mais. O `check.js` acusa com `A08` quando a
-dimensão é assinatura de card social e com `A09` quando é curta demais. Nenhum
-dos dois trava publicação — travam formato.
-
-**Abra a URL e olhe a imagem.** Nenhuma dessas contas sabe o que a imagem
-mostra: logotipo, flyer de divulgação e vista de sala passam em todos os
-validadores e estragam a peça. Em 24/08 a mostra do Coletivo Poíesis estava com
-o cartaz da exposição no campo `img` — 1200×821, peso de sobra, e ilegível
-dentro de um slide que já tem tipografia própria.
-
-Preencha `cred` com o crédito exato da fonte; se a fonte só diz "Divulgação",
-use "Divulgação". Nunca invente autoria: crédito errado é pior que crédito
-ausente.
-
-Basta pôr a URL externa no campo `img` — o workflow `espelhar-imagens` baixa
-pra `img/` e reescreve o campo sozinho no push.
-
-### Um fato conferível por mostra
-
-Não basta data, endereço e imagem. **Toda mostra precisa de um dado concreto no
-campo `d`** — um número, um período, um material, uma curadoria assinada. O
-modelo está no `ESTILO.md`: *"48 trabalhos realizados entre 1974 e 1981, no
-Chile sob a ditadura militar"*.
-
-Isso não é capricho de redação, é o gargalo real do social: em 20/08, 20 das 57
-mostras em cartaz tinham `d` com menos de 60 caracteres, coisas como "Pinturas
-recentes." — e daí não sai legenda que preste. O `check.js` acusa com `A07`.
-
-Mostra sem esse dado entra na agenda do site normalmente, mas **não é candidata
-a destaque nem a peça de social**. Prefira gastar a página extra levantando o
-fato de uma mostra a acrescentar mais uma mostra oca à lista.
-
-**Onde procurar, nesta ordem:**
-
-1. A página da própria mostra no site do venue. Repare que ela quase nunca está
-   linkada na home: a Almeida & Dale usa `/exposicoes/<slug>/`, a Galeria
-   Dezoito usa `/<titulosemespaco>/`, MASP e Pinacoteca renderizam bem em
-   `/exposicoes/<slug>` mesmo com o índice quebrado. Busque pelo nome da mostra
-   em vez de navegar pelo índice.
-2. A aba de textos críticos do venue, quando existir. É lá que estão o número de
-   obras e a técnica.
-3. **Não achou no site oficial? Vá para os agregadores** — Arte Que Acontece,
-   Dasartes, Guia das Artes, Mapa das Artes. Eles frequentemente publicam o
-   release inteiro que a galeria não pôs no próprio site.
-
-Uma ressalva que não se contorna: agregador serve como **fonte de fato**, nunca
-como fonte de link sem conferência. Em 20/08 o Arte Que Acontece anunciava
-`hoatour.art` como site da HOA Galeria; o domínio tinha caído e servia um
-cassino. Fato do release, pode usar. URL, só depois de abrir.
-
-Nesta fase não toque em `foco` nem em `destaques`: são da Fase 2.
-
-## Fase 2 — destaque do site (todo dia)
+## D1 — destaque do site
 
 Escolha entre as expos não encerradas: primeiro quem tem `ini` = hoje; senão a
 abertura mais próxima, para trás ou para frente.
@@ -208,30 +100,27 @@ abertura mais próxima, para trás ou para frente.
 Exclua: toda chave já em `destaques`; a mostra que está no `foco` agora; toda
 mostra cuja galeria esteve em foco nos últimos 7 dias.
 
-**Só é elegível expo com `img` e `cred` preenchidos.** Entre as elegíveis,
-**desempate pelo campo `d`**: mostra que o `check.js` acusou com `A07`
-(descrição abaixo de 60 caracteres) vai para o fim da fila, porque a legenda
-dela sai igual à de ontem. Se todas as candidatas estiverem com `A07`, publique
-mesmo assim e registre a lista no resumo — é dívida de varredura, não de hoje.
+**Só é elegível expo com `img` e `cred`.** Entre as elegíveis, desempate pelo
+campo `d`: mostra que o `check.js` acusou com `A07` (descrição abaixo de 60
+caracteres) vai para o fim da fila. Se todas estiverem com `A07`, publique
+mesmo assim e registre no resumo — é dívida de varredura, não de hoje.
 
-Sem candidata, não force:
-mantenha o `foco`, não commite, e relate SEM CANDIDATA listando os títulos
-barrados por falta de imagem — o domingo começa por essa lista.
+Sem candidata: mantenha o `foco`, não commite, e relate **SEM CANDIDATA**
+listando os títulos barrados por falta de imagem.
 
 Atualize `foco` e `destaques` apontando para a **mesma** mostra (o validador
-confere), insira `{d:"<hoje>",k:"<t>|<v>"}` na primeira posição de `destaques`.
+confere) e insira `{d:"<hoje>",k:"<t>|<v>"}` na primeira posição de `destaques`.
 
 Limpeza: remova expos com `fim` há mais de 7 dias, remova editais vencidos,
 ponha `atualizado` = hoje.
 
-## Fase 3 — validar e publicar
+## D2 — validar e publicar
 
 ```
 node check.js
 ```
 
-REPROVADO → corrija e rode de novo. **Nunca commite "pra ver se passa"**: o CI
-acusa e o repo fica vermelho.
+REPROVADO → corrija e rode de novo. **Nunca commite "pra ver se passa".**
 
 Aprovado:
 
@@ -244,74 +133,152 @@ git push origin main
 Sem novidade, sem commit. Confirme que o workflow "valida dados.js" ficou verde
 em https://github.com/lucasnegrelli/vernissages-sp/actions.
 
-## Fase 4 — peça de social (todo dia)
+## Resumo da diária
 
-**Não existe mais grade por dia da semana.** Desde 20/08 o `EDITORIAL.md`
-trabalha com dois slots e gatilho: slot A de manhã (serviço, sai sempre) e
-slot B à noite (tese, só sai se um gatilho acender). Leia o catálogo de
-formatos antes de montar — o Lucas pode tê-lo editado entre uma execução e
-outra, e a ordem de prioridade dentro de cada slot importa.
+3 a 5 linhas, começando com **PUBLICADO** (com o hash), **SEM CANDIDATA** (com
+os títulos) ou **FALHOU**. Uma linha por fase que rodou.
 
-Duas coisas que mudam a operação:
+---
 
-- **Slot B vazio é resultado correto.** Não force peça de enchimento; foi ela
-  que criou a repetição de agosto. Relate o slot vazio no resumo.
-- **Antes de montar, confira a trava de conteúdo.** Se o formato escolhido vai
-  listar as mesmas mostras da última vez que ele rodou, ele não sai — mesmo que
-  a data seja outra. O histórico está em `SOCIAL/HISTORICO-DESTAQUE-SOCIAL.md`.
+# PARTE 2 — Rotina de domingo (`vsp-semana`)
 
-Histórico anti-repetição: `SOCIAL/HISTORICO-DESTAQUE-SOCIAL.md` (uma linha
-`AAAA-MM-DD | Venue | Título`). Ao montar `destaque`, exclua venue das últimas 2
-entradas e a que está em `foco`.
+Roda só no domingo. Faz a varredura e gera **a semana inteira** de social de uma
+vez. Falha numa fase não cancela as outras.
 
-**A linha do dia é escrita na Fase 5, depois do PNG estar em disco — nunca
-agora.** Em 20/08 a rotina escreveu o histórico, morreu antes de montar e
-deixou a Galeria Marcelo Guarnieri bloqueada por dois turnos por causa de uma
-peça que não existe. Histórico é registro do que saiu, não do que se pretendia.
+## S1 — varredura
 
-Monte pelo renderizador headless, não pelo navegador:
+Único momento da semana que abre agregador, site de venue e Instagram. Teto:
+**3 agregadores, 10 sites em rodízio, 8 perfis.**
+
+**Comece rodando `node radar.js`.** Ele cruza `dados.js` com `acervo.json` e
+escreve `PENDENTE/RADAR.md` com a fila do rodízio — quem nunca teve mostra
+registrada primeiro.
+
+Encare o número. Em 20/08 eram 36 das 91 casas sem uma única mostra registrada,
+e não só espaço independente: Almeida & Dale, Choque Cultural, Kogan Amaro e
+Galeria Lume estavam na lista. Com 91 casas e teto de 10 sites, cada venue é
+visitado a cada nove semanas, e mostra de galeria dura seis a oito. **O rodízio
+é mais lento que o ciclo das exposições.** Ou o mapa encolhe, ou as casas passam
+a mandar a abertura.
+
+Agregadores: `artequeacontece.com.br/eventos/categoria/sao-paulo/AAAA-MM/`,
+`ocula.com/cities/brazil/sao-paulo-art-galleries/exhibitions/`,
+`guiadasartes.com.br/sao-paulo/sao-paulo/exposicoes`.
+
+**Sempre confirme a cidade** — galeria com filial fora de SP aparece nos
+agregadores como se fosse daqui.
+
+Instagram: priorize `tipo: hibrido` e independentes (Mata Lab, Auroras, Massapê,
+Ateliê397, Aparelha Luzia, Espaço República, Galeria Café, Ateliê Fidalga,
+Galeria Metrópole, GRUTA, HOA, Sé Galeria, Casa do Povo, A7MA — esta só divulga
+por lá). **Nunca use URL de imagem do CDN do Instagram: expira.**
+
+### Imagens — a parte que mais importa
+
+**A ordem de busca mudou em 24/08.** Ela era "site oficial → release → matéria
+(`og:image`) → Instagram", e na prática o `og:image` virou a fonte padrão, por
+ser o primeiro lugar onde qualquer raspador olha. Resultado medido: **26 das 33
+mostras em cartaz estavam em 1200×630**, que é o card de preview de link, não
+reprodução de obra.
+
+Ordem correta:
+
+1. **Viewing room ou página da obra** no site do venue.
+2. **O lightbox da página da mostra.** Comprovado na Gomide&Co: o `og:image`
+   dava 1200×630 e o link de ampliar dava a **mesma imagem em 2400×1601**.
+3. **Press kit ou release.**
+4. **`og:image`** — só se não houver nada acima.
+
+`node descobrir-imagens.js` já faz essa ordem sozinho e mede cada candidata.
+Para auditar uma casa: `node descobrir-imagens.js --testar-url <url>`.
+
+**Régua:** 1600 px de largura é o piso para recorte fechado. `check.js` acusa
+`A08` (medida de card social) e `A09` (largura curta). Nenhum trava publicação —
+travam formato.
+
+**Abra a URL e olhe a imagem.** Nenhuma conta automática distingue obra de
+cartaz: em 24/08 a mostra do Coletivo Poíesis estava com o flyer da exposição no
+campo `img`, com peso e dimensão de sobra.
+
+Preencha `cred` com o crédito exato. Se a fonte só diz "Divulgação", use
+"Divulgação". **Nunca invente autoria.**
+
+### Um fato conferível por mostra
+
+**Toda mostra precisa de um dado concreto no campo `d`** — um número, um
+período, um material, uma curadoria assinada. O modelo está no `ESTILO.md`:
+*"48 trabalhos realizados entre 1974 e 1981, no Chile sob a ditadura militar"*.
+O `check.js` acusa com `A07`.
+
+Onde procurar: a página da própria mostra no site do venue (quase nunca linkada
+na home — busque pelo nome); a aba de textos críticos; e, se não achar,
+**os agregadores**, que frequentemente publicam o release inteiro.
+
+Agregador serve como **fonte de fato**, nunca como fonte de link sem
+conferência: em 20/08 o Arte Que Acontece anunciava `hoatour.art` como site da
+HOA, e o domínio tinha caído e servia um cassino.
+
+Nesta fase não toque em `foco` nem em `destaques`: são da diária.
+
+### Duas lacunas conhecidas, para atacar aqui
+
+- **Horário de sábado: 5 casas de 37.** É a informação mais crítica do dia de
+  maior movimento e a maior lacuna da base.
+- **Mostra sem data de fim.** Quatro em 30/08. Sem `fim` a mostra fica fora do
+  formato `duracao`.
+
+## S2 — o lote de social da semana
+
+Leia `COMOGERAR.md` inteiro antes. Depois:
 
 ```
-cd .render
-node render.js <tratamento> <indice> "<caminho de saida>.png"
+node semana.js --seco     # confere o que falta, sem gerar imagem
+node semana.js            # gera
 ```
 
-O `render.js` sobe o `post.html` local, seleciona a peça e fotografa o slide em
-1080x1350. **Não use o botão "Baixar todas as imagens" com a extensão do Chrome
-attachada** — o html2canvas trava o renderer (comprovado em 19/08).
+O `PLANO.json` manda no que sai. Uma peça que falha não derruba as outras, e o
+relatório final diz o que falta.
 
-Escolha do tratamento: a imagem manda. Plano geral de sala com obra pequena no
-centro morre em `sangria` e `contorno` — nesses casos use `detalhe`, que recorta
-e faz a obra preencher o quadro. `duotone` mata cor forte; não use em obra cuja
-cor é o assunto.
+**`rima` e `aproximacao` falham de propósito** quando não há config escrito à
+mão: dependem de curadoria — qual par de mostras, qual obra, onde recortar. A
+mensagem de erro diz o que escrever. Se você é a tarefa agendada e não o Lucas,
+**não invente a curadoria**: relate as duas como pendentes e siga.
 
-## Fase 5 — arquivar
+Os outros cinco montam sozinhos da base.
 
-Salve em `SOCIAL/<MM>/<DD>/` (o `<DD>` é o dia de referência da peça: hoje para
-destaque/nota/carrossel, amanhã para lembrete). Acrescente a legenda ao
-`LEGENDAS.md` da pasta como seção `## <Peça> — <hora>`, e escreva embaixo as
-**notas de apuração**: de onde veio cada dado, por que a peça foi escolhida, o
-que foi corrigido à mão. É esse bloco que permite auditar o post depois.
+**Não repita paleta em dias seguidos.** Na semana de 24/08 cinco dos sete
+formatos saíram em `escuro` e o feed virou uma mancha só.
 
-**Só agora** acrescente a linha do dia ao `SOCIAL/HISTORICO-DESTAQUE-SOCIAL.md`,
-com o arquivo já salvo. Uma linha por peça que de fato saiu.
+## S3 — arquivar
 
-PNG exportado passa de 4 MB. Recomprima antes de fechar:
+As peças já saem em `SOCIAL/<MM>/<DD>/`. Falta:
 
-```
-node .render/comprimir.js
-```
+- **`LEGENDAS.md`** em cada pasta, com a legenda do post e as **notas de
+  apuração**: de onde veio cada dado, o que é inferência, o que foi corrigido à
+  mão. É esse bloco que permite auditar o post depois.
+- Uma linha por peça em `SOCIAL/HISTORICO-DESTAQUE-SOCIAL.md`.
+- `node .render/comprimir.js` — lossless, mesmo nome, −72% na média.
 
-Lossless, mesmo nome, mesmo formato — só encolhe (−72% na média).
+## Resumo do domingo
+
+4 a 8 linhas, começando com **PUBLICADO**, **SEM NOVIDADES** ou **FALHOU**.
+Uma linha por fase: o que a varredura trouxe, quantas peças o lote gerou,
+quais abortaram e por quê, o que ficou pendente.
+
+---
+
+# PARTE 3 — Vale para as duas
 
 ## O que NUNCA acontece sozinho
 
-- **Postar no Instagram.** A publicação é sempre manual, feita pelo Lucas. A
-  rotina monta, arquiva e para.
+- **Postar no Instagram.** A publicação é sempre manual, feita pelo Lucas. As
+  rotinas montam, arquivam e param.
 - **Commitar sem `check.js` aprovado.**
 - **Resolver conflito de merge em `dados.js`.**
 - **Inventar dado.** Data, endereço, autoria e crédito só entram confirmados na
-  fonte. Na dúvida: deixe de fora ou marque "a confirmar" e diga no resumo.
+  fonte. Na dúvida: deixe de fora e diga no resumo.
+- **Inventar curadoria.** Se um formato exige escolha humana e ela não existe,
+  a peça não sai.
 
 ## Se falhar
 
@@ -319,30 +286,18 @@ Não termine em silêncio e não deixe trabalho só na memória. Salve o que foi
 produzido em `PENDENTE/` com um `PENDENTE/LEIA.md` datado dizendo o que mudou,
 por que falhou e como retomar. Não use a pasta de outputs — ela é efêmera.
 
-Falha numa fase não cancela as outras: varredura travada no domingo não impede
-o destaque do site nem a peça de social. Entregue o que deu e relate o resto.
+Falha numa fase não cancela as outras.
 
-## Resumo final
+## Nunca relate sucesso sem prova
 
-4 a 8 linhas, em português, começando com uma destas palavras em negrito:
+Hash do commit, contagem de arquivos, saída do script. "Deu certo" não é
+relatório.
 
-- **PUBLICADO** — houve mudança e o push confirmou. Inclua o hash do commit.
-- **SEM CANDIDATA** — nenhuma expo elegível tinha imagem. Liste os títulos.
-- **SEM NOVIDADES** — só vale listando o que foi checado.
-- **FALHOU** — qualquer outra coisa.
+## Orçamento de páginas externas
 
-Depois, uma linha por fase que rodou: o que o site ganhou, que peça de social
-saiu e por quê, onde o arquivo ficou, o que ficou pendente. Na Fase 4, diga
-**qual gatilho acendeu** em cada slot — e, se o slot B ficou vazio, diga que
-ficou e por quê. Última linha sempre lembrando que a postagem é manual.
-
-Nunca relate sucesso sem prova.
-
-## Orçamento
-
-| Dia | Páginas externas | Observação |
+| Tarefa | Teto | Observação |
 |---|---|---|
-| Segunda a sábado | até 6 | sem varredura, sem Instagram |
-| Domingo | até 25 | 3 agregadores + 10 sites + 8 perfis |
+| `vsp-site`, qualquer dia | 0 | ela não abre nada; tudo vem do disco |
+| `vsp-semana`, domingo | até 25 | 3 agregadores + 10 sites + 8 perfis |
 
 Estourou o teto: pare, entregue o que tem, relate o que faltou.
