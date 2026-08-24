@@ -53,74 +53,102 @@ const { carregarDados, acharExpo, RAIZ, CSS, esc, porExtenso, carimbo,
 
 const W = 1080, H = 1350;
 
-/* ---------- slides ---------- */
+/* ---------- a partitura visual ----------
 
-function slideCapa(cfg, n, total) {
+   A primeira versao punha o texto sempre no mesmo lugar, e o carrossel ficava
+   inerte: sete slides identicos com frases diferentes. Limpo e morto.
+
+   Aqui o numeral muda de tamanho e de canto a cada instrucao, e o bloco de
+   texto se ancora nele. Ao arrastar, o olho ve o numero descer, atravessar,
+   sangrar pela borda e sumir — o carrossel inteiro vira um movimento, que e
+   o que "partitura" quer dizer. A referencia e a notacao grafica dos anos
+   1960, em que a posicao no papel ja era parte da instrucao.
+
+   A variacao e de posicao e escala, nunca de tipo ou de cor: um unico
+   elemento grande por quadro, o texto sempre no mesmo corpo. Sem essa regra
+   isto viraria bagunca em vez de ritmo.
+
+   O servico fica sempre no mesmo rodape — ancora estavel no meio do
+   movimento, e a garantia de que a peca continua servindo para achar o
+   endereco. */
+
+const COMPOSICOES = [
+  // 01 — numero alto na esquerda, texto embaixo
+  { num: 'left:88px;top:104px;font-size:300px',
+    txt: 'left:88px;right:150px;top:560px', al: 'left' },
+  // 02 — inverte: texto no alto, numero embaixo na direita
+  { num: 'right:88px;bottom:250px;font-size:300px',
+    txt: 'left:88px;right:150px;top:210px', al: 'left' },
+  // 03 — numero grande no centro, texto por cima
+  { num: 'left:0;right:0;top:300px;font-size:560px;text-align:center',
+    txt: 'left:120px;right:120px;top:470px', al: 'center', sobre: true },
+  // 04 — numero alto na direita, texto embaixo alinhado a direita
+  { num: 'right:88px;top:104px;font-size:300px',
+    txt: 'left:150px;right:88px;top:560px', al: 'right' },
+  // 05 — numero embaixo na esquerda, texto no alto a direita
+  { num: 'left:88px;bottom:250px;font-size:300px',
+    txt: 'left:150px;right:88px;top:210px', al: 'right' },
+  // 06 — numero sangra pela borda esquerda, texto encostado nele
+  { num: 'left:-120px;top:280px;font-size:520px',
+    txt: 'left:420px;right:88px;top:380px', al: 'left' },
+  // 07 — a ultima recolhe: numero pequeno, texto centrado, muito ar
+  { num: 'left:0;right:0;top:180px;font-size:96px;text-align:center',
+    txt: 'left:130px;right:130px;top:470px', al: 'center' }
+];
+
+function numeral(txt, cfg, estilo, sobre) {
+  return `<div style="position:absolute;${estilo};font-family:'Switzer';font-weight:200;
+    letter-spacing:-.05em;line-height:.82;color:transparent;pointer-events:none;
+    -webkit-text-stroke:${sobre ? 1 : 1.5}px ${sobre ? cfg.paleta.traco : cfg.paleta.apagado}">${txt}</div>`;
+}
+
+function slideCapa(cfg, total) {
   return `<div class="slide">
     <div class="kick">instruções</div>
-    <div style="position:absolute;left:88px;right:88px;top:210px;bottom:210px;
-                display:flex;flex-direction:column;justify-content:center">
-      <div style="font-size:54px;font-weight:300;line-height:1.16;letter-spacing:-.02em;
+    ${numeral(String(total - 1).padStart(2, '0'), cfg, 'right:70px;top:150px;font-size:420px')}
+    <div style="position:absolute;left:88px;right:88px;bottom:210px">
+      <div style="font-size:52px;font-weight:300;line-height:1.16;letter-spacing:-.02em;
                   color:${cfg.paleta.texto}">${esc(cfg.titulo)}</div>
-      <div style="font-size:28px;font-weight:300;line-height:1.5;margin-top:52px;
-                  color:${cfg.paleta.meio}">${cfg.nota.map(p => '<p style="margin-bottom:24px">' + esc(p) + '</p>').join('')}</div>
+      <div style="font-size:26px;font-weight:300;line-height:1.5;margin-top:44px;
+                  color:${cfg.paleta.meio}">${cfg.nota.map(p => '<p style="margin-bottom:22px">' + esc(p) + '</p>').join('')}</div>
     </div>
     <div class="marca">Vernissages SP</div>
-    <div class="pag">${n}/${total}</div>
+    <div class="pag">1/${total}</div>
   </div>`;
 }
 
-/* Numero em corpo grande e a instrucao no centro, com o servico rebaixado ao
-   rodape: a acao vem antes do endereco, senao a peca vira agenda de novo. */
-function slideInstrucao(it, cfg, n, total) {
+function slideInstrucao(it, cfg, n, total, ultimo) {
+  const c = COMPOSICOES[(it.n - 1) % COMPOSICOES.length];
   const linha = it.e
     ? esc(tituloCurto(it.e)) + (autoria(it.e) ? ', de ' + esc(autoria(it.e)) : '') +
-      '<br>' + esc(it.v.name) + (it.v.ig ? ' ' + esc(arroba(it.v.ig)) : '') +
+      ' · ' + esc(it.v.name) + (it.v.ig ? ' ' + esc(arroba(it.v.ig)) : '') +
       '<br>' + esc(it.v.addr) + ', ' + esc(it.v.b) +
       (it.e.fim ? ' · até ' + esc(porExtenso(it.e.fim)) : '')
     : '';
+  const corpo = it.texto.length > 210 ? 40 : it.texto.length > 150 ? 44 : 48;
 
   return `<div class="slide">
-    <div style="position:absolute;left:88px;top:80px;font-family:'Switzer';font-size:96px;
-                font-weight:200;letter-spacing:-.04em;line-height:1;
-                color:${cfg.paleta.apagado}">${String(it.n).padStart(2, '0')}</div>
-    <div style="position:absolute;left:88px;right:88px;top:260px;bottom:${linha ? 300 : 210}px;
-                display:flex;align-items:center">
-      <div style="font-size:${it.texto.length > 190 ? 42 : 48}px;font-weight:300;line-height:1.28;
-                  letter-spacing:-.015em;color:${cfg.paleta.texto}">${esc(it.texto)}</div>
-    </div>
-    ${linha ? '<div style="position:absolute;left:88px;right:88px;bottom:172px;font-size:22px;' +
-      'font-weight:300;line-height:1.5;color:' + cfg.paleta.fraco + '">' + linha + '</div>' : ''}
-    <div class="marca">Vernissages SP</div>
+    ${numeral(String(it.n).padStart(2, '0'), cfg, c.num, c.sobre)}
+    <div style="position:absolute;${c.txt};text-align:${c.al};font-size:${corpo}px;
+                font-weight:300;line-height:1.3;letter-spacing:-.015em;
+                color:${cfg.paleta.texto}">${esc(it.texto)}</div>
+    ${linha ? '<div style="position:absolute;left:88px;right:88px;bottom:168px;text-align:' + c.al +
+      ';font-size:21px;font-weight:300;line-height:1.5;color:' + cfg.paleta.fraco + '">' + linha + '</div>' : ''}
+    <div class="marca">${ultimo ? 'vernissagessp.com.br' : 'Vernissages SP'}</div>
     <div class="pag">${n}/${total}</div>
   </div>`;
 }
 
-function slideFecho(cfg, n, total) {
-  return `<div class="slide">
-    <div class="kick">de onde vem</div>
-    <div class="risco" style="top:150px"></div>
-    <div style="position:absolute;left:88px;right:88px;top:214px;bottom:214px;
-                display:flex;flex-direction:column;justify-content:center">
-      <div style="font-size:26px;font-weight:300;line-height:1.5;color:${cfg.paleta.meio}">
-        ${cfg.rodape.map(p => '<p style="margin-bottom:26px">' + esc(p) + '</p>').join('')}
-      </div>
-      <div style="font-size:20px;font-weight:300;line-height:1.55;margin-top:30px;
-                  color:${cfg.paleta.apagado}">
-        Endereços e prazos conferidos na agenda do Vernissages SP${cfg.carimbo ? ', em ' + esc(cfg.carimbo) : ''}.<br>
-        As instruções são nossas. Nenhuma foi sugerida pelas casas citadas.
-      </div>
-    </div>
-    <div class="marca">vernissagessp.com.br</div>
-    <div class="pag">${n}/${total}</div>
-  </div>`;
-}
-
+/* Sem slide de encerramento.
+   Havia um, com as fontes e o aviso de autoria, e ele matava a peca: partitura
+   que termina em rodape administrativo perde o gesto no ultimo passo. O aviso
+   de que as instrucoes sao nossas foi para a legenda do post, onde e igualmente
+   publico e nao ocupa o silencio do fim. A peca acaba na instrucao 07, que ja
+   era o fecho. */
 function montarHTML(itens, cfg) {
-  const total = itens.length + 2;
-  let s = slideCapa(cfg, 1, total);
-  itens.forEach((it, i) => { s += slideInstrucao(it, cfg, i + 2, total); });
-  s += slideFecho(cfg, total, total);
+  const total = itens.length + 1;
+  let s = slideCapa(cfg, total);
+  itens.forEach((it, i) => { s += slideInstrucao(it, cfg, i + 2, total, i === itens.length - 1); });
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>${CSS}
     ${cssPaleta(cfg.paleta)}</style></head><body>${s}</body></html>`;
 }
