@@ -1156,18 +1156,67 @@ const HOJE_ISO=new Date(Date.now()-3*3600e3).toISOString().slice(0,10);
       const hist=window.DATA.destaques||[];
       const kOf=x=>x.t+'|'+x.v;
       const fixo=hist.find(h=>h.d===HOJE_ISO);
-      const usados=new Set(hist.filter(h=>h.d<HOJE_ISO).map(h=>h.k));
-      let e=fixo?expos.find(x=>kOf(x)===fixo.k):null;
+      const temImg=x=>!!(x&&x.img&&String(x.img).trim());
+
+      /* TRAVA 1 — destaque sem imagem nao existe.
+         Ate 25/08/2026 o rank punha "abre hoje" na frente de tudo e a imagem so
+         desempatava entre mostras da MESMA data. Naquele dia a home saiu com a
+         capa gerada em SVG porque a unica que abria era "Uma lingua nova", da
+         Galeria Estacao, sem campo img — e havia 41 mostras com reproducao em
+         cartaz. A capa gerada e rede de seguranca para imagem que falha em
+         carregar, nunca criterio de escolha: mostra sem reproducao so vira
+         destaque se nao existir nenhuma outra. */
+      const comImg=expos.filter(temImg);
+      const pote=comImg.length?comImg:expos;
+
+      /* TRAVA 2 — nao repete a mostra.
+         O mapa abaixo guarda a ultima vez que cada mostra foi destaque, em
+         QUALQUER outro dia: entrada agendada para amanha tambem queima a mostra
+         hoje. Antes o filtro so olhava para tras. */
+      const quando={};
+      hist.forEach(h=>{ if(h.d!==HOJE_ISO && (!quando[h.k]||h.d>quando[h.k])) quando[h.k]=h.d; });
+      const usados=new Set(Object.keys(quando));
+
+      /* TRAVA 3 — nao repete a casa em 7 dias. Mesma regra do E20 do check.js,
+         que ate agora existia so na validacao e nao na escolha. */
+      const lim=new Date(HOJE_ISO+'T12:00:00Z'); lim.setUTCDate(lim.getUTCDate()-7);
+      const isoLim=lim.toISOString().slice(0,10);
+      const casaQuente=new Set(hist.filter(h=>h.d>=isoLim&&h.d<HOJE_ISO)
+        .map(h=>String(h.k).split('|').slice(1).join('|')));
+
+      let e=null;
+      /* Destaque agendado manda, mas passa pela trava 1: agenda nao cria imagem. */
+      if(fixo){
+        const cand=expos.find(x=>kOf(x)===fixo.k);
+        if(cand&&(temImg(cand)||!comImg.length)) e=cand;
+      }
       if(!e){
-        let livres=expos.filter(x=>!usados.has(kOf(x)));
-        if(!livres.length) livres=expos.slice();   /* acervo esgotado: recomeca o rodizio */
+        /* Uma ordenacao so, em vez de tres filtros encadeados com fallback.
+           A versao com filtros tinha um buraco: quando o acervo esgotava, o
+           ultimo fallback era `pote.slice()` e a ordem voltava a mandar — a
+           mesma mostra em cartaz mais recente ganhava todo dia, para sempre.
+           Simulado em 30/08/2026: a partir do 23o dia a home repetia "Pequeno
+           mapa do tempo" indefinidamente.
+
+           Como criterio ordenado, o rodizio nunca perde a vez: cada regra so
+           desempata a anterior, e a degradacao e suave em vez de cair num
+           fallback cego. */
+        const usado=x=>usados.has(kOf(x));
+        const quente=x=>casaQuente.has(x.v);
+        const lru=x=>String(quando[kOf(x)]||'');
         const rank=x=>x.ini===HOJE_ISO?0:(x.st==='opening'?1:2);
-        livres.sort((a,b)=>{
+        const livres=pote.slice().sort((a,b)=>{
+          /* 1) quem nunca foi destaque vem antes de quem ja foi */
+          const ua=usado(a)?1:0, ub=usado(b)?1:0; if(ua!==ub) return ua-ub;
+          /* 2) casa fria antes de casa quente — a trava E20 aplicada na escolha */
+          const qa=quente(a)?1:0, qb=quente(b)?1:0; if(qa!==qb) return qa-qb;
+          /* 3) entre as que ja foram, manda o rodizio: a mais antiga primeiro */
+          if(ua){ const la=lru(a), lb=lru(b); if(la!==lb) return la<lb?-1:1; }
+          /* 4) so entao a agenda: abre hoje, abertura mais proxima, em cartaz mais recente */
           const ra=rank(a), rb=rank(b); if(ra!==rb) return ra-rb;
-          if(ra<2){ if(a.ini!==b.ini) return a.ini<b.ini?-1:1;      /* abertura mais proxima primeiro */
-                    return (b.img?1:0)-(a.img?1:0); }
-          const im=(b.img?1:0)-(a.img?1:0); if(im) return im;        /* em cartaz: com imagem na frente */
-          return a.ini<b.ini?1:-1;                                   /* e a mais recente */
+          if(ra<2 && a.ini!==b.ini) return a.ini<b.ini?-1:1;
+          if(ra===2 && a.ini!==b.ini) return a.ini<b.ini?1:-1;
+          return 0;
         });
         e=livres[0];
       }

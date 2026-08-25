@@ -26,3 +26,7 @@
 # como o gerar.js, o check.js e o espelhar.js. Não guarda segredo nenhum.
 
 desktop.ini
+
+# scratch de sessao
+_*.js
+_to_delete/
