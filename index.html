@@ -1185,10 +1185,14 @@ const HOJE_ISO=new Date(Date.now()-3*3600e3).toISOString().slice(0,10);
         .map(h=>String(h.k).split('|').slice(1).join('|')));
 
       let e=null;
-      /* Destaque agendado manda, mas passa pela trava 1: agenda nao cria imagem. */
+      /* Destaque agendado manda, mas passa pelas travas 1 e 2: agenda nao cria
+         imagem, e agenda tambem nao autoriza repetir. Em 25/08 a tarefa diaria
+         agendou "Flores e Vasos" sem saber que ela ja tinha sido o destaque em
+         21 e 22/08 — dias em que a tarefa nao rodou e o site escolheu sozinho,
+         sem deixar registro. A entrada agendada passava direto por aqui. */
       if(fixo){
         const cand=expos.find(x=>kOf(x)===fixo.k);
-        if(cand&&(temImg(cand)||!comImg.length)) e=cand;
+        if(cand&&(temImg(cand)||!comImg.length)&&!usados.has(fixo.k)) e=cand;
       }
       if(!e){
         /* Uma ordenacao so, em vez de tres filtros encadeados com fallback.

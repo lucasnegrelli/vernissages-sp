@@ -228,11 +228,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Flores e Vasos — coletiva",
-  v: "Luciana Brito Galeria",
-  quem: "Rochelle Costi, Gaspar Gasparian, Robert Mapplethorpe",
-  txt: "Fotografias de 1947 a 2020 em torno do gênero, entre vintages, prata e jato de tinta. Curadoria de Nessia Pope. Abertura em 22 de agosto, até 17 de outubro.",
-  link: "https://lucianabritogaleria.com.br",
+  t: "Cantaria — Daniel Jorge",
+  v: "Mendes Wood DM",
+  quem: "Daniel Jorge",
+  txt: "Primeira individual do artista em São Paulo: 23 obras em pedra-sabão, entre escultura, relevo, instalação e performance. Ensaio de Carlos Quijon Jr. Abertura em 22 de agosto, até 6 de novembro.",
+  link: "https://mendeswooddm.com",
   publi: false
 };
 
@@ -247,7 +247,19 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
-  {d:"2026-08-25", k:"Flores e Vasos — coletiva|Luciana Brito Galeria"},
+  /* O historico so registra o dia em que a tarefa diaria rodou. Nos dias em que
+     ela nao rodou, o site escolheu sozinho e ninguem anotou — e a trava
+     anti-repeticao fica cega justamente ali. Foi assim que "Flores e Vasos"
+     apareceu de novo em 25/08: ela ja tinha sido o destaque em 21 e 22/08, dias
+     sem registro, porque abria em 22 e o codigo antigo punha abertura na frente
+     de tudo. As duas linhas abaixo sao a reposicao desse buraco.
+     Uma entrada por mostra, nao por dia (E17): fica o primeiro dia em que saiu.
+     Continuam sem registro 07, 08 e 09/08. Nao foram preenchidos de proposito:
+     reconstruir o que o site mostrou ha tres semanas exigiria a base daquele
+     dia, e chutar entrada de historico e inventar dado. O check.js agora avisa
+     quando existe dia sem registro. */
+  {d:"2026-08-25", k:"Cantaria — Daniel Jorge|Mendes Wood DM"},
+  {d:"2026-08-21", k:"Flores e Vasos — coletiva|Luciana Brito Galeria"},
   {d:"2026-08-24", k:"Pequeno mapa do tempo — Paula Siebra|Mendes Wood DM — Casa Iramaia"},
   {d:"2026-08-20", k:"No encalço do líquen — Tania Ximena|Galatea"},
    {d:"2026-08-19", k:"Tudo que inventei aconteceu — Flávia Junqueira|Zipper Galeria"},
