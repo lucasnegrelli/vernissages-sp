@@ -52,6 +52,24 @@ function carregarAcervo(){
 const dias = (a, b) => Math.round((Date.parse(b + 'T12:00:00') - Date.parse(a + 'T12:00:00')) / 864e5);
 const ativa = e => e.ini <= HOJE && (!e.fim || e.fim >= HOJE);
 
+/* CICLO POR TIPO DE CASA — a mudanca de 25/08/2026.
+ *
+ * Ate aqui o rodizio tratava as 91 casas igual: uma fila unica, dez por
+ * domingo, cada casa a cada nove semanas. Isso e tarde demais para galeria e
+ * desperdicio para instituicao, e a base do proprio projeto tem o numero que
+ * prova: o formato `duracao` mediu, sobre as mostras em cartaz com data de fim
+ * conhecida, mediana de 42 dias em galeria contra 141 em instituicao.
+ *
+ * Visitar a Pinacoteca de seis em seis semanas devolve a mesma mostra tres
+ * vezes. Visitar uma galeria de nove em nove semanas perde a mostra inteira.
+ * Duas velocidades na mesma fila gastam o mesmo teto de paginas e cobrem muito
+ * mais — sem aumentar o custo da varredura.
+ *
+ * `feira` tem calendario proprio e curto; entra junto com galeria. */
+const CICLO = { galeria: 42, hibrido: 42, feira: 42, institucional: 141 };
+const CICLO_PADRAO = 60;
+const cicloDe = v => CICLO[v.tipo] || CICLO_PADRAO;
+
 const D = carregarDados();
 const ACERVO = carregarAcervo();
 
@@ -78,15 +96,24 @@ D.venues.forEach(v => {
 });
 
 const todos = Object.values(porVenue);
-const nunca = todos.filter(x => x.noAcervo === 0 && x.agenda === 0);
-const frios = todos.filter(x => x.ultimo && dias(x.ultimo, HOJE) > 30 && x.ativas === 0)
-  .sort((a, b) => a.ultimo.localeCompare(b.ultimo));
+todos.forEach(x => {
+  x.ciclo = cicloDe(x.venue);
+  x.desde = x.ultimo ? dias(x.ultimo, HOJE) : null;
+  /* Atraso = quanto passou do prazo daquela casa, nao do prazo medio de todas.
+     Quem nunca foi coberto esta atrasado desde sempre e vai para o topo. */
+  x.atraso = x.desde === null ? Infinity : x.desde - x.ciclo;
+});
 
-/* Fila da próxima varredura: quem está há mais tempo sem nada entra primeiro.
-   Quem nunca teve nada vem antes de quem já teve, porque é onde o mapa mente. */
+const nunca = todos.filter(x => x.noAcervo === 0 && x.agenda === 0);
+const vencidos = todos.filter(x => x.atraso !== Infinity && x.atraso >= 0 && x.ativas === 0);
+const frios = vencidos.slice().sort((a, b) => b.atraso - a.atraso);
+
+/* Fila da proxima varredura, por atraso relativo ao ciclo da propria casa.
+   Quem nunca teve nada vem antes, porque e onde o mapa promete e nao entrega. */
 const fila = [
   ...nunca.map(x => ({ ...x, motivo: 'nunca teve mostra registrada' })),
-  ...frios.map(x => ({ ...x, motivo: 'sem mostra nova ha ' + dias(x.ultimo, HOJE) + ' dias' }))
+  ...frios.map(x => ({ ...x, motivo: x.desde + ' dias sem nada novo, ' + x.atraso +
+                              ' alem do ciclo de ' + x.ciclo }))
 ].slice(0, FILA);
 
 /* Onde procurar cada uma. Casa sem site é o caso difícil: o release não existe
@@ -125,9 +152,10 @@ s += 'esta espelhando quem tem assessoria, nao quem faz programa interessante.\n
 s += '## Fila da proxima varredura (' + fila.length + ')\n\n';
 s += 'Ordem sugerida para o rodizio de domingo. Quem nunca teve nada vem antes,\n';
 s += 'porque e onde o mapa promete e nao entrega.\n\n';
-s += '| Casa | Tipo | Bairro | Por que | Por onde |\n|---|---|---|---|---|\n';
+s += '| Casa | Tipo | Ciclo | Bairro | Por que | Por onde |\n|---|---|---|---|---|---|\n';
 fila.forEach(x => {
-  s += '| ' + x.venue.name + ' | ' + x.venue.tipo + ' | ' + x.venue.b + ' | ' + x.motivo + ' | ' + rota(x) + ' |\n';
+  s += '| ' + x.venue.name + ' | ' + x.venue.tipo + ' | ' + x.ciclo + 'd | ' + x.venue.b +
+       ' | ' + x.motivo + ' | ' + rota(x) + ' |\n';
 });
 
 const semNada = nunca.filter(x => !x.venue.site && !x.venue.ig);
@@ -148,13 +176,38 @@ if (soIg.length){
   soIg.forEach(x => { s += '- ' + x.venue.name + ' — @' + x.venue.ig + '\n'; });
 }
 
-s += '\n## A conta que nao fecha\n\n';
-s += 'Com ' + todos.length + ' casas e teto de 10 sites por domingo, cada venue e visitado\n';
-s += 'a cada ' + Math.round(todos.length / 10) + ' semanas. Mostra de galeria dura seis a oito. O rodizio e\n';
-s += 'mais lento que o ciclo das exposicoes, entao mostra abre e fecha inteira\n';
-s += 'entre duas visitas. Aumentar o teto resolve por forca bruta e custa caro;\n';
-s += 'as saidas baratas sao duas: reduzir o mapa ao que da para cobrir, e fazer\n';
-s += 'a casa mandar a abertura em vez de sair atras dela.\n';
+/* A conta, agora com as duas velocidades. Uma casa de ciclo C precisa de 7/C
+   visitas por semana para nao vencer; a demanda total e a soma disso. E o
+   numero que diz se o teto de dez basta, e ele nao depende de opiniao. */
+const demanda = todos.reduce((a, x) => a + 7 / x.ciclo, 0);
+const porTipo = {};
+todos.forEach(x => {
+  const k = x.venue.tipo || '(sem tipo)';
+  porTipo[k] = porTipo[k] || { n: 0, ciclo: x.ciclo, dem: 0 };
+  porTipo[k].n++; porTipo[k].dem += 7 / x.ciclo;
+});
+
+s += '\n## A conta\n\n';
+s += 'Cada casa tem um ciclo proprio, tirado da mediana que o formato `duracao`\n';
+s += 'mediu na base: 42 dias em galeria, 141 em instituicao. Uma casa de ciclo C\n';
+s += 'exige 7/C visitas por semana para nunca vencer.\n\n';
+s += '| Tipo | Casas | Ciclo | Visitas/semana necessarias |\n|---|---|---|---|\n';
+Object.entries(porTipo).sort((a, b) => b[1].dem - a[1].dem).forEach(([k, v]) => {
+  s += '| ' + k + ' | ' + v.n + ' | ' + v.ciclo + 'd | ' + v.dem.toFixed(1) + ' |\n';
+});
+s += '| **total** | **' + todos.length + '** | | **' + demanda.toFixed(1) + '** |\n\n';
+
+if (demanda <= FILA) {
+  s += 'O teto de ' + FILA + ' por semana **cobre** a demanda de ' + demanda.toFixed(1) + '.\n';
+  s += 'A fila unica anterior nao cobria porque gastava em instituicao a mesma\n';
+  s += 'frequencia que em galeria: mostra de museu voltava tres vezes seguidas\n';
+  s += 'enquanto galeria abria e fechava entre duas visitas.\n';
+} else {
+  s += 'O teto de ' + FILA + ' por semana **nao cobre** a demanda de ' + demanda.toFixed(1) + '.\n';
+  s += 'Faltam ' + (demanda - FILA).toFixed(1) + ' visitas por semana. Sem aumentar o teto, as\n';
+  s += 'saidas sao duas: reduzir o mapa ao que da para cobrir, e fazer a casa\n';
+  s += 'mandar a abertura em vez de sair atras dela.\n';
+}
 
 fs.mkdirSync(path.dirname(SAIDA), { recursive: true });
 fs.writeFileSync(SAIDA, s, 'utf8');

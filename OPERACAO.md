@@ -154,6 +154,36 @@ vez. Falha numa fase não cancela as outras.
 escreve `PENDENTE/RADAR.md` com a fila do rodízio — quem nunca teve mostra
 registrada primeiro.
 
+### O rodízio tem duas velocidades — mudou em 25/08/2026
+
+A fila era única: 91 casas, dez por domingo, cada uma a cada nove semanas. Isso
+é tarde demais para galeria e desperdício para instituição, e o número que
+prova está na própria base — o formato `duracao` mediu **mediana de 42 dias em
+galeria contra 141 em instituição**. Visitar a Pinacoteca de seis em seis
+semanas devolve a mesma mostra três vezes; visitar uma galeria de nove em nove
+perde a mostra inteira.
+
+Agora cada casa tem ciclo próprio (`CICLO` no `radar.js`): **42 dias** para
+galeria, híbrido e feira, **141** para institucional. A fila ordena por
+*atraso relativo ao ciclo da própria casa*, não por data absoluta. Mesmo teto
+de páginas, cobertura muito maior.
+
+O `RADAR.md` agora fecha com a conta explícita: cada casa de ciclo C exige 7/C
+visitas por semana, e a soma diz se o teto basta. Em 25/08 a demanda era
+**12,4 visitas por semana contra teto de 10** — ainda faltam 2,4. As duas
+velocidades reduziram o buraco; não o fecharam. O resto vem do envio das casas.
+
+### Espaço que só divulga no Instagram
+
+Perfil exige login e o runbook proíbe raspar. **A7MA, Mata Lab, Massapê,
+Espaço República e Vazio Criativo não têm entrada por varredura — nenhuma.**
+
+A via é o formulário **"Divulgue sua abertura"**, no rodapé do site, que abre o
+`openForm()` do `index.html` e volta por e-mail. Ele existia no código desde
+sempre e **não era chamado de lugar nenhum** — o canal estava escrito e
+inalcançável até 25/08. Ao passar por uma dessas casas na fila do radar, o
+trabalho não é caçar o release: é mandar o link do formulário para o perfil.
+
 Encare o número. Em 20/08 eram 36 das 91 casas sem uma única mostra registrada,
 e não só espaço independente: Almeida & Dale, Choque Cultural, Kogan Amaro e
 Galeria Lume estavam na lista. Com 91 casas e teto de 10 sites, cada venue é
