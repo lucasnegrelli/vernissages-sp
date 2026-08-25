@@ -209,7 +209,7 @@ async function principal() {
 
   const puppeteer = require(path.join(RAIZ, '.render', 'node_modules', 'puppeteer-core'));
   const browser = await puppeteer.launch({
-    executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+    executablePath: process.env.CHROME || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
     headless: 'new',
     args: ['--no-sandbox', '--allow-file-access-from-files', '--force-device-scale-factor=1'],
     defaultViewport: { width: W, height: H, deviceScaleFactor: 1 }

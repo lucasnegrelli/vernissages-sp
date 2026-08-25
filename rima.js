@@ -68,9 +68,24 @@ function acharExpo(DATA, k) {
 /* Mesma regra do check.js, aplicada antes de montar em vez de depois.
    Assinatura de arquivo, nao extensao: PNG renomeado para .jpg passa; HTML de
    erro salvo como .jpg nao passa. */
-function exigirObra(e) {
+/* O segundo argumento e para os formatos que mostram A OBRA, nao a mostra:
+   rima e aproximacao. Vista de sala serve para deriva, salao e role — ali o
+   assunto e o percurso e a densidade, e a parede fotografada e informacao
+   honesta. Ja uma peca que afirma alguma coisa sobre o trabalho, ou que amplia
+   ate a filigrana, nao pode estar ampliando o piso de madeira da galeria.
+
+   O campo `vista` e preenchido a mao por quem abriu a imagem para olhar —
+   passo que o runbook ja exige e que nenhuma verificacao de arquivo substitui.
+   Ver POSTS.md §7. */
+function exigirObra(e, opcoes) {
   const rel = String(e.img || '').split('?')[0].split('#')[0].replace(/^\.?\//, '');
   const onde = 'mostra "' + e.t + '" (' + e.v + ')';
+
+  if (e.vista && opcoes && opcoes.recusarVista) {
+    throw new Error('VISTA DE SALA: ' + onde + ' esta marcada `vista: true` no dados.js. ' +
+      'Este formato mostra a obra, nao a parede. Consiga a reproducao do trabalho ' +
+      'na viewing room ou no press kit, ou escolha outra mostra.');
+  }
 
   if (!rel) throw new Error('SEM OBRA: ' + onde + ' nao tem campo img. A rima nao sai sem as duas obras.');
   if (/^https?:/i.test(rel)) throw new Error('SEM OBRA: ' + onde + ' aponta para URL externa. Espelhe em img/ antes.');
@@ -346,7 +361,7 @@ async function principal() {
 
   const preparar = (k, rotulo) => {
     const e = acharExpo(DATA, k);
-    return { e, v: V[e.v], rel: exigirObra(e), rotulo };
+    return { e, v: V[e.v], rel: exigirObra(e, { recusarVista: true }), rotulo };
   };
 
   /* As duas travas rodam ANTES de qualquer render. Falta obra, o processo
@@ -363,7 +378,7 @@ async function principal() {
 
   const puppeteer = require(path.join(RAIZ, '.render', 'node_modules', 'puppeteer-core'));
   const browser = await puppeteer.launch({
-    executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+    executablePath: process.env.CHROME || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
     headless: 'new',
     args: ['--no-sandbox', '--allow-file-access-from-files', '--force-device-scale-factor=1'],
     defaultViewport: { width: 1080, height: 1350, deviceScaleFactor: 1 }

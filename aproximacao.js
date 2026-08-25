@@ -159,7 +159,7 @@ async function principal() {
   const DATA = carregarDados();
   const V = {}; DATA.venues.forEach(v => V[v.name] = v);
   const e = acharExpo(DATA, cfg.obra);
-  const o = { e, v: V[e.v], rel: exigirObra(e) };
+  const o = { e, v: V[e.v], rel: exigirObra(e, { recusarVista: true }) };
   o.dim = await medir(o.rel);
 
   /* Trava 3: recortes estritamente decrescentes. */
@@ -191,7 +191,7 @@ async function principal() {
 
   const puppeteer = require(path.join(RAIZ, '.render', 'node_modules', 'puppeteer-core'));
   const browser = await puppeteer.launch({
-    executablePath: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+    executablePath: process.env.CHROME || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
     headless: 'new',
     args: ['--no-sandbox', '--allow-file-access-from-files', '--force-device-scale-factor=1'],
     defaultViewport: { width: W, height: H, deviceScaleFactor: 1 }

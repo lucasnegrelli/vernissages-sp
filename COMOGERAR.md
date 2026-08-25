@@ -38,6 +38,12 @@ dizendo exatamente o que escrever.
 `fora` no topo do plano exclui mostras de todas as peças da semana — serve para
 imagem que é cartaz e não obra.
 
+**Antes de usar o `fora`, veja se o caso é de `vista`.** Imagem que mostra a
+parede da galeria em vez do trabalho não precisa sair da semana inteira: marque
+`vista: true` na mostra, no `dados.js`, e ela some de `rima` e `aproximacao`
+continuando disponível para `deriva`, `salao` e `role`. O `fora` é para dado
+errado — cartaz, logotipo, foto de vernissage.
+
 ---
 
 ## Os dois que precisam de você

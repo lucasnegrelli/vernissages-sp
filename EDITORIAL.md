@@ -1,140 +1,184 @@
 # Vernissages SP — linha editorial
 
-v2 — 20/08/2026. Substitui a v1 de 16/08, que organizava a semana por
-calendário. Se algo aqui não funcionar depois de duas ou três semanas, mude —
-mas mude com o número na mão, como esta versão foi escrita.
+v3 — 24/08/2026. Substitui a v2 de 20/08, que organizava a semana por gatilho,
+e a v1 de 16/08, que organizava por calendário. Se algo aqui não funcionar
+depois de duas ou três semanas, mude — mas mude com o número na mão, como as
+três versões foram escritas.
 
-## Por que a v1 foi trocada
+## O arco das três versões, porque ele explica a regra atual
 
-A v1 dizia: segunda `destaque`, terça `carrossel`, quarta `destaque`, sexta
-`lembrete`. Um calendário fixo **garante** que a mesma coisa saia no mesmo dia
-para sempre, independente do que está acontecendo na cidade. Ele não olha para
-o dado; só preenche casa.
+**v1 — calendário.** Segunda `destaque`, terça `carrossel`, quarta `destaque`,
+sexta `lembrete`. Onze dias medidos entre 10 e 20/08: onze galerias diferentes
+e **onze vezes a mesma proposição** — *esta mostra existe, abre tal dia, fica
+até tal dia.* Mudava o nome da casa; a frase, não.
 
-O resultado, medido no histórico de destaques de 10 a 20/08: onze dias, onze
-galerias diferentes e **onze vezes a mesma proposição** — *esta mostra existe,
-abre tal dia, fica até tal dia.* O nome da casa mudava. A frase, não.
+**v2 — gatilho.** A troca partiu do diagnóstico certo: o problema não era o dia
+da semana, era que **todos os quatro formatos eram de anúncio**. `carrossel`,
+`destaque`, `nota` e `lembrete` faziam a mesma operação. Nenhum comparava,
+ordenava, media ou discordava. A v2 tentou consertar isso com condição de
+disparo — se acende, sai — mas manteve os formatos velhos e só rearranjou
+quando cada um saía. Anúncio disparado por gatilho continua sendo anúncio.
 
-Três causas, todas estruturais:
+**v3 — operação.** O que mudou em 24/08 não foi a cadência: foram os formatos.
+Sete novos, e o critério de existir de cada um é fazer com o dado uma
+**operação que os outros seis não fazem** — comparar, aprofundar, percorrer,
+precificar, acumular, escolher, medir. Com sete operações distintas, o
+calendário volta a ser seguro: mesmo dia, mesma hora, e ainda assim sete frases
+diferentes por semana. A repetição nunca esteve no calendário. Estava na
+monocultura de formato.
 
-1. **Todas as peças eram de anúncio.** `carrossel`, `destaque`, `nota` e
-   `lembrete` fazem a mesma coisa: avisam que algo vai abrir. Nenhuma compara,
-   ordena, lembra ou discorda.
-2. **O filtro de imagem virou a linha editorial sem ninguém decidir isso.** A
-   Fase 2 só considera mostra com `img` e `cred`. Quem tem press kit bom é
-   galeria estabelecida dos Jardins; quem não tem é o independente que este
-   projeto existe para cobrir. O runbook manda priorizar `hibrido` na varredura
-   e o filtro devolvia Jardins todo dia. Em 20/08, das 57 mostras em cartaz,
-   apenas **3** estavam em espaço híbrido — e 2 delas sem imagem.
-3. **A trava anti-repetição protege a galeria, não a forma.** `E20` impede a
-   mesma casa duas vezes em 7 dias. Nada impedia 30 dias seguidos da mesma
-   frase.
+Corolário que vale guardar: **grade fixa só é aceitável quando os formatos
+divergem de operação.** Se um dia um formato novo repetir a operação de outro,
+o calendário volta a ser o problema.
 
-E o motivo da legenda ser sem graça não era redação: **20 das 57 mostras em
-cartaz tinham o campo `d` com menos de 60 caracteres** — "Pinturas recentes.",
-"Obras dos anos 90.", "Exposição individual anunciada pela galeria." Nenhum
-layout salva isso. Virou o aviso `A07` do `check.js`.
+## A semana
 
-## O desenho novo: gatilho no lugar de calendário
-
-Cada formato tem uma **condição de disparo** na base. Se acende, sai. Se não
-acende, não sai — e outro ocupa o lugar. O dia da semana deixa de mandar.
-
-**Dois slots por dia:**
-
-| Slot | Hora | Função | Sai sempre? |
+| dia | formato | operação | curado |
 |---|---|---|---|
-| **A** | manhã | **serviço** — a pessoa está decidindo onde ir | sim |
-| **B** | noite | **tese** — algo com ponto de vista, para guardar e mandar pra alguém | só com gatilho |
+| seg | `rima` | comparar duas mostras | **sim** |
+| ter | `aproximacao` | aprofundar numa obra | **sim** |
+| qua | `deriva` | percorrer a cidade | não |
+| qui | `entrada` | quanto custa e como se entra | não |
+| sex | `salao` | tudo de uma vez, denso | não |
+| sáb | `role` | escolher entre três roteiros | não |
+| dom | `duracao` | ver o tempo, diagrama | não |
 
-Em dia fraco sai uma peça só, e está certo. Slot B vazio é resultado do
-sistema funcionando, não falha de produção. **Peça de enchimento é pior que
-silêncio** — foi ela que criou a repetição que estamos consertando.
+Quem manda no que sai é o **`PLANO.json`** na raiz, não este documento: aqui
+está o porquê, lá está a semana. Mecânica de geração em `COMOGERAR.md`.
 
-## Catálogo de formatos
+**Dois slots por dia, herdados da v2 e mantidos.** No plano são `ordem: 1` e
+`ordem: 2`. O primeiro é serviço — a pessoa está decidindo onde ir. O segundo é
+tese — algo com ponto de vista, para guardar e mandar pra alguém. **Dia com uma
+peça só é resultado correto. Peça de enchimento é pior que silêncio** — foi ela
+que criou a repetição que a v2 e a v3 vieram consertar.
 
-Prioridade: quando dois gatilhos acendem no mesmo slot, ganha o de cima.
+## Os sete, um a um
 
-### Slot A — serviço
+O texto longo de cada formato — o que é, de onde veio, o que ele recusa — está
+no cabeçalho do respectivo `.js`. Aqui fica só o que é decisão editorial.
 
-| # | Formato | Gatilho | Estado |
-|---|---|---|---|
-| A1 | **abre hoje** | existe expo com `ini` = hoje | usa `destaque`, já existe |
-| A2 | **sai de cartaz** | ≥1 expo com `fim` nos próximos 7 dias (abre para 14 se render menos de 3) | **pronto no `post.html`** |
-| A3 | **fim de semana** | é sexta ou sábado | usa `carrossel`, já existe |
-| A4 | **roteiro a pé** | ≥3 casas com mostra ativa a menos de 700 m entre si | a construir |
-| A5 | **carrossel da agenda** | sempre — é o fallback quando nada acima acende | já existe |
+### `rima` — segunda
+Duas mostras em cartaz ao mesmo tempo, em casas diferentes, postas lado a lado
+por uma afinidade que ninguém apontou. Não é agenda: é leitura do circuito, o
+trabalho que um curador faz quando olha a cidade inteira de uma vez. Só dá para
+fazer com as 91 casas e as mostras simultâneas mapeadas.
+**Aborta** se qualquer uma das duas obras não tiver imagem válida em disco.
 
-**A2 é o carro-chefe.** Galeria anuncia abertura; ninguém anuncia
-encerramento. É a única informação da agenda com prazo, a única que obriga o
-leitor a se mexer, e a única em que o nosso dado vale mais que o post da
-própria casa — que não tem interesse em lembrar que a mostra vai acabar. Em
-20/08 havia seis mostras encerrando em quatro dias enquanto o feed passava a
-semana anunciando abertura.
+### `aproximacao` — terça
+Uma obra só, lida de perto. Começa num recorte tão fechado que o leitor não
+sabe o que está vendo e vai abrindo até revelar o trabalho inteiro. É o
+contrário exato da rima: amplitude numa, profundidade na outra.
+**Aborta** se a imagem não tiver pixel real por trás do zoom. Das 33 obras com
+imagem espelhada em 24/08, **26 estavam em 1200×630** — medida de card de rede
+social, que é preview de link, não reprodução de obra.
 
-O nome não é "última chance": essa expressão está na lista de `PROIBIDOS` do
-`check.js`, junto com "corra para" e "imperdível". "Sai de cartaz" é o termo da
-imprensa cultural e diz o mesmo fato sem registro de venda.
+### `deriva` — quarta
+Um percurso a pé entre casas com mostra em cartaz, distâncias calculadas das
+coordenadas reais, mapa desenhado do zero — só os pontos e o fio que os liga.
+Rima e aproximação trabalham o olho; esta trabalha as pernas, e depende de um
+ativo que nenhum agregador tem: lat/lng das 91 casas.
+**Declara** que a distância é em linha reta, não rota de calçada.
 
-**A4 é o mais difícil de copiar.** Exige lat/lng das 91 casas, que só nós
-temos. Um trecho real da base de hoje: Casa Triângulo → Zipper (120 m) → Paulo
-Kuczynski (166 m) → Marcelo Guarnieri (125 m) → Luisa Strina (130 m). Cinco
-galerias em menos de 700 metros de caminhada.
+### `entrada` — quinta
+O único formato que não mostra obra. Trata da porta: quanto custa entrar, quem
+cobra, quem não cobra. Ninguém no circuito fala de dinheiro, e o resultado é
+que a maior parte das pessoas acha que ver arte em São Paulo é caro. O dado diz
+o contrário com folga. **A barreira real nunca foi o preço — é não saber que se
+pode empurrar a porta.**
+**Casa com `conf` não entra na conta**: sai em linha separada dizendo que falta
+confirmar. Precisão inventada aqui é pior que silêncio, porque a pessoa vai com
+o dinheiro contado.
 
-### Slot B — tese
+### `salao` — sexta
+Todas as obras em cartaz penduradas juntas na mesma parede e numeradas, com
+catálogo em seguida — como o Salon de Paris pendurava até o fim do século XIX.
+O cubo branco é invenção do modernismo e tem cem anos; não é a única forma
+possível. O salão obriga as obras a conviverem, e aí se vê o que a cidade está
+pintando neste mês.
+**Aborta abaixo de doze obras** — a peça depende da densidade para dizer o que
+quer dizer. E toda obra na parede tem crédito no catálogo: salão sem catálogo é
+mural decorativo.
 
-| # | Formato | Gatilho | Estado |
-|---|---|---|---|
-| B1 | **abriu e ninguém viu** | expo em venue `hibrido` aberta nos últimos 7 dias e nunca destacada | a construir |
-| B2 | **o mesmo artista em duas casas** | artista com ≥2 mostras não encerradas | a construir |
-| B3 | **voltou** | artista com `primeiroRegistro` há mais de 6 meses e mostra nova | a construir |
-| B4 | **número da semana** | sempre disponível — usar no máximo 1×/semana | a construir |
-| B5 | **nota** | há fato do circuito com fonte verificável | já existe |
+### `role` — sábado
+Três roteiros prontos, em regiões diferentes, sem sobreposição. Sábado a pessoa
+não está lendo, está saindo. O problema dela não é falta de opção — são 22
+casas com mostra e obra em cartaz, e **opção demais paralisa**. O formato reduz
+22 a três, e três a um.
+**Não promete horário de fechamento**: só 5 das 37 casas publicam horário de
+sábado. Sem dado não há promessa — a peça manda conferir antes de sair.
 
-B2 e B3 saem do `acervo.json`, que ninguém mais tem: 105 mostras, 114 artistas
-e 92 casas com data de primeiro registro. Testado em 20/08, B2 dá **zero** — e
-está certo. Formato que não tem o que dizer não sai.
+### `duracao` — domingo
+Todas as mostras como linhas de tempo, ordenadas por encerramento. Sem foto,
+sem título: é diagrama. Mede o que ninguém mede — galeria tem mediana de 42
+dias, instituição de 141. **A arte comercial é efêmera e a institucional é
+quase permanente, e ninguém conta isso a quem está decidindo o que ver.**
+Domingo é o único dia em que faz sentido publicar uma peça que não manda
+ninguém a lugar nenhum agora.
 
-B4 é fato com tese dentro, sem adjetivo: "dos 91 espaços do mapa, 50 estão na
-Zona Oeste e 1 na Zona Leste". Respeita o `ESTILO.md`, que proíbe adjetivo
-comercial e não proíbe ter tese. Usar pouco: vira maneirismo rápido.
+## Os dois que dependem de você
+
+`rima` e `aproximacao` são `curado: true` no `semana.js`. **Não montam
+sozinhas, e vão falhar toda semana até o config existir** — de propósito.
+
+- **rima** — as duas chaves de mostra (`a` e `b`), a tese e o argumento. A
+  afinidade entre duas mostras é olho, não algoritmo: o que uma máquina acharia
+  é palavra repetida no título.
+- **aproximacao** — a chave da obra, os pontos de recorte (`zooms`) e a
+  leitura. Onde vale chegar perto é quem olha a obra que decide.
+
+Os outros cinco copiam de `modelos/` e montam da base. O que o operador escreve
+nesses dois é **só a tese** — título, artista, casa, endereço, prazo e o campo
+`d` continuam vindo do `dados.js`. Curadoria é humana; dado é do banco.
 
 ## Travas anti-repetição
 
-As três valem juntas. A primeira já existia; as outras duas são a novidade.
-
 1. **Galeria** — a mesma casa não vira destaque duas vezes em 7 dias (`E20`).
-2. **Formato** — o mesmo formato não repete em 3 dias no mesmo slot, exceto
-   `A2` e `A5`, que são serviço contínuo. `A1` fura a fila sempre que acende:
-   abertura no dia é a notícia.
-
-   **Exceção descoberta em 20/08, na primeira execução real:** `A2` fura o `A1`
-   quando houver mostra encerrando em **dois dias ou menos**. A razão é a vida
-   útil da informação — abertura tem oito semanas pela frente e a galeria mesma
-   divulga; encerramento tem dois dias e ninguém divulga. Naquele dia abria a
-   individual da Tania Ximena na Galatea e fechavam três mostras no sábado. O
-   aviso de fechamento não tinha outro dia para sair.
+2. **Obra** — nenhuma imagem aparece duas vezes dentro de uma peça, e nenhuma
+   obra entra duas vezes no salão.
 3. **Conteúdo** — a peça não sai se a lista dela for igual à da última vez que
-   o formato rodou. `sai de cartaz` com as mesmas três mostras de anteontem não
-   é peça nova, é a mesma peça com data diferente.
+   o formato rodou. `salao` com as mesmas obras de sexta passada não é peça
+   nova, é a mesma peça com data diferente.
+4. **Superfície** — não repita paleta em dias seguidos. Na semana de 24/08,
+   cinco dos sete formatos saíram em `escuro` e o feed virou uma mancha só.
+   Detalhe no `POSTS.md`.
+
+A trava de **formato** da v2 morreu com o gatilho: a grade agora garante
+sozinha que nenhum formato repita antes de sete dias.
+
+## Obra e vista de sala
+
+Nem toda imagem em cartaz mostra o trabalho. Boa parte do que instituição
+publica é **vista de sala** — a parede fotografada, com as obras pequenas
+dentro dela. Isso não é defeito: é informação honesta sobre o que se vai
+encontrar, e serve perfeitamente a `deriva`, `salao` e `role`, cujo assunto é
+o percurso e a densidade.
+
+O que ela não serve é a `rima` e à `aproximacao`, os dois formatos que
+**afirmam alguma coisa sobre o trabalho**. Comparar duas mostras pela matéria,
+ou ampliar até a trama do linho, exige a reprodução da obra.
+
+O campo `vista: true` no `dados.js` registra a diferença, e os dois formatos
+recusam sozinhos. Quem preenche é quem abriu a imagem para olhar — nenhuma
+verificação de arquivo distingue as duas coisas, porque vista de sala bem
+fotografada tem peso, dimensão e crédito de sobra.
 
 ## Regra de matéria-prima
 
-**Mostra sem fato concreto no campo `d` não vira destaque.** O `check.js`
-acusa com `A07` (abaixo de 60 caracteres). O modelo está no `ESTILO.md`:
-*"48 trabalhos realizados entre 1974 e 1981, no Chile sob a ditadura militar"*
-— um número, um período, um lugar.
+**Mostra sem fato concreto no campo `d` não vira peça.** O `check.js` acusa com
+`A07` (abaixo de 60 caracteres). O modelo está no `ESTILO.md`: *"48 trabalhos
+realizados entre 1974 e 1981, no Chile sob a ditadura militar"* — um número, um
+período, um lugar. "Pinturas recentes." não é fato; é preenchimento de campo.
 
-Isso é trabalho da **Fase 1**, não da redação: a varredura de domingo tem que
-trazer um dado conferível por mostra. Sem ele, a mostra entra na agenda do site
-normalmente, mas não é candidata a peça.
+Isso é trabalho da **varredura de domingo**, não da redação: cada mostra tem
+que voltar com um dado conferível. Sem ele, entra na agenda do site normalmente
+mas não é candidata a peça.
 
 ## Recorrência mensal
 
-- **Primeira segunda do mês — panorama:** carrossel estendido, 3 a 4 semanas à
-  frente em vez de 2.
-- **Último dia útil — o que fechou:** registro das mostras que encerraram no
-  mês. Sem tom de balanço institucional.
+- **Primeira segunda do mês** — `rima` de fôlego mais largo, comparando duas
+  mostras que abriram no mês.
+- **Último domingo** — `duracao` com a janela aberta, para ler o mês que vem em
+  vez das próximas duas semanas.
 
 ## Régua de qualidade
 
@@ -144,14 +188,23 @@ Contemporary Art Daily). Disposição de escrever com ponto de vista que a
 crítica tem (Hyperallergic, Frieze) sem soar nota de assessoria. Não é para
 imitar ninguém; é a régua.
 
-Consistência é a paleta, a assinatura e a voz. Variedade é **o que cada peça
-escolhe dizer** — não o tratamento de imagem. O rodízio de 10 tratamentos e 6
-fontes do `post.html` nunca foi o problema e não é a solução.
+Consistência é a paleta, a assinatura e a voz. Variedade é **a operação que
+cada peça faz** — nunca o tratamento de imagem. O rodízio de 10 tratamentos e 6
+fontes do `post.html` nunca foi o problema e não foi a solução.
+
+## Ideia de formato novo
+
+Formato novo só entra se fizer uma operação que os sete não fazem. A mecânica
+está no `COMOGERAR.md`; o teste editorial é uma pergunta: **qual frase esta
+peça afirma que nenhuma das outras sete afirma?** Se a resposta descrever um
+tratamento visual em vez de uma operação sobre o dado, não é formato novo.
 
 ## O que NÃO muda
 
 - Voz e estrutura de texto: `ESTILO.md`, sem exceção.
 - Publicação continua manual. Nenhuma automação posta no Instagram sozinha.
-- `foco` e `destaques` do `dados.js` continuam sendo da Fase 2 da rotina
-  `vernissages-sp` — esta linha editorial trata das peças de social, não do
-  destaque do site.
+- Nada é inventado. Data, endereço, autoria e crédito só entram confirmados.
+  Na dúvida, fica de fora e a peça declara.
+- Todo número é calculado na hora, nunca digitado no config.
+- Peça sem obra não é peça — o script aborta em vez de cair no chapado.
+- `foco` e `destaques` do `dados.js` são do destaque do site, não daqui.

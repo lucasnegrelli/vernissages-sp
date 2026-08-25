@@ -203,6 +203,19 @@ campo `img`, com peso e dimensão de sobra.
 Preencha `cred` com o crédito exato. Se a fonte só diz "Divulgação", use
 "Divulgação". **Nunca invente autoria.**
 
+**E marque `vista: true` quando a imagem for da parede, não do trabalho.** Você
+acabou de abrir a imagem para olhar; é o único momento em que essa informação
+existe. Sem a marca, ela se perde e a `aproximacao` de terça amplia o piso de
+madeira da galeria. Instituição publica quase só vista de sala — em 24/08, sete
+das nove imagens novas eram vista.
+
+**Aprendido em 24/08:** o `og:image` de instituição costuma ser o **cartaz**,
+com o letreiro da mostra impresso sobre a obra. MASP e Pinacoteca publicam as
+vistas em alta numa galeria abaixo do texto de apresentação, com fotógrafo
+nominal. A Pinacoteca ainda serve dois arquivos por foto: a listada vem com
+sufixo de medida (`-1024x607`) e a original, sem sufixo ou com `-scaled`, é
+bem maior — uma foi de 1024 para 2560 px só tirando o sufixo.
+
 ### Um fato conferível por mostra
 
 **Toda mostra precisa de um dado concreto no campo `d`** — um número, um

@@ -471,6 +471,30 @@ function validar(DATA, opts) {
   });
 }
 
+/* Cobertura de obra.
+ *
+ * O numero que interessa para a saude editorial nao e quantas mostras tem
+ * imagem: e quantas tem imagem DA OBRA. Vista de sala serve para deriva,
+ * salao e role, e nao serve para rima nem aproximacao — que sao justamente os
+ * dois formatos que afirmam alguma coisa sobre o trabalho.
+ *
+ * Nenhuma verificacao de arquivo distingue as duas coisas: uma vista de sala
+ * bem fotografada tem peso, dimensao e credito de sobra. Quem distingue e o
+ * olho de quem abriu a imagem, e o registro disso e o campo `vista: true` no
+ * dados.js. Esta linha existe para que esse trabalho manual vire numero. */
+function coberturaDeObra(DATA, hoje) {
+  var cartaz = (DATA.expos || []).filter(function (e) {
+    return (!e.fim || e.fim >= hoje) && (!e.ini || e.ini <= hoje);
+  });
+  var comImg = cartaz.filter(function (e) { return !!e.img; });
+  var vistas = comImg.filter(function (e) { return e.vista === true; });
+  var obras = comImg.length - vistas.length;
+  return "  em cartaz " + cartaz.length +
+         " · com imagem " + comImg.length +
+         " · dessas, obra " + obras + " e vista de sala " + vistas.length +
+         " · sem imagem " + (cartaz.length - comImg.length);
+}
+
 /* ---------- relatorio legivel ---------- */
 
 function formatar(r, DATA, hoje) {
@@ -484,6 +508,7 @@ function formatar(r, DATA, hoje) {
            " · destaques " + (DATA.destaques || []).length +
            " · atualizado " + DATA.atualizado);
     if (DATA.foco) L.push("  em foco: " + DATA.foco.t + " — " + DATA.foco.v);
+    L.push(coberturaDeObra(DATA, hoje || hojeSaoPaulo()));
     L.push("");
   }
   if (r.erros.length) {
