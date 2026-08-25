@@ -185,7 +185,26 @@ velocidades reduziram o buraco; não o fecharam. O resto vem do envio das casas.
 Perfil exige login e o runbook proíbe raspar. **A7MA, Mata Lab, Massapê,
 Espaço República e Vazio Criativo não têm entrada por varredura — nenhuma.**
 
-A via é o formulário **"Divulgue sua abertura"**, no rodapé do site, que abre o
+Há duas vias, e nenhuma delas é raspar perfil.
+
+**1. Você lê o post e cola a legenda no `captar.js`.**
+
+```
+node captar.js --venue "A7MA Galeria" --texto post.txt
+```
+
+Ele devolve a linha pronta do `EXPOS` e **declara o que não conseguiu ler** em
+vez de chutar: título, datas, artistas, e o aviso de ano quando a legenda não
+traz o ano — que é o erro clássico em mostra que atravessa a virada. Confere o
+endereço da legenda contra o da base e acusa divergência. Não abre Instagram,
+não baixa nada.
+
+**Imagem não se espelha do Instagram.** A URL do CDN expira e o arquivo não é
+nosso. Peça a reprodução ao espaço pelo direct; sem ela a mostra entra na
+agenda e no mapa normalmente, e só fica fora dos formatos que mostram obra —
+que é o comportamento correto, não uma falha.
+
+**2. O formulário "Divulgue sua abertura"**, no pré-rodapé do site, que abre o
 `openForm()` do `index.html` e volta por e-mail. Ele existia no código desde
 sempre e **não era chamado de lugar nenhum** — o canal estava escrito e
 inalcançável até 25/08. Ao passar por uma dessas casas na fila do radar, o
