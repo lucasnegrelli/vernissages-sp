@@ -168,6 +168,13 @@ galeria, híbrido e feira, **141** para institucional. A fila ordena por
 *atraso relativo ao ciclo da própria casa*, não por data absoluta. Mesmo teto
 de páginas, cobertura muito maior.
 
+**Empate na fila desempata pela enquete.** Entre duas casas com o mesmo atraso,
+vai antes a que estiver na zona mais votada em "Que região cobrir", no rodapé do
+site. É o único uso do resultado, e é o motivo de a enquete existir — a pergunta
+anterior ("quem é o público") não alimentava decisão nenhuma e ficou sem um voto
+sequer. A base tem 50 espaços na Zona Oeste e 1 na Leste; se a votação pedir
+Leste, isso é sinal de que o mapa está espelhando a varredura e não a cidade.
+
 O `RADAR.md` agora fecha com a conta explícita: cada casa de ciclo C exige 7/C
 visitas por semana, e a soma diz se o teto basta. Em 25/08 a demanda era
 **12,4 visitas por semana contra teto de 10** — ainda faltam 2,4. As duas

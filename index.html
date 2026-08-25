@@ -671,7 +671,7 @@
 
   <div class="prefoot">
     <section class="dobra">
-      <h2>Quem é o público · enquete anônima</h2>
+      <h2>Que região cobrir · enquete anônima</h2>
       <div class="dobrac">
       <div class="poll panel" id="poll"><p class="note" style="margin:0">Carregando enquete…</p></div>
       <div class="panel ritmo" id="ritmo"></div>
@@ -1403,13 +1403,31 @@ fetch(ABC+(jaVeio?'/get/':'/hit/')+NS+'/visitas').then(r=>r.json()).then(j=>{
   document.getElementById('vc').textContent=Number(j.value).toLocaleString('pt-BR');
   document.getElementById('visits').style.display='block';
 }).catch(()=>{});
-const POLL=[['artista','Artista'],['colecionador','Colecionador(a)'],['curadoria','Curadoria / pesquisa'],['galerista','Galerista / produção'],['curioso','Público curioso']];
+/* A pergunta mudou em 25/08/2026. A anterior — "quem é o público", com as
+   opções artista / colecionador / curadoria / galerista / curioso — ficou no ar
+   sem um único voto: o painel exibia "ninguém votou ainda" e cinco fatias de
+   20%, um gráfico que não significava nada ocupando o topo da coluna.
+
+   O diagnóstico não é de mecanismo, é de pergunta. Aquela pedia que a pessoa se
+   classificasse e não devolvia nada a ela em troca do clique.
+
+   Esta devolve duas coisas: informação de volta a quem vota (quantos espaços o
+   mapa tem naquela zona) e uma entrada real na operação — o resultado é
+   critério de desempate na fila do `radar.js`, como está no OPERACAO.md. A base
+   hoje tem 50 espaços na Oeste e 1 na Leste, e a única maneira honesta de saber
+   se isso é retrato da cidade ou viés da varredura é perguntar.
+
+   As chaves são novas de propósito: os contadores antigos ficam para trás. */
+const POLL=[['zoeste','Zona Oeste'],['zcentro','Centro'],['zsul','Zona Sul'],['zleste','Zona Leste'],['znorte','Zona Norte']];
+/* Espaços por zona, contados do próprio VENUES — o voto volta com um fato. */
+const ZONA_ROTULO={zoeste:'Oeste',zcentro:'Centro',zsul:'Sul',zleste:'Leste',znorte:'Norte'};
+const ESPACOS_ZONA=(function(){const a={};(window.DATA.venues||[]).forEach(v=>{a[v.z]=(a[v.z]||0)+1;});return a;})();
 const CORES=['var(--accent)','var(--accent2)','var(--violet)','var(--green)','var(--blue)'];
   function termometro(vs,my){
     const tot=vs.reduce((a,c)=>a+c,0);
     const pct=vs.map(v=>tot?v/tot*100:100/POLL.length);
     const meu=my?POLL.findIndex(p=>p[0]===my):-1;
-    let h='<div class="paineltopo"><span class="pt">A cena hoje</span><span class="pn2">'+
+    let h='<div class="paineltopo"><span class="pt">O que a cidade pediu</span><span class="pn2">'+
       (tot?tot+(tot===1?' resposta':' respostas'):'ninguém votou ainda')+'</span></div>';
     h+='<div class="termo">'+POLL.map((p,i)=>
         '<span class="fatia'+(i===meu?' meu':'')+'" data-w="'+pct[i].toFixed(2)+'" style="background:'+CORES[i]+'" title="'+p[1]+' — '+Math.round(pct[i])+'%"></span>').join('')+'</div>';
@@ -1417,9 +1435,11 @@ const CORES=['var(--accent)','var(--accent2)','var(--violet)','var(--green)','va
         '<span class="lg'+(i===meu?' meu':'')+'"><i style="background:'+CORES[i]+'"></i>'+p[1]+
         '<b>'+Math.round(pct[i])+'%</b></span>').join('')+'</div>';
     if(meu>=0){
-      h+='<div class="voumeu">Você está entre os <b>'+Math.round(pct[meu])+'%</b> que se conectam pela via <b>'+POLL[meu][1].toLowerCase()+'</b>.</div>';
+      const nz=ESPACOS_ZONA[ZONA_ROTULO[POLL[meu][0]]]||0;
+      h+='<div class="voumeu">Você está entre os <b>'+Math.round(pct[meu])+'%</b> que pedem mais '+
+         POLL[meu][1]+'. O mapa tem <b>'+nz+'</b> '+(nz===1?'espaço':'espaços')+' lá hoje.</div>';
     }else{
-      h+='<div class="pergunta">E você, como se conecta com a cena? <span class="pn2">1 clique · anônimo</span></div>'+
+      h+='<div class="pergunta">Que região você quer ver mais na agenda? <span class="pn2">1 clique · anônimo</span></div>'+
          '<div class="opts">'+POLL.map((p,i)=>'<span class="chip" style="--c:'+CORES[i]+'" onclick="vote(\''+p[0]+'\')">'+p[1]+'</span>').join('')+'</div>';
     }
     const box=document.getElementById('poll');
