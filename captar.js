@@ -14,13 +14,18 @@
  * conseguiu ler**, em vez de chutar.
  *
  * O QUE ELE NAO FAZ
- * Não abre Instagram, não raspa, não baixa imagem. Você lê o post, copia a
- * legenda, cola aqui. A imagem do CDN do Instagram expira e não é nossa — mostra
- * sem imagem entra na agenda normalmente e só fica fora dos formatos que
- * mostram obra, que é o comportamento correto.
+ * Não abre Instagram, não raspa e não baixa nada. Você lê o post, copia a
+ * legenda, cola aqui. Se passar `--img`, a URL entra crua no campo e quem baixa
+ * é o `espelhar.js` — que já carrega a ética do projeto: cópia local, crédito
+ * obrigatório, arquivo apagado se a casa pedir.
+ *
+ * Mostra sem imagem entra na agenda e no mapa normalmente, e só fica fora dos
+ * formatos que mostram obra. Isso é o comportamento correto, não uma falha.
  *
  * USO
  *   node captar.js --venue "A7MA Galeria" --texto arquivo.txt
+ *   node captar.js --venue "A7MA Galeria" --texto post.txt \
+ *       --img "https://..." --cred "Foto Fulano / Cortesia A7MA"
  *   node captar.js --venue "A7MA Galeria"        (cola e termina com Ctrl+Z, Enter no Windows)
  *
  * Sai a linha pronta para colar no EXPOS do dados.js, mais a lista do que
@@ -143,6 +148,21 @@ function principal() {
   if (artistas) e.a = artistas;
   if (datas[0]) e.ini = datas[0].iso;
   if (datas[1]) e.fim = datas[1].iso;
+
+  /* Imagem.
+     A URL entra crua e quem baixa e o `espelhar.js`, que ja existe e ja carrega
+     a etica do projeto: copia local, credito obrigatorio no campo `cred`,
+     arquivo apagado se a casa pedir. Nao ha download aqui — este script nao
+     abre rede.
+     URL de CDN do Instagram e assinada e expira em horas. Isso deixa de
+     importar depois de espelhada, porque o arquivo passa a viver em img/ —
+     mas so se voce rodar `node espelhar.js` no mesmo dia em que colou. */
+  const img = flag('img');
+  const cred = flag('cred');
+  if (img) {
+    e.img = img;
+    e.cred = cred || 'Cortesia ' + venue;
+  }
   /* O campo d exige fato concreto (A07). Nao ha como inventa-lo: sai vazio e o
      relatorio cobra. */
   e.d = '';
@@ -154,7 +174,14 @@ function principal() {
   if (datas.some(d => d.semAno)) falta.push('ANO: a legenda nao trazia ano, assumi ' + ANO_PADRAO + ' — confira se a mostra atravessa a virada');
   if (!artistas) falta.push('artistas (a) — vai disparar A02');
   falta.push('campo d: escreva um fato concreto com numero, periodo ou material. Sem ele a mostra entra na agenda mas nao vira peca (A07)');
-  falta.push('imagem: nao se espelha do Instagram. Peca a reproducao ao espaco pelo direct, ou deixe sem — a mostra aparece na agenda e no mapa do mesmo jeito');
+  if (!img) {
+    falta.push('imagem: passe --img "<url da imagem do post>" e rode `node espelhar.js` em seguida. ' +
+               'Sem ela a mostra aparece na agenda e no mapa do mesmo jeito, e so fica fora dos formatos que mostram obra');
+  } else {
+    if (!cred) falta.push('CREDITO: assumi "Cortesia ' + venue + '". Se o post nomeia o fotografo, corrija — o padrao do projeto e nunca chutar autoria de foto');
+    if (/cdninstagram|fbcdn/.test(img)) falta.push('URL de CDN do Instagram expira em horas: rode `node espelhar.js` AGORA, ainda hoje, ou o arquivo se perde');
+    falta.push('OLHE a imagem depois de espelhada: cartaz e vista de sala passam em peso e dimensao. Se for parede e nao obra, marque `vista: true`');
+  }
 
   const json = JSON.stringify(e)
     .replace(/"(\w+)":/g, '$1:')

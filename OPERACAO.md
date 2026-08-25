@@ -199,10 +199,28 @@ traz o ano — que é o erro clássico em mostra que atravessa a virada. Confere
 endereço da legenda contra o da base e acusa divergência. Não abre Instagram,
 não baixa nada.
 
-**Imagem não se espelha do Instagram.** A URL do CDN expira e o arquivo não é
-nosso. Peça a reprodução ao espaço pelo direct; sem ela a mostra entra na
-agenda e no mapa normalmente, e só fica fora dos formatos que mostram obra —
-que é o comportamento correto, não uma falha.
+**Imagem do Instagram oficial da própria casa pode.** É a mesma postura que o
+`espelhar.js` já aplica ao site da galeria, e ela está escrita lá desde sempre:
+cópia local, crédito obrigatório no campo `cred`, arquivo apagado de `img/` e
+entrada revertida se a casa pedir remoção. Sem exceção.
+
+```
+node captar.js --venue "A7MA Galeria" --texto post.txt \
+    --img "<url da imagem>" --cred "Foto Fulano / Cortesia A7MA"
+node espelhar.js
+```
+
+**Rode o `espelhar.js` no mesmo dia.** URL de CDN do Instagram é assinada e
+expira em horas; depois de espelhada o arquivo vive em `img/` e isso deixa de
+importar, mas antes disso a janela é curta.
+
+Duas coisas que não mudam: **nunca chutar autoria de foto** — se o post não
+nomeia o fotógrafo, o padrão é `Cortesia <casa>` —, e **olhar a imagem depois
+de espelhada**, porque cartaz e vista de sala passam em peso e dimensão. Sendo
+parede e não obra, marque `vista: true`.
+
+Sem imagem a mostra entra na agenda e no mapa normalmente, e só fica fora dos
+formatos que mostram obra — comportamento correto, não falha.
 
 **2. O formulário "Divulgue sua abertura"**, no pré-rodapé do site, que abre o
 `openForm()` do `index.html` e volta por e-mail. Ele existia no código desde
