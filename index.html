@@ -416,12 +416,9 @@
   #routePanel .clear:hover{color:var(--red)}
 
   /* ---------- modal ---------- */
-  .envift{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;
-    padding:14px 18px;margin:0 auto 18px;max-width:640px;
-    border:1px solid var(--line);border-radius:var(--radius);background:var(--glass)}
-  .envift b{font-size:.9rem}
-  .envinota{color:var(--muted);font-size:.72rem;flex-basis:100%;text-align:center}
-  @media print{.envift{display:none}}
+  .panel.envio{margin-top:14px}
+  .panel.envio .note{max-width:46ch}
+  @media print{.panel.envio{display:none}}
   #modalBg{position:fixed;inset:0;z-index:90;background:rgba(6,6,9,.72);
     backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;
     align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto;overscroll-behavior:contain}
@@ -678,6 +675,21 @@
       <div class="dobrac">
       <div class="poll panel" id="poll"><p class="note" style="margin:0">Carregando enquete…</p></div>
       <div class="panel ritmo" id="ritmo"></div>
+      <!-- Ponto de entrada do formulario "Divulgue sua vernissage".
+           openForm() existia desde sempre e nao era chamada de lugar nenhum:
+           o canal de envio estava escrito e inalcancavel pelo site. E a unica
+           via possivel para as casas que so divulgam no Instagram — A7MA, Mata
+           Lab, Massape, Espaco Republica —, que nenhuma varredura alcanca
+           porque perfil exige login.
+           Mora aqui, e nao no rodape, por dois motivos: a coluna da esquerda
+           sobra altura contra a lista de bairros, e quem e de um espaco esta
+           olhando justamente o ritmo das aberturas quando se reconhece. -->
+      <div class="panel envio">
+        <div class="paineltopo"><span class="pt">Você é de um espaço?</span></div>
+        <p class="note" style="margin:10px 0 14px">Mande a sua abertura. Entra na agenda
+           depois de conferida — não publicamos sem checar.</p>
+        <span class="btn add" onclick="openForm()">Divulgue sua abertura</span>
+      </div>
       </div>
     </section>
     <section class="dobra">
@@ -693,17 +705,6 @@
   </div>
 
   <footer>
-    <!-- Ponto de entrada do formulario "Divulgue sua vernissage".
-         A funcao openForm() existia desde sempre e nao era chamada de lugar
-         nenhum: o canal de envio estava no codigo e inalcancavel pelo site.
-         E a unica via possivel para as casas que so divulgam no Instagram —
-         A7MA, Mata Lab, Massape, Espaco Republica — que nenhuma varredura
-         alcanca, porque perfil exige login. -->
-    <div class="envift">
-      <b>Voce e de um espaco?</b>
-      <span class="btn add" onclick="openForm()">Divulgue sua abertura</span>
-      <span class="envinota">Entra na agenda depois de conferido. Nao publicamos sem checar.</span>
-    </div>
     <span class="updft">Agenda revista em <span id="upd"></span>.</span><br>
     Posições e endereços com ~ são aproximados. Nem toda abertura tem vernissage pública — confirme nos canais de cada espaço.<br>
     Fontes: <a href="https://www.sp-arte.com/exposicoes">SP–Arte Exposições</a> ·
