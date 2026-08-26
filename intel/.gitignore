@@ -1,0 +1,16 @@
+# Next.js
+/.next/
+/out/
+
+# Dependências
+/node_modules/
+
+# Ambiente local — nunca commitar chaves reais
+.env
+.env.local
+.env*.local
+
+# Build/debug
+*.tsbuildinfo
+next-env.d.ts
+.vercel
