@@ -94,16 +94,44 @@ rotina esteve parada — diga isso em negrito no resumo.
 
 ## D1 — destaque do site
 
-Escolha entre as expos não encerradas: primeiro quem tem `ini` = hoje; senão a
-abertura mais próxima, para trás ou para frente.
+```
+node destaque.js --seco     # mostra a escolha e a nota, sem escrever
+node destaque.js            # escreve foco, destaques e atualizado
+```
 
-Exclua: toda chave já em `destaques`; a mostra que está no `foco` agora; toda
-mostra cuja galeria esteve em foco nos últimos 7 dias.
+O script faz a fase inteira. O que está escrito abaixo é o que ele implementa —
+se os dois divergirem, **o script está certo e este texto está velho**, porque
+é ele que roda todo dia.
 
-**Só é elegível expo com `img` e `cred`.** Entre as elegíveis, desempate pelo
-campo `d`: mostra que o `check.js` acusou com `A07` (descrição abaixo de 60
-caracteres) vai para o fim da fila. Se todas estiverem com `A07`, publique
-mesmo assim e registre no resumo — é dívida de varredura, não de hoje.
+Exclua: toda chave já em `destaques` em qualquer outro dia (inclusive dia
+futuro); a mostra que está no `foco` agora; toda mostra cujo venue esteve em
+foco nos últimos 7 dias. Venue é comparado **literal**, igual ao `E20`:
+`Mendes Wood DM` e `Mendes Wood DM — Casa Iramaia` são casas distintas para a
+regra. O script avisa quando são a mesma casa, e segue.
+
+**Só é elegível expo com `img` e `cred`**, e sem `cartaz: true`.
+
+Entre as elegíveis, a data **agrupa** e a nota **ordena**. Grupos: abre hoje,
+abertura na semana, abertura no mês, resto. Dentro do grupo ganha a nota
+editorial mais alta.
+
+A nota sai toda do `dados.js` — nada de rede, nada de estimativa de público.
+Seis critérios, e o `--seco` imprime cada um com o motivo:
+
+| critério | peso | por quê |
+|---|---|---|
+| fecha logo | até +34 | o leitor perde se não vir agora |
+| casa fora de cartaz | até +30 | 91 casas no mapa; sem isso a home vira vitrine de cinco |
+| assinatura | até +22 | individual e curadoria assinada rendem texto e busca |
+| fato no campo `d` | até +12 | continua a escala do `A07` |
+| imagem | −14 a +10 | ajuste, não critério: `vista` perde, card de rede social perde |
+| tipo de casa | até +8 | independente não tem imprensa própria; instituição tem |
+
+Os pesos são chute calibrado, não lei. Discordar do resultado se faz mexendo
+neles no `destaque.js`, não escolhendo na mão.
+
+Se todas as elegíveis estiverem com `A07`, publique mesmo assim — é dívida de
+varredura, não de hoje.
 
 Sem candidata: mantenha o `foco`, não commite, e relate **SEM CANDIDATA**
 listando os títulos barrados por falta de imagem.

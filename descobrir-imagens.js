@@ -36,14 +36,35 @@ const UA = 'vernissages-sp/1.0 (+https://vernissagessp.com.br)';
  * peca; aqui ele entra so como plano B, porque abrir Chrome custa ~2s por
  * pagina contra ~200ms do fetch. O navegador sobe na primeira vez que alguem
  * precisa e fica de pe ate o fim da execucao. */
-const CHROME = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
+/* O caminho do Chrome e o pacote do puppeteer vinham fixos daqui: o .exe do
+   Windows e o node_modules de .render/. Os dois pressupoem a maquina do Lucas.
+   Em 24/08 os geradores passaram a aceitar process.env.CHROME; esta ferramenta
+   ficou de fora e so foi notada quando ela virou passo de Action, onde .render/
+   nao existe (e gitignored) e o Chrome mora em /usr/bin. Mesmo padrao, agora
+   com o require tambem em cascata. Sem nada disso o script nao quebra: cai no
+   fetch estatico e perde os sites renderizados por JavaScript, que eram metade
+   dos fracassos medidos em 19/08. */
+const CHROME = process.env.CHROME || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 let _browser = null, _browserMorto = false;
+
+function carregarPuppeteer(){
+  const tentativas = [
+    path.join(RAIZ, '.render', 'node_modules', 'puppeteer-core'),
+    'puppeteer-core',
+    'puppeteer'
+  ];
+  let ultimo = null;
+  for (const t of tentativas) {
+    try { return require(t); } catch (e) { ultimo = e; }
+  }
+  throw ultimo || new Error('puppeteer nao encontrado');
+}
 
 async function browser(){
   if (_browser) return _browser;
   if (_browserMorto) return null;
   try {
-    const puppeteer = require(path.join(RAIZ, '.render', 'node_modules', 'puppeteer-core'));
+    const puppeteer = carregarPuppeteer();
     _browser = await puppeteer.launch({
       executablePath: CHROME,
       headless: 'new',

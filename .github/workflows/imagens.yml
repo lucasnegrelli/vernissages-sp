@@ -1,0 +1,129 @@
+name: Garimpo de imagens
+
+# Camada 2: o trabalho mecanico da varredura, sem o julgamento.
+#
+# O descobrir-imagens.js ja faz a ordem de busca do OPERACAO.md (viewing room →
+# lightbox → press kit → og:image) e mede cada candidata. O que ele NAO faz e
+# olhar a imagem. E a diferenca importa: em 24/08 o campo `img` da mostra do
+# Coletivo Poiesis tinha o flyer da exposicao, com peso e dimensao de sobra, e
+# nenhuma medida de arquivo pega isso. Em 26/08 o flyer ainda estava la.
+#
+# Por isso este workflow NAO escreve no dados.js e NAO abre PR. Ele publica um
+# relatorio numa issue, e a decisao continua sendo de quem abre a imagem e olha.
+# Um PR aqui seria teatro: o descobrir-imagens.js nao produz diff, produz
+# proposta — e um PR de proposta convida a clicar em merge sem conferir, que e
+# exatamente o passo que o runbook proibe em "nunca invente dado".
+
+on:
+  schedule:
+    # Sabado 09:00 UTC = 06:00 em Sao Paulo. Roda antes do domingo de propositor:
+    # a vsp-semana usa a varredura, e chegar com o relatorio pronto na vespera
+    # e melhor que competir com ela pelo mesmo teto de paginas externas.
+    - cron: '0 9 * * 6'
+  workflow_dispatch:
+    inputs:
+      limite:
+        description: 'Quantas mostras tentar (0 = todas as sem imagem)'
+        required: false
+        default: '0'
+      venue:
+        description: 'Só um venue (deixe vazio para todos)'
+        required: false
+        default: ''
+
+# So leitura do repo. Escrever issue e permissao a parte, e nenhuma delas
+# inclui mexer no dados.js — a garantia e estrutural, nao e confianca.
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: garimpo-imagens
+  cancel-in-progress: false
+
+jobs:
+  garimpar:
+    runs-on: ubuntu-latest
+    # Sites lentos e o plano B do headless (~2s por pagina) somam. O teto evita
+    # que um venue travado segure o runner por horas.
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # .render/ e gitignored, entao o puppeteer-core precisa vir de fora.
+      # Se o Chrome nao aparecer, o script cai no fetch estatico sozinho e
+      # avisa no log — perde alcance, nao quebra.
+      - name: Preparar o headless
+        run: |
+          npm i --no-save puppeteer-core
+          for c in /usr/bin/google-chrome /usr/bin/chromium-browser /usr/bin/chromium; do
+            if [ -x "$c" ]; then echo "CHROME=$c" >> "$GITHUB_ENV"; echo "chrome: $c"; break; fi
+          done
+
+      - name: Garimpar
+        run: |
+          node descobrir-imagens.js \
+            --limite "${{ inputs.limite || '0' }}" \
+            ${{ inputs.venue && format('--venue "{0}"', inputs.venue) || '' }} \
+            --saida /tmp/IMAGENS-PROPOSTAS.md | tee /tmp/garimpo.log
+
+      # PENDENTE/ e gitignored — o relatorio nao tem onde morar no repo, e nao
+      # deveria mesmo: e material de triagem, muda toda semana e so interessa
+      # ate alguem decidir. Issue e artifact dao as duas coisas que ele precisa,
+      # historico e download, sem sujar a arvore.
+      - name: Guardar o relatorio
+        uses: actions/upload-artifact@v4
+        with:
+          name: imagens-propostas
+          path: /tmp/IMAGENS-PROPOSTAS.md
+          retention-days: 90
+
+      - name: Abrir a issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const corpo = fs.readFileSync('/tmp/IMAGENS-PROPOSTAS.md', 'utf8');
+            const hoje = new Date().toISOString().slice(0, 10);
+            const aviso = [
+              '> Saida automatica do `descobrir-imagens.js`. **Nada foi escrito no `dados.js`.**',
+              '>',
+              '> Antes de aceitar qualquer linha: **abra a URL e olhe a imagem.** Medida de',
+              '> arquivo nao distingue obra de cartaz nem de flyer — o caso do Coletivo Poiesis',
+              '> (24/08) passou por todas as medidas e era so tipografia.',
+              '>',
+              '> Credito sugerido e chute de formato, nao apuracao. `cred` so entra confirmado',
+              '> na fonte; na duvida, deixe de fora.',
+              '',
+              ''
+            ].join('\n');
+
+            // O corpo de uma issue para em 65536 caracteres. O artifact tem o
+            // arquivo inteiro, entao aqui basta cortar e dizer que cortou.
+            const TETO = 60000;
+            let texto = aviso + corpo;
+            if (texto.length > TETO) {
+              texto = texto.slice(0, TETO) +
+                '\n\n---\n\n**Cortado aqui.** O relatorio inteiro esta no artifact `imagens-propostas` desta rodada.\n';
+            }
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: 'Imagens propostas — ' + hoje,
+              body: texto,
+              labels: ['garimpo']
+            });
+
+      - name: Resumo
+        if: always()
+        run: |
+          {
+            echo '```'
+            tail -30 /tmp/garimpo.log 2>/dev/null || echo "sem log"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

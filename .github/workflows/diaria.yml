@@ -1,0 +1,116 @@
+name: Destaque do dia
+
+# A rotina diaria do OPERACAO.md (Parte 1), sem depender de maquina ligada.
+#
+# Ate 25/08/2026 ela rodava numa tarefa agendada do desktop. A escolha nunca
+# precisou de julgamento — e filtro mais ordenacao, e o destaque.js faz — mas o
+# ambiente dependia do PC do Lucas acordado a meia-noite e de um sandbox que
+# nao tem credencial de GitHub. Em 25/08 a rotina escolheu certo, o check.js
+# aprovou, o commit saiu e o `git push` morreu em "could not read Username".
+# Aqui a credencial e o GITHUB_TOKEN do proprio job.
+#
+# O portao continua sendo o check.js: reprovou, nao commita. Nada aqui decide
+# nada que o OPERACAO.md nao mande decidir.
+
+on:
+  schedule:
+    # 03:00 UTC = 00:00 em Sao Paulo (UTC-3). O horario de verao brasileiro foi
+    # extinto em 2019, entao nao ha virada de fuso para acompanhar.
+    # Cron do GitHub nao e pontual: em horario cheio a fila costuma atrasar
+    # alguns minutos, as vezes mais. Nao importa aqui — o destaque vale o dia
+    # inteiro e o site tem escolha propria enquanto a entrada nao chega.
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Nao deixa duas rodadas se atropelarem. A segunda encontraria a entrada de
+# hoje ja escrita e sairia sozinha pelo "JA FEITO", mas e mais barato nem
+# comecar.
+concurrency:
+  group: destaque-do-dia
+  cancel-in-progress: false
+
+jobs:
+  destaque:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Guarda a saida inteira: e ela que vira o resumo da rodada no Actions,
+      # e num dia de SEM CANDIDATA e o unico registro do que foi barrado.
+      - name: Escolher o destaque
+        id: escolha
+        run: |
+          set +e
+          node destaque.js | tee /tmp/destaque.log
+          echo "codigo=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
+
+      # Codigo 2 e "SEM CANDIDATA": a regra da Parte 1 manda manter o foco e
+      # nao commitar. Isso e comportamento correto, nao falha — o job termina
+      # verde e o log diz quem foi barrado por falta de imagem.
+      - name: Sem candidata, encerra sem commitar
+        if: steps.escolha.outputs.codigo == '2'
+        run: |
+          {
+            echo "## SEM CANDIDATA"
+            echo ""
+            echo '```'
+            cat /tmp/destaque.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Falhou a escolha
+        if: steps.escolha.outputs.codigo != '0' && steps.escolha.outputs.codigo != '2'
+        run: |
+          echo "destaque.js saiu com ${{ steps.escolha.outputs.codigo }}"
+          exit 1
+
+      # O portao. --exige-hoje transforma em erro o que fora dele e so aviso:
+      # sem entrada de destaques com a data de hoje, e com `atualizado` velho,
+      # nao adianta publicar.
+      - name: Validar
+        if: steps.escolha.outputs.codigo == '0'
+        run: node check.js --exige-hoje
+
+      - name: Commitar e empurrar
+        if: steps.escolha.outputs.codigo == '0'
+        run: |
+          git config user.name "vernissages-bot"
+          git config user.email "actions@github.com"
+          git add -A dados.js
+          if git diff --staged --quiet; then
+            echo "Nada mudou no dados.js — provavelmente ja rodou hoje."
+            exit 0
+          fi
+          FOCO=$(node -e "const vm=require('vm'),fs=require('fs');const c={window:{}};vm.runInNewContext(fs.readFileSync('dados.js','utf8'),c);console.log(c.window.DATA.foco.t)")
+          git commit -m "destaque do dia: ${FOCO}"
+          # build.yml e espelhar-imagens.yml tambem empurram pra main; quem
+          # chega depois leva ref rejeitado. Mesmo laco dos outros dois.
+          for i in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "push rejeitado, tentativa $i - rebaseando e tentando de novo"
+            git fetch origin main
+            git rebase origin/main || exit 1
+            sleep 3
+          done
+          echo "Falhou ao empurrar apos 5 tentativas."
+          exit 1
+
+      - name: Resumo
+        if: steps.escolha.outputs.codigo == '0'
+        run: |
+          {
+            echo "## Destaque publicado"
+            echo ""
+            echo '```'
+            cat /tmp/destaque.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
