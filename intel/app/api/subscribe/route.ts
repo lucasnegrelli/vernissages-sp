@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { stripe } from "@/lib/stripe";
-import { supabaseAdmin } from "@/lib/supabase";
+import { getStripe } from "@/lib/stripe";
+import { getSupabaseAdmin } from "@/lib/supabase";
 
 export const runtime = "nodejs";
 
@@ -14,6 +14,9 @@ export async function POST(req: NextRequest) {
   if (!EMAIL_REGEX.test(email)) {
     return NextResponse.json({ error: "E-mail inválido." }, { status: 400 });
   }
+
+  const supabaseAdmin = getSupabaseAdmin();
+  const stripe = getStripe();
 
   const { data: existing, error: lookupError } = await supabaseAdmin
     .from("subscribers")

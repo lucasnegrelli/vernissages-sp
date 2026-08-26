@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { render } from "@react-email/render";
-import { resend } from "@/lib/resend";
-import { supabaseAdmin } from "@/lib/supabase";
+import { getResend } from "@/lib/resend";
+import { getSupabaseAdmin } from "@/lib/supabase";
 import { NewsletterEmail } from "@/emails/NewsletterEmail";
 import type { NewsletterIssue } from "@/types";
 
@@ -29,6 +29,9 @@ export async function GET(req: NextRequest) {
   if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
     return NextResponse.json({ error: "Não autorizado." }, { status: 401 });
   }
+
+  const supabaseAdmin = getSupabaseAdmin();
+  const resend = getResend();
 
   const { data: issue, error: issueError } = await supabaseAdmin
     .from("newsletter_issues")

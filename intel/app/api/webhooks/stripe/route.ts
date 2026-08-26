@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import type Stripe from "stripe";
-import { stripe } from "@/lib/stripe";
-import { supabaseAdmin } from "@/lib/supabase";
+import { getStripe } from "@/lib/stripe";
+import { getSupabaseAdmin } from "@/lib/supabase";
 import type { SubscriberStatus } from "@/types";
 
 export const runtime = "nodejs";
@@ -19,6 +19,9 @@ export async function POST(req: NextRequest) {
   if (!signature) {
     return NextResponse.json({ error: "Assinatura ausente." }, { status: 400 });
   }
+
+  const supabaseAdmin = getSupabaseAdmin();
+  const stripe = getStripe();
 
   let event: Stripe.Event;
   try {
