@@ -419,6 +419,11 @@
   .panel.envio{margin-top:14px}
   .panel.envio .note{max-width:46ch}
   @media print{.panel.envio{display:none}}
+  .panel.intel{margin-top:14px}
+  .panel.intel .note{max-width:46ch}
+  @media print{.panel.intel{display:none}}
+  .btn.intel{border-color:rgba(232,193,90,.4);color:var(--accent)}
+  .btn.intel:hover{background:rgba(232,193,90,.14);border-color:var(--accent)}
   #modalBg{position:fixed;inset:0;z-index:90;background:rgba(6,6,9,.72);
     backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;
     align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto;overscroll-behavior:contain}
@@ -689,6 +694,11 @@
         <p class="note" style="margin:10px 0 14px">Mande a sua abertura. Entra na agenda
            depois de conferida — não publicamos sem checar.</p>
         <span class="btn add" onclick="openForm()">Divulgue sua abertura</span>
+      </div>
+      <div class="panel intel">
+        <div class="paineltopo"><span class="pt">Inteligência de mercado</span></div>
+        <p class="note" style="margin:10px 0 14px">Boletim semanal pago sobre o circuito: agenda cronometrada, radar de movimentações e leitura de mercado. Não é pauta cultural.</p>
+        <a class="btn intel" href="https://intel.vernissagessp.com.br" target="_blank" rel="noopener">Vernissages SP: Intel</a>
       </div>
       </div>
     </section>
