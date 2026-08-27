@@ -227,11 +227,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Masao Yamamoto — individual",
-  v: "Galeria Marcelo Guarnieri",
-  quem: "Masao Yamamoto",
-  txt: "Fotografias em pequeno formato do mestre japonês; poética do silêncio. Abertura em 1 de agosto, até 19 de setembro.",
-  link: "https://www.galeriamarceloguarnieri.com.br",
+  t: "Abstenções (uma miragem, mas permanente) — Nino Kapanadze",
+  v: "Almeida & Dale | Millan",
+  quem: "Nino Kapanadze",
+  txt: "Individual da artista com curadoria de Cristiano Raimondi, no espaço Fradique 1360. Abertura em 15 de agosto, até 19 de setembro.",
+  link: "https://almeidaedale.com.br",
   publi: false
 };
 
@@ -246,6 +246,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-08-27", k:"Abstenções (uma miragem, mas permanente) — Nino Kapanadze|Almeida & Dale | Millan"},
   {d:"2026-08-26", k:"Masao Yamamoto — individual|Galeria Marcelo Guarnieri"},
   /* O historico so registra o dia em que a tarefa diaria rodou. Nos dias em que
      ela nao rodou, o site escolheu sozinho e ninguem anotou — e a trava
@@ -284,5 +285,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "26/08/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "27/08/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
