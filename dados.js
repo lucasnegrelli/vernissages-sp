@@ -140,7 +140,6 @@ const EXPOS = [
 {t:"confluências — Carolina Caycedo",a:"Carolina Caycedo",v:"MASP",ini:"2026-07-03",fim:"2026-10-04",d:"Fotografia, instalação, vídeo, performance e desenho no cruzamento entre arte, saberes ribeirinhos e movimentos sociais. Curadoria de Isabella Rjeille.",img:"img/confluencias-masp.jpg",cred:"Vista da exposição. Foto Eduardo Ortega / Cortesia MASP",vista:true},
 {t:"Casa María Lionza — Sol Calero",a:"Sol Calero",v:"MASP",ini:"2026-07-03",fim:"2027-01-30",d:"Pavilhão no Vão Livre em dezesseis cores, com padrões pintados à mão e mosaicos, em referência a Lina Bo Bardi e às fachadas nordestinas. Curadoria de Adriano Pedrosa e Laura Cosendey."},
 {t:"Oposições Geométricas — coletiva",a:"Almir Mavignier, Arthur Luiz Piza",v:"Paulo Kuczynski Escritório de Arte",ini:"2026-05-16",fim:"2026-08-22",d:"Almir Mavignier e Arthur Luiz Piza em diálogo, de uma coleção reunida na Europa ao longo de 15 anos. Texto curatorial de Paulo Venancio Filho."},
-{t:"Geologia da forma — Germana Monte-Mór",a:"Germana Monte-Mór",v:"Galeria Leme",ini:"2026-06-25",fim:"2026-08-21",d:"Trabalhos dos anos 1990 em asfalto sobre papel de arroz, papel manteiga e tecido de algodão. Curadoria de Diego Matos.",img:"img/geologia-da-forma-galeria-leme.webp",cred:"Foto Filipe Berndt / Cortesia Galeria Leme"},
 {t:"nem mais nem menos — Carlos Zilio",a:"Carlos Zilio",v:"Galeria Raquel Arnaud",ini:"2026-06-10",fim:"2026-08-22",d:"Pinturas recentes de paleta restrita ao preto e branco, algumas monocromáticas. Ensaio de Tadeu Chiarelli.",img:"img/nem-mais-nem-menos-galeria-raquel-arnaud.jpg",cred:"Cortesia Galeria Raquel Arnaud"},
 {t:"Etéreas — Chaim, Weffort, Giacomini, Belém",a:"Carla Chaim, Marina Weffort, Amalia Giacomini, Laura Belém",v:"Galeria Raquel Arnaud",ini:"2026-06-11",fim:"2026-08-22",d:"Curadoria de Paula Borghi. Desenho branco sobre branco, grafite e incenso em papel japonês, trabalho têxtil e escultura.",img:"img/etereas-galeria-raquel-arnaud.jpg",cred:"Cortesia Galeria Raquel Arnaud"},
 {t:"Presença — Anna Maria Maiolino",a:"Anna Maria Maiolino",v:"Galeria Luisa Strina",ini:"2026-08-08",fim:"2026-09-19",d:"Individual da artista ítalo-brasileira; abre na mesma noite que Alfredo Jaar.",img:"https://static-assets.artlogic.net/w_1200,h_630,c_fill,f_auto,fl_lossy,q_auto/ws-galerialuisastrina/usr/images/exhibitions/main_image_override/292/ana-maria-maiolino_29814_ph-julia-thompson_01-copiar.jpg",cred:"Cortesia Galeria Luisa Strina"},
@@ -227,11 +226,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Smoke — Lucia Nogueira",
-  v: "Gomide&Co",
-  quem: "Lucia Nogueira",
-  txt: "Individual da artista no espaço da Avenida Paulista, organizada com o espólio de Lucia Nogueira. Abertura em 7 de agosto, até 3 de outubro.",
-  link: "https://gomideco.com.br",
+  t: "Imagens do Interior — Fabiana de Barros",
+  v: "Luciana Brito Galeria",
+  quem: "Fabiana de Barros",
+  txt: "Gravuras, colagens e assemblages de resina mineral, mais uma instalação feita com o cineasta Michel Favre para a casa modernista de Rino Levi. Abertura em 22 de agosto, até 17 de outubro.",
+  link: "https://lucianabritogaleria.com.br",
   publi: false
 };
 
@@ -246,6 +245,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-08-29", k:"Imagens do Interior — Fabiana de Barros|Luciana Brito Galeria"},
   {d:"2026-08-28", k:"Smoke — Lucia Nogueira|Gomide&Co"},
   {d:"2026-08-27", k:"Abstenções (uma miragem, mas permanente) — Nino Kapanadze|Almeida & Dale | Millan"},
   {d:"2026-08-26", k:"Masao Yamamoto — individual|Galeria Marcelo Guarnieri"},
@@ -286,5 +286,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "28/08/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "29/08/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
