@@ -185,6 +185,22 @@
   .artist:hover{color:var(--accent);border-bottom-color:var(--accent)}
   .dist{color:var(--blue);font-size:.75rem}
 
+  /* foto da mostra no card: espia no hover (desktop), botao "foto" no toque */
+  .cardshot{max-height:0;overflow:hidden;border-radius:12px;opacity:0;position:relative;
+    transition:max-height .34s ease,margin-top .34s ease,opacity .3s ease}
+  .cardshot img{width:100%;height:150px;object-fit:cover;display:block;filter:saturate(1.04) contrast(1.02)}
+  .cardshot .cred{position:absolute;right:8px;bottom:7px;font-size:.58rem;letter-spacing:.3px;
+    color:var(--text2);background:rgba(10,10,13,.62);border:1px solid var(--line);padding:2px 8px;border-radius:20px}
+  .card.fotoaberta .cardshot{max-height:170px;margin-top:13px;opacity:1}
+  .fotobtn{background:var(--glass2);border:1px solid var(--line);color:var(--text2);border-radius:20px;
+    padding:5px 11px;font-size:.72rem;cursor:pointer;font-family:var(--font);letter-spacing:.3px;transition:.18s}
+  .fotobtn:hover{border-color:var(--accent);color:var(--accent)}
+  .card.semfoto .cardshot,.card.semfoto .fotobtn{display:none}
+  @media (hover:hover){
+    .card:hover .cardshot{max-height:170px;margin-top:13px;opacity:1}
+    .fotobtn{display:none}
+  }
+
   /* etiquetas */
   .tag{font-size:.63rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
     padding:3px 9px;border-radius:20px;border:1px solid transparent;white-space:nowrap}
@@ -948,8 +964,10 @@ function draw(){
   /* cards */
   document.getElementById('cards').innerHTML=list.map((e,i)=>{
     const cls=e.ven.tipo==='feira'?'fair':e.st;
+    const q=s=>String(s||'').replace(/"/g,'&quot;');
     const tag=e.ven.tipo==='feira'?'<span class="tag fair">FEIRA</span>':`<span class="tag ${e.st}">${STLBL[e.st]}</span>`;
     const dates=e.st==='opening'?`abre ${fmt(e.ini)}${e.fim?' · até '+fmt(e.fim):''}`:`até ${e.fim?fmt(e.fim):'—'}`;
+    const shot=e.img?`<div class="cardshot"><img src="${q(e.img)}" alt="" loading="lazy" onerror="this.closest('.card').classList.add('semfoto')">${e.cred?`<span class="cred">${q(e.cred)}</span>`:''}</div>`:'';
     return `<div class="card ${cls}">
       <div class="title" onclick="focusVenue('${e.ven.name.replace(/'/g,"\\'")}')">${tituloLimpo(e)}</div>
       <div class="venue">${e.ven.name} · ${e.ven.b}</div>
@@ -962,8 +980,10 @@ ${(()=>{const g=ingressoDe(e.ven);return (e.ven.tipo!=='galeria'&&g.free)?`<div 
         <span class="fav ${favs.has(e.ven.name)?'on':''}" onclick="toggleFav('${e.ven.name.replace(/'/g,"\\'")}')" title="Favoritar">&#9829;</span>
         ${e.ven.site?`<a class="btn ico" href="${e.ven.site}" target="_blank" title="Site" aria-label="Site">${ICO.site}</a>`:''}
         ${e.ven.ig?`<a class="btn ico" href="https://instagram.com/${e.ven.ig}" target="_blank" title="Instagram" aria-label="Instagram">${ICO.ig}</a>`:''}
+        ${e.img?`<button type="button" class="fotobtn" onclick="this.closest('.card').classList.toggle('fotoaberta')">foto</button>`:''}
         <a class="btn" href="${gsearch(e.t+' '+e.ven.name)}" target="_blank">Info</a>
         <a class="btn" href="${gmaps(e.ven)}" target="_blank">Rota</a></div>
+      ${shot}
     </div>`;
   }).join('')||'<p class="note">Nada encontrado com esses filtros.</p>';
 
