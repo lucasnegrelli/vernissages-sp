@@ -1,80 +1,58 @@
 # OPERACAO.md — como o Vernissages SP roda sozinho
 
-Fonte única da rotina. Duas tarefas agendadas apontam para cá e **não repetem
-nada deste arquivo**:
+Fonte única da rotina. **A operação virou quase toda GitHub Actions em
+31/08/2026** — o que restou de agente não repete nada deste arquivo.
 
-| tarefa | quando | o que faz | seção |
+| o quê | quando | quem roda | onde ajustar |
 |---|---|---|---|
-| `vsp-site` | todo dia, 00:00 | destaque do site e publicação | [Parte 1](#parte-1--rotina-diária-vsp-site) |
-| `vsp-semana` | domingo | varredura e o lote de social da semana | [Parte 2](#parte-2--rotina-de-domingo-vsp-semana) |
+| Destaque do dia + limpeza + publicação | todo dia 03:00 UTC | `diaria.yml` (Action) | [Parte 1](#parte-1--rotina-diária) |
+| Regenera acervo, páginas, sitemap | push em `dados.js` + 14:00 UTC | `build.yml` (Action) | — |
+| Espelha imagem externa pra `img/` | push em `dados.js` | `espelhar-imagens.yml` (Action) | — |
+| **Radar de fontes** — mostra nova, data divergente, `fim:null` | sábado 08:12 UTC | `radar.yml` → abre issue `radar` | `radar-fontes.js` |
+| **Garimpo de imagens** | sábado 09:00 UTC | `imagens.yml` → abre issue `garimpo` | `descobrir-imagens.js` |
+| **Manutenção do `dados.js`** — lê as issues, confere, edita, publica | domingo 13:17 UTC | rotina de nuvem `vsp-semana` | [Parte 2](#parte-2--rotina-de-domingo) |
+| Lote de social da semana | — | **manual, por enquanto** | [Parte 2](#parte-2--rotina-de-domingo) / `COMOGERAR.md` |
 
-Regra que vale para as duas mora em [Parte 3](#parte-3--vale-para-as-duas), e
-em nenhum outro lugar.
+Regra que vale para tudo mora em [Parte 3](#parte-3--vale-para-as-duas).
+
+A rotina de nuvem se gerencia em **https://claude.ai/code/routines** (ligar,
+desligar, rodar na hora, ver log). Ela **não tem navegador** — usa `WebFetch`; o
+julgamento visual ("é obra ou cartaz?") continua sendo do Lucas, ao revisar as
+issues.
 
 ---
 
-## ⚠️ Alinhamento de 31/08/2026 — em transição
+## O que mudou em 31/08/2026 — e por quê
 
-Decidido nesta data, **ainda não 100% aplicado**. Enquanto os três itens abaixo
-não estiverem feitos, a operação roda como descrito no resto do arquivo.
+**As tarefas `vsp-site` e `vsp-semana` do Claude Cowork foram apagadas.** Elas
+rodavam num ambiente sem credencial de git (o `push` morria em "could not read
+Username" toda vez) e com um navegador que recusava metade das navegações por
+falta de aprovação de domínio. Duas coisas que o GitHub Actions não tem: lá o
+`GITHUB_TOKEN` do job publica, e o Chrome do runner não tem parede de domínio.
 
-### 1. `vsp-site` vai ser desligada
+Então:
 
-A rotina diária do desktop é **redundante** com o workflow `diaria.yml`, que faz
-o mesmo destaque desde 26/08 com credencial de verdade (o `GITHUB_TOKEN` do job)
-e roda 03:00 UTC sem depender de máquina ligada. A `vsp-site` não consegue
-empurrar (o ambiente dela não tem git), e nos dias 30 e 31/08 deixou `index.lock`
-órfão que travou a `vsp-semana` por horas.
+- **A diária** já era `diaria.yml` desde 26/08. A `vsp-site` só duplicava,
+  falhava no push, e deixava `index.lock` órfão que travou o domingo em 30 e
+  31/08. Apagada, sem substituto — a Action basta.
+- **A varredura** virou `radar.yml` (`radar-fontes.js`): lê o JSON-LD da página
+  de SP do **Arte Que Acontece** (~60 mostras com nome, datas, endereço), casa
+  com os venues do `dados.js`, abre o site de cada casa nova pra confirmar o
+  título, audita `fim: null` antigo, e **abre uma issue** — não escreve no
+  `dados.js`. Ocula fica de fora (bloqueia bot). Guia das Artes e o cruzamento
+  de **horário de sábado** ainda faltam.
+- **A aplicação** do que a issue traz virou a rotina de nuvem `vsp-semana`, que
+  eu consigo gerenciar: ela confere cada linha na fonte primária, edita o
+  `dados.js`, roda o `check.js`, commita e empurra direto na `main` — rotina de
+  nuvem já vem com acesso ao repo, sem PAT.
+- **O social** (`planejar.js` + `semana.js`) segue **manual** até a linha
+  editorial ser refeita. Não migrou de propósito: mexer nela agora seria
+  retrabalho.
 
-**Ação do Lucas:** desligar a tarefa `vsp-site` no agendador. O `diaria.yml`
-assume sozinho. Rede de segurança: o GitHub já manda e-mail quando um workflow
-agendado falha (confira em Settings → Notifications → Actions).
-
-Quando estiver feito: a Parte 1 deste arquivo descreve o `diaria.yml`, não uma
-tarefa de desktop. O comportamento é o mesmo — só muda quem executa.
-
-### 2. `vsp-semana` ganha credencial git (PAT)
-
-Decidido: a rotina passa a **empurrar direto na `main`**, como qualquer clone.
-Fim do padrão "commita e o Lucas dá o push no domingo".
-
-**Ação do Lucas:**
-1. GitHub → Settings → Developer settings → **Fine-grained personal access
-   tokens** → Generate. Escopo: só o repo `vernissages-sp`, permissão
-   **Contents: Read and write**. Validade longa (1 ano).
-2. No ambiente onde a `vsp-semana` roda, definir a variável de ambiente
-   `GH_TOKEN` (ou `GITHUB_TOKEN`) com esse valor **ou** configurar o remote:
-   `git remote set-url origin https://<TOKEN>@github.com/lucasnegrelli/vernissages-sp.git`
-3. Testar: `git push` numa mudança boba deve subir sem pedir usuário.
-
-Guardar o token como segredo — nunca commitar. Se vazar, revoga e gera outro.
-
-### 3. A varredura de fontes migra para GitHub Actions
-
-Decidido: mover o **trabalho mecânico** da varredura (abrir os 3 agregadores +
-os sites de venue do rodízio, extrair mostras candidatas, conferir horário de
-sábado, cruzar com o `dados.js`) para um workflow que **abre uma issue com as
-propostas** — mesmo padrão do `imagens.yml`. O agente de domingo fica só com o
-**julgamento**: abrir a imagem e ver se é obra ou cartaz, confirmar data na
-fonte primária, escrever a curadoria de `rima`/`aproximacao`.
-
-Motivo: o navegador embutido do agente recusa metade das navegações (aprovação
-de domínio, e ninguém aprova numa execução agendada). O runner do Actions tem
-Chrome de verdade e nenhuma parede de domínio, é grátis, e não gasta token.
-
-Estado: **primeira camada no ar.** `radar-fontes.js` + `.github/workflows/radar.yml`
-(sábado 08:12 UTC, antes do `imagens.yml`) leem o JSON-LD da página de categoria
-de SP do **Arte Que Acontece** (~60 mostras com nome, datas e endereço), casam
-cada casa com os venues do `dados.js` e abrem uma issue com: nova mostra em casa
-mapeada, divergência de data, e casa citada que não está no diretório. Não
-escreve no `dados.js`.
-
-Falta ainda: **Guia das Artes** (lista montada por JS — a função existe mas só
-pega título+data pelo slug; precisa buscar o venue na página de cada mostra) e
-o cruzamento de **horário de sábado**. Ocula está fora (bloqueia bot, 403).
-
-Com o radar no ar, a **S1** vira: ler a issue do sábado, confirmar cada linha na
-fonte primária, abrir a imagem. O agente não varre mais os agregadores a mão.
+O que ainda pede olho humano, e só isso: revisar as duas issues de sábado
+(carimbar o que está certo), olhar as 3–8 imagens novas da semana, escrever a
+curadoria de `rima`/`aproximacao`, e a publicação no Instagram — que é manual
+para sempre, de propósito.
 
 ---
 
@@ -142,10 +120,16 @@ seu próprio push** — por isso toda rotina começa por `git pull --rebase`.
 
 ---
 
-# PARTE 1 — Rotina diária (`vsp-site`)
+# PARTE 1 — Rotina diária
 
-Roda todo dia, inclusive domingo. **Não toca em social.** É curta de propósito:
-o dia inteiro dela cabe em três fases.
+**Hoje é o workflow `.github/workflows/diaria.yml`**, todo dia 03:00 UTC, sem
+depender de máquina ligada. O que está descrito aqui é a lógica que o
+`destaque.js` + o `check.js` implementam — se o texto e o script divergirem, o
+script está certo. Ninguém roda isto à mão; se precisar forçar, é **Run
+workflow** na aba Actions.
+
+Três fases: **D0** sincronizar, **D1** destaque do dia, **D2** validar e
+publicar. Não toca em social.
 
 ## D0 — sincronizar
 
@@ -237,19 +221,42 @@ os títulos) ou **FALHOU**. Uma linha por fase que rodou.
 
 ---
 
-# PARTE 2 — Rotina de domingo (`vsp-semana`)
+# PARTE 2 — Rotina de domingo
 
-Roda só no domingo. Faz a varredura e gera **a semana inteira** de social de uma
-vez. Falha numa fase não cancela as outras.
+**Duas coisas separadas hoje:**
 
-## S1 — varredura
+1. **Manutenção do `dados.js`** — a rotina de nuvem `vsp-semana`, domingo 13:17
+   UTC. Lê as issues `radar` e `garimpo` (abertas no sábado pelas Actions),
+   confere cada linha na fonte primária, edita, roda `check.js`, empurra. É a
+   S1 abaixo, sem o trabalho braçal de abrir agregador — isso o `radar.yml` já
+   fez. Gerenciável em claude.ai/code/routines.
+2. **Lote de social da semana** — a S2/S3 abaixo. **Manual, por enquanto**,
+   rodada pelo Lucas na máquina local até a linha editorial ser refeita.
 
-Único momento da semana que abre agregador, site de venue e Instagram. Teto:
-**3 agregadores, 10 sites em rodízio, 8 perfis.**
+Falha numa fase não cancela as outras.
 
-**Comece rodando `node radar.js`.** Ele cruza `dados.js` com `acervo.json` e
-escreve `PENDENTE/RADAR.md` com a fila do rodízio — quem nunca teve mostra
-registrada primeiro.
+## S1 — varredura (o que a rotina de nuvem faz)
+
+O `radar.yml` (sábado) já abriu agregador e cruzou com o `dados.js`. A issue
+`radar` tem: mostra nova em casa mapeada, divergência de data, `fim: null`
+antigo, casa não mapeada. A issue `garimpo` tem propostas de imagem.
+
+O trabalho da rotina de nuvem é **confirmar e aplicar**, não varrer:
+
+- Cada mostra nova ou data divergente: abrir a página da própria casa
+  (`WebFetch` no `site` do venue) e conferir título, datas e cidade. O radar já
+  dá um palpite no campo "na fonte:". Só entra no `dados.js` o confirmado, com
+  um fato conferível no campo `d`.
+- `fim: null` antigo e "pode ter encerrado": abrir a página, remover se
+  encerrou, preencher `fim` se ganhou data.
+- Casa não mapeada: **só relatar**, não adicionar venue.
+
+O que a rotina de nuvem **não** alcança e continua manual/pendente: **horário de
+sábado** (o `radar` ainda não cruza isso), venue que só divulga no Instagram
+(`captar.js`), e vetar casa nova pro diretório.
+
+Referência do rodízio, se precisar priorizar à mão: `node radar.js` escreve
+`PENDENTE/RADAR.md` com a fila (quem nunca teve mostra registrada primeiro).
 
 ### O rodízio tem duas velocidades — mudou em 25/08/2026
 
