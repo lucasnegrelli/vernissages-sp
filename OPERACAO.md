@@ -11,6 +11,64 @@ nada deste arquivo**:
 Regra que vale para as duas mora em [Parte 3](#parte-3--vale-para-as-duas), e
 em nenhum outro lugar.
 
+---
+
+## ⚠️ Alinhamento de 31/08/2026 — em transição
+
+Decidido nesta data, **ainda não 100% aplicado**. Enquanto os três itens abaixo
+não estiverem feitos, a operação roda como descrito no resto do arquivo.
+
+### 1. `vsp-site` vai ser desligada
+
+A rotina diária do desktop é **redundante** com o workflow `diaria.yml`, que faz
+o mesmo destaque desde 26/08 com credencial de verdade (o `GITHUB_TOKEN` do job)
+e roda 03:00 UTC sem depender de máquina ligada. A `vsp-site` não consegue
+empurrar (o ambiente dela não tem git), e nos dias 30 e 31/08 deixou `index.lock`
+órfão que travou a `vsp-semana` por horas.
+
+**Ação do Lucas:** desligar a tarefa `vsp-site` no agendador. O `diaria.yml`
+assume sozinho. Rede de segurança: o GitHub já manda e-mail quando um workflow
+agendado falha (confira em Settings → Notifications → Actions).
+
+Quando estiver feito: a Parte 1 deste arquivo descreve o `diaria.yml`, não uma
+tarefa de desktop. O comportamento é o mesmo — só muda quem executa.
+
+### 2. `vsp-semana` ganha credencial git (PAT)
+
+Decidido: a rotina passa a **empurrar direto na `main`**, como qualquer clone.
+Fim do padrão "commita e o Lucas dá o push no domingo".
+
+**Ação do Lucas:**
+1. GitHub → Settings → Developer settings → **Fine-grained personal access
+   tokens** → Generate. Escopo: só o repo `vernissages-sp`, permissão
+   **Contents: Read and write**. Validade longa (1 ano).
+2. No ambiente onde a `vsp-semana` roda, definir a variável de ambiente
+   `GH_TOKEN` (ou `GITHUB_TOKEN`) com esse valor **ou** configurar o remote:
+   `git remote set-url origin https://<TOKEN>@github.com/lucasnegrelli/vernissages-sp.git`
+3. Testar: `git push` numa mudança boba deve subir sem pedir usuário.
+
+Guardar o token como segredo — nunca commitar. Se vazar, revoga e gera outro.
+
+### 3. A varredura de fontes migra para GitHub Actions
+
+Decidido: mover o **trabalho mecânico** da varredura (abrir os 3 agregadores +
+os sites de venue do rodízio, extrair mostras candidatas, conferir horário de
+sábado, cruzar com o `dados.js`) para um workflow que **abre uma issue com as
+propostas** — mesmo padrão do `imagens.yml`. O agente de domingo fica só com o
+**julgamento**: abrir a imagem e ver se é obra ou cartaz, confirmar data na
+fonte primária, escrever a curadoria de `rima`/`aproximacao`.
+
+Motivo: o navegador embutido do agente recusa metade das navegações (aprovação
+de domínio, e ninguém aprova numa execução agendada). O runner do Actions tem
+Chrome de verdade e nenhuma parede de domínio, é grátis, e não gasta token.
+
+Estado: **a construir.** Arquivos previstos: `radar-fontes.js` (fetch + parse +
+diff, reusando `pegar`/`pegarRender` do `descobrir-imagens.js`) e
+`.github/workflows/radar.yml` (sábado, antes do `imagens.yml`). Enquanto não
+existir, a S1 da Parte 2 continua sendo trabalho do agente.
+
+---
+
 ## Por que este arquivo existe, e por que continua sendo um só
 
 Até 19/08/2026 a operação estava em três tarefas (`agenda-vernissages-sp`,
