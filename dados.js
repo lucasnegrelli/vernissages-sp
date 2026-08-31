@@ -150,7 +150,6 @@ const EXPOS = [
 {t:"Playful, Stormy, Continuing — Ayako Rokkaku",a:"Ayako Rokkaku",v:"Baró Galeria",ini:"2026-08-20",fim:"2026-09-03",d:"Primeira individual da artista japonesa na América do Sul: cerca de quinze pinturas feitas durante residência em São Paulo. Mostra pop-up no Taller Zaragoza (Jardim Europa), depois da transferência da sede da Baró para a Espanha. Pintura ao vivo na abertura, dia 20, das 18h às 21h. Curadoria de Ana Carolina Ralston.",img:"img/playful-stormy-continuing-baro-galeria.webp",cred:"Cortesia Baró Galeria"},
 {t:"É Tempo Ainda",v:"Janaina Torres Galeria",ini:"2026-08-15",fim:"2026-10-17",d:"Vinte e seis artistas de gerações diferentes, com curadoria de Heloisa Amaral Peixoto, nos dez anos da galeria.",img:"img/e-tempo-ainda-janaina-torres-galeria.webp",cred:"Cortesia Janaina Torres Galeria"},
 {t:"Céu de concreto — Luiz Carlos Paulino",a:"Luiz Carlos Paulino",v:"Central Galeria",ini:"2026-08-15",fim:"2026-09-19",d:"Individual do artista com texto crítico de Lilia Moritz Schwarcz.",img:"img/ceu-de-concreto-central-galeria.webp",cred:"Cortesia Central Galeria"},
-{t:"Sala de Vídeo: Regina José Galindo",a:"Regina José Galindo",v:"MASP",ini:"2026-07-03",fim:"2026-08-23",d:"Registro em duas telas da performance Deportada (2024), em que a artista veste todas as roupas de uma mulher deportada de Nova York. Curadoria de Bruna Fernanda."},
 {t:"Uma Obra: Pintura sem fim",a:"Gui Teixeira",v:"Pinacoteca de São Paulo",ini:"2026-07-04",fim:"2028-01-31",d:"Terceira edição do projeto Uma Obra: uma parede de carpete recebe centenas de peças de feltro colorido que o público move e recompõe (Pina Luz). Colaboração do artista Gui Teixeira.",img:"img/uma-obra-pintura-sem-fim-pinacoteca-de-sao-paulo.jpg",cred:"Cortesia Pinacoteca de São Paulo"},
 {t:"Para crianças: experiências com a arte desde 1968",v:"Pinacoteca de São Paulo",ini:"2026-05-30",fim:"2026-10-18",d:"Onze artistas e obras que convidam crianças a intervir; a mais antiga é de 1968. Concebida pela Haus der Kunst, de Munique, com a Pinacoteca (Pina Contemporânea).",img:"img/para-criancas-experiencias-com-a-arte-desde-1968-pinacoteca-.jpg",cred:"Vista da exposição. Foto Levi Fanan / Cortesia Pinacoteca de São Paulo",vista:true},
 {t:"Beatriz Milhazes: gravuras do acervo da Pinacoteca",a:"Beatriz Milhazes",v:"Pinacoteca de São Paulo",ini:"2026-05-16",fim:"2027-03-14",d:"27 gravuras feitas entre 1996 e 2019 com a Durham Press (Pina Estação).",img:"img/beatriz-milhazes-gravuras-do-acervo-da-pinacoteca-pinacoteca.jpg",cred:"Vista da exposição. Foto Levi Fanan / Cortesia Pinacoteca de São Paulo",vista:true},
@@ -196,7 +195,6 @@ cat: fomento | residencia | premio | chamada
 prazo: YYYY-MM-DD · null = fluxo continuo (sem data de encerramento divulgada)
 Nunca inventar prazo: se a fonte nao trouxer data, deixe null e explique no campo d. */
 const EDITAIS = [
-{t:"Residências Cruzadas — línguas e conhecimentos indígenas além das fronteiras",org:"IDBRASIL (Museu da Língua Portuguesa) e Cité internationale de la langue française",cat:"residencia",prazo:"2026-08-30",quem:"Artistas e pesquisadores indígenas residentes no Brasil — atenção especial à região de fronteira com a Guiana Francesa",onde:"Brasil (residência na França)",valor:"Bolsa de 3.000 euros",taxa:"gratuita",d:"Duas bolsas, uma para residente no Brasil e outra na Guiana Francesa, para um mês de residência no Château de Villers-Cotterêts (França), de 15 de março a 11 de abril de 2027. Projetos ligados à valorização, circulação e história das línguas e conhecimentos indígenas.",link:"https://www.idbr.org.br/edital-do-programa-de-residencias-cruzadas-linguas-e-conhecimentos-indigenas-alem-das-fronteiras/",fonte:"idbr.org.br via Mapa das Artes"},
 {t:"Clínica Geral 2026 — Ateliê397",org:"Ateliê397",cat:"chamada",prazo:null,quem:"Artistas visuais em qualquer estágio de carreira",onde:"São Paulo",taxa:"a confirmar",d:"Grupos de acompanhamento de projetos do Ateliê397 no segundo semestre de 2026. O espaço informa inscrições abertas e prorrogadas, sem divulgar data de encerramento.",link:"https://atelie397.com",fonte:"Instagram @atelie397, 03/08/2026"},
 {t:"Propostas de exposição para o MAB FAAP",org:"Museu de Arte Brasileira da FAAP",cat:"chamada",prazo:null,quem:"Artistas, curadores e coletivos",onde:"São Paulo",taxa:"gratuita",d:"O museu recebe propostas de exposição em fluxo contínuo, por formulário online. Não há data de encerramento divulgada.",link:"https://faapinscricao.crmeducacional.com/formulario/2406",fonte:"faap.br/mab"}
 ];
@@ -225,11 +223,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Vonta de vi dada dada — Ernesto Neto (Jardins)",
-  v: "Fortes D'Aloia & Gabriel — Galeria",
-  quem: "Ernesto Neto",
-  txt: "Individual aberta simultaneamente nas duas sedes paulistanas da galeria. Esculturas em crochê de algodão, cordas trançadas, bambu, aço corten e barro, com a série inédita de esculturas de parede que o artista chama de InsePás. Abertura em 22 de agosto, até 17 de outubro.",
-  link: "https://fdag.com.br",
+  t: "Presença — Anna Maria Maiolino",
+  v: "Galeria Luisa Strina",
+  quem: "Anna Maria Maiolino",
+  txt: "Individual da ítalo-brasileira, com obras de 1974 a 2026: as esculturas de vidro soprado da série Emanados, o raku de São Seis Raku, as radiografias de Marcas na Transparência e a fotografia X, da Fotopoemação. Texto de Lotte Johnson, curadora da Barbican. Abertura em 8 de agosto, até 19 de setembro.",
+  link: "https://www.luisastrina.com.br",
   publi: false
 };
 
@@ -244,6 +242,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-08-31", k:"Presença — Anna Maria Maiolino|Galeria Luisa Strina"},
   {d:"2026-08-30", k:"Vonta de vi dada dada — Ernesto Neto (Jardins)|Fortes D'Aloia & Gabriel — Galeria"},
   {d:"2026-08-29", k:"Imagens do Interior — Fabiana de Barros|Luciana Brito Galeria"},
   {d:"2026-08-28", k:"Smoke — Lucia Nogueira|Gomide&Co"},
@@ -286,5 +285,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "30/08/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "31/08/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
