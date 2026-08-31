@@ -109,9 +109,26 @@
   .kpiselo:hover .st b{color:var(--accent)}
 
   /* ---------- titulos ---------- */
-  h2{font-size:.7rem;font-weight:600;margin:64px 0 20px;text-transform:uppercase;
-    letter-spacing:2.6px;color:var(--muted);padding-bottom:11px;border-bottom:1px solid var(--hair);
-    display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  /* Titulo de secao primaria — Agenda, Diretorio, Aberturas da semana.
+     Antes era o mesmo sussurro cinza das secoes menores, e a pagina ficava
+     sem hierarquia: tudo parecia rodape. */
+  h2{font-family:var(--display);font-size:1.24rem;font-weight:600;margin:60px 0 18px;
+    letter-spacing:-.3px;color:var(--ink);padding-bottom:13px;border-bottom:1px solid var(--line2);
+    display:flex;align-items:center;gap:11px;flex-wrap:wrap}
+  h2 .wkhint,h2 .pn2{font-family:var(--font);font-size:.68rem;font-weight:600;letter-spacing:1.5px;
+    text-transform:uppercase;color:var(--muted)}
+
+  /* Secao secundaria/participativa — colapsada por padrao, em qualquer tela. */
+  .dobra>h2{position:relative;font-family:var(--font);font-size:.7rem;font-weight:600;
+    text-transform:uppercase;letter-spacing:2.6px;color:var(--muted);cursor:pointer;
+    user-select:none;padding-right:30px;border-bottom-color:var(--hair)}
+  .dobra>h2::after{content:'';position:absolute;right:6px;top:50%;width:9px;height:9px;
+    border-right:1.6px solid var(--muted);border-bottom:1.6px solid var(--muted);
+    transform:translateY(-70%) rotate(45deg);transition:transform .22s}
+  .dobra>h2:hover{color:var(--text2)}
+  .dobra.aberta>h2::after{transform:translateY(-25%) rotate(225deg)}
+  .dobra .dobrac{display:none}
+  .dobra.aberta .dobrac{display:block}
 
   /* ---------- controles ---------- */
   .filters{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 16px;align-items:center}
@@ -230,16 +247,6 @@
   .btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(232,193,90,.09)}
   .btn.ico{padding:5px 8px;line-height:0;display:inline-flex;align-items:center;justify-content:center}
   .btn.ico svg{display:block}
-  .dobra>h2{position:relative}
-  @media(max-width:950px){
-    .dobra>h2{cursor:pointer;padding-right:30px;user-select:none}
-    .dobra>h2::after{content:'';position:absolute;right:6px;top:50%;width:9px;height:9px;
-      border-right:1.6px solid var(--muted);border-bottom:1.6px solid var(--muted);
-      transform:translateY(-70%) rotate(45deg);transition:transform .22s}
-    .dobra.aberta>h2::after{transform:translateY(-25%) rotate(225deg)}
-    .dobra .dobrac{display:none}
-    .dobra.aberta .dobrac{display:block}
-  }
   .btn.add{border-color:rgba(167,139,250,.4);color:var(--violet)}
   .btn.add:hover{background:rgba(167,139,250,.14);border-color:var(--violet);color:var(--violet)}
   .share{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
@@ -1334,13 +1341,12 @@ const wk=expos.filter(e=>{const d=new Date(e.ini+'T12:00');return d<=end&&d>=sta
   document.getElementById('waShare').href='https://wa.me/?text='+encodeURIComponent(txt);
   setTimeout(wkFade,60);
 }
-/* no celular os painéis de análise abrem sob demanda, para não empurrar a agenda */
+/* Os painéis de análise (enquete, espaços por bairro, imersivas) abrem sob
+   demanda em qualquer tela — antes empurravam a agenda pra fora da vista e
+   davam à página um rodapé de 2000px sem hierarquia. */
 document.addEventListener('DOMContentLoaded',()=>{
   document.querySelectorAll('.dobra>h2').forEach(h=>{
-    h.addEventListener('click',()=>{
-      if(!window.matchMedia('(max-width:950px)').matches)return;
-      h.parentElement.classList.toggle('aberta');
-    });
+    h.addEventListener('click',()=>h.parentElement.classList.toggle('aberta'));
   });
 });
 function wkFade(){
