@@ -326,6 +326,36 @@ function escolher(D, hoje) {
        perde ponto; flyer esta fora, porque nao mostra obra nenhuma. */
     if (e.cartaz) barreiras.push("cartaz/flyer, nao reproducao");
 
+    /* Imagem local que existe mas e minuscula: placeholder, logo ou o arquivo
+       que o espelhar.js nao conseguiu baixar direito.
+     *
+     * Isto derrubou a rotina diaria em 30/08/2026, e a falha foi silenciosa por
+     * tres dias. A mostra "Presenca", de Anna Maria Maiolino, na Luisa Strina,
+     * tinha no `img` uma URL do CDN da Artlogic que serve 14 KB. O
+     * `espelhar.js` ja avisava que nao dava para espelhar ("pequena demais").
+     * Mas o `destaque.js` so olhava LARGURA, nunca peso — entao a mostra
+     * continuava elegivel, foi escolhida, e o `check.js` a reprovou no `E23`
+     * ("so 14 KB, provavel logo ou placeholder"). check.js sai com codigo 1, o
+     * workflow "Destaque do dia" falha inteiro, nenhum destaque e commitado, e
+     * o site fica com o do dia anterior sem ninguem perceber.
+     *
+     * Uma imagem ruim numa mostra entre sessenta podia parar a publicacao do
+     * dia. O criterio aqui e o mesmo do E23 de proposito: o destaque.js nao
+     * deve escolher candidata que o check.js vai reprovar. */
+    const KB_MIN = 15;
+    if (!barreiras.length && e.img && !/^https?:/i.test(e.img)) {
+      try {
+        const fs2 = require("fs"), path2 = require("path");
+        const rel = String(e.img).split("?")[0].replace(/^\.?\//, "");
+        const alvo = path2.resolve(__dirname, rel);
+        if (!fs2.existsSync(alvo)) barreiras.push("imagem nao existe em disco");
+        else if (fs2.statSync(alvo).size < KB_MIN * 1024) {
+          barreiras.push("imagem de " + Math.round(fs2.statSync(alvo).size / 1024) +
+                         " KB, abaixo de " + KB_MIN + " KB — o check.js reprova no E23");
+        }
+      } catch (err) { /* ambiente sem fs: deixa passar, o check.js pega */ }
+    }
+
     /* Nao barra: so anota que a casa e a mesma de um espaco recente. */
     const irma = [...casasQuentes].filter(q => q !== e.v && galeriaBase(q) === galeriaBase(e.v))[0];
     const img = barreiras.length ? { grau: -1, largura: 0 } : medirDaMostra(e);
