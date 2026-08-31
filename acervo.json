@@ -1814,7 +1814,8 @@
    "tipo": "galeria",
    "site": "https://fdag.com.br",
    "ig": "fortesdaloiagabriel",
-   "visto": "2026-08-30"
+   "visto": "2026-08-30",
+   "primeiroRegistro": "2026-08-30"
   },
   {
    "id": "vonta-de-vi-dada-dada-ernesto-neto-barra-funda--fortes-d-aloia-e-gabriel-galpao",
@@ -1830,7 +1831,8 @@
    "tipo": "galeria",
    "site": "https://fdag.com.br",
    "ig": "fortesdaloiagabriel",
-   "visto": "2026-08-30"
+   "visto": "2026-08-30",
+   "primeiroRegistro": "2026-08-30"
   },
   {
    "id": "o-homem-nu-efrain-almeida--fortes-d-aloia-e-gabriel-galpao",
@@ -1846,7 +1848,8 @@
    "tipo": "galeria",
    "site": "https://fdag.com.br",
    "ig": "fortesdaloiagabriel",
-   "visto": "2026-08-30"
+   "visto": "2026-08-30",
+   "primeiroRegistro": "2026-08-30"
   }
  ],
  "artistas": {
@@ -2661,7 +2664,7 @@
    "tipo": "galeria",
    "site": "https://www.luisastrina.com.br",
    "ig": "galerialuisastrina",
-   "info": "Fundada em 1974, decana da arte contemporânea no Brasil. Alfredo Jaar, Cildo Meireles, Leonilson."
+   "info": "Fundada em 1974, decana da arte contemporânea no Brasil. Alfredo Jaar, Cildo Meireles, Leonilson. Segunda a sexta, 10h–19h; sábado, 10h–17h."
   },
   "galatea": {
    "name": "Galatea",
@@ -2681,7 +2684,7 @@
    "tipo": "galeria",
    "site": "https://www.casatriangulo.com",
    "ig": "casatriangulo",
-   "info": "Desde 1988 (Ricardo Trevisan). ~500 m² experimentais. Yuli Yamagata, Vânia Mignone."
+   "info": "Desde 1988 (Ricardo Trevisan). ~500 m² experimentais. Yuli Yamagata, Vânia Mignone. Terça a sexta, 10h–19h; sábado, 10h–17h."
   },
   "zipper-galeria": {
    "name": "Zipper Galeria",
@@ -2721,7 +2724,7 @@
    "tipo": "galeria",
    "site": "https://www.galeriamarceloguarnieri.com.br",
    "ig": "galeriamarceloguarnieri",
-   "info": "Origem em Ribeirão Preto (1985); espaço nos Jardins. Fotografia e contemporâneo."
+   "info": "Origem em Ribeirão Preto (1985); espaço nos Jardins. Fotografia e contemporâneo. Segunda a sexta, 10h–19h; sábado, 10h–17h."
   },
   "simoes-de-assis": {
    "name": "Simões de Assis",
@@ -2861,7 +2864,7 @@
    "tipo": "galeria",
    "site": "https://lucianabritogaleria.com.br",
    "ig": "lucianabritogaleria",
-   "info": "Sede em casa modernista de Rino Levi (1958). Contemporâneo internacional."
+   "info": "Sede em casa modernista de Rino Levi (1958). Contemporâneo internacional. Segunda, 10h–18h; terça a sexta, 10h–19h; sábado, 11h–17h."
   },
   "galeria-lume": {
    "name": "Galeria Lume",
@@ -2881,7 +2884,7 @@
    "tipo": "galeria",
    "site": "https://gomideco.com.br",
    "ig": "gomideco",
-   "info": "600 m² no corredor cultural da Paulista, com mezanino para individuais. Modernismo e contemporâneo."
+   "info": "600 m² no corredor cultural da Paulista, com mezanino para individuais. Modernismo e contemporâneo. Segunda a sexta, 10h–19h; sábado, 11h–17h."
   },
   "almeida-e-dale-millan": {
    "name": "Almeida & Dale | Millan",
@@ -2981,7 +2984,7 @@
    "tipo": "galeria",
    "site": "https://mendeswooddm.com",
    "ig": "mendeswooddm",
-   "info": "SP, Bruxelas, NY, Paris. Sonia Gomes, Paulo Nazareth, Solange Pessoa."
+   "info": "SP, Bruxelas, NY, Paris. Sonia Gomes, Paulo Nazareth, Solange Pessoa. Terça a sexta, 11h–19h; sábado, 10h–17h."
   },
   "fortes-d-aloia-e-gabriel-galpao": {
    "name": "Fortes D'Aloia & Gabriel — Galpão",
@@ -3001,7 +3004,7 @@
    "tipo": "galeria",
    "site": "https://galeriavermelho.com.br",
    "ig": "galeriavermelho",
-   "info": "Desde 2002. Performance, instalação e política. Verbo (mostra anual de performance)."
+   "info": "Desde 2002. Performance, instalação e política. Verbo (mostra anual de performance). Terça a sexta, 10h–19h; sábado, 11h–17h."
   },
   "hoa-galeria": {
    "name": "HOA Galeria",
@@ -3361,7 +3364,7 @@
    "tipo": "galeria",
    "site": "https://mendeswooddm.com",
    "ig": "",
-   "info": "Segundo espaço paulistano da Mendes Wood DM, em casa modernista."
+   "info": "Segundo espaço paulistano da Mendes Wood DM, em casa modernista. Segunda a sexta, 11h–19h. Não abre sábado."
   },
   "gruta-espaco-de-arte-contemporanea": {
    "name": "GRUTA Espaço de Arte Contemporânea",
@@ -3571,7 +3574,7 @@
    "tipo": "galeria",
    "site": "https://galeriacontempo.com.br",
    "ig": "",
-   "info": "Dirigida por Marcia e Mônica Felmanas; em 2026 promoveu o retorno da obra de Aldir Mendes de Souza ao circuito expositivo."
+   "info": "Dirigida por Marcia e Mônica Felmanas; em 2026 promoveu o retorno da obra de Aldir Mendes de Souza ao circuito expositivo. Segunda a sexta, 10h–19h; sábado, 10h–16h."
   }
  },
  "atualizado": "2026-08-30"
