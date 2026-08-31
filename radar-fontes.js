@@ -311,7 +311,60 @@ function classificar(cands, DATA) {
     else if (!fim) talvezEncerradas.push({ e, motivo: 'sem data de fim e não aparece no agregador' });
   }
 
-  return { novas, divergencias, casaNova, talvezEncerradas, erros, jaEncerradas };
+  /* auditoria de `fim: null` — independente do feed. A limpeza da diária só
+     olha `fim`, então mostra sem data de encerramento e com abertura antiga
+     fica "em cartaz" pra sempre. Em 30/08 havia uma de 2025. */
+  const semFim = DATA.expos
+    .filter(e => !e.fim && e.ini)
+    .map(e => ({ e, diasAberta: Math.round((Date.parse(HOJE) - Date.parse(e.ini)) / 864e5) }))
+    .filter(x => x.diasAberta > 100)
+    .sort((a, b) => b.diasAberta - a.diasAberta);
+
+  return { novas, divergencias, casaNova, talvezEncerradas, semFim, erros, jaEncerradas };
+}
+
+/* ---------- confirmação na fonte primária ----------
+   Pra cada mostra nova ou divergente, abre o site da própria casa e diz se o
+   título aparece. Não decide nada — só poupa o clique de abrir o site quando o
+   HTML servido já responde, e marca claramente quando NÃO responde (site JS,
+   fora do ar) pra conferência manual. */
+const INDICES = ['', '/exposicoes', '/exposicoes/', '/exhibitions', '/exhibitions/',
+  '/mostras', '/programacao', '/agenda', '/en/exhibitions', '/current', '/exposicoes-atuais'];
+
+async function confirmarNaFonte(items, render) {
+  const feitos = new Map();               // site -> texto concatenado das páginas
+  const pegarSite = async site => {
+    if (feitos.has(site)) return feitos.get(site);
+    let txt = '';
+    for (const ix of INDICES.slice(0, 4)) {
+      let u; try { u = new URL(ix, site).href; } catch { continue; }
+      const r = await pegar(u);
+      if (r.html) txt += ' ' + r.html.replace(/<[^>]+>/g, ' ');
+      if (txt.length > 400) break;
+    }
+    if (txt.replace(/\s+/g, '').length < 300 && render) {
+      const r = await pegarRender(site);
+      if (r.html) txt += ' ' + r.html.replace(/<[^>]+>/g, ' ');
+    }
+    txt = norm(txt);
+    feitos.set(site, txt);
+    return txt;
+  };
+
+  for (const it of items) {
+    const v = it.v, c = it.c;
+    if (!v || !v.site) { c._confirma = 'sem site na base — conferir na mão'; continue; }
+    if (feitos.size > 18 && !feitos.has(v.site)) { c._confirma = 'não checado (teto de páginas)'; continue; }
+    const txt = await pegarSite(v.site);
+    if (!txt || txt.replace(/\s+/g, '').length < 300) {
+      c._confirma = `site não entregou HTML útil (provável JS) — abrir ${v.site} na mão`;
+      continue;
+    }
+    const toks = tokensTitulo(c.titulo);
+    const achou = toks.filter(t => txt.includes(t)).length;
+    if (achou >= Math.max(2, Math.ceil(toks.length * 0.6))) c._confirma = `✓ título aparece em ${v.site}`;
+    else c._confirma = `✗ título NÃO encontrado no HTML de ${v.site} — conferir`;
+  }
 }
 
 /* ---------- relatório ---------- */
@@ -337,6 +390,7 @@ function relatorio(r, DATA, meses) {
     L.push(`- **datas (agregador):** ${c.ini || '?'} → ${c.fim || '?'}`);
     if (c.endereco) L.push(`- **endereço no agregador:** ${c.endereco}`);
     L.push(`- **fonte:** ${c.fonte} — ${c.url}`);
+    if (c._confirma) L.push(`- **na fonte:** ${c._confirma}`);
     if (c.img) L.push(`- **imagem candidata:** ${c.img}  _(medir e olhar antes)_`);
     L.push('');
     L.push('```js');
@@ -351,6 +405,7 @@ function relatorio(r, DATA, meses) {
   for (const { c, ja, v, dif } of r.divergencias) {
     L.push(`- **${ja.t}** · ${v.name}`);
     dif.forEach(d => L.push(`  - ${d}`));
+    if (c._confirma) L.push(`  - na fonte: ${c._confirma}`);
     L.push(`  - fonte: ${c.fonte} — ${c.url}`);
   }
   L.push('');
@@ -359,6 +414,17 @@ function relatorio(r, DATA, meses) {
   L.push('');
   if (!r.talvezEncerradas.length) L.push('_nada._');
   for (const { e, motivo } of r.talvezEncerradas) L.push(`- **${e.t}** · ${e.v} — ${motivo}`);
+  L.push('');
+
+  L.push(`## \`fim: null\` com abertura antiga — a limpeza da diária nunca alcança (${r.semFim.length})`);
+  L.push('');
+  L.push('_Mostra sem data de encerramento fica "em cartaz" pra sempre. Reconferir na fonte: ou ganhou data, ou já saiu._');
+  L.push('');
+  if (!r.semFim.length) L.push('_nada._');
+  for (const { e, diasAberta } of r.semFim) {
+    const v = DATA.venues.find(x => x.name === e.v);
+    L.push(`- **${e.t}** · ${e.v} — aberta desde ${e.ini} (${diasAberta} dias)${v && v.site ? ` · ${v.site}` : ''}`);
+  }
   L.push('');
 
   L.push(`## Casa não mapeada — vetar o espaço antes da mostra (${r.casaNova.length})`);
@@ -381,7 +447,7 @@ function relatorio(r, DATA, meses) {
   }
 
   L.push('---');
-  L.push(`_${r.novas.length} nova(s) · ${r.divergencias.length} divergência(s) · ${r.talvezEncerradas.length} pra confirmar encerramento · ${r.casaNova.length} de casa não mapeada · ${r.jaEncerradas} candidata(s) já encerrada(s), ignoradas._`);
+  L.push(`_${r.novas.length} nova(s) · ${r.divergencias.length} divergência(s) · ${r.talvezEncerradas.length} pra confirmar encerramento · ${r.semFim.length} com \`fim: null\` antigo · ${r.casaNova.length} de casa não mapeada · ${r.jaEncerradas} já encerrada(s), ignoradas._`);
   return L.join('\n');
 }
 
@@ -400,8 +466,14 @@ function relatorio(r, DATA, meses) {
   console.log(`  ${reais.length} candidatas coletadas · ${reais.filter(c => c.ehSP).length} em São Paulo`);
 
   const r = classificar(cands, DATA);
-  console.log(`  novas ${r.novas.length} · divergências ${r.divergencias.length} · talvez encerradas ${r.talvezEncerradas.length} · casa não mapeada ${r.casaNova.length}`);
+  console.log(`  novas ${r.novas.length} · divergências ${r.divergencias.length} · talvez encerradas ${r.talvezEncerradas.length} · casa não mapeada ${r.casaNova.length} · fim:null antigas ${r.semFim.length}`);
   if (r.erros.length) r.erros.forEach(e => console.log('  ! ' + e));
+
+  if (!tem('sem-confirmar') && (r.novas.length || r.divergencias.length)) {
+    console.log('  confirmando na fonte primária…');
+    await confirmarNaFonte([...r.novas, ...r.divergencias], !tem('sem-render'));
+    if (_browser) await _browser.close().catch(() => {});
+  }
 
   const md = relatorio(r, DATA, meses);
   const saida = flag('saida', null);

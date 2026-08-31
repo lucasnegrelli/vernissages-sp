@@ -47,6 +47,17 @@ jobs:
         with:
           node-version: '20'
 
+      # Pra confirmação na fonte: metade dos sites de galeria monta a página por
+      # JS, e o fetch estático volta só o esqueleto. O headless entra como plano
+      # B, mesmo padrão do imagens.yml. Se o Chrome não aparecer, o script cai no
+      # fetch e diz "abrir na mão" — perde alcance, não quebra.
+      - name: Preparar o headless
+        run: |
+          npm i --no-save puppeteer-core
+          for c in /usr/bin/google-chrome /usr/bin/chromium-browser /usr/bin/chromium; do
+            if [ -x "$c" ]; then echo "CHROME=$c" >> "$GITHUB_ENV"; echo "chrome: $c"; break; fi
+          done
+
       - name: Varrer as fontes
         run: |
           node radar-fontes.js \
