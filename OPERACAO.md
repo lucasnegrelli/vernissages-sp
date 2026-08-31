@@ -62,10 +62,19 @@ Motivo: o navegador embutido do agente recusa metade das navegações (aprovaç�
 de domínio, e ninguém aprova numa execução agendada). O runner do Actions tem
 Chrome de verdade e nenhuma parede de domínio, é grátis, e não gasta token.
 
-Estado: **a construir.** Arquivos previstos: `radar-fontes.js` (fetch + parse +
-diff, reusando `pegar`/`pegarRender` do `descobrir-imagens.js`) e
-`.github/workflows/radar.yml` (sábado, antes do `imagens.yml`). Enquanto não
-existir, a S1 da Parte 2 continua sendo trabalho do agente.
+Estado: **primeira camada no ar.** `radar-fontes.js` + `.github/workflows/radar.yml`
+(sábado 08:12 UTC, antes do `imagens.yml`) leem o JSON-LD da página de categoria
+de SP do **Arte Que Acontece** (~60 mostras com nome, datas e endereço), casam
+cada casa com os venues do `dados.js` e abrem uma issue com: nova mostra em casa
+mapeada, divergência de data, e casa citada que não está no diretório. Não
+escreve no `dados.js`.
+
+Falta ainda: **Guia das Artes** (lista montada por JS — a função existe mas só
+pega título+data pelo slug; precisa buscar o venue na página de cada mostra) e
+o cruzamento de **horário de sábado**. Ocula está fora (bloqueia bot, 403).
+
+Com o radar no ar, a **S1** vira: ler a issue do sábado, confirmar cada linha na
+fonte primária, abrir a imagem. O agente não varre mais os agregadores a mão.
 
 ---
 

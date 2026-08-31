@@ -1,0 +1,91 @@
+name: Radar de fontes
+
+# Camada 1 da varredura: o trabalho mecanico, sem o julgamento.
+#
+# O radar-fontes.js le o JSON-LD da pagina de categoria de SP do Arte Que
+# Acontece (~60 mostras com nome, datas e endereco), casa cada casa com os
+# venues do dados.js e cospe um relatorio: o que e novo numa casa ja mapeada,
+# divergencia de data, e casa que o agregador cita e nao esta no diretorio.
+#
+# NAO escreve no dados.js e NAO abre PR. Publica numa issue, igual ao
+# imagens.yml. Agregador e pista, nao fato: em 20/08 o Arte Que Acontece
+# anunciava um dominio da HOA que tinha caido e servia cassino. A issue existe
+# pra alguem conferir na fonte primaria, nao pra clicar em merge.
+#
+# Roda sabado, antes do imagens.yml: a vsp-semana de domingo usa os dois
+# relatorios, e chegar com eles prontos na vespera e melhor que competir pelo
+# mesmo teto de paginas.
+
+on:
+  schedule:
+    # Sabado 08:12 UTC = 05:12 em Sao Paulo. Fora do :00 pra nao cair na fila
+    # cheia do GitHub.
+    - cron: '12 8 * * 6'
+  workflow_dispatch:
+    inputs:
+      mes:
+        description: 'Mes unico AAAA-MM (vazio = mes atual + o seguinte)'
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: radar-fontes
+  cancel-in-progress: false
+
+jobs:
+  radar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Varrer as fontes
+        run: |
+          node radar-fontes.js \
+            ${{ inputs.mes && format('--mes {0}', inputs.mes) || '' }} \
+            --saida /tmp/RADAR-FONTES.md | tee /tmp/radar.log
+
+      - name: Guardar o relatorio
+        uses: actions/upload-artifact@v4
+        with:
+          name: radar-fontes
+          path: /tmp/RADAR-FONTES.md
+          retention-days: 90
+
+      - name: Abrir a issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const corpo = fs.readFileSync('/tmp/RADAR-FONTES.md', 'utf8');
+            const hoje = new Date().toISOString().slice(0, 10);
+            const TETO = 60000;
+            let texto = corpo;
+            if (texto.length > TETO) {
+              texto = texto.slice(0, TETO) +
+                '\n\n---\n\n**Cortado aqui.** O relatorio inteiro esta no artifact `radar-fontes` desta rodada.\n';
+            }
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: 'Radar de fontes — ' + hoje,
+              body: texto,
+              labels: ['radar']
+            });
+
+      - name: Resumo
+        if: always()
+        run: |
+          {
+            echo '```'
+            tail -20 /tmp/radar.log 2>/dev/null || echo "sem log"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
