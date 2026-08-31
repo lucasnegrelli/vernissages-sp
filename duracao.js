@@ -279,13 +279,18 @@ async function principal() {
 
   console.log(L.cartaz.length + ' mostras em cartaz em ' + hoje + ' · ' + L.casas + ' casas');
   console.log('  com data de fim: ' + L.linhas.length + ' · sem: ' + L.semFim.length);
+
+  // As duas travas vêm antes de qualquer leitura de L.galeria/L.institucional:
+  // um recorte por tipo único (só galeria ou só instituição) zera um dos grupos,
+  // e o formato inteiro é a comparação entre os dois. Abortar com mensagem, não
+  // estourar TypeError no console.log da mediana (era o caso de 09/09 e 12/09).
+  if (L.linhas.length < 20) throw new Error('So ' + L.linhas.length + ' mostras com data de fim — o desenho nao tem massa para dizer nada.');
+  if (!L.galeria || !L.institucional) throw new Error('Falta um dos dois tipos: a peca compara a duracao de galeria com a de instituicao. Um filtro por tipo unico nao serve aqui — use salao ou deriva para recorte de um tipo so.');
+
   console.log('  galeria:       mediana ' + L.galeria.dur + ' dias de duração, restam ' + L.galeria.resta);
   console.log('  institucional: mediana ' + L.institucional.dur + ' dias de duração, restam ' + L.institucional.resta);
   const urg = L.linhas.filter(l => l.resta <= (cfg.limiteUrgente || 14)).length;
   console.log('  acabam em ' + (cfg.limiteUrgente || 14) + ' dias: ' + urg);
-
-  if (L.linhas.length < 20) throw new Error('So ' + L.linhas.length + ' mostras com data de fim — o desenho nao tem massa para dizer nada.');
-  if (!L.galeria || !L.institucional) throw new Error('Falta um dos dois tipos: a peca compara galeria com instituicao.');
 
   const tmp = path.join(RAIZ, '.dur-tmp.html');
   fs.writeFileSync(tmp, montarHTML(L, hoje, cfg), 'utf8');
