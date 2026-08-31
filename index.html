@@ -185,21 +185,29 @@
   .artist:hover{color:var(--accent);border-bottom-color:var(--accent)}
   .dist{color:var(--blue);font-size:.75rem}
 
-  /* foto da mostra no card: espia no hover (desktop), botao "foto" no toque */
-  .cardshot{max-height:0;overflow:hidden;border-radius:12px;opacity:0;position:relative;
-    transition:max-height .34s ease,margin-top .34s ease,opacity .3s ease}
-  .cardshot img{width:100%;height:150px;object-fit:cover;display:block;filter:saturate(1.04) contrast(1.02)}
-  .cardshot .cred{position:absolute;right:8px;bottom:7px;font-size:.58rem;letter-spacing:.3px;
-    color:var(--text2);background:rgba(10,10,13,.62);border:1px solid var(--line);padding:2px 8px;border-radius:20px}
-  .card.fotoaberta .cardshot{max-height:170px;margin-top:13px;opacity:1}
+  /* foto da mostra no card: o botao "foto" cobre o card com a imagem.
+     Overlay em vez de faixa que empurra o layout — o card mora num container
+     que rola sozinho, e faixa que cresce aparecia fora da area visivel.
+     Clicar na imagem fecha. */
+  .cardshot{display:none;position:absolute;inset:0;z-index:6;cursor:pointer;
+    border-radius:var(--radius);overflow:hidden;animation:cardshotin .28s ease}
+  @keyframes cardshotin{from{opacity:0}to{opacity:1}}
+  .cardshot img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.04) contrast(1.02)}
+  .cardshot .cred{position:absolute;right:9px;bottom:9px;font-size:.6rem;letter-spacing:.3px;
+    color:var(--text2);background:rgba(10,10,13,.72);border:1px solid var(--line);padding:3px 9px;border-radius:20px}
+  .cardshot::after{content:'fechar ✕';position:absolute;left:9px;top:9px;font-size:.58rem;letter-spacing:.5px;
+    text-transform:uppercase;color:var(--text2);background:rgba(10,10,13,.72);border:1px solid var(--line);
+    padding:3px 9px;border-radius:20px}
+  .card.fotoaberta{overflow:hidden}
+  .card.fotoaberta .cardshot{display:block}
   .fotobtn{background:var(--glass2);border:1px solid var(--line);color:var(--text2);border-radius:20px;
-    padding:5px 11px;font-size:.72rem;cursor:pointer;font-family:var(--font);letter-spacing:.3px;transition:.18s}
+    padding:5px 11px;font-size:.72rem;cursor:pointer;font-family:var(--font);letter-spacing:.3px;transition:.18s;
+    display:inline-flex;align-items:center;gap:5px}
+  .fotobtn::before{content:'';width:11px;height:9px;border-radius:2px;border:1.4px solid currentColor;
+    border-bottom-width:3px;opacity:.7}
   .fotobtn:hover{border-color:var(--accent);color:var(--accent)}
+  .card.fotoaberta .fotobtn{border-color:var(--accent);color:var(--accent)}
   .card.semfoto .cardshot,.card.semfoto .fotobtn{display:none}
-  @media (hover:hover){
-    .card:hover .cardshot{max-height:170px;margin-top:13px;opacity:1}
-    .fotobtn{display:none}
-  }
 
   /* etiquetas */
   .tag{font-size:.63rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
@@ -899,8 +907,14 @@ let map=null;
 if(TEM_MAPA){
   try{
     map=L.map('map').setView([-23.556,-46.668],12);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png',
-      {attribution:'© OpenStreetMap © CARTO',maxZoom:18}).addTo(map);
+    /* Em 31/08/2026 a CARTO passou a marcar d'água ("API KEY REQUIRED") os
+       tiles de uso anônimo do dark_all. Troca pelo dark gray canvas da Esri,
+       que serve tile sem chave e casa com o tema escuro; base e rótulos vêm
+       em camadas separadas. */
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',
+      {attribution:'Esri, HERE, Garmin, © OpenStreetMap contributors',maxZoom:16}).addTo(map);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}',
+      {maxZoom:16}).addTo(map);
   }catch(_){ map=null; }
 }
 if(!map){
@@ -967,7 +981,7 @@ function draw(){
     const q=s=>String(s||'').replace(/"/g,'&quot;');
     const tag=e.ven.tipo==='feira'?'<span class="tag fair">FEIRA</span>':`<span class="tag ${e.st}">${STLBL[e.st]}</span>`;
     const dates=e.st==='opening'?`abre ${fmt(e.ini)}${e.fim?' · até '+fmt(e.fim):''}`:`até ${e.fim?fmt(e.fim):'—'}`;
-    const shot=e.img?`<div class="cardshot"><img src="${q(e.img)}" alt="" loading="lazy" onerror="this.closest('.card').classList.add('semfoto')">${e.cred?`<span class="cred">${q(e.cred)}</span>`:''}</div>`:'';
+    const shot=e.img?`<div class="cardshot" onclick="this.closest('.card').classList.remove('fotoaberta')"><img src="${q(e.img)}" alt="" loading="lazy" onerror="this.closest('.card').classList.add('semfoto')">${e.cred?`<span class="cred">${q(e.cred)}</span>`:''}</div>`:'';
     return `<div class="card ${cls}">
       <div class="title" onclick="focusVenue('${e.ven.name.replace(/'/g,"\\'")}')">${tituloLimpo(e)}</div>
       <div class="venue">${e.ven.name} · ${e.ven.b}</div>
