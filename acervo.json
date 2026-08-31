@@ -802,7 +802,7 @@
   {
    "id": "uma-obra-pintura-sem-fim--pinacoteca-de-sao-paulo",
    "t": "Uma Obra: Pintura sem fim",
-   "a": "",
+   "a": "Gui Teixeira",
    "v": "Pinacoteca de São Paulo",
    "ini": "2026-07-04",
    "fim": "2028-01-31",
@@ -1799,6 +1799,54 @@
    "ig": "espacorepublica",
    "visto": "2026-08-30",
    "primeiroRegistro": "2026-08-25"
+  },
+  {
+   "id": "vonta-de-vi-dada-dada-ernesto-neto-jardins--fortes-d-aloia-e-gabriel-galeria",
+   "t": "Vonta de vi dada dada — Ernesto Neto (Jardins)",
+   "a": "Ernesto Neto",
+   "v": "Fortes D'Aloia & Gabriel — Galeria",
+   "ini": "2026-08-22",
+   "fim": "2026-10-17",
+   "d": "Individual aberta simultaneamente nas duas sedes paulistanas da galeria. Esculturas em crochê de algodão, cordas trançadas, bambu, aço corten e barro, com a série inédita de esculturas de parede que o artista chama de InsePás.",
+   "bairro": "Cerqueira César",
+   "zona": "Oeste",
+   "addr": "R. Barão de Capanema, 343",
+   "tipo": "galeria",
+   "site": "https://fdag.com.br",
+   "ig": "fortesdaloiagabriel",
+   "visto": "2026-08-30"
+  },
+  {
+   "id": "vonta-de-vi-dada-dada-ernesto-neto-barra-funda--fortes-d-aloia-e-gabriel-galpao",
+   "t": "Vonta de vi dada dada — Ernesto Neto (Barra Funda)",
+   "a": "Ernesto Neto",
+   "v": "Fortes D'Aloia & Gabriel — Galpão",
+   "ini": "2026-08-22",
+   "fim": "2026-10-24",
+   "d": "Metade em galpão da individual que Neto abriu nas duas sedes da galeria no mesmo dia. Inclui escultura monumental em aço corten cuja estrutura ramificada evoca ao mesmo tempo paisagem montanhosa e corpo vivo.",
+   "bairro": "Barra Funda",
+   "zona": "Centro",
+   "addr": "R. James Holland, 71",
+   "tipo": "galeria",
+   "site": "https://fdag.com.br",
+   "ig": "fortesdaloiagabriel",
+   "visto": "2026-08-30"
+  },
+  {
+   "id": "o-homem-nu-efrain-almeida--fortes-d-aloia-e-gabriel-galpao",
+   "t": "O homem nu — Efrain Almeida",
+   "a": "Efrain Almeida",
+   "v": "Fortes D'Aloia & Gabriel — Galpão",
+   "ini": "2026-08-22",
+   "fim": "2026-10-24",
+   "d": "Primeira mostra abrangente do artista na galeria desde sua morte: obras produzidas entre 1995 e 2024, entre escultura em madeira umburana, pintura a óleo, bordado e aquarela. Texto de Márcia Fortes.",
+   "bairro": "Barra Funda",
+   "zona": "Centro",
+   "addr": "R. James Holland, 71",
+   "tipo": "galeria",
+   "site": "https://fdag.com.br",
+   "ig": "fortesdaloiagabriel",
+   "visto": "2026-08-30"
   }
  ],
  "artistas": {
@@ -2583,6 +2631,25 @@
    "mostras": [
     "oposicoes-geometricas-coletiva--paulo-kuczynski-escritorio-de-arte"
    ]
+  },
+  "gui-teixeira": {
+   "nome": "Gui Teixeira",
+   "mostras": [
+    "uma-obra-pintura-sem-fim--pinacoteca-de-sao-paulo"
+   ]
+  },
+  "ernesto-neto": {
+   "nome": "Ernesto Neto",
+   "mostras": [
+    "vonta-de-vi-dada-dada-ernesto-neto-jardins--fortes-d-aloia-e-gabriel-galeria",
+    "vonta-de-vi-dada-dada-ernesto-neto-barra-funda--fortes-d-aloia-e-gabriel-galpao"
+   ]
+  },
+  "efrain-almeida": {
+   "nome": "Efrain Almeida",
+   "mostras": [
+    "o-homem-nu-efrain-almeida--fortes-d-aloia-e-gabriel-galpao"
+   ]
   }
  },
  "venues": {
@@ -2834,7 +2901,7 @@
    "tipo": "galeria",
    "site": "https://fdag.com.br",
    "ig": "fortesdaloiagabriel",
-   "info": "Unidade FDAG Jardins. Ernesto Neto, Rivane Neuenschwander, Erika Verzutti. Espaço-irmão: Galpão (Barra Funda)."
+   "info": "Unidade FDAG Jardins. Ernesto Neto, Rivane Neuenschwander, Erika Verzutti. Espaço-irmão: Galpão (Barra Funda). Terça a sexta, 10h–19h; sábado, 10h–18h."
   },
   "galeria-estacao": {
    "name": "Galeria Estação",
@@ -2924,7 +2991,7 @@
    "tipo": "galeria",
    "site": "https://fdag.com.br",
    "ig": "fortesdaloiagabriel",
-   "info": "Galpão industrial para mostras de grande escala."
+   "info": "Galpão industrial para mostras de grande escala. Terça a sexta, 10h–19h; sábado, 10h–18h."
   },
   "galeria-vermelho": {
    "name": "Galeria Vermelho",
