@@ -1,38 +1,170 @@
 {
   "titulo": "Semana de 31/08 a 06/09/2026",
-
   "_leiame": [
-    "Este arquivo manda no que o `node semana.js` gera. Cada item de `posts` vira uma peça.",
-    "campos: data (AAAA-MM-DD) · formato · paleta · textura (0 a 0.12, ou false) · ordem (1 = manhã) · nome (prefixo do arquivo)",
-    "`pular: true` desliga um item sem apagá-lo.",
-    "`ajustes` sobrescreve qualquer campo do modelo naquele dia — por exemplo o texto da virada.",
-    "rima e aproximacao exigem config escrito à mão em SOCIAL/MM/DD/. Os outros cinco copiam de modelos/ sozinhos.",
-    "Paletas: escuro, tinta, barro (escuras) · papel, cal, linho (claras).",
-    "Comece com `node semana.js --seco` para ver o que falta antes de gerar imagem."
+    "ESTE ARQUIVO É GERADO. Rode `node planejar.js` para refazê-lo a partir do REPERTORIO.json.",
+    "Editar à mão funciona e é legítimo — mas a edição se perde no próximo planejar.js.",
+    "Para mudar o repertório de vez, mexa no REPERTORIO.json, não aqui.",
+    "Gerado em 2026-08-30."
   ],
-
   "fora": [
     "Terra que Desmancha, Evapora e Solidifica — Coletivo Poíesis|Vazio Criativo"
   ],
-
   "posts": [
-    { "data": "2026-08-31", "formato": "rima",        "ordem": 1, "paleta": "escuro", "textura": 0.05 },
-    { "data": "2026-08-31", "formato": "duracao",     "ordem": 2, "paleta": "tinta",  "textura": 0.05 },
-
-    { "data": "2026-09-01", "formato": "aproximacao", "ordem": 1, "paleta": "linho",  "textura": 0.09 },
-
-    { "data": "2026-09-02", "formato": "deriva",      "ordem": 1, "paleta": "papel",  "textura": 0.07 },
-    { "data": "2026-09-02", "formato": "salao",       "ordem": 2, "paleta": "escuro", "textura": 0.06 },
-
-    { "data": "2026-09-03", "formato": "entrada",     "ordem": 1, "paleta": "tinta",  "textura": 0.05 },
-
-    { "data": "2026-09-04", "formato": "salao",       "ordem": 1, "paleta": "barro",  "textura": 0.07,
-      "nome": "salao-sexta" },
-
-    { "data": "2026-09-05", "formato": "role",        "ordem": 1, "paleta": "barro",  "textura": 0.07 },
-    { "data": "2026-09-05", "formato": "deriva",      "ordem": 2, "paleta": "cal",    "textura": 0.06,
-      "nome": "deriva-noite" },
-
-    { "data": "2026-09-06", "formato": "duracao",     "ordem": 1, "paleta": "tinta",  "textura": 0.05 }
+    {
+      "data": "2026-08-31",
+      "formato": "rima",
+      "ordem": 1,
+      "paleta": "tinta",
+      "textura": 0.05,
+      "ideia": "rima-centro-jardins",
+      "nome": "rima-centro-jardins"
+    },
+    {
+      "data": "2026-08-31",
+      "formato": "entrada",
+      "ordem": 2,
+      "paleta": "linho",
+      "textura": 0.09,
+      "ideia": "entrada-primeira-vez",
+      "nome": "entrada-primeira-vez",
+      "ajustes": {
+        "virada": "Não existe pré-requisito. Existe só a porta, e ela abre.",
+        "porta": [
+          "Escolha uma casa só. Duas já é plano, e plano é o que faz a gente não ir.",
+          "Vá num dia de semana, no fim da tarde, se puder. A sala vazia é metade da experiência e sábado não tem sala vazia.",
+          "Dê uma volta inteira antes de parar em qualquer coisa. Você vai voltar em duas ou três, e essas serão as suas.",
+          "Fique menos tempo do que acha que deveria. Vinte minutos de atenção real valem mais que uma hora de dever cumprido.",
+          "Se não gostar de nada, tudo bem. Gostar não é a tarefa; olhar é."
+        ]
+      }
+    },
+    {
+      "data": "2026-09-01",
+      "formato": "aproximacao",
+      "ordem": 1,
+      "paleta": "papel",
+      "textura": 0.07,
+      "ideia": "aproximacao-suporte",
+      "nome": "aproximacao-suporte"
+    },
+    {
+      "data": "2026-09-02",
+      "formato": "role",
+      "ordem": 1,
+      "paleta": "escuro",
+      "textura": 0.05,
+      "ideia": "role-com-prazo",
+      "nome": "role-com-prazo",
+      "ajustes": {
+        "filtro": {
+          "fechaEm": 60,
+          "temFim": true
+        },
+        "titulo": "Três rolês em que tudo tem data para acabar.",
+        "chamada": "Toda parada destes roteiros já tem data de encerramento marcada, e nenhuma passa de dois meses. Nenhuma casa se repete entre os três.",
+        "virada": "Nenhuma delas vai avisar você quando desmontar. A data já está marcada e ninguém publica um obituário de exposição."
+      }
+    },
+    {
+      "data": "2026-09-02",
+      "formato": "deriva",
+      "ordem": 2,
+      "paleta": "barro",
+      "textura": 0.07,
+      "ideia": "deriva-centro",
+      "nome": "deriva-centro",
+      "ajustes": {
+        "filtro": {
+          "zona": "Centro"
+        },
+        "tese": "Um percurso a pé pelo Centro, entre casas que quase nunca aparecem juntas numa lista.",
+        "virada": "O Centro tem menos galeria que os Jardins e mais chão entre uma e outra. A caminhada é o programa, não o transporte."
+      }
+    },
+    {
+      "data": "2026-09-03",
+      "formato": "duracao",
+      "ordem": 1,
+      "paleta": "tinta",
+      "textura": 0.05,
+      "ideia": "duracao-geral",
+      "ajustes": {
+        "limiteUrgente": 14,
+        "texto": [
+          "Cada linha é uma mostra em cartaz agora, ordenada por data de encerramento. As que morrem primeiro estão no topo. A vertical é hoje.",
+          "As linhas curtas e claras são galerias. As longas e apagadas são museus e centros culturais. A cidade tem duas velocidades sobrepostas, e ninguém avisa qual você está olhando."
+        ],
+        "virada": "Metade do que está em cartaz numa galeria hoje acaba dentro de três semanas."
+      }
+    },
+    {
+      "data": "2026-09-04",
+      "formato": "salao",
+      "ordem": 1,
+      "paleta": "barro",
+      "textura": 0.07,
+      "ideia": "salao-so-galeria",
+      "nome": "salao-so-galeria",
+      "ajustes": {
+        "filtro": {
+          "tipo": "galeria",
+          "vista": false
+        },
+        "texto": [
+          "Esta parede só tem galeria comercial, e só imagem da obra — nada de vista de sala.",
+          "É o que a cidade está tentando vender agora. Museu tem curadoria, orçamento e três anos de antecedência. Galeria aposta com o próprio dinheiro, em ciclos de seis semanas, e erra em público."
+        ],
+        "virada": "Todo museu que você visita foi, uma vez, uma aposta de galeria que deu certo."
+      }
+    },
+    {
+      "data": "2026-09-05",
+      "formato": "role",
+      "ordem": 1,
+      "paleta": "linho",
+      "textura": 0.09,
+      "ideia": "role-so-galeria",
+      "nome": "role-so-galeria",
+      "ajustes": {
+        "filtro": {
+          "tipo": "galeria"
+        },
+        "titulo": "Três rolês de galeria. Nenhum deles custa nada.",
+        "chamada": "Só galeria comercial: sem bilheteria, sem fila, sem catraca. Nenhuma casa se repete entre os três.",
+        "virada": "A barreira nunca foi o preço. É não saber que dá para empurrar a porta."
+      }
+    },
+    {
+      "data": "2026-09-05",
+      "formato": "entrada",
+      "ordem": 2,
+      "paleta": "tinta",
+      "textura": 0.05,
+      "ideia": "entrada-galeria-vs-museu",
+      "nome": "entrada-galeria-vs-museu",
+      "ajustes": {
+        "virada": "Um guarda o que já foi decidido. O outro está decidindo agora, e pode estar errado.",
+        "porta": [
+          "Museu tem acervo, verba pública ou de lei de incentivo, e programa fechado com anos de antecedência. Galeria tem estoque, dinheiro próprio e ciclo de seis semanas.",
+          "No museu você é público. Na galeria você é, tecnicamente, cliente em potencial — o que na prática significa que ninguém te incomoda, porque a maioria dos visitantes não compra e a casa sabe disso.",
+          "O museu explica. A galeria mostra e espera. Se você quiser explicação, tem que pedir — e aí recebe muito mais do que numa legenda de parede.",
+          "Museu cobra, às vezes. Galeria nunca cobra.",
+          "As duas coisas se alimentam: o museu de hoje compra o que a galeria arriscou há vinte anos."
+        ]
+      }
+    },
+    {
+      "data": "2026-09-06",
+      "formato": "deriva",
+      "ordem": 1,
+      "paleta": "papel",
+      "textura": 0.07,
+      "ideia": "deriva-mais-densa",
+      "nome": "deriva-mais-densa",
+      "ajustes": {
+        "tese": "As casas mais próximas umas das outras nesta semana, na ordem mais curta.",
+        "virada": "Nenhuma delas combinou a programação com as outras. Quem junta é a calçada."
+      }
+    }
   ]
 }

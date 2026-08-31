@@ -72,9 +72,11 @@ const mediana = a => { const s = a.slice().sort((x, y) => x - y); return s[Math.
 
 /* ---------- leitura ---------- */
 
-function levantar(DATA, hoje) {
+function levantar(DATA, hoje, filtro) {
   const V = {}; DATA.venues.forEach(v => V[v.name] = v);
-  const cartaz = DATA.expos.filter(e => e.ini && e.ini <= hoje && (!e.fim || e.fim >= hoje) && V[e.v]);
+  if (filtro) console.log('  recorte: ' + base.descreverFiltro(filtro));
+  const cartaz = DATA.expos.filter(e => e.ini && e.ini <= hoje && (!e.fim || e.fim >= hoje) && V[e.v]
+                                        && base.passaFiltro(e, V[e.v], hoje, filtro));
   const comFim = cartaz.filter(e => e.fim);
   const semFim = cartaz.filter(e => !e.fim);
 
@@ -273,7 +275,7 @@ async function principal() {
   cfg.carimbo = carimbo(cfg, hoje);
 
   const DATA = carregarDados();
-  const L = levantar(DATA, hoje);
+  const L = levantar(DATA, hoje, cfg.filtro);
 
   console.log(L.cartaz.length + ' mostras em cartaz em ' + hoje + ' · ' + L.casas + ' casas');
   console.log('  com data de fim: ' + L.linhas.length + ' · sem: ' + L.semFim.length);

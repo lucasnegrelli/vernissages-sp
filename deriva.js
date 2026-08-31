@@ -86,14 +86,16 @@ function melhorRota(pontos) {
 
 /* ---------- selecao ---------- */
 
-function elegiveis(DATA, hoje) {
+function elegiveis(DATA, hoje, filtro) {
   const V = {}; DATA.venues.forEach(v => V[v.name] = v);
+  if (filtro) console.log('  recorte: ' + base.descreverFiltro(filtro));
   const porCasa = new Map();
   for (const e of DATA.expos) {
     if (!e.ini || e.ini > hoje) continue;
     if (e.fim && e.fim < hoje) continue;
     const v = V[e.v];
     if (!v || typeof v.lat !== 'number') continue;
+    if (!base.passaFiltro(e, v, hoje, filtro)) continue;
     let rel = null;
     try { rel = exigirObra(e); } catch { continue; }   // trava 1, aplicada na origem
     const ant = porCasa.get(e.v);
@@ -269,7 +271,16 @@ async function principal() {
   const hoje = flag('date', new Date().toISOString().slice(0, 10));
 
   const DATA = carregarDados();
-  const cands = elegiveis(DATA, hoje);
+
+  /* O --listar roda sem config: e o modo de inspecao, e nele nao ha recorte.
+     Fora dele o filtro vem do config, que so e lido mais abaixo — por isso a
+     leitura antecipada aqui em vez de mover o `const cfg`, que quebraria o
+     --listar. */
+  const caminhoCfg = flag('config');
+  const filtroCfg = caminhoCfg
+    ? (JSON.parse(fs.readFileSync(path.resolve(caminhoCfg), 'utf8')).filtro || null)
+    : null;
+  const cands = elegiveis(DATA, hoje, filtroCfg);
 
   if (argv.includes('--listar')) {
     console.log(cands.length + ' casas com mostra em cartaz E obra em disco.\n');

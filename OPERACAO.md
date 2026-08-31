@@ -34,8 +34,10 @@ Parte 3.
 | Assunto | Arquivo |
 |---|---|
 | Sequência operacional, publicação, falha, resumo | **este arquivo** |
-| Como gerar o social em lote, paletas, plano da semana | `COMOGERAR.md` |
-| O que sai em cada dia da próxima semana | `PLANO.json` |
+| Como gerar o social em lote, paletas, filtro, plano | `COMOGERAR.md` |
+| O banco de ideias que a rotação consome | `REPERTORIO.json` |
+| O que sai em cada dia da próxima semana (**gerado**) | `PLANO.json` |
+| Que ideia saiu em que dia, para não repetir | `SOCIAL/USADAS.json` |
 | Regras de dado que reprovam publicação | `check.js` |
 | Voz e vocabulário proibido | `ESTILO.md` |
 
@@ -347,12 +349,22 @@ Nesta fase não toque em `foco` nem em `destaques`: são da diária.
 Leia `COMOGERAR.md` inteiro antes. Depois:
 
 ```
+node planejar.js --seco   # mostra o plano da semana, sem escrever
+node planejar.js          # escreve o PLANO.json a partir do REPERTORIO.json
 node semana.js --seco     # confere o que falta, sem gerar imagem
 node semana.js            # gera
 ```
 
-O `PLANO.json` manda no que sai. Uma peça que falha não derruba as outras, e o
-relatório final diz o que falta.
+**O `planejar.js` entrou em 30/08/2026** e é o que impede a rotina de publicar
+a mesma semana para sempre. Ele sorteia do `REPERTORIO.json` (50 ideias)
+respeitando um descanso de 35 dias por ideia, garante uma `rima` e uma
+`aproximacao` por semana, dá o `role` ao sábado e não repete paleta em dias
+seguidos. Um mês passa sem repetição; quando começa a reciclar, ele avisa.
+
+O `PLANO.json` **é gerado** — editar à mão funciona, mas se perde no próximo
+`planejar.js`. Para mudar o repertório de vez, mexa no `REPERTORIO.json`.
+
+Uma peça que falha não derruba as outras, e o relatório final diz o que falta.
 
 **`rima` e `aproximacao` falham de propósito** quando não há config escrito à
 mão: dependem de curadoria — qual par de mostras, qual obra, onde recortar. A

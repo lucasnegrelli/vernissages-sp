@@ -405,6 +405,110 @@ if (require.main === module) {
   principal().catch(e => { console.error('\nABORTADO — ' + e.message + '\n'); process.exit(1); });
 }
 
+/* ============================================================
+   FILTRO — o recorte que faz o mesmo formato render post diferente
+   ============================================================
+
+   Por que existe.
+
+   Ate 30/08/2026 cada formato so sabia fazer uma coisa: o `salao` pendurava
+   TODAS as obras em cartaz, a `duracao` desenhava TODAS as mostras com fim, o
+   `role` montava os tres maiores aglomerados. Rodando toda semana sobre uma
+   base que muda devagar, a saida era quase identica — o salao de 24/08 e o de
+   31/08 diferiam em tres obras de quarenta.
+
+   O problema nao era falta de formato. Era falta de RECORTE: a cidade tem 91
+   casas, quatro tipos, cinco zonas e mostras que duram de duas semanas a dois
+   anos, e nada disso estava disponivel para pedir "so as galerias", "so o que
+   fecha em quinze dias", "so o Centro".
+
+   Este filtro e um so, compartilhado, e cada formato o aplica no ponto em que
+   ja escolhia as mostras. Nenhum campo e obrigatorio: config sem `filtro`
+   continua se comportando exatamente como antes.
+
+   O que NAO faz: nao inventa nada e nao afrouxa trava nenhuma. Uma mostra que
+   passa no filtro ainda precisa ter obra em disco, credito e o resto. O filtro
+   so estreita.
+
+   Campos:
+
+     tipo      "galeria" | "institucional" | "hibrido" | "feira"  (ou lista)
+     zona      "Oeste" | "Centro" | "Sul" | "Norte" | "Leste"     (ou lista)
+     bairro    nome exato do campo `b` do venue                    (ou lista)
+     fechaEm   N  — so mostra que encerra dentro de N dias
+     duraMais  N  — so mostra que dura mais de N dias no total
+     abriuEm   N  — so mostra que abriu nos ultimos N dias
+     vista     false — descarta vista de sala, deixa so reproducao de obra
+               true  — o contrario: so vista de sala
+     temFim    true  — so mostra com data de encerramento divulgada
+   ============================================================ */
+
+function _lista(v) { return v == null ? null : (Array.isArray(v) ? v : [v]); }
+
+function _dias(a, b) {
+  return Math.round((new Date(b + 'T00:00:00') - new Date(a + 'T00:00:00')) / 86400000);
+}
+
+/* Devolve true se a mostra `e`, na casa `v`, passa no recorte. */
+function passaFiltro(e, v, hoje, filtro) {
+  if (!filtro) return true;
+  if (!v) return false;
+
+  const tipo = _lista(filtro.tipo);
+  if (tipo && !tipo.includes(v.tipo)) return false;
+
+  const zona = _lista(filtro.zona);
+  if (zona && !zona.includes(v.z)) return false;
+
+  const bairro = _lista(filtro.bairro);
+  if (bairro && !bairro.includes(v.b)) return false;
+
+  const casa = _lista(filtro.casa);
+  if (casa && !casa.includes(v.name)) return false;
+
+  if (filtro.temFim === true && !e.fim) return false;
+
+  if (filtro.fechaEm != null) {
+    if (!e.fim) return false;                       // sem fim nao da para dizer
+    if (_dias(hoje, e.fim) > filtro.fechaEm) return false;
+  }
+
+  if (filtro.duraMais != null) {
+    if (!e.fim || !e.ini) return false;
+    if (_dias(e.ini, e.fim) <= filtro.duraMais) return false;
+  }
+
+  if (filtro.abriuEm != null) {
+    if (!e.ini) return false;
+    if (_dias(e.ini, hoje) > filtro.abriuEm) return false;
+  }
+
+  if (filtro.vista === false && e.vista === true) return false;
+  if (filtro.vista === true && e.vista !== true) return false;
+
+  return true;
+}
+
+/* Descricao curta do recorte, para o script imprimir e o LEGENDAS.md citar.
+   Se o filtro nao existe, devolve string vazia — quem chama nao precisa saber. */
+function descreverFiltro(filtro) {
+  if (!filtro) return '';
+  const p = [];
+  const j = v => _lista(v).join(', ');
+  if (filtro.tipo)     p.push('tipo ' + j(filtro.tipo));
+  if (filtro.zona)     p.push('zona ' + j(filtro.zona));
+  if (filtro.bairro)   p.push(j(filtro.bairro));
+  if (filtro.casa)     p.push(j(filtro.casa));
+  if (filtro.fechaEm != null)  p.push('fecha em ate ' + filtro.fechaEm + ' dias');
+  if (filtro.duraMais != null) p.push('dura mais de ' + filtro.duraMais + ' dias');
+  if (filtro.abriuEm != null)  p.push('abriu nos ultimos ' + filtro.abriuEm + ' dias');
+  if (filtro.vista === false)  p.push('so reproducao de obra');
+  if (filtro.vista === true)   p.push('so vista de sala');
+  if (filtro.temFim === true)  p.push('so com fim divulgado');
+  return p.join(' · ');
+}
+
 module.exports = { carregarDados, acharExpo, exigirObra, medir, chave, RAIZ,
                    CSS, esc, porExtenso, porExtensoAno, carimbo, arroba,
-                   tituloCurto, autoria, PALETAS, cssPaleta, grao };
+                   tituloCurto, autoria, PALETAS, cssPaleta, grao,
+                   passaFiltro, descreverFiltro };

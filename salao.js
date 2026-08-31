@@ -53,9 +53,10 @@ const MIN_OBRAS = 12;
 
 /* ---------- reuniao do acervo do dia ---------- */
 
-async function reunir(DATA, hoje, fora) {
+async function reunir(DATA, hoje, fora, filtro) {
   const V = {}; DATA.venues.forEach(v => V[v.name] = v);
   const excluir = new Set(fora || []);
+  if (filtro) console.log('  recorte: ' + base.descreverFiltro(filtro));
   const out = [];
   const vistos = new Set();
   const barradas = [];
@@ -64,6 +65,7 @@ async function reunir(DATA, hoje, fora) {
     if (e.fim && e.fim < hoje) continue;
     const v = V[e.v];
     if (!v) continue;
+    if (!base.passaFiltro(e, v, hoje, filtro)) continue;   // recorte do config
     let rel;
     try { rel = exigirObra(e); } catch { continue; }   // sem obra nao entra na parede
     if (vistos.has(rel)) continue;                     // trava 2
@@ -189,7 +191,7 @@ async function principal() {
   cfg.carimbo = carimbo(cfg, hoje);
 
   const DATA = carregarDados();
-  const obras = await reunir(DATA, hoje, cfg.fora);
+  const obras = await reunir(DATA, hoje, cfg.fora, cfg.filtro);
 
   console.log(obras.length + ' obras em cartaz com imagem em disco, em ' + hoje);
   if (obras.length < MIN_OBRAS) {

@@ -26,10 +26,13 @@
    Uma coisa que a base nao tem, e por isso a peca nao promete.
 
    O dado mais util do sabado seria a hora de fechamento — galeria fecha cedo, e
-   quem sai as 15h costuma pegar porta fechada. Levantamento de 29/08: das 37
-   casas com mostra em cartaz, **so cinco publicam horario de sabado**. Sem
-   dado nao ha promessa: a peca manda conferir antes de sair, em vez de fingir
-   que sabe.
+   quem sai as 15h costuma pegar porta fechada. Em 29/08 a base tinha o horario
+   de sabado de **cinco casas em 37**, e a peca so sabia mandar conferir antes
+   de sair. Em 30/08 a varredura foi ao site de nove galerias, uma a uma, e o
+   numero subiu para **13 em 38** — a legenda do sabado passou a dar horario de
+   verdade, inclusive o aviso de que a Casa Iramaia nao abre sabado.
+   Ainda faltam 25. Onde falta, a peca continua mandando conferir em vez de
+   fingir que sabe: horario errado manda a pessoa para uma porta fechada.
 
    As travas:
 
@@ -94,9 +97,10 @@ function melhorRota(pontos) {
 
 /* ---------- selecao ---------- */
 
-async function elegiveis(DATA, hoje, fora) {
+async function elegiveis(DATA, hoje, fora, filtro) {
   const V = {}; DATA.venues.forEach(v => V[v.name] = v);
   const excluir = new Set(fora || []);
+  if (filtro) console.log('  recorte: ' + base.descreverFiltro(filtro));
   const porCasa = new Map();
   for (const e of DATA.expos) {
     if (!e.ini || e.ini > hoje) continue;
@@ -104,6 +108,7 @@ async function elegiveis(DATA, hoje, fora) {
     if (excluir.has(e.t + '|' + e.v)) continue;
     const v = V[e.v];
     if (!v || typeof v.lat !== 'number') continue;
+    if (!base.passaFiltro(e, v, hoje, filtro)) continue;
     let rel;
     try { rel = exigirObra(e); } catch { continue; }
     const ant = porCasa.get(e.v);
@@ -279,7 +284,7 @@ async function principal() {
   cfg.carimbo = carimbo(cfg, hoje);
 
   const DATA = carregarDados();
-  const cands = await elegiveis(DATA, hoje, cfg.fora);
+  const cands = await elegiveis(DATA, hoje, cfg.fora, cfg.filtro);
   console.log(cands.length + ' casas com mostra e obra em ' + hoje);
 
   const roles = nomearTodos(montarRoles(cands, ROLES));
