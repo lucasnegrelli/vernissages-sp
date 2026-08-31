@@ -221,6 +221,27 @@ function principal() {
   const fim = somar(inicio, 6);
   const br = s => s.slice(8, 10) + '/' + s.slice(5, 7);
 
+  /* IDEMPOTENCIA. A `vsp-semana` dispara as 23h de domingo, e uma rodada manual
+     mais cedo no mesmo dia planeja a mesma semana. Sem esta trava a segunda
+     rodada sorteava um plano DIFERENTE (as ideias da primeira ja constavam no
+     USADAS com folga zero), reescrevia o PLANO.json e mandava o semana.js
+     regerar tudo por cima de pecas ja arquivadas e legendadas.
+     Plano existente para a mesma semana e resposta certa: nao mexe. */
+  if (!argv.includes('--forcar')) {
+    try {
+      const velho = JSON.parse(fs.readFileSync(PLANO, 'utf8'));
+      const datas = (velho.posts || []).map(p => p.data).sort();
+      if (datas.length && datas[0] === inicio && datas[datas.length - 1] <= fim) {
+        console.log('\nJa existe plano para a semana de ' + br(inicio) + ' a ' + br(fim) +
+                    ', com ' + velho.posts.length + ' peça(s).');
+        console.log('Nada foi reescrito. Para refazer assim mesmo: node planejar.js --forcar');
+        console.log('Para a semana seguinte:                      node planejar.js --de=' +
+                    somar(inicio, 7) + '\n');
+        return;
+      }
+    } catch { /* sem plano anterior, segue */ }
+  }
+
   const { posts, avisos } = montar(rep, usadas, inicio, quantas);
 
   console.log('\nPLANO da semana de ' + br(inicio) + ' a ' + br(fim) +
