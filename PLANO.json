@@ -48,11 +48,11 @@
       "ordem": 2,
       "paleta": "cal",
       "textura": 0.06,
-      "ideia": "obra-independentes",
-      "nome": "obra-independentes",
+      "ideia": "obra-recem-aberta",
+      "nome": "obra-recem-aberta",
       "ajustes": {
         "filtro": {
-          "tipo": "hibrido"
+          "abriuEm": 30
         }
       }
     },

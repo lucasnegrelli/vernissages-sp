@@ -115,11 +115,23 @@ function rodar(post, plano, seco, jaEscolhidas) {
   if (FAMILIA_OBRA.has(post.formato) && jaEscolhidas.length) {
     const cfg = JSON.parse(fs.readFileSync(caminho, 'utf8'));
     cfg.evitar = jaEscolhidas.slice();
-    cfg.evitarCasa = jaEscolhidas.map(k => k.split('|')[1]);
+    /* a chave é `titulo|casa`, e o nome da casa pode conter `|` (ex.:
+       "Almeida & Dale | Millan") — corta só no primeiro. */
+    cfg.evitarCasa = jaEscolhidas.map(k => k.slice(k.indexOf('|') + 1));
     fs.writeFileSync(caminho, JSON.stringify(cfg, null, 2) + '\n', 'utf8');
   }
 
-  if (seco) return { saida: '(seco) config pronto' + (novo ? ' — modelo copiado' : ''), arquivos: 0, picks: [] };
+  /* rima e aproximacao também consomem obras da semana. Elas não imprimem
+     PICK (o gerador não muda), então o semana.js lê a chave do config. */
+  const consumidas = [];
+  if (post.formato === 'rima' || post.formato === 'aproximacao') {
+    try {
+      const cfg = JSON.parse(fs.readFileSync(caminho, 'utf8'));
+      [cfg.a, cfg.b, cfg.obra].forEach(k => k && consumidas.push(k));
+    } catch { /* config ainda não escrito — a peça vai falhar adiante */ }
+  }
+
+  if (seco) return { saida: '(seco) config pronto' + (novo ? ' — modelo copiado' : ''), arquivos: 0, picks: consumidas };
 
   const out = pastaDe(post.data);
   const saida = execFileSync('node', [
@@ -130,7 +142,7 @@ function rodar(post, plano, seco, jaEscolhidas) {
   ], { cwd: RAIZ, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], maxBuffer: 1 << 24 });
 
   const arquivos = (saida.match(/^OK /gm) || []).length;
-  const picks = (saida.match(/^PICK (.+)$/gm) || []).map(l => l.replace(/^PICK /, ''));
+  const picks = (saida.match(/^PICK (.+)$/gm) || []).map(l => l.replace(/^PICK /, '')).concat(consumidas);
   return { saida: saida.trim().split('\n').filter(l => !l.startsWith('PICK ')).slice(-1)[0], arquivos, novo, picks };
 }
 

@@ -63,8 +63,15 @@ async function escolher(DATA, hoje, cfg) {
   if (cfg.filtro || modo !== 'obra') console.log('  modo ' + modo +
     (Object.keys(filtro).length > 1 ? ' · recorte ' + descreverFiltro(filtro) : ''));
 
+  /* Uma casa não sai mais de duas vezes na mesma semana, mesmo que tenha as
+     melhores imagens — senão o feed vira a agenda de uma galeria só. */
+  const casaCheia = new Set();
+  for (const k of (cfg.evitarCasa || [])) {
+    if ((cfg.evitarCasa || []).filter(c => c === k).length >= 2) casaCheia.add(k);
+  }
+
   const vivas = (DATA.expos || []).filter(e => {
-    if (!V[e.v] || e.cartaz || fora.has(e.t + '|' + e.v)) return false;
+    if (!V[e.v] || e.cartaz || fora.has(e.t + '|' + e.v) || casaCheia.has(e.v)) return false;
     if (modo === 'estreia') {
       if (!e.ini || e.ini <= hoje) return false;
       if (_dias(hoje, e.ini) > (cfg.abreEm || 10)) return false;
