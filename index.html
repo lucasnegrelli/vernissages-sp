@@ -378,15 +378,55 @@
     background:radial-gradient(75% 120% at 100% 0%,rgba(232,193,90,.07),transparent 62%)}
   .panel>*{position:relative}
 
-  /* "A cidade em números" — no lugar da enquete */
-  .numeros{display:flex;flex-direction:column;gap:0}
-  .numrow{padding:13px 0;border-bottom:1px solid var(--hair)}
-  .numrow:first-child{padding-top:2px}
-  .numrow:last-child{border-bottom:0;padding-bottom:2px}
-  .numrow b{display:block;font-family:var(--display);font-size:1.24rem;font-weight:700;
-    color:var(--accent);letter-spacing:-.4px;line-height:1.15;margin-bottom:3px;
+  /* ---------- "O panorama" — timeline ao vivo das mostras em cartaz ---------- */
+  .panorama{margin-top:48px}
+  .pano{--viz-com:#d95926;--viz-inst:#3987e5;padding:22px 24px}
+  .pano-head{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;
+    flex-wrap:wrap;margin-bottom:14px}
+  .pano-lead{margin:0;font-size:.9rem;color:var(--text2);max-width:46ch;line-height:1.62}
+  .pano-lead b{color:var(--ink);font-family:var(--display);font-weight:700;
     font-variant-numeric:tabular-nums}
-  .numrow span{display:block;color:var(--text2);font-size:.85rem;line-height:1.55;max-width:52ch}
+  .pano-leg{display:flex;gap:15px;flex-wrap:wrap;font-size:.71rem;color:var(--muted);
+    letter-spacing:.4px;padding-top:2px}
+  .pano-leg span{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+  .pano-leg i{width:11px;height:11px;border-radius:3px;display:inline-block}
+  .pano-leg .lg-com{background:var(--viz-com)}
+  .pano-leg .lg-inst{background:var(--viz-inst)}
+  .pano-leg .lg-hoje{position:relative;padding-left:13px}
+  .pano-leg .lg-hoje::before{content:'';position:absolute;left:4px;top:-1px;bottom:-1px;
+    width:2px;background:var(--accent)}
+
+  .pano-chart{position:relative;width:100%}
+  .pano-chart svg{display:block;width:100%;height:auto;overflow:visible}
+  .pano-bar{rx:2;transition:opacity .12s}
+  .pano-chart.hov .pano-bar{opacity:.32}
+  .pano-chart.hov .pano-bar.on{opacity:1}
+  .pano-hit{fill:transparent;cursor:pointer}
+  .pano-axis{fill:var(--muted);font-family:var(--font);font-size:12px}
+  .pano-grid{stroke:var(--hair);stroke-width:1}
+  .pano-today{stroke:var(--accent);stroke-width:2}
+  .pano-todaylbl{fill:var(--accent);font-size:12px;font-weight:700;font-family:var(--font)}
+
+  .pano-tip{position:absolute;z-index:30;pointer-events:none;opacity:0;transform:translateY(3px);
+    transition:opacity .12s,transform .12s;background:rgba(20,17,12,.97);border:1px solid var(--line2);
+    border-radius:10px;padding:9px 12px;width:230px;font-size:.77rem;line-height:1.5;color:var(--text2);
+    box-shadow:0 20px 46px -18px rgba(0,0,0,.95)}
+  .pano-tip.show{opacity:1;transform:none}
+  .pano-tip b{display:block;color:var(--ink);font-family:var(--display);font-weight:700;
+    font-size:.85rem;line-height:1.2;margin-bottom:3px}
+  .pano-tip .pt-v{color:var(--accent2);font-size:.7rem;text-transform:uppercase;letter-spacing:.6px}
+  .pano-tip .pt-d{color:var(--muted);font-size:.72rem;margin-top:4px}
+
+  .pano-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:1px;
+    margin-top:22px;background:var(--hair);border:1px solid var(--hair);border-radius:10px;overflow:hidden}
+  .pano-tile{background:#131109;padding:14px 15px}
+  .pano-tile b{display:block;font-family:var(--display);font-size:1.42rem;font-weight:700;
+    color:var(--accent);letter-spacing:-.5px;line-height:1.1;font-variant-numeric:tabular-nums}
+  .pano-tile span{display:block;color:var(--muted);font-size:.75rem;line-height:1.45;margin-top:5px}
+  @media(max-width:560px){
+    .pano{padding:18px 16px}
+    .pano-tiles{grid-template-columns:1fr 1fr}
+  }
 
   /* faixa de CTA — Divulgue + Intel, tiradas do meio da coluna da enquete */
   .ctaband{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:38px}
@@ -399,57 +439,6 @@
   .cta .btn{margin-top:4px}
   @media(max-width:720px){.ctaband{grid-template-columns:1fr}}
 
-  .poll .opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-  .poll .opts .chip{border-color:color-mix(in srgb,var(--c) 40%,transparent)}
-  .poll .opts .chip:hover{background:color-mix(in srgb,var(--c) 14%,transparent);
-    border-color:var(--c);color:var(--ink);transform:translateY(-2px)}
-  .termo{display:flex;width:100%;height:34px;border-radius:20px;overflow:hidden;
-    border:1px solid var(--line);background:rgba(255,255,255,.03);margin:2px 0 14px}
-  .termo .fatia{display:block;height:100%;width:0;transition:width 1.1s cubic-bezier(.22,1,.36,1);
-    opacity:.85;position:relative}
-  .poll.vivo .termo .fatia{opacity:.9}
-  .termo .fatia+.fatia{border-left:1px solid rgba(10,10,13,.55)}
-  .termo .fatia.meu{opacity:1;animation:pulsa 2.4s ease-in-out infinite}
-  @keyframes pulsa{0%,100%{filter:brightness(1)}50%{filter:brightness(1.35)}}
-  .legenda{display:flex;flex-wrap:wrap;gap:7px 16px;font-size:.75rem;color:var(--muted)}
-  .legenda .lg{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
-  .legenda .lg i{width:8px;height:8px;border-radius:2px;display:inline-block;flex:0 0 8px}
-  .legenda .lg b{color:var(--text2);font-variant-numeric:tabular-nums;font-weight:600}
-  .legenda .lg.meu{color:var(--ink)}
-  .legenda .lg.meu b{color:var(--accent)}
-  .ritmo{margin-top:10px}
-  .rbarras{display:flex;align-items:flex-end;gap:8px;height:96px;margin:4px 0 2px}
-  .rsem{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:6px;
-    height:100%;cursor:default}
-  .rsem .rb{width:100%;border-radius:6px 6px 3px 3px;min-height:3px;
-    background:linear-gradient(180deg,var(--accent),var(--accent2));opacity:.55;
-    transition:height .9s cubic-bezier(.22,1,.36,1),opacity .2s;height:0}
-  .rsem:hover .rb{opacity:1}
-  .rsem.agora .rb{opacity:1;box-shadow:0 0 20px -4px rgba(232,193,90,.7)}
-  .rsem .rn{font-size:.72rem;color:var(--text2);font-variant-numeric:tabular-nums;font-weight:600}
-  .rsem .rl{font-size:.63rem;color:var(--muted);letter-spacing:.4px;white-space:nowrap}
-  .rsem.agora .rl{color:var(--accent)}
-  .voumeu{margin-top:15px;padding-top:13px;border-top:1px solid var(--hair);
-    font-size:.83rem;color:var(--text2);line-height:1.6}
-  .voumeu b{color:var(--accent);font-weight:600}
-  .pergunta{margin-top:15px;padding-top:13px;border-top:1px solid var(--hair);
-    font-size:.83rem;color:var(--text2);display:flex;align-items:baseline;
-    justify-content:space-between;gap:10px;flex-wrap:wrap}
-
-  .bars{display:flex;flex-direction:column}
-  .barrow{display:grid;grid-template-columns:126px 1fr 30px;align-items:center;gap:12px;
-    font-size:.79rem;padding:6px 0;border-bottom:1px solid var(--hair);transition:.15s}
-  .barrow:last-of-type{border-bottom:0}
-  .barrow:hover{background:rgba(255,255,255,.03)}
-  .barrow.hid{display:none}
-  .barrow .bn{text-align:right;color:var(--text2);cursor:pointer;transition:.18s;
-    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .barrow:hover .bn{color:var(--accent)}
-  .bar{height:8px;border-radius:20px;min-width:3px;
-    background:linear-gradient(90deg,var(--accent2),var(--accent))}
-  .barrow:first-of-type .bar{box-shadow:0 0 18px -3px rgba(232,193,90,.6)}
-  .barrow .bv{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums;font-size:.76rem}
-  .barrow:first-of-type .bv{color:var(--accent);font-weight:600}
   .paineltopo{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
     margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--hair)}
   .paineltopo .pt{font-size:.8rem;color:var(--text2)}
@@ -459,9 +448,6 @@
     border:1px solid var(--line);border-radius:22px;color:var(--text2);font-family:var(--font);
     font-size:.83rem;font-weight:600;cursor:pointer;transition:.18s;letter-spacing:.3px}
   .cardsmore:hover{border-color:var(--accent);color:var(--accent)}
-  .barsmore{margin-top:12px;background:none;border:0;color:var(--muted);font-family:var(--font);
-    font-size:.75rem;cursor:pointer;padding:0;transition:.18s;border-bottom:1px solid transparent}
-  .barsmore:hover{color:var(--accent);border-bottom-color:var(--accent)}
 
   /* ---------- notas / footer ---------- */
   .note{color:var(--muted);font-size:.76rem;margin-top:11px;line-height:1.7}
@@ -758,11 +744,22 @@
     </div>
   </section>
 
-  <section class="dobra numsec">
-    <h2>A cidade em números</h2>
+  <section class="dobra panorama">
+    <h2>O panorama · a cidade agora</h2>
     <div class="dobrac">
-    <div class="panel numeros" id="numeros"></div>
-    <p class="note">Calculado ao vivo da base — nada aqui é digitado à mão.</p>
+      <div class="panel pano">
+        <div class="pano-head">
+          <p class="pano-lead" id="panoLead"></p>
+          <div class="pano-leg">
+            <span><i class="lg-com"></i>galeria</span>
+            <span><i class="lg-inst"></i>instituição</span>
+            <span class="lg-hoje">hoje</span>
+          </div>
+        </div>
+        <div class="pano-chart" id="panoChart"></div>
+        <div class="pano-tiles" id="panoTiles"></div>
+      </div>
+      <p class="note">Cada barra é uma mostra em cartaz agora — do dia que abriu ao dia que fecha. Ordenadas por encerramento: as que somem primeiro ficam no topo. Passe o mouse (ou toque) numa barra.</p>
     </div>
   </section>
 
@@ -1107,7 +1104,7 @@ function openVenue(n){
 /* diretório */
 let sortK='b',sortAsc=true;
 function drawDir(q,zona,b,tipo,ven){
-  let rows=VENUES.filter(v=>v.tipo!=='feira'&&(zona==='all'||v.z===zona)&&(b==='all'||v.b===b)&&(tipo==='all'||v.tipo===tipo)&&(ven==='all'||v.name===ven)&&matches(v,q));
+  let rows=VENUES.filter(v=>v.tipo!=='feira'&&(zona==='all'||v.z===zona)&&(b==='all'||bairroLabel(v)===b)&&(tipo==='all'||v.tipo===tipo)&&(ven==='all'||v.name===ven)&&matches(v,q));
   const kmap={name:'name',addr:'addr',bairro:'b',zona:'z',tipo:'tipo'};
   rows.sort((a,c)=>(''+a[sortK]).localeCompare(''+c[sortK],'pt')* (sortAsc?1:-1));
   document.querySelector('#dirTable tbody').innerHTML=rows.map(v=>`<tr>
@@ -1500,47 +1497,100 @@ fetch(ABC+(jaVeio?'/get/':'/hit/')+NS+'/visitas').then(r=>r.json()).then(j=>{
   document.getElementById('vc').textContent=Number(j.value).toLocaleString('pt-BR');
   document.getElementById('visits').style.display='block';
 }).catch(()=>{});
-/* "A cidade em números" — substituiu a enquete "que região cobrir".
-   A enquete devolvia pouco a quem clicava e vivia com 1 voto exibindo
-   "100% numa zona", um gráfico que não significava nada. No lugar, fatos
-   que só esta base consegue mostrar — todos calculados na hora, nada
-   digitado. (O desempate da fila do radar.js que usava o voto passa a ser
-   por atraso relativo puro; ver OPERACAO.md.) */
-function cidadeEmNumeros(){
-  const box=document.getElementById('numeros'); if(!box) return;
-  const hoje=HOJESTR;
+/* "O panorama" — substituiu a enquete e depois a lista seca de números.
+   Uma timeline ao vivo: cada mostra em cartaz vira uma barra do dia que abriu
+   ao dia que fecha, ordenada por encerramento. É o diagrama do duracao.js,
+   mas interativo, na home, calculado da base na hora. Mostra de um golpe as
+   "duas velocidades" da cidade — galeria curta e clara, instituição longa e
+   apagada — e o que some primeiro. */
+function renderPanorama(){
+  const chart=document.getElementById('panoChart');
+  const tilesBox=document.getElementById('panoTiles');
+  const lead=document.getElementById('panoLead');
+  if(!chart||!lead) return;
   const V={}; VENUES.forEach(v=>V[v.name]=v);
-  const dd=(a,b)=>Math.round((Date.parse(b+'T12:00')-Date.parse(a+'T12:00'))/864e5);
+  const hoje=HOJESTR, DAY=864e5, T0=Date.parse(hoje+'T12:00');
+  const dd=(a,b)=>Math.round((Date.parse(b+'T12:00')-Date.parse(a+'T12:00'))/DAY);
   const med=a=>{const s=a.slice().sort((x,y)=>x-y);return s.length?s[Math.floor(s.length/2)]:0;};
-  const fmtMes=iso=>{const [y,m,d]=iso.split('-');return d+'/'+m;};
-  const cartaz=EXPOS.filter(e=>e.ini&&e.ini<=hoje&&(!e.fim||e.fim>=hoje)&&V[e.v]);
+  const fmtMes=iso=>iso.slice(8,10)+'/'+iso.slice(5,7);
+  const MES=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+  const eInst=e=>V[e.v]&&V[e.v].tipo==='institucional';
 
-  const durGal=cartaz.filter(e=>e.fim&&V[e.v].tipo==='galeria').map(e=>dd(e.ini,e.fim));
-  const durIns=cartaz.filter(e=>e.fim&&V[e.v].tipo==='institucional').map(e=>dd(e.ini,e.fim));
+  const emCartaz=EXPOS.filter(e=>e.ini&&e.ini<=hoje&&e.fim&&e.fim>=hoje&&V[e.v]);
+  let rows=emCartaz.slice().sort((a,b)=>a.fim.localeCompare(b.fim)||dd(a.ini,a.fim)-dd(b.ini,b.fim));
+  const cortou=rows.length>50; if(cortou) rows=rows.slice(0,50);
+
+  /* tiles */
+  const durGal=emCartaz.filter(e=>V[e.v].tipo==='galeria').map(e=>dd(e.ini,e.fim));
+  const durIns=emCartaz.filter(e=>V[e.v].tipo==='institucional').map(e=>dd(e.ini,e.fim));
   const gratis=VENUES.filter(v=>v.tipo!=='feira'&&ehGratis(v)).length;
-  const total=VENUES.filter(v=>v.tipo!=='feira').length;
-  const fim7=cartaz.filter(e=>e.fim&&dd(hoje,e.fim)>=0&&dd(hoje,e.fim)<=7);
-  const longa=cartaz.filter(e=>e.fim).sort((a,b)=>dd(hoje,b.fim)-dd(hoje,a.fim))[0];
+  const totV=VENUES.filter(v=>v.tipo!=='feira').length;
+  const fecha7=emCartaz.filter(e=>dd(hoje,e.fim)<=7).length;
+  const abre14=EXPOS.filter(e=>e.ini&&dd(hoje,e.ini)>0&&dd(hoje,e.ini)<=14).length;
+  const tiles=[];
+  if(durGal.length>=5&&durIns.length>=3) tiles.push([med(durGal)+' / '+med(durIns),'dias que uma mostra dura, na galeria e na instituição']);
+  tiles.push([gratis+' / '+totV,'espaços com entrada gratuita']);
+  if(fecha7) tiles.push([fecha7,'mostra'+(fecha7>1?'s':'')+' fecha'+(fecha7>1?'m':'')+' em 7 dias']);
+  if(abre14) tiles.push([abre14,'abre'+(abre14>1?'m':'')+' nas próximas 2 semanas']);
+  if(tilesBox) tilesBox.innerHTML=tiles.map(([b,s])=>`<div class="pano-tile"><b>${b}</b><span>${s}</span></div>`).join('');
 
-  const it=[];
-  if(durGal.length>=5&&durIns.length>=3)
-    it.push([med(durGal)+' e '+med(durIns)+' dias',
-      'é quanto uma mostra costuma ficar em cartaz numa galeria e numa instituição. A cidade anda em dois ritmos ao mesmo tempo.']);
-  if(gratis&&total)
-    it.push([gratis+' de '+total+' espaços',
-      'têm entrada gratuita. Toda galeria comercial é franca — quem cobra são algumas instituições, e nem todas.']);
-  if(longa&&dd(hoje,longa.fim)>90)
-    it.push(['até '+fmtMes(longa.fim),
-      'fica em cartaz a mais longa da lista agora — "'+tituloLimpo(longa)+'", na '+longa.v+'. Dá pra deixar pra depois; quase ninguém vai.']);
-  if(fim7.length)
-    it.push([fim7.length+(fim7.length===1?' mostra':' mostras'),
-      (fim7.length===1?'encerra':'encerram')+' nos próximos sete dias. Se alguma está na sua lista, é este fim de semana.']);
+  lead.innerHTML=`<b>${emCartaz.length}</b> mostras em cartaz agora${cortou?' (as 50 que fecham antes)':''}. `+
+    `As barras curtas e claras são galerias; as longas e apagadas, instituições.`;
 
-  box.innerHTML=it.length
-    ? it.map(([n,t])=>`<div class="numrow"><b>${n}</b><span>${t}</span></div>`).join('')
-    : '<p class="note" style="margin:0">Sem base suficiente para os números agora.</p>';
+  if(!rows.length){ chart.innerHTML='<p class="note" style="margin:0">Nada com data de encerramento pra desenhar agora.</p>'; return; }
+
+  const ATRAS=45,FRENTE=175,W=1000,PADL=6,PADR=6,PADT=14;
+  const ROWH=Math.max(6,Math.min(9,380/rows.length)), BARH=Math.max(3,ROWH-3), AXISH=20;
+  const H=PADT+rows.length*ROWH+AXISH;
+  const x0=T0-ATRAS*DAY, x1=T0+FRENTE*DAY;
+  const sx=t=>PADL+((Math.max(x0,Math.min(x1,t))-x0)/(x1-x0))*(W-PADL-PADR);
+  const chartBot=PADT+rows.length*ROWH;
+
+  let grid='';
+  const gd=new Date(x0); gd.setDate(1); gd.setMonth(gd.getMonth()+1);
+  while(gd.getTime()<x1){
+    const gx=sx(gd.getTime());
+    grid+=`<line class="pano-grid" x1="${gx.toFixed(1)}" y1="${PADT}" x2="${gx.toFixed(1)}" y2="${chartBot}"/>`
+        +`<text class="pano-axis" x="${gx.toFixed(1)}" y="${H-6}" text-anchor="middle">${MES[gd.getMonth()]}</text>`;
+    gd.setMonth(gd.getMonth()+1);
+  }
+  const tx=sx(T0).toFixed(1);
+  const today=`<line class="pano-today" x1="${tx}" y1="${PADT-3}" x2="${tx}" y2="${chartBot+3}"/>`
+    +`<text class="pano-todaylbl" x="${tx}" y="${PADT-6}" text-anchor="middle">hoje</text>`;
+
+  const bars=rows.map((e,i)=>{
+    const y=PADT+i*ROWH;
+    const bx=sx(Date.parse(e.ini+'T12:00')), bw=Math.max(2,sx(Date.parse(e.fim+'T12:00'))-bx);
+    const fill=eInst(e)?'var(--viz-inst)':'var(--viz-com)';
+    return `<rect class="pano-bar" data-i="${i}" x="${bx.toFixed(1)}" y="${(y+(ROWH-BARH)/2).toFixed(1)}" width="${bw.toFixed(1)}" height="${BARH}" rx="2" fill="${fill}" fill-opacity="${eInst(e)?.6:.92}"/>`
+      +`<rect class="pano-hit" data-i="${i}" x="${PADL}" y="${y}" width="${W-PADL-PADR}" height="${ROWH}"/>`;
+  }).join('');
+
+  chart.innerHTML=`<svg viewBox="0 0 ${W} ${H.toFixed(0)}" role="img" aria-label="Timeline de ${rows.length} mostras em cartaz, ordenadas por data de encerramento">`
+    +grid+bars+today+`</svg><div class="pano-tip" id="panoTip"></div>`;
+
+  const svg=chart.querySelector('svg'), tip=document.getElementById('panoTip');
+  const mostra=i=>{
+    const e=rows[i], resta=dd(hoje,e.fim);
+    chart.classList.add('hov');
+    svg.querySelectorAll('.pano-bar').forEach(b=>b.classList.toggle('on',+b.dataset.i===i));
+    tip.innerHTML=`<b>${tituloLimpo(e)}</b><span class="pt-v">${e.v}</span>`
+      +`<div class="pt-d">${fmtMes(e.ini)} → ${fmtMes(e.fim)} · ${resta<=0?'último dia':resta+' dias restantes'}</div>`;
+    tip.classList.add('show');
+  };
+  const esconde=()=>{ chart.classList.remove('hov'); tip.classList.remove('show'); };
+  svg.addEventListener('pointerover',ev=>{const h=ev.target.closest('.pano-hit');if(h)mostra(+h.dataset.i);});
+  svg.addEventListener('pointermove',ev=>{
+    const r=chart.getBoundingClientRect();
+    let x=ev.clientX-r.left+16;
+    if(x+240>r.width) x=ev.clientX-r.left-246;
+    tip.style.left=Math.max(2,x)+'px';
+    tip.style.top=(ev.clientY-r.top+12)+'px';
+  });
+  svg.addEventListener('pointerleave',esconde);
+  svg.addEventListener('click',ev=>{const h=ev.target.closest('.pano-hit');if(h)focusVenue(rows[+h.dataset.i].v);});
 }
-cidadeEmNumeros();
+renderPanorama();
 /* filtros */
 document.querySelectorAll('#statusFilters .chip').forEach(ch=>ch.onclick=()=>{
   document.querySelectorAll('#statusFilters .chip').forEach(c=>c.classList.remove('on'));
