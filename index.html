@@ -108,20 +108,6 @@
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600}
   .kpiselo:hover .st b{color:var(--accent)}
 
-  /* faixa de editais — logo abaixo dos KPIs, antes do destaque do dia */
-  .editalbar{display:flex;align-items:center;gap:13px;text-decoration:none;
-    margin:14px 0 4px;padding:12px 18px;border-radius:var(--radius-sm);
-    background:linear-gradient(100deg,rgba(232,193,90,.12),rgba(232,193,90,.04));
-    border:1px solid rgba(232,193,90,.32);color:var(--text2);transition:.18s}
-  .editalbar:hover{border-color:var(--accent);background:linear-gradient(100deg,rgba(232,193,90,.18),rgba(232,193,90,.06))}
-  .editalbar-mark{color:var(--accent);font-size:.7rem;flex:0 0 auto}
-  .editalbar-txt{min-width:0;flex:1 1 auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.86rem}
-  .editalbar-n{color:var(--accent);font-weight:700;font-family:var(--display)}
-  .editalbar-list{color:var(--muted)}
-  .editalbar-list::before{content:' — '}
-  .editalbar-go{flex:0 0 auto;color:var(--accent);font-size:.78rem;font-weight:600}
-  @media(max-width:560px){.editalbar-go{display:none}}
-
   /* ---------- titulos ---------- */
   /* Titulo de secao primaria — Agenda, Diretorio, Aberturas da semana.
      Antes era o mesmo sussurro cinza das secoes menores, e a pagina ficava
@@ -369,10 +355,22 @@
   .ico-gap{width:1.55rem;height:1px}
   .zona{font-size:.72rem;color:var(--muted)}
 
-  /* ---------- pre-footer: enquete + bairros ---------- */
-  .prefoot{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;margin-top:44px}
-  .prefoot>section{display:flex;flex-direction:column;min-width:0}
-  .prefoot h2{margin:0 0 12px}
+  /* distribuição por bairro — fundida no Diretório, chips clicáveis */
+  .dirconc{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 16px}
+  .bchip{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:7px;
+    white-space:nowrap;background:var(--glass);border:1px solid var(--line);color:var(--text2);
+    border-radius:20px;padding:5px 12px;font:inherit;font-size:.78rem;cursor:pointer;transition:.16s}
+  .bchip-bar{position:absolute;left:0;top:0;bottom:0;width:var(--w,0%);
+    background:rgba(232,193,90,.13);pointer-events:none}
+  .bchip>*{position:relative}
+  .bchip b{color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums;font-size:.74rem}
+  .bchip:hover{border-color:var(--line2);color:var(--ink);transform:translateY(-1px)}
+  .bchip.more{color:var(--muted);border-style:dashed}
+  .bchip.more:hover{color:var(--accent);border-color:var(--accent)}
+
+  /* ---------- "A cidade em números" ---------- */
+  .numsec{margin-top:46px}
+  .numsec .panel{max-width:640px}
   .panel{position:relative;background:var(--glass);border:1px solid var(--line);
     border-radius:var(--radius);padding:20px 22px;overflow:hidden;box-shadow:var(--shadow);
     backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}
@@ -680,14 +678,6 @@
 
   <div class="kpis" id="kpis"></div>
 
-  <a class="editalbar" id="editalBar" href="editais.html" hidden>
-    <span class="editalbar-mark" aria-hidden="true">◆</span>
-    <span class="editalbar-txt">
-      <b class="editalbar-n"></b><span class="editalbar-list"></span>
-    </span>
-    <span class="editalbar-go" aria-hidden="true">ver todos →</span>
-  </a>
-
   <div class="foco" id="foco"></div>
 
 <div class="wkwrap" id="wkwrap" style="display:none">
@@ -742,6 +732,7 @@
   <button class="cardsmore" type="button" id="cardsMore"></button>
 
   <h2 id="dirtitle">Diretório de Galerias e Espaços</h2>
+  <div class="dirconc" id="dirConc" aria-label="Espaços por bairro — clique para filtrar"></div>
   <div class="dirwrap">
     <div class="dirbody">
       <table id="dirTable">
@@ -767,26 +758,13 @@
     </div>
   </section>
 
-  <div class="prefoot">
-    <section class="dobra">
-      <h2>A cidade em números</h2>
-      <div class="dobrac">
-      <div class="panel numeros" id="numeros"></div>
-      <p class="note">Calculado ao vivo da base — nada aqui é digitado à mão.</p>
-      </div>
-    </section>
-    <section class="dobra">
-      <h2>Espaços por bairro · nossa base</h2>
-      <div class="dobrac">
-      <div class="panel">
-        <div class="paineltopo"><span class="pt">Onde o circuito se concentra</span><span class="pn2" id="barsTotal"></span></div>
-        <div class="bars" id="bars"></div>
-        <button class="barsmore" type="button" id="barsMore"></button>
-      </div>
-      <p class="note">Clique num bairro para filtrar a agenda e o mapa.</p>
-      </div>
-    </section>
-  </div>
+  <section class="dobra numsec">
+    <h2>A cidade em números</h2>
+    <div class="dobrac">
+    <div class="panel numeros" id="numeros"></div>
+    <p class="note">Calculado ao vivo da base — nada aqui é digitado à mão.</p>
+    </div>
+  </section>
 
   <section class="ctaband">
     <div class="cta cta-espaco">
@@ -1534,32 +1512,29 @@ function cidadeEmNumeros(){
   const V={}; VENUES.forEach(v=>V[v.name]=v);
   const dd=(a,b)=>Math.round((Date.parse(b+'T12:00')-Date.parse(a+'T12:00'))/864e5);
   const med=a=>{const s=a.slice().sort((x,y)=>x-y);return s.length?s[Math.floor(s.length/2)]:0;};
+  const fmtMes=iso=>{const [y,m,d]=iso.split('-');return d+'/'+m;};
   const cartaz=EXPOS.filter(e=>e.ini&&e.ini<=hoje&&(!e.fim||e.fim>=hoje)&&V[e.v]);
 
   const durGal=cartaz.filter(e=>e.fim&&V[e.v].tipo==='galeria').map(e=>dd(e.ini,e.fim));
   const durIns=cartaz.filter(e=>e.fim&&V[e.v].tipo==='institucional').map(e=>dd(e.ini,e.fim));
-  const zc={}; VENUES.forEach(v=>zc[v.z]=(zc[v.z]||0)+1);
-  const ze=Object.entries(zc).sort((a,b)=>b[1]-a[1]);
-  const fim7=cartaz.filter(e=>e.fim&&dd(hoje,e.fim)>=0&&dd(hoje,e.fim)<=7).length;
-  const abre6=EXPOS.filter(e=>e.ini&&dd(hoje,e.ini)>0&&dd(hoje,e.ini)<=42).length;
-  const semImg=cartaz.filter(e=>!e.img).length;
+  const gratis=VENUES.filter(v=>v.tipo!=='feira'&&ehGratis(v)).length;
+  const total=VENUES.filter(v=>v.tipo!=='feira').length;
+  const fim7=cartaz.filter(e=>e.fim&&dd(hoje,e.fim)>=0&&dd(hoje,e.fim)<=7);
+  const longa=cartaz.filter(e=>e.fim).sort((a,b)=>dd(hoje,b.fim)-dd(hoje,a.fim))[0];
 
   const it=[];
   if(durGal.length>=5&&durIns.length>=3)
-    it.push([med(durGal)+' × '+med(durIns)+' dias',
-      'quanto uma mostra fica em cartaz numa galeria, contra numa instituição — a cidade tem duas velocidades sobrepostas.']);
-  if(ze.length>1&&ze[0][1]!==ze[ze.length-1][1])
-    it.push([ze[0][1]+' na Zona '+ze[0][0]+', '+ze[ze.length-1][1]+' na Zona '+ze[ze.length-1][0],
-      'a concentração de espaços por zona. O circuito não está espalhado pela cidade — ele mora num pedaço dela.']);
-  if(fim7)
-    it.push([fim7+(fim7===1?' mostra':' mostras'),
-      'encerram nos próximos sete dias. Se tem uma na sua lista, é este fim de semana.']);
-  if(abre6)
-    it.push([abre6+(abre6===1?' abertura':' aberturas'),
-      (abre6===1?'já confirmada':'já confirmadas')+' para as próximas seis semanas.']);
-  if(semImg&&cartaz.length)
-    it.push([semImg+' de '+cartaz.length,
-      'mostras em cartaz ainda sem uma reprodução da obra publicada — a lacuna que a varredura de domingo persegue.']);
+    it.push([med(durGal)+' e '+med(durIns)+' dias',
+      'é quanto uma mostra costuma ficar em cartaz numa galeria e numa instituição. A cidade anda em dois ritmos ao mesmo tempo.']);
+  if(gratis&&total)
+    it.push([gratis+' de '+total+' espaços',
+      'têm entrada gratuita. Toda galeria comercial é franca — quem cobra são algumas instituições, e nem todas.']);
+  if(longa&&dd(hoje,longa.fim)>90)
+    it.push(['até '+fmtMes(longa.fim),
+      'fica em cartaz a mais longa da lista agora — "'+tituloLimpo(longa)+'", na '+longa.v+'. Dá pra deixar pra depois; quase ninguém vai.']);
+  if(fim7.length)
+    it.push([fim7.length+(fim7.length===1?' mostra':' mostras'),
+      (fim7.length===1?'encerra':'encerram')+' nos próximos sete dias. Se alguma está na sua lista, é este fim de semana.']);
 
   box.innerHTML=it.length
     ? it.map(([n,t])=>`<div class="numrow"><b>${n}</b><span>${t}</span></div>`).join('')
@@ -1574,26 +1549,24 @@ document.querySelectorAll('#statusFilters .chip').forEach(ch=>ch.onclick=()=>{
 document.getElementById('search').oninput=()=>draw();
 weekBanner();
 
-/* bar chart */
-/* bar chart — só os 8 bairros mais densos por padrão; o resto (quase todo
-   com 1) abre no "ver todos", pra não ocupar meia tela com uma cauda longa. */
-const mx=BAIRRO_COUNTS[0][1], BARS_TOPO=8;
-  document.getElementById('bars').innerHTML=BAIRRO_COUNTS.map(([b,n],i)=>
-    `<div class="barrow${i>=BARS_TOPO?' hid':''}"><div class="bn" onclick="barFilter('${b}')">${b}</div><div><div class="bar" style="width:${n/mx*100}%"></div></div><div class="bv">${n}</div></div>`).join('');
-  (function(){
-    const bt=document.getElementById('barsTotal');
-    if(bt) bt.textContent=BAIRRO_COUNTS.reduce((a,c)=>a+c[1],0)+' espaços · '+BAIRRO_COUNTS.length+' bairros';
-    const btn=document.getElementById('barsMore');
-    if(btn && BAIRRO_COUNTS.length>BARS_TOPO){
-      const resto=BAIRRO_COUNTS.length-BARS_TOPO;
-      btn.textContent='ver todos os '+BAIRRO_COUNTS.length+' bairros';
-      btn.onclick=()=>{
-        const aberto=document.querySelectorAll('#bars .barrow.hid').length===0;
-        document.querySelectorAll('#bars .barrow').forEach((r,i)=>r.classList.toggle('hid',!aberto&&i>=BARS_TOPO));
-        btn.textContent=aberto?('ver todos os '+BAIRRO_COUNTS.length+' bairros'):('esconder '+resto+' bairros');
-      };
-    } else if(btn){ btn.style.display='none'; }
-  })();
+/* Distribuição por bairro — fundida no Diretório (era um painel separado no
+   rodapé). Chips clicáveis: o mesmo barFilter() que já filtrava a agenda. */
+(function(){
+  const el=document.getElementById('dirConc'); if(!el) return;
+  const TOPO=8, mx=BAIRRO_COUNTS[0][1];
+  const chip=([b,n])=>`<button type="button" class="bchip" onclick="barFilter('${b.replace(/'/g,"\\'")}')">`+
+    `<span class="bchip-bar" style="--w:${Math.max(8,n/mx*100)}%"></span>${b}<b>${n}</b></button>`;
+  const render=full=>{
+    const lista=full?BAIRRO_COUNTS:BAIRRO_COUNTS.slice(0,TOPO);
+    el.innerHTML=lista.map(chip).join('')+
+      (BAIRRO_COUNTS.length>TOPO
+        ? `<button type="button" class="bchip more" id="bchipMore">${full?'menos':'+ '+(BAIRRO_COUNTS.length-TOPO)+' bairros'}</button>`
+        : '');
+    const m=document.getElementById('bchipMore');
+    if(m) m.onclick=e=>{e.stopPropagation();render(!full);};
+  };
+  render(false);
+})();
 /* ---------- experiências imersivas ----------
    A categoria estava no dados.js e exposta no return desde 11/08 sem ninguém
    consumir: dado morto. Entra aqui, e não na agenda, de propósito — é operação
@@ -1623,7 +1596,8 @@ const mx=BAIRRO_COUNTS[0][1], BARS_TOPO=8;
      existia aqui (e só cobria "Jardins" → Jardim Paulista) não é mais preciso. */
   const opt=[...bSel.options].find(o=>o.value===b);
   bSel.value=opt?opt.value:'all';draw();
-  window.scrollTo({top:0,behavior:'smooth'});
+  const ag=document.getElementById('agGrid');
+  if(ag) ag.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 /* ritmo das aberturas */
@@ -1684,17 +1658,9 @@ const mx=BAIRRO_COUNTS[0][1], BARS_TOPO=8;
 
   /* contador de editais abertos no header + na faixa */
   (function(){
-    const ed=(window.DATA.editais||[]);
-    const n=ed.length;
+    const n=(window.DATA.editais||[]).length;
     const badge=document.getElementById('navEditalN');
     if(badge) badge.textContent=n?n:'';
-    const bar=document.getElementById('editalBar');
-    if(bar && n){
-      const nomes=ed.slice(0,3).map(e=>e.t.split(' — ')[0].split(':')[0].trim());
-      bar.querySelector('.editalbar-n').textContent=n===1?'1 edital aberto':n+' editais abertos';
-      bar.querySelector('.editalbar-list').textContent=nomes.join(' · ')+(n>3?` e mais ${n-3}`:'');
-      bar.hidden=false;
-    }
   })();
 
   /* filtros colapsaveis no mobile */
