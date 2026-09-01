@@ -339,7 +339,12 @@
   tbody tr:hover{background:rgba(255,255,255,.035)}
   td .gname{color:var(--ink);font-weight:600;cursor:pointer;transition:.18s}
   td .gname:hover{color:var(--accent)}
-  td.actions{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+  td.actions{padding-right:16px}
+  td.actions>*{vertical-align:middle}
+  .dir-acts{display:inline-grid;grid-template-columns:repeat(4,1.55rem);gap:5px;align-items:center;justify-items:center}
+  td.actions .fav{font-size:.9rem}
+  td.actions .btn.ico{padding:4px;border-radius:7px}
+  .ico-gap{width:1.55rem;height:1px}
   .zona{font-size:.72rem;color:var(--muted)}
 
   /* ---------- pre-footer: enquete + bairros ---------- */
@@ -961,7 +966,9 @@ h+=`<br>${v.site?`<a href="${v.site}" target="_blank">Site</a> · `:''}${v.ig?`<
 }
 const ICO={
  site:'<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3.2 9.5h17.6M3.2 14.5h17.6M12 3.2c2.4 2.4 3.6 5.4 3.6 8.8s-1.2 6.4-3.6 8.8c-2.4-2.4-3.6-5.4-3.6-8.8S9.6 5.6 12 3.2z"/></svg>',
- ig:'<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5.2"/><circle cx="12" cy="12" r="4"/><circle cx="17.1" cy="6.9" r="1.15" fill="currentColor" stroke="none"/></svg>'};
+ ig:'<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5.2"/><circle cx="12" cy="12" r="4"/><circle cx="17.1" cy="6.9" r="1.15" fill="currentColor" stroke="none"/></svg>',
+ pin:'<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.3 7-11.5A7 7 0 0 0 5 9.5C5 14.7 12 21 12 21z"/><circle cx="12" cy="9.3" r="2.6"/></svg>',
+ search:'<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.3"/><path d="M15.4 15.4 20 20"/></svg>'};
 const gsearch=q=>'https://www.google.com/search?q='+encodeURIComponent(q);
 
 function matches(v,q){return !q||[v.name,v.addr,v.b,v.z,v.info].join(' ').toLowerCase().includes(q)}
@@ -1074,10 +1081,12 @@ function drawDir(q,zona,b,tipo,ven){
   document.querySelector('#dirTable tbody').innerHTML=rows.map(v=>`<tr>
     <td><span class="gname" onclick="focusVenue('${v.name.replace(/'/g,"\\'")}')">${v.name}</span></td>
     <td>${v.addr}</td><td>${v.b}</td><td class="zona">${v.z}</td><td class="zona">${v.tipo}</td>
-    <td class="actions"><span class="fav ${favs.has(v.name)?'on':''}" onclick="toggleFav('${v.name.replace(/'/g,"\\'")}')" title="Favoritar">&#9829;</span>
-      ${v.site?`<a class="btn ico" href="${v.site}" target="_blank" title="Site" aria-label="Site">${ICO.site}</a>`:`<a class="btn" href="${gsearch(v.name+' galeria são paulo')}" target="_blank">Buscar</a>`}
-      ${v.ig?`<a class="btn ico" href="https://instagram.com/${v.ig}" target="_blank" title="Instagram" aria-label="Instagram">${ICO.ig}</a>`:''}
-      <a class="btn" href="${gmaps(v)}" target="_blank">Rota</a></td></tr>`).join('');
+    <td class="actions"><div class="dir-acts"><span class="fav ${favs.has(v.name)?'on':''}" onclick="toggleFav('${v.name.replace(/'/g,"\\'")}')" title="Favoritar" aria-label="Favoritar">&#9829;</span>
+      ${v.site
+        ?`<a class="btn ico" href="${v.site}" target="_blank" title="Site oficial" aria-label="Site oficial">${ICO.site}</a>`
+        :`<a class="btn ico" href="${gsearch(v.name+' galeria são paulo')}" target="_blank" title="Buscar no Google" aria-label="Buscar no Google">${ICO.search}</a>`}
+      ${v.ig?`<a class="btn ico" href="https://instagram.com/${v.ig}" target="_blank" title="Instagram" aria-label="Instagram">${ICO.ig}</a>`:'<span class="ico-gap" aria-hidden="true"></span>'}
+      <a class="btn ico" href="${gmaps(v)}" target="_blank" title="Traçar rota" aria-label="Traçar rota">${ICO.pin}</a></div></td></tr>`).join('');
   document.getElementById('dirtitle').textContent=`Diretório de Galerias e Espaços (${rows.length})`;
 }
 document.querySelectorAll('#dirTable th[data-k]').forEach(th=>th.onclick=()=>{
@@ -1475,21 +1484,30 @@ const POLL=[['zoeste','Zona Oeste'],['zcentro','Centro'],['zsul','Zona Sul'],['z
 const ZONA_ROTULO={zoeste:'Oeste',zcentro:'Centro',zsul:'Sul',zleste:'Leste',znorte:'Norte'};
 const ESPACOS_ZONA=(function(){const a={};(window.DATA.venues||[]).forEach(v=>{a[v.z]=(a[v.z]||0)+1;});return a;})();
 const CORES=['var(--accent)','var(--accent2)','var(--violet)','var(--green)','var(--blue)'];
+  /* Só mostra o resultado (termômetro + legenda) com amostra que signifique
+     algo. Abaixo disso, um gráfico de "100% numa zona" com 1 voto só passa
+     vergonha — então fica só a pergunta. */
+  const POLL_MIN=8;
   function termometro(vs,my){
     const tot=vs.reduce((a,c)=>a+c,0);
     const pct=vs.map(v=>tot?v/tot*100:100/POLL.length);
     const meu=my?POLL.findIndex(p=>p[0]===my):-1;
+    const mostrarResultado = tot>=POLL_MIN;
     let h='<div class="paineltopo"><span class="pt">O que a cidade pediu</span><span class="pn2">'+
       (tot?tot+(tot===1?' resposta':' respostas'):'ninguém votou ainda')+'</span></div>';
-    h+='<div class="termo">'+POLL.map((p,i)=>
-        '<span class="fatia'+(i===meu?' meu':'')+'" data-w="'+pct[i].toFixed(2)+'" style="background:'+CORES[i]+'" title="'+p[1]+' — '+Math.round(pct[i])+'%"></span>').join('')+'</div>';
-    h+='<div class="legenda">'+POLL.map((p,i)=>
-        '<span class="lg'+(i===meu?' meu':'')+'"><i style="background:'+CORES[i]+'"></i>'+p[1]+
-        '<b>'+Math.round(pct[i])+'%</b></span>').join('')+'</div>';
+    if(mostrarResultado){
+      h+='<div class="termo">'+POLL.map((p,i)=>
+          '<span class="fatia'+(i===meu?' meu':'')+'" data-w="'+pct[i].toFixed(2)+'" style="background:'+CORES[i]+'" title="'+p[1]+' — '+Math.round(pct[i])+'%"></span>').join('')+'</div>';
+      h+='<div class="legenda">'+POLL.map((p,i)=>
+          '<span class="lg'+(i===meu?' meu':'')+'"><i style="background:'+CORES[i]+'"></i>'+p[1]+
+          '<b>'+Math.round(pct[i])+'%</b></span>').join('')+'</div>';
+    }
     if(meu>=0){
       const nz=ESPACOS_ZONA[ZONA_ROTULO[POLL[meu][0]]]||0;
-      h+='<div class="voumeu">Você está entre os <b>'+Math.round(pct[meu])+'%</b> que pedem mais '+
-         POLL[meu][1]+'. O mapa tem <b>'+nz+'</b> '+(nz===1?'espaço':'espaços')+' lá hoje.</div>';
+      h+='<div class="voumeu">'+(mostrarResultado
+          ? 'Você está entre os <b>'+Math.round(pct[meu])+'%</b> que pedem mais '+POLL[meu][1]+'. '
+          : 'Seu voto foi para <b>'+POLL[meu][1]+'</b>. O resultado aparece quando houver respostas suficientes. ')+
+         'O mapa tem <b>'+nz+'</b> '+(nz===1?'espaço':'espaços')+' lá hoje.</div>';
     }else{
       h+='<div class="pergunta">Que região você quer ver mais na agenda? <span class="pn2">1 clique · anônimo</span></div>'+
          '<div class="opts">'+POLL.map((p,i)=>'<span class="chip" style="--c:'+CORES[i]+'" onclick="vote(\''+p[0]+'\')">'+p[1]+'</span>').join('')+'</div>';
