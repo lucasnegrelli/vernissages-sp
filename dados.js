@@ -164,7 +164,6 @@ const EXPOS = [
 {t:"Pequeno mapa do tempo — Paula Siebra",a:"Paula Siebra",v:"Mendes Wood DM — Casa Iramaia",ini:"2026-08-25",fim:"2026-10-24",d:"Pinturas a óleo sobre os ciclos de chuva, festa, vento e seca em Fortaleza.",img:"img/pequeno-mapa-do-tempo-mendes-wood-dm-casa-iramaia.webp",cred:"Cortesia Mendes Wood DM"},
 {t:"Tudo que inventei aconteceu — Flávia Junqueira",a:"Flávia Junqueira",v:"Zipper Galeria",ini:"2026-08-08",fim:"2026-09-19",d:"Fotografias inéditas produzidas ao longo de um mês em Nova York.",img:"img/tudo-que-inventei-aconteceu-zipper-galeria.webp",cred:"Cortesia Zipper Galeria"},
 {t:"No corpo e na paisagem, o que resta é o pó — Henrique Detomi",a:"Henrique Detomi",v:"Zipper Galeria",ini:"2026-08-08",fim:"2026-09-19",d:"Pintura a partir da caminhada e da terra aberta do interior de Minas.",img:"img/no-corpo-e-na-paisagem-o-que-resta-e-o-po-zipper-galeria.webp",cred:"Cortesia Zipper Galeria"},
-{t:"Território de passagem — Ruchita",a:"Ruchita",v:"MIS — Museu da Imagem e do Som",ini:"2026-07-11",fim:"2026-08-24",d:"Primeira individual de Ruchita em São Paulo: videoartes e séries fotográficas. Curadoria de Brunno Almeida Maia; direção de arte e expografia de Leandro Leão.",img:"img/territorio-de-passagem-mis-museu-da-imagem-e-do-som.jpg",cred:"Cortesia MIS - Museu da Imagem e do Som"},
 {t:"Assim Bordei Meus Sonhos: Margarida L. Kanciukaitis Pandolfo",a:"Margarida L. Kanciukaitis Pandolfo",v:"Museu da Imigração",ini:"2026-07-10",fim:"2026-10-06",d:"Cerca de 100 peças em bordado, retalho, crochê e pintura, algumas feitas com os filhos, OSGEMEOS, que assinam a curadoria. Primeira individual da artista no Brasil.",img:"img/assim-bordei-meus-sonhos-margarida-l-kanciukaitis-pandolfo-m.png",cred:"Cortesia Museu da Imigracao"},
 {t:"Beijo de Língua — Nelson Felix",a:"Nelson Felix",v:"MAC USP",ini:"2026-05-30",fim:"2026-11-29",d:"Individual do escultor carioca no MAC USP. Entrada gratuita."},
 {t:"Terra que Desmancha, Evapora e Solidifica — Coletivo Poíesis",v:"Vazio Criativo",ini:"2026-08-22",fim:"2026-09-05",d:"Coletiva do Coletivo Poíesis com 20 artistas visuais, organizada em duplas de pesquisas opostas sob orientação e curadoria de Andrés I. M. Hernández. Terça a sexta, 10h–18h; sábado, 10h–16h.",img:"img/terra-que-desmancha.jpg",cred:"Divulgação / Coletivo Poíesis",cartaz:true},
@@ -224,11 +223,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Presença — Anna Maria Maiolino",
-  v: "Galeria Luisa Strina",
-  quem: "Anna Maria Maiolino",
-  txt: "Individual da ítalo-brasileira, com obras de 1974 a 2026: as esculturas de vidro soprado da série Emanados, o raku de São Seis Raku, as radiografias de Marcas na Transparência e a fotografia X, da Fotopoemação. Texto de Lotte Johnson, curadora da Barbican. Abertura em 8 de agosto, até 19 de setembro.",
-  link: "https://www.luisastrina.com.br",
+  t: "Vonta de vi dada dada — Ernesto Neto (Barra Funda)",
+  v: "Fortes D'Aloia & Gabriel — Galpão",
+  quem: "Ernesto Neto",
+  txt: "Metade em galpão da individual que Neto abriu nas duas sedes da galeria no mesmo dia. Inclui escultura monumental em aço corten cuja estrutura ramificada evoca ao mesmo tempo paisagem montanhosa e corpo vivo. Abertura em 22 de agosto, até 24 de outubro.",
+  link: "https://fdag.com.br",
   publi: false
 };
 
@@ -243,6 +242,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-09-01", k:"Vonta de vi dada dada — Ernesto Neto (Barra Funda)|Fortes D'Aloia & Gabriel — Galpão"},
   {d:"2026-08-31", k:"Presença — Anna Maria Maiolino|Galeria Luisa Strina"},
   {d:"2026-08-30", k:"Vonta de vi dada dada — Ernesto Neto (Jardins)|Fortes D'Aloia & Gabriel — Galeria"},
   {d:"2026-08-29", k:"Imagens do Interior — Fabiana de Barros|Luciana Brito Galeria"},
@@ -286,5 +286,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "31/08/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "01/09/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
