@@ -16,7 +16,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://vernissagessp.com.br/og-image.png">
 <link rel="icon" type="image/png" href="icon-192.png">
-<meta name="theme-color" content="#0e0e11">
+<meta name="theme-color" content="#100e0b">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,9 +27,11 @@
 <script src="dados.js"></script>
 <style>
   :root{
-    --bg:#0a0a0d; --ink:#f3f3f7; --muted:#8b8b9a; --text2:#c2c2d0;
-    --accent:#e8c15a; --accent2:#c96f4a; --violet:#a78bfa;
-    --green:#7fd8a0; --red:#f08a7a; --blue:#8fb6f9;
+    /* Neutros com viés quente — antes puxavam pro azul-violeta e brigavam com
+       o âmbar do acento. Agora o cinza "combina" com a cor da casa. */
+    --bg:#0c0b09; --ink:#f4f1ea; --muted:#968c7c; --text2:#ccc5b7;
+    --accent:#e8c15a; --accent2:#cd6a44; --violet:#b49be0;
+    --green:#7fd0a0; --red:#ef8a76; --blue:#8fb0f0;
     --glass:rgba(255,255,255,.045); --glass2:rgba(255,255,255,.075);
     --line:rgba(255,255,255,.10); --line2:rgba(255,255,255,.20);
     --hair:rgba(255,255,255,.055);
@@ -38,7 +40,7 @@
     --shadow:0 1px 0 rgba(255,255,255,.06) inset, 0 12px 32px -18px rgba(0,0,0,.9);
     --font:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
     --display:'Space Grotesk',Inter,ui-sans-serif,system-ui,sans-serif;
-    --onaccent:#0a0a0d;
+    --onaccent:#0c0b09;
     --panel:var(--glass); --panel2:var(--glass2); --border:var(--line); --text:var(--ink);
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -47,9 +49,9 @@
     -webkit-font-smoothing:antialiased;font-size:15px;overflow-x:hidden}
   body::before{content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;
     background:
-      radial-gradient(58vw 46vh at 10% -8%, rgba(232,193,90,.13), transparent 62%),
-      radial-gradient(48vw 42vh at 94% 4%, rgba(167,139,250,.12), transparent 62%),
-      radial-gradient(72vw 55vh at 48% 104%, rgba(201,111,74,.09), transparent 60%)}
+      radial-gradient(58vw 46vh at 10% -8%, rgba(232,193,90,.12), transparent 62%),
+      radial-gradient(48vw 42vh at 94% 4%, rgba(205,106,68,.10), transparent 62%),
+      radial-gradient(72vw 55vh at 48% 104%, rgba(180,155,224,.07), transparent 60%)}
   body::after{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
     background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),
       linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);
@@ -68,20 +70,18 @@
   header h1{font-family:var(--display);font-size:1.42rem;font-weight:600;letter-spacing:4px;line-height:1.15}
   header h1 span{color:var(--accent)}
   header p{color:var(--muted);font-size:.8rem;margin-top:2px}
-  .navacervo{position:relative}
-  .navbtn{background:var(--glass);border:1px solid var(--line);color:var(--muted);
-    border-radius:24px;padding:9px 16px;font-family:var(--font);font-size:.8rem;cursor:pointer;
-    backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);transition:.18s;white-space:nowrap}
-  .navbtn::after{content:'›';display:inline-block;margin-left:7px;transform:rotate(90deg);opacity:.6}
-  .navbtn:hover{color:var(--ink);border-color:var(--line2)}
-  .navmenu{display:none;position:absolute;right:0;top:calc(100% + 8px);z-index:80;min-width:210px;
-    background:rgba(20,20,26,.94);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
-    border:1px solid var(--line2);border-radius:var(--radius);padding:6px;
-    box-shadow:0 24px 60px -20px rgba(0,0,0,.95)}
-  .navacervo.open .navmenu{display:block}
-  .navmenu a{display:block;color:var(--text2);text-decoration:none;font-size:.82rem;
-    padding:9px 12px;border-radius:var(--radius-sm);transition:.15s}
-  .navmenu a:hover{background:var(--glass2);color:var(--accent)}
+  /* Editais deixou de morar num dropdown "Explorar" escondido: é a página que
+     mais interessa a quem faz arte, então virou item direto e marcado. */
+  .navedital{display:inline-flex;align-items:center;gap:9px;text-decoration:none;white-space:nowrap;
+    background:rgba(232,193,90,.10);border:1px solid rgba(232,193,90,.38);color:var(--accent);
+    border-radius:24px;padding:8px 15px;font-size:.8rem;font-weight:600;transition:.18s;
+    backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}
+  .navedital:hover{background:rgba(232,193,90,.17);border-color:var(--accent);
+    transform:translateY(-1px);box-shadow:0 6px 20px -8px rgba(232,193,90,.5)}
+  .navedital-n{font-variant-numeric:tabular-nums;background:var(--accent);color:var(--onaccent);
+    font-weight:700;min-width:19px;height:19px;padding:0 5px;border-radius:20px;
+    display:inline-flex;align-items:center;justify-content:center;font-size:.72rem}
+  .navedital-n:empty{display:none}
   #search{background:var(--glass);border:1px solid var(--line);color:var(--ink);border-radius:24px;
     padding:10px 18px;font-size:.88rem;width:320px;max-width:100%;
     backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);transition:.2s}
@@ -108,6 +108,20 @@
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600}
   .kpiselo:hover .st b{color:var(--accent)}
 
+  /* faixa de editais — logo abaixo dos KPIs, antes do destaque do dia */
+  .editalbar{display:flex;align-items:center;gap:13px;text-decoration:none;
+    margin:14px 0 4px;padding:12px 18px;border-radius:var(--radius-sm);
+    background:linear-gradient(100deg,rgba(232,193,90,.12),rgba(232,193,90,.04));
+    border:1px solid rgba(232,193,90,.32);color:var(--text2);transition:.18s}
+  .editalbar:hover{border-color:var(--accent);background:linear-gradient(100deg,rgba(232,193,90,.18),rgba(232,193,90,.06))}
+  .editalbar-mark{color:var(--accent);font-size:.7rem;flex:0 0 auto}
+  .editalbar-txt{min-width:0;flex:1 1 auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.86rem}
+  .editalbar-n{color:var(--accent);font-weight:700;font-family:var(--display)}
+  .editalbar-list{color:var(--muted)}
+  .editalbar-list::before{content:' — '}
+  .editalbar-go{flex:0 0 auto;color:var(--accent);font-size:.78rem;font-weight:600}
+  @media(max-width:560px){.editalbar-go{display:none}}
+
   /* ---------- titulos ---------- */
   /* Titulo de secao primaria — Agenda, Diretorio, Aberturas da semana.
      Antes era o mesmo sussurro cinza das secoes menores, e a pagina ficava
@@ -118,22 +132,26 @@
   h2 .wkhint,h2 .pn2{font-family:var(--font);font-size:.68rem;font-weight:600;letter-spacing:1.5px;
     text-transform:uppercase;color:var(--muted)}
 
-  /* Secao secundaria/participativa — colapsada por padrao, em qualquer tela. */
-  .dobra>h2{position:relative;font-family:var(--font);font-size:.7rem;font-weight:600;
-    text-transform:uppercase;letter-spacing:2.6px;color:var(--muted);cursor:pointer;
-    user-select:none;padding-right:30px;border-bottom-color:var(--hair)}
-  .dobra>h2::after{content:'';position:absolute;right:6px;top:50%;width:9px;height:9px;
-    border-right:1.6px solid var(--muted);border-bottom:1.6px solid var(--muted);
-    transform:translateY(-70%) rotate(45deg);transition:transform .22s}
-  .dobra>h2:hover{color:var(--text2)}
-  .dobra.aberta>h2::after{transform:translateY(-25%) rotate(225deg)}
-  .dobra .dobrac{display:none}
-  .dobra.aberta .dobrac{display:block}
+  /* Titulo de secao secundaria — sussurro cinza. No desktop a secao fica
+     sempre aberta; no mobile ela colapsa pra nao empurrar a agenda. */
+  .dobra>h2{font-family:var(--font);font-size:.7rem;font-weight:600;
+    text-transform:uppercase;letter-spacing:2.6px;color:var(--muted);
+    border-bottom-color:var(--hair)}
+  @media(max-width:950px){
+    .dobra>h2{position:relative;cursor:pointer;user-select:none;padding-right:30px}
+    .dobra>h2::after{content:'';position:absolute;right:6px;top:50%;width:9px;height:9px;
+      border-right:1.6px solid var(--muted);border-bottom:1.6px solid var(--muted);
+      transform:translateY(-70%) rotate(45deg);transition:transform .22s}
+    .dobra>h2:hover{color:var(--text2)}
+    .dobra.aberta>h2::after{transform:translateY(-25%) rotate(225deg)}
+    .dobra .dobrac{display:none}
+    .dobra.aberta .dobrac{display:block}
+  }
 
   /* ---------- controles ---------- */
   .filters{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 16px;align-items:center}
   #statusFilters{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-  .chip,.btn,select,.navbtn{line-height:1.35}
+  .chip,.btn,select,.navedital{line-height:1.35}
   .chip{background:var(--glass);border:1px solid var(--line);color:var(--text2);border-radius:20px;
     padding:7px 15px;font-size:.81rem;cursor:pointer;transition:.18s;user-select:none;
     backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);white-space:nowrap}
@@ -311,6 +329,10 @@
     margin-left:10px;vertical-align:middle;display:none}
   .wkrow{display:flex;gap:11px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x mandatory;
     -webkit-overflow-scrolling:touch}
+  /* poucas aberturas: em vez de dois cards espremidos à esquerda com um vazião
+     à direita, os cards se abrem para ocupar a faixa. */
+  .wkrow.poucos{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));overflow:visible}
+  .wkrow.poucos .wk{flex:none}
   .wk{flex:0 0 260px;scroll-snap-align:start;background:var(--glass2);border:1px solid var(--line);
     border-radius:var(--radius-sm);padding:13px 15px;cursor:pointer;transition:.2s}
   .wk:hover{border-color:var(--accent);transform:translateY(-2px);background:rgba(232,193,90,.07)}
@@ -357,6 +379,28 @@
   .panel::before{content:'';position:absolute;inset:0;pointer-events:none;
     background:radial-gradient(75% 120% at 100% 0%,rgba(232,193,90,.07),transparent 62%)}
   .panel>*{position:relative}
+
+  /* "A cidade em números" — no lugar da enquete */
+  .numeros{display:flex;flex-direction:column;gap:0}
+  .numrow{padding:13px 0;border-bottom:1px solid var(--hair)}
+  .numrow:first-child{padding-top:2px}
+  .numrow:last-child{border-bottom:0;padding-bottom:2px}
+  .numrow b{display:block;font-family:var(--display);font-size:1.24rem;font-weight:700;
+    color:var(--accent);letter-spacing:-.4px;line-height:1.15;margin-bottom:3px;
+    font-variant-numeric:tabular-nums}
+  .numrow span{display:block;color:var(--text2);font-size:.85rem;line-height:1.55;max-width:52ch}
+
+  /* faixa de CTA — Divulgue + Intel, tiradas do meio da coluna da enquete */
+  .ctaband{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:38px}
+  .cta{background:var(--glass);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 24px;display:flex;flex-direction:column;gap:9px;align-items:flex-start;
+    box-shadow:var(--shadow)}
+  .cta-espaco{border-color:rgba(167,139,250,.28)}
+  .cta b{font-family:var(--display);font-size:1.05rem;color:var(--ink);font-weight:700}
+  .cta p{color:var(--muted);font-size:.85rem;line-height:1.6;margin:0;flex:1}
+  .cta .btn{margin-top:4px}
+  @media(max-width:720px){.ctaband{grid-template-columns:1fr}}
+
   .poll .opts{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
   .poll .opts .chip{border-color:color-mix(in srgb,var(--c) 40%,transparent)}
   .poll .opts .chip:hover{background:color-mix(in srgb,var(--c) 14%,transparent);
@@ -428,6 +472,11 @@
     color:var(--muted);font-size:.76rem;line-height:1.8}
   footer a{color:var(--text2);text-decoration:none;border-bottom:1px solid var(--line);transition:.18s}
   footer a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+  .footnav{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:18px;padding-bottom:16px;
+    border-bottom:1px solid var(--hair)}
+  .footnav a{font-family:var(--display);font-size:.9rem;font-weight:600;color:var(--text2);
+    border-bottom:0;letter-spacing:.2px}
+  .footnav a:hover{color:var(--accent)}
   .visits{margin-top:9px;font-size:.72rem;color:var(--muted);opacity:.75}
   .visits b{color:var(--text2);font-weight:600}
 
@@ -523,7 +572,9 @@
     .hwrap{padding:0 18px;gap:10px}
     .hacoes{width:100%;flex-wrap:nowrap}
     .hacoes #search{flex:1;min-width:0;width:auto}
-    .navbtn{flex:0 0 auto}
+    .navedital{flex:0 0 auto}
+    .navedital-lbl{display:none}
+    .navedital::before{content:'Editais';font-weight:600}
     header h1{font-size:1.2rem;letter-spacing:3px}
     #search{width:100%}
     .wrap{padding:0 18px 44px}
@@ -582,7 +633,7 @@
      ============================================================ */
   @media (max-width:1024px), (hover:none), (pointer:coarse){
     header,#search,.card,.chip,.foco,.panel,.wkwrap,.dirwrap,#modal,#modalBg,
-    #routePanel,.navbtn,.navmenu,.infopop,.viewtoggle,select,th,.focoimg .cred,
+    #routePanel,.navedital,.infopop,.viewtoggle,select,th,.focoimg .cred,
     .kpi,.wk,.btn{
       backdrop-filter:none !important;
       -webkit-backdrop-filter:none !important;
@@ -617,14 +668,10 @@
     </div>
     <div class="hacoes">
       <input id="search" type="text" placeholder="Buscar galeria, artista, endereço, bairro…">
-      <div class="navacervo" id="navAcervo">
-        <button class="navbtn" type="button" id="navBtn" aria-expanded="false" aria-haspopup="true">Explorar</button>
-        <div class="navmenu">
-          <a href="editais.html">Editais e chamadas</a>
-          <a href="arquivo.html">Acervo de exposições</a>
-          <a href="artistas.html">Artistas</a>
-        </div>
-      </div>
+      <a class="navedital" href="editais.html">
+        <span class="navedital-lbl">Editais &amp; chamadas</span>
+        <span class="navedital-n" id="navEditalN"></span>
+      </a>
     </div>
   </div>
 </header>
@@ -632,6 +679,14 @@
 <div class="wrap">
 
   <div class="kpis" id="kpis"></div>
+
+  <a class="editalbar" id="editalBar" href="editais.html" hidden>
+    <span class="editalbar-mark" aria-hidden="true">◆</span>
+    <span class="editalbar-txt">
+      <b class="editalbar-n"></b><span class="editalbar-list"></span>
+    </span>
+    <span class="editalbar-go" aria-hidden="true">ver todos →</span>
+  </a>
 
   <div class="foco" id="foco"></div>
 
@@ -651,7 +706,7 @@
       <span class="dot" style="background:var(--green)"></span>em cartaz &nbsp;
       <span class="dot" style="background:var(--red)"></span>últimos dias &nbsp;
       <span class="dot" style="background:var(--accent2)"></span>feira &nbsp;
-      <span class="dot" style="background:#8b8b9a"></span>sem mostra nesta janela<br>
+      <span class="dot" style="background:var(--muted)"></span>sem mostra nesta janela<br>
       Toque num ponto do mapa ou num card para ver a ficha do espaço.</div></span></h2>
   <div class="filters">
     <span id="statusFilters">
@@ -714,30 +769,10 @@
 
   <div class="prefoot">
     <section class="dobra">
-      <h2>Que região cobrir · enquete anônima</h2>
+      <h2>A cidade em números</h2>
       <div class="dobrac">
-      <div class="poll panel" id="poll"><p class="note" style="margin:0">Carregando enquete…</p></div>
-      <div class="panel ritmo" id="ritmo"></div>
-      <!-- Ponto de entrada do formulario "Divulgue sua vernissage".
-           openForm() existia desde sempre e nao era chamada de lugar nenhum:
-           o canal de envio estava escrito e inalcancavel pelo site. E a unica
-           via possivel para as casas que so divulgam no Instagram — A7MA, Mata
-           Lab, Massape, Espaco Republica —, que nenhuma varredura alcanca
-           porque perfil exige login.
-           Mora aqui, e nao no rodape, por dois motivos: a coluna da esquerda
-           sobra altura contra a lista de bairros, e quem e de um espaco esta
-           olhando justamente o ritmo das aberturas quando se reconhece. -->
-      <div class="panel envio">
-        <div class="paineltopo"><span class="pt">Você é de um espaço?</span></div>
-        <p class="note" style="margin:10px 0 14px">Mande a sua abertura. Entra na agenda
-           depois de conferida — não publicamos sem checar.</p>
-        <span class="btn add" onclick="openForm()">Divulgue sua abertura</span>
-      </div>
-      <div class="panel intel">
-        <div class="paineltopo"><span class="pt">Inteligência de mercado</span></div>
-        <p class="note" style="margin:10px 0 14px">Boletim semanal pago sobre o circuito: agenda cronometrada, radar de movimentações e leitura de mercado. Não é pauta cultural.</p>
-        <a class="btn intel" href="https://intel.vernissagessp.com.br" target="_blank" rel="noopener">Vernissages SP: Intel</a>
-      </div>
+      <div class="panel numeros" id="numeros"></div>
+      <p class="note">Calculado ao vivo da base — nada aqui é digitado à mão.</p>
       </div>
     </section>
     <section class="dobra">
@@ -746,13 +781,32 @@
       <div class="panel">
         <div class="paineltopo"><span class="pt">Onde o circuito se concentra</span><span class="pn2" id="barsTotal"></span></div>
         <div class="bars" id="bars"></div>
+        <button class="barsmore" type="button" id="barsMore"></button>
       </div>
       <p class="note">Clique num bairro para filtrar a agenda e o mapa.</p>
       </div>
     </section>
   </div>
 
+  <section class="ctaband">
+    <div class="cta cta-espaco">
+      <b>Você é de um espaço?</b>
+      <p>Mande a sua abertura pelo formulário. Entra na agenda depois de conferida — não publicamos sem checar. É a via para quem só divulga no Instagram.</p>
+      <span class="btn add" onclick="openForm()">Divulgue sua abertura</span>
+    </div>
+    <div class="cta cta-intel">
+      <b>Vernissages SP: Intel</b>
+      <p>Boletim semanal pago sobre o circuito — agenda cronometrada, radar de movimentações, leitura de mercado. Não é pauta cultural.</p>
+      <a class="btn intel" href="https://intel.vernissagessp.com.br" target="_blank" rel="noopener">Conhecer o boletim</a>
+    </div>
+  </section>
+
   <footer>
+    <nav class="footnav">
+      <a href="arquivo.html">Acervo de exposições</a>
+      <a href="artistas.html">Artistas</a>
+      <a href="editais.html">Editais &amp; chamadas</a>
+    </nav>
     <span class="updft">Agenda revista em <span id="upd"></span>.</span><br>
     Posições e endereços com ~ são aproximados. Nem toda abertura tem vernissage pública — confirme nos canais de cada espaço.<br>
     Fontes: <a href="https://www.sp-arte.com/exposicoes">SP–Arte Exposições</a> ·
@@ -1343,19 +1397,23 @@ const wk=expos.filter(e=>{const d=new Date(e.ini+'T12:00');return d<=end&&d>=sta
   const w=document.getElementById('wkwrap');
   if(!wk.length){w.style.display='none';return}
   w.style.display='block';
-  document.getElementById('wkrow').innerHTML=wk.map(e=>`<div class="wk" onclick="focusVenue('${e.ven.name.replace(/'/g,"\\'")}')">
+  const wr=document.getElementById('wkrow');
+  wr.classList.toggle('poucos',wk.length<=3);
+  wr.innerHTML=wk.map(e=>`<div class="wk" onclick="focusVenue('${e.ven.name.replace(/'/g,"\\'")}')">
     <div class="d">${fmt(e.ini)}${e.ini===HOJESTR?'<span class="nw hj">HOJE</span>':(new Date(e.ini+'T12:00')<TODAY?'<span class="nw">JÁ ABRIU</span>':'')}</div><div class="t">${tituloLimpo(e)}</div><div class="v">${e.ven.name} · ${e.ven.b}</div></div>`).join('');
   const txt='Vernissages SP — aberturas da semana:\n'+wk.map(e=>`• ${fmt(e.ini)}${e.ini===HOJESTR?' (hoje!)':(new Date(e.ini+'T12:00')<TODAY?' (já abriu)':'')} — ${e.t} @ ${e.ven.name} (${e.ven.b})`).join('\n')+'\n\nAgenda completa, mapa e roteiros: https://vernissagessp.com.br/';
   window._wkTxt=txt;
   document.getElementById('waShare').href='https://wa.me/?text='+encodeURIComponent(txt);
   setTimeout(wkFade,60);
 }
-/* Os painéis de análise (enquete, espaços por bairro, imersivas) abrem sob
-   demanda em qualquer tela — antes empurravam a agenda pra fora da vista e
-   davam à página um rodapé de 2000px sem hierarquia. */
+/* No mobile os painéis de análise abrem sob demanda, pra não empurrar a
+   agenda. No desktop ficam sempre visíveis. */
 document.addEventListener('DOMContentLoaded',()=>{
   document.querySelectorAll('.dobra>h2').forEach(h=>{
-    h.addEventListener('click',()=>h.parentElement.classList.toggle('aberta'));
+    h.addEventListener('click',()=>{
+      if(!window.matchMedia('(max-width:950px)').matches)return;
+      h.parentElement.classList.toggle('aberta');
+    });
   });
 });
 function wkFade(){
@@ -1464,72 +1522,50 @@ fetch(ABC+(jaVeio?'/get/':'/hit/')+NS+'/visitas').then(r=>r.json()).then(j=>{
   document.getElementById('vc').textContent=Number(j.value).toLocaleString('pt-BR');
   document.getElementById('visits').style.display='block';
 }).catch(()=>{});
-/* A pergunta mudou em 25/08/2026. A anterior — "quem é o público", com as
-   opções artista / colecionador / curadoria / galerista / curioso — ficou no ar
-   sem um único voto: o painel exibia "ninguém votou ainda" e cinco fatias de
-   20%, um gráfico que não significava nada ocupando o topo da coluna.
+/* "A cidade em números" — substituiu a enquete "que região cobrir".
+   A enquete devolvia pouco a quem clicava e vivia com 1 voto exibindo
+   "100% numa zona", um gráfico que não significava nada. No lugar, fatos
+   que só esta base consegue mostrar — todos calculados na hora, nada
+   digitado. (O desempate da fila do radar.js que usava o voto passa a ser
+   por atraso relativo puro; ver OPERACAO.md.) */
+function cidadeEmNumeros(){
+  const box=document.getElementById('numeros'); if(!box) return;
+  const hoje=HOJESTR;
+  const V={}; VENUES.forEach(v=>V[v.name]=v);
+  const dd=(a,b)=>Math.round((Date.parse(b+'T12:00')-Date.parse(a+'T12:00'))/864e5);
+  const med=a=>{const s=a.slice().sort((x,y)=>x-y);return s.length?s[Math.floor(s.length/2)]:0;};
+  const cartaz=EXPOS.filter(e=>e.ini&&e.ini<=hoje&&(!e.fim||e.fim>=hoje)&&V[e.v]);
 
-   O diagnóstico não é de mecanismo, é de pergunta. Aquela pedia que a pessoa se
-   classificasse e não devolvia nada a ela em troca do clique.
+  const durGal=cartaz.filter(e=>e.fim&&V[e.v].tipo==='galeria').map(e=>dd(e.ini,e.fim));
+  const durIns=cartaz.filter(e=>e.fim&&V[e.v].tipo==='institucional').map(e=>dd(e.ini,e.fim));
+  const zc={}; VENUES.forEach(v=>zc[v.z]=(zc[v.z]||0)+1);
+  const ze=Object.entries(zc).sort((a,b)=>b[1]-a[1]);
+  const fim7=cartaz.filter(e=>e.fim&&dd(hoje,e.fim)>=0&&dd(hoje,e.fim)<=7).length;
+  const abre6=EXPOS.filter(e=>e.ini&&dd(hoje,e.ini)>0&&dd(hoje,e.ini)<=42).length;
+  const semImg=cartaz.filter(e=>!e.img).length;
 
-   Esta devolve duas coisas: informação de volta a quem vota (quantos espaços o
-   mapa tem naquela zona) e uma entrada real na operação — o resultado é
-   critério de desempate na fila do `radar.js`, como está no OPERACAO.md. A base
-   hoje tem 50 espaços na Oeste e 1 na Leste, e a única maneira honesta de saber
-   se isso é retrato da cidade ou viés da varredura é perguntar.
+  const it=[];
+  if(durGal.length>=5&&durIns.length>=3)
+    it.push([med(durGal)+' × '+med(durIns)+' dias',
+      'quanto uma mostra fica em cartaz numa galeria, contra numa instituição — a cidade tem duas velocidades sobrepostas.']);
+  if(ze.length>1&&ze[0][1]!==ze[ze.length-1][1])
+    it.push([ze[0][1]+' na Zona '+ze[0][0]+', '+ze[ze.length-1][1]+' na Zona '+ze[ze.length-1][0],
+      'a concentração de espaços por zona. O circuito não está espalhado pela cidade — ele mora num pedaço dela.']);
+  if(fim7)
+    it.push([fim7+(fim7===1?' mostra':' mostras'),
+      'encerram nos próximos sete dias. Se tem uma na sua lista, é este fim de semana.']);
+  if(abre6)
+    it.push([abre6+(abre6===1?' abertura':' aberturas'),
+      (abre6===1?'já confirmada':'já confirmadas')+' para as próximas seis semanas.']);
+  if(semImg&&cartaz.length)
+    it.push([semImg+' de '+cartaz.length,
+      'mostras em cartaz ainda sem uma reprodução da obra publicada — a lacuna que a varredura de domingo persegue.']);
 
-   As chaves são novas de propósito: os contadores antigos ficam para trás. */
-const POLL=[['zoeste','Zona Oeste'],['zcentro','Centro'],['zsul','Zona Sul'],['zleste','Zona Leste'],['znorte','Zona Norte']];
-/* Espaços por zona, contados do próprio VENUES — o voto volta com um fato. */
-const ZONA_ROTULO={zoeste:'Oeste',zcentro:'Centro',zsul:'Sul',zleste:'Leste',znorte:'Norte'};
-const ESPACOS_ZONA=(function(){const a={};(window.DATA.venues||[]).forEach(v=>{a[v.z]=(a[v.z]||0)+1;});return a;})();
-const CORES=['var(--accent)','var(--accent2)','var(--violet)','var(--green)','var(--blue)'];
-  /* Só mostra o resultado (termômetro + legenda) com amostra que signifique
-     algo. Abaixo disso, um gráfico de "100% numa zona" com 1 voto só passa
-     vergonha — então fica só a pergunta. */
-  const POLL_MIN=8;
-  function termometro(vs,my){
-    const tot=vs.reduce((a,c)=>a+c,0);
-    const pct=vs.map(v=>tot?v/tot*100:100/POLL.length);
-    const meu=my?POLL.findIndex(p=>p[0]===my):-1;
-    const mostrarResultado = tot>=POLL_MIN;
-    let h='<div class="paineltopo"><span class="pt">O que a cidade pediu</span><span class="pn2">'+
-      (tot?tot+(tot===1?' resposta':' respostas'):'ninguém votou ainda')+'</span></div>';
-    if(mostrarResultado){
-      h+='<div class="termo">'+POLL.map((p,i)=>
-          '<span class="fatia'+(i===meu?' meu':'')+'" data-w="'+pct[i].toFixed(2)+'" style="background:'+CORES[i]+'" title="'+p[1]+' — '+Math.round(pct[i])+'%"></span>').join('')+'</div>';
-      h+='<div class="legenda">'+POLL.map((p,i)=>
-          '<span class="lg'+(i===meu?' meu':'')+'"><i style="background:'+CORES[i]+'"></i>'+p[1]+
-          '<b>'+Math.round(pct[i])+'%</b></span>').join('')+'</div>';
-    }
-    if(meu>=0){
-      const nz=ESPACOS_ZONA[ZONA_ROTULO[POLL[meu][0]]]||0;
-      h+='<div class="voumeu">'+(mostrarResultado
-          ? 'Você está entre os <b>'+Math.round(pct[meu])+'%</b> que pedem mais '+POLL[meu][1]+'. '
-          : 'Seu voto foi para <b>'+POLL[meu][1]+'</b>. O resultado aparece quando houver respostas suficientes. ')+
-         'O mapa tem <b>'+nz+'</b> '+(nz===1?'espaço':'espaços')+' lá hoje.</div>';
-    }else{
-      h+='<div class="pergunta">Que região você quer ver mais na agenda? <span class="pn2">1 clique · anônimo</span></div>'+
-         '<div class="opts">'+POLL.map((p,i)=>'<span class="chip" style="--c:'+CORES[i]+'" onclick="vote(\''+p[0]+'\')">'+p[1]+'</span>').join('')+'</div>';
-    }
-    const box=document.getElementById('poll');
-    box.innerHTML=h;
-    requestAnimationFrame(()=>{
-      box.classList.add('vivo');
-      box.querySelectorAll('.fatia').forEach(f=>{f.style.width=f.dataset.w+'%';});
-    });
-  }
-  function pollResults(){
-    Promise.all(POLL.map(p=>fetch(ABC+'/get/'+NS+'/pub_'+p[0]).then(r=>r.json()).then(j=>Number(j.value)||0).catch(()=>0)))
-      .then(vs=>termometro(vs,LS.get('vspVote')))
-      .catch(()=>termometro(POLL.map(()=>0),LS.get('vspVote')));
-  }
-  function vote(k){
-    if(LS.get('vspVote'))return pollResults();
-    LS.set('vspVote',k);
-    fetch(ABC+'/hit/'+NS+'/pub_'+k).then(()=>pollResults()).catch(()=>pollResults());
-  }
-  pollResults();
+  box.innerHTML=it.length
+    ? it.map(([n,t])=>`<div class="numrow"><b>${n}</b><span>${t}</span></div>`).join('')
+    : '<p class="note" style="margin:0">Sem base suficiente para os números agora.</p>';
+}
+cidadeEmNumeros();
 /* filtros */
 document.querySelectorAll('#statusFilters .chip').forEach(ch=>ch.onclick=()=>{
   document.querySelectorAll('#statusFilters .chip').forEach(c=>c.classList.remove('on'));
@@ -1539,14 +1575,24 @@ document.getElementById('search').oninput=()=>draw();
 weekBanner();
 
 /* bar chart */
-const mx=BAIRRO_COUNTS[0][1];
-  document.getElementById('bars').innerHTML=BAIRRO_COUNTS.map(([b,n])=>
-    `<div class="barrow"><div class="bn" onclick="barFilter('${b}')">${b}</div><div><div class="bar" style="width:${n/mx*100}%"></div></div><div class="bv">${n}</div></div>`).join('');
+/* bar chart — só os 8 bairros mais densos por padrão; o resto (quase todo
+   com 1) abre no "ver todos", pra não ocupar meia tela com uma cauda longa. */
+const mx=BAIRRO_COUNTS[0][1], BARS_TOPO=8;
+  document.getElementById('bars').innerHTML=BAIRRO_COUNTS.map(([b,n],i)=>
+    `<div class="barrow${i>=BARS_TOPO?' hid':''}"><div class="bn" onclick="barFilter('${b}')">${b}</div><div><div class="bar" style="width:${n/mx*100}%"></div></div><div class="bv">${n}</div></div>`).join('');
   (function(){
     const bt=document.getElementById('barsTotal');
-    /* conta o VENUES inteiro — galeria, institucional, híbrido e feira —,
-       então "espaços", não "galerias". */
     if(bt) bt.textContent=BAIRRO_COUNTS.reduce((a,c)=>a+c[1],0)+' espaços · '+BAIRRO_COUNTS.length+' bairros';
+    const btn=document.getElementById('barsMore');
+    if(btn && BAIRRO_COUNTS.length>BARS_TOPO){
+      const resto=BAIRRO_COUNTS.length-BARS_TOPO;
+      btn.textContent='ver todos os '+BAIRRO_COUNTS.length+' bairros';
+      btn.onclick=()=>{
+        const aberto=document.querySelectorAll('#bars .barrow.hid').length===0;
+        document.querySelectorAll('#bars .barrow').forEach((r,i)=>r.classList.toggle('hid',!aberto&&i>=BARS_TOPO));
+        btn.textContent=aberto?('ver todos os '+BAIRRO_COUNTS.length+' bairros'):('esconder '+resto+' bairros');
+      };
+    } else if(btn){ btn.style.display='none'; }
   })();
 /* ---------- experiências imersivas ----------
    A categoria estava no dados.js e exposta no return desde 11/08 sem ninguém
@@ -1636,14 +1682,19 @@ const mx=BAIRRO_COUNTS[0][1];
     aplica();
   })();
 
-  /* menu Explorar */
+  /* contador de editais abertos no header + na faixa */
   (function(){
-    const w=document.getElementById('navAcervo'); if(!w) return;
-    const b=document.getElementById('navBtn');
-    b.addEventListener('click',e=>{e.stopPropagation();
-      const on=w.classList.toggle('open'); b.setAttribute('aria-expanded',on?'true':'false');});
-    document.addEventListener('click',e=>{if(!w.contains(e.target)){w.classList.remove('open');b.setAttribute('aria-expanded','false');}});
-    document.addEventListener('keydown',e=>{if(e.key==='Escape'){w.classList.remove('open');b.setAttribute('aria-expanded','false');}});
+    const ed=(window.DATA.editais||[]);
+    const n=ed.length;
+    const badge=document.getElementById('navEditalN');
+    if(badge) badge.textContent=n?n:'';
+    const bar=document.getElementById('editalBar');
+    if(bar && n){
+      const nomes=ed.slice(0,3).map(e=>e.t.split(' — ')[0].split(':')[0].trim());
+      bar.querySelector('.editalbar-n').textContent=n===1?'1 edital aberto':n+' editais abertos';
+      bar.querySelector('.editalbar-list').textContent=nomes.join(' · ')+(n>3?` e mais ${n-3}`:'');
+      bar.hidden=false;
+    }
   })();
 
   /* filtros colapsaveis no mobile */
