@@ -30,3 +30,6 @@ desktop.ini
 # scratch de sessao
 _*.js
 _to_delete/
+
+# Dossie, orcamento e material de captacao — dados de negocio, nao vai pro site.
+/EDITAIS/
