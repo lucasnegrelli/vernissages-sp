@@ -9,12 +9,66 @@
     "`curado: true` marca as ideias que exigem escolha humana. O planejar.js as agenda e AVISA — ele nunca escreve curadoria.",
     "`paletas` lista as paletas que combinam com a ideia. O planejador escolhe uma delas que não tenha saído no dia anterior.",
     "Para acrescentar ideia: copie um item, mude o id, o filtro e o texto. Não precisa mexer em código.",
-    "NÃO use filtro de tipo único (só galeria ou só instituição) num item `duracao`: esse formato É a comparação das duas velocidades e aborta sem as duas. Recorte de um tipo só é assunto de `salao`. (As ideias duracao-so-galeria e duracao-so-museu foram removidas em 31/08 por isso; os números 42 e 141 dias já aparecem em duracao-geral.)"
+
+    "LINHA EDITORIAL REFEITA EM 01/09/2026. O mês de agosto saiu repetitivo porque 31 das 48 ideias eram formato de lista (salao, duracao, deriva, role) — cinza sobre preto, a obra de miniatura. Agora o eixo é `obra`: uma reprodução por vez, tela cheia, etiqueta de parede. Selecionar já é opinar. `role` e `duracao` saíram do social — o diagrama de duração agora é o painel 'O panorama', ao vivo no site. `salao` ficou só na versão-ensaio (o Salon de Paris contra o cubo branco). `rima` e `aproximacao` seguem intactos: são os dois que dependem de olho humano e é neles que a voz aparece."
   ],
 
   "descansoPadrao": 35,
 
   "ideias": [
+
+    { "id": "obra-do-dia", "formato": "obra", "curado": false,
+      "titulo": "A obra: a melhor imagem em cartaz agora",
+      "paletas": ["escuro", "barro", "tinta"] },
+
+    { "id": "obra-so-galeria", "formato": "obra", "curado": false,
+      "titulo": "A obra, só galeria comercial",
+      "paletas": ["barro", "linho", "escuro"],
+      "ajustes": { "filtro": { "tipo": "galeria" } } },
+
+    { "id": "obra-recem-aberta", "formato": "obra", "curado": false,
+      "titulo": "A obra de uma mostra que abriu neste mês",
+      "paletas": ["cal", "linho", "papel"],
+      "ajustes": { "filtro": { "abriuEm": 30 } } },
+
+    { "id": "obra-jardins", "formato": "obra", "curado": false,
+      "titulo": "A obra, nos Jardins",
+      "paletas": ["linho", "papel", "barro"],
+      "ajustes": { "filtro": { "bairro": ["Jardim Paulista", "Jardim América", "Jardim Europa", "Cerqueira César"] } } },
+
+    { "id": "obra-centro", "formato": "obra", "curado": false,
+      "titulo": "A obra, no Centro",
+      "paletas": ["escuro", "tinta", "barro"],
+      "ajustes": { "filtro": { "zona": "Centro" } } },
+
+    { "id": "obra-oeste", "formato": "obra", "curado": false,
+      "titulo": "A obra, na Zona Oeste",
+      "paletas": ["barro", "linho", "tinta"],
+      "ajustes": { "filtro": { "zona": "Oeste" } } },
+
+    { "id": "obra-fecha-logo", "formato": "obra", "curado": false,
+      "titulo": "A obra de uma mostra que fecha em três semanas",
+      "paletas": ["escuro", "barro", "tinta"],
+      "ajustes": {
+        "filtro": { "fechaEm": 21 },
+        "nota": "Fecha dentro de três semanas. Nenhuma mostra avisa quando desmonta — a data já está marcada e ninguém publica obituário de exposição." } },
+
+    { "id": "obra-longa-duracao", "formato": "obra", "curado": false,
+      "titulo": "A obra de uma mostra que ainda tem meses",
+      "paletas": ["papel", "tinta", "cal"],
+      "ajustes": {
+        "filtro": { "duraMais": 120 },
+        "nota": "Fica mais de quatro meses no ar. É a que dá pra ver com calma, num dia de chuva — e por isso é a que quase ninguém vê." } },
+
+    { "id": "obra-independentes", "formato": "obra", "curado": false,
+      "titulo": "A obra, num espaço independente",
+      "paletas": ["barro", "linho", "cal"],
+      "ajustes": { "filtro": { "tipo": "hibrido" } } },
+
+    { "id": "obra-instituicao", "formato": "obra", "curado": false,
+      "titulo": "A obra, num museu ou centro cultural",
+      "paletas": ["tinta", "cal", "papel"],
+      "ajustes": { "filtro": { "tipo": "institucional" } } },
 
     { "id": "salao-parede-inteira", "formato": "salao", "curado": false,
       "titulo": "A parede inteira: tudo o que está em cartaz, junto",
@@ -25,176 +79,6 @@
           "A parede vazia com uma obra no centro, que hoje parece a única forma possível de mostrar arte, é invenção do modernismo. É uma escolha, e ela tem cem anos."
         ],
         "virada": "O cubo branco isola. O salão obriga as obras a conviverem — e é aí que se vê o que a cidade está pintando." } },
-
-    { "id": "salao-so-galeria", "formato": "salao", "curado": false,
-      "titulo": "Só as galerias, e só reprodução de obra",
-      "paletas": ["barro", "linho", "escuro"],
-      "ajustes": {
-        "filtro": { "tipo": "galeria", "vista": false },
-        "texto": [
-          "Esta parede só tem galeria comercial, e só imagem da obra — nada de vista de sala.",
-          "É o que a cidade está tentando vender agora. Museu tem curadoria, orçamento e três anos de antecedência. Galeria aposta com o próprio dinheiro, em ciclos de seis semanas, e erra em público."
-        ],
-        "virada": "Todo museu que você visita foi, uma vez, uma aposta de galeria que deu certo." } },
-
-    { "id": "salao-so-instituicao", "formato": "salao", "curado": false,
-      "titulo": "Só museu e centro cultural",
-      "paletas": ["tinta", "cal", "escuro"],
-      "ajustes": {
-        "filtro": { "tipo": "institucional" },
-        "texto": [
-          "Só museu e centro cultural nesta parede. São as mostras que ficam meses no ar e que quase todo mundo adia até o último fim de semana.",
-          "A mediana de uma mostra institucional em São Paulo é de 141 dias. A de galeria, 42. Você tem quatro vezes mais tempo aqui — e é exatamente por isso que você não vai."
-        ],
-        "virada": "Prazo longo não é folga. É a forma mais eficiente que existe de nunca ir." } },
-
-    { "id": "salao-ultima-chamada", "formato": "salao", "curado": false,
-      "titulo": "Última chamada: só o que fecha em três semanas",
-      "paletas": ["barro", "escuro", "tinta"],
-      "ajustes": {
-        "filtro": { "fechaEm": 21 },
-        "texto": [
-          "Cada obra desta parede está numa mostra que fecha em três semanas ou menos.",
-          "Não é uma seleção de qualidade. É uma seleção de prazo — a única lista desta cidade em que a ordem é dada pelo calendário e não por quem tem assessoria de imprensa."
-        ],
-        "virada": "Nenhuma delas vai avisar você quando desmontar." } },
-
-    { "id": "salao-centro", "formato": "salao", "curado": false,
-      "titulo": "A parede do Centro",
-      "paletas": ["escuro", "barro", "cal"],
-      "ajustes": {
-        "filtro": { "zona": "Centro" },
-        "texto": [
-          "Só o que está em cartaz no Centro: Barra Funda, Higienópolis, Vila Buarque, República, Consolação.",
-          "O mapa da arte em São Paulo tem 91 casas e metade delas na Zona Oeste. O Centro é a outra metade da história, e cabe numa caminhada."
-        ],
-        "virada": "Dá para ver esta parede inteira de metrô, num sábado, sem pegar carro." } },
-
-    { "id": "salao-jardins", "formato": "salao", "curado": false,
-      "titulo": "A parede dos Jardins",
-      "paletas": ["linho", "papel", "barro"],
-      "ajustes": {
-        "filtro": { "bairro": ["Jardim Paulista", "Jardim América", "Jardim Europa", "Cerqueira César"] },
-        "texto": [
-          "Quatro bairros contíguos, e nesta parede está tudo o que eles têm em cartaz agora.",
-          "É a maior concentração de galeria da América Latina, e cabe a pé. As distâncias entre uma porta e a seguinte se contam em centenas de metros, não em quilômetros."
-        ],
-        "virada": "Toda esta parede está dentro de um raio que você atravessa em vinte minutos." } },
-
-    { "id": "salao-recem-abertas", "formato": "salao", "curado": false,
-      "titulo": "Só o que abriu no último mês",
-      "paletas": ["cal", "linho", "tinta"],
-      "ajustes": {
-        "filtro": { "abriuEm": 30 },
-        "texto": [
-          "Tudo nesta parede abriu nos últimos trinta dias.",
-          "É o corte mais próximo do que a imprensa chama de novidade — e serve para medir uma coisa que ninguém mede: quanto a cidade produz por mês, sem contar o que já estava lá."
-        ],
-        "virada": "Um mês de São Paulo. Nenhuma dessas obras estava pendurada quando você começou o mês." } },
-
-    { "id": "salao-longa-duracao", "formato": "salao", "curado": false,
-      "titulo": "Só mostra de longa duração",
-      "paletas": ["tinta", "escuro", "papel"],
-      "ajustes": {
-        "filtro": { "duraMais": 120 },
-        "texto": [
-          "Cada obra desta parede está numa mostra que dura mais de quatro meses.",
-          "São as que você pode ver com calma, num dia de chuva, sem plano. Também são as que ficam tanto tempo no ar que somem do noticiário na segunda semana e ninguém mais fala delas."
-        ],
-        "virada": "Duração longa protege da pressa e condena ao esquecimento. As duas coisas ao mesmo tempo." } },
-
-    { "id": "salao-independentes", "formato": "salao", "curado": false,
-      "titulo": "Só espaço independente e híbrido",
-      "paletas": ["barro", "linho", "cal"],
-      "ajustes": {
-        "filtro": { "tipo": "hibrido" },
-        "texto": [
-          "Ateliê, café, loja-conceito, espaço autogerido. Casas que mantêm programa expositivo com curadoria sem serem galeria comercial nem instituição.",
-          "São as que menos aparecem em agregador, porque não têm assessoria — quase todas divulgam só pelo Instagram. Quando somem do mapa, some junto a parte mais experimental do que a cidade faz."
-        ],
-        "virada": "Nenhuma dessas casas mandou release para ninguém. Elas estão aqui porque alguém foi olhar." } },
-
-    { "id": "salao-vista-de-sala", "formato": "salao", "curado": false,
-      "titulo": "A arquitetura, não a obra",
-      "paletas": ["cal", "papel", "linho"],
-      "ajustes": {
-        "filtro": { "vista": true },
-        "texto": [
-          "Esta parede é feita só de vistas de sala — o espaço, não o trabalho.",
-          "Olhar assim muda o assunto. Aparecem o pé-direito, a luz, o piso, a distância entre uma peça e outra. Aparece quanto espaço uma casa pode dar a um artista, que é uma informação econômica disfarçada de estética."
-        ],
-        "virada": "Metade do que uma exposição diz está no espaço que ela pôde ocupar." } },
-
-    { "id": "duracao-geral", "formato": "duracao", "curado": false,
-      "titulo": "A linha do tempo de tudo que está em cartaz",
-      "paletas": ["tinta", "escuro", "barro"],
-      "ajustes": {
-        "limiteUrgente": 14,
-        "texto": [
-          "Cada linha é uma mostra em cartaz agora, ordenada por data de encerramento. As que morrem primeiro estão no topo. A vertical é hoje.",
-          "As linhas curtas e claras são galerias. As longas e apagadas são museus e centros culturais. A cidade tem duas velocidades sobrepostas, e ninguém avisa qual você está olhando."
-        ],
-        "virada": "Metade do que está em cartaz numa galeria hoje acaba dentro de três semanas." } },
-
-    { "id": "duracao-urgente", "formato": "duracao", "curado": false,
-      "titulo": "Só o que fecha em uma semana",
-      "paletas": ["escuro", "barro", "tinta"],
-      "ajustes": {
-        "filtro": { "fechaEm": 7 },
-        "limiteUrgente": 7,
-        "texto": [
-          "Este diagrama só tem mostra que encerra em sete dias ou menos.",
-          "É o recorte mais curto que a base permite desenhar, e o único em que a linha do tempo funciona como aviso e não como panorama."
-        ],
-        "virada": "Se você estiver lendo isso numa segunda, algumas destas já não abrem no próximo fim de semana." } },
-
-    { "id": "duracao-centro", "formato": "duracao", "curado": false,
-      "titulo": "Quanto tempo dura uma mostra no Centro",
-      "paletas": ["escuro", "papel", "tinta"],
-      "ajustes": {
-        "filtro": { "zona": "Centro" },
-        "limiteUrgente": 14,
-        "texto": [
-          "Só o Centro neste diagrama: Barra Funda, Higienópolis, Vila Buarque, República, Consolação.",
-          "É onde galeria de galpão e instituição grande dividem o mesmo CEP, e por isso onde as duas velocidades da cidade aparecem mais lado a lado."
-        ],
-        "virada": "No Centro, a linha mais curta e a mais longa deste desenho estão a dez minutos a pé uma da outra." } },
-
-    { "id": "duracao-oeste", "formato": "duracao", "curado": false,
-      "titulo": "Quanto tempo dura uma mostra na Zona Oeste",
-      "paletas": ["linho", "barro", "tinta"],
-      "ajustes": {
-        "filtro": { "zona": "Oeste" },
-        "limiteUrgente": 14,
-        "texto": [
-          "Só a Zona Oeste: Jardins, Pinheiros, Vila Madalena, Jardim Europa, Butantã.",
-          "Cinquenta das 91 casas do mapa estão aqui. É a maior concentração e também a mais acelerada — quase tudo neste desenho é galeria."
-        ],
-        "virada": "Metade da arte desta cidade cabe num pedaço que você atravessa de bicicleta." } },
-
-    { "id": "duracao-recem-abertas", "formato": "duracao", "curado": false,
-      "titulo": "O que abriu no último mês, e quanto vai durar",
-      "paletas": ["cal", "tinta", "linho"],
-      "ajustes": {
-        "filtro": { "abriuEm": 30 },
-        "limiteUrgente": 21,
-        "texto": [
-          "Só mostra aberta nos últimos trinta dias, desenhada pelo tempo que ainda tem pela frente.",
-          "Serve para uma pergunta que ninguém faz na abertura: quanto tempo isso vai ficar de pé? A resposta separa o que dá para adiar do que não dá."
-        ],
-        "virada": "Todas abriram no mesmo mês. Algumas fecham antes das outras terminarem a primeira semana de imprensa." } },
-
-    { "id": "duracao-longa", "formato": "duracao", "curado": false,
-      "titulo": "As maratonistas: mostra de mais de quatro meses",
-      "paletas": ["papel", "tinta", "cal"],
-      "ajustes": {
-        "filtro": { "duraMais": 120 },
-        "limiteUrgente": 45,
-        "texto": [
-          "Só o que fica mais de quatro meses no ar.",
-          "São mostras de acervo, de longa duração, e as institucionais grandes. Em quase todas você ainda tem meses — e é por isso que quase ninguém vai."
-        ],
-        "virada": "A mostra que dura dois anos é a que menos gente vê." } },
 
     { "id": "deriva-mais-densa", "formato": "deriva", "curado": false,
       "titulo": "O aglomerado mais denso da semana",
@@ -211,46 +95,6 @@
         "tese": "Um percurso a pé pelo Centro, entre casas que quase nunca aparecem juntas numa lista.",
         "virada": "O Centro tem menos galeria que os Jardins e mais chão entre uma e outra. A caminhada é o programa, não o transporte." } },
 
-    { "id": "deriva-oeste", "formato": "deriva", "curado": false,
-      "titulo": "Uma deriva pela Zona Oeste",
-      "paletas": ["linho", "papel", "barro"],
-      "ajustes": {
-        "filtro": { "zona": "Oeste" },
-        "tese": "Cinquenta das 91 casas do mapa estão na Zona Oeste. Este é o trecho mais curto entre algumas delas.",
-        "virada": "Nenhuma delas combinou a programação com as outras. Quem junta é a calçada." } },
-
-    { "id": "deriva-so-galeria", "formato": "deriva", "curado": false,
-      "titulo": "Deriva só de galeria, sem museu no caminho",
-      "paletas": ["barro", "linho", "cal"],
-      "ajustes": {
-        "filtro": { "tipo": "galeria" },
-        "tese": "Só galeria neste percurso: nenhuma bilheteria, nenhuma fila, nenhuma catraca.",
-        "virada": "A caminhada inteira é de graça, e nenhuma dessas portas espera que você compre nada." } },
-
-    { "id": "deriva-ultima-chamada", "formato": "deriva", "curado": false,
-      "titulo": "Deriva de última chamada",
-      "paletas": ["cal", "barro", "papel"],
-      "ajustes": {
-        "filtro": { "fechaEm": 30 },
-        "tese": "Um percurso a pé em que toda parada fecha dentro de um mês.",
-        "virada": "Dá para fazer esta caminhada numa tarde. Depois de outubro, não dá para fazer nunca mais." } },
-
-    { "id": "deriva-recem-abertas", "formato": "deriva", "curado": false,
-      "titulo": "Deriva pelo que acabou de abrir",
-      "paletas": ["papel", "cal", "linho"],
-      "ajustes": {
-        "filtro": { "abriuEm": 35 },
-        "tese": "Um percurso só entre mostras que abriram no último mês.",
-        "virada": "Cinco aberturas em algumas centenas de metros. Nenhuma delas soube das outras." } },
-
-    { "id": "deriva-instituicoes", "formato": "deriva", "curado": false,
-      "titulo": "Deriva entre instituições",
-      "paletas": ["tinta", "papel", "cal"],
-      "ajustes": {
-        "filtro": { "tipo": ["institucional", "hibrido"] },
-        "tese": "Museu, centro cultural e espaço independente no mesmo percurso a pé.",
-        "virada": "Duas casas na mesma rua, com orçamentos separados por três ordens de grandeza." } },
-
     { "id": "deriva-so-obra", "formato": "deriva", "curado": false,
       "titulo": "Deriva em que toda parada mostra a obra, não a sala",
       "paletas": ["linho", "barro", "papel"],
@@ -258,73 +102,6 @@
         "filtro": { "vista": false },
         "tese": "Em toda parada deste percurso a imagem é da obra, não da parede.",
         "virada": "Você já sabe o que vai ver antes de sair de casa. Isso é raro e devia ser o normal." } },
-
-    { "id": "role-tres-regioes", "formato": "role", "curado": false,
-      "titulo": "Três rolês, três regiões, escolha pelo lugar onde você está",
-      "paletas": ["barro", "escuro", "linho"],
-      "ajustes": {
-        "titulo": "Três rolês prontos para hoje. Escolha pelo lugar onde você está.",
-        "chamada": "Todas as paradas têm mostra em cartaz e obra para ver. Nenhuma casa se repete entre os três.",
-        "virada": "Você não precisa fazer o rolê inteiro. Uma parada já é um sábado melhor que a maioria." } },
-
-    { "id": "role-so-galeria", "formato": "role", "curado": false,
-      "titulo": "Três rolês só de galeria, tudo de graça",
-      "paletas": ["linho", "barro", "cal"],
-      "ajustes": {
-        "filtro": { "tipo": "galeria" },
-        "titulo": "Três rolês de galeria. Nenhum deles custa nada.",
-        "chamada": "Só galeria comercial: sem bilheteria, sem fila, sem catraca. Nenhuma casa se repete entre os três.",
-        "virada": "A barreira nunca foi o preço. É não saber que dá para empurrar a porta." } },
-
-    { "id": "role-com-prazo", "formato": "role", "curado": false,
-      "titulo": "Três rolês em que toda parada tem data para acabar",
-      "paletas": ["escuro", "barro", "tinta"],
-      "_nota": [
-        "Esta ideia nasceu como 'role de ultima chamada', com fechaEm 21, e o formato recusou montar: em 30/08 so havia casas suficientes para 2 roteiros disjuntos, e a peca abortou dizendo que com menos de tres ela mente. Correto — nao mexi na trava.",
-        "Testado em 30/08: 21, 35 e 45 dias abortam; 60 monta os tres. A geografia e que manda. O role precisa de casas espalhadas por tres regioes, e recorte apertado por data nao respeita regiao nenhuma.",
-        "Entao o angulo mudou em vez de o numero ser forcado ate caber. Urgencia de verdade e assunto do `salao-ultima-chamada` (21 dias) e do `duracao-urgente` (7), que sao formatos de lista e aguentam recorte apertado."
-      ],
-      "ajustes": {
-        "filtro": { "fechaEm": 60, "temFim": true },
-        "titulo": "Três rolês em que tudo tem data para acabar.",
-        "chamada": "Toda parada destes roteiros já tem data de encerramento marcada, e nenhuma passa de dois meses. Nenhuma casa se repete entre os três.",
-        "virada": "Nenhuma delas vai avisar você quando desmontar. A data já está marcada e ninguém publica um obituário de exposição." } },
-
-    { "id": "role-centro", "formato": "role", "curado": false,
-      "titulo": "Rolês pelo Centro",
-      "paletas": ["escuro", "papel", "barro"],
-      "ajustes": {
-        "filtro": { "zona": "Centro" },
-        "titulo": "Rolês pelo Centro. De metrô, sem carro.",
-        "chamada": "Todas as paradas ficam no Centro e todas têm obra para ver.",
-        "virada": "O Centro não é o lugar aonde se vai ver arte por acaso. É onde se vê a arte que não cabe nos Jardins." } },
-
-    { "id": "role-com-museu", "formato": "role", "curado": false,
-      "titulo": "Rolês que misturam museu e galeria",
-      "paletas": ["tinta", "escuro", "papel"],
-      "ajustes": {
-        "filtro": { "tipo": ["institucional", "galeria"] },
-        "titulo": "Três rolês que começam num museu e terminam numa galeria.",
-        "chamada": "Cada roteiro mistura instituição e galeria comercial. Nenhuma casa se repete entre os três.",
-        "virada": "O museu te dá o contexto. A galeria te mostra o que está sendo feito agora. Na mesma tarde, os dois." } },
-
-    { "id": "role-independentes", "formato": "role", "curado": false,
-      "titulo": "Rolês pelos espaços independentes",
-      "paletas": ["barro", "cal", "linho"],
-      "ajustes": {
-        "filtro": { "tipo": ["hibrido", "galeria"] },
-        "titulo": "Rolês que passam pelos espaços independentes.",
-        "chamada": "Ateliê, espaço autogerido e galeria pequena. Nenhuma casa se repete entre os três.",
-        "virada": "Essas casas quase nunca aparecem em agenda de jornal. Não é por falta de programa; é por falta de assessoria." } },
-
-    { "id": "role-recem-abertas", "formato": "role", "curado": false,
-      "titulo": "Rolês só pelo que abriu agora",
-      "paletas": ["cal", "linho", "papel"],
-      "ajustes": {
-        "filtro": { "abriuEm": 30 },
-        "titulo": "Três rolês só de mostra que abriu neste mês.",
-        "chamada": "Nenhuma dessas paradas estava de pé há trinta dias.",
-        "virada": "Um mês de São Paulo cabe em três caminhadas." } },
 
     { "id": "entrada-preco", "formato": "entrada", "curado": false,
       "titulo": "Quanto custa ver arte em São Paulo",
@@ -363,32 +140,6 @@
           "Museu é o contrário: sábado costuma ser dia cheio, às vezes o de maior horário da semana.",
           "Quem sai às 15h achando que tem a tarde inteira pega porta fechada. É o erro mais comum e o mais fácil de evitar.",
           "Confira antes de sair. Quando o horário estiver no nosso mapa, ele está lá porque alguém foi olhar no site da casa."
-        ] } },
-
-    { "id": "entrada-galeria-vs-museu", "formato": "entrada", "curado": false,
-      "titulo": "Galeria e museu não são a mesma coisa",
-      "paletas": ["tinta", "escuro", "papel"],
-      "ajustes": {
-        "virada": "Um guarda o que já foi decidido. O outro está decidindo agora, e pode estar errado.",
-        "porta": [
-          "Museu tem acervo, verba pública ou de lei de incentivo, e programa fechado com anos de antecedência. Galeria tem estoque, dinheiro próprio e ciclo de seis semanas.",
-          "No museu você é público. Na galeria você é, tecnicamente, cliente em potencial — o que na prática significa que ninguém te incomoda, porque a maioria dos visitantes não compra e a casa sabe disso.",
-          "O museu explica. A galeria mostra e espera. Se você quiser explicação, tem que pedir — e aí recebe muito mais do que numa legenda de parede.",
-          "Museu cobra, às vezes. Galeria nunca cobra.",
-          "As duas coisas se alimentam: o museu de hoje compra o que a galeria arriscou há vinte anos."
-        ] } },
-
-    { "id": "entrada-primeira-vez", "formato": "entrada", "curado": false,
-      "titulo": "Se é a sua primeira vez",
-      "paletas": ["linho", "cal", "papel"],
-      "ajustes": {
-        "virada": "Não existe pré-requisito. Existe só a porta, e ela abre.",
-        "porta": [
-          "Escolha uma casa só. Duas já é plano, e plano é o que faz a gente não ir.",
-          "Vá num dia de semana, no fim da tarde, se puder. A sala vazia é metade da experiência e sábado não tem sala vazia.",
-          "Dê uma volta inteira antes de parar em qualquer coisa. Você vai voltar em duas ou três, e essas serão as suas.",
-          "Fique menos tempo do que acha que deveria. Vinte minutos de atenção real valem mais que uma hora de dever cumprido.",
-          "Se não gostar de nada, tudo bem. Gostar não é a tarefa; olhar é."
         ] } },
 
     { "id": "rima-material", "formato": "rima", "curado": true,

@@ -47,6 +47,7 @@ const FORMATOS = {
                  precisa: 'as duas chaves de mostra (a, b), a tese e o argumento' },
   aproximacao: { script: 'aproximacao.js', curado: true,
                  precisa: 'a chave da obra, os pontos de recorte (zooms) e a leitura' },
+  obra:        { script: 'obra.js',        curado: false },
   deriva:      { script: 'deriva.js',      curado: false },
   entrada:     { script: 'entrada.js',     curado: false },
   salao:       { script: 'salao.js',       curado: false },

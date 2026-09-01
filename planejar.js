@@ -169,8 +169,10 @@ function montar(rep, usadas, inicio, quantasPecas) {
       let r = null;
       /* A ancora curada do dia sai sempre na ordem 1. */
       if (ordem === 1 && ancoras[data]) { r = ancoras[data]; delete ancoras[data]; }
-      /* Sabado pede o role: e o dia em que a pessoa esta na rua decidindo. */
-      if (!r && ehSabado && ordem === 1) r = pegar(ia => ia.formato === 'role');
+      /* Sabado pede a `deriva`: e o dia em que a pessoa esta na rua decidindo
+         para onde andar. (Ate 01/09 esta ancora era `role`, aposentado do
+         social — a deriva faz o mesmo trabalho, um percurso a pe.) */
+      if (!r && ehSabado && ordem === 1) r = pegar(ia => ia.formato === 'deriva');
       /* Fora das duas ancoras, nada de curado. Curadoria custa uma tarde de
          trabalho humano por peca, e quando o pote de ideias nao curadas fica
          curto o sorteio comecava a puxar `rima` e `aproximacao` para encher a

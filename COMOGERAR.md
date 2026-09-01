@@ -1,5 +1,12 @@
 # Como gerar a semana
 
+> **Linha editorial refeita em 01/09/2026.** O eixo agora é o formato **`obra`**:
+> uma reprodução por vez, tela cheia, etiqueta de parede — monta sozinho, sai
+> 3–4×/semana. `rolê` e `duração` saíram do social (o diagrama de duração virou
+> o painel *O panorama*, ao vivo no site). `salão` ficou só na versão-ensaio,
+> 1×/mês. `rima` e `aproximação` seguem intactos, curadoria sua. Detalhe no
+> `ESTILO.md` §4 e no `REPERTORIO.json`.
+
 Dois comandos. O primeiro decide o que sai, o segundo monta:
 
 ```
@@ -83,7 +90,7 @@ dizendo exatamente o que escrever.
 | campo | o que faz |
 |---|---|
 | `data` | AAAA-MM-DD. Define a pasta `SOCIAL/MM/DD/` |
-| `formato` | rima · aproximacao · deriva · entrada · salao · role · duracao |
+| `formato` | obra · rima · aproximacao · deriva · entrada · salao  (role e duracao aposentados do social em 01/09) |
 | `ordem` | 1 é a primeira do dia. Só organiza a saída |
 | `paleta` | escuro · tinta · barro · papel · cal · linho |
 | `textura` | 0 a 0,12. `false` desliga o grão |

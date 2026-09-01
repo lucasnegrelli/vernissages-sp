@@ -56,38 +56,58 @@ da curadoria é o ativo do projeto; publicidade não sinalizada a destrói.
 
 ## 4. Identidade visual
 
-**Formato** — carrossel de 4 slides, 1080×1350 (4:5).
+**Formato** — peças de 1080×1350 (4:5). Cada formato tem seu número de slides;
+todos usam o mesmo sistema.
 
-| Slide | Função | Composição |
+**O eixo é `obra`** (reescrito em 01/09/2026). Uma reprodução por vez, tela
+cheia, sem uma palavra no primeiro slide; a etiqueta de parede no segundo.
+É o que o Contemporary Art Daily faz há quinze anos, e o oposto do que o feed
+era em agosto — cinza sobre preto, a obra de miniatura. Selecionar já é opinar.
+
+Os outros formatos existentes, por peso:
+
+| formato | o que é | cadência |
 |---|---|---|
-| 01 | Isca | Detalhe fechado da obra. Sem texto, salvo o título em corpo pequeno no rodapé. |
-| 02 | Ambiente | Obra no espaço ou galeria vazia. Foco em luz e arquitetura. Ficha curta abaixo. |
-| 03 | Ficha | Fundo chapado. Texto objetivo, contraste tipográfico máximo. |
-| 04 | Agenda | Outras aberturas da semana, em lista. |
+| **obra** | uma obra, tela cheia + etiqueta | 3–4×/semana, monta sozinho |
+| **rima** | duas mostras lado a lado por uma afinidade | 1×/semana, curadoria sua |
+| **aproximação** | chegar perto de uma obra até a filigrana | 1×/semana, curadoria sua |
+| **entrada** | como se entra numa galeria — porta, preço, sábado | ~1×/semana, monta sozinho |
+| **deriva** | um percurso a pé entre casas próximas | ~1×/semana, monta sozinho |
+| **salão** | tudo em cartaz na mesma parede (o Salon vs o cubo branco) | 1×/mês |
 
-**Paleta** — neutra e sólida, para não competir com a obra:
+Saíram do social em 01/09: **rolê** (percurso, redundante com a deriva) e
+**duração** (o diagrama de linha do tempo — agora é o painel *O panorama*, ao
+vivo no site, melhor).
 
-| | hex |
-|---|---|
-| off-white creme | `#EDEAE4` |
-| preto absoluto | `#0B0B0B` |
-| cinza concreto | `#8C8A85` |
-| bege cru | `#D9D2C5` |
+**Paletas** — seis, três escuras (`escuro`, `tinta`, `barro`) e três claras
+(`papel`, `cal`, `linho`). Nenhuma tem cor de acento: todas trabalham por
+temperatura e luminosidade, porque a cor vem da obra. Definidas no `rima.js`
+(`PALETAS`). **Nunca a mesma paleta em dias seguidos** — o `planejar.js` já
+cuida disso; se estiver montando à mão, cuide você.
 
-Sobre o fundo chapado, granulado leve (noise a ~5% de opacidade), para dar
-textura de convite impresso.
+Sobre o fundo, grão: um SVG de turbulência a ~5% de opacidade, por cima de
+tudo, inclusive da obra. Tira o aspecto de tela chapada, que é o que mais
+denuncia peça feita em navegador.
 
-**Tipografia** — grotescas. Space Grotesk nos títulos, Inter no texto corrido.
-O contraste é a regra: título em corpo muito grande, serviço em corpo pequeno
-com entrelinha e tracking generosos. Espaço vazio é elemento de composição,
-não sobra.
+**Tipografia** — Switzer, uma família só, dois registros: 300 para o que se lê
+devagar, 500 caixa-alta com tracking largo para o que só se etiqueta. Título em
+corpo grande, serviço em corpo pequeno. Espaço vazio é composição, não sobra.
 
-**Assinatura** — `VERNISSAGES SP` em caixa alta, corpo pequeno, tracking largo,
-sempre no canto inferior esquerdo. Numeração do slide no canto oposto.
+**Assinatura** — `Vernissages SP` em caixa alta, corpo pequeno, tracking largo,
+canto inferior esquerdo. Numeração do slide no canto oposto.
 
-## 5. Ferramenta
+## 5. Ferramentas
 
-`post.html` monta os slides e a legenda a partir dos campos da exposição,
-exporta os PNG em tamanho real e aplica esta identidade automaticamente.
-Quatro peças — carrossel, destaque, nota, lembrete — descritas em
-`EDITORIAL.md`, que também define a cadência semanal e mensal.
+O `EDITORIAL.md` e o `post.html` estão **aposentados** (24/08/2026). A geração
+mora em:
+
+- `REPERTORIO.json` — o banco de ideias (formato + recorte + texto). Para mudar
+  o que a rotina pode fazer, mexe aqui.
+- `planejar.js` — sorteia do repertório, respeita descanso e paleta, escreve o
+  `PLANO.json`.
+- `semana.js` — lê o `PLANO.json` e chama o gerador de cada formato
+  (`obra.js`, `rima.js`, `salao.js`, `deriva.js`, `entrada.js`, `aproximacao.js`).
+- `COMOGERAR.md` — o passo a passo.
+
+`rima` e `aproximação` **falham de propósito** sem o config curado: dependem de
+escolha humana, e a mensagem de erro diz o que escrever.

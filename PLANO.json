@@ -4,7 +4,7 @@
     "ESTE ARQUIVO É GERADO. Rode `node planejar.js` para refazê-lo a partir do REPERTORIO.json.",
     "Editar à mão funciona e é legítimo — mas a edição se perde no próximo planejar.js.",
     "Para mudar o repertório de vez, mexa no REPERTORIO.json, não aqui.",
-    "Gerado em 2026-08-31."
+    "Gerado em 2026-09-01."
   ],
   "fora": [
     "Terra que Desmancha, Evapora e Solidifica — Coletivo Poíesis|Vazio Criativo"
@@ -14,162 +14,149 @@
       "data": "2026-09-07",
       "formato": "rima",
       "ordem": 1,
-      "paleta": "barro",
-      "textura": 0.07,
-      "ideia": "rima-geracao",
-      "nome": "rima-geracao"
+      "paleta": "escuro",
+      "textura": 0.05,
+      "ideia": "rima-escala",
+      "nome": "rima-escala"
     },
     {
       "data": "2026-09-07",
-      "formato": "duracao",
+      "formato": "obra",
       "ordem": 2,
-      "paleta": "escuro",
-      "textura": 0.05,
-      "ideia": "duracao-centro",
-      "nome": "duracao-centro",
+      "paleta": "barro",
+      "textura": 0.07,
+      "ideia": "obra-oeste",
+      "nome": "obra-oeste",
       "ajustes": {
         "filtro": {
-          "zona": "Centro"
-        },
-        "limiteUrgente": 14,
-        "texto": [
-          "Só o Centro neste diagrama: Barra Funda, Higienópolis, Vila Buarque, República, Consolação.",
-          "É onde galeria de galpão e instituição grande dividem o mesmo CEP, e por isso onde as duas velocidades da cidade aparecem mais lado a lado."
-        ],
-        "virada": "No Centro, a linha mais curta e a mais longa deste desenho estão a dez minutos a pé uma da outra."
+          "zona": "Oeste"
+        }
       }
     },
     {
       "data": "2026-09-08",
       "formato": "aproximacao",
       "ordem": 1,
-      "paleta": "cal",
-      "textura": 0.06,
-      "ideia": "aproximacao-borda",
-      "nome": "aproximacao-borda"
+      "paleta": "papel",
+      "textura": 0.07,
+      "ideia": "aproximacao-escultura",
+      "nome": "aproximacao-escultura"
     },
     {
       "data": "2026-09-09",
-      "formato": "entrada",
+      "formato": "obra",
       "ordem": 1,
-      "paleta": "tinta",
+      "paleta": "escuro",
       "textura": 0.05,
-      "ideia": "entrada-preco",
-      "nome": "entrada-preco",
+      "ideia": "obra-centro",
+      "nome": "obra-centro",
       "ajustes": {
-        "virada": "A barreira nunca foi o preço. É não saber que dá para empurrar a porta.",
-        "porta": [
-          "Não há bilheteria, catraca nem lista. Se a porta de vidro estiver fechada, ela é só pesada, ou tem campainha. Tocar é o procedimento normal, não um incômodo.",
-          "Quem está na mesa da entrada é o galerista ou um assistente. Vão dizer bom dia e voltar ao computador. Ninguém vai te abordar.",
-          "Você pode ficar três minutos e ir embora. Pode voltar no dia seguinte. Pode não dizer nada sobre o que viu.",
-          "Perguntar preço não é falta de educação, e não obriga a nada. A galeria vive disso, e quase sempre há uma lista de preços impressa que ela entrega sem cerimônia.",
-          "A maioria fecha aos domingos e nas segundas, e muitas fecham entre 13h e 14h. Sábado costuma ter horário reduzido."
-        ]
+        "filtro": {
+          "zona": "Centro"
+        }
       }
     },
     {
       "data": "2026-09-09",
-      "formato": "deriva",
+      "formato": "salao",
       "ordem": 2,
-      "paleta": "linho",
-      "textura": 0.09,
-      "ideia": "deriva-oeste",
-      "nome": "deriva-oeste",
+      "paleta": "barro",
+      "textura": 0.07,
+      "ideia": "salao-parede-inteira",
+      "nome": "salao-parede-inteira",
       "ajustes": {
-        "filtro": {
-          "zona": "Oeste"
-        },
-        "tese": "Cinquenta das 91 casas do mapa estão na Zona Oeste. Este é o trecho mais curto entre algumas delas.",
-        "virada": "Nenhuma delas combinou a programação com as outras. Quem junta é a calçada."
+        "texto": [
+          "Até o fim do século XIX se pendurava assim. O Salon de Paris cobria a parede do rodapé ao teto, quadro colado em quadro, e um catálogo numerado dizia o que era cada um.",
+          "A parede vazia com uma obra no centro, que hoje parece a única forma possível de mostrar arte, é invenção do modernismo. É uma escolha, e ela tem cem anos."
+        ],
+        "virada": "O cubo branco isola. O salão obriga as obras a conviverem — e é aí que se vê o que a cidade está pintando."
       }
     },
     {
       "data": "2026-09-10",
-      "formato": "role",
+      "formato": "entrada",
       "ordem": 1,
-      "paleta": "barro",
+      "paleta": "papel",
       "textura": 0.07,
-      "ideia": "role-tres-regioes",
-      "nome": "role-tres-regioes",
+      "ideia": "entrada-sabado",
+      "nome": "entrada-sabado",
       "ajustes": {
-        "titulo": "Três rolês prontos para hoje. Escolha pelo lugar onde você está.",
-        "chamada": "Todas as paradas têm mostra em cartaz e obra para ver. Nenhuma casa se repete entre os três.",
-        "virada": "Você não precisa fazer o rolê inteiro. Uma parada já é um sábado melhor que a maioria."
+        "virada": "O dia em que mais gente sai é o dia sobre o qual menos se publica.",
+        "porta": [
+          "Sábado é o único dia em que a maioria das pessoas consegue ir, e o dia em que menos casas dizem que horas fecham.",
+          "Quase toda galeria abre sábado com horário reduzido — costuma ser das 10h ou 11h até 14h, 16h ou 17h, e cada uma escolhe o seu.",
+          "Museu é o contrário: sábado costuma ser dia cheio, às vezes o de maior horário da semana.",
+          "Quem sai às 15h achando que tem a tarde inteira pega porta fechada. É o erro mais comum e o mais fácil de evitar.",
+          "Confira antes de sair. Quando o horário estiver no nosso mapa, ele está lá porque alguém foi olhar no site da casa."
+        ]
       }
     },
     {
       "data": "2026-09-11",
-      "formato": "duracao",
+      "formato": "obra",
+      "ordem": 1,
+      "paleta": "linho",
+      "textura": 0.09,
+      "ideia": "obra-jardins",
+      "nome": "obra-jardins",
+      "ajustes": {
+        "filtro": {
+          "bairro": [
+            "Jardim Paulista",
+            "Jardim América",
+            "Jardim Europa",
+            "Cerqueira César"
+          ]
+        }
+      }
+    },
+    {
+      "data": "2026-09-12",
+      "formato": "deriva",
       "ordem": 1,
       "paleta": "escuro",
       "textura": 0.05,
-      "ideia": "duracao-urgente",
-      "nome": "duracao-urgente",
-      "ajustes": {
-        "filtro": {
-          "fechaEm": 7
-        },
-        "limiteUrgente": 7,
-        "texto": [
-          "Este diagrama só tem mostra que encerra em sete dias ou menos.",
-          "É o recorte mais curto que a base permite desenhar, e o único em que a linha do tempo funciona como aviso e não como panorama."
-        ],
-        "virada": "Se você estiver lendo isso numa segunda, algumas destas já não abrem no próximo fim de semana."
-      }
-    },
-    {
-      "data": "2026-09-12",
-      "formato": "role",
-      "ordem": 1,
-      "paleta": "cal",
-      "textura": 0.06,
-      "ideia": "role-recem-abertas",
-      "nome": "role-recem-abertas",
-      "ajustes": {
-        "filtro": {
-          "abriuEm": 30
-        },
-        "titulo": "Três rolês só de mostra que abriu neste mês.",
-        "chamada": "Nenhuma dessas paradas estava de pé há trinta dias.",
-        "virada": "Um mês de São Paulo cabe em três caminhadas."
-      }
-    },
-    {
-      "data": "2026-09-12",
-      "formato": "salao",
-      "ordem": 2,
-      "paleta": "barro",
-      "textura": 0.07,
-      "ideia": "salao-centro",
-      "nome": "salao-centro",
+      "ideia": "deriva-centro",
+      "nome": "deriva-centro",
       "ajustes": {
         "filtro": {
           "zona": "Centro"
         },
-        "texto": [
-          "Só o que está em cartaz no Centro: Barra Funda, Higienópolis, Vila Buarque, República, Consolação.",
-          "O mapa da arte em São Paulo tem 91 casas e metade delas na Zona Oeste. O Centro é a outra metade da história, e cabe numa caminhada."
-        ],
-        "virada": "Dá para ver esta parede inteira de metrô, num sábado, sem pegar carro."
+        "tese": "Um percurso a pé pelo Centro, entre casas que quase nunca aparecem juntas numa lista.",
+        "virada": "O Centro tem menos galeria que os Jardins e mais chão entre uma e outra. A caminhada é o programa, não o transporte."
+      }
+    },
+    {
+      "data": "2026-09-12",
+      "formato": "obra",
+      "ordem": 2,
+      "paleta": "tinta",
+      "textura": 0.05,
+      "ideia": "obra-instituicao",
+      "nome": "obra-instituicao",
+      "ajustes": {
+        "filtro": {
+          "tipo": "institucional"
+        }
       }
     },
     {
       "data": "2026-09-13",
-      "formato": "salao",
+      "formato": "entrada",
       "ordem": 1,
-      "paleta": "escuro",
-      "textura": 0.05,
-      "ideia": "salao-ultima-chamada",
-      "nome": "salao-ultima-chamada",
+      "paleta": "cal",
+      "textura": 0.06,
+      "ideia": "entrada-etiqueta",
+      "nome": "entrada-etiqueta",
       "ajustes": {
-        "filtro": {
-          "fechaEm": 21
-        },
-        "texto": [
-          "Cada obra desta parede está numa mostra que fecha em três semanas ou menos.",
-          "Não é uma seleção de qualidade. É uma seleção de prazo — a única lista desta cidade em que a ordem é dada pelo calendário e não por quem tem assessoria de imprensa."
-        ],
-        "virada": "Nenhuma delas vai avisar você quando desmontar."
+        "virada": "Ninguém vai te perguntar o que você faz da vida. Essa é a parte que ninguém acredita até entrar.",
+        "porta": [
+          "Você não precisa saber o nome do artista. Não há prova na saída e ninguém está avaliando você.",
+          "Não precisa fazer cara de quem entendeu. Uma parte grande do que está pendurado também não foi entendida por quem pendurou.",
+          "Pode fotografar, salvo aviso em contrário — e quando há aviso, ele está na parede, não no olhar de ninguém.",
+          "Pode entrar de mochila, de bermuda, com criança, com carrinho. Galeria não tem código de vestimenta e as que agem como se tivessem estão erradas.",
+          "Pode perguntar o que é aquilo. A resposta é o serviço que a casa presta, e quase sempre é a melhor parte da visita."
+        ]
       }
     }
   ]
