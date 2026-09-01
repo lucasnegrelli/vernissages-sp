@@ -1,0 +1,7 @@
+{
+  "nome": "encerra",
+  "modo": "encerra",
+  "paleta": "escuro",
+  "textura": 0.05,
+  "filtro": { "fechaEm": 14 }
+}

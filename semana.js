@@ -48,6 +48,9 @@ const FORMATOS = {
   aproximacao: { script: 'aproximacao.js', curado: true,
                  precisa: 'a chave da obra, os pontos de recorte (zooms) e a leitura' },
   obra:        { script: 'obra.js',        curado: false },
+  encerra:     { script: 'obra.js',        curado: false },
+  estreia:     { script: 'obra.js',        curado: false },
+  numero:      { script: 'numero.js',      curado: false },
   deriva:      { script: 'deriva.js',      curado: false },
   entrada:     { script: 'entrada.js',     curado: false },
   salao:       { script: 'salao.js',       curado: false },
@@ -97,12 +100,26 @@ function prepararConfig(post, plano) {
   return { caminho: alvo, novo: true };
 }
 
-function rodar(post, plano, seco) {
+/* Formatos que escolhem UMA obra da base. Duas peças da mesma semana não podem
+   cair na mesma obra — o eixo do feed é justamente a variedade de trabalho. O
+   semana.js junta o que já saiu (linha `PICK t|v` do gerador) e passa adiante
+   no campo `evitar`. */
+const FAMILIA_OBRA = new Set(['obra', 'encerra', 'estreia']);
+
+function rodar(post, plano, seco, jaEscolhidas) {
   const F = FORMATOS[post.formato];
   if (!F) throw new Error('formato desconhecido: ' + post.formato);
 
   const { caminho, novo } = prepararConfig(post, plano);
-  if (seco) return { saida: '(seco) config pronto' + (novo ? ' — modelo copiado' : ''), arquivos: 0 };
+
+  if (FAMILIA_OBRA.has(post.formato) && jaEscolhidas.length) {
+    const cfg = JSON.parse(fs.readFileSync(caminho, 'utf8'));
+    cfg.evitar = jaEscolhidas.slice();
+    cfg.evitarCasa = jaEscolhidas.map(k => k.split('|')[1]);
+    fs.writeFileSync(caminho, JSON.stringify(cfg, null, 2) + '\n', 'utf8');
+  }
+
+  if (seco) return { saida: '(seco) config pronto' + (novo ? ' — modelo copiado' : ''), arquivos: 0, picks: [] };
 
   const out = pastaDe(post.data);
   const saida = execFileSync('node', [
@@ -113,7 +130,8 @@ function rodar(post, plano, seco) {
   ], { cwd: RAIZ, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], maxBuffer: 1 << 24 });
 
   const arquivos = (saida.match(/^OK /gm) || []).length;
-  return { saida: saida.trim().split('\n').slice(-1)[0], arquivos, novo };
+  const picks = (saida.match(/^PICK (.+)$/gm) || []).map(l => l.replace(/^PICK /, ''));
+  return { saida: saida.trim().split('\n').filter(l => !l.startsWith('PICK ')).slice(-1)[0], arquivos, novo, picks };
 }
 
 /* ---------- execucao ---------- */
@@ -129,6 +147,7 @@ function principal() {
   console.log(fila.length + ' peça(s)' + (seco ? '  ·  modo seco, nada será gerado' : '') + '\n');
 
   const feitas = [], falhas = [];
+  const escolhidas = [];
   let diaAtual = '';
 
   for (const post of fila) {
@@ -140,7 +159,8 @@ function principal() {
     }
     const rotulo = '   ' + post.formato.padEnd(12);
     try {
-      const r = rodar(post, plano, seco);
+      const r = rodar(post, plano, seco, escolhidas);
+      (r.picks || []).forEach(k => { if (!escolhidas.includes(k)) escolhidas.push(k); });
       console.log(rotulo + (r.novo ? '· modelo novo  ' : '               ') + r.saida);
       feitas.push({ post, r });
     } catch (e) {
