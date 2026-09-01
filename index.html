@@ -365,6 +365,10 @@
   .bchip>*{position:relative}
   .bchip b{color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums;font-size:.74rem}
   .bchip:hover{border-color:var(--line2);color:var(--ink);transform:translateY(-1px)}
+  .bchip.on{background:rgba(232,193,90,.14);border-color:var(--accent);color:var(--ink)}
+  .bchip.on b{color:var(--accent)}
+  .bchip.on::after{content:'✕';margin-left:2px;color:var(--accent);font-size:.66rem}
+  .bchip.on .bchip-bar{background:rgba(232,193,90,.22)}
   .bchip.more{color:var(--muted);border-style:dashed}
   .bchip.more:hover{color:var(--accent);border-color:var(--accent)}
 
@@ -408,14 +412,18 @@
   .pano-todaylbl{fill:var(--accent);font-size:12px;font-weight:700;font-family:var(--font)}
 
   .pano-tip{position:absolute;z-index:30;pointer-events:none;opacity:0;transform:translateY(3px);
-    transition:opacity .12s,transform .12s;background:rgba(20,17,12,.97);border:1px solid var(--line2);
-    border-radius:10px;padding:9px 12px;width:230px;font-size:.77rem;line-height:1.5;color:var(--text2);
+    transition:opacity .12s,transform .12s;background:rgba(20,17,12,.98);border:1px solid var(--line2);
+    border-radius:10px;padding:10px 12px;max-width:240px;font-size:.77rem;line-height:1.5;color:var(--text2);
     box-shadow:0 20px 46px -18px rgba(0,0,0,.95)}
-  .pano-tip.show{opacity:1;transform:none}
+  .pano-tip.show{opacity:1;transform:none;pointer-events:auto}
   .pano-tip b{display:block;color:var(--ink);font-family:var(--display);font-weight:700;
     font-size:.85rem;line-height:1.2;margin-bottom:3px}
   .pano-tip .pt-v{color:var(--accent2);font-size:.7rem;text-transform:uppercase;letter-spacing:.6px}
   .pano-tip .pt-d{color:var(--muted);font-size:.72rem;margin-top:4px}
+  .pano-go{margin-top:9px;display:inline-block;background:rgba(232,193,90,.12);border:1px solid rgba(232,193,90,.4);
+    color:var(--accent);border-radius:8px;padding:5px 10px;font:inherit;font-size:.72rem;font-weight:600;
+    cursor:pointer;transition:.15s}
+  .pano-go:hover{background:rgba(232,193,90,.2);border-color:var(--accent)}
 
   .pano-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:1px;
     margin-top:22px;background:var(--hair);border:1px solid var(--hair);border-radius:10px;overflow:hidden}
@@ -1515,10 +1523,12 @@ function renderPanorama(){
   const fmtMes=iso=>iso.slice(8,10)+'/'+iso.slice(5,7);
   const MES=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
   const eInst=e=>V[e.v]&&V[e.v].tipo==='institucional';
+  const toque=window.matchMedia('(hover:none),(pointer:coarse)').matches;
 
   const emCartaz=EXPOS.filter(e=>e.ini&&e.ini<=hoje&&e.fim&&e.fim>=hoje&&V[e.v]);
   let rows=emCartaz.slice().sort((a,b)=>a.fim.localeCompare(b.fim)||dd(a.ini,a.fim)-dd(b.ini,b.fim));
-  const cortou=rows.length>50; if(cortou) rows=rows.slice(0,50);
+  const LIM=toque?32:50;
+  const cortou=rows.length>LIM; if(cortou) rows=rows.slice(0,LIM);
 
   /* tiles */
   const durGal=emCartaz.filter(e=>V[e.v].tipo==='galeria').map(e=>dd(e.ini,e.fim));
@@ -1534,88 +1544,123 @@ function renderPanorama(){
   if(abre14) tiles.push([abre14,'abre'+(abre14>1?'m':'')+' nas próximas 2 semanas']);
   if(tilesBox) tilesBox.innerHTML=tiles.map(([b,s])=>`<div class="pano-tile"><b>${b}</b><span>${s}</span></div>`).join('');
 
-  lead.innerHTML=`<b>${emCartaz.length}</b> mostras em cartaz agora${cortou?' (as 50 que fecham antes)':''}. `+
+  lead.innerHTML=`<b>${emCartaz.length}</b> mostras em cartaz agora${cortou?` (as ${LIM} que fecham antes)`:''}. `+
     `As barras curtas e claras são galerias; as longas e apagadas, instituições.`;
 
   if(!rows.length){ chart.innerHTML='<p class="note" style="margin:0">Nada com data de encerramento pra desenhar agora.</p>'; return; }
 
-  const ATRAS=45,FRENTE=175,W=1000,PADL=6,PADR=6,PADT=14;
-  const ROWH=Math.max(6,Math.min(9,380/rows.length)), BARH=Math.max(3,ROWH-3), AXISH=20;
-  const H=PADT+rows.length*ROWH+AXISH;
+  /* Escala em px de verdade: viewBox proporcional, mas dimensionado a partir da
+     largura renderizada pra que cada linha caia num alvo tocável no celular. */
+  const cw=Math.max(280,chart.clientWidth||900);
+  const W=1000, kx=W/cw;
+  const rowPx=toque?16:8, barPx=Math.max(4,rowPx-4), padTop=18*kx, axis=22*kx, font=(toque?9:9)*kx;
+  const rowH=rowPx*kx, barH=barPx*kx, PADL=6, PADR=6;
+  const ATRAS=45,FRENTE=175;
   const x0=T0-ATRAS*DAY, x1=T0+FRENTE*DAY;
   const sx=t=>PADL+((Math.max(x0,Math.min(x1,t))-x0)/(x1-x0))*(W-PADL-PADR);
-  const chartBot=PADT+rows.length*ROWH;
+  const chartBot=padTop+rows.length*rowH, H=chartBot+axis;
 
   let grid='';
   const gd=new Date(x0); gd.setDate(1); gd.setMonth(gd.getMonth()+1);
   while(gd.getTime()<x1){
-    const gx=sx(gd.getTime());
-    grid+=`<line class="pano-grid" x1="${gx.toFixed(1)}" y1="${PADT}" x2="${gx.toFixed(1)}" y2="${chartBot}"/>`
-        +`<text class="pano-axis" x="${gx.toFixed(1)}" y="${H-6}" text-anchor="middle">${MES[gd.getMonth()]}</text>`;
+    const gx=sx(gd.getTime()).toFixed(1);
+    grid+=`<line class="pano-grid" x1="${gx}" y1="${padTop.toFixed(1)}" x2="${gx}" y2="${chartBot.toFixed(1)}" vector-effect="non-scaling-stroke"/>`
+        +`<text class="pano-axis" x="${gx}" y="${(H-6*kx).toFixed(1)}" text-anchor="middle" font-size="${font.toFixed(1)}">${MES[gd.getMonth()]}</text>`;
     gd.setMonth(gd.getMonth()+1);
   }
   const tx=sx(T0).toFixed(1);
-  const today=`<line class="pano-today" x1="${tx}" y1="${PADT-3}" x2="${tx}" y2="${chartBot+3}"/>`
-    +`<text class="pano-todaylbl" x="${tx}" y="${PADT-6}" text-anchor="middle">hoje</text>`;
+  const today=`<line class="pano-today" x1="${tx}" y1="${(padTop-4*kx).toFixed(1)}" x2="${tx}" y2="${(chartBot+4*kx).toFixed(1)}" vector-effect="non-scaling-stroke"/>`
+    +`<text class="pano-todaylbl" x="${tx}" y="${(padTop-6*kx).toFixed(1)}" text-anchor="middle" font-size="${font.toFixed(1)}">hoje</text>`;
 
   const bars=rows.map((e,i)=>{
-    const y=PADT+i*ROWH;
+    const y=padTop+i*rowH;
     const bx=sx(Date.parse(e.ini+'T12:00')), bw=Math.max(2,sx(Date.parse(e.fim+'T12:00'))-bx);
     const fill=eInst(e)?'var(--viz-inst)':'var(--viz-com)';
-    return `<rect class="pano-bar" data-i="${i}" x="${bx.toFixed(1)}" y="${(y+(ROWH-BARH)/2).toFixed(1)}" width="${bw.toFixed(1)}" height="${BARH}" rx="2" fill="${fill}" fill-opacity="${eInst(e)?.6:.92}"/>`
-      +`<rect class="pano-hit" data-i="${i}" x="${PADL}" y="${y}" width="${W-PADL-PADR}" height="${ROWH}"/>`;
+    return `<rect class="pano-bar" data-i="${i}" x="${bx.toFixed(1)}" y="${(y+(rowH-barH)/2).toFixed(1)}" width="${bw.toFixed(1)}" height="${barH.toFixed(1)}" fill="${fill}" fill-opacity="${eInst(e)?.6:.92}"/>`
+      +`<rect class="pano-hit" data-i="${i}" x="${PADL}" y="${y.toFixed(1)}" width="${W-PADL-PADR}" height="${rowH.toFixed(1)}"/>`;
   }).join('');
 
   chart.innerHTML=`<svg viewBox="0 0 ${W} ${H.toFixed(0)}" role="img" aria-label="Timeline de ${rows.length} mostras em cartaz, ordenadas por data de encerramento">`
     +grid+bars+today+`</svg><div class="pano-tip" id="panoTip"></div>`;
 
   const svg=chart.querySelector('svg'), tip=document.getElementById('panoTip');
+  let sel=-1;
+  const posiciona=i=>{
+    const hit=svg.querySelector(`.pano-hit[data-i="${i}"]`);
+    const bar=svg.querySelector(`.pano-bar[data-i="${i}"]`);
+    const cr=chart.getBoundingClientRect(), br=bar.getBoundingClientRect();
+    tip.style.maxWidth=Math.min(240,cr.width-16)+'px';
+    let x=br.right-cr.left+12;
+    if(x+tip.offsetWidth>cr.width-4) x=br.left-cr.left-tip.offsetWidth-12;
+    if(x<4) x=Math.max(4,(cr.width-tip.offsetWidth)/2);
+    let y=br.top-cr.top-6;
+    if(y+tip.offsetHeight>cr.height) y=cr.height-tip.offsetHeight-4;
+    tip.style.left=x+'px'; tip.style.top=Math.max(2,y)+'px';
+  };
   const mostra=i=>{
+    if(i===sel) return; sel=i;
     const e=rows[i], resta=dd(hoje,e.fim);
     chart.classList.add('hov');
     svg.querySelectorAll('.pano-bar').forEach(b=>b.classList.toggle('on',+b.dataset.i===i));
     tip.innerHTML=`<b>${tituloLimpo(e)}</b><span class="pt-v">${e.v}</span>`
-      +`<div class="pt-d">${fmtMes(e.ini)} → ${fmtMes(e.fim)} · ${resta<=0?'último dia':resta+' dias restantes'}</div>`;
+      +`<div class="pt-d">${fmtMes(e.ini)} → ${fmtMes(e.fim)} · ${resta<=0?'último dia':resta+' dia'+(resta>1?'s':'')+' restantes'}</div>`
+      +`<button type="button" class="pano-go">ver o espaço no mapa ›</button>`;
+    tip.querySelector('.pano-go').onclick=ev=>{ev.stopPropagation();focusVenue(e.v);};
     tip.classList.add('show');
+    posiciona(i);
   };
-  const esconde=()=>{ chart.classList.remove('hov'); tip.classList.remove('show'); };
-  svg.addEventListener('pointerover',ev=>{const h=ev.target.closest('.pano-hit');if(h)mostra(+h.dataset.i);});
-  svg.addEventListener('pointermove',ev=>{
-    const r=chart.getBoundingClientRect();
-    let x=ev.clientX-r.left+16;
-    if(x+240>r.width) x=ev.clientX-r.left-246;
-    tip.style.left=Math.max(2,x)+'px';
-    tip.style.top=(ev.clientY-r.top+12)+'px';
-  });
-  svg.addEventListener('pointerleave',esconde);
-  svg.addEventListener('click',ev=>{const h=ev.target.closest('.pano-hit');if(h)focusVenue(rows[+h.dataset.i].v);});
+  const esconde=()=>{ sel=-1; chart.classList.remove('hov'); tip.classList.remove('show');
+    svg.querySelectorAll('.pano-bar.on').forEach(b=>b.classList.remove('on')); };
+
+  if(toque){
+    svg.addEventListener('click',ev=>{const h=ev.target.closest('.pano-hit');if(h)mostra(+h.dataset.i);});
+    document.addEventListener('click',ev=>{ if(sel>=0 && !chart.contains(ev.target)) esconde(); });
+  }else{
+    svg.addEventListener('pointerover',ev=>{const h=ev.target.closest('.pano-hit');if(h)mostra(+h.dataset.i);});
+    chart.addEventListener('pointerleave',esconde);
+    svg.addEventListener('click',ev=>{const h=ev.target.closest('.pano-hit');if(h)focusVenue(rows[+h.dataset.i].v);});
+  }
 }
 renderPanorama();
+let _panoT; addEventListener('resize',()=>{clearTimeout(_panoT);_panoT=setTimeout(renderPanorama,250);});
 /* filtros */
 document.querySelectorAll('#statusFilters .chip').forEach(ch=>ch.onclick=()=>{
   document.querySelectorAll('#statusFilters .chip').forEach(c=>c.classList.remove('on'));
   ch.classList.add('on');draw();});
-['zonaSel','bairroSel','tipoSel','venueSel','artistSel'].forEach(id=>document.getElementById(id).onchange=draw);
+['zonaSel','bairroSel','tipoSel','venueSel','artistSel'].forEach(id=>document.getElementById(id).onchange=()=>{draw();if(id==='bairroSel')bchips.sync();});
 document.getElementById('search').oninput=()=>draw();
 weekBanner();
 
-/* Distribuição por bairro — fundida no Diretório (era um painel separado no
-   rodapé). Chips clicáveis: o mesmo barFilter() que já filtrava a agenda. */
-(function(){
-  const el=document.getElementById('dirConc'); if(!el) return;
+/* Distribuição por bairro — fundida no Diretório. Chips clicáveis que
+   refletem o filtro atual: clicar num bairro filtra; clicar no que já está
+   ativo, limpa. */
+const bchips=(function(){
+  const el=document.getElementById('dirConc'); if(!el) return {sync:()=>{}};
   const TOPO=8, mx=BAIRRO_COUNTS[0][1];
-  const chip=([b,n])=>`<button type="button" class="bchip" onclick="barFilter('${b.replace(/'/g,"\\'")}')">`+
+  let full=false;
+  const chip=([b,n])=>`<button type="button" class="bchip" data-b="${b.replace(/"/g,'&quot;')}">`+
     `<span class="bchip-bar" style="--w:${Math.max(8,n/mx*100)}%"></span>${b}<b>${n}</b></button>`;
-  const render=full=>{
-    const lista=full?BAIRRO_COUNTS:BAIRRO_COUNTS.slice(0,TOPO);
+  const render=()=>{
+    const ativo=bSel.value;
+    let lista=full?BAIRRO_COUNTS:BAIRRO_COUNTS.slice(0,TOPO);
+    // se o bairro ativo está fora da lista visível, traz ele pra aparecer
+    if(ativo!=='all' && !lista.some(([b])=>b===ativo)){
+      const extra=BAIRRO_COUNTS.find(([b])=>b===ativo);
+      if(extra) lista=[extra,...lista];
+    }
     el.innerHTML=lista.map(chip).join('')+
       (BAIRRO_COUNTS.length>TOPO
-        ? `<button type="button" class="bchip more" id="bchipMore">${full?'menos':'+ '+(BAIRRO_COUNTS.length-TOPO)+' bairros'}</button>`
+        ? `<button type="button" class="bchip more" data-more="1">${full?'menos':'+ '+(BAIRRO_COUNTS.length-TOPO)+' bairros'}</button>`
         : '');
-    const m=document.getElementById('bchipMore');
-    if(m) m.onclick=e=>{e.stopPropagation();render(!full);};
+    el.querySelectorAll('.bchip[data-b]').forEach(c=>c.classList.toggle('on',c.dataset.b===ativo));
   };
-  render(false);
+  el.addEventListener('click',ev=>{
+    const c=ev.target.closest('.bchip'); if(!c) return;
+    if(c.dataset.more){ full=!full; render(); return; }
+    barFilter(c.dataset.b);
+  });
+  render();
+  return { sync:render };
 })();
 /* ---------- experiências imersivas ----------
    A categoria estava no dados.js e exposta no return desde 11/08 sem ninguém
@@ -1642,12 +1687,14 @@ weekBanner();
 })();
 
   function barFilter(b){
-  /* A barra e o select usam o mesmo rótulo agrupado, então o de-para que
-     existia aqui (e só cobria "Jardins" → Jardim Paulista) não é mais preciso. */
+  /* Toggle: clicar no bairro já ativo limpa o filtro. */
+  const jaAtivo=bSel.value===b;
   const opt=[...bSel.options].find(o=>o.value===b);
-  bSel.value=opt?opt.value:'all';draw();
+  bSel.value=(jaAtivo||!opt)?'all':opt.value;
+  draw();
+  bchips.sync();
   const ag=document.getElementById('agGrid');
-  if(ag) ag.scrollIntoView({behavior:'smooth',block:'start'});
+  if(ag&&!jaAtivo) ag.scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 /* ritmo das aberturas */
