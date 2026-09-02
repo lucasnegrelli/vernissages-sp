@@ -194,7 +194,7 @@ ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld)}</scr`+`
 ${corpo}
 <footer>
 Vernissages SP — mapa vivo das galerias e aberturas de São Paulo, atualizado diariamente.<br>
-Datas conforme divulgação dos espaços; confirme antes de visitar. <a href="${SITE}/">Voltar à agenda</a>
+Datas conforme divulgação dos espaços; confirme antes de visitar. <a href="${SITE}/">Voltar à agenda</a> · <a href="https://instagram.com/vernissagessp" target="_blank" rel="noopener">Instagram</a>
 </footer>
 </div>
 </body>
