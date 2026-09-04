@@ -223,11 +223,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "No meio da pedra — André Vargas",
-  v: "Galeria Vermelho",
-  quem: "André Vargas",
-  txt: "Segunda individual do artista na galeria. Abertura em 15 de agosto; encerramento não divulgado.",
-  link: "https://galeriavermelho.com.br",
+  t: "Déboussolé est le mot exact — Jean Claracq",
+  v: "Mendes Wood DM",
+  quem: "Jean Claracq",
+  txt: "Dez pinturas de pequeno formato, a maioria entre 10 e 20 centímetros. Texto de Renato Menezes. Abertura em 22 de agosto, até 6 de novembro.",
+  link: "https://mendeswooddm.com",
   publi: false
 };
 
@@ -242,6 +242,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-09-04", k:"Déboussolé est le mot exact — Jean Claracq|Mendes Wood DM"},
   {d:"2026-09-03", k:"No meio da pedra — André Vargas|Galeria Vermelho"},
   {d:"2026-09-02", k:"No corpo e na paisagem, o que resta é o pó — Henrique Detomi|Zipper Galeria"},
   {d:"2026-09-01", k:"Vonta de vi dada dada — Ernesto Neto (Barra Funda)|Fortes D'Aloia & Gabriel — Galpão"},
@@ -288,5 +289,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "03/09/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "04/09/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
