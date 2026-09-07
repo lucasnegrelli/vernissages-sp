@@ -134,7 +134,6 @@ const EXPOS = [
 {t:"Habitar a paisagem — Flavia Fabbriziani",a:"Flavia Fabbriziani",v:"Galeria Dezoito",ini:"2026-08-05",fim:"2026-09-05",d:"Pintura entre abstração e figuração, por acúmulo de matéria, apagamentos e camadas espessas de tinta. Curadoria de Jurandy Valença, a partir de Didi-Huberman."},
 {t:"Joan Miró: Mestre das Formas",a:"Joan Miró",v:"MAB FAAP",ini:"2026-08-07",fim:"2026-10-12",d:"140 obras originais do catalão, várias inéditas no Brasil. Ingresso pago, vendido em mmf26.com.br."},
 {t:"O Lado Escuro da Lua — Alfredo Jaar",a:"Alfredo Jaar",v:"Galeria Luisa Strina",ini:"2026-08-08",fim:"2026-09-19",d:"Trabalhos feitos no Chile entre 1974 e 1981, das grades de onzes sobre o golpe de 1973 ao projeto Estudos sobre a felicidade. Texto de Edward A. Vazquez.",img:"img/o-lado-escuro-da-lua-galeria-luisa-strina.webp",cred:"Cortesia Galeria Luisa Strina"},
-{t:"SP-Arte Rotas 2026 · 5ª edição",v:"ARCA",ini:"2026-08-26",fim:"2026-08-30",d:"~70 expositores; direção artística de Bernardo Mosqueira; foco América Latina. Dia 26 só convidados; 27–28 (13h–20h), 29 (12h–20h), 30 (12h–19h)."},
 {t:"Matéria e Energia — Damián Ortega",a:"Damián Ortega",v:"MASP",ini:"2026-05-15",fim:"2026-09-13",d:"Três décadas em fotografia, vídeo, escultura e instalação, com objetos do cotidiano desmontados e suspensos no espaço. Curadoria de Adriano Pedrosa, Rodrigo Moura e Yudi Rafael.",img:"img/materia-e-energia-masp.jpg",cred:"Vista da exposição. Foto Eduardo Ortega / Cortesia MASP",vista:true},
 {t:"Acervo em Transformação: Doações Recentes",a:"Adriana Varejão, Anna Bella Geiger, Bruno Baptistelli, Emanuel Nassar, José Patrício, Judy Chicago, Mateo López, Rochelle Costi, Sandra Cinto, Sérgio Sister, Sergej Jensen, Valdirlei Dias Nunes, Vik Muniz",v:"MASP",ini:"2026-05-15",fim:"2026-09-13",d:"Vinte e seis obras doadas ao museu desde 2020, de treze artistas. Curadoria de Adriano Pedrosa e Amanda Carneiro."},
 {t:"confluências — Carolina Caycedo",a:"Carolina Caycedo",v:"MASP",ini:"2026-07-03",fim:"2026-10-04",d:"Fotografia, instalação, vídeo, performance e desenho no cruzamento entre arte, saberes ribeirinhos e movimentos sociais. Curadoria de Isabella Rjeille.",img:"img/confluencias-masp.jpg",cred:"Vista da exposição. Foto Eduardo Ortega / Cortesia MASP",vista:true},
@@ -223,11 +222,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Matéria e Energia — Damián Ortega",
-  v: "MASP",
-  quem: "Damián Ortega",
-  txt: "Três décadas em fotografia, vídeo, escultura e instalação, com objetos do cotidiano desmontados e suspensos no espaço. Curadoria de Adriano Pedrosa, Rodrigo Moura e Yudi Rafael. Abertura em 15 de maio, até 13 de setembro.",
-  link: "https://masp.org.br",
+  t: "Macunaíma é Duwid",
+  v: "Pinacoteca de São Paulo",
+  quem: "",
+  txt: "Cerca de 100 pinturas, gravuras, esculturas e documentos com nove artistas indígenas dos povos Wapichana, Makuxi, Tauperan, Akawaio e Patamona, revisitando Mário de Andrade. Curadoria de Gustavo Caboco (Pina Estação). Abertura em 28 de março, até 13 de setembro.",
+  link: "https://pinacoteca.org.br",
   publi: false
 };
 
@@ -242,6 +241,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-09-07", k:"Macunaíma é Duwid|Pinacoteca de São Paulo"},
   {d:"2026-09-06", k:"Matéria e Energia — Damián Ortega|MASP"},
   {d:"2026-09-05", k:"Quadros — Ubirajara Ribeiro|Gomide&Co"},
   {d:"2026-09-04", k:"Déboussolé est le mot exact — Jean Claracq|Mendes Wood DM"},
@@ -291,5 +291,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "06/09/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "07/09/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
