@@ -220,11 +220,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Charline von Heyl — individual",
-  v: "Auroras",
-  quem: "Charline von Heyl",
-  txt: "Primeira exposição da pintora alemã-americana no Brasil: quinze pinturas recentes, entre grandes formatos e a série Sabotagerie (2026). Organizada em colaboração com a Petzel Gallery. Entrada gratuita, sábados 11h–18h. Abertura em 14 de junho, até 19 de setembro.",
-  link: "https://auroras.art.br",
+  t: "O homem nu — Efrain Almeida",
+  v: "Fortes D'Aloia & Gabriel — Galpão",
+  quem: "Efrain Almeida",
+  txt: "Primeira mostra abrangente do artista na galeria desde sua morte: obras produzidas entre 1995 e 2024, entre escultura em madeira umburana, pintura a óleo, bordado e aquarela. Texto de Márcia Fortes. Abertura em 22 de agosto, até 24 de outubro.",
+  link: "https://fdag.com.br",
   publi: false
 };
 
@@ -239,6 +239,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-09-09", k:"O homem nu — Efrain Almeida|Fortes D'Aloia & Gabriel — Galpão"},
   {d:"2026-09-08", k:"Charline von Heyl — individual|Auroras"},
   {d:"2026-09-07", k:"Macunaíma é Duwid|Pinacoteca de São Paulo"},
   {d:"2026-09-06", k:"Matéria e Energia — Damián Ortega|MASP"},
@@ -290,5 +291,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "08/09/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "09/09/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
