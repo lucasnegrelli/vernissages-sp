@@ -474,9 +474,9 @@ function validar(DATA, opts) {
 /* Cobertura de obra.
  *
  * O numero que interessa para a saude editorial nao e quantas mostras tem
- * imagem: e quantas tem imagem DA OBRA. Vista de sala serve para deriva,
- * salao e role, e nao serve para rima nem aproximacao — que sao justamente os
- * dois formatos que afirmam alguma coisa sobre o trabalho.
+ * imagem: e quantas tem imagem DA OBRA. Vista de sala serve para deriva e
+ * salao, e nao serve para obra, rima nem aproximacao — os formatos que
+ * afirmam alguma coisa sobre o trabalho.
  *
  * Nenhuma verificacao de arquivo distingue as duas coisas: uma vista de sala
  * bem fotografada tem peso, dimensao e credito de sobra. Quem distingue e o

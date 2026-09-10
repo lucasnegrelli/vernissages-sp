@@ -13,13 +13,15 @@
    Este script resolve as duas coisas:
 
    1. RECORTE. Cada ideia do `REPERTORIO.json` traz um `filtro` (implementado em
-      rima.js e aplicado por salao, duracao, deriva e role). "Salao" deixa de ser
+      rima.js e aplicado por salao, obra, deriva e numero). "Salao" deixa de ser
       uma peca e vira dez: a parede inteira, so galeria, so o que fecha em tres
       semanas, so o Centro, so vista de sala.
 
    2. MEMORIA. O `USADAS.json` guarda o dia em que cada ideia saiu. Uma ideia so
-      voltaAt depois do `descanso` (35 dias por padrao). Com 50 ideias e 10 pecas
-      por semana, o mes inteiro passa sem repetir.
+      volta depois do `descanso` (35 dias por padrao). Com 50 ideias e 10 pecas
+      por semana, o mes inteiro passa sem repetir. Desde 13/09 o semana.js
+      tambem confere essa lista (e a POSTADAS.json, de mostra) antes de gerar —
+      plano editado a mao deixou de furar a memoria.
 
    O que ele NAO faz, de proposito:
 
@@ -35,8 +37,8 @@
      31/08 quebrava, com `barro` na sexta e no sabado).
    - Nao repete formato no mesmo dia.
    - No maximo uma peca curada por dia — sao as que custam trabalho humano.
-   - Sabado ganha `role` quando ele estiver disponivel: e o dia em que a pessoa
-     esta na rua decidindo.
+   - Sabado ganha a `deriva` quando ela estiver disponivel: e o dia em que a
+     pessoa esta na rua decidindo para onde andar.
 
    Uso:
      node planejar.js --seco                 mostra o plano, nao escreve

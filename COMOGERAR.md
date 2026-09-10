@@ -60,10 +60,9 @@ quebrava a própria regra de não repetir paleta em dias seguidos.
 O problema não era falta de formato. Era falta de **recorte** e de **memória**:
 
 - **Recorte.** Cada formato só sabia fazer uma coisa — o `salao` pendurava
-  todas as obras, a `duracao` desenhava todas as mostras, a `deriva` achava
-  sempre o mesmo aglomerado dos Jardins. Agora existe um `filtro` compartilhado
-  (em `rima.js`, aplicado por `salao`, `duracao`, `deriva` e `role`), e "salão"
-  deixou de ser uma peça para virar dez.
+  todas as obras, a `deriva` achava sempre o mesmo aglomerado dos Jardins.
+  Agora existe um `filtro` compartilhado (em `rima.js`, aplicado por `salao`,
+  `deriva`, `obra` e `numero`), e "salão" deixou de ser uma peça para virar dez.
 - **Memória.** O `SOCIAL/USADAS.json` guarda o dia em que cada ideia saiu. Uma
   ideia só volta depois do `descanso` (35 dias). Com 50 ideias e 10 peças por
   semana, o mês inteiro passa sem repetir — e quando começa a reciclar, avisa.
@@ -89,10 +88,11 @@ ainda precisa de obra em disco, crédito e o resto.
 | `vista` | `false` = só reprodução de obra · `true` = só vista de sala |
 | `temFim` | `true` = só com data de encerramento divulgada |
 
-**Cuidado com recorte apertado em formato que promete estrutura.** O `role`
-precisa de três roteiros disjuntos em três regiões; com `fechaEm: 21` ele
-abortou dizendo que com menos de três ele mente — e estava certo. Urgência
-curta é assunto de formato de lista (`salao`, `duracao`), não do `role`.
+**Cuidado com recorte apertado em formato que promete estrutura.** A `deriva`
+precisa de um aglomerado de três casas com obra em disco a 750 m; com
+`fechaEm: 16` e as casas dos Jardins já bloqueadas pelo `evitar`, ela abortou
+dizendo que não achou aglomerado — e estava certa. Recorte de urgência é
+assunto do `numero` e do `encerra`, não de formato de percurso.
 
 ## Editar o plano à mão
 
@@ -122,7 +122,7 @@ dizendo exatamente o que escrever.
 | campo | o que faz |
 |---|---|
 | `data` | AAAA-MM-DD. Define a pasta `SOCIAL/MM/DD/` |
-| `formato` | obra · encerra · estreia · numero · rima · aproximacao · deriva · entrada · salao  (role e duracao aposentados do social em 01/09) |
+| `formato` | obra · encerra · estreia · numero · rima · aproximacao · deriva · entrada · salao |
 | `ordem` | 1 é a primeira do dia. Só organiza a saída |
 | `paleta` | escuro · tinta · barro · papel · cal · linho |
 | `textura` | 0 a 0,12. `false` desliga o grão |
@@ -136,8 +136,8 @@ imagem que é cartaz e não obra.
 
 **Antes de usar o `fora`, veja se o caso é de `vista`.** Imagem que mostra a
 parede da galeria em vez do trabalho não precisa sair da semana inteira: marque
-`vista: true` na mostra, no `dados.js`, e ela some de `rima` e `aproximacao`
-continuando disponível para `deriva`, `salao` e `role`. O `fora` é para dado
+`vista: true` na mostra, no `dados.js`, e ela some de `rima`, `aproximacao` e
+`obra`, continuando disponível para `deriva` e `salao`. O `fora` é para dado
 errado — cartaz, logotipo, foto de vernissage.
 
 ---

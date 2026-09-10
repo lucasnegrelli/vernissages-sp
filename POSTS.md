@@ -5,7 +5,7 @@ carrossel de quatro slides, dez tratamentos de imagem e rodízio de seis fontes.
 Aquele sistema foi aposentado junto com os formatos que ele servia.
 
 Aqui está **como as peças são construídas**. O que cada peça diz está no
-`EDITORIAL.md`; a voz do texto, no `ESTILO.md`; como rodar, no `COMOGERAR.md`.
+`REPERTORIO.json`; a voz do texto, no `ESTILO.md`; como rodar, no `COMOGERAR.md`.
 
 ## Por que a v1 caiu
 
@@ -40,8 +40,8 @@ mostra encerrando não tem o slide de urgência.
 | etiqueta | 500, caixa-alta, tracking `.30em` | `kick`, assinatura, paginação |
 
 O contraste é de **corpo**, não de família: tese em 56px ao lado de crédito em
-16px na mesma peça. As outras cinco fontes seguem em `fontes/` porque o
-`post.html` ainda as referencia — nenhum dos sete formatos usa.
+16px na mesma peça. As cinco fontes do rodízio antigo saíram de `fontes/` em
+10/09, junto com o `post.html` que as referenciava. Só a Switzer ficou.
 
 ## 3. A grade
 
@@ -117,21 +117,21 @@ mundo e a assinatura foi parar no meio do texto.
 
 | formato | slides |
 |---|---|
+| `obra` | a obra sangrando nas quatro bordas, sem uma palavra · a mesma obra flutuando na paleta, com a etiqueta de parede |
+| `encerra` / `estreia` | o mesmo desenho da `obra`, com selo de prazo e a contagem em dias na etiqueta |
+| `numero` | um dado só, gigante, calculado da base · a linha que ele afirma · a virada |
 | `rima` | capa com as duas obras em escalas diferentes · obra A · ficha A · obra B · ficha B · argumento |
 | `aproximacao` | recortes em zoom estritamente decrescente · obra inteira, contida · leitura |
 | `deriva` | mapa desenhado · uma parada por casa, com distância · fecho com o total |
 | `entrada` | abertura · por que ninguém fala disso · os preços · a porta · as fontes |
 | `salao` | parede numerada · tese · catálogo em fatias |
-| `role` | capa com os três · um slide por rolê · fecho |
-| `duracao` | diagrama · leitura · o que encerra primeiro |
 
 O mapa da `deriva` é desenhado do zero — só os pontos e o fio que os liga. Sem
 rua, sem satélite, sem logotipo de serviço de mapa, e **sem usar nenhuma obra**.
 
-O diagrama da `duracao` é a única peça que não é nem fotografia nem tipografia:
-linhas finas sobre escuro, sem grade, sem rótulo, sem legenda dentro do
-desenho — mais perto de um sismógrafo ou de uma partitura do que de um gráfico.
-A leitura vem no slide seguinte; o primeiro é para olhar.
+`role` (três roteiros) e `duracao` (o diagrama de linha do tempo) saíram do
+social em 01/09: o percurso ficou com a `deriva`, e o diagrama virou o painel
+*O panorama*, ao vivo no site — melhor lá, porque atualiza sozinho.
 
 ## 7. Regras de imagem — vêm antes de tudo
 
@@ -150,8 +150,8 @@ A leitura vem no slide seguinte; o primeiro é para olhar.
    no `dados.js` marca a imagem que mostra a parede, e não o trabalho. Quem
    preenche é quem abriu a imagem para olhar — passo que o runbook já exige.
    Com o campo marcado, `rima` e `aproximacao` **recusam sozinhas**, e
-   `deriva`, `salao` e `role` continuam aceitando: ali o assunto é o percurso
-   e a densidade, e a parede fotografada é informação honesta. O `check.js`
+   `deriva` e `salao` continuam aceitando: ali o assunto é o percurso e a
+   densidade, e a parede fotografada é informação honesta. O `check.js`
    imprime a conta na primeira tela — *obra X, vista de sala Y*.
 7. **Imagem que passa no `check.js` não é imagem boa.** O validador confere
    peso, dimensão e crédito; ele não distingue obra de cartaz, foto social de
@@ -162,7 +162,7 @@ A leitura vem no slide seguinte; o primeiro é para olhar.
 
 ## 8. Fora de escopo
 
-- **Nada é postado automaticamente.** Os sete formatos param no arquivo.
+- **Nada é postado automaticamente.** Todo formato para no arquivo.
 - **Nada é inventado.** Data, endereço, autoria e crédito só entram
   confirmados. Na dúvida, fica de fora e a peça declara.
 - **Todo número é calculado na hora**, nunca digitado no config. Contagens,
@@ -172,9 +172,8 @@ A leitura vem no slide seguinte; o primeiro é para olhar.
 ## 9. Mexer no visual
 
 A camada compartilhada — `PALETAS`, `cssPaleta`, `grao`, `CSS`, `tituloCurto`,
-`autoria`, `slideObra` — mora no **`rima.js`** e é importada pelos outros seis.
-Mudança de grade, de tipografia ou de paleta se faz lá, uma vez, e vale para
-todos. Mudança dentro de um `<nome>.js` só vale para aquele formato, e é assim
-que os formatos divergem sem o sistema se soltar.
-
-O `post.html` não faz parte deste sistema. Está órfão desde 24/08.
+`autoria`, `slideObra`, `passaFiltro`, `descreverFiltro` — mora no **`rima.js`**
+e é importada por todos os outros geradores. Mudança de grade, de tipografia ou
+de paleta se faz lá, uma vez, e vale para todos. Mudança dentro de um
+`<nome>.js` só vale para aquele formato, e é assim que os formatos divergem sem
+o sistema se soltar.

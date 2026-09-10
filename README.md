@@ -1,71 +1,113 @@
 # 🥂 Vernissages SP
 
-**Site ao vivo: https://lucasnegrelli.github.io/vernissages-sp/**
+**Site ao vivo: https://vernissagessp.com.br**
 
-Mapa vivo da cena de arte de São Paulo: galerias, museus e centros culturais, com agenda de
-vernissages e aberturas de exposições, roteiros de visita e compartilhamento da programação da semana.
+Guia diário da cena de arte contemporânea de São Paulo: um mapa vivo de 91
+galerias, museus e centros culturais, com a agenda de todas as aberturas de
+exposição da cidade, roteiros de visita, páginas por artista, acervo histórico e
+uma página de editais e chamadas para artistas.
 
-Site estático + PWA (instalável no celular direto do navegador). Sem backend, sem build.
+Site estático + PWA (instalável no celular direto do navegador). Sem backend,
+sem build. Atualização diária por GitHub Actions.
 
-## Funcionalidades
+---
 
-- 🗺️ **Mapa interativo** (Leaflet + tiles CARTO dark @2x) com ~70 espaços: galerias comerciais,
-  institucionais e feiras, coloridos por status — abertura próxima, em cartaz, últimos dias, feira.
-- 🥂 **Vernissages desta semana**: banner com as aberturas dos próximos 7 dias.
-- 📲 **Compartilhar agenda**: gera a lista da semana pronta pro WhatsApp (ou copia pra qualquer lugar).
-- 🎨 **Página de artista**: clique no nome de qualquer artista para ver todas as mostras dele na
-  agenda + atalhos (Google, obras, Instagram, Wikipédia).
-- 🔎 **Busca e filtros**: texto livre (galeria, artista, endereço, bairro), status, zona, bairro,
-  tipo de espaço, galeria específica e artista.
-- 🧭 **Rotas**: botão "Rota" (Google Maps) em cada card e um **montador de roteiro** multi-paradas
-  para circuitos de vernissage.
-- 📇 **Diretório** ordenável com endereço, bairro, zona, site oficial e ações.
-- 📊 Distribuição de galerias por bairro (estudo FGV/ArteRef — 67 galerias no mercado primário).
+## As três frentes
 
-## Estrutura
+### 1. Site / PWA
+`index.html` (arquivo único) + `dados.js` (a base). GitHub Pages.
 
-| arquivo | função |
-|---|---|
-| `index.html` | interface completa (mapa, filtros, roteiros, modal de artista) |
-| `dados.js` | **base de dados** — venues, exposições, artistas, sites |
-| `manifest.webmanifest` + `sw.js` + `icon-*.png` | PWA: instalação e cache offline (network-first) |
+- 🗺️ **Mapa interativo** (Leaflet) com 91 espaços, coloridos por status.
+- 🥂 **Vernissages desta semana** — banner das aberturas dos próximos 7 dias.
+- 📊 **O panorama** — timeline ao vivo de todas as mostras em cartaz, do dia que
+  abriram ao dia que fecham.
+- 🎨 **Página de artista** e **página de exposição** — geradas e indexadas
+  (133 + 110 páginas).
+- 🗄️ **Acervo** — as 110 mostras que já passaram, com ficha completa.
+- 📋 **Editais** — chamadas, residências e prêmios abertos para artistas.
+- 🧭 **Montador de roteiro** multiparadas · **compartilhar a agenda** pro WhatsApp.
+- 📲 PWA instalável, funciona offline.
 
-### Formato do `dados.js`
+### 2. Social
+Pipeline que gera slides PNG 1080×1350 para o Instagram. **Nunca posta sozinho.**
 
-```js
-window.DATA = { atualizado: "dd/mm/aaaa", venues: [...], expos: [...], bairros: [...] }
-// venue: { name, addr, b (bairro), z (Oeste|Centro|Sul), tipo (galeria|institucional|feira),
-//          lat, lng, site?, info }
-// expo:  { t (título), v (name EXATO do venue), a? (artistas, separados por ", "),
-//          ini, fim (YYYY-MM-DD | null), d (descrição curta) }
+```
+REPERTORIO.json  (banco de ideias)
+   → planejar.js   escreve o PLANO.json (respeita descanso e paleta)
+   → semana.js     confere USADAS/POSTADAS contra repetição, chama os geradores
+   → SOCIAL/MM/DD/ PNGs + LEGENDAS-SEMANA-*.md   (gitignored)
 ```
 
-O status de cada mostra (abertura próxima / em cartaz / últimos dias) é calculado na hora pelo
-navegador; mostras encerradas somem sozinhas. Endereços com `~` ou "(a confirmar)" são aproximados.
+Formatos: `obra` / `encerra` / `estreia` (uma reprodução, tela cheia, sem marca),
+`numero` (um dado calculado da base), `rima` e `aproximacao` (curadoria humana),
+`deriva` (percurso a pé), `entrada`, `salao`. Sistema visual em `POSTS.md`, voz
+em `ESTILO.md`, passo a passo em `COMOGERAR.md`.
 
-## Atualização automática
+### 3. Intel *(não lançado)*
+`intel/` — boletim semanal pago (R$ 47/mês). Next.js + Stripe + Supabase +
+Resend, para deploy na Vercel. App isolado, README próprio em `intel/`.
 
-Uma rotina diária (agente Claude, ~9h) lê o `dados.js` publicado, varre agregadores
-(Arte Que Acontece, Ocula, Guia das Artes) e os sites oficiais das galerias em rodízio,
-adiciona as novas aberturas, remove as encerradas e faz commit direto na `main` —
-o GitHub Pages republica em ~1 minuto. Sem novidade, sem commit.
+---
+
+## Formato do `dados.js`
+
+```js
+window.DATA = {
+  atualizado: "dd/mm/aaaa",
+  venues: [...], expos: [...], editais: [...],
+  foco, destaques, bairros, imersivas
+}
+// venue: { name, addr, b (bairro), z (Oeste|Centro|Sul|Norte|Leste),
+//          tipo (galeria|institucional|hibrido|feira), lat, lng, site?, ig?, info }
+// expo:  { t (título), v (name EXATO do venue), a? (artistas, ", "-separados),
+//          ini, fim (YYYY-MM-DD | null), d (descrição), img?, cred?, vista? }
+// edital: { t, org, cat, prazo (YYYY-MM-DD | null), quem, onde, taxa, d, link, fonte }
+```
+
+O status de cada mostra é calculado na hora pelo navegador; mostras encerradas
+somem sozinhas. Endereços com `~` são aproximados.
+
+---
+
+## Ferramentas
+
+| script | o que faz | saída |
+|---|---|---|
+| `destaque.js` | escolhe a mostra em foco do dia | `dados.js` (via Actions) |
+| `gerar.js` | páginas de artista/mostra + `arquivo.html` + `artistas.html` + `editais.html` + sitemap | arquivos no repo |
+| `check.js` | valida a base (datas, crédito, dimensão de imagem, editais vencidos) | relatório |
+| `radar.js` | quem do mapa nunca foi coberto, por onde começar a varredura | `PENDENTE/RADAR.md` |
+| `radar-fontes.js` | varre o Arte Que Acontece: mostra nova, divergência de data | `PENDENTE/RADAR-FONTES.md` |
+| `radar-editais.js` | varre feeds de edital/chamada/residência/prêmio | `PENDENTE/EDITAIS.md` |
+| `captar.js` | transcreve legenda de Instagram → entrada do `dados.js` | stdout |
+| `descobrir-imagens.js` · `espelhar.js` · `medir-imagem.js` | acham, baixam e medem imagem de obra | `PENDENTE/`, `img/` |
+| `planejar.js` · `semana.js` + `obra.js` `numero.js` `rima.js` `aproximacao.js` `deriva.js` `entrada.js` `salao.js` | o pipeline de social | `SOCIAL/` |
+
+Nenhum `radar-*` nem `captar` escreve no `dados.js` — todos cospem relatório
+para conferência na fonte primária.
+
+## Automação (GitHub Actions)
+
+| workflow | quando | o que |
+|---|---|---|
+| `diaria.yml` | todo dia 00:00 UTC | sincroniza, destaque, valida, publica |
+| `radar.yml` | sábado 08:12 UTC | `radar-fontes` + `radar-editais` → issue |
+| `imagens.yml` | conforme agenda | varredura de imagens de obra → issue |
+| `build.yml` | on push | regenera acervo, páginas, sitemap |
+| `espelhar-imagens.yml` · `check.yml` | on push / manual | espelha imagens · roda os testes |
 
 ## Publicação
 
-Hospedado no **GitHub Pages** (Settings → Pages → branch `main`, root). Qualquer push na `main`
-atualiza o site. Domínio próprio: Settings → Pages → Custom domain.
-
-## Roadmap para as lojas de app
-
-1. **Google Play**: empacotar a PWA como TWA com [Bubblewrap](https://github.com/GoogleChromeLabs/bubblewrap) (conta US$ 25, única).
-2. **App Store**: empacotar com [Capacitor](https://capacitorjs.com/) e somar recursos nativos
-   (push de vernissages, "perto de mim", favoritos) — conta US$ 99/ano.
+**GitHub Pages** (branch `main`, root), domínio próprio via `CNAME`. Qualquer
+push na `main` republica em ~1 minuto.
 
 ## Fontes
 
-[Arte Que Acontece](https://artequeacontece.com.br) · [Ocula](https://ocula.com) ·
+[Arte Que Acontece](https://artequeacontece.com.br) ·
+[Guia das Artes](https://www.guiadasartes.com.br) ·
 [ArteRef/FGV](https://arteref.com/galerias/o-mapa-de-galerias-em-sao-paulo/) ·
-[Guia das Artes](https://www.guiadasartes.com.br) · [São Paulo Secreto](https://saopaulosecreto.com) ·
-[SP-Arte](https://www.sp-arte.com) · sites oficiais das galerias.
+[Dasartes](https://dasartes.com.br) · [Prêmio PIPA](https://www.premiopipa.com) ·
+[SP-Arte](https://www.sp-arte.com) · sites oficiais e Instagram das casas.
 
-Confirme data e horário de vernissage nos canais de cada espaço — nem toda abertura tem evento público.
+Confirme data e horário nos canais de cada espaço — nem toda abertura tem evento
+público.

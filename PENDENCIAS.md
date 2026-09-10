@@ -1,146 +1,119 @@
-# PENDÊNCIAS — 24/08/2026
+# PENDÊNCIAS — estado do projeto em 10/09/2026
 
-Levantamento fechando a semana em que a linha editorial foi refeita. Ordenado
-por **quem resolve**: primeiro o que só você pode decidir, depois o que a
-varredura resolve sozinha, depois o que é dívida técnica.
+Retrato do projeto depois da limpeza de 10/09 (radar de editais, formatos
+mortos apagados, verificação de duplicata no `semana.js`). Substitui o
+levantamento de 24/08, que era anterior à virada da linha editorial de 01/09.
 
-Estado da base neste momento: **91 casas · 67 mostras · 58 em cartaz ·
-`atualizado` 24/08/2026.**
-
----
-
-## 1 · Decisões que são suas
-
-### 1.1 Aposentar `EDITORIAL.md` e `POSTS.md`
-Os dois descrevem os formatos antigos — carrossel, destaque, nota, lembrete,
-sai de cartaz — aposentados em 24/08 e substituídos pelos sete geradores. O
-`OPERACAO.md` já avisa que estão obsoletos, mas **enquanto existirem, uma
-execução futura pode tropeçar neles e seguir a regra errada.**
-
-Opções: apagar, ou reescrever descrevendo os sete formatos novos. Não fiz por
-conta própria porque é decisão editorial sua.
-
-### 1.2 A curadoria semanal de duas peças
-`rima` e `aproximacao` **não montam sozinhas** e vão falhar toda semana até
-você escrever o config. É de propósito: a afinidade entre duas mostras e o
-ponto onde vale chegar perto numa obra são escolha humana.
-
-Para a semana de 31/08 faltam:
-
-- `SOCIAL/08/31/rima.json` — as duas chaves de mostra, a tese e o argumento
-- `SOCIAL/09/01/aproximacao.json` — a chave da obra, os pontos de recorte e a leitura
-
-Use `SOCIAL/08/24/rima.json` e `SOCIAL/08/25/aproximacao.json` como referência.
-**As outras 8 peças da semana já estão geradas** — 45 imagens em `SOCIAL/08/31`
-até `SOCIAL/09/06`.
-
-Duas rimas já visíveis na base, se quiser aproveitar:
-- **a pedra** — Cantaria, de Daniel Jorge (Mendes Wood DM) × No meio da pedra,
-  de André Vargas (Galeria Vermelho)
-- **a terra seca** — Paula Siebra, sobre os ciclos de seca em Fortaleza ×
-  Henrique Detomi, sobre a terra aberta de Minas
-
-### 1.3 Publicar
-Nada foi postado. Sete peças da semana de 24 a 30/08 estão em `SOCIAL/08/24`
-a `SOCIAL/08/30`, com legenda pronta no `LEGENDAS.md` de cada pasta.
-
-### 1.4 Rodar a varredura de 23/08, que não aconteceu
-O log mostra que **nada rodou entre 20 e 24/08**. A varredura de domingo 23/08
-passou em branco, e é por isso que 25 mostras em cartaz seguem sem imagem.
-
-A tarefa `vsp-semana` agora está em **domingo 23h** — horário em que o app tem
-mais chance de estar aberto do que às 00:00, que era quando a antiga tentava.
-Se quiser recuperar a semana perdida antes disso, é rodar a tarefa à mão.
+**Base agora:** 91 casas (56 galerias · 24 instituições · 10 híbridos · 1 feira)
+· 60 mostras na agenda, 55 em cartaz · 42 com imagem de obra · acervo com 110
+mostras · 66 artistas com página · 2 editais · `atualizado` 10/09.
 
 ---
 
-## 2 · O que a varredura de domingo resolve
+## 1 · As três frentes
 
-Estas não exigem decisão: exigem alguém abrindo o site das casas. A `vsp-semana`
-faz isso, mas vale saber o tamanho do buraco.
-
-| pendência | quantas | efeito |
+| frente | o que é | estado |
 |---|---|---|
-| **mostras sem imagem** | 25 de 58 | ficam fora de todos os formatos que mostram obra |
-| **imagem em medida de card** (`A08`) | 7 | serve de capa, não aguenta recorte fechado |
-| **imagem curta** (`A09`) | 15 | idem |
-| **sem data de encerramento** | 4 | ficam fora do formato `duracao` |
-| **horário de sábado** | só 5 casas de 35 | a maior lacuna, no dia de maior movimento |
-| **casas nunca cobertas** | 36 de 91 | nunca tiveram uma mostra registrada aqui |
-
-### As quatro sem data de fim
-- To Love — Claudia Andujar e George Love · Galeria Vermelho
-- No meio da pedra — André Vargas · Galeria Vermelho
-- Acontecimentos de Corpos — Novas Poéticas · Massapê Projetos
-- Onda Avalanche Vulcão — Mauro Restiffe · Fortes D'Aloia & Gabriel
-
-### O rodízio é mais lento que o ciclo das mostras
-36 das 91 casas nunca tiveram mostra registrada. Com teto de 10 sites por
-domingo, cada casa é visitada a cada nove semanas — e mostra de galeria dura
-seis a oito. **Isso não se resolve varrendo com mais vontade: ou o mapa
-encolhe, ou as casas passam a mandar a abertura.** Vale pensar num canal de
-envio.
+| **Site / PWA** | `index.html` + `dados.js`, GitHub Pages, atualização diária por Actions | no ar, estável |
+| **Social** | pipeline `REPERTORIO → planejar → semana` → PNG 1080×1350, nunca posta sozinho | no ar; `rima`/`aproximação` dependem de curadoria toda semana |
+| **Captação** | `EDITAIS/DOSSIE.md` — o Vernissages se inscrevendo em editais de fomento | rascunho, travado nos `» PREENCHER` do Lucas |
+| **Intel** | `intel/` — boletim pago R$47/mês (Next + Stripe + Supabase + Resend) | arquitetado, **nunca lançado** |
 
 ---
 
-## 3 · Dívida técnica
+## 2 · Decisões que são suas
 
-### 3.1 Uma `img` que é cartaz, não obra
-`Terra que Desmancha, Evapora e Solidifica` (Vazio Criativo) tem no campo `img`
-o **flyer da exposição**, com letreiro. Passa em todas as travas automáticas —
-peso, dimensão, crédito — porque nenhuma verificação de arquivo distingue obra
-de cartaz.
+### 2.1 · A curadoria semanal de `rima` e `aproximação`
+Falham de propósito sem config. Toda semana precisa de:
+`SOCIAL/MM/DD/rima.json` (duas chaves de mostra, tese, argumento) e
+`SOCIAL/MM/DD/aproximacao.json` (chave da obra, zooms, leitura). Sem isso as
+duas peças abortam — e isso é o comportamento certo.
 
-Hoje ela está na lista `fora` do `PLANO.json`, o que a exclui das peças. Mas o
-dado continua errado no `dados.js`: precisa virar uma obra de verdade ou ser
-zerado.
+### 2.2 · O boletim `intel/`
+Está pronto e parado desde 09/09. Falta: decidir se é pago (R$47/mês, receita)
+ou gratuito (formação de público, cabe em edital), verificar o domínio de
+envio, e apertar o botão. É a coisa mais próxima de receita que o projeto tem.
 
-### 3.2 O `check.js` não avisa quando a imagem é cartaz
-Ele acusa `A08` para medida de card e `A09` para largura curta, mas não tem
-como saber que uma imagem bem dimensionada é um flyer. **É um limite real, não
-um bug** — só o olho resolve. Vale registrar que a exclusão manual existe.
+### 2.3 · Os `» PREENCHER` do `EDITAIS/DOSSIE.md`
+CNPJ e CNAE do MEI, número de visitas/mês (está no rodapé do site), mini-CV.
+Sem isso nenhuma inscrição em edital sai.
 
-### 3.3 Cinco imagens do salão são vista de sala, não obra
-Aparecem na peça de 28/08 (números 01, 07, 08, 15 e 28). Deixei porque é o
-retrato honesto do que a cidade oferece, mas são as casas que ainda não
-divulgam trabalho — candidatas naturais da próxima varredura.
-
-### 3.4 `post.html` ficou órfão
-Era o gerador antigo, com dez tratamentos e seis fontes. Não é mais usado por
-nenhum formato. Corrigi um bug nele em 24/08 antes de aposentá-lo. **Decidir se
-apaga ou mantém como referência.**
+### 2.4 · Publicar no Instagram
+A publicação é sempre manual. As peças da semana ficam em `SOCIAL/MM/DD/` com
+`LEGENDAS-SEMANA-*.md` prontas.
 
 ---
 
-## 4 · Como está a operação agora
+## 3 · Cobertura — o problema estrutural
+
+**35 dos 91 venues nunca tiveram uma linha de agenda. 10 estão frios** (sem
+cobertura há muito). Metade do mapa é fachada: aparece no diretório e no mapa,
+nunca produziu uma mostra.
+
+É aritmético, não de esforço: com teto de ~10 sites por domingo, cada casa é
+visitada a cada nove semanas, e mostra de galeria dura seis a oito. **O rodízio
+é mais lento que o ciclo das exposições.** Ou o mapa encolhe, ou as casas
+passam a mandar a abertura (o formulário existe, falta divulgar), ou entra mais
+fonte automática.
+
+Ferramentas que já atacam isso e cospem relatório em `PENDENTE/` (nenhuma
+escreve no `dados.js`):
+- `radar.js` — quem nunca foi coberto, por onde a varredura deve começar.
+- `radar-fontes.js` — varre o Arte Que Acontece, aponta mostra nova e
+  divergência de data.
+- `radar-editais.js` — **novo, 10/09** — varre os feeds de edital/chamada/
+  residência/prêmio (Dasartes, PIPA, seLecT, ArteBrasileiros). Roda no
+  `radar.yml` de sábado junto com o `radar-fontes`.
+- `captar.js` — transcreve legenda de Instagram para entrada do `dados.js`.
+
+### Editais — o buraco mais óbvio
+A página `editais.html` tinha **2 itens** porque o `const EDITAIS` do `dados.js`
+é lista manual e nada a alimentava. O `radar-editais.js` resolve a coleta; falta
+a rotina de domingo passar a olhar o relatório e o Lucas confirmar prazo na
+fonte antes de cada linha entrar no `dados.js`.
+
+---
+
+## 4 · Dívida técnica
+
+### 4.1 · 13 mostras em cartaz sem imagem de obra
+Ficam fora de `obra`, `encerra`, `estreia`, `aproximacao` e das paradas de
+`deriva`. A varredura de imagem (`descobrir-imagens.js` + `espelhar.js`) puxa,
+mas depende de a casa divulgar trabalho e não só vista de sala.
+
+### 4.2 · 2 mostras em cartaz sem data de encerramento
+Ficam "em cartaz" para sempre — a limpeza da diária só olha `fim`. O
+`radar-fontes.js` audita e lista.
+
+### 4.3 · `POSTADAS.json` incompleto
+A memória de duplicata foi semeada à mão das legendas de setembro e tem buracos
+em peças antigas de vários slides (deriva, salão). Completa sozinha a cada
+semana gerada.
+
+### 4.4 · `espelhar.js` — comentário desatualizado
+O cabeçalho fala do canvas do `post.html` (apagado). A função continua correta
+(baixa a imagem do CDN do Instagram antes de a URL expirar); só a justificativa
+no topo envelheceu.
+
+---
+
+## 5 · O que foi apagado em 10/09
+
+`post.html` e `EDITORIAL.md` (aposentados em 24/08, substituídos pelos
+geradores e pelo `REPERTORIO.json`) · `role.js` e `duracao.js` + seus modelos
+(aposentados em 01/09) · `_sim.js`, `_alvos.js` (scratch) · as 5 fontes do
+rodízio antigo em `fontes/`, sobrou a Switzer.
+
+---
+
+## 6 · Operação atual
 
 | tarefa | quando | o que faz |
 |---|---|---|
-| `vsp-site` | todo dia 00:00 | sincroniza, destaque, valida, publica. Zero páginas externas |
-| `vsp-semana` | **domingo 23h** | varredura + `node semana.js` + arquivo |
-| ~~`vernissages-sp`~~ | — | desativada em 30/08, arquivo preservado |
-| ~~`vsp-social-diario`~~ | — | apagada, morta desde 19/08 |
+| `diaria.yml` (`vsp-site`) | todo dia 00:00 | sincroniza, destaque, valida, publica |
+| `radar.yml` | sábado 08:12 UTC | `radar-fontes` + `radar-editais` → issue |
+| `imagens.yml` | conforme agenda | varredura de imagens de obra |
+| `build.yml` | on push | regenera acervo, páginas de artista/mostra, sitemap |
+| `vsp-semana` | domingo (rotina na nuvem) | varredura + `node semana.js` + arquivo |
 
-Runbook em `OPERACAO.md` — Parte 1 é a diária, Parte 2 é o domingo, Parte 3
-vale para as duas. Geração de social em `COMOGERAR.md` e `PLANO.json`.
-
-**Tarefa agendada só roda com o app aberto.** Se estiver fechado no horário,
-ela dispara na próxima vez que você abrir. Foi o que aconteceu com a semana de
-21 a 23/08.
-
----
-
-## 5 · Os sete formatos, para referência
-
-| dia | formato | operação | paleta em 31/08–06/09 |
-|---|---|---|---|
-| seg | `rima` | comparar duas mostras | escuro |
-| ter | `aproximacao` | aprofundar numa obra | linho |
-| qua | `deriva` | percorrer a cidade | papel |
-| qui | `entrada` | quanto custa e como se entra | tinta |
-| sex | `salao` | tudo de uma vez, denso | barro |
-| sáb | `role` | escolher entre três roteiros | barro |
-| dom | `duracao` | ver o tempo, diagrama | tinta |
-
-Seis paletas disponíveis: `escuro`, `tinta`, `barro` (escuras) · `papel`,
-`cal`, `linho` (claras). **Não repita a mesma em dias seguidos.**
+Runbook em `OPERACAO.md`. Geração de social em `COMOGERAR.md`.

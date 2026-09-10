@@ -69,6 +69,8 @@ Os outros formatos existentes, por peso:
 | formato | o que é | cadência |
 |---|---|---|
 | **obra** | uma obra, tela cheia + etiqueta | 3–4×/semana, monta sozinho |
+| **encerra / estreia** | o mesmo desenho da obra, com selo de prazo e contagem em dias | conforme a agenda, monta sozinho |
+| **numero** | um dado só, gigante, calculado da base — o primo de *O panorama* | ~1×/semana, monta sozinho |
 | **rima** | duas mostras lado a lado por uma afinidade | 1×/semana, curadoria sua |
 | **aproximação** | chegar perto de uma obra até a filigrana | 1×/semana, curadoria sua |
 | **entrada** | como se entra numa galeria — porta, preço, sábado | ~1×/semana, monta sozinho |
@@ -77,7 +79,8 @@ Os outros formatos existentes, por peso:
 
 Saíram do social em 01/09: **rolê** (percurso, redundante com a deriva) e
 **duração** (o diagrama de linha do tempo — agora é o painel *O panorama*, ao
-vivo no site, melhor).
+vivo no site, melhor). Os arquivos `role.js` e `duracao.js` foram apagados em
+10/09.
 
 **Paletas** — seis, três escuras (`escuro`, `tinta`, `barro`) e três claras
 (`papel`, `cal`, `linho`). Nenhuma tem cor de acento: todas trabalham por
@@ -98,15 +101,17 @@ canto inferior esquerdo. Numeração do slide no canto oposto.
 
 ## 5. Ferramentas
 
-O `EDITORIAL.md` e o `post.html` estão **aposentados** (24/08/2026). A geração
-mora em:
+O `EDITORIAL.md` e o `post.html` foram **apagados** (aposentados em 24/08, fora
+do repo em 10/09). A geração mora em:
 
 - `REPERTORIO.json` — o banco de ideias (formato + recorte + texto). Para mudar
   o que a rotina pode fazer, mexe aqui.
 - `planejar.js` — sorteia do repertório, respeita descanso e paleta, escreve o
   `PLANO.json`.
-- `semana.js` — lê o `PLANO.json` e chama o gerador de cada formato
-  (`obra.js`, `rima.js`, `salao.js`, `deriva.js`, `entrada.js`, `aproximacao.js`).
+- `semana.js` — lê o `PLANO.json`, confere `USADAS.json`/`POSTADAS.json` contra
+  repetição, e chama o gerador de cada formato (`obra.js` faz obra/encerra/
+  estreia; `numero.js`, `rima.js`, `aproximacao.js`, `deriva.js`, `entrada.js`,
+  `salao.js`).
 - `COMOGERAR.md` — o passo a passo.
 
 `rima` e `aproximação` **falham de propósito** sem o config curado: dependem de

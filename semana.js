@@ -53,9 +53,9 @@ const FORMATOS = {
   numero:      { script: 'numero.js',      curado: false },
   deriva:      { script: 'deriva.js',      curado: false },
   entrada:     { script: 'entrada.js',     curado: false },
-  salao:       { script: 'salao.js',       curado: false },
-  role:        { script: 'role.js',        curado: false },
-  duracao:     { script: 'duracao.js',     curado: false }
+  salao:       { script: 'salao.js',       curado: false }
+  /* role e duracao saíram em 01/09: a deriva cobre o percurso, e o diagrama de
+     duração virou o painel "O panorama", ao vivo no site. */
 };
 
 const pad = n => String(n).padStart(2, '0');

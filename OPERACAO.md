@@ -8,7 +8,7 @@ Fonte única da rotina. **A operação virou quase toda GitHub Actions em
 | Destaque do dia + limpeza + publicação | todo dia 03:00 UTC | `diaria.yml` (Action) | [Parte 1](#parte-1--rotina-diária) |
 | Regenera acervo, páginas, sitemap | push em `dados.js` + 14:00 UTC | `build.yml` (Action) | — |
 | Espelha imagem externa pra `img/` | push em `dados.js` | `espelhar-imagens.yml` (Action) | — |
-| **Radar de fontes** — mostra nova, data divergente, `fim:null` | sábado 08:12 UTC | `radar.yml` → abre issue `radar` | `radar-fontes.js` |
+| **Radar** — mostra nova, data divergente, `fim:null`, **e edital/chamada aberta** | sábado 08:12 UTC | `radar.yml` → abre issue `radar` | `radar-fontes.js` + `radar-editais.js` |
 | **Garimpo de imagens** | sábado 09:00 UTC | `imagens.yml` → abre issue `garimpo` | `descobrir-imagens.js` |
 | **Manutenção do `dados.js`** — lê as issues, confere, edita, publica | domingo 13:17 UTC | rotina de nuvem `vsp-semana` | [Parte 2](#parte-2--rotina-de-domingo) |
 | Lote de social da semana | — | **manual, por enquanto** | [Parte 2](#parte-2--rotina-de-domingo) / `COMOGERAR.md` |
@@ -89,10 +89,9 @@ Parte 3.
 Conflito entre eles: `check.js` ganha de tudo (é executável), depois `ESTILO.md`,
 depois este arquivo. Divergência encontrada vai no resumo — não se contorna.
 
-**`EDITORIAL.md` e `POSTS.md` estão obsoletos.** Descrevem os formatos antigos
-(carrossel, destaque, nota, lembrete, sai de cartaz), aposentados em 24/08 e
-substituídos pelos sete geradores. Não os siga; não os apaguei porque a decisão
-é do Lucas.
+**`EDITORIAL.md` foi apagado em 10/09** (descrevia os formatos antigos —
+carrossel, destaque, nota, lembrete). O que cada peça diz agora está no
+`REPERTORIO.json`; como é construída, no `POSTS.md` (esse continua, v2, atual).
 
 ## Ambiente
 
@@ -238,8 +237,10 @@ Falha numa fase não cancela as outras.
 ## S1 — varredura (o que a rotina de nuvem faz)
 
 O `radar.yml` (sábado) já abriu agregador e cruzou com o `dados.js`. A issue
-`radar` tem: mostra nova em casa mapeada, divergência de data, `fim: null`
-antigo, casa não mapeada. A issue `garimpo` tem propostas de imagem.
+`radar` tem duas partes: **fontes** (mostra nova, divergência de data, `fim:
+null` antigo, casa não mapeada) e **editais** (chamada/residência/prêmio que a
+base não tem, com o prazo lido do texto). A issue `garimpo` tem propostas de
+imagem.
 
 O trabalho da rotina de nuvem é **confirmar e aplicar**, não varrer:
 
@@ -250,6 +251,12 @@ O trabalho da rotina de nuvem é **confirmar e aplicar**, não varrer:
 - `fim: null` antigo e "pode ter encerrado": abrir a página, remover se
   encerrou, preencher `fim` se ganhou data.
 - Casa não mapeada: **só relatar**, não adicionar venue.
+- **Edital "possível novo":** abrir o link, confirmar na fonte oficial o
+  **prazo**, quem pode se inscrever, a taxa e se cabe a artista com atuação em
+  SP (nacional entra, prêmio já entregue não). Só então preencher o snippet do
+  `const EDITAIS` — `prazo` só entra confirmado. Prazo já vencido: ignorar. O
+  `check.js` (E21) tira do site o edital cujo `prazo` passou; a rotina não
+  precisa limpar à mão.
 
 O que a rotina de nuvem **não** alcança e continua manual/pendente: **horário de
 sábado** (o `radar` ainda não cruza isso), venue que só divulga no Instagram
@@ -262,8 +269,9 @@ Referência do rodízio, se precisar priorizar à mão: `node radar.js` escreve
 
 A fila era única: 91 casas, dez por domingo, cada uma a cada nove semanas. Isso
 é tarde demais para galeria e desperdício para instituição, e o número que
-prova está na própria base — o formato `duracao` mediu **mediana de 42 dias em
-galeria contra 141 em instituição**. Visitar a Pinacoteca de seis em seis
+prova está na própria base — a mediana é de **42 dias em cartaz numa galeria
+contra 141 numa instituição** (o painel *O panorama*, no site, mostra isso ao
+vivo). Visitar a Pinacoteca de seis em seis
 semanas devolve a mesma mostra três vezes; visitar uma galeria de nove em nove
 perde a mostra inteira.
 
@@ -411,12 +419,15 @@ HOA, e o domínio tinha caído e servia um cassino.
 
 Nesta fase não toque em `foco` nem em `destaques`: são da diária.
 
-### Duas lacunas conhecidas, para atacar aqui
+### Lacunas conhecidas, para atacar aqui
 
 - **Horário de sábado: 5 casas de 37.** É a informação mais crítica do dia de
   maior movimento e a maior lacuna da base.
-- **Mostra sem data de fim.** Quatro em 30/08. Sem `fim` a mostra fica fora do
-  formato `duracao`.
+- **Mostra sem data de fim.** Duas em 10/09. Sem `fim` a mostra fica "em cartaz"
+  para sempre (a limpeza da diária só olha `fim`) e fora do painel *O panorama*.
+- **35 casas nunca cobertas, 10 frias.** `node radar.js` dá a fila.
+- **Editais.** A issue `radar` agora traz chamadas possivelmente abertas — ver o
+  bloco de editais na S1.
 
 ## S2 — o lote de social da semana
 
@@ -430,10 +441,13 @@ node semana.js            # gera
 ```
 
 **O `planejar.js` entrou em 30/08/2026** e é o que impede a rotina de publicar
-a mesma semana para sempre. Ele sorteia do `REPERTORIO.json` (50 ideias)
+a mesma semana para sempre. Ele sorteia do `REPERTORIO.json` (~57 ideias)
 respeitando um descanso de 35 dias por ideia, garante uma `rima` e uma
-`aproximacao` por semana, dá o `role` ao sábado e não repete paleta em dias
-seguidos. Um mês passa sem repetição; quando começa a reciclar, ele avisa.
+`aproximacao` por semana, dá a `deriva` ao sábado e não repete paleta em dias
+seguidos. Desde 13/09 o `semana.js` também confere `USADAS.json` (ideia) e
+`POSTADAS.json` (mostra) antes de gerar — e **aborta** se o plano repete uma
+ideia dentro do descanso, a não ser que venha `--forcar`. Isso pega o plano
+editado à mão, que antes furava a memória.
 
 O `PLANO.json` **é gerado** — editar à mão funciona, mas se perde no próximo
 `planejar.js`. Para mudar o repertório de vez, mexa no `REPERTORIO.json`.

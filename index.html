@@ -1509,8 +1509,9 @@ fetch(ABC+(jaVeio?'/get/':'/hit/')+NS+'/visitas').then(r=>r.json()).then(j=>{
 }).catch(()=>{});
 /* "O panorama" — substituiu a enquete e depois a lista seca de números.
    Uma timeline ao vivo: cada mostra em cartaz vira uma barra do dia que abriu
-   ao dia que fecha, ordenada por encerramento. É o diagrama do duracao.js,
-   mas interativo, na home, calculado da base na hora. Mostra de um golpe as
+   ao dia que fecha, ordenada por encerramento. Herdou o diagrama que era do
+   social (o antigo formato "duração"), agora interativo, na home, calculado da
+   base na hora. Mostra de um golpe as
    "duas velocidades" da cidade — galeria curta e clara, instituição longa e
    apagada — e o que some primeiro. */
 function renderPanorama(){
