@@ -18,9 +18,36 @@ Dois comandos. O primeiro decide o que sai, o segundo monta:
 cd C:\Users\lucas\Desktop\Negrelli\Artes\VernissagesSP
 node planejar.js --seco   ← mostra o plano da semana que vem, sem escrever
 node planejar.js          ← escreve o PLANO.json
-node semana.js --seco     ← confere o que falta, sem gerar imagem
-node semana.js            ← gera de verdade
+node semana.js --seco     ← confere o que falta e o que repete, sem gerar imagem
+node semana.js            ← gera de verdade (aborta se houver repetição de ideia)
+node semana.js --forcar   ← gera mesmo com repetição de ideia
 ```
+
+## A verificação de duplicata — mudou em 13/09/2026
+
+Antes de 13/09 a memória do que já saiu era só do `planejar.js`, e só no nível
+da **ideia** (`SOCIAL/USADAS.json`). Plano editado à mão passava reto: em 13/09
+`ÇA`, `Céu de concreto` e `É Tempo Ainda` voltaram ao feed dez dias depois de já
+terem saído, porque o `PLANO.json` daquela semana foi escrito na mão.
+
+Agora o **`semana.js` confere as duas listas**, sempre:
+
+- **`SOCIAL/USADAS.json`** — id da ideia → data da última vez. Se o plano traz
+  uma ideia que saiu há menos que o `descanso` (35 dias), o `semana.js` lista e
+  **aborta** — a não ser que venha `--forcar`.
+- **`SOCIAL/POSTADAS.json`** — `titulo|casa` de cada mostra que já foi a uma
+  peça → data. O `semana.js` passa o que está dentro de `POSTADAS_JANELA`
+  (45 dias) no campo `evitar` de todo gerador que escolhe obra da base
+  (`obra`, `encerra`, `estreia`, `deriva`). O gerador tira essas da escolha; se
+  o recorte ficar sem candidata, ele aborta e diz.
+
+Depois de gerar de verdade, o `semana.js` **escreve nas duas listas**. As duas
+são versionadas no git (exceção no `.gitignore`) para a verificação valer em
+qualquer lugar que a geração rode.
+
+O `POSTADAS.json` foi semeado à mão em 13/09 a partir das legendas de 01–07/09 e
+pode ter buracos em peças antigas de vários slides (deriva, salão). Ele se
+completa sozinho a cada semana gerada.
 
 ## Por que existe um planejador — mudou em 30/08/2026
 

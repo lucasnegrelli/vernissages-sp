@@ -27,9 +27,12 @@
       "ordem": 2,
       "paleta": "barro",
       "textura": 0.06,
-      "ideia": "encerra-galeria",
-      "nome": "encerra-galeria",
-      "ajustes": { "filtro": { "tipo": "galeria" } }
+      "ideia": "encerra-a-fila",
+      "nome": "encerra-a-fila",
+      "ajustes": {
+        "filtro": { "fechaEm": 12 },
+        "nota": "O ciclo das galerias é quase sincronizado: quando uma fecha, várias fecham na mesma semana. Ninguém combina isso, e ninguém avisa."
+      }
     },
     {
       "data": "2026-09-11",
@@ -56,17 +59,13 @@
     },
     {
       "data": "2026-09-13",
-      "formato": "deriva",
+      "formato": "numero",
       "ordem": 1,
       "paleta": "papel",
       "textura": 0.07,
-      "ideia": "deriva-ultima-chamada",
-      "nome": "deriva-ultima-chamada",
-      "ajustes": {
-        "filtro": { "fechaEm": 30 },
-        "tese": "Um percurso a pé em que toda parada fecha dentro de um mês.",
-        "virada": "Dá para fazer esta caminhada numa tarde. Depois, não dá para fazer nunca mais."
-      }
+      "ideia": "numero-gratis",
+      "nome": "numero-gratis",
+      "ajustes": { "conta": "gratis" }
     },
     {
       "data": "2026-09-14",
@@ -77,8 +76,8 @@
       "ideia": "obra-longa-duracao",
       "nome": "obra-longa-duracao",
       "ajustes": {
-        "filtro": { "duraMais": 60 },
-        "nota": "Ainda fica meses no ar. É a que dá para ver com calma, num dia de semana — e por isso é a que quase ninguém vê antes de fechar."
+        "filtro": { "duraMais": 45 },
+        "nota": "A semana toda foi contagem regressiva. Esta ainda fica semanas no ar — é a que dá para ver com calma, e por isso é a que quase ninguém vê."
       }
     },
     {
@@ -87,7 +86,7 @@
       "ordem": 1,
       "paleta": "escuro",
       "textura": 0.05,
-      "ideia": "rima-corpo-paisagem",
+      "ideia": "rima-cor",
       "nome": "rima"
     },
     {

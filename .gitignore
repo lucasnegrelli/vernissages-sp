@@ -8,7 +8,12 @@
 # Com o clone, `git status` mostra a deriva na hora.
 
 # Peças montadas, legendas e histórico de publicação — arquivo do Lucas.
-/SOCIAL/
+# `/SOCIAL/*` em vez de `/SOCIAL/` para poder reincluir dois arquivos: a
+# memória do que já saiu (USADAS/POSTADAS) precisa ser versionada para a
+# verificação de duplicata valer em qualquer lugar que a geração rode.
+/SOCIAL/*
+!/SOCIAL/USADAS.json
+!/SOCIAL/POSTADAS.json
 
 # Arte-fonte e identidade visual.
 /LOGO/

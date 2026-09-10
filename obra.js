@@ -145,9 +145,11 @@ function slideEtiqueta(o, cfg, hoje) {
   const w = Math.round(o.dim.w * k), h = Math.round(o.dim.h * k);
   const topo = Math.round(110 + (cy - h) / 2);
   const quem = autoria(o.e);
-  /* nota só quando o config pede: a etiqueta de parede é título, autor, casa e
-     prazo. Descrição longa empurra o crédito e a marca para fora do quadro. */
-  const nota = cfg.nota || '';
+  /* nota só quando o config pede, e só no modo `obra`: a etiqueta de encerra e
+     estreia já carrega selo + prazo + contagem, e uma descrição longa por cima
+     empurra o crédito e a marca para fora do quadro. Nesses modos o recado da
+     ideia mora na legenda. */
+  const nota = temSelo ? '' : (cfg.nota || '');
 
   let selo = '';
   if (modo === 'encerra') {

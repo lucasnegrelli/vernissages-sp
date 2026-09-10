@@ -103,22 +103,82 @@ function prepararConfig(post, plano) {
 /* Formatos que escolhem UMA obra da base. Duas peças da mesma semana não podem
    cair na mesma obra — o eixo do feed é justamente a variedade de trabalho. O
    semana.js junta o que já saiu (linha `PICK t|v` do gerador) e passa adiante
-   no campo `evitar`. */
+   no campo `evitar`. `deriva` também escolhe obras (uma por parada). */
 const FAMILIA_OBRA = new Set(['obra', 'encerra', 'estreia']);
+const CONSOME_OBRA = new Set(['obra', 'encerra', 'estreia', 'deriva']);
 
-function rodar(post, plano, seco, jaEscolhidas) {
+/* ---------- memória entre semanas ----------
+
+   Duas listas persistentes em SOCIAL/:
+   - USADAS.json    · id da IDEIA -> data da última vez (mesma que o planejar.js usa)
+   - POSTADAS.json  · 'titulo|venue' de cada mostra que já saiu -> data da última vez
+
+   O planejar.js só olha USADAS, e só quando ELE monta o plano. Plano editado à
+   mão passa reto — foi o que aconteceu em 13/09, quando ÇA, Céu de concreto e
+   É Tempo Ainda voltaram ao feed 10 dias depois de já terem saído. Agora o
+   semana.js confere as duas listas antes de gerar e escreve nelas depois. */
+const USADAS_PATH = path.join(RAIZ, 'SOCIAL', 'USADAS.json');
+const POSTADAS_PATH = path.join(RAIZ, 'SOCIAL', 'POSTADAS.json');
+const POSTADAS_JANELA = 45;   // dias que uma mostra fica fora do feed depois de sair
+const DESCANSO_IDEIA = (() => {
+  try { return JSON.parse(fs.readFileSync(path.join(RAIZ, 'REPERTORIO.json'), 'utf8')).descansoPadrao || 35; }
+  catch { return 35; }
+})();
+
+const _dias = (a, b) => Math.round((Date.parse(b + 'T12:00:00') - Date.parse(a + 'T12:00:00')) / 864e5);
+const lerJson = p => { try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch { return {}; } };
+const entradas = obj => Object.entries(obj).filter(([k]) => !k.startsWith('_'));
+
+/* Ideias do plano que saíram há menos que o descanso — contando só o que saiu
+   ANTES desta semana. Registro da própria semana (re-rodar o mesmo plano) não
+   conta como repetição: é a mesma trava de idempotência do planejar.js. */
+function conferirIdeias(fila, usadas, planoInicio) {
+  const fora = [];
+  for (const p of fila) {
+    const id = p.ideia || p.nome;
+    if (!id || !usadas[id] || usadas[id] >= planoInicio) continue;
+    const folga = _dias(usadas[id], p.data);
+    if (folga >= 0 && folga < DESCANSO_IDEIA) {
+      fora.push(p.data + '  ' + p.formato.padEnd(11) + id + '  — saiu há ' + folga +
+        ' dia(s) (descanso: ' + DESCANSO_IDEIA + ')');
+    }
+  }
+  return fora;
+}
+
+/* Mostras postadas dentro da janela, vistas do dia de um post. Ignora o que
+   esta mesma semana registrou (>= planoInicio), senão re-rodar o plano faria
+   cada peça fugir da própria escolha e trocar de obra a cada rodada. */
+function mostrasRecentes(postadas, data, planoInicio) {
+  return entradas(postadas)
+    .filter(([, d]) => d < planoInicio && Math.abs(_dias(d, data)) <= POSTADAS_JANELA)
+    .map(([k]) => k);
+}
+
+function rodar(post, plano, seco, jaEscolhidas, postadas, planoInicio) {
   const F = FORMATOS[post.formato];
   if (!F) throw new Error('formato desconhecido: ' + post.formato);
 
   const { caminho, novo } = prepararConfig(post, plano);
 
-  if (FAMILIA_OBRA.has(post.formato) && jaEscolhidas.length) {
-    const cfg = JSON.parse(fs.readFileSync(caminho, 'utf8'));
-    cfg.evitar = jaEscolhidas.slice();
-    /* a chave é `titulo|casa`, e o nome da casa pode conter `|` (ex.:
-       "Almeida & Dale | Millan") — corta só no primeiro. */
-    cfg.evitarCasa = jaEscolhidas.map(k => k.slice(k.indexOf('|') + 1));
-    fs.writeFileSync(caminho, JSON.stringify(cfg, null, 2) + '\n', 'utf8');
+  /* `evitar` = mostras já escolhidas nesta semana + mostras postadas nos
+     últimos POSTADAS_JANELA dias. Vale para tudo que escolhe obra da base
+     (obra/encerra/estreia e a deriva). O gerador some com essas da escolha
+     em vez de repetir; se o recorte ficar sem candidata, ele aborta e diz. */
+  if (CONSOME_OBRA.has(post.formato)) {
+    const recentes = mostrasRecentes(postadas || {}, post.data, planoInicio);
+    const evitar = [...new Set([...jaEscolhidas, ...recentes])];
+    if (evitar.length) {
+      const cfg = JSON.parse(fs.readFileSync(caminho, 'utf8'));
+      cfg.evitar = evitar;
+      /* a chave é `titulo|casa`, e o nome da casa pode conter `|` (ex.:
+         "Almeida & Dale | Millan") — corta só no primeiro. Só a família obra
+         usa evitarCasa (deriva quer poder repetir casa, nunca a mesma obra). */
+      if (FAMILIA_OBRA.has(post.formato)) {
+        cfg.evitarCasa = jaEscolhidas.map(k => k.slice(k.indexOf('|') + 1));
+      }
+      fs.writeFileSync(caminho, JSON.stringify(cfg, null, 2) + '\n', 'utf8');
+    }
   }
 
   /* rima e aproximacao também consomem obras da semana. Elas não imprimem
@@ -152,11 +212,32 @@ function principal() {
   const argv = process.argv.slice(2);
   const flag = (n, p) => { const a = argv.filter(x => x.startsWith('--' + n + '=')) [0]; return a ? a.split('=').slice(1).join('=') : p; };
   const seco = argv.includes('--seco');
+  const forcar = argv.includes('--forcar');
   const plano = JSON.parse(fs.readFileSync(path.resolve(RAIZ, flag('plano', 'PLANO.json')), 'utf8'));
   const fila = planejadas(plano, flag('so'));
 
+  const usadas = lerJson(USADAS_PATH);
+  const postadas = lerJson(POSTADAS_PATH);
+  const planoInicio = fila.length ? fila.map(p => p.data).sort()[0] : '9999-99-99';
+
   console.log('\nPLANO: ' + (plano.titulo || '(sem título)'));
   console.log(fila.length + ' peça(s)' + (seco ? '  ·  modo seco, nada será gerado' : '') + '\n');
+
+  /* CONFERÊNCIA — ideias do plano que saíram há menos que o descanso. Mostra
+     sempre; em geração real, aborta a não ser que venha --forcar. Repetição
+     de MOSTRA (a mesma obra) não é conferida aqui: é evitada na origem, no
+     campo `evitar` que o rodar() passa a cada gerador. */
+  const repetidas = conferirIdeias(fila, usadas, planoInicio);
+  if (repetidas.length) {
+    console.log('CONFERÊNCIA — ideias repetidas dentro do descanso:');
+    repetidas.forEach(l => console.log('  ! ' + l));
+    console.log('');
+    if (!seco && !forcar) {
+      console.log('Nada foi gerado. Troque as ideias no PLANO.json (o planejar.js escolhe\n' +
+        'sozinho as descansadas), ou rode `node semana.js --forcar` para gerar assim mesmo.\n');
+      process.exit(1);
+    }
+  }
 
   const feitas = [], falhas = [];
   const escolhidas = [];
@@ -171,7 +252,7 @@ function principal() {
     }
     const rotulo = '   ' + post.formato.padEnd(12);
     try {
-      const r = rodar(post, plano, seco, escolhidas);
+      const r = rodar(post, plano, seco, escolhidas, postadas, planoInicio);
       (r.picks || []).forEach(k => { if (!escolhidas.includes(k)) escolhidas.push(k); });
       console.log(rotulo + (r.novo ? '· modelo novo  ' : '               ') + r.saida);
       feitas.push({ post, r });
@@ -192,6 +273,27 @@ function principal() {
     console.log('\nO QUE FALTA:');
     for (const f of falhas) console.log('  · ' + f.post.data + '  ' + f.post.formato + '\n      ' + f.motivo.replace(/\n/g, '\n      '));
   }
+
+  /* MEMÓRIA — grava o que foi gerado de verdade. Ideia -> data em USADAS,
+     mostra -> data em POSTADAS. Só as peças que saíram; falha não conta. */
+  if (!seco && feitas.length) {
+    const uNovo = Object.assign({}, usadas);
+    const pNovo = Object.assign({}, postadas);
+    for (const { post, r } of feitas) {
+      const id = post.ideia || post.nome;
+      if (id) uNovo[id] = post.data > (uNovo[id] || '') ? post.data : uNovo[id];
+      for (const k of (r.picks || [])) {
+        if (k && post.data > (pNovo[k] || '')) pNovo[k] = post.data;
+      }
+    }
+    fs.mkdirSync(path.dirname(USADAS_PATH), { recursive: true });
+    fs.writeFileSync(USADAS_PATH, JSON.stringify(uNovo, null, 2) + '\n');
+    fs.writeFileSync(POSTADAS_PATH, JSON.stringify(pNovo, null, 2) + '\n');
+    const nMostras = entradas(pNovo).length - entradas(postadas).length;
+    console.log('\nmemória: USADAS +' + (Object.keys(uNovo).length - Object.keys(usadas).length) +
+      ' · POSTADAS +' + nMostras + ' mostra(s) nova(s)');
+  }
+
   console.log('\nA publicação continua manual. Nada foi postado.\n');
   process.exitCode = falhas.length ? 1 : 0;
 }

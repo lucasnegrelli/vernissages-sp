@@ -86,15 +86,18 @@ function melhorRota(pontos) {
 
 /* ---------- selecao ---------- */
 
-function elegiveis(DATA, hoje, filtro) {
+function elegiveis(DATA, hoje, filtro, evitar) {
   const V = {}; DATA.venues.forEach(v => V[v.name] = v);
   if (filtro) console.log('  recorte: ' + base.descreverFiltro(filtro));
+  const bloq = new Set(evitar || []);
+  let pulou = 0;
   const porCasa = new Map();
   for (const e of DATA.expos) {
     if (!e.ini || e.ini > hoje) continue;
     if (e.fim && e.fim < hoje) continue;
     const v = V[e.v];
     if (!v || typeof v.lat !== 'number') continue;
+    if (bloq.has(chave(e))) { pulou++; continue; }   // saiu no feed há pouco
     if (!base.passaFiltro(e, v, hoje, filtro)) continue;
     let rel = null;
     try { rel = exigirObra(e); } catch { continue; }   // trava 1, aplicada na origem
@@ -105,6 +108,7 @@ function elegiveis(DATA, hoje, filtro) {
       porCasa.set(e.v, { e, v, rel });
     }
   }
+  if (pulou) console.log('  ' + pulou + ' mostra(s) fora por já terem saído no feed');
   return [...porCasa.values()];
 }
 
@@ -277,10 +281,10 @@ async function principal() {
      leitura antecipada aqui em vez de mover o `const cfg`, que quebraria o
      --listar. */
   const caminhoCfg = flag('config');
-  const filtroCfg = caminhoCfg
-    ? (JSON.parse(fs.readFileSync(path.resolve(caminhoCfg), 'utf8')).filtro || null)
-    : null;
-  const cands = elegiveis(DATA, hoje, filtroCfg);
+  const cfgPre = caminhoCfg
+    ? JSON.parse(fs.readFileSync(path.resolve(caminhoCfg), 'utf8'))
+    : {};
+  const cands = elegiveis(DATA, hoje, cfgPre.filtro || null, cfgPre.evitar);
 
   if (argv.includes('--listar')) {
     console.log(cands.length + ' casas com mostra em cartaz E obra em disco.\n');

@@ -1,0 +1,22 @@
+{
+  "_leiame": "Cada mostra/obra que já foi a uma peça de social, com a data da última vez. Chave: 'titulo exato|venue exato' (o mesmo PICK que os geradores imprimem). O semana.js escreve aqui depois de gerar, e passa o que está dentro da janela (POSTADAS_JANELA, 45 dias) no campo `evitar` dos geradores — para a mesma obra não sair duas vezes no mês. Bootstrap manual em 13/09/2026 a partir das legendas de 01-07/09; entradas antigas podem faltar.",
+  "ÇA — Rita Lessa|Almeida & Dale | Millan": "2026-09-01",
+  "Cantaria — Daniel Jorge|Mendes Wood DM": "2026-09-01",
+  "No meio da pedra — André Vargas|Galeria Vermelho": "2026-09-01",
+  "Presença — Anna Maria Maiolino|Galeria Luisa Strina": "2026-09-02",
+  "Céu de concreto — Luiz Carlos Paulino|Central Galeria": "2026-09-02",
+  "Bauci: a cidade e os olhos — Érica Magalhães|Galeria Aura": "2026-09-03",
+  "É Tempo Ainda|Janaina Torres Galeria": "2026-09-04",
+  "No encalço do líquen — Tania Ximena|Galatea": "2026-09-05",
+  "O Lado Escuro da Lua — Alfredo Jaar|Galeria Luisa Strina": "2026-09-05",
+  "Masao Yamamoto — individual|Galeria Marcelo Guarnieri": "2026-09-05",
+  "Sem Palavras — Vânia Mignone|Casa Triângulo": "2026-09-05",
+  "Tudo que inventei aconteceu — Flávia Junqueira|Zipper Galeria": "2026-09-05",
+  "Arteônica da Paisagem — Aldir Mendes de Souza|Galeria Contempo": "2026-09-05",
+  "Déboussolé est le mot exact — Jean Claracq|Mendes Wood DM": "2026-09-06",
+  "Imagens do Interior — Fabiana de Barros|Luciana Brito Galeria": "2026-09-07",
+  "Ígneo Piaga — Thiago Martins de Melo|Almeida & Dale | Millan": "2026-09-10",
+  "Macunaíma é Duwid|Pinacoteca de São Paulo": "2026-09-11",
+  "Abstenções (uma miragem, mas permanente) — Nino Kapanadze|Almeida & Dale | Millan": "2026-09-12",
+  "Flores e Vasos — coletiva|Luciana Brito Galeria": "2026-09-14"
+}
