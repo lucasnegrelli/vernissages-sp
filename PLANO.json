@@ -84,6 +84,8 @@
       "data": "2026-09-15",
       "formato": "rima",
       "ordem": 1,
+      "pular": true,
+      "_pular": "rima-cor: o lado 'saturado' (Vânia Mignone / Aldir / Junqueira) só tem foto de vista de sala na base. O config em SOCIAL/09/15/rima.json está pronto do lado do Detomi — falta reprodução da obra do par, ou trocar o par.",
       "paleta": "escuro",
       "textura": 0.05,
       "ideia": "rima-cor",

@@ -312,11 +312,18 @@ function montarHTML(A, B, cfg) {
   const pW = 210, pH = Math.round(pW * A.dim.h / A.dim.w);
   const gTop = 150, pTop = gTop + gH + 62;
 
+  /* A tese da capa cai num espaço fixo (do topo até a assinatura). Tese longa
+     estourava por cima da marca — em 15/09 uma de 190 caracteres saiu com a
+     última linha sobre "VERNISSAGES SP". Corpo e topo acompanham o tamanho. */
+  const tL = (cfg.tese || '').length;
+  const tFs = tL > 170 ? 40 : tL > 130 ? 44 : tL > 95 ? 48 : 52;
+  const tTop = tL > 130 ? 920 : 970;
+
   const capa = `<div class="slide">
     <div class="kick">${esc(cfg.kicker || 'rima')}</div>
     <img class="obra" src="${esc(B.rel)}" style="left:0;top:${gTop}px;width:${gW}px;height:${gH}px">
     <img class="obra" src="${esc(A.rel)}" style="right:88px;top:${pTop}px;width:${pW}px;height:${pH}px">
-    <div class="tese" style="top:980px;width:830px;font-size:50px">${esc(cfg.tese)}</div>
+    <div class="tese" style="top:${tTop}px;width:864px;font-size:${tFs}px">${esc(cfg.tese)}</div>
     <div class="marca">Vernissages SP</div>
   </div>`;
 
