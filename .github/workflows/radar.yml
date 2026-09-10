@@ -1,13 +1,16 @@
-name: Radar de fontes
+name: Radar
 
-# Camada 1 da varredura: o trabalho mecanico, sem o julgamento.
+# Camada 1 da varredura: o trabalho mecanico, sem o julgamento. Dois scripts,
+# uma issue.
 #
-# O radar-fontes.js le o JSON-LD da pagina de categoria de SP do Arte Que
-# Acontece (~60 mostras com nome, datas e endereco), casa cada casa com os
-# venues do dados.js e cospe um relatorio: o que e novo numa casa ja mapeada,
-# divergencia de data, e casa que o agregador cita e nao esta no diretorio.
+# radar-fontes.js  — le o JSON-LD da pagina de categoria de SP do Arte Que
+#   Acontece (~60 mostras), casa com os venues do dados.js e aponta o que e novo,
+#   divergencia de data, e casa que o agregador cita e nao esta no diretorio.
+# radar-editais.js — le os feeds de quem cobre edital/chamada/residencia/premio
+#   (Dasartes, PIPA, seLecT, ArteBrasileiros), cruza com o const EDITAIS do
+#   dados.js e aponta chamada possivelmente aberta que a base nao tem.
 #
-# NAO escreve no dados.js e NAO abre PR. Publica numa issue, igual ao
+# NAO escrevem no dados.js e NAO abrem PR. Publicam numa issue, igual ao
 # imagens.yml. Agregador e pista, nao fato: em 20/08 o Arte Que Acontece
 # anunciava um dominio da HOA que tinha caido e servia cassino. A issue existe
 # pra alguem conferir na fonte primaria, nao pra clicar em merge.
@@ -64,11 +67,17 @@ jobs:
             ${{ inputs.mes && format('--mes {0}', inputs.mes) || '' }} \
             --saida /tmp/RADAR-FONTES.md | tee /tmp/radar.log
 
-      - name: Guardar o relatorio
+      - name: Varrer os editais
+        run: |
+          node radar-editais.js --saida /tmp/RADAR-EDITAIS.md | tee -a /tmp/radar.log
+
+      - name: Guardar os relatorios
         uses: actions/upload-artifact@v4
         with:
-          name: radar-fontes
-          path: /tmp/RADAR-FONTES.md
+          name: radar
+          path: |
+            /tmp/RADAR-FONTES.md
+            /tmp/RADAR-EDITAIS.md
           retention-days: 90
 
       - name: Abrir a issue
@@ -76,18 +85,20 @@ jobs:
         with:
           script: |
             const fs = require('fs');
-            const corpo = fs.readFileSync('/tmp/RADAR-FONTES.md', 'utf8');
             const hoje = new Date().toISOString().slice(0, 10);
-            const TETO = 60000;
-            let texto = corpo;
+            const TETO = 58000;
+            const ler = p => { try { return fs.readFileSync(p, 'utf8'); } catch { return ''; } };
+            let texto = ler('/tmp/RADAR-FONTES.md');
+            const ed = ler('/tmp/RADAR-EDITAIS.md');
+            if (ed) texto += '\n\n---\n\n' + ed;
             if (texto.length > TETO) {
               texto = texto.slice(0, TETO) +
-                '\n\n---\n\n**Cortado aqui.** O relatorio inteiro esta no artifact `radar-fontes` desta rodada.\n';
+                '\n\n---\n\n**Cortado aqui.** Os relatorios inteiros estao no artifact `radar` desta rodada.\n';
             }
             await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: 'Radar de fontes — ' + hoje,
+              title: 'Radar — ' + hoje,
               body: texto,
               labels: ['radar']
             });
