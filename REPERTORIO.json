@@ -90,6 +90,13 @@
         "filtro": { "duraMais": 30 },
         "nota": "Não é novidade nem última chamada. É o meio do caminho de uma mostra — o momento em que ninguém escreve sobre ela e a sala está vazia." } },
 
+    { "id": "obra-ultimo-sabado", "formato": "obra", "curado": false,
+      "titulo": "A obra de uma mostra que fecha nos próximos dias",
+      "paletas": ["escuro", "barro", "tinta"],
+      "ajustes": {
+        "filtro": { "fechaEm": 9 },
+        "nota": "Fecha nos próximos dias. O último fim de semana para ver isto é este — depois some, e não volta." } },
+
     { "id": "encerra-galeria", "formato": "encerra", "curado": false,
       "titulo": "Última semana: uma mostra de galeria que fecha já",
       "paletas": ["escuro", "barro", "tinta"],
@@ -103,6 +110,13 @@
       "titulo": "Última semana num museu — o prazo que parecia infinito acabou",
       "paletas": ["tinta", "escuro", "cal"],
       "ajustes": { "filtro": { "tipo": "institucional" } } },
+
+    { "id": "encerra-a-fila", "formato": "encerra", "curado": false,
+      "titulo": "Última semana — e não é a única a fechar nesse dia",
+      "paletas": ["escuro", "barro", "tinta"],
+      "ajustes": {
+        "filtro": { "fechaEm": 12 },
+        "nota": "O ciclo das galerias é quase sincronizado: quando uma fecha, várias fecham na mesma semana. Ninguém combina isso, e ninguém avisa." } },
 
     { "id": "estreia-semana", "formato": "estreia", "curado": false,
       "titulo": "Estreia: uma mostra que abre nesta semana",
@@ -132,6 +146,11 @@
       "titulo": "O número: quantas mostras encerram neste fim de semana",
       "paletas": ["escuro", "barro", "tinta"],
       "ajustes": { "conta": "fecha7" } },
+
+    { "id": "numero-fecha-dia", "formato": "numero", "curado": false,
+      "titulo": "O número: a data em que mais mostras encerram de uma vez",
+      "paletas": ["escuro", "barro", "tinta"],
+      "ajustes": { "conta": "fecha-dia" } },
 
     { "id": "numero-em-cartaz", "formato": "numero", "curado": false,
       "titulo": "O número: quantas mostras estão em cartaz agora",
@@ -220,6 +239,14 @@
         "tese": "Um percurso a pé em que toda parada fecha dentro de um mês.",
         "virada": "Dá para fazer esta caminhada numa tarde. Depois, não dá para fazer nunca mais." } },
 
+    { "id": "deriva-ultima-chamada-curta", "formato": "deriva", "curado": false,
+      "titulo": "Deriva de última chamada, versão curta: nada passa de duas semanas",
+      "paletas": ["barro", "cal", "papel"],
+      "ajustes": {
+        "filtro": { "fechaEm": 16 },
+        "tese": "Um percurso a pé em que nenhuma parada tem mais de duas semanas de cartaz pela frente.",
+        "virada": "É a caminhada mais urgente do mês. Faz hoje ou não faz." } },
+
     { "id": "deriva-so-obra", "formato": "deriva", "curado": false,
       "titulo": "Deriva em que toda parada mostra a obra, não a sala",
       "paletas": ["linho", "barro", "papel"],
@@ -293,6 +320,19 @@
           "Se não gostar de nada, tudo bem. Gostar não é a tarefa; olhar é."
         ] } },
 
+    { "id": "entrada-na-abertura", "formato": "entrada", "curado": false,
+      "titulo": "Como se comportar numa abertura, para quem nunca foi a uma",
+      "paletas": ["tinta", "cal", "linho"],
+      "ajustes": {
+        "virada": "A vernissage não é a exposição — é a festa em volta dela. E você pode ir sem conhecer ninguém.",
+        "porta": [
+          "Abertura costuma ser numa terça, quarta ou quinta, das 19h às 22h. Chegar às 19h é chegar cedo, e é a única janela para ver a obra antes de encher.",
+          "Não há lista na maioria das galerias. A porta aberta e a calçada com gente são o convite.",
+          "Tem bebida, quase sempre vinho, às vezes só água com gás — e acaba. Não é o motivo de ir, e ninguém repara se você não pega.",
+          "Você não precisa falar com o artista. Se falar, 'parabéns' basta: ninguém espera análise no dia da abertura.",
+          "Dá para circular sozinho, ver tudo em vinte minutos e sair. Ninguém controla quanto tempo você ficou."
+        ] } },
+
     { "id": "rima-material", "formato": "rima", "curado": true,
       "titulo": "Duas mostras que usam o mesmo material de formas opostas",
       "paletas": ["escuro", "barro", "linho"],
@@ -351,7 +391,12 @@
     { "id": "aproximacao-escultura", "formato": "aproximacao", "curado": true,
       "titulo": "Aproximação numa escultura: a marca da ferramenta",
       "paletas": ["escuro", "barro", "papel"],
-      "precisa": "a chave da obra, os zooms e a leitura — escultura em que o corte, a talha ou a solda apareçam" }
+      "precisa": "a chave da obra, os zooms e a leitura — escultura em que o corte, a talha ou a solda apareçam" },
+
+    { "id": "aproximacao-antes-de-fechar", "formato": "aproximacao", "curado": true,
+      "titulo": "Aproximação numa obra que sai de cartaz nesta semana",
+      "paletas": ["escuro", "barro", "linho"],
+      "precisa": "a chave da obra, os zooms e a leitura — a obra tem de fechar em até 10 dias e aguentar recorte a 1600 px de largura" }
 
   ]
 }

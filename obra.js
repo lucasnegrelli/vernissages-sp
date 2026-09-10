@@ -12,7 +12,8 @@
    Três modos, mesmo desenho (`cfg.modo`):
    - `obra`    — a imagem mais forte em cartaz. Ordena por qualidade de imagem.
    - `encerra` — última semana. Filtra por `fechaEm` e ordena pela mais urgente.
-                 O slide 2 lidera com "última semana · fecha DD.MM".
+                 O slide 2 lidera com "última semana · fecha DD.MM" e, quando
+                 falta pouco, a contagem em dias por baixo.
    - `estreia` — o que abre nos próximos dias. Ordena pela abertura mais próxima.
                  O slide 2 lidera com "estreia · abre DD.MM".
 
@@ -126,7 +127,15 @@ function slideCheia(o) {
 
 const _curto = iso => iso.slice(8, 10) + '.' + iso.slice(5, 7);
 
-function slideEtiqueta(o, cfg) {
+function contagem(hoje, fim) {
+  const n = _dias(hoje, fim);
+  if (n <= 0) return 'último dia é hoje';
+  if (n === 1) return 'fecha amanhã';
+  if (n <= 13) return 'daqui a ' + n + ' dias';
+  return '';
+}
+
+function slideEtiqueta(o, cfg, hoje) {
   const modo = cfg.modo || 'obra';
   /* A imagem ocupa a metade de cima; a etiqueta de parede, a de baixo. Quando
      há selo (encerra/estreia) a imagem cede um pouco de altura para ele. */
@@ -141,10 +150,15 @@ function slideEtiqueta(o, cfg) {
   const nota = cfg.nota || '';
 
   let selo = '';
-  if (modo === 'encerra') selo = `<div class="selo">última semana</div>
-    <div class="prazo">fecha ${_curto(o.e.fim)}</div>`;
-  else if (modo === 'estreia') selo = `<div class="selo">estreia</div>
+  if (modo === 'encerra') {
+    const c = contagem(hoje, o.e.fim);
+    selo = `<div class="selo">última semana</div>
+    <div class="prazo">fecha ${_curto(o.e.fim)}</div>
+    ${c ? `<div class="conta">${c}</div>` : ''}`;
+  } else if (modo === 'estreia') {
+    selo = `<div class="selo">estreia</div>
     <div class="prazo">abre ${_curto(o.e.ini)}</div>`;
+  }
 
   return `<div class="slide slide--${modo}">
     <img class="obra" src="${esc(o.rel)}" style="left:${Math.round((W - w) / 2)}px;top:${topo}px;width:${w}px;height:${h}px">
@@ -161,9 +175,9 @@ function slideEtiqueta(o, cfg) {
   </div>`;
 }
 
-function montarHTML(o, cfg) {
+function montarHTML(o, cfg, hoje) {
   const total = 2;
-  const s = slideCheia(o) + slideEtiqueta(o, cfg);
+  const s = slideCheia(o) + slideEtiqueta(o, cfg, hoje);
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>${CSS}
     .slide--cheia{background:#000}
     .slide--cheia::after{display:none}
@@ -175,11 +189,13 @@ function montarHTML(o, cfg) {
     .slide .etq .serv{font-size:22px;font-weight:300;margin-top:22px;line-height:1.55}
     .slide .etq .nota{font-size:23px;font-weight:300;line-height:1.5;margin-top:22px;max-width:840px}
     .slide .etq .selo{font-size:17px;font-weight:500;letter-spacing:.30em;text-transform:uppercase;margin-bottom:14px}
-    .slide .etq .prazo{font-size:52px;font-weight:300;letter-spacing:-.02em;margin-bottom:22px;line-height:1}
+    .slide .etq .prazo{font-size:52px;font-weight:300;letter-spacing:-.02em;margin-bottom:6px;line-height:1}
+    .slide .etq .conta{font-size:23px;font-weight:400;letter-spacing:.02em;margin-bottom:22px}
     ${cssPaleta(cfg.paleta, cfg.textura)}
     .slide .etq .nota{color:${cfg.paleta.meio}}
     .slide .etq .selo{color:${cfg.paleta.fraco}}
     .slide .etq .prazo{color:${cfg.paleta.texto}}
+    .slide .etq .conta{color:${cfg.paleta.meio}}
     </style></head><body>${s}</body></html>`;
 }
 
@@ -222,7 +238,7 @@ async function principal() {
 
   const saida = path.resolve(RAIZ, flag('out', '.'));
   const tmp = path.join(RAIZ, '.obra-tmp.html');
-  fs.writeFileSync(tmp, montarHTML(o, cfg), 'utf8');
+  fs.writeFileSync(tmp, montarHTML(o, cfg, hoje), 'utf8');
 
   const puppeteer = require(path.join(RAIZ, '.render', 'node_modules', 'puppeteer-core'));
   const browser = await puppeteer.launch({

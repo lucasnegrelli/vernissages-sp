@@ -11,7 +11,11 @@
      gratis             · espaços com entrada gratuita
      concentracao-oeste · casas na Zona Oeste
      fecha7             · mostras que encerram nos próximos 7 dias
+     fecha-dia          · a data em que mais mostras encerram de uma vez
      em-cartaz          · mostras em cartaz agora
+
+   As contas de urgência (fecha7, fecha-dia) trocam a tarja para "a conta
+   regressiva" e engrossam um pouco o número. Mesmo sistema, 10% mais tenso.
 
    Uso:
      node numero.js --config=SOCIAL/09/04/numero.json --out=SOCIAL/09/04 --date=2026-09-04
@@ -59,7 +63,23 @@ function calcular(DATA, hoje, conta) {
       const f = cartaz.filter(e => e.fim && _dias(hoje, e.fim) >= 0 && _dias(hoje, e.fim) <= 7).length;
       return { n: f, unidade: f === 1 ? 'mostra' : 'mostras',
         linha: (f === 1 ? 'encerra' : 'encerram') + ' nos próximos sete dias.',
-        virada: 'Nenhuma delas vai avisar quando desmontar. A data já está marcada e ninguém publica obituário de exposição.' };
+        virada: 'Nenhuma delas vai avisar quando desmontar. A data já está marcada e ninguém publica obituário de exposição.',
+        kick: 'a conta regressiva', peso: 300 };
+    }
+    case 'fecha-dia': {
+      const prox = cartaz.filter(e => e.fim && _dias(hoje, e.fim) >= 0 && _dias(hoje, e.fim) <= 30);
+      const porData = {};
+      prox.forEach(e => { (porData[e.fim] = porData[e.fim] || []).push(e); });
+      const alvo = Object.entries(porData).sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]))[0];
+      if (!alvo) return { n: 0, unidade: '', linha: '', virada: '' };
+      const [data, lista] = alvo;
+      const dd = data.slice(8, 10) + '.' + data.slice(5, 7);
+      const nomes = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
+      const diaSem = nomes[new Date(data + 'T12:00:00Z').getUTCDay()];
+      return { n: lista.length, unidade: 'no dia ' + dd,
+        linha: 'exposições encerram todas no mesmo dia — ' + diaSem + ', ' + dd + '.',
+        virada: 'A maioria das galerias fecha o ciclo no mesmo fim de semana. Quem deixa para decidir na hora escolhe uma e perde as outras ' + (lista.length - 1) + '.',
+        kick: 'a conta regressiva', peso: 300 };
     }
     case 'em-cartaz':
     default: {
@@ -74,7 +94,7 @@ function montarHTML(d, cfg) {
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>${CSS}
     ${cssPaleta(cfg.paleta, cfg.textura)}
     .slide .num{position:absolute;left:88px;right:88px;top:300px;
-      font-size:340px;font-weight:200;line-height:.86;letter-spacing:-.04em;color:${cfg.paleta.texto}}
+      font-size:340px;font-weight:${d.peso || 200};line-height:.86;letter-spacing:-.04em;color:${cfg.paleta.texto}}
     .slide .num small{font-size:64px;font-weight:300;letter-spacing:-.01em;color:${cfg.paleta.meio};
       display:block;margin-top:22px}
     .slide .linha{position:absolute;left:88px;right:110px;top:820px;
@@ -85,7 +105,7 @@ function montarHTML(d, cfg) {
     .slide .marca{left:88px;right:auto}
   </style></head><body>
     <div class="slide">
-      <div class="kick">a cidade em números</div>
+      <div class="kick">${esc(d.kick || 'a cidade em números')}</div>
       <div class="risco"></div>
       <div class="num">${esc(String(d.n))}<small>${esc(d.unidade)}</small></div>
       <div class="linha">${esc(d.linha)}</div>
@@ -114,6 +134,7 @@ async function principal() {
   console.log('conta ' + cfg.conta + ' → ' + d.n + ' ' + d.unidade + '\n  ' + d.linha);
   if (!d.n && d.n !== 0) throw new Error('conta ' + cfg.conta + ' não deu número.');
   if (d.n === 0 && cfg.conta === 'fecha7') throw new Error('fecha7 = 0: nenhuma mostra encerra em 7 dias. Escolha outra conta.');
+  if (d.n < 2 && cfg.conta === 'fecha-dia') throw new Error('fecha-dia < 2: nenhuma data concentra encerramento agora. Escolha outra conta.');
 
   if (seco) { console.log('\n--seco: nada foi renderizado.'); return; }
 

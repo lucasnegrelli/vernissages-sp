@@ -1,168 +1,103 @@
 {
-  "titulo": "Semana de 01/09 a 07/09/2026",
+  "titulo": "Semana de 10/09 a 16/09/2026",
   "_leiame": [
-    "ESTE ARQUIVO É GERADO. Rode `node planejar.js` para refazê-lo a partir do REPERTORIO.json.",
-    "Editar à mão funciona e é legítimo — mas a edição se perde no próximo planejar.js.",
-    "Para mudar o repertório de vez, mexa no REPERTORIO.json, não aqui.",
-    "Gerado em 2026-09-01."
+    "ESTE ARQUIVO É GERADO por planejar.js, MAS esta versão foi escrita à mão (10/09) para a semana dos encerramentos — 11 mostras fecham no sábado 19.",
+    "Editar à mão é legítimo (ver COMOGERAR.md). O próximo `node planejar.js` sobrescreve.",
+    "Eixo da semana: última chamada. Um pouco mais de tensão no recorte e na legenda; o desenho continua o mesmo.",
+    "rima (15/09) e aproximacao (16/09) dependem de config curado — escrever SOCIAL/09/15/rima.json e SOCIAL/09/16/aproximacao.json.",
+    "estreia ficou fora: nada abre esta semana com obra em disco (o 39º Panorama do MAM não tem imagem na base)."
   ],
   "fora": [
     "Terra que Desmancha, Evapora e Solidifica — Coletivo Poíesis|Vazio Criativo"
   ],
   "posts": [
     {
-      "data": "2026-09-01",
-      "formato": "rima",
+      "data": "2026-09-10",
+      "formato": "numero",
       "ordem": 1,
-      "paleta": "barro",
-      "textura": 0.07,
-      "ideia": "rima-corpo-paisagem",
-      "nome": "rima-corpo-paisagem"
-    },
-    {
-      "data": "2026-09-01",
-      "formato": "encerra",
-      "ordem": 2,
       "paleta": "escuro",
       "textura": 0.05,
+      "ideia": "numero-fecha-dia",
+      "nome": "numero-fecha-dia",
+      "ajustes": { "conta": "fecha-dia" }
+    },
+    {
+      "data": "2026-09-10",
+      "formato": "encerra",
+      "ordem": 2,
+      "paleta": "barro",
+      "textura": 0.06,
       "ideia": "encerra-galeria",
       "nome": "encerra-galeria",
-      "ajustes": {
-        "filtro": {
-          "tipo": "galeria"
-        }
-      }
+      "ajustes": { "filtro": { "tipo": "galeria" } }
     },
     {
-      "data": "2026-09-02",
-      "formato": "aproximacao",
+      "data": "2026-09-11",
+      "formato": "encerra",
       "ordem": 1,
-      "paleta": "linho",
-      "textura": 0.09,
-      "ideia": "aproximacao-materia",
-      "nome": "aproximacao-materia"
+      "paleta": "tinta",
+      "textura": 0.05,
+      "ideia": "encerra-instituicao",
+      "nome": "encerra-instituicao",
+      "ajustes": { "filtro": { "tipo": "institucional" } }
     },
     {
-      "data": "2026-09-02",
+      "data": "2026-09-12",
       "formato": "obra",
-      "ordem": 2,
+      "ordem": 1,
       "paleta": "cal",
       "textura": 0.06,
-      "ideia": "obra-recem-aberta",
-      "nome": "obra-recem-aberta",
+      "ideia": "obra-ultimo-sabado",
+      "nome": "obra-ultimo-sabado",
       "ajustes": {
-        "filtro": {
-          "abriuEm": 30
-        }
+        "filtro": { "fechaEm": 9 },
+        "nota": "Fecha nos próximos dias. O último fim de semana para ver isto é este."
       }
     },
     {
-      "data": "2026-09-03",
-      "formato": "obra",
+      "data": "2026-09-13",
+      "formato": "deriva",
       "ordem": 1,
       "paleta": "papel",
       "textura": 0.07,
-      "ideia": "obra-meio-de-cartaz",
-      "nome": "obra-meio-de-cartaz",
-      "ajustes": {
-        "filtro": {
-          "duraMais": 30
-        },
-        "nota": "Não é novidade nem última chamada. É o meio do caminho de uma mostra — o momento em que ninguém escreve sobre ela e a sala está vazia."
-      }
-    },
-    {
-      "data": "2026-09-03",
-      "formato": "numero",
-      "ordem": 2,
-      "paleta": "tinta",
-      "textura": 0.05,
-      "ideia": "numero-em-cartaz",
-      "nome": "numero-em-cartaz",
-      "ajustes": {
-        "conta": "em-cartaz"
-      }
-    },
-    {
-      "data": "2026-09-04",
-      "formato": "obra",
-      "ordem": 1,
-      "paleta": "escuro",
-      "textura": 0.05,
-      "ideia": "obra-so-obra",
-      "nome": "obra-so-obra",
-      "ajustes": {
-        "filtro": {
-          "vista": false
-        }
-      }
-    },
-    {
-      "data": "2026-09-05",
-      "formato": "deriva",
-      "ordem": 1,
-      "paleta": "cal",
-      "textura": 0.06,
       "ideia": "deriva-ultima-chamada",
       "nome": "deriva-ultima-chamada",
       "ajustes": {
-        "filtro": {
-          "fechaEm": 30
-        },
+        "filtro": { "fechaEm": 30 },
         "tese": "Um percurso a pé em que toda parada fecha dentro de um mês.",
         "virada": "Dá para fazer esta caminhada numa tarde. Depois, não dá para fazer nunca mais."
       }
     },
     {
-      "data": "2026-09-05",
+      "data": "2026-09-14",
       "formato": "obra",
-      "ordem": 2,
+      "ordem": 1,
       "paleta": "barro",
-      "textura": 0.07,
-      "ideia": "obra-so-galeria",
-      "nome": "obra-so-galeria",
+      "textura": 0.06,
+      "ideia": "obra-longa-duracao",
+      "nome": "obra-longa-duracao",
       "ajustes": {
-        "filtro": {
-          "tipo": "galeria"
-        }
+        "filtro": { "duraMais": 60 },
+        "nota": "Ainda fica meses no ar. É a que dá para ver com calma, num dia de semana — e por isso é a que quase ninguém vê antes de fechar."
       }
     },
     {
-      "data": "2026-09-06",
-      "formato": "numero",
+      "data": "2026-09-15",
+      "formato": "rima",
       "ordem": 1,
       "paleta": "escuro",
       "textura": 0.05,
-      "ideia": "numero-fecha-fim-de-semana",
-      "nome": "numero-fecha-fim-de-semana",
-      "ajustes": {
-        "conta": "fecha7"
-      }
+      "ideia": "rima-corpo-paisagem",
+      "nome": "rima"
     },
     {
-      "data": "2026-09-06",
-      "formato": "obra",
-      "ordem": 2,
-      "paleta": "tinta",
-      "textura": 0.05,
-      "ideia": "obra-barra-funda",
-      "nome": "obra-barra-funda",
-      "ajustes": {
-        "filtro": {
-          "bairro": [
-            "Barra Funda"
-          ]
-        }
-      }
-    },
-    {
-      "data": "2026-09-07",
-      "formato": "obra",
+      "data": "2026-09-16",
+      "formato": "aproximacao",
       "ordem": 1,
-      "paleta": "barro",
-      "textura": 0.07,
-      "ideia": "obra-do-dia",
-      "nome": "obra-do-dia"
+      "paleta": "linho",
+      "textura": 0.09,
+      "ideia": "aproximacao-antes-de-fechar",
+      "nome": "aproximacao"
     }
   ]
 }
