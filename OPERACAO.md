@@ -510,9 +510,20 @@ relatório.
 
 ## Orçamento de páginas externas
 
+O teto era a defesa contra a parede de aprovação de domínio do navegador
+embutido, que recusava metade das navegações numa execução agendada. **Isso
+acabou:** a varredura mecânica agora é o `radar.yml`, que roda no GitHub Actions
+com Chrome de verdade e nenhuma parede. O `radar-fontes.js --venues` já abre o
+site das 91 casas todo sábado — a cobertura mecânica não tem mais teto.
+
+O que sobra de teto vale só para o que a rotina de nuvem ainda faz na mão:
+
 | Tarefa | Teto | Observação |
 |---|---|---|
 | `vsp-site`, qualquer dia | 0 | ela não abre nada; tudo vem do disco |
-| `vsp-semana`, domingo | até 25 | 3 agregadores + 10 sites + 8 perfis |
+| `vsp-semana`, domingo | até 20 | confirmar na fonte o que as issues `radar` já apontaram + editais + perfis do `captar.js` |
+
+O `radar.js` (fila de cobertura) subiu de 10 para 18 por rodada — a demanda
+calculada da base é 12,4 visitas/semana, e a fila antiga não a cobria.
 
 Estourou o teto: pare, entregue o que tem, relate o que faltou.

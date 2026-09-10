@@ -33,6 +33,8 @@
  *   node radar-fontes.js                       (mês atual + o seguinte)
  *   node radar-fontes.js --mes 2026-09
  *   node radar-fontes.js --render              (tenta o Guia das Artes também)
+ *   node radar-fontes.js --venues              (abre o site de CADA casa — cobre as 91,
+ *                                               não só as ~60 que o agregador lista)
  *   node radar-fontes.js --saida PENDENTE/RADAR-FONTES.md
  */
 
@@ -331,31 +333,71 @@ function classificar(cands, DATA) {
 const INDICES = ['', '/exposicoes', '/exposicoes/', '/exhibitions', '/exhibitions/',
   '/mostras', '/programacao', '/agenda', '/en/exhibitions', '/current', '/exposicoes-atuais'];
 
-async function confirmarNaFonte(items, render) {
-  const feitos = new Map();               // site -> texto concatenado das páginas
-  const pegarSite = async site => {
-    if (feitos.has(site)) return feitos.get(site);
-    let txt = '';
-    for (const ix of INDICES.slice(0, 4)) {
-      let u; try { u = new URL(ix, site).href; } catch { continue; }
-      const r = await pegar(u);
-      if (r.html) txt += ' ' + r.html.replace(/<[^>]+>/g, ' ');
-      if (txt.length > 400) break;
-    }
-    if (txt.replace(/\s+/g, '').length < 300 && render) {
-      const r = await pegarRender(site);
-      if (r.html) txt += ' ' + r.html.replace(/<[^>]+>/g, ' ');
-    }
-    txt = norm(txt);
-    feitos.set(site, txt);
-    return txt;
-  };
+/* Texto concatenado das primeiras páginas de índice de um site, normalizado.
+   Cache por site, render como plano B. Compartilhado entre a confirmação e a
+   varredura de venues. */
+const _sites = new Map();
+let _rendersFeitos = 0;
+async function pegarSite(site, render, tetoRender = 20) {
+  if (_sites.has(site)) return _sites.get(site);
+  let txt = '';
+  for (const ix of INDICES.slice(0, 4)) {
+    let u; try { u = new URL(ix, site).href; } catch { continue; }
+    const r = await pegar(u);
+    if (r.html) txt += ' ' + r.html.replace(/<[^>]+>/g, ' ');
+    if (txt.length > 400) break;
+  }
+  if (txt.replace(/\s+/g, '').length < 300 && render && _rendersFeitos < tetoRender) {
+    _rendersFeitos++;
+    const r = await pegarRender(site);
+    if (r.html) txt += ' ' + r.html.replace(/<[^>]+>/g, ' ');
+  }
+  txt = norm(txt);
+  _sites.set(site, txt);
+  return txt;
+}
 
+/* ---------- varredura direta dos sites de venue (--venues) ----------
+   O cross-ref com o agregador só pega quem o agregador lista (~60 de 91). Isto
+   abre o `site` de CADA casa e diz onde a base pode estar cega: casa sem nada
+   em cartaz cujo site anuncia exposição, casa cuja mostra da base o site não
+   menciona mais, e site que não entrega HTML (precisa de olho). Não extrai
+   título — o site de galeria é JS demais pra isso ser confiável — só aponta
+   onde olhar. Roda no Actions, que tem Chrome e nenhum teto de páginas. */
+const SINAL_MOSTRA = /(exposic|exhibition|em cartaz|on view|mostra|individual|coletiva|vernissage|abertura)/;
+
+async function varrerVenues(DATA, render) {
+  const exposPorVenue = {};
+  for (const e of DATA.expos) (exposPorVenue[e.v] = exposPorVenue[e.v] || []).push(e);
+
+  const baseVazia = [], desatualizado = [], semHTML = [];
+  const comSite = DATA.venues.filter(v => v.site && v.tipo !== 'feira');
+
+  for (const v of comSite) {
+    const txt = await pegarSite(v.site, render);
+    if (!txt || txt.replace(/\s+/g, '').length < 280) { semHTML.push(v); continue; }
+    const temSinal = SINAL_MOSTRA.test(txt);
+    const ativas = (exposPorVenue[v.name] || []).filter(e => e.ini && e.ini <= HOJE && (!e.fim || e.fim >= HOJE));
+
+    if (!ativas.length) {
+      if (temSinal) baseVazia.push(v);
+      continue;
+    }
+    /* tem mostra na base: o site menciona ao menos uma delas? */
+    const menciona = ativas.some(e => {
+      const t = tokensTitulo(e.t);
+      return t.length && t.filter(x => txt.includes(x)).length >= Math.max(2, Math.ceil(t.length * 0.5));
+    });
+    if (!menciona && temSinal) desatualizado.push({ v, ativas });
+  }
+  return { baseVazia, desatualizado, semHTML, total: comSite.length };
+}
+
+async function confirmarNaFonte(items, render) {
   for (const it of items) {
     const v = it.v, c = it.c;
     if (!v || !v.site) { c._confirma = 'sem site na base — conferir na mão'; continue; }
-    if (feitos.size > 18 && !feitos.has(v.site)) { c._confirma = 'não checado (teto de páginas)'; continue; }
-    const txt = await pegarSite(v.site);
+    const txt = await pegarSite(v.site, render);
     if (!txt || txt.replace(/\s+/g, '').length < 300) {
       c._confirma = `site não entregou HTML útil (provável JS) — abrir ${v.site} na mão`;
       continue;
@@ -446,6 +488,36 @@ function relatorio(r, DATA, meses) {
     L.push('');
   }
 
+  if (r.venues) {
+    const vr = r.venues;
+    L.push(`## Varredura direta dos sites — a base pode estar cega aqui (${vr.baseVazia.length + vr.desatualizado.length})`);
+    L.push('');
+    L.push(`_Abriu o \`site\` de ${vr.total} casas. Isto NÃO é título de mostra — o site de galeria`);
+    L.push('é JS demais para extrair. É só onde o sinal do site e o que a base tem não batem._');
+    L.push('');
+    L.push(`### Base sem nada em cartaz, mas o site anuncia exposição (${vr.baseVazia.length})`);
+    L.push('');
+    if (!vr.baseVazia.length) L.push('_nada._');
+    for (const v of vr.baseVazia) L.push(`- **${v.name}** (${v.b}, ${v.z} · ${v.tipo}) — ${v.site}`);
+    L.push('');
+    L.push(`### Base tem mostra que o site não menciona mais — pode ter trocado (${vr.desatualizado.length})`);
+    L.push('');
+    if (!vr.desatualizado.length) L.push('_nada._');
+    for (const { v, ativas } of vr.desatualizado) {
+      L.push(`- **${v.name}** — base: ${ativas.map(e => e.t).join(' · ')}`);
+      L.push(`  - ${v.site}`);
+    }
+    L.push('');
+    if (vr.semHTML.length) {
+      L.push(`### Site não entregou HTML útil — abrir na mão (${vr.semHTML.length})`);
+      L.push('');
+      L.push('_Provável site todo em JS. O `--render` tenta, mas tem teto. Estas ficam pro olho humano._');
+      L.push('');
+      for (const v of vr.semHTML) L.push(`- **${v.name}** (${v.b}) — ${v.site}`);
+      L.push('');
+    }
+  }
+
   L.push('---');
   L.push(`_${r.novas.length} nova(s) · ${r.divergencias.length} divergência(s) · ${r.talvezEncerradas.length} pra confirmar encerramento · ${r.semFim.length} com \`fim: null\` antigo · ${r.casaNova.length} de casa não mapeada · ${r.jaEncerradas} já encerrada(s), ignoradas._`);
   return L.join('\n');
@@ -472,8 +544,14 @@ function relatorio(r, DATA, meses) {
   if (!tem('sem-confirmar') && (r.novas.length || r.divergencias.length)) {
     console.log('  confirmando na fonte primária…');
     await confirmarNaFonte([...r.novas, ...r.divergencias], !tem('sem-render'));
-    if (_browser) await _browser.close().catch(() => {});
   }
+
+  if (tem('venues')) {
+    console.log('  varrendo os sites de venue direto…');
+    r.venues = await varrerVenues(DATA, !tem('sem-render'));
+    console.log(`  ${r.venues.total} sites · base vazia c/ sinal ${r.venues.baseVazia.length} · possível troca ${r.venues.desatualizado.length} · sem HTML ${r.venues.semHTML.length}`);
+  }
+  if (_browser) await _browser.close().catch(() => {});
 
   const md = relatorio(r, DATA, meses);
   const saida = flag('saida', null);

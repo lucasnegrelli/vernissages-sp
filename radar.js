@@ -32,7 +32,11 @@ const path = require('path');
 const RAIZ = __dirname;
 const arg = (n, d) => { const i = process.argv.indexOf(n); return i > -1 && process.argv[i + 1] ? process.argv[i + 1] : d; };
 const HOJE = arg('--hoje', new Date().toISOString().slice(0, 10));
-const FILA = Number(arg('--fila', '10')) || 10;
+/* 18, não 10: a demanda calculada da base é ~12,4 visitas/semana (56 galerias a
+   42 dias + 24 instituições a 141), e a fila de 10 não a cobria. O teto de
+   páginas externas que justificava o 10 caiu quando a varredura virou Actions
+   com Chrome de verdade — ver OPERACAO.md. */
+const FILA = Number(arg('--fila', '18')) || 18;
 const SAIDA = path.join(RAIZ, 'PENDENTE', 'RADAR.md');
 
 function carregarDados(){

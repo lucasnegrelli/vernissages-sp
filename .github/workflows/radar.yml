@@ -42,7 +42,7 @@ concurrency:
 jobs:
   radar:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
 
@@ -63,7 +63,7 @@ jobs:
 
       - name: Varrer as fontes
         run: |
-          node radar-fontes.js \
+          node radar-fontes.js --render --venues \
             ${{ inputs.mes && format('--mes {0}', inputs.mes) || '' }} \
             --saida /tmp/RADAR-FONTES.md | tee /tmp/radar.log
 
