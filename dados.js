@@ -144,7 +144,6 @@ const EXPOS = [
 {t:"Imagens do Interior — Fabiana de Barros",a:"Fabiana de Barros",v:"Luciana Brito Galeria",ini:"2026-08-22",fim:"2026-10-17",d:"Gravuras, colagens e assemblages de resina mineral, mais uma instalação feita com o cineasta Michel Favre para a casa modernista de Rino Levi.",img:"img/imagens-do-interior.jpg",cred:"Cortesia Luciana Brito Galeria"},
 {t:"Cantaria — Daniel Jorge",a:"Daniel Jorge",v:"Mendes Wood DM",ini:"2026-08-22",fim:"2026-11-06",d:"Primeira individual do artista em São Paulo: 23 obras em pedra-sabão, entre escultura, relevo, instalação e performance. Ensaio de Carlos Quijon Jr.",img:"img/cantaria-daniel-jorge.jpg",cred:"Foto Renan Benedito / Cortesia Mendes Wood DM"},
 {t:"Déboussolé est le mot exact — Jean Claracq",a:"Jean Claracq",v:"Mendes Wood DM",ini:"2026-08-22",fim:"2026-11-06",d:"Dez pinturas de pequeno formato, a maioria entre 10 e 20 centímetros. Texto de Renato Menezes.",img:"img/deboussole-jean-claracq.jpg",cred:"Cortesia do artista e Mendes Wood DM"},
-{t:"Playful, Stormy, Continuing — Ayako Rokkaku",a:"Ayako Rokkaku",v:"Baró Galeria",ini:"2026-08-20",fim:"2026-09-03",d:"Primeira individual da artista japonesa na América do Sul: cerca de quinze pinturas feitas durante residência em São Paulo. Mostra pop-up no Taller Zaragoza (Jardim Europa), depois da transferência da sede da Baró para a Espanha. Pintura ao vivo na abertura, dia 20, das 18h às 21h. Curadoria de Ana Carolina Ralston.",img:"img/playful-stormy-continuing-baro-galeria.webp",cred:"Cortesia Baró Galeria"},
 {t:"É Tempo Ainda",v:"Janaina Torres Galeria",ini:"2026-08-15",fim:"2026-10-17",d:"Vinte e seis artistas de gerações diferentes, com curadoria de Heloisa Amaral Peixoto, nos dez anos da galeria.",img:"img/e-tempo-ainda-janaina-torres-galeria.webp",cred:"Cortesia Janaina Torres Galeria"},
 {t:"Céu de concreto — Luiz Carlos Paulino",a:"Luiz Carlos Paulino",v:"Central Galeria",ini:"2026-08-15",fim:"2026-09-19",d:"Individual do artista com texto crítico de Lilia Moritz Schwarcz.",img:"img/ceu-de-concreto-central-galeria.webp",cred:"Cortesia Central Galeria"},
 {t:"Uma Obra: Pintura sem fim",a:"Gui Teixeira",v:"Pinacoteca de São Paulo",ini:"2026-07-04",fim:"2028-01-31",d:"Terceira edição do projeto Uma Obra: uma parede de carpete recebe centenas de peças de feltro colorido que o público move e recompõe (Pina Luz). Colaboração do artista Gui Teixeira.",img:"img/uma-obra-pintura-sem-fim-pinacoteca-de-sao-paulo.jpg",cred:"Cortesia Pinacoteca de São Paulo"},
@@ -220,11 +219,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Mitologias do Mistério — Gabriel Omep",
-  v: "Casa de Cultura do Parque",
-  quem: "Gabriel Omep",
-  txt: "Quatro séries — Alfabeto Ferramenta, Orís, Guardiões e Indumentária — em pintura sobre papelão, numa parede de 280 x 1020 cm. Curadoria de Claudio Cretti e texto crítico de André Pitol. Parte do II Ciclo Expositivo. Abertura em 25 de julho, até 25 de outubro.",
-  link: "https://ccparque.com.br",
+  t: "Assim Bordei Meus Sonhos: Margarida L. Kanciukaitis Pandolfo",
+  v: "Museu da Imigração",
+  quem: "Margarida L. Kanciukaitis Pandolfo",
+  txt: "Cerca de 100 peças em bordado, retalho, crochê e pintura, algumas feitas com os filhos, OSGEMEOS, que assinam a curadoria. Primeira individual da artista no Brasil. Abertura em 10 de julho, até 6 de outubro.",
+  link: "https://museudaimigracao.org.br",
   publi: false
 };
 
@@ -239,6 +238,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-09-11", k:"Assim Bordei Meus Sonhos: Margarida L. Kanciukaitis Pandolfo|Museu da Imigração"},
   {d:"2026-09-10", k:"Mitologias do Mistério — Gabriel Omep|Casa de Cultura do Parque"},
   {d:"2026-09-09", k:"O homem nu — Efrain Almeida|Fortes D'Aloia & Gabriel — Galpão"},
   {d:"2026-09-08", k:"Charline von Heyl — individual|Auroras"},
@@ -292,5 +292,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "10/09/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "11/09/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
