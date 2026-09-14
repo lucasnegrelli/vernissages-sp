@@ -36,6 +36,13 @@
  *   node radar-fontes.js --venues              (abre o site de CADA casa — cobre as 91,
  *                                               não só as ~60 que o agregador lista)
  *   node radar-fontes.js --saida PENDENTE/RADAR-FONTES.md
+ *
+ *   node radar-fontes.js --diretorio           (modo à parte: lê o DIRETÓRIO de
+ *                                               espaços do AQA + Guia das Artes,
+ *                                               não a agenda — acha casa nova que
+ *                                               nunca teve mostra em cartaz. Manual,
+ *                                               a cada poucos meses, não entra no
+ *                                               radar.yml de sábado.)
  */
 
 'use strict';
@@ -325,6 +332,128 @@ function classificar(cands, DATA) {
   return { novas, divergencias, casaNova, talvezEncerradas, semFim, erros, jaEncerradas };
 }
 
+/* ---------- diretório de espaços (--diretorio, manual/ocasional) ----------
+   Diferente do resto do arquivo: isto não lê exposição nenhuma, lê o
+   DIRETÓRIO de galerias/museus/institutos que o AQA e o Guia das Artes
+   mantêm — a lista de espaços que eles conhecem, não a agenda da semana.
+   Serve pra achar casa que nunca apareceu num agregador de eventos porque
+   não tem mostra em cartaz agora, mas existe e um dia vai ter. Diretório
+   muda devagar (galeria nova é rara), então isto NÃO entra no radar.yml de
+   sábado — é comando manual, rode a cada poucos meses:
+     node radar-fontes.js --diretorio --saida PENDENTE/DIRETORIO.md
+   Só reporta. Vetar casa nova no `dados.js` continua sendo o `captar.js`. */
+
+async function pegarRenderScroll(url, voltas = 15, pausaMs = 800) {
+  try {
+    if (!_browser) {
+      let pptr;
+      for (const p of [path.join(RAIZ, '.render', 'node_modules', 'puppeteer-core'), 'puppeteer-core', 'puppeteer']) {
+        try { pptr = require(p); break; } catch {}
+      }
+      if (!pptr) return { erro: 'puppeteer indisponivel' };
+      let exe = process.env.CHROME;
+      if (!exe) for (const c of ['/usr/bin/google-chrome', '/usr/bin/chromium-browser', '/usr/bin/chromium', 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe']) {
+        if (fs.existsSync(c)) { exe = c; break; }
+      }
+      _browser = await pptr.launch({ executablePath: exe, headless: 'new', args: ['--no-sandbox'] });
+    }
+    const page = await _browser.newPage();
+    await page.setUserAgent(UA);
+    try {
+      await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
+      // scroll infinito: a lista de espaços carrega em lotes conforme rola.
+      for (let i = 0; i < voltas; i++) {
+        await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+        await new Promise(r => setTimeout(r, pausaMs));
+      }
+      return { html: await page.content(), url: page.url() };
+    } finally { await page.close().catch(() => {}); }
+  } catch (e) { return { erro: 'render: ' + String(e.message || e).slice(0, 60) }; }
+}
+
+/* AQA: página estática (Elementor), não precisa de --render. */
+async function diretorioAQA() {
+  const r = await pegar('https://artequeacontece.com.br/guia/sao-paulo/');
+  if (r.erro) return [{ _fonte_erro: `Diretório AQA: ${r.erro}` }];
+  const out = [];
+  const re = /<h3 class="elementor-heading-title elementor-size-default"><a href="([^"]+)">([^<]+)<\/a><\/h3>\s*<\/div>\s*<div[^>]*>\s*<p class="elementor-heading-title elementor-size-default"><p>([^<]*)<\/p>/g;
+  let m;
+  while ((m = re.exec(r.html)) !== null) {
+    out.push({ nome: decodeHTML(m[2]).trim(), endereco: decodeHTML(m[3]).trim(), url: m[1], fonte: 'AQA · Guia SP' });
+  }
+  return out.length ? out : [{ _fonte_erro: 'Diretório AQA: nenhum espaço no HTML' }];
+}
+
+/* Guia das Artes: os 10 primeiros vêm no HTML, o resto só com scroll (JS). */
+const GDA_CATEGORIAS = ['galerias-de-arte', 'museus', 'institutos', 'espacos-culturais'];
+async function diretorioGuiaDasArtes() {
+  const out = [];
+  for (const cat of GDA_CATEGORIAS) {
+    const url = `https://www.guiadasartes.com.br/sao-paulo/sao-paulo/${cat}`;
+    const r = await pegarRenderScroll(url);
+    if (r.erro) { out.push({ _fonte_erro: `Diretório Guia das Artes/${cat}: ${r.erro}` }); continue; }
+    const re = /<header[^>]*class="tit">\s*([^<]+?)\s*<\/header>/g;
+    let m, n = 0;
+    while ((m = re.exec(r.html)) !== null) {
+      out.push({ nome: decodeHTML(m[1]).trim(), endereco: '', url, fonte: `Guia das Artes · ${cat}` });
+      n++;
+    }
+    if (!n) out.push({ _fonte_erro: `Diretório Guia das Artes/${cat}: nenhum espaço no HTML renderizado` });
+  }
+  return out;
+}
+
+/* Cruza os nomes do diretório com dados.js. Reaproveita casarVenue — mesma
+   régua usada pra "casa não mapeada" no resto do arquivo. */
+function diretorioNovos(entradas, DATA) {
+  const erros = entradas.filter(e => e._fonte_erro).map(e => e._fonte_erro);
+  const validas = entradas.filter(e => !e._fonte_erro && e.nome);
+  const vistos = new Map(); // nome normalizado -> entrada (primeira ocorrência, junta fontes)
+  for (const e of validas) {
+    const k = norm(e.nome);
+    if (!k) continue;
+    if (vistos.has(k)) { vistos.get(k).fontes.add(e.fonte); continue; }
+    vistos.set(k, { nome: e.nome, endereco: e.endereco, url: e.url, fontes: new Set([e.fonte]) });
+  }
+  const novos = [];
+  for (const e of vistos.values()) {
+    if (casarVenue(e.nome, DATA.venues)) continue; // já mapeada
+    novos.push(e);
+  }
+  novos.sort((a, b) => a.nome.localeCompare(b.nome));
+  return { novos, totalDiretorio: vistos.size, erros };
+}
+
+function relatorioDiretorio(res, DATA) {
+  const L = [];
+  L.push(`# Diretório de espaços — ${HOJE}`);
+  L.push('');
+  L.push('Varredura manual/ocasional dos diretórios do AQA e do Guia das Artes — não é');
+  L.push('a agenda de exposições, é a lista de espaços que eles conhecem. Serve pra achar');
+  L.push('casa nova que nunca apareceu num agregador de eventos. **Nada foi escrito no');
+  L.push('`dados.js`.** Vetar e adicionar continua sendo o `captar.js`, na mão.');
+  L.push('');
+  L.push(`Diretório: ${res.totalDiretorio} espaço(s) únicos encontrados · base atual: ${DATA.venues.length} casas.`);
+  L.push('');
+  L.push(`## Não mapeados (${res.novos.length})`);
+  L.push('');
+  if (!res.novos.length) L.push('_nada — o diretório não trouxe nada que a base já não tenha._');
+  for (const e of res.novos) {
+    L.push(`- **${e.nome}**${e.endereco ? ' — ' + e.endereco : ''}`);
+    L.push(`  - fonte: ${[...e.fontes].join(', ')} — ${e.url}`);
+  }
+  L.push('');
+  if (res.erros.length) {
+    L.push('## Fontes que falharam');
+    L.push('');
+    res.erros.forEach(e => L.push(`- ${e}`));
+    L.push('');
+  }
+  L.push('---');
+  L.push(`_${res.novos.length} candidato(s) a casa nova, de ${res.totalDiretorio} espaço(s) no diretório._`);
+  return L.join('\n');
+}
+
 /* ---------- confirmação na fonte primária ----------
    Pra cada mostra nova ou divergente, abre o site da própria casa e diz se o
    título aparece. Não decide nada — só poupa o clique de abrir o site quando o
@@ -525,8 +654,28 @@ function relatorio(r, DATA, meses) {
 
 /* ---------- main ---------- */
 (async () => {
-  const meses = mesesAlvo();
   const DATA = carregarDados();
+
+  if (tem('diretorio')) {
+    console.log(`radar-fontes --diretorio · ${HOJE}`);
+    const entradas = [...await diretorioAQA(), ...await diretorioGuiaDasArtes()];
+    if (_browser) await _browser.close().catch(() => {});
+    const res = diretorioNovos(entradas, DATA);
+    console.log(`  ${res.totalDiretorio} espaço(s) no diretório · ${res.novos.length} não mapeado(s)`);
+    if (res.erros.length) res.erros.forEach(e => console.log('  ! ' + e));
+    const md = relatorioDiretorio(res, DATA);
+    const saida = flag('saida', null);
+    if (saida) {
+      fs.mkdirSync(path.dirname(path.resolve(RAIZ, saida)), { recursive: true });
+      fs.writeFileSync(path.resolve(RAIZ, saida), md, 'utf8');
+      console.log('  relatório em ' + saida);
+    } else {
+      console.log('\n' + md);
+    }
+    return;
+  }
+
+  const meses = mesesAlvo();
   console.log(`radar-fontes · ${HOJE} · meses ${meses.join(', ')}`);
 
   const cands = [];
