@@ -1867,6 +1867,278 @@
    "ig": "galatea.art_",
    "visto": "2026-09-14",
    "primeiroRegistro": "2026-08-31"
+  },
+  {
+   "id": "historias-latino-americanas--masp",
+   "t": "Histórias Latino-Americanas",
+   "a": "",
+   "v": "MASP",
+   "ini": "2026-09-04",
+   "fim": "2027-01-31",
+   "d": "Coletiva internacional em cinco núcleos temáticos sobre a construção histórica da ideia de América Latina. Curadoria de Amanda Carneiro e Julieta González, curadora-adjunta do MASP, com assistência de Teo Teotonio.",
+   "bairro": "Bela Vista",
+   "zona": "Centro",
+   "addr": "Av. Paulista, 1578",
+   "tipo": "institucional",
+   "site": "https://masp.org.br",
+   "ig": "masp",
+   "visto": "2026-09-14"
+  },
+  {
+   "id": "por-elas-com-elas-do-moderno-ao-contemporaneo--dan-galeria",
+   "t": "Por Elas, Com Elas: Do Moderno ao Contemporâneo",
+   "a": "",
+   "v": "DAN Galeria",
+   "ini": "2026-09-09",
+   "fim": "2026-11-07",
+   "d": "Coletiva com obras de meados do século 20 aos dias atuais, em núcleo histórico — com Tarsila do Amaral, Anita Malfatti, Lygia Clark e Tomie Ohtake — e núcleo contemporâneo. Curadoria de Maria Alice Milliet.",
+   "bairro": "Jardim América",
+   "zona": "Oeste",
+   "addr": "R. Estados Unidos, 1638",
+   "tipo": "galeria",
+   "site": "https://www.dangaleria.com.br",
+   "ig": "dangaleria",
+   "visto": "2026-09-14"
+  },
+  {
+   "id": "sempre-acesa--galeria-luis-maluf",
+   "t": "Sempre Acesa",
+   "a": "Guilherme Santos da Silva",
+   "v": "Galeria Luis Maluf",
+   "ini": "2026-06-27",
+   "fim": "2026-09-16",
+   "d": "Exposição individual, na sede da Rua Peixoto Gomide.",
+   "bairro": "Jardim Paulista",
+   "zona": "Oeste",
+   "addr": "R. Peixoto Gomide, 1887",
+   "tipo": "galeria",
+   "site": "https://luismaluf.com",
+   "ig": "luis_maluf",
+   "visto": "2026-09-14"
+  },
+  {
+   "id": "uma-coisa-leva-a-outra--galeria-luis-maluf",
+   "t": "Uma Coisa Leva à Outra",
+   "a": "Fernanda Pompermayer",
+   "v": "Galeria Luis Maluf",
+   "ini": "2026-08-22",
+   "fim": "2026-09-23",
+   "d": "Exposição individual, na unidade da Barra Funda.",
+   "bairro": "Jardim Paulista",
+   "zona": "Oeste",
+   "addr": "R. Peixoto Gomide, 1887",
+   "tipo": "galeria",
+   "site": "https://luismaluf.com",
+   "ig": "luis_maluf",
+   "visto": "2026-09-14"
+  },
+  {
+   "id": "mensageiro-da-manha--almeida-e-dale",
+   "t": "Mensageiro da Manhã",
+   "a": "André Ricardo",
+   "v": "Almeida & Dale",
+   "ini": "2026-08-15",
+   "fim": "2026-09-19",
+   "d": "Exposição individual.",
+   "bairro": "Jardim Paulista",
+   "zona": "Oeste",
+   "addr": "R. Caconde, 152",
+   "tipo": "galeria",
+   "site": "https://www.almeidaedale.com.br",
+   "ig": "almeidaedale",
+   "visto": "2026-09-14"
+  },
+  {
+   "id": "abstencoes-uma-miragem-mas-permanente--almeida-e-dale",
+   "t": "Abstenções (uma miragem, mas permanente)",
+   "a": "Nino Kapanadze",
+   "v": "Almeida & Dale",
+   "ini": "2026-08-15",
+   "fim": "2026-09-19",
+   "d": "Exposição individual.",
+   "bairro": "Jardim Paulista",
+   "zona": "Oeste",
+   "addr": "R. Caconde, 152",
+   "tipo": "galeria",
+   "site": "https://www.almeidaedale.com.br",
+   "ig": "almeidaedale",
+   "visto": "2026-09-14"
+  },
+  {
+   "id": "autobiografia-de-um-fio--galeria-nara-roesler",
+   "t": "Autobiografia de um Fio",
+   "a": "Sheila Hicks",
+   "v": "Galeria Nara Roesler",
+   "ini": "2026-08-29",
+   "fim": "2026-10-24",
+   "d": "Exposição individual.",
+   "bairro": "Jardim Europa",
+   "zona": "Oeste",
+   "addr": "Av. Europa, 655",
+   "tipo": "galeria",
+   "site": "https://nararoesler.art",
+   "ig": "galerianararoesler",
+   "visto": "2026-09-14"
+  },
+  {
+   "id": "abismos-urbanos-e-o-plano-celeste--galeria-lume",
+   "t": "Abismos Urbanos e o Plano Celeste",
+   "a": "Eduardo Coimbra",
+   "v": "Galeria Lume",
+   "ini": "2026-09-12",
+   "fim": "2026-11-14",
+   "d": "Exposição individual.",
+   "bairro": "Jardim Europa",
+   "zona": "Oeste",
+   "addr": "R. Gumercindo Saraiva, 54 ~",
+   "tipo": "galeria",
+   "site": "https://www.galerialume.com",
+   "ig": "galerialume",
+   "visto": "2026-09-14"
+  },
+  {
+   "id": "territorio-de-disputa--galeria-lume",
+   "t": "Território de Disputa",
+   "a": "Kilian Glasner",
+   "v": "Galeria Lume",
+   "ini": "2026-09-12",
+   "fim": "2026-11-14",
+   "d": "Exposição individual.",
+   "bairro": "Jardim Europa",
+   "zona": "Oeste",
+   "addr": "R. Gumercindo Saraiva, 54 ~",
+   "tipo": "galeria",
+   "site": "https://www.galerialume.com",
+   "ig": "galerialume",
+   "visto": "2026-09-14"
+  },
+  {
+   "id": "ambiguidade-construtiva-e-ativacao-do-espaco--galeria-raquel-arnaud",
+   "t": "ambiguidade construtiva e ativação do espaço",
+   "a": "Wolfram Ullrich",
+   "v": "Galeria Raquel Arnaud",
+   "ini": "2026-09-02",
+   "fim": "2026-10-30",
+   "d": "Exposição individual; imagem de divulgação de autoria de Elizabeth Jobim.",
+   "bairro": "Vila Madalena",
+   "zona": "Oeste",
+   "addr": "R. Fidalga, 125",
+   "tipo": "galeria",
+   "site": "https://www.raquelarnaud.com",
+   "ig": "galeriaraquelarnaud",
+   "visto": "2026-09-14"
+  },
+  {
+   "id": "desculpe-rafael--galeria-dezoito",
+   "t": "Desculpe, Rafael",
+   "a": "Felipe Scandelari",
+   "v": "Galeria Dezoito",
+   "ini": "2026-09-12",
+   "fim": "2026-10-24",
+   "d": "Exposição individual, na sede paulistana da galeria.",
+   "bairro": "Vila Madalena",
+   "zona": "Oeste",
+   "addr": "R. Simpatia, 23",
+   "tipo": "galeria",
+   "site": "https://galeriadezoito.com",
+   "ig": "",
+   "visto": "2026-09-14"
+  },
+  {
+   "id": "longitudes--galeria-marilia-razuk",
+   "t": "Longitudes",
+   "a": "Johanna Calle",
+   "v": "Galeria Marília Razuk",
+   "ini": "2026-09-12",
+   "fim": "2026-12-12",
+   "d": "Exposição individual.",
+   "bairro": "Itaim Bibi",
+   "zona": "Sul",
+   "addr": "R. Jerônimo da Veiga, 131",
+   "tipo": "galeria",
+   "site": "https://www.galeriamariliarazuk.com.br",
+   "ig": "galeriamariliarazuk",
+   "visto": "2026-09-14"
+  },
+  {
+   "id": "cavalinhas-e-falesias--galeria-marilia-razuk",
+   "t": "Cavalinhas e Falésias",
+   "a": "Carolina Colichio",
+   "v": "Galeria Marília Razuk",
+   "ini": "2026-09-12",
+   "fim": "2026-11-03",
+   "d": "Exposição individual.",
+   "bairro": "Itaim Bibi",
+   "zona": "Sul",
+   "addr": "R. Jerônimo da Veiga, 131",
+   "tipo": "galeria",
+   "site": "https://www.galeriamariliarazuk.com.br",
+   "ig": "galeriamariliarazuk",
+   "visto": "2026-09-14"
+  },
+  {
+   "id": "antonio-peticov-a-exposicao--centro-cultural-sao-paulo-ccsp",
+   "t": "Antonio Peticov – A Exposição",
+   "a": "Antonio Peticov",
+   "v": "Centro Cultural São Paulo (CCSP)",
+   "ini": "2026-09-15",
+   "fim": "2026-09-20",
+   "d": "Retrospectiva de 50 anos de carreira, cerca de 400 obras entre pintura, desenho, escultura, instalação, gravura e música, no Piso Caio Graco.",
+   "bairro": "Paraíso",
+   "zona": "Centro",
+   "addr": "R. Vergueiro, 1000",
+   "tipo": "institucional",
+   "site": "https://centrocultural.sp.gov.br",
+   "ig": "",
+   "visto": "2026-09-14"
+  },
+  {
+   "id": "agua-oleo--gruta-espaco-de-arte-contemporanea",
+   "t": "Água / Óleo",
+   "a": "Marina Sader, Poli Pieratti",
+   "v": "GRUTA Espaço de Arte Contemporânea",
+   "ini": "2026-08-22",
+   "fim": "2026-09-19",
+   "d": "Coletiva com curadoria de Ariana Nuala, na sede da Barra Funda.",
+   "bairro": "Barra Funda",
+   "zona": "Centro",
+   "addr": "R. Barra Funda, 450 ~",
+   "tipo": "galeria",
+   "site": "https://www.gruta.cc",
+   "ig": "gruta.cc",
+   "visto": "2026-09-14"
+  },
+  {
+   "id": "habitar-sao-paulo-relatos-femininos--casa-museu-ema-klabin",
+   "t": "Habitar São Paulo: relatos femininos",
+   "a": "",
+   "v": "Casa Museu Ema Klabin",
+   "ini": "2026-05-30",
+   "fim": "2026-09-27",
+   "d": "Coletiva de relatos femininos sobre a cidade de São Paulo.",
+   "bairro": "Jardim Europa",
+   "zona": "Oeste",
+   "addr": "R. Portugal, 43",
+   "tipo": "institucional",
+   "site": "https://emaklabin.org.br",
+   "ig": "",
+   "visto": "2026-09-14"
+  },
+  {
+   "id": "do-museu-ao-atelie-do-atelie-ao-museu-o-que-a-grafica-pode-imaginar--museu-lasar-segall",
+   "t": "Do museu ao ateliê, do ateliê ao museu: o que a gráfica pode imaginar?",
+   "a": "",
+   "v": "Museu Lasar Segall",
+   "ini": "2026-07-18",
+   "fim": "2026-10-19",
+   "d": "Coletiva reunindo gravura em metal, xilogravura, monotipia e desenho de doze artistas visuais.",
+   "bairro": "Vila Mariana",
+   "zona": "Sul",
+   "addr": "R. Berta, 111",
+   "tipo": "institucional",
+   "site": "https://museulasarsegall.org.br",
+   "ig": "",
+   "visto": "2026-09-14"
   }
  ],
  "artistas": {
@@ -2180,13 +2452,15 @@
   "andre-ricardo": {
    "nome": "André Ricardo",
    "mostras": [
-    "mensageiro-da-manha-andre-ricardo--almeida-e-dale-millan"
+    "mensageiro-da-manha-andre-ricardo--almeida-e-dale-millan",
+    "mensageiro-da-manha--almeida-e-dale"
    ]
   },
   "nino-kapanadze": {
    "nome": "Nino Kapanadze",
    "mostras": [
-    "abstencoes-uma-miragem-mas-permanente-nino-kapanadze--almeida-e-dale-millan"
+    "abstencoes-uma-miragem-mas-permanente-nino-kapanadze--almeida-e-dale-millan",
+    "abstencoes-uma-miragem-mas-permanente--almeida-e-dale"
    ]
   },
   "erica-magalhaes": {
@@ -2669,6 +2943,78 @@
    "nome": "Efrain Almeida",
    "mostras": [
     "o-homem-nu-efrain-almeida--fortes-d-aloia-e-gabriel-galpao"
+   ]
+  },
+  "guilherme-santos-da-silva": {
+   "nome": "Guilherme Santos da Silva",
+   "mostras": [
+    "sempre-acesa--galeria-luis-maluf"
+   ]
+  },
+  "fernanda-pompermayer": {
+   "nome": "Fernanda Pompermayer",
+   "mostras": [
+    "uma-coisa-leva-a-outra--galeria-luis-maluf"
+   ]
+  },
+  "sheila-hicks": {
+   "nome": "Sheila Hicks",
+   "mostras": [
+    "autobiografia-de-um-fio--galeria-nara-roesler"
+   ]
+  },
+  "eduardo-coimbra": {
+   "nome": "Eduardo Coimbra",
+   "mostras": [
+    "abismos-urbanos-e-o-plano-celeste--galeria-lume"
+   ]
+  },
+  "kilian-glasner": {
+   "nome": "Kilian Glasner",
+   "mostras": [
+    "territorio-de-disputa--galeria-lume"
+   ]
+  },
+  "wolfram-ullrich": {
+   "nome": "Wolfram Ullrich",
+   "mostras": [
+    "ambiguidade-construtiva-e-ativacao-do-espaco--galeria-raquel-arnaud"
+   ]
+  },
+  "felipe-scandelari": {
+   "nome": "Felipe Scandelari",
+   "mostras": [
+    "desculpe-rafael--galeria-dezoito"
+   ]
+  },
+  "johanna-calle": {
+   "nome": "Johanna Calle",
+   "mostras": [
+    "longitudes--galeria-marilia-razuk"
+   ]
+  },
+  "carolina-colichio": {
+   "nome": "Carolina Colichio",
+   "mostras": [
+    "cavalinhas-e-falesias--galeria-marilia-razuk"
+   ]
+  },
+  "antonio-peticov": {
+   "nome": "Antonio Peticov",
+   "mostras": [
+    "antonio-peticov-a-exposicao--centro-cultural-sao-paulo-ccsp"
+   ]
+  },
+  "marina-sader": {
+   "nome": "Marina Sader",
+   "mostras": [
+    "agua-oleo--gruta-espaco-de-arte-contemporanea"
+   ]
+  },
+  "poli-pieratti": {
+   "nome": "Poli Pieratti",
+   "mostras": [
+    "agua-oleo--gruta-espaco-de-arte-contemporanea"
    ]
   }
  },
@@ -3592,6 +3938,346 @@
    "site": "https://galeriacontempo.com.br",
    "ig": "",
    "info": "Dirigida por Marcia e Mônica Felmanas; em 2026 promoveu o retorno da obra de Aldir Mendes de Souza ao circuito expositivo. Segunda a sexta, 10h–19h; sábado, 10h–16h."
+  },
+  "am-galeria": {
+   "name": "AM Galeria",
+   "addr": "Av. Nove de Julho, 4865",
+   "b": "Itaim Bibi",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://amgaleria.com.br",
+   "ig": "amgaleriadearte",
+   "info": "Investigações escultóricas em mármore e fios metálicos, entre outras linguagens."
+  },
+  "casa-seva": {
+   "name": "Casa Seva",
+   "addr": "Al. Lorena, 1257, Casa 1",
+   "b": "Jardins",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://casaseva.com",
+   "ig": "",
+   "info": "Espaço dedicado a arte e sustentabilidade, entrada gratuita. Terça a sexta, 11h–18h."
+  },
+  "casa-museu-ema-klabin": {
+   "name": "Casa Museu Ema Klabin",
+   "addr": "R. Portugal, 43",
+   "b": "Jardim Europa",
+   "z": "Oeste",
+   "tipo": "institucional",
+   "site": "https://emaklabin.org.br",
+   "ig": "",
+   "info": "Casa-museu da Fundação Ema Gordon Klabin, com acervo de arte e objetos. Quarta a domingo, 11h–17h."
+  },
+  "fibra-galeria": {
+   "name": "Fibra Galeria",
+   "addr": "R. Tinhorão, 69",
+   "b": "Higienópolis",
+   "z": "Centro",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "",
+   "info": "Galeria e leiloeira desde 2012, com exposições individuais e coletivas além de leilões mensais."
+  },
+  "folio-galeria": {
+   "name": "Fólio Galeria",
+   "addr": "R. Pedroso Alvarenga, 1046",
+   "b": "Itaim Bibi",
+   "z": "Sul",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "foliogaleria",
+   "info": "Especializada em livros de artista, edições limitadas e obras em papel desde 2000. Atendimento com hora marcada."
+  },
+  "galeria-frente": {
+   "name": "Galeria Frente",
+   "addr": "R. Dr. Melo Alves, 400",
+   "b": "Cerqueira César",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://galeriafrente.com.br",
+   "ig": "",
+   "info": "Já expôs Portinari, Tarsila do Amaral e Tomie Ohtake."
+  },
+  "fundacao-maria-luisa-e-oscar-americano": {
+   "name": "Fundação Maria Luisa e Oscar Americano",
+   "addr": "Av. Morumbi, 4077",
+   "b": "Morumbi",
+   "z": "Oeste",
+   "tipo": "institucional",
+   "site": "https://fundacaooscaramericano.org.br",
+   "ig": "",
+   "info": "Casa-museu com 75 mil m² de área verde. Terça a domingo, 10h–17h30."
+  },
+  "bergamin-e-gomide": {
+   "name": "Bergamin & Gomide",
+   "addr": "R. Oscar Freire, 379, Lj 1",
+   "b": "Jardins",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://bergamingomide.com.br",
+   "ig": "",
+   "info": "Desde 2000, já expôs Iberê Camargo, Mira Schendel, Lygia Pape e Tunga."
+  },
+  "galeria-carbono": {
+   "name": "Galeria Carbono",
+   "addr": "R. Joaquim Antunes, 59",
+   "b": "Jardim Paulistano",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://carbonogaleria.com.br",
+   "ig": "",
+   "info": "Edições de arte contemporânea (múltiplos, gravuras, livros de artista) desde 2013, membro da ABACT. Entrada gratuita."
+  },
+  "espaco-arte-m-mizrahi": {
+   "name": "Espaço Arte M. Mizrahi",
+   "addr": "Al. Ministro Rocha Azevedo, 1082",
+   "b": "Cerqueira César",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "",
+   "info": "Galeria desde 2001, presente na Artsy e na SP-Arte. Nova sede em Jardins desde agosto de 2025."
+  },
+  "estacao-pinacoteca": {
+   "name": "Estação Pinacoteca",
+   "addr": "Largo General Osório, 66",
+   "b": "Santa Ifigênia",
+   "z": "Centro",
+   "tipo": "institucional",
+   "site": "https://pinacoteca.org.br",
+   "ig": "",
+   "info": "Prédio \"Pina Estação\" da Pinacoteca de São Paulo — mesma instituição, endereço e programação próprios."
+  },
+  "galeria-olido": {
+   "name": "Galeria Olido",
+   "addr": "Av. São João, 473",
+   "b": "Centro",
+   "z": "Centro",
+   "tipo": "institucional",
+   "site": "",
+   "ig": "",
+   "info": "Centro cultural municipal com salas de exposição e Centro de Fotografia, reformado em 2004."
+  },
+  "galeria-pilar": {
+   "name": "Galeria Pilar",
+   "addr": "R. Barra Funda, 1030",
+   "b": "Santa Cecília",
+   "z": "Centro",
+   "tipo": "galeria",
+   "site": "https://galeriapilar.com",
+   "ig": "",
+   "info": "Desde 2011, 400 m² de espaço expositivo."
+  },
+  "galeria-tato": {
+   "name": "Galeria Tato",
+   "addr": "R. Barra Funda, 893",
+   "b": "Barra Funda",
+   "z": "Centro",
+   "tipo": "galeria",
+   "site": "https://www.galeriatato.com",
+   "ig": "galeriatato",
+   "info": "Fundada em 2010 por Tato DiLascio."
+  },
+  "gravura-brasileira": {
+   "name": "Gravura Brasileira",
+   "addr": "R. Ásia, 219",
+   "b": "Cerqueira César",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "http://cantogravura.com.br",
+   "ig": "",
+   "info": "Fundada em 1998, único espaço do país dedicado exclusivamente à gravura. Acervo de cerca de 3 mil gravuras originais."
+  },
+  "instituto-care": {
+   "name": "Instituto Çarê",
+   "addr": "R. Dr. Avelino Chaves, 138",
+   "b": "Vila Leopoldina",
+   "z": "Oeste",
+   "tipo": "institucional",
+   "site": "https://institutocare.org.br",
+   "ig": "institutoculturalcare",
+   "info": "Organização sem fins lucrativos criada em 2019, com núcleos de Acervos, Artes Visuais, Educação, Música e Pesquisa."
+  },
+  "lombardi-galeria": {
+   "name": "Lombardi Galeria",
+   "addr": "R. Joaquim Antunes, 187",
+   "b": "Jardim Paulistano",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "lombardigaleria",
+   "info": "Projeto focado em fotografia autoral como linguagem artística."
+  },
+  "martins-e-montero": {
+   "name": "Martins&Montero",
+   "addr": "R. Jamaica, 50 ~",
+   "b": "Jardim América",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://martinsemontero.com",
+   "ig": "martinsemontero",
+   "info": "Unidades em São Paulo e Bruxelas."
+  },
+  "mits-galeria": {
+   "name": "MITS Galeria",
+   "addr": "R. Padre João Manuel, 740",
+   "b": "Jardim Paulista",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "mits.galeria",
+   "info": "Galeria contemporânea criada em 2023."
+  },
+  "mube": {
+   "name": "MuBE",
+   "addr": "R. Alemanha, 221",
+   "b": "Jardim Europa",
+   "z": "Oeste",
+   "tipo": "institucional",
+   "site": "https://mube.art.br",
+   "ig": "",
+   "info": "Museu Brasileiro de Escultura e Ecologia. Acervo arqueológico da FUMDHAM (Piauí) ao lado de escultura, desenho, pintura, gravura, fotografia e vídeo contemporâneos."
+  },
+  "museu-de-arte-sacra-de-sao-paulo": {
+   "name": "Museu de Arte Sacra de São Paulo",
+   "addr": "Av. Tiradentes, 676",
+   "b": "Luz",
+   "z": "Centro",
+   "tipo": "institucional",
+   "site": "https://museuartesacra.org.br",
+   "ig": "",
+   "info": "Na ala esquerda do Mosteiro da Luz. Via-Sacra de Victor Brecheret em terracota (1942–1946); obras de Anita Malfatti e Aldo Bonadei."
+  },
+  "museu-lasar-segall": {
+   "name": "Museu Lasar Segall",
+   "addr": "R. Berta, 111",
+   "b": "Vila Mariana",
+   "z": "Sul",
+   "tipo": "institucional",
+   "site": "https://museulasarsegall.org.br",
+   "ig": "",
+   "info": "Museu federal (Ibram) dedicado ao pintor e gravador Lasar Segall."
+  },
+  "oficina-cultural-oswald-de-andrade": {
+   "name": "Oficina Cultural Oswald de Andrade",
+   "addr": "R. Três Rios, 363",
+   "b": "Bom Retiro",
+   "z": "Centro",
+   "tipo": "institucional",
+   "site": "https://oficinasculturais.org.br",
+   "ig": "",
+   "info": "Prédio histórico inaugurado em 1905."
+  },
+  "olhao": {
+   "name": "Olhão",
+   "addr": "R. Barra Funda, 288",
+   "b": "Barra Funda",
+   "z": "Centro",
+   "tipo": "hibrido",
+   "site": "",
+   "ig": "",
+   "info": "Espaço experimental — jardim, cozinha, banheiro e telhado ocupados com objetos, esculturas, pinturas, performances e instalações. Visitas por agendamento."
+  },
+  "paco-das-artes": {
+   "name": "Paço das Artes",
+   "addr": "R. Dr. Albuquerque Lins, 1345",
+   "b": "Higienópolis",
+   "z": "Centro",
+   "tipo": "institucional",
+   "site": "https://pacodasartes.org.br",
+   "ig": "",
+   "info": "Instituição da Secretaria de Cultura do Estado de SP."
+  },
+  "pinacoteca-contemporanea": {
+   "name": "Pinacoteca Contemporânea",
+   "addr": "Av. Tiradentes, 273",
+   "b": "Luz",
+   "z": "Centro",
+   "tipo": "institucional",
+   "site": "https://pinacoteca.org.br",
+   "ig": "",
+   "info": "Terceiro prédio da Pinacoteca de São Paulo, inaugurado em 2023, integrado aos prédios Pina Luz e Pina Estação — ingresso único."
+  },
+  "quadra-galeria": {
+   "name": "Quadra Galeria",
+   "addr": "R. Barão de Tatuí, 521",
+   "b": "Vila Buarque",
+   "z": "Centro",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "quadragaleria",
+   "info": "Unidades em São Paulo e Rio de Janeiro."
+  },
+  "red-bull-station": {
+   "name": "Red Bull Station",
+   "addr": "R. Frei Caneca, 569",
+   "b": "Consolação",
+   "z": "Centro",
+   "tipo": "institucional",
+   "site": "https://redbullstation.com.br",
+   "ig": "",
+   "info": "Antiga subestação de energia desativada desde 2004, reformada para arte. Programa de residência artística regular."
+  },
+  "sancovsky": {
+   "name": "Sancovsky",
+   "addr": "Pça. Benedito Calixto, 103",
+   "b": "Pinheiros",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "https://galeriasancovsky.com",
+   "ig": "",
+   "info": "Dirigida por Marcos Sancovsky, expõe pintura, vídeo, escultura e performance."
+  },
+  "tendal-da-lapa": {
+   "name": "Tendal da Lapa",
+   "addr": "R. Guaicurus, 1100",
+   "b": "Lapa",
+   "z": "Oeste",
+   "tipo": "institucional",
+   "site": "",
+   "ig": "",
+   "info": "Complexo cultural apelidado \"A Fábrica dos Sonhos\", originalmente centro de distribuição de carnes construído a partir de 1936."
+  },
+  "vila-itororo": {
+   "name": "Vila Itororó",
+   "addr": "R. Maestro Cardim, 60",
+   "b": "Bela Vista",
+   "z": "Centro",
+   "tipo": "institucional",
+   "site": "https://vilaitororo.prefeitura.sp.gov.br",
+   "ig": "",
+   "info": "Construída entre 1922 e 1929, virou centro cultural municipal em 2021, ruínas arquitetônicas preservadas."
+  },
+  "galeria-virgilio": {
+   "name": "Galeria Virgilio",
+   "addr": "R. Dr. Virgilio de Carvalho Pinto, 426",
+   "b": "Pinheiros",
+   "z": "Oeste",
+   "tipo": "galeria",
+   "site": "http://www.galeriavirgilio.com.br",
+   "ig": "galeria.virgilio",
+   "info": "Aberta em 2002 por Izabel Pinheiro, representa artistas contemporâneos emergentes."
+  },
+  "memorial-da-america-latina": {
+   "name": "Memorial da América Latina",
+   "addr": "Av. Auro Soares de Moura Andrade, 664",
+   "b": "Barra Funda",
+   "z": "Oeste",
+   "tipo": "institucional",
+   "site": "https://memorial.org.br",
+   "ig": "",
+   "info": "Galeria Marta Traba: único espaço museológico do Brasil inteiramente dedicado à arte latino-americana, 1.000 m² circulares."
+  },
+  "pavilhao-das-culturas-brasileiras": {
+   "name": "Pavilhão das Culturas Brasileiras",
+   "addr": "Parque Ibirapuera, portão 2 ~",
+   "b": "Ibirapuera",
+   "z": "Sul",
+   "tipo": "institucional",
+   "site": "",
+   "ig": "",
+   "info": "Edifício de 11 mil m² projetado por Oscar Niemeyer nos anos 1950, tombado nas três esferas de patrimônio."
   }
  },
  "atualizado": "2026-09-14"
