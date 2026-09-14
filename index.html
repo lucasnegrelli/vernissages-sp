@@ -1377,7 +1377,10 @@ renderFoco();
 
 /* vernissages da semana + compartilhar */
 function weekBanner(){
-  const end=new Date(TODAY.getTime()+7*864e5), start=new Date(TODAY.getTime()-7*864e5);
+  // Só aberturas de hoje pra frente — "esta semana" virou vitrine de mostra
+  // que já tinha aberto há dias, com selo JÁ ABRIU disfarçando que não tinha
+  // novidade nenhuma. Sem abertura nova, a seção some (já tratado abaixo).
+  const end=new Date(TODAY.getTime()+7*864e5), start=TODAY;
 const wk=expos.filter(e=>{const d=new Date(e.ini+'T12:00');return d<=end&&d>=start;}).sort((a,c)=>a.ini.localeCompare(c.ini));
   const w=document.getElementById('wkwrap');
   if(!wk.length){w.style.display='none';return}
@@ -1385,8 +1388,8 @@ const wk=expos.filter(e=>{const d=new Date(e.ini+'T12:00');return d<=end&&d>=sta
   const wr=document.getElementById('wkrow');
   wr.classList.toggle('poucos',wk.length<=3);
   wr.innerHTML=wk.map(e=>`<div class="wk" onclick="focusVenue('${e.ven.name.replace(/'/g,"\\'")}')">
-    <div class="d">${fmt(e.ini)}${e.ini===HOJESTR?'<span class="nw hj">HOJE</span>':(new Date(e.ini+'T12:00')<TODAY?'<span class="nw">JÁ ABRIU</span>':'')}</div><div class="t">${tituloLimpo(e)}</div><div class="v">${e.ven.name} · ${e.ven.b}</div></div>`).join('');
-  const txt='Vernissages SP — aberturas da semana:\n'+wk.map(e=>`• ${fmt(e.ini)}${e.ini===HOJESTR?' (hoje!)':(new Date(e.ini+'T12:00')<TODAY?' (já abriu)':'')} — ${e.t} @ ${e.ven.name} (${e.ven.b})`).join('\n')+'\n\nAgenda completa, mapa e roteiros: https://vernissagessp.com.br/';
+    <div class="d">${fmt(e.ini)}${e.ini===HOJESTR?'<span class="nw hj">HOJE</span>':''}</div><div class="t">${tituloLimpo(e)}</div><div class="v">${e.ven.name} · ${e.ven.b}</div></div>`).join('');
+  const txt='Vernissages SP — aberturas da semana:\n'+wk.map(e=>`• ${fmt(e.ini)}${e.ini===HOJESTR?' (hoje!)':''} — ${e.t} @ ${e.ven.name} (${e.ven.b})`).join('\n')+'\n\nAgenda completa, mapa e roteiros: https://vernissagessp.com.br/';
   window._wkTxt=txt;
   document.getElementById('waShare').href='https://wa.me/?text='+encodeURIComponent(txt);
   setTimeout(wkFade,60);
