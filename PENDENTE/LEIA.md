@@ -1,110 +1,60 @@
-# PENDENTE — 2026-09-13 (rotina de domingo, `vsp-semana`)
+# PENDENTE — 2026-09-14 (rotina de domingo, `vsp-semana`)
 
 ## O que falhou
 
-**Acesso à rede bloqueado nesta execução.** Todo `WebFetch` para domínio externo
-voltou `EGRESS_BLOCKED` — inclusive `example.com` e `artequeacontece.com.br`,
-não só os sites das casas (`masp.org.br`, `dangaleria.com.br`,
-`mendeswooddm.com`). Não é bloqueio de domínio específico: é a política de
-rede deste ambiente de nuvem, que não abre internet geral (só os hosts de
-pacote/API já liberados por padrão). Sem isso, o Passo 3 do runbook — abrir a
-página da própria casa pra confirmar título, datas e cidade antes de escrever
-no `dados.js` — é impossível de cumprir.
+**Acesso à rede continua bloqueado — segunda semana seguida.** Testado
+`WebFetch` em dois domínios (`masp.org.br` e `example.com`, este último só
+para confirmar que não é bloqueio por domínio): ambos voltaram
+`EGRESS_BLOCKED`. Mesma causa raiz do `PENDENTE/LEIA.md` de 13/09: política de
+rede do ambiente de nuvem, não algo específico de site.
 
-Como o S1 existe justamente para *confirmar antes de aplicar*, e a trava
-"nunca inventar dado" é absoluta, **nada foi escrito em `dados.js` nesta
-rodada.** `git pull --rebase` rodou limpo (sem conflito, sem novidade do
-remoto).
+Sem `WebFetch` funcionando, o Passo 3 do runbook — abrir a página da própria
+casa pra confirmar título, datas e cidade antes de escrever no `dados.js` — é
+impossível de novo. **Nada foi escrito em `dados.js` nesta rodada.**
 
-## O que ficou pendente, por issue
+## O que verifiquei antes de desistir
 
-### Issue #4 — Radar de fontes, 2026-09-12 (a mais recente; ainda aberta)
+- `git pull --rebase origin main`: limpo, sem conflito, sem commit novo do
+  remoto além do que já estava (`508eb53`, o próprio `FALHOU` de 13/09).
+- Issues `radar` abertas: **#4** (2026-09-12) e **#2** (2026-09-05) — as
+  mesmas de semana passada. Conferido via `mcp__github__actions_list` que o
+  `radar.yml` só rodou duas vezes no total (05/09 e 12/09); **não rodou de
+  novo desde então**, então não há conteúdo novo pra tratar além do que já
+  estava pendente.
+- Issues `garimpo` abertas: **#5** (2026-09-12), **#3** (2026-09-05), **#1**
+  (2026-08-29) — mesmas quatro propostas de imagem de sempre (Itaú Cultural
+  ×2, Sesc Pinheiros, MAM São Paulo), agora **quatro semanas** sem decisão.
+  Mesma trava de rede impede abrir as URLs de imagem pra julgar obra vs.
+  cartaz.
+- `node check.js` no estado atual (sem nenhuma edição minha): termina em
+  **"OK. Pode commitar."** — o `E20` que travava a semana passada
+  (Galeria Museu da Imigração repetida em `foco`) não aparece mais; a diária
+  já rodou e resolveu sozinha, como esperado. Isso só confirma que a base
+  está saudável — não há nada meu para commitar nela.
 
-Supersede a #2 (abaixo) no essencial — mesmos dois itens de divergência, e as
-"novas" da #2 continuam de fora da base.
+## Pendências (sem mudança de conteúdo desde 13/09 — ver aquele arquivo para o detalhe completo)
 
-**Novas — casa já mapeada (confirmar em `masp.org.br` e `dangaleria.com.br`):**
-- *Histórias Latino-Americanas* — MASP, 2026-09-04 → 2026-12-31. Confirmar
-  título, datas, e achar um fato concreto pro campo `d` (não usar o texto do
-  agregador).
-- *Por Elas, Com Elas: Do Moderno ao Contemporâneo* — DAN Galeria,
-  2026-09-09 → 2026-11-07. Idem.
-
-**Divergência de data (confirmar em `masp.org.br` e `mendeswooddm.com`):**
-- *Casa María Lionza — Sol Calero* (MASP, já na base): base tem
-  `fim:"2027-01-30"`, agregador diz `2027-05-30`. Abrir a página oficial e
-  corrigir o campo `fim` com o que estiver lá — hoje a base pode estar errada
-  (encerrando cedo demais) ou o agregador pode estar errado (data longe
-  demais). Linha 138 do `dados.js`.
-- *Pequeno mapa do tempo — Paula Siebra* (Mendes Wood DM, já na base, linha
-  160): checar se "Mendes Wood DM — Casa Iramaia" (o que a base tem) é
-  mesmo o espaço da mostra, ou se o agregador está certo ao casar só com
-  "Mendes Wood DM" (espaço principal, Barra Funda). Ajustar `v:` se for o
-  caso.
-
-**Casa não mapeada (só relatar, não adicionar venue — vale registrar pro
-Lucas decidir):** Casa Bradesco, Estação Pinacoteca, Galeria Base, Biblioteca
-Mário de Andrade – BMA.
-
-**Editais possíveis novos (confirmar prazo, quem pode se inscrever, taxa e
-elegibilidade SP na fonte oficial, um por um):**
-- *Residência Artística The PIPA Foundation na Gasworks* — prazo lido no
-  texto: 2026-09-13 (**hoje** — pode já estar vencido a esta altura;
-  confirmar e, se vencido, ignorar). Link:
-  https://www.premiopipa.com/2026/09/residencia-artistica-the-pipa-foundation-na-gasworks-abertura-das-inscricoes-em-1309/
-- *2º Salão Nacional de Arte Contemporânea de Goiás* — prazo lido: 2026-09-25,
-  mas o trecho do próprio texto fala em inscrições "até 24 de maio" — checar
-  se há prorrogação real ou se o prazo lido está errado. Link:
-  https://dasartes.com.br/de-arte-a-z/2o-salao-nacional-de-arte-contemporanea-de-goias-oferece-r-160-mil-em-premiacoes/
-- *Estudantes brasileiros — Quadrienal de Praga* — prazo lido: 2026-10-31,
-  conferir se cabe artista/estudante com atuação em SP. Link:
-  https://dasartes.com.br/de-arte-a-z/estudantes-brasileiros-ganham-convocatoria-para-a-quadrienal-de-praga/
-
-### Issue #2 — Radar de fontes, 2026-09-05 (mais antiga, também aberta)
-
-Parece nunca ter sido processada (nenhum dos itens está no `dados.js`). O
-único item que não repete na #4 é *Síntese — Arte e Tecnologia* (Itaú
-Cultural, "pode ter encerrado") — já não está em `dados.js`, então esse já
-saiu da base por conta própria e não precisa de ação. O resto (a mostra nova
-do MASP, as duas divergências, as casas não mapeadas) é o mesmo conteúdo da
-#4, tratado acima. Vale considerar fechar a #2 depois que a #4 for aplicada,
-pra não duplicar trabalho todo domingo.
-
-### Issues de `garimpo` (#5, #3, #1) — imagens propostas
-
-Também dependem de abrir a URL da imagem pra julgar obra vs. cartaz (mesma
-trava de rede). As mesmas quatro propostas (Itaú Cultural ×2, Sesc Pinheiros,
-MAM São Paulo) aparecem repetidas desde 29/08 sem decisão — nenhuma foi
-aceita ou recusada em três semanas. Não estava no escopo desta rodada
-(PASSOS do prompt só detalham a issue `radar`), mas registra aqui porque tem
-a mesma causa raiz.
-
-## Achado à parte — não é desta rotina, mas trava o `check.js`
-
-`node check.js` reprovou (rodada de hoje, sem nenhuma mudança minha) por
-**um** erro bloqueante:
-
-```
-[E20] Galeria Museu da Imigração esteve em foco em 2026-09-11, dentro da
-janela de 7 dias. Escolha outra.
-```
-
-Isso é competência da diária (`destaque.js`/`diaria.yml`), não do S1 — a
-trava do runbook proíbe esta rotina de mexer em `foco`/`destaques`. Só
-registro porque, se alguém tentar commitar qualquer coisa em `dados.js` hoje
-(inclusive as correções acima, quando a rede voltar), o `check.js` vai
-reprovar por essa razão até a diária rodar de novo e escolher outro destaque.
-Também sinaliza `atualizado` desatualizado (11/09) e o de sempre, `E13` da
-Coletivo Poíesis vencida — limpeza que é da diária, não do domingo.
+- Issue #4: 2 mostras novas (MASP — *Histórias Latino-Americanas*; DAN
+  Galeria — *Por Elas, Com Elas*), 2 divergências de data/venue (Sol Calero
+  no MASP; Paula Siebra na Mendes Wood DM), 4 casas não mapeadas (Casa
+  Bradesco, Estação Pinacoteca, Galeria Base, Biblioteca Mário de Andrade),
+  3 editais possíveis (PIPA/Gasworks — prazo lido 13/09, **já deve ter
+  vencido**; Salão de Goiás; Quadrienal de Praga).
+- Issue #2: mesmo conteúdo, mais antiga, considerar fechar depois que a #4
+  for aplicada.
+- Garimpo #5/#3/#1: 4 propostas de imagem sem decisão há 4 semanas.
 
 ## Como retomar
 
-1. Confirmar que o ambiente de nuvem tem saída de rede liberada (testar
-   `WebFetch` num domínio qualquer antes de tentar os sites das casas).
-2. Repetir o Passo 3 do runbook usando a issue #4 como base (ela já contém
-   tudo que a #2 tem, mais um item novo).
-3. Depois de aplicar, `node check.js` só vai fechar OK se a diária já tiver
-   resolvido o `E20` acima — checar isso antes de gastar tempo tentando
-   commitar.
-4. Considerar fechar as issues #2, #4 (radar) depois de aplicadas, e revisar
-   as três `garimpo` acumuladas de uma vez.
+1. Confirmar que o ambiente de nuvem tem saída de rede liberada **antes** de
+   iniciar a rotina — um `WebFetch` de teste em qualquer domínio resolve a
+   dúvida em segundos.
+2. Se seguir bloqueado numa terceira semana, vale o Lucas revisar a
+   configuração de rede deste ambiente (`claude.ai/code/routines` ou as
+   configurações do ambiente de execução) — duas falhas seguidas pela mesma
+   causa sugerem política de rede, não instabilidade pontual.
+3. Com rede disponível: repetir o Passo 3 usando a issue #4 (já cobre tudo
+   da #2). O edital do PIPA/Gasworks provavelmente já venceu (prazo lido
+   13/09) — confirmar e, se vencido, ignorar antes de gastar tempo nele.
+4. Revisar as 4 propostas de `garimpo` acumuladas de uma vez, já que nenhuma
+   foi decidida em um mês.
