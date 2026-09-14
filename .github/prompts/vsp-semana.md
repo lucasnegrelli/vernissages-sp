@@ -36,10 +36,11 @@ PASSOS:
    corrija e rode de novo. NUNCA commite sem.
 6. `git add -A && git commit -m "<mensagem descritiva>" && git push origin
    main`.
-   Sem novidade confirmada, nada de commit.
-7. Confirme o workflow 'valida dados.js' verde após o push: `gh run list
-   --repo lucasnegrelli/vernissages-sp --workflow=check.yml --limit 1
-   --json status,conclusion,headSha`.
+   Sem novidade confirmada, nada de commit. Não tente confirmar o workflow
+   'valida dados.js' no Actions depois do push — um push feito com o
+   GITHUB_TOKEN do próprio job não dispara outros workflows (limitação do
+   GitHub, não falha sua). A prova de validação já é a saída do
+   `node check.js` do passo 5.
 
 TRAVAS (sempre): nunca poste no Instagram; nunca invente data, endereço,
 autoria ou crédito — na dúvida deixe de fora e diga no resumo; nunca
