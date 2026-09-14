@@ -38,3 +38,6 @@ _to_delete/
 
 # Dossie, orcamento e material de captacao — dados de negocio, nao vai pro site.
 /EDITAIS/
+
+# Override pessoal de permissoes do Claude Code, nao e pra time nenhum.
+.claude/settings.local.json

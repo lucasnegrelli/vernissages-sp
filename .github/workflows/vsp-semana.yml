@@ -1,0 +1,75 @@
+name: Rotina de domingo — dados.js
+
+# S1 da Parte 2 do OPERACAO.md: aplica o que radar.yml e imagens.yml
+# levantaram no sabado. Ate 14/09/2026 isso rodava como "rotina de nuvem"
+# em claude.ai/code/routines — mesmo raciocinio, ambiente diferente.
+# Migrou pra ca porque o ambiente daquela rotina tinha WebFetch bloqueado
+# por politica de rede (EGRESS_BLOCKED em qualquer dominio externo, nao so
+# os sites das casas) e isso e exatamente o que essa rotina existe pra
+# fazer: abrir o site de cada casa e confirmar antes de escrever. Falhou
+# duas semanas seguidas (14 e 13/09) por isso. Runner do Actions tem
+# internet aberta e o gh CLI ja vem instalado — o problema fica resolvido
+# na causa, nao contornado.
+#
+# Diferenca dos outros workflows deste diretorio: aqueles sao script
+# deterministico (destaque.js, radar-fontes.js), sem julgamento nenhum.
+# Este roda o Claude Code de verdade — le prosa da issue, abre pagina
+# externa, decide se a data bate, escreve fato no padrao do ESTILO.md. Nao
+# da pra resolver com sed. O prompt fica em
+# .github/prompts/vsp-semana.md — edite ele, nao este arquivo, pra mudar o
+# que a rotina faz.
+
+on:
+  schedule:
+    # 13:17 UTC domingo — mesmo horario da rotina antiga.
+    - cron: '17 13 * * 0'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: read
+
+# Mesma logica do resto: nao deixa duas rodadas se atropelarem no push.
+concurrency:
+  group: vsp-semana
+  cancel-in-progress: false
+
+jobs:
+  vsp-semana:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Instalar Claude Code
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Configurar git
+        run: |
+          git config user.name "vernissages-bot"
+          git config user.email "actions@github.com"
+
+      - name: Rodar a rotina de domingo
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          claude -p "$(cat .github/prompts/vsp-semana.md)" \
+            --allowedTools "Bash,Read,Write,Edit,Glob,Grep,WebFetch,WebSearch" \
+            --dangerously-skip-permissions \
+            | tee /tmp/vsp-semana.log
+
+      - name: Resumo
+        if: always()
+        run: |
+          {
+            echo "## Rotina de domingo"
+            echo ""
+            echo '```'
+            cat /tmp/vsp-semana.log
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
