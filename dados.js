@@ -275,11 +275,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "confluências — Carolina Caycedo",
-  v: "MASP",
-  quem: "Carolina Caycedo",
-  txt: "Fotografia, instalação, vídeo, performance e desenho no cruzamento entre arte, saberes ribeirinhos e movimentos sociais. Curadoria de Isabella Rjeille. Abertura em 3 de julho, até 4 de outubro.",
-  link: "https://masp.org.br",
+  t: "Uma Obra: Pintura sem fim",
+  v: "Pinacoteca de São Paulo",
+  quem: "Gui Teixeira",
+  txt: "Terceira edição do projeto Uma Obra: uma parede de carpete recebe centenas de peças de feltro colorido que o público move e recompõe (Pina Luz). Colaboração do artista Gui Teixeira. Abertura em 4 de julho, até 31 de janeiro.",
+  link: "https://pinacoteca.org.br",
   publi: false
 };
 
@@ -294,6 +294,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-09-15", k:"Uma Obra: Pintura sem fim|Pinacoteca de São Paulo"},
   {d:"2026-09-14", k:"confluências — Carolina Caycedo|MASP"},
   {d:"2026-09-11", k:"Assim Bordei Meus Sonhos: Margarida L. Kanciukaitis Pandolfo|Museu da Imigração"},
   {d:"2026-09-10", k:"Mitologias do Mistério — Gabriel Omep|Casa de Cultura do Parque"},
@@ -349,5 +350,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "14/09/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "15/09/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
