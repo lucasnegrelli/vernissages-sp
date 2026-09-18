@@ -207,7 +207,6 @@ const EXPOS = [
 {t:"O homem nu — Efrain Almeida",a:"Efrain Almeida",v:"Fortes D'Aloia & Gabriel — Galpão",ini:"2026-08-22",fim:"2026-10-24",d:"Primeira mostra abrangente do artista na galeria desde sua morte: obras produzidas entre 1995 e 2024, entre escultura em madeira umburana, pintura a óleo, bordado e aquarela. Texto de Márcia Fortes.",img:"img/o-homem-nu-fortes-d-aloia-gabriel-galpao.jpg",cred:"Vista da exposição. Foto Eduardo Ortega / Cortesia Fortes D'Aloia & Gabriel",vista:true},
 {t:"No encalço do líquen — Tania Ximena",a:"Tania Ximena",v:"Galatea",ini:"2026-08-20",fim:"2026-10-17",d:"Individual da artista no espaço da Oscar Freire, com texto crítico de Miguel A. López.",img:"img/no-encalco-do-liquen.jpg",cred:"Cortesia Galatea"},
 {t:"Representações brasileiras — Bienal de Veneza (1978)",v:"Galatea",ini:"2026-08-20",fim:"2026-10-17",d:"Coletiva no espaço da Padre João Manuel sobre a representação brasileira na Bienal de Veneza de 1978; curadoria de Guto Ezek e Tomás Toledo."},
-{t:"A Fibra que conduz ao significado",a:"",v:"Espaço República",ini:"2026-08-22",fim:"2026-09-09",d:"Coletiva de arte têxtil com cerca de 60 artistas e coletivos, com curadoria de Liliam Barboza. Visitação de quarta a sábado, das 11h às 17h, na Sala Vera Helena, 5º andar.",img:"",cred:""},
 {t:"Por Elas, Com Elas: Do Moderno ao Contemporâneo",v:"DAN Galeria",ini:"2026-09-09",fim:"2026-11-07",d:"Coletiva com obras de meados do século 20 aos dias atuais, em núcleo histórico — com Tarsila do Amaral, Anita Malfatti, Lygia Clark e Tomie Ohtake — e núcleo contemporâneo. Curadoria de Maria Alice Milliet."},
 
 /* --- confirmadas na fonte primária em 14/09/2026, casas já mapeadas sem nada em cartaz na base --- */
@@ -275,11 +274,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Uma Obra: Pintura sem fim",
-  v: "Pinacoteca de São Paulo",
-  quem: "Gui Teixeira",
-  txt: "Terceira edição do projeto Uma Obra: uma parede de carpete recebe centenas de peças de feltro colorido que o público move e recompõe (Pina Luz). Colaboração do artista Gui Teixeira. Abertura em 4 de julho, até 31 de janeiro.",
-  link: "https://pinacoteca.org.br",
+  t: "Rajada encarnada — coletiva",
+  v: "Casa de Cultura do Parque",
+  quem: "",
+  txt: "II Ciclo Expositivo em parceria com o ICCo. Quarta a domingo, 11h–18h. Abertura em 25 de julho, até 25 de outubro.",
+  link: "https://ccparque.com.br",
   publi: false
 };
 
@@ -294,6 +293,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-09-18", k:"Rajada encarnada — coletiva|Casa de Cultura do Parque"},
   {d:"2026-09-15", k:"Uma Obra: Pintura sem fim|Pinacoteca de São Paulo"},
   {d:"2026-09-14", k:"confluências — Carolina Caycedo|MASP"},
   {d:"2026-09-11", k:"Assim Bordei Meus Sonhos: Margarida L. Kanciukaitis Pandolfo|Museu da Imigração"},
@@ -350,5 +350,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "15/09/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "18/09/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
