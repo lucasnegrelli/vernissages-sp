@@ -160,21 +160,16 @@ const EXPOS = [
 {t:"Mitologias do Mistério — Gabriel Omep",a:"Gabriel Omep",v:"Casa de Cultura do Parque",ini:"2026-07-25",fim:"2026-10-25",d:"Quatro séries — Alfabeto Ferramenta, Orís, Guardiões e Indumentária — em pintura sobre papelão, numa parede de 280 x 1020 cm. Curadoria de Claudio Cretti e texto crítico de André Pitol. Parte do II Ciclo Expositivo.",img:"img/mitologias-do-misterio-casa-de-cultura-do-parque.png",cred:"Cortesia Casa de Cultura do Parque"},
 {t:"Charline von Heyl — individual",a:"Charline von Heyl",v:"Auroras",ini:"2026-06-14",fim:"2026-09-19",d:"Primeira exposição da pintora alemã-americana no Brasil: quinze pinturas recentes, entre grandes formatos e a série Sabotagerie (2026). Organizada em colaboração com a Petzel Gallery. Entrada gratuita, sábados 11h–18h.",img:"img/charline-von-heyl-auroras.png",vista:true,cred:"Cortesia Auroras"},
 {t:"Masao Yamamoto — individual",a:"Masao Yamamoto",v:"Galeria Marcelo Guarnieri",ini:"2026-08-01",fim:"2026-09-19",d:"Fotografias em pequeno formato do mestre japonês; poética do silêncio.",img:"img/masao-yamamoto-galeria-marcelo-guarnieri.webp",cred:"Cortesia Galeria Marcelo Guarnieri",vista:true},
-{t:"Ígneo Piaga — Thiago Martins de Melo",a:"Thiago Martins de Melo",v:"Almeida & Dale | Millan",ini:"2026-08-01",fim:"2026-09-12",d:"Pintura densa e mitologia amazônica no espaço Fradique 1430, com curadoria de Chico Soll.",img:"img/igneo-piaga-almeida-dale-millan.jpg",cred:"Cortesia Almeida & Dale"},
-{t:"ÇA — Rita Lessa",a:"Rita Lessa",v:"Almeida & Dale | Millan",ini:"2026-08-01",fim:"2026-09-12",d:"Individual da artista, em paralelo a Thiago Martins de Melo.",img:"img/ca-almeida-dale-millan.jpg",cred:"Cortesia Almeida & Dale"},
 {t:"Mensageiro da Manhã — André Ricardo",a:"André Ricardo",v:"Almeida & Dale | Millan",ini:"2026-08-15",fim:"2026-09-19",d:"Nove pinturas a têmpera e o primeiro conjunto de monotipias do artista, com formas trazidas da luz da Ilha do Ferro, no sertão alagoano. Texto de Renato Menezes.",img:"img/mensageiro-da-manha-almeida-dale-millan.jpg",cred:"Cortesia Almeida & Dale"},
 {t:"Abstenções (uma miragem, mas permanente) — Nino Kapanadze",a:"Nino Kapanadze",v:"Almeida & Dale | Millan",ini:"2026-08-15",fim:"2026-09-19",d:"Individual da artista com curadoria de Cristiano Raimondi, no espaço Fradique 1360.",img:"img/abstencoes-uma-miragem-mas-permanente-almeida-dale-millan.jpg",cred:"Cortesia Almeida & Dale"},
 {t:"Bauci: a cidade e os olhos — Érica Magalhães",a:"Érica Magalhães",v:"Galeria Aura",ini:"2026-08-08",fim:"2026-09-23",d:"Esculturas que equilibram porcelana e concreto; texto curatorial de Tatiana Ferraz.",img:"img/bauci-a-cidade-e-os-olhos-galeria-aura.webp",cred:"Érica Magalhães, Sem título, 2026. Foto: Flavio Freire"},
 {t:"Brasil das Múltiplas Faces",v:"Itaú Cultural",ini:"2025-10-22",fim:"2027-10-31",d:"Mostra de longa duração com obras do acervo do Itaú Cultural. Entrada gratuita."},
 {t:"Joan Miró: Mestre das Formas",a:"Joan Miró",v:"MAB FAAP",ini:"2026-08-07",fim:"2026-10-12",d:"140 obras originais do catalão, várias inéditas no Brasil. Ingresso pago, vendido em mmf26.com.br."},
 {t:"O Lado Escuro da Lua — Alfredo Jaar",a:"Alfredo Jaar",v:"Galeria Luisa Strina",ini:"2026-08-08",fim:"2026-09-19",d:"Trabalhos feitos no Chile entre 1974 e 1981, das grades de onzes sobre o golpe de 1973 ao projeto Estudos sobre a felicidade. Texto de Edward A. Vazquez.",img:"img/o-lado-escuro-da-lua-galeria-luisa-strina.webp",cred:"Cortesia Galeria Luisa Strina"},
-{t:"Matéria e Energia — Damián Ortega",a:"Damián Ortega",v:"MASP",ini:"2026-05-15",fim:"2026-09-13",d:"Três décadas em fotografia, vídeo, escultura e instalação, com objetos do cotidiano desmontados e suspensos no espaço. Curadoria de Adriano Pedrosa, Rodrigo Moura e Yudi Rafael.",img:"img/materia-e-energia-masp.jpg",cred:"Vista da exposição. Foto Eduardo Ortega / Cortesia MASP",vista:true},
-{t:"Acervo em Transformação: Doações Recentes",a:"Adriana Varejão, Anna Bella Geiger, Bruno Baptistelli, Emanuel Nassar, José Patrício, Judy Chicago, Mateo López, Rochelle Costi, Sandra Cinto, Sérgio Sister, Sergej Jensen, Valdirlei Dias Nunes, Vik Muniz",v:"MASP",ini:"2026-05-15",fim:"2026-09-13",d:"Vinte e seis obras doadas ao museu desde 2020, de treze artistas. Curadoria de Adriano Pedrosa e Amanda Carneiro."},
 {t:"confluências — Carolina Caycedo",a:"Carolina Caycedo",v:"MASP",ini:"2026-07-03",fim:"2026-10-04",d:"Fotografia, instalação, vídeo, performance e desenho no cruzamento entre arte, saberes ribeirinhos e movimentos sociais. Curadoria de Isabella Rjeille.",img:"img/confluencias-masp.jpg",cred:"Vista da exposição. Foto Eduardo Ortega / Cortesia MASP",vista:true},
 {t:"Casa María Lionza — Sol Calero",a:"Sol Calero",v:"MASP",ini:"2026-07-03",fim:"2027-01-30",d:"Pavilhão no Vão Livre em dezesseis cores, com padrões pintados à mão e mosaicos, em referência a Lina Bo Bardi e às fachadas nordestinas. Curadoria de Adriano Pedrosa e Laura Cosendey."},
 {t:"Histórias Latino-Americanas",v:"MASP",ini:"2026-09-04",fim:"2027-01-31",d:"Coletiva internacional em cinco núcleos temáticos sobre a construção histórica da ideia de América Latina. Curadoria de Amanda Carneiro e Julieta González, curadora-adjunta do MASP, com assistência de Teo Teotonio."},
 {t:"Presença — Anna Maria Maiolino",a:"Anna Maria Maiolino",v:"Galeria Luisa Strina",ini:"2026-08-08",fim:"2026-09-19",d:"Individual da ítalo-brasileira, com obras de 1974 a 2026: as esculturas de vidro soprado da série Emanados, o raku de São Seis Raku, as radiografias de Marcas na Transparência e a fotografia X, da Fotopoemação. Texto de Lotte Johnson, curadora da Barbican.",img:"img/presenca-galeria-luisa-strina.webp",cred:"Sem título, da série Marcas na Transparência, 1998-2002 (detalhe). Cortesia Galeria Luisa Strina"},
-{t:"Ojú-Inú — Ayrson Heráclito",a:"Ayrson Heráclito",v:"Simões de Assis",ini:"2026-08-08",fim:"2026-09-12",d:"Corpo, ritual e memória afro-atlântica no espaço dos Jardins.",img:"img/oju-inu-simoes-de-assis.jpg",cred:"Cortesia Simões de Assis",vista:true},
 {t:"Smoke — Lucia Nogueira",a:"Lucia Nogueira",v:"Gomide&Co",ini:"2026-08-07",fim:"2026-10-03",d:"Individual da artista no espaço da Avenida Paulista, organizada com o espólio de Lucia Nogueira.",img:"img/smoke-gomide-co.webp",cred:"Cortesia Gomide&Co"},
 {t:"Quadros — Ubirajara Ribeiro",a:"Ubirajara Ribeiro",v:"Gomide&Co",ini:"2026-08-07",fim:"2026-10-03",d:"Individual no mezanino da galeria, em paralelo a Lucia Nogueira.",img:"img/quadros-gomide-co.webp",cred:"Cortesia Gomide&Co"},
 {t:"Flores e Vasos — coletiva",a:"Rochelle Costi, Gaspar Gasparian, Robert Mapplethorpe",v:"Luciana Brito Galeria",ini:"2026-08-22",fim:"2026-10-17",d:"Curadoria de Nessia Pope. Fotografias de 1947 a 2020 em torno do gênero, entre vintages, prata e jato de tinta.",img:"img/flores-e-vasos.jpg",cred:"Foto Ruy Teixeira / Cortesia Luciana Brito Galeria"},
@@ -272,11 +267,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Rajada encarnada — coletiva",
-  v: "Casa de Cultura do Parque",
-  quem: "",
-  txt: "II Ciclo Expositivo em parceria com o ICCo. Quarta a domingo, 11h–18h. Abertura em 25 de julho, até 25 de outubro.",
-  link: "https://ccparque.com.br",
+  t: "Autobiografia de um Fio",
+  v: "Galeria Nara Roesler",
+  quem: "Sheila Hicks",
+  txt: "Exposição individual. Abertura em 29 de agosto, até 24 de outubro.",
+  link: "https://nararoesler.art",
   publi: false
 };
 
@@ -291,6 +286,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-09-22", k:"Autobiografia de um Fio|Galeria Nara Roesler"},
   {d:"2026-09-18", k:"Rajada encarnada — coletiva|Casa de Cultura do Parque"},
   {d:"2026-09-15", k:"Uma Obra: Pintura sem fim|Pinacoteca de São Paulo"},
   {d:"2026-09-14", k:"confluências — Carolina Caycedo|MASP"},
@@ -348,5 +344,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "20/09/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "22/09/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
