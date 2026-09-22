@@ -314,9 +314,17 @@ function validarSync(DATA, opts) {
     }
 
     // Variedade de galeria
+    //
+    // Bug ate 20/09/2026: a comparacao incluia o proprio registro do FOCO
+    // atual (d.k === kFoco), que sempre esta dentro da janela nos dias
+    // seguintes a troca — entao QUALQUER commit em dados.js reprovava aqui
+    // por ate 6 dos 7 dias seguintes a qualquer escolha, mesmo sem tocar em
+    // foco/destaques. So conta como violacao OUTRA passagem da mesma
+    // galeria, nao a entrada que registrou o foco vigente.
     var corte = somaDias(hoje, -JANELA_VARIEDADE);
     destaques.forEach(function (d) {
       if (d.d >= hoje || d.d < corte) return;
+      if (d.k === kFoco) return;
       var venueAntigo = String(d.k).split("|").slice(1).join("|");
       if (venueAntigo === foco.v) {
         r.erro("E20", "Galeria " + foco.v + " esteve em foco em " + d.d +
