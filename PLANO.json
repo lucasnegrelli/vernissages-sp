@@ -1,104 +1,150 @@
 {
-  "titulo": "Semana de 10/09 a 16/09/2026",
+  "titulo": "Semana de 23/09 a 29/09/2026",
   "_leiame": [
-    "ESTE ARQUIVO É GERADO por planejar.js, MAS esta versão foi escrita à mão (10/09) para a semana dos encerramentos — 11 mostras fecham no sábado 19.",
-    "Editar à mão é legítimo (ver COMOGERAR.md). O próximo `node planejar.js` sobrescreve.",
-    "Eixo da semana: última chamada. Um pouco mais de tensão no recorte e na legenda; o desenho continua o mesmo.",
-    "rima (15/09) e aproximacao (16/09) dependem de config curado — escrever SOCIAL/09/15/rima.json e SOCIAL/09/16/aproximacao.json.",
-    "estreia ficou fora: nada abre esta semana com obra em disco (o 39º Panorama do MAM não tem imagem na base)."
+    "ESTE ARQUIVO É GERADO. Rode `node planejar.js` para refazê-lo a partir do REPERTORIO.json.",
+    "Editar à mão funciona e é legítimo — mas a edição se perde no próximo planejar.js.",
+    "Para mudar o repertório de vez, mexa no REPERTORIO.json, não aqui.",
+    "Gerado em 2026-09-23."
   ],
   "fora": [
     "Terra que Desmancha, Evapora e Solidifica — Coletivo Poíesis|Vazio Criativo"
   ],
   "posts": [
     {
-      "data": "2026-09-10",
-      "formato": "numero",
-      "ordem": 1,
-      "paleta": "escuro",
-      "textura": 0.05,
-      "ideia": "numero-fecha-dia",
-      "nome": "numero-fecha-dia",
-      "ajustes": { "conta": "fecha-dia" }
-    },
-    {
-      "data": "2026-09-10",
-      "formato": "encerra",
-      "ordem": 2,
-      "paleta": "barro",
-      "textura": 0.06,
-      "ideia": "encerra-a-fila",
-      "nome": "encerra-a-fila",
-      "ajustes": {
-        "filtro": { "fechaEm": 12 },
-        "nota": "O ciclo das galerias é quase sincronizado: quando uma fecha, várias fecham na mesma semana. Ninguém combina isso, e ninguém avisa."
-      }
-    },
-    {
-      "data": "2026-09-11",
-      "formato": "encerra",
+      "data": "2026-09-23",
+      "formato": "rima",
       "ordem": 1,
       "paleta": "tinta",
       "textura": 0.05,
-      "ideia": "encerra-instituicao",
-      "nome": "encerra-instituicao",
-      "ajustes": { "filtro": { "tipo": "institucional" } }
+      "ideia": "rima-centro-jardins",
+      "nome": "rima-centro-jardins"
     },
     {
-      "data": "2026-09-12",
-      "formato": "obra",
+      "data": "2026-09-23",
+      "formato": "salao",
+      "ordem": 2,
+      "paleta": "cal",
+      "textura": 0.06,
+      "ideia": "salao-so-galeria",
+      "nome": "salao-so-galeria",
+      "pular": true,
+      "_pular": "O plano tinha DOIS salao esta semana (23 e 25) — contra o próprio COMOGERAR.md, que fixou salão em 1x/mês desde 01/09. As 4 ideias do repertório para o formato estão todas dentro do descanso de 30 dias; nenhuma junta 'fresca' com 'tem 12+ elegíveis'. Em vez de forçar duas repetições, mantive só a de 25/09 (salao-parede-inteira, a com mais elegíveis) e larguei esta — o que já corrige o excesso do plano automático, não cria um buraco novo."
+    },
+    {
+      "data": "2026-09-24",
+      "formato": "aproximacao",
+      "ordem": 1,
+      "paleta": "escuro",
+      "textura": 0.05,
+      "ideia": "aproximacao-detalhe-narrativo",
+      "nome": "aproximacao-detalhe-narrativo"
+    },
+    {
+      "data": "2026-09-25",
+      "formato": "salao",
       "ordem": 1,
       "paleta": "cal",
       "textura": 0.06,
-      "ideia": "obra-ultimo-sabado",
-      "nome": "obra-ultimo-sabado",
+      "ideia": "salao-parede-inteira",
+      "nome": "salao-parede-inteira",
+      "_troca": "salao-recem-abertas tinha só 5 elegíveis (mínimo 12) — poucas mostras recentes com imagem em disco. Troca por salao-parede-inteira, sem recorte, que tem 21.",
       "ajustes": {
-        "filtro": { "fechaEm": 9 },
-        "nota": "Fecha nos próximos dias. O último fim de semana para ver isto é este."
+        "texto": [
+          "Até o fim do século XIX se pendurava assim. O Salon de Paris cobria a parede do rodapé ao teto, quadro colado em quadro, e um catálogo numerado dizia o que era cada um.",
+          "A parede vazia com uma obra no centro, que hoje parece a única forma possível de mostrar arte, é invenção do modernismo. É uma escolha, e ela tem cem anos."
+        ],
+        "virada": "O cubo branco isola. O salão obriga as obras a conviverem — e é aí que se vê o que a cidade está pintando."
       }
     },
     {
-      "data": "2026-09-13",
+      "data": "2026-09-25",
       "formato": "numero",
-      "ordem": 1,
-      "paleta": "papel",
-      "textura": 0.07,
-      "ideia": "numero-gratis",
-      "nome": "numero-gratis",
-      "ajustes": { "conta": "gratis" }
-    },
-    {
-      "data": "2026-09-14",
-      "formato": "obra",
-      "ordem": 1,
+      "ordem": 2,
       "paleta": "barro",
-      "textura": 0.06,
-      "ideia": "obra-longa-duracao",
-      "nome": "obra-longa-duracao",
+      "textura": 0.07,
+      "ideia": "numero-duracao-galeria",
+      "nome": "numero-duracao-galeria",
       "ajustes": {
-        "filtro": { "duraMais": 45 },
-        "nota": "A semana toda foi contagem regressiva. Esta ainda fica semanas no ar — é a que dá para ver com calma, e por isso é a que quase ninguém vê."
+        "conta": "duracao-galeria"
       }
     },
     {
-      "data": "2026-09-15",
-      "formato": "rima",
-      "ordem": 1,
-      "pular": true,
-      "_pular": "rima-cor: o lado 'saturado' (Vânia Mignone / Aldir / Junqueira) só tem foto de vista de sala na base. O config em SOCIAL/09/15/rima.json está pronto do lado do Detomi — falta reprodução da obra do par, ou trocar o par.",
-      "paleta": "escuro",
-      "textura": 0.05,
-      "ideia": "rima-cor",
-      "nome": "rima"
-    },
-    {
-      "data": "2026-09-16",
-      "formato": "aproximacao",
+      "data": "2026-09-26",
+      "formato": "deriva",
       "ordem": 1,
       "paleta": "linho",
       "textura": 0.09,
-      "ideia": "aproximacao-antes-de-fechar",
-      "nome": "aproximacao"
+      "ideia": "deriva-so-galeria",
+      "nome": "deriva-so-galeria",
+      "pular": true,
+      "_pular": "Testei deriva-mais-densa, deriva-so-galeria e deriva-so-obra (todos os filtros do repertório para o formato) excluindo o que já saiu ou está reservado esta semana: nenhum encontra 3 casas com obra em disco a 750 m. Não é filtro apertado — é falta mesmo de aglomerado essa semana. Falta radar/garimpo trazer mais casas próximas com imagem, não curadoria.",
+      "ajustes": {
+        "filtro": {
+          "tipo": "galeria"
+        },
+        "tese": "Só galeria neste percurso: nenhuma bilheteria, nenhuma fila, nenhuma catraca.",
+        "virada": "A caminhada inteira é de graça, e nenhuma dessas portas espera que você compre nada."
+      }
+    },
+    {
+      "data": "2026-09-27",
+      "formato": "entrada",
+      "ordem": 1,
+      "paleta": "tinta",
+      "textura": 0.05,
+      "ideia": "entrada-na-abertura",
+      "nome": "entrada-na-abertura",
+      "ajustes": {
+        "virada": "A vernissage não é a exposição — é a festa em volta dela. E você pode ir sem conhecer ninguém.",
+        "porta": [
+          "Abertura costuma ser numa terça, quarta ou quinta, das 19h às 22h. Chegar às 19h é chegar cedo, e é a única janela para ver a obra antes de encher.",
+          "Não há lista na maioria das galerias. A porta aberta e a calçada com gente são o convite.",
+          "Tem bebida, quase sempre vinho, às vezes só água com gás — e acaba. Não é o motivo de ir, e ninguém repara se você não pega.",
+          "Você não precisa falar com o artista. Se falar, 'parabéns' basta: ninguém espera análise no dia da abertura.",
+          "Dá para circular sozinho, ver tudo em vinte minutos e sair. Ninguém controla quanto tempo você ficou."
+        ]
+      }
+    },
+    {
+      "data": "2026-09-28",
+      "formato": "estreia",
+      "ordem": 1,
+      "paleta": "linho",
+      "textura": 0.09,
+      "ideia": "estreia-galeria",
+      "nome": "estreia-galeria",
+      "pular": true,
+      "_pular": "Não há nenhuma mostra com `ini` depois de hoje na base inteira — nenhuma abertura futura confirmada, de nenhum tipo. Não é falta de imagem, é falta de dado: o radar não trouxe estreia nova essa semana. Sem isso, `estreia` não tem o que escolher.",
+      "ajustes": {
+        "filtro": {
+          "tipo": "galeria"
+        }
+      }
+    },
+    {
+      "data": "2026-09-28",
+      "formato": "obra",
+      "ordem": 2,
+      "paleta": "cal",
+      "textura": 0.06,
+      "ideia": "obra-recem-aberta",
+      "nome": "obra-recem-aberta",
+      "ajustes": {
+        "filtro": {
+          "abriuEm": 30
+        }
+      }
+    },
+    {
+      "data": "2026-09-29",
+      "formato": "estreia",
+      "ordem": 1,
+      "paleta": "papel",
+      "textura": 0.07,
+      "ideia": "estreia-semana",
+      "nome": "estreia-semana",
+      "pular": true,
+      "_pular": "Mesmo motivo do dia 28: zero mostras com abertura futura confirmada na base."
     }
   ]
 }

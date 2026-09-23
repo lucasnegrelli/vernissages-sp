@@ -1,5 +1,5 @@
 {
-  "rima-centro-jardins": "2026-08-31",
+  "rima-centro-jardins": "2026-09-23",
   "entrada-primeira-vez": "2026-08-31",
   "aproximacao-suporte": "2026-09-01",
   "deriva-centro": "2026-09-12",
@@ -33,7 +33,7 @@
   "obra-oeste": "2026-09-07",
   "aproximacao-escultura": "2026-09-08",
   "obra-centro": "2026-09-09",
-  "salao-parede-inteira": "2026-09-09",
+  "salao-parede-inteira": "2026-09-25",
   "entrada-sabado": "2026-09-10",
   "obra-jardins": "2026-09-11",
   "obra-instituicao": "2026-09-12",
@@ -58,5 +58,9 @@
   "obra-longa-duracao": "2026-09-14",
   "numero-gratis": "2026-09-13",
   "rima-cor": "2026-09-15",
-  "aproximacao-antes-de-fechar": "2026-09-16"
+  "aproximacao-antes-de-fechar": "2026-09-16",
+  "aproximacao-detalhe-narrativo": "2026-09-24",
+  "numero-duracao-galeria": "2026-09-25",
+  "entrada-na-abertura": "2026-09-27",
+  "obra-recem-aberta": "2026-09-28"
 }
