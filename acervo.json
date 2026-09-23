@@ -2496,6 +2496,70 @@
    "ig": "",
    "visto": "2026-09-23",
    "primeiroRegistro": "2026-09-23"
+  },
+  {
+   "id": "um-xire-para-emanoel--museu-afro-brasil-emanoel-araujo",
+   "t": "Um Xirê para Emanoel",
+   "a": "Alberto Pitta",
+   "v": "Museu Afro Brasil Emanoel Araujo",
+   "ini": "2026-05-22",
+   "fim": null,
+   "d": "Reúne 22 serigrafias e pinturas de Alberto Pitta em homenagem a Emanoel Araujo (1940–2022), ao lado de duas esculturas em relevo do acervo do museu e bonecas Abayomi de Mãe Detinha de Xangô. Curadoria de Vera Nunes.",
+   "bairro": "Ibirapuera",
+   "zona": "Sul",
+   "addr": "Parque Ibirapuera, portão 10",
+   "tipo": "institucional",
+   "site": "https://museuafrobrasil.org.br",
+   "ig": "museuafrobrasil",
+   "visto": "2026-09-23"
+  },
+  {
+   "id": "afriquia-o-artista-como-colecionador--museu-afro-brasil-emanoel-araujo",
+   "t": "Afríquia: o artista como colecionador",
+   "a": "",
+   "v": "Museu Afro Brasil Emanoel Araujo",
+   "ini": "2026-06-26",
+   "fim": null,
+   "d": "Reúne mais de 200 obras e materiais de arquivo — esculturas, pinturas, máscaras, fotografias, livros, discos e têxteis, com destaque para peças da Nigéria e do Benin — mostrando como Emanoel Araujo formou o acervo de arte africana do museu. Curadoria de Gabrielle Nascimento.",
+   "bairro": "Ibirapuera",
+   "zona": "Sul",
+   "addr": "Parque Ibirapuera, portão 10",
+   "tipo": "institucional",
+   "site": "https://museuafrobrasil.org.br",
+   "ig": "museuafrobrasil",
+   "visto": "2026-09-23"
+  },
+  {
+   "id": "ha-quanto-tempo-pensando-nisso--memorial-da-america-latina",
+   "t": "Há quanto tempo pensando nisso",
+   "a": "Rachel Zuanon, Edson Pfutzenreuter, Sylvia Furegatti, Marta Strambi, Mauricius Farina, Sérgio Niculitcheff, Luise Weiss, Gilberto Alexandre Sobrinho, Cesar & Lois",
+   "v": "Memorial da América Latina",
+   "ini": "2026-09-23",
+   "fim": "2026-10-13",
+   "d": "Nove docentes-artistas do Instituto de Artes da Unicamp, com trabalhos em pintura, fotografia, gravura, xilogravura, vídeo e instalações multissensoriais, na Galeria Marta Traba. Curadoria de Sylvia Furegatti, Mauricius Farina e César Baio.",
+   "bairro": "Barra Funda",
+   "zona": "Oeste",
+   "addr": "Av. Auro Soares de Moura Andrade, 664",
+   "tipo": "institucional",
+   "site": "https://memorial.org.br",
+   "ig": "",
+   "visto": "2026-09-23"
+  },
+  {
+   "id": "esgarcar--am-galeria",
+   "t": "Esgarçar",
+   "a": "Andrey Rossi, Beatriz Lindenberg, Bruno Cançado, Desali, Giovani Fantauzzi, Julia Pereira, Laura Villarosa, Liane Roditi, Manoel Veiga, Manuela Costa Lima, Maria Helena Andrés, Marina Rodrigues, Marinalva Rosa, Michelle Rosset, Moara Tupinambá, Naira Pennacchi, Paula Huven, Renata Egreja, Thany Sanches, Yasmin Guimarães, Yohana Oizumi",
+   "v": "AM Galeria",
+   "ini": "2026-09-12",
+   "fim": "2026-10-10",
+   "d": "Coletiva com 21 artistas, curadoria de Mario Gioia, cruzando pintura, fotografia, têxtil, escultura, vídeo, performance e desenho em torno de noções de limite (dentro/fora, figuração/abstração).",
+   "bairro": "Itaim Bibi",
+   "zona": "Oeste",
+   "addr": "Av. Nove de Julho, 4865",
+   "tipo": "galeria",
+   "site": "https://amgaleria.com.br",
+   "ig": "amgaleriadearte",
+   "visto": "2026-09-23"
   }
  ],
  "artistas": {
@@ -3465,6 +3529,192 @@
    "mostras": [
     "elementares--museu-de-arte-sacra-de-sao-paulo"
    ]
+  },
+  "alberto-pitta": {
+   "nome": "Alberto Pitta",
+   "mostras": [
+    "um-xire-para-emanoel--museu-afro-brasil-emanoel-araujo"
+   ]
+  },
+  "rachel-zuanon": {
+   "nome": "Rachel Zuanon",
+   "mostras": [
+    "ha-quanto-tempo-pensando-nisso--memorial-da-america-latina"
+   ]
+  },
+  "edson-pfutzenreuter": {
+   "nome": "Edson Pfutzenreuter",
+   "mostras": [
+    "ha-quanto-tempo-pensando-nisso--memorial-da-america-latina"
+   ]
+  },
+  "sylvia-furegatti": {
+   "nome": "Sylvia Furegatti",
+   "mostras": [
+    "ha-quanto-tempo-pensando-nisso--memorial-da-america-latina"
+   ]
+  },
+  "marta-strambi": {
+   "nome": "Marta Strambi",
+   "mostras": [
+    "ha-quanto-tempo-pensando-nisso--memorial-da-america-latina"
+   ]
+  },
+  "mauricius-farina": {
+   "nome": "Mauricius Farina",
+   "mostras": [
+    "ha-quanto-tempo-pensando-nisso--memorial-da-america-latina"
+   ]
+  },
+  "sergio-niculitcheff": {
+   "nome": "Sérgio Niculitcheff",
+   "mostras": [
+    "ha-quanto-tempo-pensando-nisso--memorial-da-america-latina"
+   ]
+  },
+  "luise-weiss": {
+   "nome": "Luise Weiss",
+   "mostras": [
+    "ha-quanto-tempo-pensando-nisso--memorial-da-america-latina"
+   ]
+  },
+  "gilberto-alexandre-sobrinho": {
+   "nome": "Gilberto Alexandre Sobrinho",
+   "mostras": [
+    "ha-quanto-tempo-pensando-nisso--memorial-da-america-latina"
+   ]
+  },
+  "cesar-e-lois": {
+   "nome": "Cesar & Lois",
+   "mostras": [
+    "ha-quanto-tempo-pensando-nisso--memorial-da-america-latina"
+   ]
+  },
+  "andrey-rossi": {
+   "nome": "Andrey Rossi",
+   "mostras": [
+    "esgarcar--am-galeria"
+   ]
+  },
+  "beatriz-lindenberg": {
+   "nome": "Beatriz Lindenberg",
+   "mostras": [
+    "esgarcar--am-galeria"
+   ]
+  },
+  "bruno-cancado": {
+   "nome": "Bruno Cançado",
+   "mostras": [
+    "esgarcar--am-galeria"
+   ]
+  },
+  "desali": {
+   "nome": "Desali",
+   "mostras": [
+    "esgarcar--am-galeria"
+   ]
+  },
+  "giovani-fantauzzi": {
+   "nome": "Giovani Fantauzzi",
+   "mostras": [
+    "esgarcar--am-galeria"
+   ]
+  },
+  "julia-pereira": {
+   "nome": "Julia Pereira",
+   "mostras": [
+    "esgarcar--am-galeria"
+   ]
+  },
+  "laura-villarosa": {
+   "nome": "Laura Villarosa",
+   "mostras": [
+    "esgarcar--am-galeria"
+   ]
+  },
+  "liane-roditi": {
+   "nome": "Liane Roditi",
+   "mostras": [
+    "esgarcar--am-galeria"
+   ]
+  },
+  "manoel-veiga": {
+   "nome": "Manoel Veiga",
+   "mostras": [
+    "esgarcar--am-galeria"
+   ]
+  },
+  "manuela-costa-lima": {
+   "nome": "Manuela Costa Lima",
+   "mostras": [
+    "esgarcar--am-galeria"
+   ]
+  },
+  "maria-helena-andres": {
+   "nome": "Maria Helena Andrés",
+   "mostras": [
+    "esgarcar--am-galeria"
+   ]
+  },
+  "marina-rodrigues": {
+   "nome": "Marina Rodrigues",
+   "mostras": [
+    "esgarcar--am-galeria"
+   ]
+  },
+  "marinalva-rosa": {
+   "nome": "Marinalva Rosa",
+   "mostras": [
+    "esgarcar--am-galeria"
+   ]
+  },
+  "michelle-rosset": {
+   "nome": "Michelle Rosset",
+   "mostras": [
+    "esgarcar--am-galeria"
+   ]
+  },
+  "moara-tupinamba": {
+   "nome": "Moara Tupinambá",
+   "mostras": [
+    "esgarcar--am-galeria"
+   ]
+  },
+  "naira-pennacchi": {
+   "nome": "Naira Pennacchi",
+   "mostras": [
+    "esgarcar--am-galeria"
+   ]
+  },
+  "paula-huven": {
+   "nome": "Paula Huven",
+   "mostras": [
+    "esgarcar--am-galeria"
+   ]
+  },
+  "renata-egreja": {
+   "nome": "Renata Egreja",
+   "mostras": [
+    "esgarcar--am-galeria"
+   ]
+  },
+  "thany-sanches": {
+   "nome": "Thany Sanches",
+   "mostras": [
+    "esgarcar--am-galeria"
+   ]
+  },
+  "yasmin-guimaraes": {
+   "nome": "Yasmin Guimarães",
+   "mostras": [
+    "esgarcar--am-galeria"
+   ]
+  },
+  "yohana-oizumi": {
+   "nome": "Yohana Oizumi",
+   "mostras": [
+    "esgarcar--am-galeria"
+   ]
   }
  },
  "venues": {
@@ -3584,7 +3834,7 @@
    "b": "Jardim Paulista",
    "z": "Oeste",
    "tipo": "galeria",
-   "site": "https://www.koganamaro.com",
+   "site": "",
    "ig": "",
    "info": "SP e Zurique. Contemporâneo brasileiro e internacional."
   },
@@ -3614,7 +3864,7 @@
    "b": "Cerqueira César",
    "z": "Oeste",
    "tipo": "galeria",
-   "site": "https://www.galeriasuperficie.com.br",
+   "site": "",
    "ig": "galeriasuperficie",
    "info": "Arte conceitual brasileira dos anos 1970 em diante."
   },
@@ -3854,7 +4104,7 @@
    "b": "Jardim Paulista",
    "z": "Oeste",
    "tipo": "galeria",
-   "site": "https://www.segaleria.com.br",
+   "site": "",
    "ig": "",
    "info": "Nasceu no centro histórico e mudou para os Jardins em 2019; o nome ficou."
   },
@@ -4204,7 +4454,7 @@
    "b": "Jardim Paulista",
    "z": "Oeste",
    "tipo": "galeria",
-   "site": "https://yehudihollanderpappi.com",
+   "site": "",
    "ig": "",
    "info": "Galeria de jovens artistas; linguagens experimentais e temporalidade expandida."
   },
@@ -4304,7 +4554,7 @@
    "b": "Santa Cecília",
    "z": "Centro",
    "tipo": "hibrido",
-   "site": "https://aparelhaluzia.com.br",
+   "site": "",
    "ig": "aparelhaluzia",
    "info": "Quilombo urbano fundado em 2016: arte, cultura e política negra, com exposições, shows e encontros."
   },
@@ -4464,7 +4714,7 @@
    "b": "Jardins",
    "z": "Oeste",
    "tipo": "galeria",
-   "site": "https://bergamingomide.com.br",
+   "site": "",
    "ig": "",
    "info": "Desde 2000, já expôs Iberê Camargo, Mira Schendel, Lygia Pape e Tunga."
   },
@@ -4534,7 +4784,7 @@
    "b": "Cerqueira César",
    "z": "Oeste",
    "tipo": "galeria",
-   "site": "http://cantogravura.com.br",
+   "site": "",
    "ig": "",
    "info": "Fundada em 1998, único espaço do país dedicado exclusivamente à gravura. Acervo de cerca de 3 mil gravuras originais."
   },
@@ -4584,7 +4834,7 @@
    "b": "Jardim Europa",
    "z": "Oeste",
    "tipo": "institucional",
-   "site": "https://mube.art.br",
+   "site": "",
    "ig": "",
    "info": "Museu Brasileiro de Escultura e Ecologia. Acervo arqueológico da FUMDHAM (Piauí) ao lado de escultura, desenho, pintura, gravura, fotografia e vídeo contemporâneos."
   },
@@ -4614,7 +4864,7 @@
    "b": "Bom Retiro",
    "z": "Centro",
    "tipo": "institucional",
-   "site": "https://oficinasculturais.org.br",
+   "site": "",
    "ig": "",
    "info": "Prédio histórico inaugurado em 1905."
   },
@@ -4664,7 +4914,7 @@
    "b": "Consolação",
    "z": "Centro",
    "tipo": "institucional",
-   "site": "https://redbullstation.com.br",
+   "site": "",
    "ig": "",
    "info": "Antiga subestação de energia desativada desde 2004, reformada para arte. Programa de residência artística regular."
   },
@@ -4674,7 +4924,7 @@
    "b": "Pinheiros",
    "z": "Oeste",
    "tipo": "galeria",
-   "site": "https://galeriasancovsky.com",
+   "site": "",
    "ig": "",
    "info": "Dirigida por Marcos Sancovsky, expõe pintura, vídeo, escultura e performance."
   },
