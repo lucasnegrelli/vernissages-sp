@@ -2511,7 +2511,8 @@
    "tipo": "institucional",
    "site": "https://museuafrobrasil.org.br",
    "ig": "museuafrobrasil",
-   "visto": "2026-09-23"
+   "visto": "2026-09-23",
+   "primeiroRegistro": "2026-09-23"
   },
   {
    "id": "afriquia-o-artista-como-colecionador--museu-afro-brasil-emanoel-araujo",
@@ -2527,7 +2528,8 @@
    "tipo": "institucional",
    "site": "https://museuafrobrasil.org.br",
    "ig": "museuafrobrasil",
-   "visto": "2026-09-23"
+   "visto": "2026-09-23",
+   "primeiroRegistro": "2026-09-23"
   },
   {
    "id": "ha-quanto-tempo-pensando-nisso--memorial-da-america-latina",
@@ -2543,7 +2545,8 @@
    "tipo": "institucional",
    "site": "https://memorial.org.br",
    "ig": "",
-   "visto": "2026-09-23"
+   "visto": "2026-09-23",
+   "primeiroRegistro": "2026-09-23"
   },
   {
    "id": "esgarcar--am-galeria",
@@ -2559,6 +2562,23 @@
    "tipo": "galeria",
    "site": "https://amgaleria.com.br",
    "ig": "amgaleriadearte",
+   "visto": "2026-09-23",
+   "primeiroRegistro": "2026-09-23"
+  },
+  {
+   "id": "roxo-em-tons--vazio-criativo",
+   "t": "Roxo em Tons",
+   "a": "",
+   "v": "Vazio Criativo",
+   "ini": "2026-10-03",
+   "fim": "2026-10-09",
+   "d": "Tons Coletivo apresenta exposição coletiva para ver o mundo em roxo, com curadoria de Audrey Barbosa.",
+   "bairro": "Barra Funda",
+   "zona": "Centro",
+   "addr": "R. Lavradio, 573 ~",
+   "tipo": "hibrido",
+   "site": "",
+   "ig": "vazio_criativo_",
    "visto": "2026-09-23"
   }
  ],
