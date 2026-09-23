@@ -1230,7 +1230,7 @@
    "a": "Flávia Junqueira",
    "v": "Zipper Galeria",
    "ini": "2026-08-08",
-   "fim": "2026-09-19",
+   "fim": "2026-09-26",
    "d": "Fotografias inéditas produzidas ao longo de um mês em Nova York.",
    "bairro": "Jardim América",
    "zona": "Oeste",
@@ -1247,7 +1247,7 @@
    "a": "Henrique Detomi",
    "v": "Zipper Galeria",
    "ini": "2026-08-08",
-   "fim": "2026-09-19",
+   "fim": "2026-09-26",
    "d": "Pintura a partir da caminhada e da terra aberta do interior de Minas.",
    "bairro": "Jardim América",
    "zona": "Oeste",
@@ -2173,6 +2173,310 @@
    "ig": "",
    "visto": "2026-09-23",
    "primeiroRegistro": "2026-09-22"
+  },
+  {
+   "id": "para-criancas-experiencias-com-a-arte-desde-1968--pinacoteca-contemporanea",
+   "t": "Para crianças: experiências com a arte desde 1968",
+   "a": "",
+   "v": "Pinacoteca Contemporânea",
+   "ini": "2026-05-30",
+   "fim": "2026-10-18",
+   "d": "Onze artistas e obras que convidam crianças a intervir; a mais antiga é de 1968. Concebida pela Haus der Kunst, de Munique, com a Pinacoteca (Pina Contemporânea).",
+   "bairro": "Luz",
+   "zona": "Centro",
+   "addr": "Av. Tiradentes, 273",
+   "tipo": "institucional",
+   "site": "https://pinacoteca.org.br",
+   "ig": "",
+   "visto": "2026-09-23"
+  },
+  {
+   "id": "paisagem-tematica-para-um-novo-normal--verve-galeria",
+   "t": "Paisagem temática para um novo normal",
+   "a": "Daniel Acosta",
+   "v": "Verve Galeria",
+   "ini": "2026-08-29",
+   "fim": "2026-10-31",
+   "d": "Instalação que ocupa a nova sala da galeria e a sobreloja do Edifício Louvre, com texto crítico de Agnaldo Farias; usa materiais de design e arquitetura — flores e arbustos de plástico, fórmica — em tom irônico sobre o \"novo normal\".",
+   "bairro": "República",
+   "zona": "Centro",
+   "addr": "Av. São Luís, 192 — Ed. Louvre, sobreloja 06",
+   "tipo": "galeria",
+   "site": "https://www.vervegaleria.com",
+   "ig": "vervegaleria",
+   "visto": "2026-09-23"
+  },
+  {
+   "id": "espaco-tempo--danielian-sao-paulo",
+   "t": "Espaço tempo",
+   "a": "Wojtek Kostrzewa",
+   "v": "Danielian São Paulo",
+   "ini": "2026-08-17",
+   "fim": "2026-10-27",
+   "d": "Primeira individual no Brasil do artista polonês radicado em São Paulo, com curadoria de Ginevra Bria; transita entre fotografia, escultura e pintura a partir de códigos visuais e objetos da paisagem urbana.",
+   "bairro": "Jardim Paulista",
+   "zona": "Oeste",
+   "addr": "R. Estados Unidos, 2114 e 2157",
+   "tipo": "galeria",
+   "site": "https://www.danielian.com.br",
+   "ig": "danielian_galeria",
+   "visto": "2026-09-23"
+  },
+  {
+   "id": "irracional--marli-matsumoto-arte-contemporanea",
+   "t": "Irracional",
+   "a": "Frederico Filippi",
+   "v": "Marli Matsumoto Arte Contemporânea",
+   "ini": "2026-08-01",
+   "fim": "2026-10-10",
+   "d": "Reúne diferentes grupos de trabalhos em que o acaso, o descontrole e o gesto errático operam como motores de criação, com curadoria de Germano Dushá.",
+   "bairro": "Vila Madalena",
+   "zona": "Oeste",
+   "addr": "Vila Madalena ~",
+   "tipo": "galeria",
+   "site": "https://marlimatsumoto.com.br",
+   "ig": "",
+   "visto": "2026-09-23"
+  },
+  {
+   "id": "controle-corrosao-dispersao--galeria-leme",
+   "t": "Controle | Corrosão | Dispersão",
+   "a": "Beto Shwafaty",
+   "v": "Galeria Leme",
+   "ini": "2026-09-03",
+   "fim": "2026-10-02",
+   "d": "Individual com cerca de 15 trabalhos que pensam a sociedade contemporânea a partir de objetos e materiais do cotidiano, incluindo a obra inédita \"O sonho da terra, é o sonho americano\".",
+   "bairro": "Butantã",
+   "zona": "Oeste",
+   "addr": "Av. Valdemar Ferreira, 130",
+   "tipo": "galeria",
+   "site": "https://galerialeme.com",
+   "ig": "galerialeme",
+   "visto": "2026-09-23"
+  },
+  {
+   "id": "espaco-profundo--a-gentil-carioca-sp",
+   "t": "Espaço Profundo",
+   "a": "Mariana Rocha",
+   "v": "A Gentil Carioca SP",
+   "ini": "2026-08-15",
+   "fim": "2026-10-24",
+   "d": "Pinturas que expandem a pesquisa da artista sobre corpos d'água, aproximando dimensões corporal e cósmica; texto de André Pitol, curador adjunto da 36ª Bienal de São Paulo.",
+   "bairro": "República",
+   "zona": "Centro",
+   "addr": "R. Barão de Itapetininga ~",
+   "tipo": "galeria",
+   "site": "https://agentilcarioca.com.br",
+   "ig": "agentilcarioca",
+   "visto": "2026-09-23"
+  },
+  {
+   "id": "marlene-barros-tecitura-do-feminino--ccbb-sao-paulo",
+   "t": "Marlene Barros: tecitura do feminino",
+   "a": "Marlene Barros",
+   "v": "CCBB São Paulo",
+   "ini": "2026-08-26",
+   "fim": "2027-01-25",
+   "d": "Reúne 15 obras entre esculturas, bordados, crochês, instalações e objetos que discutem a feminilidade como construção histórica, social e cultural; curadoria de Betânia Pinheiro.",
+   "bairro": "Sé",
+   "zona": "Centro",
+   "addr": "R. Álvares Penteado, 112",
+   "tipo": "institucional",
+   "site": "https://ccbb.com.br",
+   "ig": "ccbbsp",
+   "visto": "2026-09-23"
+  },
+  {
+   "id": "fernando-lemos-quanto-mais-desejo-mais-invento-o-que-vejo--ims-paulista",
+   "t": "Fernando Lemos: quanto mais desejo, mais invento o que vejo",
+   "a": "Fernando Lemos",
+   "v": "IMS Paulista",
+   "ini": "2026-09-19",
+   "fim": "2027-02-07",
+   "d": "Retrospectiva do centenário de nascimento de Fernando Lemos (1926–2019), com cerca de 400 itens entre fotografias, desenhos, projetos gráficos e poesia produzidos ao longo de 70 anos; curadoria de Thyago Nogueira.",
+   "bairro": "Bela Vista",
+   "zona": "Centro",
+   "addr": "Av. Paulista, 2424",
+   "tipo": "institucional",
+   "site": "https://ims.com.br",
+   "ig": "imoreirasalles",
+   "visto": "2026-09-23"
+  },
+  {
+   "id": "sheila-hicks-o-que-que-e-isso--instituto-tomie-ohtake",
+   "t": "Sheila Hicks: o que que é isso?",
+   "a": "Sheila Hicks",
+   "v": "Instituto Tomie Ohtake",
+   "ini": "2026-08-28",
+   "fim": "2026-10-25",
+   "d": "Cerca de 30 obras de seis décadas de carreira em fibra têxtil — tecelagens, relevos, esculturas de escala arquitetônica — e fotografias feitas por Hicks e por Sergio Larrain na América Latina nos anos 1950; curadoria de Ana Roman, Luis Pérez-Oramas e Paulo Miyada.",
+   "bairro": "Pinheiros",
+   "zona": "Oeste",
+   "addr": "R. Coropés, 88",
+   "tipo": "institucional",
+   "site": "https://www.institutotomieohtake.org.br",
+   "ig": "institutotomieohtake",
+   "visto": "2026-09-23"
+  },
+  {
+   "id": "tatiana-blass-contrarregra--instituto-tomie-ohtake",
+   "t": "Tatiana Blass: Contrarregra",
+   "a": "Tatiana Blass",
+   "v": "Instituto Tomie Ohtake",
+   "ini": "2026-08-28",
+   "fim": "2026-10-25",
+   "d": "Cerca de 50 obras produzidas entre 2008 e 2026 — pinturas, esculturas, instalações e vídeos em vidro, bronze, cera e cerâmica —, das séries Contraluz, Metade da fala no chão, Quebra-quebra e Nó; curadoria de Ana Roman e Lahayda Mamani Poma.",
+   "bairro": "Pinheiros",
+   "zona": "Oeste",
+   "addr": "R. Coropés, 88",
+   "tipo": "institucional",
+   "site": "https://www.institutotomieohtake.org.br",
+   "ig": "institutotomieohtake",
+   "visto": "2026-09-23"
+  },
+  {
+   "id": "o-barco--sesc-pompeia",
+   "t": "O Barco",
+   "a": "Grada Kilomba",
+   "v": "Sesc Pompeia",
+   "ini": "2026-09-22",
+   "fim": "2026-10-25",
+   "d": "Instalação de 134 blocos de madeira queimada somando mais de 220 m², desenhando a silhueta do porão de um navio negreiro; dezoito blocos trazem um poema da artista em seis línguas. Curadoria de Marília Loureiro e Júlia Rebouças.",
+   "bairro": "Pompeia",
+   "zona": "Oeste",
+   "addr": "R. Clélia, 93",
+   "tipo": "institucional",
+   "site": "https://www.sescsp.org.br/unidades/sesc-pompeia",
+   "ig": "sescpompeia",
+   "visto": "2026-09-23"
+  },
+  {
+   "id": "mulheres-da-boca--mis-museu-da-imagem-e-do-som",
+   "t": "Mulheres da Boca",
+   "a": "Wagner Carvalho",
+   "v": "MIS — Museu da Imagem e do Som",
+   "ini": "2026-09-02",
+   "fim": "2026-10-18",
+   "d": "Fotografias inéditas feitas durante as filmagens do documentário \"Mulheres da Boca\" (1981), nas ruas da Boca do Lixo na virada dos anos 1970 para os 1980; curadoria de Inês Castilho, Marcelo Colaiácovo e William Plotnik.",
+   "bairro": "Jardim Europa",
+   "zona": "Oeste",
+   "addr": "Av. Europa, 158",
+   "tipo": "institucional",
+   "site": "https://www.mis-sp.org.br",
+   "ig": "mis_sp",
+   "visto": "2026-09-23"
+  },
+  {
+   "id": "50-anos-sem-jk--mis-museu-da-imagem-e-do-som",
+   "t": "50 anos sem JK",
+   "a": "Jean Manzon",
+   "v": "MIS — Museu da Imagem e do Som",
+   "ini": "2026-08-15",
+   "fim": "2026-10-04",
+   "d": "Fotografias inéditas de Juscelino Kubitschek da coleção do fotógrafo francês Jean Manzon, somadas a imagens do acervo do MIS; curadoria de André Sturm, em parceria com o Consulado-Geral da República Tcheca em São Paulo.",
+   "bairro": "Jardim Europa",
+   "zona": "Oeste",
+   "addr": "Av. Europa, 158",
+   "tipo": "institucional",
+   "site": "https://www.mis-sp.org.br",
+   "ig": "mis_sp",
+   "visto": "2026-09-23"
+  },
+  {
+   "id": "chao-de-historias-nova-fotografia-2026--mis-museu-da-imagem-e-do-som",
+   "t": "Chão de histórias | Nova Fotografia 2026",
+   "a": "Ana Leal",
+   "v": "MIS — Museu da Imagem e do Som",
+   "ini": "2026-08-11",
+   "fim": "2026-09-27",
+   "d": "Quarta exposição do programa anual Nova Fotografia do MIS; série fotográfica sobre o sertão pernambucano, cruzando fotografia, colagem, tecidos e argila em torno de memória e território.",
+   "bairro": "Jardim Europa",
+   "zona": "Oeste",
+   "addr": "Av. Europa, 158",
+   "tipo": "institucional",
+   "site": "https://www.mis-sp.org.br",
+   "ig": "mis_sp",
+   "visto": "2026-09-23"
+  },
+  {
+   "id": "invencao-da-paisagem-memoria--casa-seva",
+   "t": "Invenção da Paisagem-Memória",
+   "a": "Jeane Terra",
+   "v": "Casa Seva",
+   "ini": "2026-08-19",
+   "fim": "2026-09-26",
+   "d": "Mostra realizada em parceria entre Casa Seva e Janaina Torres Galeria, com curadoria de Heloisa Amaral Peixoto.",
+   "bairro": "Jardins",
+   "zona": "Oeste",
+   "addr": "Al. Lorena, 1257, Casa 1",
+   "tipo": "galeria",
+   "site": "https://casaseva.com",
+   "ig": "",
+   "visto": "2026-09-23"
+  },
+  {
+   "id": "frei-agostinho-de-jesus-sec-xvii-pioneiro-da-arte-sacra-no-brasil--fundacao-maria-luisa-e-oscar-americano",
+   "t": "Frei Agostinho de Jesus – séc. XVII: Pioneiro da Arte Sacra no Brasil",
+   "a": "Frei Agostinho de Jesus",
+   "v": "Fundação Maria Luisa e Oscar Americano",
+   "ini": "2026-05-17",
+   "fim": "2026-10-02",
+   "d": "Primeira individual do escultor-oleiro Frei Agostinho de Jesus (c.1600/10–1661), ativo em Santana de Parnaíba a partir de 1643; reúne esculturas em terracota, oratórios bandeiristas, prataria sacra e mobiliário colonial. Curadoria de Rafael Schunk.",
+   "bairro": "Morumbi",
+   "zona": "Oeste",
+   "addr": "Av. Morumbi, 4077",
+   "tipo": "institucional",
+   "site": "https://fundacaooscaramericano.org.br",
+   "ig": "",
+   "visto": "2026-09-23"
+  },
+  {
+   "id": "loopinpindorama--martins-e-montero",
+   "t": "loopinpindorama",
+   "a": "",
+   "v": "Martins&Montero",
+   "ini": "2026-08-20",
+   "fim": "2026-10-17",
+   "d": "Coletiva com curadoria de Felipe Molitor que articula obras do acervo da galeria com artistas convidados: uma sala de videoarte brasileira em sistema de projeção interativa e um conjunto de pinturas, esculturas, fotografias e instalações organizado por afinidades formais.",
+   "bairro": "Jardim América",
+   "zona": "Oeste",
+   "addr": "R. Jamaica, 50 ~",
+   "tipo": "galeria",
+   "site": "https://martinsemontero.com",
+   "ig": "martinsemontero",
+   "visto": "2026-09-23"
+  },
+  {
+   "id": "elementares--museu-de-arte-sacra-de-sao-paulo",
+   "t": "Elementares",
+   "a": "Denise Milan",
+   "v": "Museu de Arte Sacra de São Paulo",
+   "ini": "2026-05-29",
+   "fim": "2026-09-27",
+   "d": "Quatro décadas de pesquisa com geodos e cristais organizados em cinco núcleos, incluindo peças em alumínio fundido derivadas de formas cristalinas. Curadoria de Naomi Moniz, apoio DAN Galeria.",
+   "bairro": "Luz",
+   "zona": "Centro",
+   "addr": "Av. Tiradentes, 676",
+   "tipo": "institucional",
+   "site": "https://museuartesacra.org.br",
+   "ig": "",
+   "visto": "2026-09-23"
+  },
+  {
+   "id": "no-limite-forma-e-transformacao--paco-das-artes",
+   "t": "NO LIMITE: forma e transformação",
+   "a": "",
+   "v": "Paço das Artes",
+   "ini": "2026-09-26",
+   "fim": "2026-11-15",
+   "d": "Coletiva com 17 artistas de 6 países que explora o conceito de \"situação-limite\" do filósofo Karl Jaspers, combinando aspectos psicológicos com elementos como água, pedras, sal e luz. Curadoria de Martin Juef, cocuradoria de Francisco Klinger Carvalho.",
+   "bairro": "Higienópolis",
+   "zona": "Centro",
+   "addr": "R. Dr. Albuquerque Lins, 1345",
+   "tipo": "institucional",
+   "site": "https://pacodasartes.org.br",
+   "ig": "",
+   "visto": "2026-09-23"
   }
  ],
  "artistas": {
@@ -2995,7 +3299,8 @@
   "sheila-hicks": {
    "nome": "Sheila Hicks",
    "mostras": [
-    "autobiografia-de-um-fio--galeria-nara-roesler"
+    "autobiografia-de-um-fio--galeria-nara-roesler",
+    "sheila-hicks-o-que-que-e-isso--instituto-tomie-ohtake"
    ]
   },
   "eduardo-coimbra": {
@@ -3050,6 +3355,96 @@
    "nome": "Poli Pieratti",
    "mostras": [
     "agua-oleo--gruta-espaco-de-arte-contemporanea"
+   ]
+  },
+  "daniel-acosta": {
+   "nome": "Daniel Acosta",
+   "mostras": [
+    "paisagem-tematica-para-um-novo-normal--verve-galeria"
+   ]
+  },
+  "wojtek-kostrzewa": {
+   "nome": "Wojtek Kostrzewa",
+   "mostras": [
+    "espaco-tempo--danielian-sao-paulo"
+   ]
+  },
+  "frederico-filippi": {
+   "nome": "Frederico Filippi",
+   "mostras": [
+    "irracional--marli-matsumoto-arte-contemporanea"
+   ]
+  },
+  "beto-shwafaty": {
+   "nome": "Beto Shwafaty",
+   "mostras": [
+    "controle-corrosao-dispersao--galeria-leme"
+   ]
+  },
+  "mariana-rocha": {
+   "nome": "Mariana Rocha",
+   "mostras": [
+    "espaco-profundo--a-gentil-carioca-sp"
+   ]
+  },
+  "marlene-barros": {
+   "nome": "Marlene Barros",
+   "mostras": [
+    "marlene-barros-tecitura-do-feminino--ccbb-sao-paulo"
+   ]
+  },
+  "fernando-lemos": {
+   "nome": "Fernando Lemos",
+   "mostras": [
+    "fernando-lemos-quanto-mais-desejo-mais-invento-o-que-vejo--ims-paulista"
+   ]
+  },
+  "tatiana-blass": {
+   "nome": "Tatiana Blass",
+   "mostras": [
+    "tatiana-blass-contrarregra--instituto-tomie-ohtake"
+   ]
+  },
+  "grada-kilomba": {
+   "nome": "Grada Kilomba",
+   "mostras": [
+    "o-barco--sesc-pompeia"
+   ]
+  },
+  "wagner-carvalho": {
+   "nome": "Wagner Carvalho",
+   "mostras": [
+    "mulheres-da-boca--mis-museu-da-imagem-e-do-som"
+   ]
+  },
+  "jean-manzon": {
+   "nome": "Jean Manzon",
+   "mostras": [
+    "50-anos-sem-jk--mis-museu-da-imagem-e-do-som"
+   ]
+  },
+  "ana-leal": {
+   "nome": "Ana Leal",
+   "mostras": [
+    "chao-de-historias-nova-fotografia-2026--mis-museu-da-imagem-e-do-som"
+   ]
+  },
+  "jeane-terra": {
+   "nome": "Jeane Terra",
+   "mostras": [
+    "invencao-da-paisagem-memoria--casa-seva"
+   ]
+  },
+  "frei-agostinho-de-jesus": {
+   "nome": "Frei Agostinho de Jesus",
+   "mostras": [
+    "frei-agostinho-de-jesus-sec-xvii-pioneiro-da-arte-sacra-no-brasil--fundacao-maria-luisa-e-oscar-americano"
+   ]
+  },
+  "denise-milan": {
+   "nome": "Denise Milan",
+   "mostras": [
+    "elementares--museu-de-arte-sacra-de-sao-paulo"
    ]
   }
  },
@@ -3190,7 +3585,7 @@
    "b": "Cerqueira César",
    "z": "Oeste",
    "tipo": "galeria",
-   "site": "https://galeriaberenicearvani.com",
+   "site": "",
    "ig": "galeriaberenicearvani",
    "info": "Modernos e contemporâneos brasileiros."
   },
@@ -3500,7 +3895,7 @@
    "b": "Pinheiros",
    "z": "Oeste",
    "tipo": "galeria",
-   "site": "https://adelina.org.br",
+   "site": "",
    "ig": "adelinainstituto",
    "info": "Arte contemporânea com foco em novos diálogos e pertencimento."
   },
@@ -3640,7 +4035,7 @@
    "b": "Bela Vista",
    "z": "Centro",
    "tipo": "institucional",
-   "site": "https://museujudaico.org.br",
+   "site": "https://museujudaicosp.org.br",
    "ig": "museujudaicosp",
    "info": "Junto à sinagoga Beth-El."
   },
@@ -4290,7 +4685,7 @@
    "b": "Pinheiros",
    "z": "Oeste",
    "tipo": "galeria",
-   "site": "http://www.galeriavirgilio.com.br",
+   "site": "",
    "ig": "galeria.virgilio",
    "info": "Aberta em 2002 por Izabel Pinheiro, representa artistas contemporâneos emergentes."
   },
