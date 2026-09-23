@@ -267,11 +267,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Autobiografia de um Fio",
-  v: "Galeria Nara Roesler",
-  quem: "Sheila Hicks",
-  txt: "Exposição individual. Abertura em 29 de agosto, até 24 de outubro.",
-  link: "https://nararoesler.art",
+  t: "Por Elas, Com Elas: Do Moderno ao Contemporâneo",
+  v: "DAN Galeria",
+  quem: "",
+  txt: "Coletiva com obras de meados do século 20 aos dias atuais, em núcleo histórico — com Tarsila do Amaral, Anita Malfatti, Lygia Clark e Tomie Ohtake — e núcleo contemporâneo. Curadoria de Maria Alice Milliet. Abertura em 9 de setembro, até 7 de novembro.",
+  link: "https://www.dangaleria.com.br",
   publi: false
 };
 
@@ -286,6 +286,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-09-23", k:"Por Elas, Com Elas: Do Moderno ao Contemporâneo|DAN Galeria"},
   {d:"2026-09-22", k:"Autobiografia de um Fio|Galeria Nara Roesler"},
   {d:"2026-09-18", k:"Rajada encarnada — coletiva|Casa de Cultura do Parque"},
   {d:"2026-09-15", k:"Uma Obra: Pintura sem fim|Pinacoteca de São Paulo"},
@@ -344,5 +345,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "22/09/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "23/09/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
