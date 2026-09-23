@@ -5,7 +5,11 @@
    O que e.
 
    Todas as obras em cartaz em Sao Paulo hoje, penduradas juntas na mesma
-   parede e numeradas, com o catalogo em seguida.
+   parede e numeradas, com o catalogo em seguida — e depois, uma por uma, um
+   slide de destaque para cada obra que couber no limite do carrossel:
+   reproducao maior, titulo, artista, casa e o que a base souber dela. O
+   catalogo dá o credito, em uma linha; o destaque dá o mergulho, em tela
+   cheia.
 
    De onde vem.
 
@@ -32,6 +36,15 @@
    2. NENHUMA OBRA ENTRA DUAS VEZES.
    3. MENOS DE DOZE OBRAS NAO E SALAO, e o script aborta — a peca depende da
       densidade para dizer o que quer dizer.
+   4. VISTA DE SALA FICA FORA DA PAREDE POR PADRAO. Sem essa trava a parede
+      mistura reproducao de obra com foto de outra parede pendurada nela — e
+      o resultado e parede dentro de parede, que confunde em vez de compor.
+      Fica de fora a nao ser que o filtro do config peca vista de proposito
+      (a ideia salao-vista-de-sala, por exemplo: ali o assunto E o espaco).
+   5. O CARROSSEL TEM TETO. O Instagram aceita ate 20 itens por publicacao.
+      A parede, a tese e o catalogo vem sempre; os slides de destaque, um por
+      obra, enchem o que sobrar — nem toda obra ganha o dela numa semana
+      cheia, e o log diz quantas couberam.
 
    Uso:
      node salao.js --config=SOCIAL/08/28/salao.json --out=SOCIAL/08/28 --date=2026-08-28
@@ -44,19 +57,26 @@ const fs = require('fs');
 const path = require('path');
 const base = require('./rima.js');
 const { carregarDados, exigirObra, medir, RAIZ, CSS, esc, carimbo,
-        arroba, tituloCurto, autoria, PALETAS, cssPaleta } = base;
+        arroba, tituloCurto, autoria, porExtenso, PALETAS, cssPaleta } = base;
 
 const W = 1080, H = 1350;
 const COLUNAS = 4;
 const GAP = 10;
 const MIN_OBRAS = 12;
+const SLIDE_MAX_IG = 20;
 
 /* ---------- reuniao do acervo do dia ---------- */
 
-async function reunir(DATA, hoje, fora, filtro) {
+async function reunir(DATA, hoje, fora, filtroCfg) {
   const V = {}; DATA.venues.forEach(v => V[v.name] = v);
   const excluir = new Set(fora || []);
-  if (filtro) console.log('  recorte: ' + base.descreverFiltro(filtro));
+  /* Vista de sala fica fora por padrao — mesma regra do obra.js. Sem isso, a
+     parede junta reproducao de obra com foto de outra parede pendurada nela,
+     e o resultado confunde: parede dentro de parede. So entra vista quando o
+     filtro pede de proposito (ex.: a ideia salao-vista-de-sala, vista:true —
+     ali o assunto E o espaco, entao Object.assign nao pisa no que foi pedido). */
+  const filtro = Object.assign({ vista: false }, filtroCfg);
+  if (filtroCfg) console.log('  recorte: ' + base.descreverFiltro(filtro));
   const out = [];
   const vistos = new Set();
   const barradas = [];
@@ -163,10 +183,46 @@ function slideCatalogo(fatia, cfg, n, total, de, ate) {
   </div>`;
 }
 
+/* O destaque: a mesma obra da parede, agora sozinha. A obra flutua contida
+   (nunca sangra — regra da rima e da aproximacao, mesmo motivo aqui), com a
+   ficha inteira que a base souber: titulo, artista, casa, endereco, prazo e
+   credito. E o mergulho que o numero da parede promete e o catalogo, em
+   texto corrido, nao entrega. */
+function slideDestaque(o, i, totalObras, cfg, n, total) {
+  const cx = W - 88 * 2, cy = 700;
+  const k = Math.min(cx / o.dim.w, cy / o.dim.h);
+  const w = Math.round(o.dim.w * k), h = Math.round(o.dim.h * k);
+  const quem = autoria(o.e);
+  const ig = o.v.ig ? ' ' + arroba(o.v.ig) : '';
+  const endereco = [o.v.addr, o.v.b].filter(Boolean).join(', ');
+  const prazo = o.e.fim ? 'até ' + esc(porExtenso(o.e.fim)) : 'encerramento não divulgado';
+  return `<div class="slide">
+    <div class="kick">obra ${String(i + 1).padStart(2, '0')} de ${String(totalObras).padStart(2, '0')}</div>
+    <img class="obra" src="${esc(o.rel)}" style="left:${Math.round((W - w) / 2)}px;top:${Math.round(170 + (cy - h) / 2)}px;width:${w}px;height:${h}px">
+    <div class="ficha" style="top:900px">
+      <div class="tit">${esc(tituloCurto(o.e))}</div>
+      ${quem ? '<div class="quem">' + esc(quem) + '</div>' : ''}
+      ${o.e.d ? '<div class="serv" style="margin-top:16px">' + esc(o.e.d) + '</div>' : ''}
+      <div class="serv" style="margin-top:16px">${esc(o.v.name)}${esc(ig)}<br>
+        ${esc(endereco)}<br>${prazo}</div>
+    </div>
+    <div class="cred">${esc(o.e.cred)}</div>
+    <div class="pag">${n}/${total}</div>
+  </div>`;
+}
+
 function montarHTML(L, cfg) {
   const POR_PAGINA = 13;
   const paginas = Math.ceil(L.obras.length / POR_PAGINA);
-  const total = 2 + paginas;
+  const fixos = 2 + paginas;
+
+  /* Teto do carrossel: o que sobrar do limite do Instagram depois da parede,
+     da tese e do catalogo vai para os destaques, um por obra, na mesma ordem
+     da parede. Nem sempre cabe todo mundo — o log de quem gerou diz quantos
+     entraram. */
+  const orcamentoDestaque = Math.max(0, SLIDE_MAX_IG - fixos);
+  const nDestaques = Math.min(L.obras.length, orcamentoDestaque);
+  const total = fixos + nDestaques;
 
   let s = slideParede(L.postas, cfg, 1, total, true);
   s += slideTese(L, cfg, 2, total);
@@ -175,8 +231,12 @@ function montarHTML(L, cfg) {
     s += slideCatalogo(L.obras.slice(de, de + POR_PAGINA), cfg, 3 + i, total, de + 1,
       Math.min(de + POR_PAGINA, L.obras.length));
   }
-  return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>${CSS}
-    ${cssPaleta(cfg.paleta, cfg.textura)}</style></head><body>${s}</body></html>`;
+  for (let i = 0; i < nDestaques; i++) {
+    s += slideDestaque(L.obras[i], i, L.obras.length, cfg, fixos + i + 1, total);
+  }
+  return { html: `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>${CSS}
+    ${cssPaleta(cfg.paleta, cfg.textura)}</style></head><body>${s}</body></html>`,
+    nDestaques };
 }
 
 /* ---------- execucao ---------- */
@@ -206,8 +266,11 @@ async function principal() {
   console.log('  parede: ' + COLUNAS + ' colunas, altura ' + alto + 'px em quadro de ' + H);
 
   const L = { obras, postas, casas };
+  const { html, nDestaques } = montarHTML(L, cfg);
+  console.log('  destaque: ' + nDestaques + ' de ' + obras.length + ' obras' +
+    (nDestaques < obras.length ? ' (teto de ' + SLIDE_MAX_IG + ' slides do Instagram)' : ''));
   const tmp = path.join(RAIZ, '.salao-tmp.html');
-  fs.writeFileSync(tmp, montarHTML(L, cfg), 'utf8');
+  fs.writeFileSync(tmp, html, 'utf8');
 
   const puppeteer = require(path.join(RAIZ, '.render', 'node_modules', 'puppeteer-core'));
   const browser = await puppeteer.launch({
