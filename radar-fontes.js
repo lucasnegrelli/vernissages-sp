@@ -464,10 +464,21 @@ const INDICES = ['', '/exposicoes', '/exposicoes/', '/exhibitions', '/exhibition
 
 /* Texto concatenado das primeiras páginas de índice de um site, normalizado.
    Cache por site, render como plano B. Compartilhado entre a confirmação e a
-   varredura de venues. */
+   varredura de venues — e é por isso que o teto tem de cobrir as DUAS fases
+   somadas, não cada uma.
+
+   O teto era 20 até 23/09/2026, herdado de quando isto rodava fora do
+   Actions sem orçamento de tempo garantido. Com o navegador fechando cedo
+   demais (bug corrigido acima), o teto nunca chegou a ser o gargalo de
+   fato nas rodadas passadas — mas seria: confirmarNaFonte() consome do
+   mesmo orçamento antes de varrerVenues() rodar, e com mais de 100 casas na
+   varredura direta, 20 renders somem na primeira dúzia de sites em JS. Aqui
+   o `radar.yml` dá 25 minutos e Chrome de verdade; cada render custa ~2-5s
+   (medido no imagens.yml). 150 cobre a base inteira com folga e ainda cabe
+   no tempo. */
 const _sites = new Map();
 let _rendersFeitos = 0;
-async function pegarSite(site, render, tetoRender = 20) {
+async function pegarSite(site, render, tetoRender = 150) {
   if (_sites.has(site)) return _sites.get(site);
   let txt = '';
   for (const ix of INDICES.slice(0, 4)) {
@@ -681,7 +692,17 @@ function relatorio(r, DATA, meses) {
   const cands = [];
   cands.push(...await arteQueAcontece(meses));
   if (tem('render')) cands.push(...await guiaDasArtes());
-  if (_browser) await _browser.close().catch(() => {});
+  /* NAO fechar o _browser aqui. Achado em 23/09/2026: fechava logo apos o
+     Guia das Artes, mas a variavel _browser continuava apontando pro
+     navegador (agora fechado) em vez de voltar a null — entao pegarRender()
+     via `if (!_browser)` como falso e tentava `_browser.newPage()` num
+     navegador morto. TODO render de confirmarNaFonte() e varrerVenues(),
+     que rodam depois, falhava silencioso (cai no catch, vira "render: ...")
+     e caia direto em "abrir na mao" — foi isso que inflou a lista de "site
+     nao entregou HTML util" no radar de hoje: nao era o site, era o
+     navegador ja fechado. O fechamento de verdade e no fim do principal(),
+     depois de confirmarNaFonte() e varrerVenues() terem rodado.
+  */
 
   const reais = cands.filter(c => !c._fonte_erro);
   console.log(`  ${reais.length} candidatas coletadas · ${reais.filter(c => c.ehSP).length} em São Paulo`);
