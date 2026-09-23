@@ -21,9 +21,21 @@ name: Rotina de domingo — dados.js
 
 on:
   schedule:
-    # 13:17 UTC domingo — mesmo horario da rotina antiga.
+    # 13:17 UTC domingo — mesmo horario da rotina antiga. Continua existindo
+    # como rede de seguranca: se por algum motivo o workflow_run abaixo nao
+    # disparar numa semana, o domingo ainda pega o que ficou parado.
     - cron: '17 13 * * 0'
   workflow_dispatch:
+  # Em cadeia com o garimpo, nao so no domingo. Adicionado em 23/09/2026: o
+  # Lucas rodou radar+garimpo manualmente numa terca e a apuracao so ia
+  # acontecer no domingo seguinte — quase uma semana de imagem e mostra
+  # confirmadas paradas na issue, sem ninguem escrever no dados.js. O
+  # garimpo roda depois do radar (sabado 09:00 UTC vs 08:12), entao esperar
+  # ele terminar cobre os dois relatorios do fim de semana; workflow_dispatch
+  # manual dos dois, como hoje, tambem dispara isto na sequencia.
+  workflow_run:
+    workflows: ["Garimpo de imagens"]
+    types: [completed]
 
 permissions:
   contents: write
@@ -36,6 +48,12 @@ concurrency:
 
 jobs:
   vsp-semana:
+    # workflow_run dispara em qualquer conclusao, sucesso ou falha do
+    # garimpo. So roda daqui se o garimpo terminou bem — garimpo falho nao
+    # tem relatorio novo pra apurar, e nao ha por que ligar o Claude Code a
+    # toa. Schedule e workflow_dispatch nao tem workflow_run no evento, entao
+    # passam direto.
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:

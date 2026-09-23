@@ -17,9 +17,10 @@ PASSOS:
    lucasnegrelli/vernissages-sp --label radar --state open --json
    number,title` e o mesmo trocando `radar` por `garimpo`; depois `gh issue
    view <numero> --repo lucasnegrelli/vernissages-sp` pra ler o corpo
-   completo de cada uma. Se não houver issue `radar` aberta, provavelmente
-   o `radar.yml` (sábado 08:12 UTC) ainda não rodou nesta semana — relate
-   SEM NOVIDADES e pare.
+   completo de cada uma. Se não houver NENHUMA issue aberta (nem `radar`
+   nem `garimpo`), provavelmente nenhum dos dois workflows rodou ainda esta
+   semana — relate SEM NOVIDADES e pare. Tendo só uma das duas, processe a
+   que existir; não pare por falta da outra.
 3. Da issue `radar`, trate cada seção:
    - **Novas / Divergência de data**: confirme título, datas e cidade
      abrindo a página da própria casa (WebFetch no campo `site` do venue
@@ -30,6 +31,29 @@ PASSOS:
    - **`fim: null` com abertura antiga / Pode ter encerrado**: abra a
      página da casa; encerrou -> remova; ganhou data -> preencha `fim`.
    - **Casa não mapeada**: só mencione no resumo, NÃO adicione venue.
+3b. Da issue `garimpo`, trate cada proposta da tabela "Propostas":
+   - **Abra a URL da imagem com o WebFetch e OLHE.** Medida de arquivo
+     (tamanho, peso) já veio pronta na tabela — o que falta e o que o
+     script mecânico não faz é decidir se aquilo é a obra. Rejeite retrato
+     de pessoa sem ligação com a mostra, cartaz/banner tipográfico,
+     ilustração gráfica genérica e qualquer coisa que não seja a reprodução
+     do trabalho. Aceite vista de sala normalmente (fica com `vista:true`
+     na base), mas prefira reprodução de obra quando a tabela oferecer as
+     duas.
+   - Se o WebFetch devolver a imagem sem conseguir descrevê-la (alguns
+     hosts recusam ou o conteúdo não vem como imagem interpretável), NÃO
+     aceite no chute — trate como "não confirmado" e deixe de fora, igual
+     a qualquer dúvida.
+   - Confirmada: cole a URL no campo `img` da mostra (ou baixe com `curl`
+     pra `img/<slug>.<ext>` e aponte pro caminho local — os dois formatos
+     já circulam na base) e o `cred` sugerido na tabela **só depois de
+     confirmar contra a página de origem** (a tabela marca isso como
+     "CONFERIR": é palpite de formato, não apuração).
+   - Antes de aceitar, confira que a mostra continua em cartaz hoje
+     (`fim` >= hoje na base) — imagem de mostra já encerrada não serve pra
+     nada, mesmo que a foto esteja certa.
+   - Linhas da seção "Não achou": não são erro, só ficam sem imagem até
+     alguém achar na mão. Não invente URL pra elas.
 4. Remova editais vencidos (prazo no passado; `prazo: null` é fluxo
    contínuo, não mexa). `atualizado` = hoje se você mudou algo.
 5. `node check.js` — TEM que terminar em 'OK. Pode commitar.'. Reprovou:
