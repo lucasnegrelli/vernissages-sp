@@ -2579,6 +2579,23 @@
    "tipo": "hibrido",
    "site": "",
    "ig": "vazio_criativo_",
+   "visto": "2026-09-23",
+   "primeiroRegistro": "2026-09-23"
+  },
+  {
+   "id": "coordenadas-improvaveis--mits-galeria",
+   "t": "Coordenadas Improváveis",
+   "a": "",
+   "v": "MITS Galeria",
+   "ini": "2026-09-24",
+   "fim": null,
+   "d": "Coletiva na MITS Galeria.",
+   "bairro": "Jardim Paulista",
+   "zona": "Oeste",
+   "addr": "Al. Tietê, 618, Casa 7",
+   "tipo": "galeria",
+   "site": "https://www.mitsgaleria.art",
+   "ig": "mits.galeria",
    "visto": "2026-09-23"
   }
  ],
@@ -4704,9 +4721,9 @@
    "b": "Itaim Bibi",
    "z": "Sul",
    "tipo": "galeria",
-   "site": "",
+   "site": "https://www.foliolivraria.com.br",
    "ig": "foliogaleria",
-   "info": "Especializada em livros de artista, edições limitadas e obras em papel desde 2000. Atendimento com hora marcada."
+   "info": "Especializada em livros de artista, edições limitadas e obras em papel desde 2000. Atendimento com hora marcada. Site e catálogo, sem mostra rotativa."
   },
   "galeria-frente": {
    "name": "Galeria Frente",
@@ -4840,11 +4857,11 @@
   },
   "mits-galeria": {
    "name": "MITS Galeria",
-   "addr": "R. Padre João Manuel, 740",
+   "addr": "Al. Tietê, 618, Casa 7",
    "b": "Jardim Paulista",
    "z": "Oeste",
    "tipo": "galeria",
-   "site": "",
+   "site": "https://www.mitsgaleria.art",
    "ig": "mits.galeria",
    "info": "Galeria contemporânea criada em 2023."
   },
