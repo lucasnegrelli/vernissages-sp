@@ -344,6 +344,12 @@ async function principal() {
   paradas.forEach((p, i) => console.log('  ' + (i + 1) + '. ' + p.v.name +
     (p.distAnterior != null ? '  (≈' + p.distAnterior + ' m)' : '') +
     '  [' + p.dim.w + 'x' + p.dim.h + ']'));
+  /* Achado em 23/09/2026: deriva escolhe obra (esta no CONSOME_OBRA do
+     semana.js) mas nunca imprimia PICK — as paradas nunca entravam no
+     POSTADAS.json, e a mesma obra podia voltar cedo demais num outro
+     formato (ou na propria deriva, semana seguinte). obra.js sempre fez
+     isto; aqui faltava. */
+  paradas.forEach(p => console.log('PICK ' + p.e.t + '|' + p.v.name));
 
   const tmp = path.join(RAIZ, '.deriva-tmp.html');
   fs.writeFileSync(tmp, montarHTML(paradas, total, cfg), 'utf8');

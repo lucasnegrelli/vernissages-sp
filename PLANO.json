@@ -74,16 +74,12 @@
       "ordem": 1,
       "paleta": "linho",
       "textura": 0.09,
-      "ideia": "deriva-so-galeria",
-      "nome": "deriva-so-galeria",
-      "pular": true,
-      "_pular": "Testei deriva-mais-densa, deriva-so-galeria e deriva-so-obra (todos os filtros do repertório para o formato) excluindo o que já saiu ou está reservado esta semana: nenhum encontra 3 casas com obra em disco a 750 m. Não é filtro apertado — é falta mesmo de aglomerado essa semana. Falta radar/garimpo trazer mais casas próximas com imagem, não curadoria.",
+      "ideia": "deriva-mais-densa",
+      "nome": "deriva-mais-densa",
+      "_troca": "deriva-so-galeria (filtro tipo:galeria) travava porque o aglomerado que apareceu depois do garimpo de 23/09 tem o MIS, que é institucional. Troquei pra deriva-mais-densa, sem recorte de tipo — Mendes Wood DM Casa Iramaia + Galeria Lume + MIS, 683m.",
       "ajustes": {
-        "filtro": {
-          "tipo": "galeria"
-        },
-        "tese": "Só galeria neste percurso: nenhuma bilheteria, nenhuma fila, nenhuma catraca.",
-        "virada": "A caminhada inteira é de graça, e nenhuma dessas portas espera que você compre nada."
+        "tese": "As casas mais próximas umas das outras nesta semana, na ordem mais curta.",
+        "virada": "Nenhuma delas combinou a programação com as outras. Quem junta é a calçada."
       }
     },
     {

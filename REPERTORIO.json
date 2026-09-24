@@ -10,7 +10,9 @@
     "`paletas` lista as paletas que combinam com a ideia. O planejador escolhe uma delas que não tenha saído no dia anterior.",
     "Para acrescentar ideia: copie um item, mude o id, o filtro e o texto. Não precisa mexer em código.",
 
-    "LINHA EDITORIAL — 01/09/2026. Agosto saiu repetitivo porque a maioria das ideias era formato de lista (cinza sobre preto, a obra de miniatura). O eixo agora é a IMAGEM: `obra` (uma reprodução por vez, tela cheia, SEM marca por cima), `encerra` (última semana de uma mostra), `estreia` (o que abre agora). `numero` põe um dado só, gigante. `rolê` e `duração` saíram do social — a linha do tempo virou o painel 'O panorama', ao vivo no site. `rima` e `aproximação` seguem: são os dois com olho humano, e é neles que a voz aparece. A régua é a variedade de recorte, não a economia de ideias — quanto mais ângulos, melhor, desde que cada um produza uma imagem diferente."
+    "LINHA EDITORIAL — 01/09/2026. Agosto saiu repetitivo porque a maioria das ideias era formato de lista (cinza sobre preto, a obra de miniatura). O eixo agora é a IMAGEM: `obra` (uma reprodução por vez, tela cheia, SEM marca por cima), `encerra` (última semana de uma mostra), `estreia` (o que abre agora). `numero` põe um dado só, gigante. `rolê` e `duração` saíram do social — a linha do tempo virou o painel 'O panorama', ao vivo no site. `rima` e `aproximação` seguem: são os dois com olho humano, e é neles que a voz aparece. A régua é a variedade de recorte, não a economia de ideias — quanto mais ângulos, melhor, desde que cada um produza uma imagem diferente.",
+
+    "LOTE DE 23/09/2026 — o Lucas achou o feed repetitivo (a peça de entrada e a de número, semanas diferentes, diziam a mesma coisa: 'é de graça'). Causa raiz: `entrada.js` sempre abre no custo de entrada, não importa a ideia — é estrutural do formato, então `numero-gratis` deveria descansar mais que as outras, não só os 30 dias padrão. Acrescentei 13 ideias novas nesta rodada: 4 `obra`/2 `deriva` por bairro específico (Pinheiros, Bela Vista, Ibirapuera, República, Jardim Europa — o filtro já aceita bairro, não é código novo), 1 `salao` recortado nos três bairros de Jardins, 3 `rima` (preço oposto, arquivo/documento, mesmo artista em décadas diferentes) e 3 `aproximacao` (grão de fotografia, fio de têxtil, cor única) — todas curadas, aguardam config manual quando sorteadas."
   ],
 
   "descansoPadrao": 30,
@@ -396,7 +398,79 @@
     { "id": "aproximacao-antes-de-fechar", "formato": "aproximacao", "curado": true,
       "titulo": "Aproximação numa obra que sai de cartaz nesta semana",
       "paletas": ["escuro", "barro", "linho"],
-      "precisa": "a chave da obra, os zooms e a leitura — a obra tem de fechar em até 10 dias e aguentar recorte a 1600 px de largura" }
+      "precisa": "a chave da obra, os zooms e a leitura — a obra tem de fechar em até 10 dias e aguentar recorte a 1600 px de largura" },
+
+    { "id": "obra-pinheiros", "formato": "obra", "curado": false,
+      "titulo": "A obra, em Pinheiros",
+      "paletas": ["escuro", "barro", "tinta"],
+      "ajustes": { "filtro": { "bairro": "Pinheiros" } } },
+
+    { "id": "obra-bela-vista", "formato": "obra", "curado": false,
+      "titulo": "A obra, na Bela Vista, ao lado da Paulista",
+      "paletas": ["escuro", "tinta", "papel"],
+      "ajustes": { "filtro": { "bairro": "Bela Vista" } } },
+
+    { "id": "obra-ibirapuera", "formato": "obra", "curado": false,
+      "titulo": "A obra, num museu do Ibirapuera",
+      "paletas": ["escuro", "barro", "cal"],
+      "ajustes": { "filtro": { "bairro": "Ibirapuera" } } },
+
+    { "id": "obra-republica", "formato": "obra", "curado": false,
+      "titulo": "A obra, na República",
+      "paletas": ["tinta", "papel", "linho"],
+      "ajustes": { "filtro": { "bairro": "República" } } },
+
+    { "id": "deriva-pinheiros", "formato": "deriva", "curado": false,
+      "titulo": "Uma deriva por Pinheiros",
+      "paletas": ["papel", "cal", "linho"],
+      "ajustes": { "filtro": { "bairro": "Pinheiros" } } },
+
+    { "id": "deriva-jardim-europa", "formato": "deriva", "curado": false,
+      "titulo": "Uma deriva pelo Jardim Europa",
+      "paletas": ["linho", "papel", "cal"],
+      "ajustes": { "filtro": { "bairro": "Jardim Europa" } } },
+
+    { "id": "salao-jardins-tres-bairros", "formato": "salao", "curado": false,
+      "titulo": "Só o que está em cartaz nos três bairros de Jardins, na mesma parede",
+      "paletas": ["cal", "linho", "papel"],
+      "filtro": { "bairro": ["Jardim Paulista", "Jardim Europa", "Jardim América"] },
+      "ajustes": {
+        "texto": [
+          "Jardim Paulista, Jardim Europa e Jardim América somam mais casas de arte do que o resto da cidade inteira junto.",
+          "Isso não é acaso geográfico: é onde o dinheiro do circuito sempre esteve. A concentração é a notícia, não a coincidência."
+        ],
+        "virada": "Setenta por cento da cena cabe numa caminhada de vinte minutos — e é isso que este mapa não mostra até você tentar sair dele."
+      } },
+
+    { "id": "rima-preco-oposto", "formato": "rima", "curado": true,
+      "titulo": "Duas mostras, dois preços de entrada opostos",
+      "paletas": ["tinta", "escuro", "papel"],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — uma tem que ser gratuita e a outra cobrar ingresso, tratando de assunto próximo" },
+
+    { "id": "rima-arquivo-documento", "formato": "rima", "curado": true,
+      "titulo": "Duas mostras que tratam documento e arquivo como matéria-prima",
+      "paletas": ["papel", "tinta", "escuro"],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — as duas precisam trabalhar com fonte documental (foto de arquivo, carta, recorte), não só tema histórico" },
+
+    { "id": "rima-mesmo-artista-decadas", "formato": "rima", "curado": true,
+      "titulo": "O mesmo artista, com décadas de distância entre as duas mostras",
+      "paletas": ["escuro", "barro", "tinta"],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — raro: precisa do mesmo artista em cartaz em dois momentos da carreira, ou uma retrospectiva ao lado de trabalho recente de outro artista da mesma geração" },
+
+    { "id": "aproximacao-fotografia-grao", "formato": "aproximacao", "curado": true,
+      "titulo": "Aproximação numa fotografia: o grão, não o pixel",
+      "paletas": ["escuro", "papel", "cal"],
+      "precisa": "a chave da obra, os zooms e a leitura — fotografia analógica ou impressão em que o grão apareça de perto, não vetor digital liso" },
+
+    { "id": "aproximacao-textil-fio", "formato": "aproximacao", "curado": true,
+      "titulo": "Aproximação num têxtil: o fio visível, não o desenho",
+      "paletas": ["barro", "linho", "escuro"],
+      "precisa": "a chave da obra, os zooms e a leitura — bordado, tapeçaria ou fibra em que a trama apareça de perto, não a imagem geral do pano" },
+
+    { "id": "aproximacao-cor-unica", "formato": "aproximacao", "curado": true,
+      "titulo": "Aproximação na cor: onde uma cor domina a obra inteira",
+      "paletas": ["tinta", "barro", "escuro"],
+      "precisa": "a chave da obra, os zooms e a leitura — obra em que uma única cor ocupa a maior parte da superfície, e o recorte mostra as variações de tom dentro dela" }
 
   ]
 }
