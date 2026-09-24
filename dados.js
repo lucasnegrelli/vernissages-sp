@@ -255,7 +255,6 @@ const EXPOS = [
 {t:"Por Elas, Com Elas: Do Moderno ao Contemporâneo",v:"DAN Galeria",ini:"2026-09-09",fim:"2026-11-07",d:"Coletiva com obras de meados do século 20 aos dias atuais, em núcleo histórico — com Tarsila do Amaral, Anita Malfatti, Lygia Clark e Tomie Ohtake — e núcleo contemporâneo. Curadoria de Maria Alice Milliet.",img:"img/por-elas-com-elas-do-moderno-ao-contemporaneo-dan-galeria.jpg",cred:"Cortesia DAN Galeria"},
 
 /* --- confirmadas na fonte primária em 14/09/2026, casas já mapeadas sem nada em cartaz na base --- */
-{t:"Sempre Acesa",a:"Guilherme Santos da Silva",v:"Galeria Luis Maluf",ini:"2026-06-27",fim:"2026-09-16",d:"Exposição individual, na sede da Rua Peixoto Gomide.",img:"",cred:""},
 {t:"Uma Coisa Leva à Outra",a:"Fernanda Pompermayer",v:"Galeria Luis Maluf",ini:"2026-08-22",fim:"2026-09-23",d:"Exposição individual, na unidade da Barra Funda.",img:"",cred:""},
 {t:"Mensageiro da Manhã",a:"André Ricardo",v:"Almeida & Dale",ini:"2026-08-15",fim:"2026-09-19",d:"Exposição individual.",img:"",cred:""},
 {t:"Abstenções (uma miragem, mas permanente)",a:"Nino Kapanadze",v:"Almeida & Dale",ini:"2026-08-15",fim:"2026-09-19",d:"Exposição individual.",img:"",cred:""},
@@ -355,11 +354,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Por Elas, Com Elas: Do Moderno ao Contemporâneo",
-  v: "DAN Galeria",
+  t: "NO LIMITE: forma e transformação",
+  v: "Paço das Artes",
   quem: "",
-  txt: "Coletiva com obras de meados do século 20 aos dias atuais, em núcleo histórico — com Tarsila do Amaral, Anita Malfatti, Lygia Clark e Tomie Ohtake — e núcleo contemporâneo. Curadoria de Maria Alice Milliet. Abertura em 9 de setembro, até 7 de novembro.",
-  link: "https://www.dangaleria.com.br",
+  txt: "Coletiva com 17 artistas de 6 países que explora o conceito de \"situação-limite\" do filósofo Karl Jaspers, combinando aspectos psicológicos com elementos como água, pedras, sal e luz. Curadoria de Martin Juef, cocuradoria de Francisco Klinger Carvalho. Abertura em 26 de setembro, até 15 de novembro.",
+  link: "https://pacodasartes.org.br",
   publi: false
 };
 
@@ -374,6 +373,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-09-24", k:"NO LIMITE: forma e transformação|Paço das Artes"},
   {d:"2026-09-23", k:"Por Elas, Com Elas: Do Moderno ao Contemporâneo|DAN Galeria"},
   {d:"2026-09-22", k:"Autobiografia de um Fio|Galeria Nara Roesler"},
   {d:"2026-09-18", k:"Rajada encarnada — coletiva|Casa de Cultura do Parque"},
@@ -433,5 +433,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "23/09/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "24/09/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
