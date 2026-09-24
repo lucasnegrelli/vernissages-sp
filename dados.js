@@ -141,7 +141,7 @@ const VENUES = [
 {name:"Casa Seva",site:"https://casaseva.com",addr:"Al. Lorena, 1257, Casa 1",b:"Jardins",z:"Oeste",tipo:"galeria",lat:-23.5724,lng:-46.6569,info:"Espaço dedicado a arte e sustentabilidade, entrada gratuita. Terça a sexta, 11h–18h."},
 {name:"Casa Museu Ema Klabin",site:"https://emaklabin.org.br",addr:"R. Portugal, 43",b:"Jardim Europa",z:"Oeste",tipo:"institucional",lat:-23.5735,lng:-46.6757,info:"Casa-museu da Fundação Ema Gordon Klabin, com acervo de arte e objetos. Quarta a domingo, 11h–17h."},
 {name:"Fibra Galeria",addr:"R. Tinhorão, 69",b:"Higienópolis",z:"Centro",tipo:"galeria",lat:-23.5444,lng:-46.6618,info:"Galeria e leiloeira desde 2012, com exposições individuais e coletivas além de leilões mensais."},
-{name:"Fólio Galeria",ig:"foliogaleria",addr:"R. Pedroso Alvarenga, 1046",b:"Itaim Bibi",z:"Sul",tipo:"galeria",lat:-23.5824,lng:-46.6804,info:"Especializada em livros de artista, edições limitadas e obras em papel desde 2000. Atendimento com hora marcada."},
+{name:"Fólio Galeria",ig:"foliogaleria",site:"https://www.foliolivraria.com.br",addr:"R. Pedroso Alvarenga, 1046",b:"Itaim Bibi",z:"Sul",tipo:"galeria",lat:-23.5824,lng:-46.6804,info:"Especializada em livros de artista, edições limitadas e obras em papel desde 2000. Atendimento com hora marcada. Site e catálogo, sem mostra rotativa."},
 {name:"Galeria Frente",site:"https://galeriafrente.com.br",addr:"R. Dr. Melo Alves, 400",b:"Cerqueira César",z:"Oeste",tipo:"galeria",lat:-23.5609,lng:-46.6705,info:"Já expôs Portinari, Tarsila do Amaral e Tomie Ohtake."},
 {name:"Fundação Maria Luisa e Oscar Americano",site:"https://fundacaooscaramericano.org.br",addr:"Av. Morumbi, 4077",b:"Morumbi",z:"Oeste",tipo:"institucional",lat:-23.6013,lng:-46.7096,info:"Casa-museu com 75 mil m² de área verde. Terça a domingo, 10h–17h30."},
 /* site tirado em 23/09/2026: bergamingomide.com.br nao resolve (DNS
@@ -159,7 +159,12 @@ const VENUES = [
 {name:"Instituto Çarê",ig:"institutoculturalcare",site:"https://institutocare.org.br",addr:"R. Dr. Avelino Chaves, 138",b:"Vila Leopoldina",z:"Oeste",tipo:"institucional",lat:-23.5364,lng:-46.7290,info:"Organização sem fins lucrativos criada em 2019, com núcleos de Acervos, Artes Visuais, Educação, Música e Pesquisa."},
 {name:"Lombardi Galeria",ig:"lombardigaleria",addr:"R. Joaquim Antunes, 187",b:"Jardim Paulistano",z:"Oeste",tipo:"galeria",lat:-23.5666,lng:-46.6797,info:"Projeto focado em fotografia autoral como linguagem artística."},
 {name:"Martins&Montero",ig:"martinsemontero",site:"https://martinsemontero.com",addr:"R. Jamaica, 50 ~",b:"Jardim América",z:"Oeste",tipo:"galeria",lat:-23.5680,lng:-46.6680,info:"Unidades em São Paulo e Bruxelas."},
-{name:"MITS Galeria",ig:"mits.galeria",addr:"R. Padre João Manuel, 740",b:"Jardim Paulista",z:"Oeste",tipo:"galeria",lat:-23.5638,lng:-46.6644,info:"Galeria contemporânea criada em 2023."},
+/* endereco corrigido em 23/09/2026: bio do Instagram (@mits.galeria) diz
+   "Al.Tietê 618, Casa_7" — diferente do R. Padre João Manuel, 740 que
+   estava aqui. Nao conferi qual data de mudanca; mantendo o que a fonte
+   mais recente diz. lat/lng nao reajustados, a rua muda mas o bairro
+   (Jardim Paulista) e proximo. */
+{name:"MITS Galeria",ig:"mits.galeria",site:"https://www.mitsgaleria.art",addr:"Al. Tietê, 618, Casa 7",b:"Jardim Paulista",z:"Oeste",tipo:"galeria",lat:-23.5638,lng:-46.6644,info:"Galeria contemporânea criada em 2023."},
 /* site tirado em 23/09/2026: certificado SSL de mube.art.br esta
    expirado — navegador bloqueia. Reconferir quando renovarem. */
 {name:"MuBE",site:"",addr:"R. Alemanha, 221",b:"Jardim Europa",z:"Oeste",tipo:"institucional",lat:-23.5763,lng:-46.6764,info:"Museu Brasileiro de Escultura e Ecologia. Acervo arqueológico da FUMDHAM (Piauí) ao lado de escultura, desenho, pintura, gravura, fotografia e vídeo contemporâneos."},
@@ -298,7 +303,11 @@ const EXPOS = [
 /* confirmado no Instagram (@vazio_criativo_, 23/09/2026) — proibido raspar
    perfil em automação, mas checagem manual pontual foi autorizada. Só
    cartaz disponível, sem imagem de obra. */
-{t:"Roxo em Tons",a:"",v:"Vazio Criativo",ini:"2026-10-03",fim:"2026-10-09",d:"Tons Coletivo apresenta exposição coletiva para ver o mundo em roxo, com curadoria de Audrey Barbosa.",img:"",cred:""}
+{t:"Roxo em Tons",a:"",v:"Vazio Criativo",ini:"2026-10-03",fim:"2026-10-09",d:"Tons Coletivo apresenta exposição coletiva para ver o mundo em roxo, com curadoria de Audrey Barbosa.",img:"",cred:""},
+/* confirmado no Instagram (@mits.galeria, 23/09/2026). Curadoria e lista
+   de artistas apareciam no cartaz mas cortados/ilegiveis no zoom -- nao
+   incluidos, para nao chutar nome. */
+{t:"Coordenadas Improváveis",a:"",v:"MITS Galeria",ini:"2026-09-24",fim:"",d:"Coletiva na MITS Galeria.",img:"",cred:""}
 ];
 
 /* ================= IMERSIVAS =================
