@@ -163,7 +163,9 @@ async function principal() {
   fs.writeFileSync(RELATORIO, s);
 
   console.log(novos.length + ' posts novos de ' + casas.length + ' casas -> ' + path.relative(RAIZ, RELATORIO));
-  if (falhas.length) console.log('Perfis que não abriram: ' + falhas.length);
+  /* O motivo vai por extenso no log do Actions: o relatório fica no runner e
+     some, e "não abriu" pode ser handle morto ou só perfil sem post recente. */
+  if (falhas.length) console.log('Perfis que não abriram (' + falhas.length + '):\n  ' + falhas.join('\n  '));
   if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, 'novos=' + novos.length + '\n');
 }
 
