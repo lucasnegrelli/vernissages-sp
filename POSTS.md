@@ -16,10 +16,15 @@ nenhuma peça nossa era feita para ser enviada. Referência: @thirstygallerina
 | seg | uma do repertório | obra, número, estreia... |
 | qua | a curada | rima ou aproximação, alternando |
 | **qui** | **agenda** (`agenda.js`) | o fim de semana em carrossel: abre + últimos dias, lista final "salva esse" |
-| **sex** | **reel** (`reel.js`) | o mesmo fim de semana em ~12 s, 1080×1920, sem áudio (o áudio em alta entra no app) |
-| sáb | deriva | o percurso a pé |
+| sex | uma do repertório | |
+| sáb | **deriva v2** | roteiro a pé com as ruas reais (OpenStreetMap), rota em terracota, mini-mapa em cada parada |
 
-**Registro visual dos dois novos:** Switzer em 800 para título e data (antes
+**Reel fora da grade.** `reel.js` monta vídeo com filmagem do Lucas (`--clipes=pasta`):
+cortes curtos, som do lugar, frase-gancho (POV) nos primeiros 2,6 s, cartão da
+mostra no fim. Sai quando houver rolê filmado. Um reel automático que só
+animava o carrossel existiu por algumas horas e saiu: vídeo é outra proposta.
+
+**Registro visual dos formatos novos (agenda, deriva v2, reel):** Switzer em 800 para título e data (antes
 tudo em 300), e **um acento: o terracota `#C96F4A` da foto de perfil**. A
 regra da obra não muda — nada escrito por cima da imagem; o texto mora na
 faixa de baixo.
@@ -28,8 +33,8 @@ faixa de baixo.
 Collab ao postar: o post aparece no perfil delas também (a A7MA sozinha tem
 48,5 mil seguidores). É a alavanca de alcance mais barata que existe.
 
-Os formatos `agenda` e `reel` são `fixo` no semana.js: saem toda semana e
-não entram no USADAS (o conteúdo muda com a agenda).
+O formato `agenda` é `fixo` no semana.js: sai toda semana e não entra no
+USADAS (o conteúdo muda com a agenda).
 
 ---
 

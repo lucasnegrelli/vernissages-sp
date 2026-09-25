@@ -136,11 +136,15 @@ function montar(rep, usadas, inicio, quantasPecas) {
        seg  uma peca do repertorio (obra, numero, estreia...)
        qua  a curada da semana (rima ou aproximacao, alternando)
        qui  AGENDA — o fim de semana em carrossel (utilidade: salva e manda)
-       sex  REEL — o mesmo fim de semana em 12 s (alcance fora dos seguidores)
-       sab  deriva — o percurso a pe
+       sex  uma peca do repertorio
+       sab  deriva — o roteiro a pe (a peca que mais rendeu ate aqui)
+     O Reel nao esta na grade: e filmagem do Lucas montada pelo reel.js,
+     e sai quando houver rolê filmado. (Um reel automatico que repetia o
+     carrossel existiu por algumas horas em 25/09 e saiu: "o video e outra
+     proposta".)
      --pecas acima de 5 volta a espalhar extras nos dias vazios. */
-  const porDia = [1, 0, 1, 0, 0, 1, 0];       // seg..dom: so os dias de sorteio
-  const FIXOS = { 3: 'agenda', 4: 'reel' };   // indice do dia -> formato fixo
+  const porDia = [1, 0, 1, 0, 1, 1, 0];       // seg..dom: so os dias de sorteio
+  const FIXOS = { 3: 'agenda' };              // indice do dia -> formato fixo
   const prioridade = [1, 6, 3, 4, 2, 0, 5];   // extras: ter, dom, qui, sex...
   let extra = Math.max(0, quantasPecas - 5);
   for (let i = 0; extra > 0; i = (i + 1) % prioridade.length) { porDia[prioridade[i]]++; extra--; }
@@ -173,7 +177,7 @@ function montar(rep, usadas, inicio, quantasPecas) {
     const hoje = new Set();
     paletaPorDia[data] = hoje;
     if (FIXOS[di]) posts.push({ data, formato: FIXOS[di], ordem: 1, paleta: 'escuro', fixo: true,
-                                _titulo: FIXOS[di] === 'agenda' ? 'O fim de semana (carrossel)' : 'O fim de semana (reel)' });
+                                _titulo: 'O fim de semana (carrossel)' });
     const formatosHoje = new Set();
     let curadaHoje = 0;
 

@@ -54,11 +54,12 @@ const FORMATOS = {
   deriva:      { script: 'deriva.js',      curado: false },
   entrada:     { script: 'entrada.js',     curado: false },
   salao:       { script: 'salao.js',       curado: false },
-  /* Fixos da semana desde 25/09/2026: saem TODA semana, então não entram na
+  /* Fixo da semana desde 25/09/2026: sai TODA semana, então não entram na
      memória de descanso (USADAS). A mesma janela nunca repete — o conteúdo
      muda com a agenda. */
-  agenda:      { script: 'agenda.js',      curado: false, fixo: true },
-  reel:        { script: 'reel.js',        curado: false, fixo: true }
+  agenda:      { script: 'agenda.js',      curado: false, fixo: true }
+  /* reel.js não entra aqui: monta vídeo com filmagem do Lucas (--clipes),
+     não com a base. Roda na mão, depois do rolê. */
   /* role e duracao saíram em 01/09: a deriva cobre o percurso, e o diagrama de
      duração virou o painel "O panorama", ao vivo no site. */
 };

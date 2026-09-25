@@ -1,29 +1,32 @@
 /* ============================================================
-   REEL — o fim de semana em 15 segundos, vertical
+   REEL — monta o Reel com as SUAS filmagens de um rolê
    ============================================================
 
    O que é.
 
-   A mesma seleção do agenda.js (abre + últimos dias) virada vídeo 1080×1920:
-   capa com a pergunta, um cartão por mostra com a obra em movimento lento, e
-   cartão final mandando para o link da bio. Sai sem áudio: o som entra no
-   app, na hora de postar, com um áudio em alta — é o que o Instagram
-   distribui melhor, e escolher faixa é decisão do dia, não do script.
+   Você filma no celular (vertical), joga os clipes numa pasta e isto monta:
+   cortes curtos na ordem dos arquivos, o som ao vivo mantido, a frase-gancho
+   por cima dos primeiros segundos e, no fim, o cartão da mostra (casa,
+   título, até quando) no desenho do Vernissages.
 
-   Por que existe.
+   Por que existe — e por que mudou.
 
-   Em 2026 o sinal número um de distribuição do Instagram é tempo assistido,
-   incluindo replay (Mosseri): um Reel de 15 s visto três vezes vale mais que
-   um de 60 s visto uma. Imagem parada quase não chega em quem não segue.
-   Curto de propósito, para o loop.
+   A v1 (mesmo dia, 25/09/2026) animava o carrossel da agenda em vídeo. O
+   Lucas cortou: vídeo igual ao carrossel não faz sentido, "o vídeo é outra
+   proposta". O dado do Instagram de 2026 concorda: no Reels o gancho
+   autêntico, de quem está reagindo a algo real, rende mais que o polido, e
+   POV é o formato de gancho que mais segura. Gente, som e sala cheia não
+   saem da base — saem do celular.
 
-   Zona segura. A interface do Reels cobre ~250 px embaixo (legenda, botões)
-   e ~200 px em cima. Nada importante mora nessas faixas.
-
-   A regra da obra continua: texto nunca por cima da imagem.
+   O que ele NÃO faz: não escolhe trecho bom por você (corta a partir de
+   --pulo segundos de cada clipe) e não põe música. O som é o do lugar; se
+   quiser áudio em alta, troque no app.
 
    Uso:
-     node reel.js --out=SOCIAL/10/02 --date=2026-10-02 [--config=...]
+     node reel.js --clipes=SOCIAL/09/27/jam --mostra="Passeio Noturno" \
+         --gancho="POV: domingo de jam dentro de uma galeria" --out=SOCIAL/09/27
+   Opções: --corte=2.4 (s por clipe)  --pulo=0.8 (s ignorados no início)
+           --nome=reel   --max=10 (clipes)
    Precisa de ffmpeg no PATH.
    ============================================================ */
 
@@ -32,108 +35,135 @@
 const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
-const { carregarDados, RAIZ, esc, tituloCurto, autoria, PALETAS } = require('./rima.js');
-const { escolher, renderizar, ACENTO, diaSemana, curto } = require('./agenda.js');
+const { carregarDados, RAIZ, esc, tituloCurto, autoria, porExtenso, PALETAS } = require('./rima.js');
 
 const W = 1080, H = 1920, FPS = 30;
-const T_CAPA = 1.6, T_MOSTRA = 1.5, T_FIM = 1.8;
+const ACENTO = '#C96F4A';
+const T_FIM = 2.2;          // cartão final, segundos
+const T_GANCHO = 2.6;       // frase de abertura, segundos
+const VIDEO = /\.(mp4|mov|m4v|webm)$/i;
 
-function css(p) {
-  return `
-@font-face{font-family:'Switzer';src:url('fontes/Switzer-Variable.woff2') format('woff2-variations');font-weight:100 900;font-display:block}
+const argv = process.argv.slice(2);
+const flag = (n, d) => { const a = argv.find(x => x.startsWith('--' + n + '=')); return a ? a.split('=').slice(1).join('=') : d; };
+
+function acharMostra(DATA, nome) {
+  if (!nome) return null;
+  const n = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  const e = (DATA.expos || []).find(x => n(x.t).includes(n(nome)));
+  if (!e) throw new Error('Mostra "' + nome + '" não está no dados.js.');
+  return { e, v: DATA.venues.find(v => v.name === e.v) };
+}
+
+/* Os dois cartões em PNG transparente: o gancho vai POR CIMA do vídeo (é
+   filmagem de gente, não reprodução de obra — a regra da obra não se aplica),
+   o fim cobre a tela. */
+function html(gancho, m) {
+  const p = PALETAS.escuro;
+  const quem = m ? autoria(m.e) : '';
+  const hoje = new Date().toISOString().slice(0, 10);
+  return `<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:'Switzer';src:url('fontes/Switzer-Variable.woff2') format('woff2-variations');font-weight:100 900}
 *{margin:0;padding:0;box-sizing:border-box}
-.s{position:relative;width:${W}px;height:${H}px;background:${p.fundo};color:${p.texto};font-family:'Switzer',sans-serif;overflow:hidden}
-.et{font-size:24px;font-weight:600;letter-spacing:.28em;text-transform:uppercase}
-.capa .g{position:absolute;left:70px;right:60px;top:300px;font-size:168px;font-weight:800;line-height:.86;letter-spacing:-.045em;text-transform:uppercase}
-.capa .g em{font-style:normal;color:${ACENTO}}
-.capa .d{position:absolute;left:74px;top:1000px;font-size:80px;font-weight:300;letter-spacing:-.02em}
-.capa .n{position:absolute;left:74px;top:1120px;font-size:34px;font-weight:500;color:${p.meio};letter-spacing:.04em}
-.m{display:flex;flex-direction:column;justify-content:center;padding:200px 0 260px}
-.m .q{flex:none;max-height:1060px;display:flex;justify-content:center;overflow:hidden}
-.m .q img{max-width:100%;max-height:1060px;display:block}
-.m .q.cheio,.m .q.cheio img{width:100%;height:1060px;object-fit:cover}
-.m .b{padding:44px 70px 0}
-.chip{display:inline-block;background:${ACENTO};color:#fff;padding:12px 20px 11px;font-size:24px;font-weight:700;letter-spacing:.22em;text-transform:uppercase}
-.chip.f{background:${p.texto};color:${p.fundo}}
-.m .dia{font-size:120px;font-weight:800;line-height:.9;letter-spacing:-.045em;margin-top:26px}
-.m .t{font-size:52px;font-weight:600;line-height:1.06;letter-spacing:-.02em;margin-top:22px}
-.m .o{font-size:30px;font-weight:400;color:${p.fraco};margin-top:14px}
-.fim .g{position:absolute;left:70px;right:70px;top:520px;font-size:120px;font-weight:800;line-height:.9;letter-spacing:-.04em;text-transform:uppercase}
-.fim .p{position:absolute;left:74px;top:960px;font-size:44px;font-weight:300;line-height:1.3;color:${p.meio}}
-.fim .p b{color:${ACENTO};font-weight:600}
-.marca{position:absolute;left:74px;top:210px;color:${p.fraco}}
-`;
+html,body{background:transparent}
+.c{position:relative;width:${W}px;height:${H}px;font-family:'Switzer',sans-serif;overflow:hidden}
+.g{position:absolute;left:64px;right:64px;top:250px}
+.g span{background:${p.texto};color:${p.fundo};font-size:66px;font-weight:800;line-height:1.28;letter-spacing:-.025em;
+  padding:4px 18px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.f{background:${p.fundo};color:${p.texto}}
+.f .et{position:absolute;left:72px;top:230px;font-size:24px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:${ACENTO}}
+.f .col{position:absolute;left:72px;right:60px;top:300px}
+.f .t{margin-left:-6px;font-size:124px;font-weight:800;line-height:.9;letter-spacing:-.045em;text-transform:uppercase}
+.f .q{margin-top:34px;font-size:44px;font-weight:300;color:${p.meio}}
+.f .o{margin-top:56px;font-size:40px;font-weight:600;line-height:1.3}
+.f .o small{display:block;font-size:32px;font-weight:400;color:${p.meio}}
+.f .b{margin-top:90px;font-size:30px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:${p.fraco}}
+</style></head><body>
+<div class="c" id="gancho"><div class="g"><span>${esc(gancho || '')}</span></div></div>
+<div class="c f" id="fim">
+  <div class="et">${m ? (m.e.ini > hoje ? 'abre ' + esc(porExtenso(m.e.ini)) : 'em cartaz') : 'Vernissages SP'}</div>
+  <div class="col"><div class="t">${m ? esc(tituloCurto(m.e)) : 'Vernissages SP'}</div>
+  ${quem ? `<div class="q">${esc(quem)}</div>` : ''}
+  ${m ? `<div class="o">${esc(m.v.name)}${m.v.ig ? ' · @' + esc(m.v.ig) : ''}<small>${esc(m.v.addr)} · ${esc(m.v.b)}${m.e.fim ? ' · até ' + esc(porExtenso(m.e.fim)) : ''}</small></div>` : ''}
+  <div class="b">Agenda e mapa: link na bio</div></div>
+</div></body></html>`;
 }
 
-function cartoes(sel) {
-  const abre = sel.itens.filter(x => x.tipo === 'abre').length;
-  const fecha = sel.itens.filter(x => x.tipo === 'fecha').length;
-  const fotos = sel.itens.filter(x => x.rel).slice(0, 6);
-  const partes = [];
-  partes.push(`<div class="s capa"><div class="marca et">Vernissages SP</div>
-    <div class="g">O que ver<br>em SP<br><em>este fim<br>de semana</em></div>
-    <div class="d">${curto(sel.de)} — ${curto(sel.domingo)}</div>
-    <div class="n">${[abre && abre + (abre > 1 ? ' aberturas' : ' abertura'), fecha && fecha + ' em últimos dias'].filter(Boolean).join(' · ')}</div></div>`);
-  for (const x of fotos) {
-    const vertical = x.dim && x.dim.h > x.dim.w;
-    partes.push(`<div class="s m">
-      <div class="q${vertical || x.e.vista ? ' cheio' : ''}"><img src="${esc(x.rel)}"></div>
-      <div class="b">
-        ${x.tipo === 'abre' ? '<span class="chip">abre</span>' : '<span class="chip f">último dia</span>'}
-        <div class="dia">${diaSemana(x.dia)} ${x.dia.slice(8, 10)}</div>
-        <div class="t">${esc(tituloCurto(x.e))}</div>
-        <div class="o">${esc(x.v.name)} · ${esc(x.v.b)}</div>
-      </div></div>`);
-  }
-  partes.push(`<div class="s fim"><div class="marca et">Vernissages SP</div>
-    <div class="g">+ ${Math.max(0, sel.itens.length - fotos.length)} mostras<br>no mapa</div>
-    <div class="p"><b>Link na bio.</b><br>Manda pra quem vai<br>com você.</div></div>`);
-  return { html: partes.join(''), n: partes.length };
-}
-
-function montarVideo(pngs, saida, nome) {
-  const dur = i => i === 0 ? T_CAPA : i === pngs.length - 1 ? T_FIM : T_MOSTRA;
-  const args = ['-y'];
-  /* Uma imagem por entrada, SEM -loop: o zoompan já gera d quadros a partir
-     de um quadro só. Com -loop cada quadro repetido virava d quadros e o
-     vídeo de 12 s saía com 8 minutos. */
-  pngs.forEach(p => args.push('-i', p));
-  /* Zoom lento de 1.00 a ~1.05 em cada cartão (sobe-amostra antes para não
-     tremer) e corte seco entre eles — corte seco segura mais que fade. */
-  const f = pngs.map((_, i) => {
-    const frames = Math.round(dur(i) * FPS);
-    return `[${i}:v]scale=${W * 2}:${H * 2},zoompan=z='1+0.05*on/${frames}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=${frames}:s=${W}x${H}:fps=${FPS},setsar=1[v${i}]`;
+async function cartoes(pasta, gancho, m) {
+  const tmp = path.join(RAIZ, '.reel-tmp.html');
+  fs.writeFileSync(tmp, html(gancho, m), 'utf8');
+  const puppeteer = require(path.join(RAIZ, '.render', 'node_modules', 'puppeteer-core'));
+  const browser = await puppeteer.launch({
+    executablePath: process.env.CHROME || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
+    headless: 'new', args: ['--no-sandbox', '--allow-file-access-from-files'],
+    defaultViewport: { width: W, height: H, deviceScaleFactor: 1 }
   });
-  const filtro = f.join(';') + ';' + pngs.map((_, i) => `[v${i}]`).join('') + `concat=n=${pngs.length}:v=1:a=0,format=yuv420p[out]`;
-  const mp4 = path.join(saida, nome + '.mp4');
-  args.push('-filter_complex', filtro, '-map', '[out]', '-c:v', 'libx264', '-preset', 'medium', '-crf', '18',
-            '-r', String(FPS), '-movflags', '+faststart', mp4);
-  execFileSync('ffmpeg', args, { stdio: ['ignore', 'ignore', 'pipe'] });
-  return mp4;
+  try {
+    const page = await browser.newPage();
+    await page.goto('file:///' + tmp.replace(/\\/g, '/'), { waitUntil: 'networkidle0' });
+    await page.evaluate(() => document.fonts.ready);
+    const out = {};
+    for (const id of ['gancho', 'fim']) {
+      out[id] = path.join(pasta, '.reel-' + id + '.png');
+      await (await page.$('#' + id)).screenshot({ path: out[id], omitBackground: true });
+    }
+    return out;
+  } finally { await browser.close(); fs.unlinkSync(tmp); }
 }
+
+const temAudio = f => {
+  try {
+    return execFileSync('ffprobe', ['-v', 'error', '-select_streams', 'a', '-show_entries', 'stream=index', '-of', 'csv=p=0', f],
+      { encoding: 'utf8' }).trim() !== '';
+  } catch { return false; }
+};
 
 async function principal() {
-  const argv = process.argv.slice(2);
-  const flag = (n, p) => { const a = argv.find(x => x.startsWith('--' + n + '=')); return a ? a.split('=').slice(1).join('=') : p; };
-  const hoje = flag('date', new Date(Date.now() - 3 * 3600e3).toISOString().slice(0, 10));
-  const cfg = argv.some(x => x.startsWith('--config=')) && fs.existsSync(path.resolve(flag('config')))
-    ? JSON.parse(fs.readFileSync(path.resolve(flag('config')), 'utf8')) : {};
-  const nome = cfg.nome || 'reel';
-  const p = PALETAS[cfg.paleta] || PALETAS.escuro;
+  const dir = flag('clipes');
+  if (!dir || !fs.existsSync(dir)) throw new Error('Passe --clipes=<pasta com os vídeos>.');
+  const clipes = fs.readdirSync(dir).filter(f => VIDEO.test(f)).sort().slice(0, Number(flag('max', '10')))
+    .map(f => path.resolve(dir, f));
+  if (clipes.length < 2) throw new Error('Precisa de pelo menos 2 clipes em ' + dir);
+  const corte = Number(flag('corte', '2.4')), pulo = Number(flag('pulo', '0.8'));
+  const saida = path.resolve(RAIZ, flag('out', dir));
+  const nome = flag('nome', 'reel');
+  const m = acharMostra(carregarDados(), flag('mostra'));
+  fs.mkdirSync(saida, { recursive: true });
+  const cart = await cartoes(saida, flag('gancho'), m);
 
-  const sel = await escolher(carregarDados(), hoje, cfg);
-  if (sel.itens.filter(x => x.rel).length < 2) throw new Error('Menos de 2 mostras com obra na janela — reel sem imagem não segura ninguém.');
-  const c = cartoes(sel);
-  const saida = path.resolve(RAIZ, flag('out', '.'));
-  const quadros = path.join(saida, '.' + nome + '-quadros');
-  const html = `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>${css(p)}</style></head><body>${c.html}</body></html>`;
-  const pngs = await renderizar(html, quadros, nome, W, H);
-  const mp4 = montarVideo(pngs, saida, nome);
-  /* A capa do Reel no grid: o primeiro cartão, em 1080×1920 (o app recorta 4:5). */
-  fs.copyFileSync(pngs[0], path.join(saida, nome + '-capa.png'));
-  fs.rmSync(quadros, { recursive: true, force: true });
-  const seg = (T_CAPA + T_FIM + (c.n - 2) * T_MOSTRA).toFixed(1);
-  console.log('OK ' + mp4 + '  (' + c.n + ' cartões, ' + seg + ' s, sem áudio: escolha um áudio em alta no app)');
+  const total = clipes.length * corte + T_FIM;
+  const args = ['-y'];
+  clipes.forEach(c => args.push('-ss', String(pulo), '-t', String(corte), '-i', c));
+  args.push('-loop', '1', '-t', String(total), '-i', cart.gancho);
+  args.push('-loop', '1', '-t', String(total), '-i', cart.fim);
+  const iG = clipes.length, iF = clipes.length + 1;
+
+  /* Cada clipe: preenche 1080x1920 (corta o excesso; filmagem deitada perde
+     as laterais), 30 fps, áudio 44,1 kHz estéreo. Clipe mudo ganha silêncio
+     para o concat não quebrar. */
+  const f = [];
+  clipes.forEach((c, i) => {
+    f.push(`[${i}:v]scale=${W}:${H}:force_original_aspect_ratio=increase,crop=${W}:${H},fps=${FPS},setsar=1,trim=0:${corte},setpts=PTS-STARTPTS[v${i}]`);
+    f.push(temAudio(c)
+      ? `[${i}:a]aresample=44100,aformat=channel_layouts=stereo,atrim=0:${corte},asetpts=PTS-STARTPTS[a${i}]`
+      : `anullsrc=r=44100:cl=stereo,atrim=0:${corte}[a${i}]`);
+  });
+  f.push(clipes.map((_, i) => `[v${i}][a${i}]`).join('') + `concat=n=${clipes.length}:v=1:a=1[cv][ca]`);
+  /* o cartão final prolonga o vídeo: último quadro congelado por baixo e o
+     som do lugar sumindo */
+  f.push(`[cv]tpad=stop_mode=clone:stop_duration=${T_FIM}[cvp]`);
+  f.push(`[ca]apad=pad_dur=${T_FIM},afade=t=out:st=${(total - T_FIM - 0.4).toFixed(2)}:d=${(T_FIM + 0.4).toFixed(2)}[ao]`);
+  f.push(`[cvp][${iG}:v]overlay=0:0:enable='lt(t,${T_GANCHO})'[g]`);
+  f.push(`[g][${iF}:v]overlay=0:0:enable='gte(t,${(total - T_FIM).toFixed(2)})',format=yuv420p[vo]`);
+
+  const mp4 = path.join(saida, nome + '.mp4');
+  args.push('-filter_complex', f.join(';'), '-map', '[vo]', '-map', '[ao]', '-t', total.toFixed(2),
+            '-c:v', 'libx264', '-preset', 'medium', '-crf', '19', '-c:a', 'aac', '-b:a', '160k',
+            '-r', String(FPS), '-movflags', '+faststart', mp4);
+  execFileSync('ffmpeg', args, { stdio: ['ignore', 'ignore', 'pipe'] });
+  fs.copyFileSync(cart.fim, path.join(saida, nome + '-capa.png'));
+  [cart.gancho, cart.fim].forEach(x => fs.unlinkSync(x));
+  console.log('OK ' + mp4 + '  (' + clipes.length + ' clipes, ' + total.toFixed(1) + ' s)');
+  if (m && m.v.ig) console.log('Collab: convide @' + m.v.ig + (autoria(m.e) ? ' e marque ' + autoria(m.e) : ''));
 }
 
 if (require.main === module) {
