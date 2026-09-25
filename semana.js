@@ -53,7 +53,12 @@ const FORMATOS = {
   numero:      { script: 'numero.js',      curado: false },
   deriva:      { script: 'deriva.js',      curado: false },
   entrada:     { script: 'entrada.js',     curado: false },
-  salao:       { script: 'salao.js',       curado: false }
+  salao:       { script: 'salao.js',       curado: false },
+  /* Fixos da semana desde 25/09/2026: saem TODA semana, então não entram na
+     memória de descanso (USADAS). A mesma janela nunca repete — o conteúdo
+     muda com a agenda. */
+  agenda:      { script: 'agenda.js',      curado: false, fixo: true },
+  reel:        { script: 'reel.js',        curado: false, fixo: true }
   /* role e duracao saíram em 01/09: a deriva cobre o percurso, e o diagrama de
      duração virou o painel "O panorama", ao vivo no site. */
 };
@@ -136,6 +141,7 @@ function conferirIdeias(fila, usadas, planoInicio) {
   const fora = [];
   for (const p of fila) {
     const id = p.ideia || p.nome;
+    if (FORMATOS[p.formato] && FORMATOS[p.formato].fixo) continue;
     if (!id || !usadas[id] || usadas[id] >= planoInicio) continue;
     const folga = _dias(usadas[id], p.data);
     if (folga >= 0 && folga < DESCANSO_IDEIA) {
@@ -280,7 +286,7 @@ function principal() {
     const uNovo = Object.assign({}, usadas);
     const pNovo = Object.assign({}, postadas);
     for (const { post, r } of feitas) {
-      const id = post.ideia || post.nome;
+      const id = FORMATOS[post.formato].fixo ? null : (post.ideia || post.nome);
       if (id) uNovo[id] = post.data > (uNovo[id] || '') ? post.data : uNovo[id];
       for (const k of (r.picks || [])) {
         if (k && post.data > (pNovo[k] || '')) pNovo[k] = post.data;

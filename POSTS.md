@@ -1,5 +1,38 @@
 # POSTS.md — sistema visual das peças do Vernissages SP
 
+## v3 — 25/09/2026: grade fixa e dois formatos de alcance
+
+O feed estava bonito e sem alcance: 64 peças em duas semanas, sete famílias de
+leitura lenta em rodízio, e quase nenhuma interação além da do Lucas. O
+Instagram de 2026 distribui para quem não segue por **tempo assistido** e por
+**envio em DM** (3 a 5 vezes o peso de uma curtida, segundo o Mosseri), e
+nenhuma peça nossa era feita para ser enviada. Referência: @thirstygallerina
+(NY, 136 mil seguidores com uma lista semanal de aberturas).
+
+**Grade (planejar.js), 5 peças por semana em vez de 10:**
+
+| dia | peça | função |
+|---|---|---|
+| seg | uma do repertório | obra, número, estreia... |
+| qua | a curada | rima ou aproximação, alternando |
+| **qui** | **agenda** (`agenda.js`) | o fim de semana em carrossel: abre + últimos dias, lista final "salva esse" |
+| **sex** | **reel** (`reel.js`) | o mesmo fim de semana em ~12 s, 1080×1920, sem áudio (o áudio em alta entra no app) |
+| sáb | deriva | o percurso a pé |
+
+**Registro visual dos dois novos:** Switzer em 800 para título e data (antes
+tudo em 300), e **um acento: o terracota `#C96F4A` da foto de perfil**. A
+regra da obra não muda — nada escrito por cima da imagem; o texto mora na
+faixa de baixo.
+
+**Collab:** o `agenda-LEGENDA.md` traz a lista de @ das casas. Convide como
+Collab ao postar: o post aparece no perfil delas também (a A7MA sozinha tem
+48,5 mil seguidores). É a alavanca de alcance mais barata que existe.
+
+Os formatos `agenda` e `reel` são `fixo` no semana.js: saem toda semana e
+não entram no USADAS (o conteúdo muda com a agenda).
+
+---
+
 v2 — 24/08/2026. Substitui a v1 de 11/08, que descrevia o kit do `post.html`:
 carrossel de quatro slides, dez tratamentos de imagem e rodízio de seis fontes.
 Aquele sistema foi aposentado junto com os formatos que ele servia.

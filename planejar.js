@@ -130,11 +130,19 @@ function montar(rep, usadas, inicio, quantasPecas) {
   const paletaPorDia = {};
   const avisos = [];
 
-  /* Quantas pecas por dia: distribui `quantasPecas` em 7 dias, sobra nos dias
-     de maior circulacao (segunda, quarta, sabado). */
-  const porDia = dias.map(() => 1);
-  const prioridade = [0, 2, 5, 4, 1, 3, 6];   // seg, qua, sab, sex, ter, qui, dom
-  let extra = Math.max(0, quantasPecas - 7);
+  /* GRADE FIXA desde 25/09/2026. Ate ali eram 10 pecas por semana sorteadas
+     entre as mesmas familias, e o feed ficou repetitivo e sem alcance. Agora
+     sao 5, cada dia com funcao:
+       seg  uma peca do repertorio (obra, numero, estreia...)
+       qua  a curada da semana (rima ou aproximacao, alternando)
+       qui  AGENDA — o fim de semana em carrossel (utilidade: salva e manda)
+       sex  REEL — o mesmo fim de semana em 12 s (alcance fora dos seguidores)
+       sab  deriva — o percurso a pe
+     --pecas acima de 5 volta a espalhar extras nos dias vazios. */
+  const porDia = [1, 0, 1, 0, 0, 1, 0];       // seg..dom: so os dias de sorteio
+  const FIXOS = { 3: 'agenda', 4: 'reel' };   // indice do dia -> formato fixo
+  const prioridade = [1, 6, 3, 4, 2, 0, 5];   // extras: ter, dom, qui, sex...
+  let extra = Math.max(0, quantasPecas - 5);
   for (let i = 0; extra > 0; i = (i + 1) % prioridade.length) { porDia[prioridade[i]]++; extra--; }
 
   const usados = new Set();
@@ -151,21 +159,25 @@ function montar(rep, usadas, inicio, quantasPecas) {
      planejador a semana saiu sem nenhuma `rima`. Ficam ancorados na segunda e
      na terca, que e onde estavam quando o Lucas montava o plano a mao. */
   const ancoras = {};
-  const rima = pegar(ia => ia.formato === 'rima');
-  const aprox = pegar(ia => ia.formato === 'aproximacao');
-  if (rima)  ancoras[dias[0]] = rima;
-  if (aprox) ancoras[dias[1]] = aprox;
-  if (!rima)  avisos.push('sem `rima` disponivel no repertorio para esta semana');
-  if (!aprox) avisos.push('sem `aproximacao` disponivel no repertorio para esta semana');
+  /* Uma curada por semana (era duas), na quarta, alternando rima e
+     aproximacao pela paridade da semana. Se a da vez faltar, vai a outra. */
+  const semanaPar = Math.floor(Date.parse(inicio + 'T12:00:00') / (7 * 864e5)) % 2 === 0;
+  const ordemCurada = semanaPar ? ['rima', 'aproximacao'] : ['aproximacao', 'rima'];
+  let curada = null;
+  for (const f of ordemCurada) { curada = curada || pegar(ia => ia.formato === f); }
+  if (curada) ancoras[dias[2]] = curada;
+  else avisos.push('sem `rima` nem `aproximacao` disponivel no repertorio para esta semana');
 
   dias.forEach((data, di) => {
     const anterior = paletaPorDia[dias[di - 1]] || new Set();
     const hoje = new Set();
     paletaPorDia[data] = hoje;
+    if (FIXOS[di]) posts.push({ data, formato: FIXOS[di], ordem: 1, paleta: 'escuro', fixo: true,
+                                _titulo: FIXOS[di] === 'agenda' ? 'O fim de semana (carrossel)' : 'O fim de semana (reel)' });
     const formatosHoje = new Set();
     let curadaHoje = 0;
 
-    for (let ordem = 1; ordem <= porDia[di]; ordem++) {
+    for (let ordem = FIXOS[di] ? 2 : 1; ordem <= porDia[di] + (FIXOS[di] ? 1 : 0); ordem++) {
       const ehSabado = new Date(data + 'T12:00:00').getDay() === 6;
 
       let r = null;
@@ -220,7 +232,7 @@ function principal() {
   const rep = JSON.parse(fs.readFileSync(REPERTORIO, 'utf8'));
   const usadas = lerUsadas();
   const inicio = flag('de', proximaSegunda());
-  const quantas = parseInt(flag('pecas', '10'), 10);
+  const quantas = parseInt(flag('pecas', '5'), 10);
 
   const fim = somar(inicio, 6);
   const br = s => s.slice(8, 10) + '/' + s.slice(5, 7);
@@ -292,7 +304,7 @@ function principal() {
 
   /* Confere a regra que o plano de 31/08 quebrava. */
   const porDia = {};
-  posts.forEach(p => (porDia[p.data] = porDia[p.data] || []).push(p.paleta));
+  posts.filter(p => !p.fixo).forEach(p => (porDia[p.data] = porDia[p.data] || []).push(p.paleta));
   const datas = Object.keys(porDia).sort();
   const colisoes = [];
   for (let i = 1; i < datas.length; i++) {
