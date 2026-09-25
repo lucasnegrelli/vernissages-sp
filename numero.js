@@ -13,6 +13,10 @@
      fecha7             · mostras que encerram nos próximos 7 dias
      fecha-dia          · a data em que mais mostras encerram de uma vez
      em-cartaz          · mostras em cartaz agora
+   Contas novas de 25/09/2026 (repertório de 200 ideias):
+     abre7 · fecha30 · sem-fim · zona-leste · zona-sul · zona-centro ·
+     bairro-lider · mais-longa · mais-curta · artistas · individuais ·
+     coletivas · instituicoes · casas-ativas · casas-paradas · abriu-mes
 
    As contas de urgência (fecha7, fecha-dia) trocam a tarja para "a conta
    regressiva" e engrossam um pouco o número. Mesmo sistema, 10% mais tenso.
@@ -81,6 +85,80 @@ function calcular(DATA, hoje, conta) {
         virada: 'A maioria das galerias fecha o ciclo no mesmo fim de semana. Quem deixa para decidir na hora escolhe uma e perde as outras ' + (lista.length - 1) + '.',
         kick: 'a conta regressiva', peso: 300 };
     }
+    case 'abre7': {
+      const a = DATA.expos.filter(e => V[e.v] && e.ini && _dias(hoje, e.ini) > 0 && _dias(hoje, e.ini) <= 7).length;
+      return { n: a, unidade: a === 1 ? 'abertura' : 'aberturas', linha: 'confirmadas para os próximos sete dias em São Paulo.',
+        virada: 'Abertura é a única noite em que a galeria vira festa com a porta aberta. Nenhuma cobra entrada, nenhuma pede lista.' };
+    }
+    case 'fecha30': {
+      const f = cartaz.filter(e => e.fim && _dias(hoje, e.fim) >= 0 && _dias(hoje, e.fim) <= 30).length;
+      return { n: f, unidade: 'de ' + cartaz.length, linha: 'mostras em cartaz hoje não estarão mais lá daqui a um mês.',
+        virada: 'O circuito troca de pele a cada seis semanas. A cidade que você viu em setembro não é a de outubro.', kick: 'a conta regressiva', peso: 700 };
+    }
+    case 'sem-fim': {
+      const n = cartaz.filter(e => !e.fim).length;
+      return { n, unidade: 'de ' + cartaz.length, linha: 'mostras em cartaz não divulgaram quando fecham.',
+        virada: 'Sem data de encerramento, a mostra parece eterna — e é exatamente assim que ela fecha sem ninguém ter ido.' };
+    }
+    case 'zona-leste': case 'zona-sul': case 'zona-centro': {
+      const z = { 'zona-leste': 'Leste', 'zona-sul': 'Sul', 'zona-centro': 'Centro' }[conta];
+      const n = casas.filter(v => v.z === z).length;
+      const oeste = casas.filter(v => v.z === 'Oeste').length;
+      return { n, unidade: 'de ' + casas.length, linha: (n === 1 ? 'casa do mapa está' : 'casas do mapa estão') + (z === 'Centro' ? ' no Centro.' : ' na Zona ' + z + '.'),
+        virada: z === 'Centro' ? 'O Centro tem a Pinacoteca, o Bom Retiro e a República — e menos galeria comercial que um único bairro dos Jardins.'
+                               : 'A Zona Oeste sozinha tem ' + oeste + '. A arte desta cidade mora longe de quase todo mundo que mora nela.' };
+    }
+    case 'bairro-lider': {
+      const c = {}; cartaz.forEach(e => { const b = V[e.v].b; c[b] = (c[b] || 0) + 1; });
+      const [b, n] = Object.entries(c).sort((x, y) => y[1] - x[1])[0] || ['', 0];
+      return { n, unidade: 'em ' + b, linha: 'mostras em cartaz num bairro só — o mais denso da cidade agora.',
+        virada: 'Dá para ver todas numa tarde, a pé. É a única conta desta página que termina com um programa.' };
+    }
+    case 'mais-longa': case 'mais-curta': {
+      const d = cartaz.filter(e => e.fim).map(e => ({ e, d: _dias(e.ini, e.fim) })).filter(x => x.d > 0)
+        .sort((x, y) => conta === 'mais-longa' ? y.d - x.d : x.d - y.d)[0];
+      if (!d) return { n: 0, unidade: '', linha: '', virada: '' };
+      const t = d.e.t.replace(/ — .*$/, '');
+      return conta === 'mais-longa'
+        ? { n: d.d, unidade: 'dias', linha: 'é quanto dura a mostra mais longa em cartaz: ' + t + ', em ' + d.e.v + '.',
+            virada: 'Tempo de sobra — o que costuma ser o motivo de ninguém ir.' }
+        : { n: d.d, unidade: d.d === 1 ? 'dia' : 'dias', linha: 'é quanto dura a mostra mais curta em cartaz: ' + t + ', em ' + d.e.v + '.',
+            virada: 'Há exposição que dura menos que um feriado prolongado. Quem espera o fim de semana seguinte já perdeu.', kick: 'a conta regressiva', peso: 700 };
+    }
+    case 'artistas': {
+      const nomes = new Set();
+      cartaz.forEach(e => String(e.a || '').split(',').map(x => x.trim()).filter(Boolean).forEach(x => nomes.add(x)));
+      return { n: nomes.size, unidade: 'artistas', linha: 'com trabalho na parede de São Paulo agora, só contando quem a agenda nomeia.',
+        virada: 'E nenhum deles cobra ingresso para você ver o trabalho numa galeria.' };
+    }
+    case 'individuais': case 'coletivas': {
+      const qtd = e => String(e.a || '').split(',').filter(x => x.trim()).length;
+      const ind = cartaz.filter(e => qtd(e) === 1).length, col = cartaz.filter(e => qtd(e) >= 3).length;
+      return conta === 'individuais'
+        ? { n: ind, unidade: 'individuais', linha: 'mostras em cartaz dedicam a sala inteira a um artista só.',
+            virada: 'Individual é aposta: a casa diz que aquele nome aguenta sozinho uma parede de seis semanas.' }
+        : { n: col, unidade: 'coletivas', linha: 'mostras em cartaz juntam três artistas ou mais na mesma sala.',
+            virada: 'Coletiva é argumento: o que interessa é o que aparece entre um trabalho e o outro, não cada um.' };
+    }
+    case 'instituicoes': {
+      const n = cartaz.filter(e => V[e.v].tipo === 'institucional').length;
+      return { n, unidade: 'de ' + cartaz.length, linha: 'mostras em cartaz estão em museus e centros culturais.',
+        virada: 'O resto está em galeria, onde a entrada é livre e a obra, em geral, está à venda. Olhar não custa nada.' };
+    }
+    case 'casas-ativas': case 'casas-paradas': {
+      const ativas = new Set(cartaz.map(e => e.v)).size;
+      return conta === 'casas-ativas'
+        ? { n: ativas, unidade: 'de ' + casas.length, linha: 'endereços do mapa têm mostra aberta hoje.',
+            virada: 'Os outros estão entre uma exposição e a próxima — montando, desmontando ou pintando parede.' }
+        : { n: casas.length - ativas, unidade: 'de ' + casas.length, linha: 'endereços do mapa estão sem mostra registrada hoje.',
+            virada: 'Parte está trocando de exposição. Parte só avisa pelo Instagram, e a gente ainda não viu.' };
+    }
+    case 'abriu-mes': {
+      const mes = hoje.slice(0, 7);
+      const n = DATA.expos.filter(e => V[e.v] && e.ini && e.ini.slice(0, 7) === mes && e.ini <= hoje).length;
+      return { n, unidade: n === 1 ? 'abertura' : 'aberturas', linha: 'já aconteceram este mês em São Paulo.',
+        virada: 'Cada uma foi uma noite de porta aberta. Quem soube, foi.' };
+    }
     case 'em-cartaz':
     default: {
       return { n: cartaz.length, unidade: cartaz.length === 1 ? 'mostra' : 'mostras',
@@ -94,15 +172,16 @@ function montarHTML(d, cfg) {
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>${CSS}
     ${cssPaleta(cfg.paleta, cfg.textura)}
     .slide .num{position:absolute;left:88px;right:88px;top:300px;
-      font-size:340px;font-weight:${d.peso || 200};line-height:.86;letter-spacing:-.04em;color:${cfg.paleta.texto}}
+      font-size:340px;font-weight:800;line-height:.86;letter-spacing:-.055em;color:${cfg.paleta.texto}}
     .slide .num small{font-size:64px;font-weight:300;letter-spacing:-.01em;color:${cfg.paleta.meio};
       display:block;margin-top:22px}
     .slide .linha{position:absolute;left:88px;right:110px;top:820px;
-      font-size:40px;font-weight:300;line-height:1.36;letter-spacing:-.008em;color:${cfg.paleta.texto}}
+      font-size:44px;font-weight:600;line-height:1.24;letter-spacing:-.015em;color:${cfg.paleta.texto}}
     .slide .virada{position:absolute;left:88px;right:120px;top:1010px;
       font-size:27px;font-weight:300;line-height:1.5;color:${cfg.paleta.meio}}
     .slide .risco{position:absolute;left:88px;top:250px;width:64px;height:1px;background:${cfg.paleta.apagado}}
     .slide .marca{left:88px;right:auto}
+    .slide .kick{color:#C96F4A;font-weight:600}
   </style></head><body>
     <div class="slide">
       <div class="kick">${esc(d.kick || 'a cidade em números')}</div>
@@ -133,6 +212,9 @@ async function principal() {
   const d = calcular(DATA, hoje, cfg.conta);
   console.log('conta ' + cfg.conta + ' → ' + d.n + ' ' + d.unidade + '\n  ' + d.linha);
   if (!d.n && d.n !== 0) throw new Error('conta ' + cfg.conta + ' não deu número.');
+  /* conta que da 0 ou 1 nao e noticia: aborta para o semana.js acusar e o plano trocar */
+  if (d.n < 2 && ['abre7', 'abriu-mes', 'coletivas', 'mais-curta', 'bairro-lider'].includes(cfg.conta))
+    throw new Error(cfg.conta + ' deu ' + d.n + ': pouco para virar peça agora. Escolha outra conta.');
   if (d.n === 0 && cfg.conta === 'fecha7') throw new Error('fecha7 = 0: nenhuma mostra encerra em 7 dias. Escolha outra conta.');
   if (d.n < 2 && cfg.conta === 'fecha-dia') throw new Error('fecha-dia < 2: nenhuma data concentra encerramento agora. Escolha outra conta.');
 

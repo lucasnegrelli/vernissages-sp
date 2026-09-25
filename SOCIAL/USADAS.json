@@ -7,7 +7,7 @@
   "salao-so-galeria": "2026-09-04",
   "role-so-galeria": "2026-09-05",
   "entrada-galeria-vs-museu": "2026-09-05",
-  "deriva-mais-densa": "2026-09-26",
+  "deriva-mais-densa": "2026-09-27",
   "role-com-prazo": "2026-09-02",
   "rima-material": "2026-09-07",
   "deriva-so-obra": "2026-09-07",
@@ -40,7 +40,7 @@
   "entrada-etiqueta": "2026-09-13",
   "rima-corpo-paisagem": "2026-09-01",
   "encerra-galeria": "2026-09-01",
-  "aproximacao-materia": "2026-09-02",
+  "aproximacao-materia": "2026-09-30",
   "obra-independentes": "2026-09-02",
   "obra-meio-de-cartaz": "2026-09-03",
   "numero-em-cartaz": "2026-09-03",
@@ -62,5 +62,14 @@
   "aproximacao-detalhe-narrativo": "2026-09-24",
   "numero-duracao-galeria": "2026-09-25",
   "entrada-na-abertura": "2026-09-27",
-  "obra-recem-aberta": "2026-09-28"
+  "obra-recem-aberta": "2026-09-28",
+  "undefined": "2026-10-01",
+  "salao-jardins-tres-bairros": "2026-10-02",
+  "deriva-jardim-europa": "2026-10-03",
+  "deriva-pinheiros": "2026-10-05",
+  "aproximacao-cor-unica": "2026-10-07",
+  "deriva-luz": "2026-10-03",
+  "numero-oeste": "2026-10-05",
+  "numero-fecha30": "2026-10-02",
+  "entrada-etiqueta-de-parede": "2026-10-05"
 }

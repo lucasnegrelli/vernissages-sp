@@ -1,6 +1,5 @@
 {
   "titulo": "Repertório — o banco de ideias que o planejar.js rotaciona",
-
   "_leiame": [
     "Cada item aqui é UMA PEÇA POSSÍVEL: um formato mais um recorte mais o texto que enquadra aquele recorte.",
     "O `planejar.js` sorteia daqui respeitando o `descanso` (dias mínimos até poder repetir a mesma ideia) e a regra de não repetir paleta em dias seguidos, e escreve o PLANO.json.",
@@ -9,257 +8,647 @@
     "`curado: true` marca as ideias que exigem escolha humana. O planejar.js as agenda e AVISA — ele nunca escreve curadoria.",
     "`paletas` lista as paletas que combinam com a ideia. O planejador escolhe uma delas que não tenha saído no dia anterior.",
     "Para acrescentar ideia: copie um item, mude o id, o filtro e o texto. Não precisa mexer em código.",
-
     "LINHA EDITORIAL — 01/09/2026. Agosto saiu repetitivo porque a maioria das ideias era formato de lista (cinza sobre preto, a obra de miniatura). O eixo agora é a IMAGEM: `obra` (uma reprodução por vez, tela cheia, SEM marca por cima), `encerra` (última semana de uma mostra), `estreia` (o que abre agora). `numero` põe um dado só, gigante. `rolê` e `duração` saíram do social — a linha do tempo virou o painel 'O panorama', ao vivo no site. `rima` e `aproximação` seguem: são os dois com olho humano, e é neles que a voz aparece. A régua é a variedade de recorte, não a economia de ideias — quanto mais ângulos, melhor, desde que cada um produza uma imagem diferente.",
-
-    "LOTE DE 23/09/2026 — o Lucas achou o feed repetitivo (a peça de entrada e a de número, semanas diferentes, diziam a mesma coisa: 'é de graça'). Causa raiz: `entrada.js` sempre abre no custo de entrada, não importa a ideia — é estrutural do formato, então `numero-gratis` deveria descansar mais que as outras, não só os 30 dias padrão. Acrescentei 13 ideias novas nesta rodada: 4 `obra`/2 `deriva` por bairro específico (Pinheiros, Bela Vista, Ibirapuera, República, Jardim Europa — o filtro já aceita bairro, não é código novo), 1 `salao` recortado nos três bairros de Jardins, 3 `rima` (preço oposto, arquivo/documento, mesmo artista em décadas diferentes) e 3 `aproximacao` (grão de fotografia, fio de têxtil, cor única) — todas curadas, aguardam config manual quando sorteadas."
+    "LOTE DE 23/09/2026 — o Lucas achou o feed repetitivo (a peça de entrada e a de número, semanas diferentes, diziam a mesma coisa: 'é de graça'). Causa raiz: `entrada.js` sempre abre no custo de entrada, não importa a ideia — é estrutural do formato, então `numero-gratis` deveria descansar mais que as outras, não só os 30 dias padrão. Acrescentei 13 ideias novas nesta rodada: 4 `obra`/2 `deriva` por bairro específico (Pinheiros, Bela Vista, Ibirapuera, República, Jardim Europa — o filtro já aceita bairro, não é código novo), 1 `salao` recortado nos três bairros de Jardins, 3 `rima` (preço oposto, arquivo/documento, mesmo artista em décadas diferentes) e 3 `aproximacao` (grão de fotografia, fio de têxtil, cor única) — todas curadas, aguardam config manual quando sorteadas.",
+    "25/09/2026: +134 ideias (pedido: 200+, nunca repetir). descansoPadrao 30 -> 150 dias."
   ],
-
-  "descansoPadrao": 30,
-
+  "descansoPadrao": 150,
   "ideias": [
-
-    { "id": "obra-do-dia", "formato": "obra", "curado": false,
+    {
+      "id": "obra-do-dia",
+      "formato": "obra",
+      "curado": false,
       "titulo": "A obra: a imagem mais forte em cartaz agora",
-      "paletas": ["escuro", "barro", "tinta"] },
-
-    { "id": "obra-so-galeria", "formato": "obra", "curado": false,
+      "paletas": [
+        "escuro",
+        "barro",
+        "tinta"
+      ]
+    },
+    {
+      "id": "obra-so-galeria",
+      "formato": "obra",
+      "curado": false,
       "titulo": "A obra, só galeria comercial",
-      "paletas": ["barro", "linho", "escuro"],
-      "ajustes": { "filtro": { "tipo": "galeria" } } },
-
-    { "id": "obra-instituicao", "formato": "obra", "curado": false,
+      "paletas": [
+        "barro",
+        "linho",
+        "escuro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "tipo": "galeria"
+        }
+      }
+    },
+    {
+      "id": "obra-instituicao",
+      "formato": "obra",
+      "curado": false,
       "titulo": "A obra, num museu ou centro cultural",
-      "paletas": ["tinta", "cal", "papel"],
-      "ajustes": { "filtro": { "tipo": "institucional" } } },
-
-    { "id": "obra-independentes", "formato": "obra", "curado": false,
+      "paletas": [
+        "tinta",
+        "cal",
+        "papel"
+      ],
+      "ajustes": {
+        "filtro": {
+          "tipo": "institucional"
+        }
+      }
+    },
+    {
+      "id": "obra-independentes",
+      "formato": "obra",
+      "curado": false,
       "titulo": "A obra, num espaço independente",
-      "paletas": ["barro", "linho", "cal"],
-      "ajustes": { "filtro": { "tipo": "hibrido" } } },
-
-    { "id": "obra-recem-aberta", "formato": "obra", "curado": false,
+      "paletas": [
+        "barro",
+        "linho",
+        "cal"
+      ],
+      "ajustes": {
+        "filtro": {
+          "tipo": "hibrido"
+        }
+      }
+    },
+    {
+      "id": "obra-recem-aberta",
+      "formato": "obra",
+      "curado": false,
       "titulo": "A obra de uma mostra que abriu neste mês",
-      "paletas": ["cal", "linho", "papel"],
-      "ajustes": { "filtro": { "abriuEm": 30 } } },
-
-    { "id": "obra-longa-duracao", "formato": "obra", "curado": false,
+      "paletas": [
+        "cal",
+        "linho",
+        "papel"
+      ],
+      "ajustes": {
+        "filtro": {
+          "abriuEm": 30
+        }
+      }
+    },
+    {
+      "id": "obra-longa-duracao",
+      "formato": "obra",
+      "curado": false,
       "titulo": "A obra de uma mostra que ainda tem meses",
-      "paletas": ["papel", "tinta", "cal"],
+      "paletas": [
+        "papel",
+        "tinta",
+        "cal"
+      ],
       "ajustes": {
-        "filtro": { "duraMais": 120 },
-        "nota": "Fica mais de quatro meses no ar. É a que dá pra ver com calma, num dia de chuva — e por isso é a que quase ninguém vê." } },
-
-    { "id": "obra-jardins", "formato": "obra", "curado": false,
+        "filtro": {
+          "duraMais": 120
+        },
+        "nota": "Fica mais de quatro meses no ar. É a que dá pra ver com calma, num dia de chuva — e por isso é a que quase ninguém vê."
+      }
+    },
+    {
+      "id": "obra-jardins",
+      "formato": "obra",
+      "curado": false,
       "titulo": "A obra, nos Jardins",
-      "paletas": ["linho", "papel", "barro"],
-      "ajustes": { "filtro": { "bairro": ["Jardim Paulista", "Jardim América", "Jardim Europa", "Cerqueira César"] } } },
-
-    { "id": "obra-centro", "formato": "obra", "curado": false,
+      "paletas": [
+        "linho",
+        "papel",
+        "barro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "bairro": [
+            "Jardim Paulista",
+            "Jardim América",
+            "Jardim Europa",
+            "Cerqueira César"
+          ]
+        }
+      }
+    },
+    {
+      "id": "obra-centro",
+      "formato": "obra",
+      "curado": false,
       "titulo": "A obra, no Centro",
-      "paletas": ["escuro", "tinta", "barro"],
-      "ajustes": { "filtro": { "zona": "Centro" } } },
-
-    { "id": "obra-oeste", "formato": "obra", "curado": false,
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "zona": "Centro"
+        }
+      }
+    },
+    {
+      "id": "obra-oeste",
+      "formato": "obra",
+      "curado": false,
       "titulo": "A obra, na Zona Oeste",
-      "paletas": ["barro", "linho", "tinta"],
-      "ajustes": { "filtro": { "zona": "Oeste" } } },
-
-    { "id": "obra-sul", "formato": "obra", "curado": false,
+      "paletas": [
+        "barro",
+        "linho",
+        "tinta"
+      ],
+      "ajustes": {
+        "filtro": {
+          "zona": "Oeste"
+        }
+      }
+    },
+    {
+      "id": "obra-sul",
+      "formato": "obra",
+      "curado": false,
       "titulo": "A obra, na Zona Sul",
-      "paletas": ["tinta", "escuro", "papel"],
-      "ajustes": { "filtro": { "zona": "Sul" } } },
-
-    { "id": "obra-vila-madalena", "formato": "obra", "curado": false,
+      "paletas": [
+        "tinta",
+        "escuro",
+        "papel"
+      ],
+      "ajustes": {
+        "filtro": {
+          "zona": "Sul"
+        }
+      }
+    },
+    {
+      "id": "obra-vila-madalena",
+      "formato": "obra",
+      "curado": false,
       "titulo": "A obra, na Vila Madalena e arredores",
-      "paletas": ["barro", "linho", "cal"],
-      "ajustes": { "filtro": { "bairro": ["Vila Madalena", "Sumaré", "Pinheiros"] } } },
-
-    { "id": "obra-barra-funda", "formato": "obra", "curado": false,
+      "paletas": [
+        "barro",
+        "linho",
+        "cal"
+      ],
+      "ajustes": {
+        "filtro": {
+          "bairro": [
+            "Vila Madalena",
+            "Sumaré",
+            "Pinheiros"
+          ]
+        }
+      }
+    },
+    {
+      "id": "obra-barra-funda",
+      "formato": "obra",
+      "curado": false,
       "titulo": "A obra, na Barra Funda",
-      "paletas": ["escuro", "tinta", "barro"],
-      "ajustes": { "filtro": { "bairro": ["Barra Funda"] } } },
-
-    { "id": "obra-so-obra", "formato": "obra", "curado": false,
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "bairro": [
+            "Barra Funda"
+          ]
+        }
+      }
+    },
+    {
+      "id": "obra-so-obra",
+      "formato": "obra",
+      "curado": false,
       "titulo": "A obra — nunca vista de sala",
-      "paletas": ["escuro", "barro", "linho"],
-      "ajustes": { "filtro": { "vista": false } } },
-
-    { "id": "obra-meio-de-cartaz", "formato": "obra", "curado": false,
+      "paletas": [
+        "escuro",
+        "barro",
+        "linho"
+      ],
+      "ajustes": {
+        "filtro": {
+          "vista": false
+        }
+      }
+    },
+    {
+      "id": "obra-meio-de-cartaz",
+      "formato": "obra",
+      "curado": false,
       "titulo": "A obra de uma mostra que nem abriu nem fecha — está no meio",
-      "paletas": ["linho", "papel", "cal"],
+      "paletas": [
+        "linho",
+        "papel",
+        "cal"
+      ],
       "ajustes": {
-        "filtro": { "duraMais": 30 },
-        "nota": "Não é novidade nem última chamada. É o meio do caminho de uma mostra — o momento em que ninguém escreve sobre ela e a sala está vazia." } },
-
-    { "id": "obra-ultimo-sabado", "formato": "obra", "curado": false,
+        "filtro": {
+          "duraMais": 30
+        },
+        "nota": "Não é novidade nem última chamada. É o meio do caminho de uma mostra — o momento em que ninguém escreve sobre ela e a sala está vazia."
+      }
+    },
+    {
+      "id": "obra-ultimo-sabado",
+      "formato": "obra",
+      "curado": false,
       "titulo": "A obra de uma mostra que fecha nos próximos dias",
-      "paletas": ["escuro", "barro", "tinta"],
+      "paletas": [
+        "escuro",
+        "barro",
+        "tinta"
+      ],
       "ajustes": {
-        "filtro": { "fechaEm": 9 },
-        "nota": "Fecha nos próximos dias. O último fim de semana para ver isto é este — depois some, e não volta." } },
-
-    { "id": "encerra-galeria", "formato": "encerra", "curado": false,
+        "filtro": {
+          "fechaEm": 9
+        },
+        "nota": "Fecha nos próximos dias. O último fim de semana para ver isto é este — depois some, e não volta."
+      }
+    },
+    {
+      "id": "encerra-galeria",
+      "formato": "encerra",
+      "curado": false,
       "titulo": "Última semana: uma mostra de galeria que fecha já",
-      "paletas": ["escuro", "barro", "tinta"],
-      "ajustes": { "filtro": { "tipo": "galeria" } } },
-
-    { "id": "encerra-qualquer", "formato": "encerra", "curado": false,
-      "titulo": "Última semana: a mostra que fecha antes de todas",
-      "paletas": ["barro", "escuro", "tinta"] },
-
-    { "id": "encerra-instituicao", "formato": "encerra", "curado": false,
-      "titulo": "Última semana num museu — o prazo que parecia infinito acabou",
-      "paletas": ["tinta", "escuro", "cal"],
-      "ajustes": { "filtro": { "tipo": "institucional" } } },
-
-    { "id": "encerra-a-fila", "formato": "encerra", "curado": false,
-      "titulo": "Última semana — e não é a única a fechar nesse dia",
-      "paletas": ["escuro", "barro", "tinta"],
+      "paletas": [
+        "escuro",
+        "barro",
+        "tinta"
+      ],
       "ajustes": {
-        "filtro": { "fechaEm": 12 },
-        "nota": "O ciclo das galerias é quase sincronizado: quando uma fecha, várias fecham na mesma semana. Ninguém combina isso, e ninguém avisa." } },
-
-    { "id": "estreia-semana", "formato": "estreia", "curado": false,
+        "filtro": {
+          "tipo": "galeria"
+        }
+      }
+    },
+    {
+      "id": "encerra-qualquer",
+      "formato": "encerra",
+      "curado": false,
+      "titulo": "Última semana: a mostra que fecha antes de todas",
+      "paletas": [
+        "barro",
+        "escuro",
+        "tinta"
+      ]
+    },
+    {
+      "id": "encerra-instituicao",
+      "formato": "encerra",
+      "curado": false,
+      "titulo": "Última semana num museu — o prazo que parecia infinito acabou",
+      "paletas": [
+        "tinta",
+        "escuro",
+        "cal"
+      ],
+      "ajustes": {
+        "filtro": {
+          "tipo": "institucional"
+        }
+      }
+    },
+    {
+      "id": "encerra-a-fila",
+      "formato": "encerra",
+      "curado": false,
+      "titulo": "Última semana — e não é a única a fechar nesse dia",
+      "paletas": [
+        "escuro",
+        "barro",
+        "tinta"
+      ],
+      "ajustes": {
+        "filtro": {
+          "fechaEm": 12
+        },
+        "nota": "O ciclo das galerias é quase sincronizado: quando uma fecha, várias fecham na mesma semana. Ninguém combina isso, e ninguém avisa."
+      }
+    },
+    {
+      "id": "estreia-semana",
+      "formato": "estreia",
+      "curado": false,
       "titulo": "Estreia: uma mostra que abre nesta semana",
-      "paletas": ["cal", "linho", "papel"] },
-
-    { "id": "estreia-galeria", "formato": "estreia", "curado": false,
+      "paletas": [
+        "cal",
+        "linho",
+        "papel"
+      ]
+    },
+    {
+      "id": "estreia-galeria",
+      "formato": "estreia",
+      "curado": false,
       "titulo": "Estreia numa galeria — a aposta nova do circuito comercial",
-      "paletas": ["linho", "barro", "cal"],
-      "ajustes": { "filtro": { "tipo": "galeria" } } },
-
-    { "id": "numero-duracao-galeria", "formato": "numero", "curado": false,
+      "paletas": [
+        "linho",
+        "barro",
+        "cal"
+      ],
+      "ajustes": {
+        "filtro": {
+          "tipo": "galeria"
+        }
+      }
+    },
+    {
+      "id": "numero-duracao-galeria",
+      "formato": "numero",
+      "curado": false,
       "titulo": "O número: quantos dias dura uma mostra de galeria",
-      "paletas": ["escuro", "barro", "tinta"],
-      "ajustes": { "conta": "duracao-galeria" } },
-
-    { "id": "numero-gratis", "formato": "numero", "curado": false,
+      "paletas": [
+        "escuro",
+        "barro",
+        "tinta"
+      ],
+      "ajustes": {
+        "conta": "duracao-galeria"
+      }
+    },
+    {
+      "id": "numero-gratis",
+      "formato": "numero",
+      "curado": false,
       "titulo": "O número: quantos espaços têm entrada gratuita",
-      "paletas": ["cal", "linho", "papel"],
-      "ajustes": { "conta": "gratis" } },
-
-    { "id": "numero-oeste", "formato": "numero", "curado": false,
+      "paletas": [
+        "cal",
+        "linho",
+        "papel"
+      ],
+      "ajustes": {
+        "conta": "gratis"
+      }
+    },
+    {
+      "id": "numero-oeste",
+      "formato": "numero",
+      "curado": false,
       "titulo": "O número: quantas casas estão na Zona Oeste",
-      "paletas": ["barro", "tinta", "linho"],
-      "ajustes": { "conta": "concentracao-oeste" } },
-
-    { "id": "numero-fecha-fim-de-semana", "formato": "numero", "curado": false,
+      "paletas": [
+        "barro",
+        "tinta",
+        "linho"
+      ],
+      "ajustes": {
+        "conta": "concentracao-oeste"
+      }
+    },
+    {
+      "id": "numero-fecha-fim-de-semana",
+      "formato": "numero",
+      "curado": false,
       "titulo": "O número: quantas mostras encerram neste fim de semana",
-      "paletas": ["escuro", "barro", "tinta"],
-      "ajustes": { "conta": "fecha7" } },
-
-    { "id": "numero-fecha-dia", "formato": "numero", "curado": false,
+      "paletas": [
+        "escuro",
+        "barro",
+        "tinta"
+      ],
+      "ajustes": {
+        "conta": "fecha7"
+      }
+    },
+    {
+      "id": "numero-fecha-dia",
+      "formato": "numero",
+      "curado": false,
       "titulo": "O número: a data em que mais mostras encerram de uma vez",
-      "paletas": ["escuro", "barro", "tinta"],
-      "ajustes": { "conta": "fecha-dia" } },
-
-    { "id": "numero-em-cartaz", "formato": "numero", "curado": false,
+      "paletas": [
+        "escuro",
+        "barro",
+        "tinta"
+      ],
+      "ajustes": {
+        "conta": "fecha-dia"
+      }
+    },
+    {
+      "id": "numero-em-cartaz",
+      "formato": "numero",
+      "curado": false,
       "titulo": "O número: quantas mostras estão em cartaz agora",
-      "paletas": ["tinta", "escuro", "papel"],
-      "ajustes": { "conta": "em-cartaz" } },
-
-    { "id": "salao-parede-inteira", "formato": "salao", "curado": false,
+      "paletas": [
+        "tinta",
+        "escuro",
+        "papel"
+      ],
+      "ajustes": {
+        "conta": "em-cartaz"
+      }
+    },
+    {
+      "id": "salao-parede-inteira",
+      "formato": "salao",
+      "curado": false,
       "titulo": "A parede inteira: tudo o que está em cartaz, junto",
-      "paletas": ["escuro", "barro", "tinta"],
+      "paletas": [
+        "escuro",
+        "barro",
+        "tinta"
+      ],
       "ajustes": {
         "texto": [
           "Até o fim do século XIX se pendurava assim. O Salon de Paris cobria a parede do rodapé ao teto, quadro colado em quadro, e um catálogo numerado dizia o que era cada um.",
           "A parede vazia com uma obra no centro, que hoje parece a única forma possível de mostrar arte, é invenção do modernismo. É uma escolha, e ela tem cem anos."
         ],
-        "virada": "O cubo branco isola. O salão obriga as obras a conviverem — e é aí que se vê o que a cidade está pintando." } },
-
-    { "id": "salao-so-galeria", "formato": "salao", "curado": false,
+        "virada": "O cubo branco isola. O salão obriga as obras a conviverem — e é aí que se vê o que a cidade está pintando."
+      }
+    },
+    {
+      "id": "salao-so-galeria",
+      "formato": "salao",
+      "curado": false,
       "titulo": "Só as galerias, e só reprodução de obra",
-      "paletas": ["barro", "linho", "escuro"],
+      "paletas": [
+        "barro",
+        "linho",
+        "escuro"
+      ],
       "ajustes": {
-        "filtro": { "tipo": "galeria", "vista": false },
+        "filtro": {
+          "tipo": "galeria",
+          "vista": false
+        },
         "texto": [
           "Esta parede só tem galeria comercial, e só imagem da obra — nada de vista de sala.",
           "É o que a cidade está tentando vender agora. Museu tem curadoria, orçamento e três anos de antecedência. Galeria aposta com o próprio dinheiro, em ciclos de seis semanas, e erra em público."
         ],
-        "virada": "Todo museu que você visita foi, uma vez, uma aposta de galeria que deu certo." } },
-
-    { "id": "salao-recem-abertas", "formato": "salao", "curado": false,
+        "virada": "Todo museu que você visita foi, uma vez, uma aposta de galeria que deu certo."
+      }
+    },
+    {
+      "id": "salao-recem-abertas",
+      "formato": "salao",
+      "curado": false,
       "titulo": "Só o que abriu no último mês",
-      "paletas": ["cal", "linho", "tinta"],
+      "paletas": [
+        "cal",
+        "linho",
+        "tinta"
+      ],
       "ajustes": {
-        "filtro": { "abriuEm": 30 },
+        "filtro": {
+          "abriuEm": 30
+        },
         "texto": [
           "Tudo nesta parede abriu nos últimos trinta dias.",
           "É o corte mais próximo do que a imprensa chama de novidade — e serve para medir uma coisa que ninguém mede: quanto a cidade produz por mês, sem contar o que já estava lá."
         ],
-        "virada": "Um mês de São Paulo. Nenhuma dessas obras estava pendurada quando você começou o mês." } },
-
-    { "id": "salao-vista-de-sala", "formato": "salao", "curado": false,
+        "virada": "Um mês de São Paulo. Nenhuma dessas obras estava pendurada quando você começou o mês."
+      }
+    },
+    {
+      "id": "salao-vista-de-sala",
+      "formato": "salao",
+      "curado": false,
       "titulo": "A arquitetura, não a obra",
-      "paletas": ["cal", "papel", "linho"],
+      "paletas": [
+        "cal",
+        "papel",
+        "linho"
+      ],
       "ajustes": {
-        "filtro": { "vista": true },
+        "filtro": {
+          "vista": true
+        },
         "texto": [
           "Esta parede é feita só de vistas de sala — o espaço, não o trabalho.",
           "Olhar assim muda o assunto. Aparecem o pé-direito, a luz, o piso, a distância entre uma peça e outra. Aparece quanto espaço uma casa pode dar a um artista, que é uma informação econômica disfarçada de estética."
         ],
-        "virada": "Metade do que uma exposição diz está no espaço que ela pôde ocupar." } },
-
-    { "id": "deriva-mais-densa", "formato": "deriva", "curado": false,
+        "virada": "Metade do que uma exposição diz está no espaço que ela pôde ocupar."
+      }
+    },
+    {
+      "id": "deriva-mais-densa",
+      "formato": "deriva",
+      "curado": false,
       "titulo": "O aglomerado mais denso da semana",
-      "paletas": ["papel", "cal", "linho"],
+      "paletas": [
+        "papel",
+        "cal",
+        "linho"
+      ],
       "ajustes": {
         "tese": "As casas mais próximas umas das outras nesta semana, na ordem mais curta.",
-        "virada": "Nenhuma delas combinou a programação com as outras. Quem junta é a calçada." } },
-
-    { "id": "deriva-centro", "formato": "deriva", "curado": false,
+        "virada": "Nenhuma delas combinou a programação com as outras. Quem junta é a calçada."
+      }
+    },
+    {
+      "id": "deriva-centro",
+      "formato": "deriva",
+      "curado": false,
       "titulo": "Uma deriva pelo Centro",
-      "paletas": ["escuro", "papel", "barro"],
+      "paletas": [
+        "escuro",
+        "papel",
+        "barro"
+      ],
       "ajustes": {
-        "filtro": { "zona": "Centro" },
+        "filtro": {
+          "zona": "Centro"
+        },
         "tese": "Um percurso a pé pelo Centro, entre casas que quase nunca aparecem juntas numa lista.",
-        "virada": "O Centro tem menos galeria que os Jardins e mais chão entre uma e outra. A caminhada é o programa, não o transporte." } },
-
-    { "id": "deriva-oeste", "formato": "deriva", "curado": false,
+        "virada": "O Centro tem menos galeria que os Jardins e mais chão entre uma e outra. A caminhada é o programa, não o transporte."
+      }
+    },
+    {
+      "id": "deriva-oeste",
+      "formato": "deriva",
+      "curado": false,
       "titulo": "Uma deriva pela Zona Oeste",
-      "paletas": ["linho", "papel", "barro"],
+      "paletas": [
+        "linho",
+        "papel",
+        "barro"
+      ],
       "ajustes": {
-        "filtro": { "zona": "Oeste" },
+        "filtro": {
+          "zona": "Oeste"
+        },
         "tese": "Cinquenta das 91 casas do mapa estão na Zona Oeste. Este é o trecho mais curto entre algumas delas.",
-        "virada": "Nenhuma delas combinou a programação com as outras. Quem junta é a calçada." } },
-
-    { "id": "deriva-so-galeria", "formato": "deriva", "curado": false,
+        "virada": "Nenhuma delas combinou a programação com as outras. Quem junta é a calçada."
+      }
+    },
+    {
+      "id": "deriva-so-galeria",
+      "formato": "deriva",
+      "curado": false,
       "titulo": "Deriva só de galeria, sem museu no caminho",
-      "paletas": ["barro", "linho", "cal"],
+      "paletas": [
+        "barro",
+        "linho",
+        "cal"
+      ],
       "ajustes": {
-        "filtro": { "tipo": "galeria" },
+        "filtro": {
+          "tipo": "galeria"
+        },
         "tese": "Só galeria neste percurso: nenhuma bilheteria, nenhuma fila, nenhuma catraca.",
-        "virada": "A caminhada inteira é de graça, e nenhuma dessas portas espera que você compre nada." } },
-
-    { "id": "deriva-ultima-chamada", "formato": "deriva", "curado": false,
+        "virada": "A caminhada inteira é de graça, e nenhuma dessas portas espera que você compre nada."
+      }
+    },
+    {
+      "id": "deriva-ultima-chamada",
+      "formato": "deriva",
+      "curado": false,
       "titulo": "Deriva de última chamada",
-      "paletas": ["cal", "barro", "papel"],
+      "paletas": [
+        "cal",
+        "barro",
+        "papel"
+      ],
       "ajustes": {
-        "filtro": { "fechaEm": 30 },
+        "filtro": {
+          "fechaEm": 30
+        },
         "tese": "Um percurso a pé em que toda parada fecha dentro de um mês.",
-        "virada": "Dá para fazer esta caminhada numa tarde. Depois, não dá para fazer nunca mais." } },
-
-    { "id": "deriva-ultima-chamada-curta", "formato": "deriva", "curado": false,
+        "virada": "Dá para fazer esta caminhada numa tarde. Depois, não dá para fazer nunca mais."
+      }
+    },
+    {
+      "id": "deriva-ultima-chamada-curta",
+      "formato": "deriva",
+      "curado": false,
       "titulo": "Deriva de última chamada, versão curta: nada passa de duas semanas",
-      "paletas": ["barro", "cal", "papel"],
+      "paletas": [
+        "barro",
+        "cal",
+        "papel"
+      ],
       "ajustes": {
-        "filtro": { "fechaEm": 16 },
+        "filtro": {
+          "fechaEm": 16
+        },
         "tese": "Um percurso a pé em que nenhuma parada tem mais de duas semanas de cartaz pela frente.",
-        "virada": "É a caminhada mais urgente do mês. Faz hoje ou não faz." } },
-
-    { "id": "deriva-so-obra", "formato": "deriva", "curado": false,
+        "virada": "É a caminhada mais urgente do mês. Faz hoje ou não faz."
+      }
+    },
+    {
+      "id": "deriva-so-obra",
+      "formato": "deriva",
+      "curado": false,
       "titulo": "Deriva em que toda parada mostra a obra, não a sala",
-      "paletas": ["linho", "barro", "papel"],
+      "paletas": [
+        "linho",
+        "barro",
+        "papel"
+      ],
       "ajustes": {
-        "filtro": { "vista": false },
+        "filtro": {
+          "vista": false
+        },
         "tese": "Em toda parada deste percurso a imagem é da obra, não da parede.",
-        "virada": "Você já sabe o que vai ver antes de sair de casa. Isso é raro e devia ser o normal." } },
-
-    { "id": "entrada-preco", "formato": "entrada", "curado": false,
+        "virada": "Você já sabe o que vai ver antes de sair de casa. Isso é raro e devia ser o normal."
+      }
+    },
+    {
+      "id": "entrada-preco",
+      "formato": "entrada",
+      "curado": false,
       "titulo": "Quanto custa ver arte em São Paulo",
-      "paletas": ["tinta", "cal", "papel"],
+      "paletas": [
+        "tinta",
+        "cal",
+        "papel"
+      ],
       "ajustes": {
         "virada": "A barreira nunca foi o preço. É não saber que dá para empurrar a porta.",
         "porta": [
@@ -268,11 +657,19 @@
           "Você pode ficar três minutos e ir embora. Pode voltar no dia seguinte. Pode não dizer nada sobre o que viu.",
           "Perguntar preço não é falta de educação, e não obriga a nada. A galeria vive disso, e quase sempre há uma lista de preços impressa que ela entrega sem cerimônia.",
           "A maioria fecha aos domingos e nas segundas, e muitas fecham entre 13h e 14h. Sábado costuma ter horário reduzido."
-        ] } },
-
-    { "id": "entrada-etiqueta", "formato": "entrada", "curado": false,
+        ]
+      }
+    },
+    {
+      "id": "entrada-etiqueta",
+      "formato": "entrada",
+      "curado": false,
       "titulo": "O que ninguém te conta sobre entrar numa galeria",
-      "paletas": ["cal", "linho", "tinta"],
+      "paletas": [
+        "cal",
+        "linho",
+        "tinta"
+      ],
       "ajustes": {
         "virada": "Ninguém vai te perguntar o que você faz da vida. Essa é a parte que ninguém acredita até entrar.",
         "porta": [
@@ -281,11 +678,19 @@
           "Pode fotografar, salvo aviso em contrário — e quando há aviso, ele está na parede, não no olhar de ninguém.",
           "Pode entrar de mochila, de bermuda, com criança, com carrinho. Galeria não tem código de vestimenta e as que agem como se tivessem estão erradas.",
           "Pode perguntar o que é aquilo. A resposta é o serviço que a casa presta, e quase sempre é a melhor parte da visita."
-        ] } },
-
-    { "id": "entrada-sabado", "formato": "entrada", "curado": false,
+        ]
+      }
+    },
+    {
+      "id": "entrada-sabado",
+      "formato": "entrada",
+      "curado": false,
       "titulo": "O sábado: o dia de maior movimento e o de menor informação",
-      "paletas": ["papel", "cal", "barro"],
+      "paletas": [
+        "papel",
+        "cal",
+        "barro"
+      ],
       "ajustes": {
         "virada": "O dia em que mais gente sai é o dia sobre o qual menos se publica.",
         "porta": [
@@ -294,11 +699,19 @@
           "Museu é o contrário: sábado costuma ser dia cheio, às vezes o de maior horário da semana.",
           "Quem sai às 15h achando que tem a tarde inteira pega porta fechada. É o erro mais comum e o mais fácil de evitar.",
           "Confira antes de sair. Quando o horário estiver no nosso mapa, ele está lá porque alguém foi olhar no site da casa."
-        ] } },
-
-    { "id": "entrada-galeria-vs-museu", "formato": "entrada", "curado": false,
+        ]
+      }
+    },
+    {
+      "id": "entrada-galeria-vs-museu",
+      "formato": "entrada",
+      "curado": false,
       "titulo": "Galeria e museu não são a mesma coisa",
-      "paletas": ["tinta", "escuro", "papel"],
+      "paletas": [
+        "tinta",
+        "escuro",
+        "papel"
+      ],
       "ajustes": {
         "virada": "Um guarda o que já foi decidido. O outro está decidindo agora, e pode estar errado.",
         "porta": [
@@ -307,11 +720,19 @@
           "O museu explica. A galeria mostra e espera. Se você quiser explicação, tem que pedir — e aí recebe muito mais do que numa legenda de parede.",
           "Museu cobra, às vezes. Galeria nunca cobra.",
           "As duas coisas se alimentam: o museu de hoje compra o que a galeria arriscou há vinte anos."
-        ] } },
-
-    { "id": "entrada-primeira-vez", "formato": "entrada", "curado": false,
+        ]
+      }
+    },
+    {
+      "id": "entrada-primeira-vez",
+      "formato": "entrada",
+      "curado": false,
       "titulo": "Se é a sua primeira vez",
-      "paletas": ["linho", "cal", "papel"],
+      "paletas": [
+        "linho",
+        "cal",
+        "papel"
+      ],
       "ajustes": {
         "virada": "Não existe pré-requisito. Existe só a porta, e ela abre.",
         "porta": [
@@ -320,11 +741,19 @@
           "Dê uma volta inteira antes de parar em qualquer coisa. Você vai voltar em duas ou três, e essas serão as suas.",
           "Fique menos tempo do que acha que deveria. Vinte minutos de atenção real valem mais que uma hora de dever cumprido.",
           "Se não gostar de nada, tudo bem. Gostar não é a tarefa; olhar é."
-        ] } },
-
-    { "id": "entrada-na-abertura", "formato": "entrada", "curado": false,
+        ]
+      }
+    },
+    {
+      "id": "entrada-na-abertura",
+      "formato": "entrada",
+      "curado": false,
       "titulo": "Como se comportar numa abertura, para quem nunca foi a uma",
-      "paletas": ["tinta", "cal", "linho"],
+      "paletas": [
+        "tinta",
+        "cal",
+        "linho"
+      ],
       "ajustes": {
         "virada": "A vernissage não é a exposição — é a festa em volta dela. E você pode ir sem conhecer ninguém.",
         "porta": [
@@ -333,144 +762,2466 @@
           "Tem bebida, quase sempre vinho, às vezes só água com gás — e acaba. Não é o motivo de ir, e ninguém repara se você não pega.",
           "Você não precisa falar com o artista. Se falar, 'parabéns' basta: ninguém espera análise no dia da abertura.",
           "Dá para circular sozinho, ver tudo em vinte minutos e sair. Ninguém controla quanto tempo você ficou."
-        ] } },
-
-    { "id": "rima-material", "formato": "rima", "curado": true,
+        ]
+      }
+    },
+    {
+      "id": "rima-material",
+      "formato": "rima",
+      "curado": true,
       "titulo": "Duas mostras que usam o mesmo material de formas opostas",
-      "paletas": ["escuro", "barro", "linho"],
-      "precisa": "as duas chaves (a, b), a tese e o argumento — o par tem de partilhar o material e divergir no uso" },
-
-    { "id": "rima-escala", "formato": "rima", "curado": true,
+      "paletas": [
+        "escuro",
+        "barro",
+        "linho"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — o par tem de partilhar o material e divergir no uso"
+    },
+    {
+      "id": "rima-escala",
+      "formato": "rima",
+      "curado": true,
       "titulo": "Duas mostras separadas pela escala: a miniatura e o monumento",
-      "paletas": ["escuro", "tinta", "cal"],
-      "precisa": "as duas chaves (a, b), a tese e o argumento — uma obra pequena e uma grande que tratem do mesmo assunto" },
-
-    { "id": "rima-geracao", "formato": "rima", "curado": true,
+      "paletas": [
+        "escuro",
+        "tinta",
+        "cal"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — uma obra pequena e uma grande que tratem do mesmo assunto"
+    },
+    {
+      "id": "rima-geracao",
+      "formato": "rima",
+      "curado": true,
       "titulo": "Duas gerações no mesmo problema",
-      "paletas": ["barro", "linho", "tinta"],
-      "precisa": "as duas chaves (a, b), a tese e o argumento — um artista consagrado e um emergente na mesma questão" },
-
-    { "id": "rima-cor", "formato": "rima", "curado": true,
+      "paletas": [
+        "barro",
+        "linho",
+        "tinta"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — um artista consagrado e um emergente na mesma questão"
+    },
+    {
+      "id": "rima-cor",
+      "formato": "rima",
+      "curado": true,
       "titulo": "Duas mostras que discordam sobre a cor",
-      "paletas": ["escuro", "cal", "linho"],
-      "precisa": "as duas chaves (a, b), a tese e o argumento — uma paleta saturada contra uma quase monocromática" },
-
-    { "id": "rima-corpo-paisagem", "formato": "rima", "curado": true,
+      "paletas": [
+        "escuro",
+        "cal",
+        "linho"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — uma paleta saturada contra uma quase monocromática"
+    },
+    {
+      "id": "rima-corpo-paisagem",
+      "formato": "rima",
+      "curado": true,
       "titulo": "O corpo e a paisagem, na mesma semana",
-      "paletas": ["barro", "escuro", "papel"],
-      "precisa": "as duas chaves (a, b), a tese e o argumento — uma mostra do corpo e uma do território que se comentem" },
-
-    { "id": "rima-centro-jardins", "formato": "rima", "curado": true,
+      "paletas": [
+        "barro",
+        "escuro",
+        "papel"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — uma mostra do corpo e uma do território que se comentem"
+    },
+    {
+      "id": "rima-centro-jardins",
+      "formato": "rima",
+      "curado": true,
       "titulo": "A mesma questão, no Centro e nos Jardins",
-      "paletas": ["tinta", "escuro", "linho"],
-      "precisa": "as duas chaves (a, b), a tese e o argumento — o par tem de estar em zonas diferentes da cidade" },
-
-    { "id": "aproximacao-pincelada", "formato": "aproximacao", "curado": true,
+      "paletas": [
+        "tinta",
+        "escuro",
+        "linho"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — o par tem de estar em zonas diferentes da cidade"
+    },
+    {
+      "id": "aproximacao-pincelada",
+      "formato": "aproximacao",
+      "curado": true,
       "titulo": "Chegar perto até a pincelada virar o assunto",
-      "paletas": ["linho", "cal", "papel"],
-      "precisa": "a chave da obra, os zooms e a leitura — a obra precisa aguentar recorte fechado (1600 px de largura no mínimo)" },
-
-    { "id": "aproximacao-suporte", "formato": "aproximacao", "curado": true,
+      "paletas": [
+        "linho",
+        "cal",
+        "papel"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — a obra precisa aguentar recorte fechado (1600 px de largura no mínimo)"
+    },
+    {
+      "id": "aproximacao-suporte",
+      "formato": "aproximacao",
+      "curado": true,
       "titulo": "O que aparece do suporte por baixo da tinta",
-      "paletas": ["linho", "papel", "cal"],
-      "precisa": "a chave da obra, os zooms e a leitura — escolha obra em que o linho, o papel ou a madeira apareçam" },
-
-    { "id": "aproximacao-borda", "formato": "aproximacao", "curado": true,
+      "paletas": [
+        "linho",
+        "papel",
+        "cal"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — escolha obra em que o linho, o papel ou a madeira apareçam"
+    },
+    {
+      "id": "aproximacao-borda",
+      "formato": "aproximacao",
+      "curado": true,
       "titulo": "A borda: onde a obra decide onde acabar",
-      "paletas": ["cal", "linho", "escuro"],
-      "precisa": "a chave da obra, os zooms e a leitura — os recortes devem ir para a margem, não para o centro" },
-
-    { "id": "aproximacao-detalhe-narrativo", "formato": "aproximacao", "curado": true,
+      "paletas": [
+        "cal",
+        "linho",
+        "escuro"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — os recortes devem ir para a margem, não para o centro"
+    },
+    {
+      "id": "aproximacao-detalhe-narrativo",
+      "formato": "aproximacao",
+      "curado": true,
       "titulo": "O detalhe que conta uma história que a obra inteira esconde",
-      "paletas": ["escuro", "barro", "linho"],
-      "precisa": "a chave da obra, os zooms e a leitura — um detalhe figurativo que só se vê de perto" },
-
-    { "id": "aproximacao-materia", "formato": "aproximacao", "curado": true,
+      "paletas": [
+        "escuro",
+        "barro",
+        "linho"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — um detalhe figurativo que só se vê de perto"
+    },
+    {
+      "id": "aproximacao-materia",
+      "formato": "aproximacao",
+      "curado": true,
       "titulo": "A matéria: relevo, empaste, textura",
-      "paletas": ["barro", "escuro", "linho"],
-      "precisa": "a chave da obra, os zooms e a leitura — obra com superfície, não com imagem lisa" },
-
-    { "id": "aproximacao-escultura", "formato": "aproximacao", "curado": true,
+      "paletas": [
+        "barro",
+        "escuro",
+        "linho"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — obra com superfície, não com imagem lisa"
+    },
+    {
+      "id": "aproximacao-escultura",
+      "formato": "aproximacao",
+      "curado": true,
       "titulo": "Aproximação numa escultura: a marca da ferramenta",
-      "paletas": ["escuro", "barro", "papel"],
-      "precisa": "a chave da obra, os zooms e a leitura — escultura em que o corte, a talha ou a solda apareçam" },
-
-    { "id": "aproximacao-antes-de-fechar", "formato": "aproximacao", "curado": true,
+      "paletas": [
+        "escuro",
+        "barro",
+        "papel"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — escultura em que o corte, a talha ou a solda apareçam"
+    },
+    {
+      "id": "aproximacao-antes-de-fechar",
+      "formato": "aproximacao",
+      "curado": true,
       "titulo": "Aproximação numa obra que sai de cartaz nesta semana",
-      "paletas": ["escuro", "barro", "linho"],
-      "precisa": "a chave da obra, os zooms e a leitura — a obra tem de fechar em até 10 dias e aguentar recorte a 1600 px de largura" },
-
-    { "id": "obra-pinheiros", "formato": "obra", "curado": false,
+      "paletas": [
+        "escuro",
+        "barro",
+        "linho"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — a obra tem de fechar em até 10 dias e aguentar recorte a 1600 px de largura"
+    },
+    {
+      "id": "obra-pinheiros",
+      "formato": "obra",
+      "curado": false,
       "titulo": "A obra, em Pinheiros",
-      "paletas": ["escuro", "barro", "tinta"],
-      "ajustes": { "filtro": { "bairro": "Pinheiros" } } },
-
-    { "id": "obra-bela-vista", "formato": "obra", "curado": false,
+      "paletas": [
+        "escuro",
+        "barro",
+        "tinta"
+      ],
+      "ajustes": {
+        "filtro": {
+          "bairro": "Pinheiros"
+        }
+      }
+    },
+    {
+      "id": "obra-bela-vista",
+      "formato": "obra",
+      "curado": false,
       "titulo": "A obra, na Bela Vista, ao lado da Paulista",
-      "paletas": ["escuro", "tinta", "papel"],
-      "ajustes": { "filtro": { "bairro": "Bela Vista" } } },
-
-    { "id": "obra-ibirapuera", "formato": "obra", "curado": false,
+      "paletas": [
+        "escuro",
+        "tinta",
+        "papel"
+      ],
+      "ajustes": {
+        "filtro": {
+          "bairro": "Bela Vista"
+        }
+      }
+    },
+    {
+      "id": "obra-ibirapuera",
+      "formato": "obra",
+      "curado": false,
       "titulo": "A obra, num museu do Ibirapuera",
-      "paletas": ["escuro", "barro", "cal"],
-      "ajustes": { "filtro": { "bairro": "Ibirapuera" } } },
-
-    { "id": "obra-republica", "formato": "obra", "curado": false,
+      "paletas": [
+        "escuro",
+        "barro",
+        "cal"
+      ],
+      "ajustes": {
+        "filtro": {
+          "bairro": "Ibirapuera"
+        }
+      }
+    },
+    {
+      "id": "obra-republica",
+      "formato": "obra",
+      "curado": false,
       "titulo": "A obra, na República",
-      "paletas": ["tinta", "papel", "linho"],
-      "ajustes": { "filtro": { "bairro": "República" } } },
-
-    { "id": "deriva-pinheiros", "formato": "deriva", "curado": false,
+      "paletas": [
+        "tinta",
+        "papel",
+        "linho"
+      ],
+      "ajustes": {
+        "filtro": {
+          "bairro": "República"
+        }
+      }
+    },
+    {
+      "id": "deriva-pinheiros",
+      "formato": "deriva",
+      "curado": false,
       "titulo": "Uma deriva por Pinheiros",
-      "paletas": ["papel", "cal", "linho"],
-      "ajustes": { "filtro": { "bairro": "Pinheiros" } } },
-
-    { "id": "deriva-jardim-europa", "formato": "deriva", "curado": false,
+      "paletas": [
+        "papel",
+        "cal",
+        "linho"
+      ],
+      "ajustes": {
+        "filtro": {
+          "bairro": "Pinheiros"
+        }
+      }
+    },
+    {
+      "id": "deriva-jardim-europa",
+      "formato": "deriva",
+      "curado": false,
       "titulo": "Uma deriva pelo Jardim Europa",
-      "paletas": ["linho", "papel", "cal"],
-      "ajustes": { "filtro": { "bairro": "Jardim Europa" } } },
-
-    { "id": "salao-jardins-tres-bairros", "formato": "salao", "curado": false,
+      "paletas": [
+        "linho",
+        "papel",
+        "cal"
+      ],
+      "ajustes": {
+        "filtro": {
+          "bairro": "Jardim Europa"
+        }
+      }
+    },
+    {
+      "id": "salao-jardins-tres-bairros",
+      "formato": "salao",
+      "curado": false,
       "titulo": "Só o que está em cartaz nos três bairros de Jardins, na mesma parede",
-      "paletas": ["cal", "linho", "papel"],
-      "filtro": { "bairro": ["Jardim Paulista", "Jardim Europa", "Jardim América"] },
+      "paletas": [
+        "cal",
+        "linho",
+        "papel"
+      ],
+      "filtro": {
+        "bairro": [
+          "Jardim Paulista",
+          "Jardim Europa",
+          "Jardim América"
+        ]
+      },
       "ajustes": {
         "texto": [
           "Jardim Paulista, Jardim Europa e Jardim América somam mais casas de arte do que o resto da cidade inteira junto.",
           "Isso não é acaso geográfico: é onde o dinheiro do circuito sempre esteve. A concentração é a notícia, não a coincidência."
         ],
         "virada": "Setenta por cento da cena cabe numa caminhada de vinte minutos — e é isso que este mapa não mostra até você tentar sair dele."
-      } },
-
-    { "id": "rima-preco-oposto", "formato": "rima", "curado": true,
+      }
+    },
+    {
+      "id": "rima-preco-oposto",
+      "formato": "rima",
+      "curado": true,
       "titulo": "Duas mostras, dois preços de entrada opostos",
-      "paletas": ["tinta", "escuro", "papel"],
-      "precisa": "as duas chaves (a, b), a tese e o argumento — uma tem que ser gratuita e a outra cobrar ingresso, tratando de assunto próximo" },
-
-    { "id": "rima-arquivo-documento", "formato": "rima", "curado": true,
+      "paletas": [
+        "tinta",
+        "escuro",
+        "papel"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — uma tem que ser gratuita e a outra cobrar ingresso, tratando de assunto próximo"
+    },
+    {
+      "id": "rima-arquivo-documento",
+      "formato": "rima",
+      "curado": true,
       "titulo": "Duas mostras que tratam documento e arquivo como matéria-prima",
-      "paletas": ["papel", "tinta", "escuro"],
-      "precisa": "as duas chaves (a, b), a tese e o argumento — as duas precisam trabalhar com fonte documental (foto de arquivo, carta, recorte), não só tema histórico" },
-
-    { "id": "rima-mesmo-artista-decadas", "formato": "rima", "curado": true,
+      "paletas": [
+        "papel",
+        "tinta",
+        "escuro"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — as duas precisam trabalhar com fonte documental (foto de arquivo, carta, recorte), não só tema histórico"
+    },
+    {
+      "id": "rima-mesmo-artista-decadas",
+      "formato": "rima",
+      "curado": true,
       "titulo": "O mesmo artista, com décadas de distância entre as duas mostras",
-      "paletas": ["escuro", "barro", "tinta"],
-      "precisa": "as duas chaves (a, b), a tese e o argumento — raro: precisa do mesmo artista em cartaz em dois momentos da carreira, ou uma retrospectiva ao lado de trabalho recente de outro artista da mesma geração" },
-
-    { "id": "aproximacao-fotografia-grao", "formato": "aproximacao", "curado": true,
+      "paletas": [
+        "escuro",
+        "barro",
+        "tinta"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — raro: precisa do mesmo artista em cartaz em dois momentos da carreira, ou uma retrospectiva ao lado de trabalho recente de outro artista da mesma geração"
+    },
+    {
+      "id": "aproximacao-fotografia-grao",
+      "formato": "aproximacao",
+      "curado": true,
       "titulo": "Aproximação numa fotografia: o grão, não o pixel",
-      "paletas": ["escuro", "papel", "cal"],
-      "precisa": "a chave da obra, os zooms e a leitura — fotografia analógica ou impressão em que o grão apareça de perto, não vetor digital liso" },
-
-    { "id": "aproximacao-textil-fio", "formato": "aproximacao", "curado": true,
+      "paletas": [
+        "escuro",
+        "papel",
+        "cal"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — fotografia analógica ou impressão em que o grão apareça de perto, não vetor digital liso"
+    },
+    {
+      "id": "aproximacao-textil-fio",
+      "formato": "aproximacao",
+      "curado": true,
       "titulo": "Aproximação num têxtil: o fio visível, não o desenho",
-      "paletas": ["barro", "linho", "escuro"],
-      "precisa": "a chave da obra, os zooms e a leitura — bordado, tapeçaria ou fibra em que a trama apareça de perto, não a imagem geral do pano" },
-
-    { "id": "aproximacao-cor-unica", "formato": "aproximacao", "curado": true,
+      "paletas": [
+        "barro",
+        "linho",
+        "escuro"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — bordado, tapeçaria ou fibra em que a trama apareça de perto, não a imagem geral do pano"
+    },
+    {
+      "id": "aproximacao-cor-unica",
+      "formato": "aproximacao",
+      "curado": true,
       "titulo": "Aproximação na cor: onde uma cor domina a obra inteira",
-      "paletas": ["tinta", "barro", "escuro"],
-      "precisa": "a chave da obra, os zooms e a leitura — obra em que uma única cor ocupa a maior parte da superfície, e o recorte mostra as variações de tom dentro dela" }
-
+      "paletas": [
+        "tinta",
+        "barro",
+        "escuro"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — obra em que uma única cor ocupa a maior parte da superfície, e o recorte mostra as variações de tom dentro dela"
+    },
+    {
+      "id": "obra-jardim-paulista",
+      "formato": "obra",
+      "curado": false,
+      "titulo": "A obra, no Jardim Paulista",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "bairro": "Jardim Paulista"
+        }
+      }
+    },
+    {
+      "id": "obra-cerqueira-cesar",
+      "formato": "obra",
+      "curado": false,
+      "titulo": "A obra, em Cerqueira César",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "bairro": "Cerqueira César"
+        }
+      }
+    },
+    {
+      "id": "obra-higienopolis",
+      "formato": "obra",
+      "curado": false,
+      "titulo": "A obra, em Higienópolis",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "bairro": "Higienópolis"
+        }
+      }
+    },
+    {
+      "id": "obra-jardim-america",
+      "formato": "obra",
+      "curado": false,
+      "titulo": "A obra, no Jardim América",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "bairro": "Jardim América"
+        }
+      }
+    },
+    {
+      "id": "obra-jardim-europa",
+      "formato": "obra",
+      "curado": false,
+      "titulo": "A obra, no Jardim Europa",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "bairro": "Jardim Europa"
+        }
+      }
+    },
+    {
+      "id": "obra-itaim",
+      "formato": "obra",
+      "curado": false,
+      "titulo": "A obra, no Itaim Bibi",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "bairro": "Itaim Bibi"
+        }
+      }
+    },
+    {
+      "id": "obra-consolacao",
+      "formato": "obra",
+      "curado": false,
+      "titulo": "A obra, na Consolação",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "bairro": "Consolação"
+        }
+      }
+    },
+    {
+      "id": "obra-luz",
+      "formato": "obra",
+      "curado": false,
+      "titulo": "A obra, na Luz",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "bairro": "Luz"
+        }
+      }
+    },
+    {
+      "id": "obra-santa-cecilia",
+      "formato": "obra",
+      "curado": false,
+      "titulo": "A obra, em Santa Cecília",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "bairro": "Santa Cecília"
+        }
+      }
+    },
+    {
+      "id": "obra-vila-buarque",
+      "formato": "obra",
+      "curado": false,
+      "titulo": "A obra, na Vila Buarque",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "bairro": "Vila Buarque"
+        }
+      }
+    },
+    {
+      "id": "obra-bom-retiro",
+      "formato": "obra",
+      "curado": false,
+      "titulo": "A obra, no Bom Retiro",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "bairro": "Bom Retiro"
+        }
+      }
+    },
+    {
+      "id": "obra-vila-mariana",
+      "formato": "obra",
+      "curado": false,
+      "titulo": "A obra, na Vila Mariana",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "bairro": "Vila Mariana"
+        }
+      }
+    },
+    {
+      "id": "obra-morumbi",
+      "formato": "obra",
+      "curado": false,
+      "titulo": "A obra, no Morumbi",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "bairro": "Morumbi"
+        }
+      }
+    },
+    {
+      "id": "obra-vila-leopoldina",
+      "formato": "obra",
+      "curado": false,
+      "titulo": "A obra, na Vila Leopoldina",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "bairro": "Vila Leopoldina"
+        }
+      }
+    },
+    {
+      "id": "obra-galeria-centro",
+      "formato": "obra",
+      "curado": false,
+      "titulo": "A obra, numa galeria do Centro",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "tipo": "galeria",
+          "zona": "Centro"
+        }
+      }
+    },
+    {
+      "id": "obra-instituicao-oeste",
+      "formato": "obra",
+      "curado": false,
+      "titulo": "A obra, num museu da Zona Oeste",
+      "paletas": [
+        "papel",
+        "cal",
+        "linho",
+        "escuro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "tipo": "institucional",
+          "zona": "Oeste"
+        }
+      }
+    },
+    {
+      "id": "obra-instituicao-centro",
+      "formato": "obra",
+      "curado": false,
+      "titulo": "A obra, num museu do Centro",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "tipo": "institucional",
+          "zona": "Centro"
+        }
+      }
+    },
+    {
+      "id": "obra-independente-centro",
+      "formato": "obra",
+      "curado": false,
+      "titulo": "A obra, num espaço independente do Centro",
+      "paletas": [
+        "papel",
+        "cal",
+        "linho",
+        "escuro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "tipo": "hibrido",
+          "zona": "Centro"
+        }
+      }
+    },
+    {
+      "id": "obra-galeria-sul",
+      "formato": "obra",
+      "curado": false,
+      "titulo": "A obra, numa galeria da Zona Sul",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "tipo": "galeria",
+          "zona": "Sul"
+        }
+      }
+    },
+    {
+      "id": "obra-abriu-10-dias",
+      "formato": "obra",
+      "curado": false,
+      "titulo": "A obra de uma mostra que abriu há menos de dez dias",
+      "paletas": [
+        "papel",
+        "cal",
+        "linho",
+        "escuro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "abriuEm": 10
+        }
+      }
+    },
+    {
+      "id": "obra-dura-mais-de-4-meses",
+      "formato": "obra",
+      "curado": false,
+      "titulo": "A obra de uma mostra que fica mais de quatro meses",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "duraMais": 120
+        }
+      }
+    },
+    {
+      "id": "obra-dura-mais-de-um-ano",
+      "formato": "obra",
+      "curado": false,
+      "titulo": "A obra de uma mostra de longa permanência (mais de um ano)",
+      "paletas": [
+        "papel",
+        "cal",
+        "linho",
+        "escuro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "duraMais": 365
+        }
+      }
+    },
+    {
+      "id": "obra-tres-semanas",
+      "formato": "obra",
+      "curado": false,
+      "titulo": "A obra de uma mostra que ainda tem três semanas",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "fechaEm": 21,
+          "temFim": true
+        }
+      }
+    },
+    {
+      "id": "obra-um-mes-e-meio",
+      "formato": "obra",
+      "curado": false,
+      "titulo": "A obra de uma mostra com prazo de um mês e meio",
+      "paletas": [
+        "papel",
+        "cal",
+        "linho",
+        "escuro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "fechaEm": 45,
+          "temFim": true
+        }
+      }
+    },
+    {
+      "id": "obra-galeria-recem",
+      "formato": "obra",
+      "curado": false,
+      "titulo": "A obra, numa galeria que acabou de trocar de mostra",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "tipo": "galeria",
+          "abriuEm": 21
+        }
+      }
+    },
+    {
+      "id": "obra-instituicao-longa",
+      "formato": "obra",
+      "curado": false,
+      "titulo": "A obra de um museu, numa mostra que ainda tem meses",
+      "paletas": [
+        "papel",
+        "cal",
+        "linho",
+        "escuro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "tipo": "institucional",
+          "duraMais": 90
+        }
+      }
+    },
+    {
+      "id": "encerra-oeste",
+      "formato": "encerra",
+      "curado": false,
+      "titulo": "Última semana na Zona Oeste",
+      "paletas": [
+        "tinta",
+        "barro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "fechaEm": 14,
+          "zona": "Oeste"
+        }
+      }
+    },
+    {
+      "id": "encerra-centro",
+      "formato": "encerra",
+      "curado": false,
+      "titulo": "Última semana no Centro",
+      "paletas": [
+        "barro",
+        "escuro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "fechaEm": 14,
+          "zona": "Centro"
+        }
+      }
+    },
+    {
+      "id": "encerra-sul",
+      "formato": "encerra",
+      "curado": false,
+      "titulo": "Última semana na Zona Sul",
+      "paletas": [
+        "tinta",
+        "barro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "fechaEm": 14,
+          "zona": "Sul"
+        }
+      }
+    },
+    {
+      "id": "encerra-independente",
+      "formato": "encerra",
+      "curado": false,
+      "titulo": "Última semana num espaço independente",
+      "paletas": [
+        "barro",
+        "escuro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "fechaEm": 14,
+          "tipo": "hibrido"
+        }
+      }
+    },
+    {
+      "id": "encerra-3-dias",
+      "formato": "encerra",
+      "curado": false,
+      "titulo": "Últimos três dias",
+      "paletas": [
+        "tinta",
+        "barro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "fechaEm": 3
+        }
+      }
+    },
+    {
+      "id": "encerra-longa-que-acaba",
+      "formato": "encerra",
+      "curado": false,
+      "titulo": "A mostra que ficou meses em cartaz e fecha agora",
+      "paletas": [
+        "barro",
+        "escuro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "fechaEm": 14,
+          "duraMais": 90
+        }
+      }
+    },
+    {
+      "id": "encerra-jardins",
+      "formato": "encerra",
+      "curado": false,
+      "titulo": "Última semana nos Jardins",
+      "paletas": [
+        "tinta",
+        "barro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "fechaEm": 14,
+          "bairro": [
+            "Jardim Paulista",
+            "Jardim Europa",
+            "Jardim América",
+            "Jardins",
+            "Cerqueira César"
+          ]
+        }
+      }
+    },
+    {
+      "id": "encerra-curta",
+      "formato": "encerra",
+      "curado": false,
+      "titulo": "Uma mostra curta que fecha antes que dê tempo de adiar",
+      "paletas": [
+        "barro",
+        "escuro"
+      ],
+      "ajustes": {
+        "filtro": {
+          "fechaEm": 10
+        }
+      }
+    },
+    {
+      "id": "estreia-oeste",
+      "formato": "estreia",
+      "curado": false,
+      "titulo": "Estreia na Zona Oeste",
+      "paletas": [
+        "escuro",
+        "tinta"
+      ],
+      "ajustes": {
+        "abreEm": 10,
+        "filtro": {
+          "zona": "Oeste"
+        }
+      }
+    },
+    {
+      "id": "estreia-centro",
+      "formato": "estreia",
+      "curado": false,
+      "titulo": "Estreia no Centro",
+      "paletas": [
+        "escuro",
+        "tinta"
+      ],
+      "ajustes": {
+        "abreEm": 10,
+        "filtro": {
+          "zona": "Centro"
+        }
+      }
+    },
+    {
+      "id": "estreia-instituicao",
+      "formato": "estreia",
+      "curado": false,
+      "titulo": "Estreia num museu",
+      "paletas": [
+        "escuro",
+        "tinta"
+      ],
+      "ajustes": {
+        "abreEm": 14,
+        "filtro": {
+          "tipo": "institucional"
+        }
+      }
+    },
+    {
+      "id": "estreia-independente",
+      "formato": "estreia",
+      "curado": false,
+      "titulo": "Estreia num espaço independente",
+      "paletas": [
+        "escuro",
+        "tinta"
+      ],
+      "ajustes": {
+        "abreEm": 14,
+        "filtro": {
+          "tipo": "hibrido"
+        }
+      }
+    },
+    {
+      "id": "estreia-quinzena",
+      "formato": "estreia",
+      "curado": false,
+      "titulo": "O que abre nas próximas duas semanas",
+      "paletas": [
+        "escuro",
+        "tinta"
+      ],
+      "ajustes": {
+        "abreEm": 14
+      }
+    },
+    {
+      "id": "estreia-sul",
+      "formato": "estreia",
+      "curado": false,
+      "titulo": "Estreia na Zona Sul",
+      "paletas": [
+        "escuro",
+        "tinta"
+      ],
+      "ajustes": {
+        "abreEm": 14,
+        "filtro": {
+          "zona": "Sul"
+        }
+      }
+    },
+    {
+      "id": "salao-so-instituicao",
+      "formato": "salao",
+      "curado": false,
+      "titulo": "Só museu: tudo o que as instituições têm em cartaz, na mesma parede",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "ajustes": {
+        "texto": [
+          "Museu e centro cultural pensam em anos, não em semanas. As mostras daqui ficam mais tempo e mudam menos.",
+          "Juntas numa parede só, elas mostram o que a cidade decidiu guardar e expor com dinheiro público ou de fundação."
+        ],
+        "virada": "É a parte do circuito que não está à venda. Tudo o que está aqui, você só pode olhar.",
+        "filtro": {
+          "tipo": "institucional"
+        }
+      }
+    },
+    {
+      "id": "salao-so-independentes",
+      "formato": "salao",
+      "curado": false,
+      "titulo": "Só independentes: os espaços geridos por artistas, numa parede",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "ajustes": {
+        "texto": [
+          "Ateliê que abre a porta, loja com sala de exposição, espaço tocado por coletivo. Programação curta, divulgação quase só no Instagram.",
+          "É onde aparece primeiro o que as galerias vão representar daqui a alguns anos."
+        ],
+        "virada": "Nenhuma destas casas tem assessoria de imprensa. Se você não viu, é porque ninguém contou.",
+        "filtro": {
+          "tipo": "hibrido"
+        }
+      }
+    },
+    {
+      "id": "salao-zona-sul",
+      "formato": "salao",
+      "curado": false,
+      "titulo": "A Zona Sul inteira, numa parede",
+      "paletas": [
+        "papel",
+        "cal",
+        "linho"
+      ],
+      "ajustes": {
+        "texto": [
+          "Treze casas do mapa ficam na Zona Sul — do Ibirapuera ao Morumbi.",
+          "Longe umas das outras, quase nunca entram no mesmo roteiro. Aqui entram."
+        ],
+        "virada": "O Ibirapuera sozinho tem mais museu por metro quadrado que qualquer outro pedaço da cidade.",
+        "filtro": {
+          "zona": "Sul"
+        }
+      }
+    },
+    {
+      "id": "salao-oeste",
+      "formato": "salao",
+      "curado": false,
+      "titulo": "A Zona Oeste inteira, numa parede",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "ajustes": {
+        "texto": [
+          "A Zona Oeste concentra a maior parte das casas do mapa.",
+          "Numa parede só, dá para ver o que o circuito comercial está mostrando agora, lado a lado."
+        ],
+        "virada": "Tudo isto cabe num raio que se atravessa de bicicleta.",
+        "filtro": {
+          "zona": "Oeste"
+        }
+      }
+    },
+    {
+      "id": "salao-fecha-21",
+      "formato": "salao",
+      "curado": false,
+      "titulo": "Tudo o que fecha nas próximas três semanas",
+      "paletas": [
+        "barro",
+        "escuro"
+      ],
+      "ajustes": {
+        "texto": [
+          "Cada obra desta parede sai de cartaz em até 21 dias.",
+          "É a lista de quem vai sumir antes do próximo mês começar."
+        ],
+        "virada": "Três semanas passam num susto. Escolha uma, vá, e depois escolha a próxima.",
+        "filtro": {
+          "fechaEm": 21
+        }
+      }
+    },
+    {
+      "id": "salao-longas",
+      "formato": "salao",
+      "curado": false,
+      "titulo": "As mostras de fôlego: as que ficam mais de três meses",
+      "paletas": [
+        "papel",
+        "cal",
+        "linho"
+      ],
+      "ajustes": {
+        "texto": [
+          "Estas ficam em cartaz por mais de noventa dias.",
+          "É o calendário lento da cidade: o que dá para deixar para o mês que vem sem perder."
+        ],
+        "virada": "Tempo de sobra é o motivo mais comum para nunca ir. Não deixe o prazo longo virar desculpa.",
+        "filtro": {
+          "duraMais": 90
+        }
+      }
+    },
+    {
+      "id": "salao-pinheiros-vila-madalena",
+      "formato": "salao",
+      "curado": false,
+      "titulo": "Pinheiros e Vila Madalena, numa parede",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "ajustes": {
+        "texto": [
+          "Os dois bairros juntos formam um dos corredores mais densos de arte da cidade.",
+          "Galeria comercial, espaço de artista e arte urbana, a poucas quadras umas das outras."
+        ],
+        "virada": "Dá para fazer tudo a pé, com parada para café. É o programa, não o trajeto.",
+        "filtro": {
+          "bairro": [
+            "Pinheiros",
+            "Vila Madalena",
+            "Alto de Pinheiros"
+          ]
+        }
+      }
+    },
+    {
+      "id": "salao-higienopolis-consolacao",
+      "formato": "salao",
+      "curado": false,
+      "titulo": "Higienópolis e Consolação, numa parede",
+      "paletas": [
+        "linho",
+        "papel"
+      ],
+      "ajustes": {
+        "texto": [
+          "Entre a Paulista e o Centro, uma faixa de prédios antigos esconde galerias e instituições.",
+          "Juntas, mostram um circuito que quase nunca aparece nas listas dos Jardins."
+        ],
+        "virada": "A dez minutos a pé do metrô Higienópolis-Mackenzie, quase tudo.",
+        "filtro": {
+          "bairro": [
+            "Higienópolis",
+            "Consolação",
+            "Santa Cecília",
+            "Vila Buarque"
+          ]
+        }
+      }
+    },
+    {
+      "id": "salao-barra-funda",
+      "formato": "salao",
+      "curado": false,
+      "titulo": "A Barra Funda, numa parede",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "ajustes": {
+        "texto": [
+          "Galpão virou galeria: a Barra Funda é onde o circuito foi buscar pé-direito alto.",
+          "Obras grandes, salas grandes, poucas casas e bem espalhadas."
+        ],
+        "virada": "Aqui a distância entre uma galeria e outra é longa. Compensa: a sala costuma ser do tamanho da obra.",
+        "filtro": {
+          "bairro": [
+            "Barra Funda",
+            "Vila Leopoldina",
+            "Lapa"
+          ]
+        }
+      }
+    },
+    {
+      "id": "salao-so-vista-obra",
+      "formato": "salao",
+      "curado": false,
+      "titulo": "Só reprodução de obra, nada de vista de sala",
+      "paletas": [
+        "papel",
+        "cal",
+        "linho"
+      ],
+      "ajustes": {
+        "texto": [
+          "Nesta parede, só entra a obra fotografada sozinha — sem sala, sem gente, sem parede em volta.",
+          "É o jeito mais próximo de ver o trabalho antes de ver ao vivo."
+        ],
+        "virada": "Nenhuma destas fotos substitui a visita. Serve para escolher qual vale o deslocamento.",
+        "filtro": {
+          "vista": false
+        }
+      }
+    },
+    {
+      "id": "salao-centro-inteiro",
+      "formato": "salao",
+      "curado": false,
+      "titulo": "O Centro inteiro, numa parede",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "ajustes": {
+        "texto": [
+          "Do Bom Retiro à Bela Vista, o Centro reúne museus grandes e espaços pequenos.",
+          "É a zona com mais instituição pública do mapa."
+        ],
+        "virada": "Quase tudo aqui fica perto de uma estação de metrô.",
+        "filtro": {
+          "zona": "Centro"
+        }
+      }
+    },
+    {
+      "id": "salao-museus-oeste",
+      "formato": "salao",
+      "curado": false,
+      "titulo": "Os museus da Zona Oeste, numa parede",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "ajustes": {
+        "texto": [
+          "MIS, Tomie Ohtake, Instituto Moreira Salles e outros: a Zona Oeste também tem museu.",
+          "Juntos, mostram a parte institucional de um bairro que parece só comercial."
+        ],
+        "virada": "Museu com ingresso barato a poucas quadras de galeria de graça. A combinação é o roteiro.",
+        "filtro": {
+          "tipo": "institucional",
+          "zona": "Oeste"
+        }
+      }
+    },
+    {
+      "id": "deriva-barra-funda",
+      "formato": "deriva",
+      "curado": false,
+      "titulo": "Barra Funda a pé",
+      "paletas": [
+        "papel",
+        "cal",
+        "linho"
+      ],
+      "ajustes": {
+        "tese": "Galpões que viraram galeria, ligados por um percurso a pé.",
+        "virada": "É a caminhada mais longa do mapa entre uma casa e outra. É também onde as salas são maiores.",
+        "filtro": {
+          "bairro": [
+            "Barra Funda",
+            "Vila Leopoldina",
+            "Lapa"
+          ]
+        }
+      }
+    },
+    {
+      "id": "deriva-luz",
+      "formato": "deriva",
+      "curado": false,
+      "titulo": "Luz a pé",
+      "paletas": [
+        "papel",
+        "cal",
+        "linho"
+      ],
+      "ajustes": {
+        "tese": "O Centro dos museus, a poucos minutos da estação da Luz.",
+        "virada": "Aos sábados a Pinacoteca é gratuita, e o mesmo ingresso vale os três prédios.",
+        "filtro": {
+          "bairro": [
+            "Luz",
+            "Bom Retiro",
+            "Santa Ifigênia"
+          ]
+        }
+      }
+    },
+    {
+      "id": "deriva-jardim-paulista",
+      "formato": "deriva",
+      "curado": false,
+      "titulo": "Jardim Paulista a pé",
+      "paletas": [
+        "papel",
+        "cal",
+        "linho"
+      ],
+      "ajustes": {
+        "tese": "O bairro com mais casas do mapa, em ordem de caminhada.",
+        "virada": "Quatorze endereços num bairro só. Nenhum roteiro dá conta de todos; este dá conta dos que estão abertos agora.",
+        "filtro": {
+          "bairro": "Jardim Paulista"
+        }
+      }
+    },
+    {
+      "id": "deriva-cerqueira-cesar",
+      "formato": "deriva",
+      "curado": false,
+      "titulo": "Cerqueira César a pé",
+      "paletas": [
+        "papel",
+        "cal",
+        "linho"
+      ],
+      "ajustes": {
+        "tese": "Entre a Paulista e a Rebouças, as galerias que ficam a uma quadra umas das outras.",
+        "virada": "Desce a Paulista e as galerias começam. A maioria nem tem placa na calçada.",
+        "filtro": {
+          "bairro": [
+            "Cerqueira César",
+            "Consolação"
+          ]
+        }
+      }
+    },
+    {
+      "id": "deriva-higienopolis",
+      "formato": "deriva",
+      "curado": false,
+      "titulo": "Higienópolis a pé",
+      "paletas": [
+        "papel",
+        "cal",
+        "linho"
+      ],
+      "ajustes": {
+        "tese": "Prédios antigos, galerias escondidas e uma instituição a cada poucas quadras.",
+        "virada": "É o roteiro de quem sai do metrô e quer voltar para ele no fim da tarde.",
+        "filtro": {
+          "bairro": [
+            "Higienópolis",
+            "Santa Cecília",
+            "Vila Buarque",
+            "Consolação"
+          ]
+        }
+      }
+    },
+    {
+      "id": "deriva-pinheiros-vila-madalena",
+      "formato": "deriva",
+      "curado": false,
+      "titulo": "Pinheiros e Vila Madalena a pé",
+      "paletas": [
+        "papel",
+        "cal",
+        "linho"
+      ],
+      "ajustes": {
+        "tese": "Galeria, ateliê e arte de rua no mesmo trajeto.",
+        "virada": "O percurso termina perto de bar. Isso também faz parte do programa.",
+        "filtro": {
+          "bairro": [
+            "Pinheiros",
+            "Vila Madalena",
+            "Alto de Pinheiros"
+          ]
+        }
+      }
+    },
+    {
+      "id": "deriva-jardim-america",
+      "formato": "deriva",
+      "curado": false,
+      "titulo": "Jardim América a pé",
+      "paletas": [
+        "papel",
+        "cal",
+        "linho"
+      ],
+      "ajustes": {
+        "tese": "Ruas residenciais com galeria atrás de portão de casa.",
+        "virada": "Aqui a galeria parece casa de família. Toque a campainha: é o procedimento normal.",
+        "filtro": {
+          "bairro": [
+            "Jardim América",
+            "Jardins",
+            "Jardim Paulistano"
+          ]
+        }
+      }
+    },
+    {
+      "id": "deriva-ibirapuera",
+      "formato": "deriva",
+      "curado": false,
+      "titulo": "O Ibirapuera a pé",
+      "paletas": [
+        "papel",
+        "cal",
+        "linho"
+      ],
+      "ajustes": {
+        "tese": "Os museus do parque e os do entorno, numa volta só.",
+        "virada": "Dá para fazer o percurso inteiro sem sair da sombra das árvores.",
+        "filtro": {
+          "bairro": [
+            "Ibirapuera",
+            "Vila Mariana",
+            "Paraíso"
+          ]
+        }
+      }
+    },
+    {
+      "id": "deriva-itaim",
+      "formato": "deriva",
+      "curado": false,
+      "titulo": "Itaim a pé",
+      "paletas": [
+        "papel",
+        "cal",
+        "linho"
+      ],
+      "ajustes": {
+        "tese": "Galerias entre prédios comerciais, num trecho curto.",
+        "virada": "Hora do almoço é o melhor horário: galeria vazia, calçada cheia.",
+        "filtro": {
+          "bairro": [
+            "Itaim Bibi",
+            "Jardim Europa"
+          ]
+        }
+      }
+    },
+    {
+      "id": "deriva-so-instituicoes",
+      "formato": "deriva",
+      "curado": false,
+      "titulo": "Um roteiro só de museus",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "ajustes": {
+        "tese": "Os museus mais próximos uns dos outros nesta semana.",
+        "virada": "Museu cobra ingresso; quase todos têm um dia gratuito. Confira antes de sair.",
+        "filtro": {
+          "tipo": "institucional"
+        }
+      }
+    },
+    {
+      "id": "deriva-antes-que-fechem",
+      "formato": "deriva",
+      "curado": false,
+      "titulo": "Um roteiro de mostras que fecham em três semanas",
+      "paletas": [
+        "barro",
+        "papel"
+      ],
+      "ajustes": {
+        "tese": "As casas mais próximas entre as que estão perto de desmontar.",
+        "virada": "Em um mês, metade destas paredes vai estar pintada de branco de novo.",
+        "filtro": {
+          "fechaEm": 21
+        }
+      }
+    },
+    {
+      "id": "deriva-recem-abertas",
+      "formato": "deriva",
+      "curado": false,
+      "titulo": "Um roteiro de mostras que acabaram de abrir",
+      "paletas": [
+        "papel",
+        "cal",
+        "linho"
+      ],
+      "ajustes": {
+        "tese": "As estreias do mês, em ordem de caminhada.",
+        "virada": "Mostra recém-aberta tem a sala mais arrumada e a equipe mais disposta a conversar.",
+        "filtro": {
+          "abriuEm": 30
+        }
+      }
+    },
+    {
+      "id": "deriva-bela-vista",
+      "formato": "deriva",
+      "curado": false,
+      "titulo": "Bela Vista e Paulista a pé",
+      "paletas": [
+        "papel",
+        "cal",
+        "linho"
+      ],
+      "ajustes": {
+        "tese": "Da Paulista para dentro do Bixiga, as casas mais próximas.",
+        "virada": "Metade do percurso é avenida, metade é rua de sobrado. A arte está nas duas.",
+        "filtro": {
+          "bairro": [
+            "Bela Vista",
+            "Paraíso",
+            "Consolação"
+          ]
+        }
+      }
+    },
+    {
+      "id": "deriva-sul",
+      "formato": "deriva",
+      "curado": false,
+      "titulo": "Uma deriva pela Zona Sul",
+      "paletas": [
+        "papel",
+        "cal",
+        "linho"
+      ],
+      "ajustes": {
+        "tese": "O trecho mais curto entre casas da Zona Sul nesta semana.",
+        "virada": "A Zona Sul tem menos casas e mais distância. Esta é a combinação que cabe numa tarde.",
+        "filtro": {
+          "zona": "Sul"
+        }
+      }
+    },
+    {
+      "id": "numero-abre7",
+      "formato": "numero",
+      "curado": false,
+      "titulo": "O número: quantas aberturas nos próximos sete dias",
+      "paletas": [
+        "papel",
+        "cal"
+      ],
+      "ajustes": {
+        "conta": "abre7"
+      }
+    },
+    {
+      "id": "numero-fecha30",
+      "formato": "numero",
+      "curado": false,
+      "titulo": "O número: quantas mostras somem em um mês",
+      "paletas": [
+        "escuro",
+        "tinta"
+      ],
+      "ajustes": {
+        "conta": "fecha30"
+      }
+    },
+    {
+      "id": "numero-sem-fim",
+      "formato": "numero",
+      "curado": false,
+      "titulo": "O número: quantas mostras não dizem quando fecham",
+      "paletas": [
+        "barro",
+        "linho"
+      ],
+      "ajustes": {
+        "conta": "sem-fim"
+      }
+    },
+    {
+      "id": "numero-zona-leste",
+      "formato": "numero",
+      "curado": false,
+      "titulo": "O número: quantas casas na Zona Leste",
+      "paletas": [
+        "papel",
+        "cal"
+      ],
+      "ajustes": {
+        "conta": "zona-leste"
+      }
+    },
+    {
+      "id": "numero-zona-sul",
+      "formato": "numero",
+      "curado": false,
+      "titulo": "O número: quantas casas na Zona Sul",
+      "paletas": [
+        "escuro",
+        "tinta"
+      ],
+      "ajustes": {
+        "conta": "zona-sul"
+      }
+    },
+    {
+      "id": "numero-zona-centro",
+      "formato": "numero",
+      "curado": false,
+      "titulo": "O número: quantas casas no Centro",
+      "paletas": [
+        "barro",
+        "linho"
+      ],
+      "ajustes": {
+        "conta": "zona-centro"
+      }
+    },
+    {
+      "id": "numero-bairro-lider",
+      "formato": "numero",
+      "curado": false,
+      "titulo": "O número: o bairro com mais mostras agora",
+      "paletas": [
+        "papel",
+        "cal"
+      ],
+      "ajustes": {
+        "conta": "bairro-lider"
+      }
+    },
+    {
+      "id": "numero-mais-longa",
+      "formato": "numero",
+      "curado": false,
+      "titulo": "O número: a mostra mais longa em cartaz",
+      "paletas": [
+        "escuro",
+        "tinta"
+      ],
+      "ajustes": {
+        "conta": "mais-longa"
+      }
+    },
+    {
+      "id": "numero-mais-curta",
+      "formato": "numero",
+      "curado": false,
+      "titulo": "O número: a mostra mais curta em cartaz",
+      "paletas": [
+        "barro",
+        "linho"
+      ],
+      "ajustes": {
+        "conta": "mais-curta"
+      }
+    },
+    {
+      "id": "numero-artistas",
+      "formato": "numero",
+      "curado": false,
+      "titulo": "O número: quantos artistas estão na parede agora",
+      "paletas": [
+        "papel",
+        "cal"
+      ],
+      "ajustes": {
+        "conta": "artistas"
+      }
+    },
+    {
+      "id": "numero-individuais",
+      "formato": "numero",
+      "curado": false,
+      "titulo": "O número: quantas individuais em cartaz",
+      "paletas": [
+        "escuro",
+        "tinta"
+      ],
+      "ajustes": {
+        "conta": "individuais"
+      }
+    },
+    {
+      "id": "numero-coletivas",
+      "formato": "numero",
+      "curado": false,
+      "titulo": "O número: quantas coletivas em cartaz",
+      "paletas": [
+        "barro",
+        "linho"
+      ],
+      "ajustes": {
+        "conta": "coletivas"
+      }
+    },
+    {
+      "id": "numero-instituicoes",
+      "formato": "numero",
+      "curado": false,
+      "titulo": "O número: quanto do circuito está em museu",
+      "paletas": [
+        "papel",
+        "cal"
+      ],
+      "ajustes": {
+        "conta": "instituicoes"
+      }
+    },
+    {
+      "id": "numero-casas-ativas",
+      "formato": "numero",
+      "curado": false,
+      "titulo": "O número: quantos endereços têm mostra aberta hoje",
+      "paletas": [
+        "escuro",
+        "tinta"
+      ],
+      "ajustes": {
+        "conta": "casas-ativas"
+      }
+    },
+    {
+      "id": "numero-casas-paradas",
+      "formato": "numero",
+      "curado": false,
+      "titulo": "O número: quantos endereços estão entre uma mostra e outra",
+      "paletas": [
+        "barro",
+        "linho"
+      ],
+      "ajustes": {
+        "conta": "casas-paradas"
+      }
+    },
+    {
+      "id": "numero-abriu-mes",
+      "formato": "numero",
+      "curado": false,
+      "titulo": "O número: quantas aberturas já teve este mês",
+      "paletas": [
+        "papel",
+        "cal"
+      ],
+      "ajustes": {
+        "conta": "abriu-mes"
+      }
+    },
+    {
+      "id": "entrada-etiqueta-de-parede",
+      "formato": "entrada",
+      "curado": false,
+      "titulo": "Como ler a etiqueta de parede",
+      "paletas": [
+        "cal",
+        "linho",
+        "tinta"
+      ],
+      "ajustes": {
+        "virada": "A etiqueta não explica a obra. Ela diz o mínimo para você não precisar perguntar o óbvio.",
+        "porta": [
+          "A primeira linha é o nome do artista. A segunda, o título da obra — em itálico, quando a casa segue a norma.",
+          "Depois vem o ano. Se tem dois anos separados por traço, a obra levou esse tempo para ficar pronta.",
+          "A linha seguinte é a técnica: óleo sobre tela, fotografia, instalação. É a receita, não o sentido.",
+          "Por último, as medidas: altura antes da largura, em centímetros. Serve para imaginar a obra antes de chegar perto.",
+          "Às vezes aparece \"cortesia\" e o nome da galeria ou do colecionador: é de quem a obra é hoje."
+        ]
+      }
+    },
+    {
+      "id": "entrada-sozinho",
+      "formato": "entrada",
+      "curado": false,
+      "titulo": "Ir sozinho numa galeria",
+      "paletas": [
+        "cal",
+        "linho",
+        "tinta"
+      ],
+      "ajustes": {
+        "virada": "Sozinho é como a maioria das pessoas que trabalham com arte visita exposição.",
+        "porta": [
+          "Galeria é um dos poucos lugares da cidade onde entrar sozinho é o normal.",
+          "Ninguém vai estranhar você parado na frente de uma obra por dez minutos.",
+          "Também ninguém vai estranhar se você der uma volta de dois minutos e sair.",
+          "Em abertura, dá para puxar conversa com qualquer pessoa usando uma pergunta: \"você conhece o trabalho?\"",
+          "Sozinho, você escolhe o tempo de cada obra. Em grupo, o tempo é de quem cansa primeiro."
+        ]
+      }
+    },
+    {
+      "id": "entrada-quanto-tempo",
+      "formato": "entrada",
+      "curado": false,
+      "titulo": "Quanto tempo ficar numa exposição",
+      "paletas": [
+        "cal",
+        "linho",
+        "tinta"
+      ],
+      "ajustes": {
+        "virada": "A exposição não é uma lista para cumprir. É uma sala para escolher onde parar.",
+        "porta": [
+          "Uma galeria pequena se vê em quinze minutos. Não há vergonha nenhuma nisso.",
+          "Um museu grande não se vê numa tarde. Escolha uma ala e deixe o resto para outra visita.",
+          "Pesquisas de museu mostram que o visitante médio passa poucos segundos diante de cada obra.",
+          "Experimente o contrário: escolha uma só e fique cinco minutos. Ela muda.",
+          "Sair antes de cansar é o que faz você querer voltar."
+        ]
+      }
+    },
+    {
+      "id": "entrada-fotografar",
+      "formato": "entrada",
+      "curado": false,
+      "titulo": "Pode fotografar?",
+      "paletas": [
+        "cal",
+        "linho",
+        "tinta"
+      ],
+      "ajustes": {
+        "virada": "Se for postar, marque quem fez. É a gentileza que paga a entrada gratuita.",
+        "porta": [
+          "Na maioria das galerias, sim — sem flash, e sem esbarrar na obra para enquadrar.",
+          "Quando não pode, está escrito na parede ou na entrada. Não é regra implícita.",
+          "Vídeo e obra de outro artista têm direitos: postar é divulgação, vender a imagem não é seu.",
+          "Marque o artista e a galeria no post. É o que faz a foto virar público para eles.",
+          "A foto nunca vai ter a escala do trabalho. Guarde um minuto para olhar sem o celular."
+        ]
+      }
+    },
+    {
+      "id": "entrada-comprar",
+      "formato": "entrada",
+      "curado": false,
+      "titulo": "Precisa comprar alguma coisa?",
+      "paletas": [
+        "cal",
+        "linho",
+        "tinta"
+      ],
+      "ajustes": {
+        "virada": "Olhar é de graça. A conta de quem vende é outra, e não é problema seu.",
+        "porta": [
+          "Não. A obra na galeria está à venda, mas a visita é livre — ninguém espera que você compre.",
+          "A lista de preços existe e pode ser pedida no balcão. Pedir não é compromisso.",
+          "A galeria vive de vender para poucos colecionadores. O público que só olha é quem faz a obra circular.",
+          "Museu não vende obra. Às vezes cobra ingresso, e quase sempre tem um dia gratuito.",
+          "Se um dia quiser comprar, múltiplos e gravuras são o começo mais comum — e mais barato."
+        ]
+      }
+    },
+    {
+      "id": "entrada-vernissage",
+      "formato": "entrada",
+      "curado": false,
+      "titulo": "O que é, afinal, um vernissage",
+      "paletas": [
+        "cal",
+        "linho",
+        "tinta"
+      ],
+      "ajustes": {
+        "virada": "É a única noite em que a galeria fica cheia. Nas outras seis semanas, você tem a sala só para você.",
+        "porta": [
+          "É a noite de abertura de uma exposição. O nome vem do francês: o dia em que se passava o verniz final nas telas.",
+          "Costuma ser à noite, com o artista presente, e quase sempre é aberta a qualquer pessoa.",
+          "Não precisa de convite nem de lista. O convite nas redes é para todo mundo.",
+          "Às vezes tem bebida. Nunca é garantido, e nunca é o motivo de ir.",
+          "É a melhor noite para conversar com quem fez o trabalho."
+        ]
+      }
+    },
+    {
+      "id": "entrada-com-crianca",
+      "formato": "entrada",
+      "curado": false,
+      "titulo": "Levar criança numa exposição",
+      "paletas": [
+        "cal",
+        "papel"
+      ],
+      "ajustes": {
+        "virada": "Criança não precisa entender a obra. Precisa só de tempo na frente dela.",
+        "porta": [
+          "Pode. Galeria e museu recebem criança, com carrinho inclusive.",
+          "Combine antes a regra de não tocar. Em instalação que pode tocar, a parede avisa.",
+          "Criança costuma olhar mais tempo que adulto para o que é grande, colorido ou estranho. Deixe ela escolher.",
+          "Perguntar \"o que você está vendo?\" rende mais que explicar.",
+          "Visita curta é visita boa. Saia antes do cansaço."
+        ]
+      }
+    },
+    {
+      "id": "entrada-horario",
+      "formato": "entrada",
+      "curado": false,
+      "titulo": "Qual o melhor horário para ir",
+      "paletas": [
+        "cal",
+        "linho",
+        "tinta"
+      ],
+      "ajustes": {
+        "virada": "Galeria vazia não é galeria fracassada. É a melhor condição para ver o trabalho.",
+        "porta": [
+          "Galeria abre em horário comercial, de terça a sábado na maioria. Segunda quase tudo fecha.",
+          "Sábado é o dia mais cheio e o único em que boa parte das galerias fecha mais cedo.",
+          "Dia de semana na hora do almoço é o melhor horário para ter a sala vazia.",
+          "Museu abre também domingo, e muitos têm um dia de entrada gratuita.",
+          "Antes de sair, confira: a agenda do site traz o horário de cada casa quando ela divulga."
+        ]
+      }
+    },
+    {
+      "id": "rima-luz",
+      "formato": "rima",
+      "curado": true,
+      "titulo": "Duas mostras que fazem da luz o material",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — uma usa luz real (lâmpada, projeção, sol), a outra pinta ou fotografa a luz"
+    },
+    {
+      "id": "rima-cidade",
+      "formato": "rima",
+      "curado": true,
+      "titulo": "São Paulo vista por duas mostras ao mesmo tempo",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — as duas tomam a cidade como assunto, por caminhos opostos"
+    },
+    {
+      "id": "rima-casa",
+      "formato": "rima",
+      "curado": true,
+      "titulo": "A casa como tema, em duas mostras",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — objeto doméstico, arquitetura de casa ou memória familiar nas duas"
+    },
+    {
+      "id": "rima-noite",
+      "formato": "rima",
+      "curado": true,
+      "titulo": "Duas mostras sobre a noite",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — a noite como cena, luz ou tempo nas duas"
+    },
+    {
+      "id": "rima-terra",
+      "formato": "rima",
+      "curado": true,
+      "titulo": "Terra e barro em duas mostras",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — uma usa terra como material, a outra como imagem ou tema"
+    },
+    {
+      "id": "rima-agua",
+      "formato": "rima",
+      "curado": true,
+      "titulo": "Água em duas mostras",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — rio, mar, chuva ou líquido nas duas, com tratamentos diferentes"
+    },
+    {
+      "id": "rima-arquivo-familia",
+      "formato": "rima",
+      "curado": true,
+      "titulo": "Álbum de família em duas mostras",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — fotografia ou objeto de família como matéria das duas"
+    },
+    {
+      "id": "rima-palavra",
+      "formato": "rima",
+      "curado": true,
+      "titulo": "Duas mostras em que a palavra é imagem",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — texto escrito como elemento visual nas duas"
+    },
+    {
+      "id": "rima-repeticao",
+      "formato": "rima",
+      "curado": true,
+      "titulo": "A repetição em duas mostras",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — uma forma repetida muitas vezes nas duas, com efeito oposto"
+    },
+    {
+      "id": "rima-vazio",
+      "formato": "rima",
+      "curado": true,
+      "titulo": "Duas mostras que usam o espaço vazio",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — o vazio da sala ou da tela como parte do trabalho nas duas"
+    },
+    {
+      "id": "rima-retrato",
+      "formato": "rima",
+      "curado": true,
+      "titulo": "Dois retratos, duas mostras",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — retrato de pessoa nas duas, com distância de técnica ou de época"
+    },
+    {
+      "id": "rima-mapa",
+      "formato": "rima",
+      "curado": true,
+      "titulo": "Duas mostras que desenham mapas",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — cartografia, território ou trajeto nas duas"
+    },
+    {
+      "id": "rima-animal",
+      "formato": "rima",
+      "curado": true,
+      "titulo": "Bicho em duas mostras",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — animal como figura ou metáfora nas duas"
+    },
+    {
+      "id": "rima-institucional-galeria",
+      "formato": "rima",
+      "curado": true,
+      "titulo": "O museu e a galeria sobre o mesmo assunto",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — uma instituição e uma galeria comercial tratando o mesmo tema na mesma semana"
+    },
+    {
+      "id": "rima-fe",
+      "formato": "rima",
+      "curado": true,
+      "titulo": "O sagrado em duas mostras",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — religião, rito ou objeto devocional nas duas"
+    },
+    {
+      "id": "rima-trabalho",
+      "formato": "rima",
+      "curado": true,
+      "titulo": "O trabalho braçal em duas mostras",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — ofício, ferramenta ou trabalhador como tema nas duas"
+    },
+    {
+      "id": "rima-ruina",
+      "formato": "rima",
+      "curado": true,
+      "titulo": "Ruína e construção em duas mostras",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — uma mostra o que desmorona, a outra o que se ergue"
+    },
+    {
+      "id": "rima-geometria-organico",
+      "formato": "rima",
+      "curado": true,
+      "titulo": "Geometria contra forma orgânica",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — uma rigorosamente geométrica, a outra orgânica, com o mesmo problema de fundo"
+    },
+    {
+      "id": "rima-pequeno-grande",
+      "formato": "rima",
+      "curado": true,
+      "titulo": "A obra minúscula e a obra que ocupa a sala",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — uma peça pequena demais e uma instalação enorme em cartaz ao mesmo tempo"
+    },
+    {
+      "id": "rima-pb-cor",
+      "formato": "rima",
+      "curado": true,
+      "titulo": "Preto e branco contra cor saturada",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — uma mostra quase sem cor e outra saturada, sobre o mesmo assunto"
+    },
+    {
+      "id": "rima-estreante-veterano",
+      "formato": "rima",
+      "curado": true,
+      "titulo": "A primeira individual e a retrospectiva",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — uma estreia de artista jovem e uma mostra de carreira longa na mesma semana"
+    },
+    {
+      "id": "rima-zona-oposta",
+      "formato": "rima",
+      "curado": true,
+      "titulo": "Duas pontas da cidade na mesma semana",
+      "paletas": [
+        "escuro",
+        "linho",
+        "barro"
+      ],
+      "precisa": "as duas chaves (a, b), a tese e o argumento — duas mostras em zonas distantes da cidade que respondem uma à outra"
+    },
+    {
+      "id": "aproximacao-terra",
+      "formato": "aproximacao",
+      "curado": true,
+      "titulo": "Aproximação numa obra feita de terra ou barro",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — terra, argila ou pigmento natural visíveis de perto (a de 24/09 e a de 30/09 foram as que mais renderam)"
+    },
+    {
+      "id": "aproximacao-rachadura",
+      "formato": "aproximacao",
+      "curado": true,
+      "titulo": "A rachadura: onde o material mostra o tempo",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — craquelê, rachadura ou fissura como detalhe principal"
+    },
+    {
+      "id": "aproximacao-bordado",
+      "formato": "aproximacao",
+      "curado": true,
+      "titulo": "Aproximação num bordado: o ponto",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — ponto de costura ou bordado visível no recorte"
+    },
+    {
+      "id": "aproximacao-assinatura",
+      "formato": "aproximacao",
+      "curado": true,
+      "titulo": "A assinatura: onde o artista escreveu o nome",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — obra com assinatura ou inscrição legível no canto"
+    },
+    {
+      "id": "aproximacao-colagem",
+      "formato": "aproximacao",
+      "curado": true,
+      "titulo": "Aproximação numa colagem: a emenda",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — o corte e a cola entre dois pedaços visíveis"
+    },
+    {
+      "id": "aproximacao-desenho-traco",
+      "formato": "aproximacao",
+      "curado": true,
+      "titulo": "O traço de um desenho, de perto",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — grafite, carvão ou nanquim com o gesto visível"
+    },
+    {
+      "id": "aproximacao-gravura",
+      "formato": "aproximacao",
+      "curado": true,
+      "titulo": "Aproximação numa gravura: a marca da matriz",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — sulco, ponto ou textura da impressão visíveis"
+    },
+    {
+      "id": "aproximacao-rosto",
+      "formato": "aproximacao",
+      "curado": true,
+      "titulo": "Um rosto, de perto, até virar mancha",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — retrato em que o recorte fechado dissolve a figura"
+    },
+    {
+      "id": "aproximacao-mao",
+      "formato": "aproximacao",
+      "curado": true,
+      "titulo": "A mão pintada",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — detalhe de uma mão numa figura, como porta de entrada da obra"
+    },
+    {
+      "id": "aproximacao-fundo",
+      "formato": "aproximacao",
+      "curado": true,
+      "titulo": "O fundo da pintura: o que ninguém olha",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — o fundo ou canto da tela, longe da figura principal"
+    },
+    {
+      "id": "aproximacao-madeira",
+      "formato": "aproximacao",
+      "curado": true,
+      "titulo": "Aproximação numa peça de madeira: o veio",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — veio, nó ou entalhe visíveis"
+    },
+    {
+      "id": "aproximacao-metal",
+      "formato": "aproximacao",
+      "curado": true,
+      "titulo": "Aproximação no metal: solda, ferrugem, brilho",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — superfície metálica com marca de processo"
+    },
+    {
+      "id": "aproximacao-vidro",
+      "formato": "aproximacao",
+      "curado": true,
+      "titulo": "Aproximação no vidro ou material translúcido",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — bolha, reflexo ou transparência no recorte"
+    },
+    {
+      "id": "aproximacao-papel",
+      "formato": "aproximacao",
+      "curado": true,
+      "titulo": "O papel como assunto",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — fibra, dobra ou rasgo do papel visíveis"
+    },
+    {
+      "id": "aproximacao-pixel-tela",
+      "formato": "aproximacao",
+      "curado": true,
+      "titulo": "Aproximação numa obra digital ou em vídeo",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — still de vídeo ou obra digital com textura própria (varredura, ruído)"
+    },
+    {
+      "id": "aproximacao-mancha",
+      "formato": "aproximacao",
+      "curado": true,
+      "titulo": "A mancha que parece acidente",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — escorrido, respingo ou mancha que o artista deixou de propósito"
+    },
+    {
+      "id": "aproximacao-ouro",
+      "formato": "aproximacao",
+      "curado": true,
+      "titulo": "Ouro e folha metálica de perto",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — douramento, folha de ouro ou pigmento metálico"
+    },
+    {
+      "id": "aproximacao-camadas",
+      "formato": "aproximacao",
+      "curado": true,
+      "titulo": "As camadas de tinta que ficaram por baixo",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — repintura, pentimento ou camadas visíveis na borda"
+    },
+    {
+      "id": "aproximacao-escrita",
+      "formato": "aproximacao",
+      "curado": true,
+      "titulo": "A escrita dentro da obra",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — palavra ou número pintado, riscado ou impresso dentro da imagem"
+    },
+    {
+      "id": "aproximacao-foto-p-b",
+      "formato": "aproximacao",
+      "curado": true,
+      "titulo": "Uma fotografia em preto e branco, até o grão",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — fotografia analógica em PB com grão visível"
+    },
+    {
+      "id": "aproximacao-miniatura",
+      "formato": "aproximacao",
+      "curado": true,
+      "titulo": "Uma obra pequena, ampliada",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — peça de poucos centímetros cujo detalhe só aparece ampliado"
+    },
+    {
+      "id": "aproximacao-arte-urbana",
+      "formato": "aproximacao",
+      "curado": true,
+      "titulo": "Arte urbana de perto: spray, rolo, estêncil",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ],
+      "precisa": "a chave da obra, os zooms e a leitura — obra de artista de rua em galeria, com a marca do spray ou do estêncil"
+    }
   ]
 }

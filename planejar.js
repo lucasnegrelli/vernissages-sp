@@ -146,6 +146,9 @@ function montar(rep, usadas, inicio, quantasPecas) {
   const porDia = [1, 0, 1, 0, 1, 1, 0];       // seg..dom: so os dias de sorteio
   const FIXOS = { 3: 'agenda' };              // indice do dia -> formato fixo
   const prioridade = [1, 6, 3, 4, 2, 0, 5];   // extras: ter, dom, qui, sex...
+  /* indices acima sao dia da semana (0 = segunda), nao posicao na janela:
+     o plano pode comecar em qualquer dia (--de=2026-09-30 e uma quarta). */
+  const dow = d => (new Date(d + 'T12:00:00').getDay() + 6) % 7;
   let extra = Math.max(0, quantasPecas - 5);
   for (let i = 0; extra > 0; i = (i + 1) % prioridade.length) { porDia[prioridade[i]]++; extra--; }
 
@@ -169,19 +172,20 @@ function montar(rep, usadas, inicio, quantasPecas) {
   const ordemCurada = semanaPar ? ['rima', 'aproximacao'] : ['aproximacao', 'rima'];
   let curada = null;
   for (const f of ordemCurada) { curada = curada || pegar(ia => ia.formato === f); }
-  if (curada) ancoras[dias[2]] = curada;
+  if (curada) ancoras[dias.find(d => dow(d) === 2)] = curada;
   else avisos.push('sem `rima` nem `aproximacao` disponivel no repertorio para esta semana');
 
   dias.forEach((data, di) => {
     const anterior = paletaPorDia[dias[di - 1]] || new Set();
     const hoje = new Set();
     paletaPorDia[data] = hoje;
-    if (FIXOS[di]) posts.push({ data, formato: FIXOS[di], ordem: 1, paleta: 'escuro', fixo: true,
+    if (FIXOS[dow(data)]) posts.push({ data, formato: FIXOS[dow(data)], ordem: 1, paleta: 'escuro', fixo: true,
                                 _titulo: 'O fim de semana (carrossel)' });
+    const fixoHoje = FIXOS[dow(data)];
     const formatosHoje = new Set();
     let curadaHoje = 0;
 
-    for (let ordem = FIXOS[di] ? 2 : 1; ordem <= porDia[di] + (FIXOS[di] ? 1 : 0); ordem++) {
+    for (let ordem = fixoHoje ? 2 : 1; ordem <= porDia[dow(data)] + (fixoHoje ? 1 : 0); ordem++) {
       const ehSabado = new Date(data + 'T12:00:00').getDay() === 6;
 
       let r = null;

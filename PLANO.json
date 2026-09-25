@@ -1,146 +1,82 @@
 {
-  "titulo": "Semana de 23/09 a 29/09/2026",
+  "titulo": "Semana de 01/10 a 07/10/2026",
   "_leiame": [
     "ESTE ARQUIVO É GERADO. Rode `node planejar.js` para refazê-lo a partir do REPERTORIO.json.",
     "Editar à mão funciona e é legítimo — mas a edição se perde no próximo planejar.js.",
     "Para mudar o repertório de vez, mexa no REPERTORIO.json, não aqui.",
-    "Gerado em 2026-09-23."
+    "Gerado em 2026-09-25."
   ],
   "fora": [
     "Terra que Desmancha, Evapora e Solidifica — Coletivo Poíesis|Vazio Criativo"
   ],
   "posts": [
     {
-      "data": "2026-09-23",
-      "formato": "rima",
+      "data": "2026-10-01",
+      "formato": "agenda",
       "ordem": 1,
-      "paleta": "tinta",
-      "textura": 0.05,
-      "ideia": "rima-centro-jardins",
-      "nome": "rima-centro-jardins"
+      "paleta": "escuro"
     },
     {
-      "data": "2026-09-23",
-      "formato": "salao",
-      "ordem": 2,
-      "paleta": "cal",
-      "textura": 0.06,
-      "ideia": "salao-so-galeria",
-      "nome": "salao-so-galeria",
-      "pular": true,
-      "_pular": "O plano tinha DOIS salao esta semana (23 e 25) — contra o próprio COMOGERAR.md, que fixou salão em 1x/mês desde 01/09. As 4 ideias do repertório para o formato estão todas dentro do descanso de 30 dias; nenhuma junta 'fresca' com 'tem 12+ elegíveis'. Em vez de forçar duas repetições, mantive só a de 25/09 (salao-parede-inteira, a com mais elegíveis) e larguei esta — o que já corrige o excesso do plano automático, não cria um buraco novo."
-    },
-    {
-      "data": "2026-09-24",
-      "formato": "aproximacao",
+      "data": "2026-10-02",
+      "formato": "numero",
       "ordem": 1,
       "paleta": "escuro",
-      "textura": 0.05,
-      "ideia": "aproximacao-detalhe-narrativo",
-      "nome": "aproximacao-detalhe-narrativo"
-    },
-    {
-      "data": "2026-09-25",
-      "formato": "salao",
-      "ordem": 1,
-      "paleta": "cal",
       "textura": 0.06,
-      "ideia": "salao-parede-inteira",
-      "nome": "salao-parede-inteira",
-      "_troca": "salao-recem-abertas tinha só 5 elegíveis (mínimo 12) — poucas mostras recentes com imagem em disco. Troca por salao-parede-inteira, sem recorte, que tem 21.",
+      "ideia": "numero-fecha30",
+      "nome": "numero-fecha30",
+      "_titulo": "O número: quantas mostras somem em um mês",
+      "_troca": "sem obra inédita com imagem >=1400px na base em 02/10",
       "ajustes": {
-        "texto": [
-          "Até o fim do século XIX se pendurava assim. O Salon de Paris cobria a parede do rodapé ao teto, quadro colado em quadro, e um catálogo numerado dizia o que era cada um.",
-          "A parede vazia com uma obra no centro, que hoje parece a única forma possível de mostrar arte, é invenção do modernismo. É uma escolha, e ela tem cem anos."
-        ],
-        "virada": "O cubo branco isola. O salão obriga as obras a conviverem — e é aí que se vê o que a cidade está pintando."
+        "conta": "fecha30"
       }
     },
     {
-      "data": "2026-09-25",
-      "formato": "numero",
-      "ordem": 2,
-      "paleta": "barro",
-      "textura": 0.07,
-      "ideia": "numero-duracao-galeria",
-      "nome": "numero-duracao-galeria",
-      "ajustes": {
-        "conta": "duracao-galeria"
-      }
-    },
-    {
-      "data": "2026-09-26",
+      "data": "2026-10-03",
       "formato": "deriva",
       "ordem": 1,
       "paleta": "linho",
       "textura": 0.09,
-      "ideia": "deriva-mais-densa",
-      "nome": "deriva-mais-densa",
-      "_troca": "deriva-so-galeria (filtro tipo:galeria) travava porque o aglomerado que apareceu depois do garimpo de 23/09 tem o MIS, que é institucional. Troquei pra deriva-mais-densa, sem recorte de tipo — Mendes Wood DM Casa Iramaia + Galeria Lume + MIS, 683m.",
+      "ideia": "deriva-luz",
+      "nome": "deriva-luz",
       "ajustes": {
-        "tese": "As casas mais próximas umas das outras nesta semana, na ordem mais curta.",
-        "virada": "Nenhuma delas combinou a programação com as outras. Quem junta é a calçada."
-      }
+        "filtro": {
+          "bairro": "Jardim Europa"
+        }
+      },
+      "_titulo": "Luz a pé: as três Pinacotecas",
+      "_troca": "Jardim Europa já saiu em 27/09; config escrito à mão com as três casas"
     },
     {
-      "data": "2026-09-27",
+      "data": "2026-10-05",
       "formato": "entrada",
       "ordem": 1,
-      "paleta": "tinta",
-      "textura": 0.05,
-      "ideia": "entrada-na-abertura",
-      "nome": "entrada-na-abertura",
+      "paleta": "cal",
+      "textura": 0.06,
+      "ideia": "entrada-etiqueta-de-parede",
+      "nome": "entrada-etiqueta-de-parede",
+      "_titulo": "Como ler a etiqueta de parede",
+      "_troca": "numero-oeste fica para outra semana: dois números seguidos",
       "ajustes": {
-        "virada": "A vernissage não é a exposição — é a festa em volta dela. E você pode ir sem conhecer ninguém.",
+        "virada": "A etiqueta não explica a obra. Ela diz o mínimo para você não precisar perguntar o óbvio.",
         "porta": [
-          "Abertura costuma ser numa terça, quarta ou quinta, das 19h às 22h. Chegar às 19h é chegar cedo, e é a única janela para ver a obra antes de encher.",
-          "Não há lista na maioria das galerias. A porta aberta e a calçada com gente são o convite.",
-          "Tem bebida, quase sempre vinho, às vezes só água com gás — e acaba. Não é o motivo de ir, e ninguém repara se você não pega.",
-          "Você não precisa falar com o artista. Se falar, 'parabéns' basta: ninguém espera análise no dia da abertura.",
-          "Dá para circular sozinho, ver tudo em vinte minutos e sair. Ninguém controla quanto tempo você ficou."
+          "A primeira linha é o nome do artista. A segunda, o título da obra — em itálico, quando a casa segue a norma.",
+          "Depois vem o ano. Se tem dois anos separados por traço, a obra levou esse tempo para ficar pronta.",
+          "A linha seguinte é a técnica: óleo sobre tela, fotografia, instalação. É a receita, não o sentido.",
+          "Por último, as medidas: altura antes da largura, em centímetros. Serve para imaginar a obra antes de chegar perto.",
+          "Às vezes aparece \"cortesia\" e o nome da galeria ou do colecionador: é de quem a obra é hoje."
         ]
       }
     },
     {
-      "data": "2026-09-28",
-      "formato": "estreia",
+      "data": "2026-10-07",
+      "formato": "aproximacao",
       "ordem": 1,
-      "paleta": "linho",
-      "textura": 0.09,
-      "ideia": "estreia-galeria",
-      "nome": "estreia-galeria",
+      "paleta": "tinta",
+      "textura": 0.05,
+      "ideia": "aproximacao-cor-unica",
+      "nome": "aproximacao-cor-unica",
       "pular": true,
-      "_pular": "Não há nenhuma mostra com `ini` depois de hoje na base inteira — nenhuma abertura futura confirmada, de nenhum tipo. Não é falta de imagem, é falta de dado: o radar não trouxe estreia nova essa semana. Sem isso, `estreia` não tem o que escolher.",
-      "ajustes": {
-        "filtro": {
-          "tipo": "galeria"
-        }
-      }
-    },
-    {
-      "data": "2026-09-28",
-      "formato": "obra",
-      "ordem": 2,
-      "paleta": "cal",
-      "textura": 0.06,
-      "ideia": "obra-recem-aberta",
-      "nome": "obra-recem-aberta",
-      "ajustes": {
-        "filtro": {
-          "abriuEm": 30
-        }
-      }
-    },
-    {
-      "data": "2026-09-29",
-      "formato": "estreia",
-      "ordem": 1,
-      "paleta": "papel",
-      "textura": 0.07,
-      "ideia": "estreia-semana",
-      "nome": "estreia-semana",
-      "pular": true,
-      "_pular": "Mesmo motivo do dia 28: zero mostras com abertura futura confirmada na base."
+      "_pular": "curada da semana seguinte: escrever config na próxima rodada"
     }
   ]
 }
