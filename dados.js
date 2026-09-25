@@ -303,6 +303,7 @@ const EXPOS = [
    perfil em automação, mas checagem manual pontual foi autorizada. Só
    cartaz disponível, sem imagem de obra. */
 {t:"Roxo em Tons",a:"",v:"Vazio Criativo",ini:"2026-10-03",fim:"2026-10-09",d:"Tons Coletivo apresenta exposição coletiva para ver o mundo em roxo, com curadoria de Audrey Barbosa.",img:"",cred:""},
+{t:"Passeio Noturno — André Crespo",a:"André Crespo",v:"A7MA Galeria",ini:"2026-09-25",fim:null,d:"Pinturas da noite de Paris feitas por um corpo à deriva, que deixa a cidade escolher o caminho. Curadoria de Rogério D’Avila Ortiz. Abertura em 25 de setembro, das 16h às 22h; encerramento não divulgado.",img:"",cred:""},
 /* confirmado no Instagram (@mits.galeria, 23/09/2026). Curadoria e lista
    de artistas apareciam no cartaz mas cortados/ilegiveis no zoom -- nao
    incluidos, para nao chutar nome. */
