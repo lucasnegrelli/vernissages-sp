@@ -2615,6 +2615,54 @@
    "ig": "a7magaleria",
    "visto": "2026-09-25",
    "primeiroRegistro": "2026-09-25"
+  },
+  {
+   "id": "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica",
+   "t": "Vestígios: cartografias de gestos do Espaço República",
+   "a": "Alberto Boni, Alessandro Corrêa, Alexis Lopes, Andrea Natali, Andréia Reis, Claudia Briza, Claudia Vicente, Daniel Almeida, Duda Breda, Elaine Fontes, Gabriella Arantes, Gabriela Siqueira, Gisele Hasler, Igor Romana, Jacson Trierveiler, Jaques Faing, João Rietmann, Luciana Arantes, Luisa Bresser, Maazo Heck, Maria do Carmo Verdi, Marina Sadala, Michaela A F, Phil Haji-Touma, Rafael Beck, Sheila Kracochansky, Silvana Boni, Silvio Dworecki, Sylvia Sóglia, Tamara Roman, Tiago Alencar, Veridiana Magalhães, Witor Ressutti, Zico Farina",
+   "v": "Espaço República",
+   "ini": "2026-09-24",
+   "fim": "2026-10-10",
+   "d": "Segunda edição da mostra dos artistas residentes do Espaço República, com curadoria de Ana Carolina Ralston, reunindo 34 artistas. Visitação de quarta a sábado, 12h às 18h, com programação de ateliês abertos aos sábados.",
+   "bairro": "República",
+   "zona": "Centro",
+   "addr": "Av. São Luís, 86",
+   "tipo": "hibrido",
+   "site": "",
+   "ig": "espacorepublica",
+   "visto": "2026-09-25"
+  },
+  {
+   "id": "gestos--galeria-superficie",
+   "t": "Gestos",
+   "a": "",
+   "v": "Galeria Superfície",
+   "ini": "2026-08-29",
+   "fim": "2026-10-17",
+   "d": "Coletiva com 27 artistas de diferentes gerações, a partir da ideia de gesto do livro de Vilém Flusser. Curadoria de Paulo Venancio Filho e Gustavo Nóbrega, inaugura a nova sede da galeria na Vila Madalena.",
+   "bairro": "Cerqueira César",
+   "zona": "Oeste",
+   "addr": "R. Oscar Freire, 240 ~",
+   "tipo": "galeria",
+   "site": "",
+   "ig": "galeriasuperficie",
+   "visto": "2026-09-25"
+  },
+  {
+   "id": "miracoes--massape-projetos",
+   "t": "Mirações",
+   "a": "Yohana Oizumi, Bruno Romi",
+   "v": "Massapê Projetos",
+   "ini": "2026-10-03",
+   "fim": null,
+   "d": "Individual dupla com curadoria de Ana Cândida de Avelar. Instalação, performance, desenho, colagem, pintura e escultura a partir do imaginário religioso cristão. Abertura em 3 de outubro, das 14h às 18h, com performance às 15h; encerramento não divulgado.",
+   "bairro": "Santa Cecília",
+   "zona": "Centro",
+   "addr": "R. Fortunato, 68",
+   "tipo": "hibrido",
+   "site": "",
+   "ig": "massape_projetos",
+   "visto": "2026-09-25"
   }
  ],
  "artistas": {
@@ -3111,7 +3159,8 @@
   "luisa-bresser": {
    "nome": "Luisa Bresser",
    "mostras": [
-    "eclodir-o-efemero-luisa-bresser--espaco-republica"
+    "eclodir-o-efemero-luisa-bresser--espaco-republica",
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
    ]
   },
   "claudia-andujar": {
@@ -3303,7 +3352,8 @@
   "tamara-roman": {
    "nome": "Tamara Roman",
    "mostras": [
-    "a-fibra-que-conduz-ao-significado-tamara-roman--espaco-republica"
+    "a-fibra-que-conduz-ao-significado-tamara-roman--espaco-republica",
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
    ]
   },
   "adriana-varejao": {
@@ -3768,13 +3818,212 @@
   "yohana-oizumi": {
    "nome": "Yohana Oizumi",
    "mostras": [
-    "esgarcar--am-galeria"
+    "esgarcar--am-galeria",
+    "miracoes--massape-projetos"
    ]
   },
   "andre-crespo": {
    "nome": "André Crespo",
    "mostras": [
     "passeio-noturno-andre-crespo--a7ma-galeria"
+   ]
+  },
+  "alberto-boni": {
+   "nome": "Alberto Boni",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "alessandro-correa": {
+   "nome": "Alessandro Corrêa",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "alexis-lopes": {
+   "nome": "Alexis Lopes",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "andrea-natali": {
+   "nome": "Andrea Natali",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "andreia-reis": {
+   "nome": "Andréia Reis",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "claudia-briza": {
+   "nome": "Claudia Briza",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "claudia-vicente": {
+   "nome": "Claudia Vicente",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "daniel-almeida": {
+   "nome": "Daniel Almeida",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "duda-breda": {
+   "nome": "Duda Breda",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "elaine-fontes": {
+   "nome": "Elaine Fontes",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "gabriella-arantes": {
+   "nome": "Gabriella Arantes",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "gabriela-siqueira": {
+   "nome": "Gabriela Siqueira",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "gisele-hasler": {
+   "nome": "Gisele Hasler",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "igor-romana": {
+   "nome": "Igor Romana",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "jacson-trierveiler": {
+   "nome": "Jacson Trierveiler",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "jaques-faing": {
+   "nome": "Jaques Faing",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "joao-rietmann": {
+   "nome": "João Rietmann",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "luciana-arantes": {
+   "nome": "Luciana Arantes",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "maazo-heck": {
+   "nome": "Maazo Heck",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "maria-do-carmo-verdi": {
+   "nome": "Maria do Carmo Verdi",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "marina-sadala": {
+   "nome": "Marina Sadala",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "michaela-a-f": {
+   "nome": "Michaela A F",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "phil-haji-touma": {
+   "nome": "Phil Haji-Touma",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "rafael-beck": {
+   "nome": "Rafael Beck",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "sheila-kracochansky": {
+   "nome": "Sheila Kracochansky",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "silvana-boni": {
+   "nome": "Silvana Boni",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "silvio-dworecki": {
+   "nome": "Silvio Dworecki",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "sylvia-soglia": {
+   "nome": "Sylvia Sóglia",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "tiago-alencar": {
+   "nome": "Tiago Alencar",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "veridiana-magalhaes": {
+   "nome": "Veridiana Magalhães",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "witor-ressutti": {
+   "nome": "Witor Ressutti",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "zico-farina": {
+   "nome": "Zico Farina",
+   "mostras": [
+    "vestigios-cartografias-de-gestos-do-espaco-republica--espaco-republica"
+   ]
+  },
+  "bruno-romi": {
+   "nome": "Bruno Romi",
+   "mostras": [
+    "miracoes--massape-projetos"
    ]
   }
  },
