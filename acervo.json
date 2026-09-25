@@ -2011,7 +2011,7 @@
    "v": "Galeria Lume",
    "ini": "2026-09-12",
    "fim": "2026-11-14",
-   "d": "Exposição individual.",
+   "d": "Pinturas feitas com saibro — laterita alaranjada recolhida no sertão —, cortadas pelas faixas brancas de uma quadra de tênis, como alegoria de disputa por território.",
    "bairro": "Jardim Europa",
    "zona": "Oeste",
    "addr": "R. Gumercindo Saraiva, 54 ~",
@@ -2630,7 +2630,8 @@
    "tipo": "hibrido",
    "site": "",
    "ig": "espacorepublica",
-   "visto": "2026-09-25"
+   "visto": "2026-09-25",
+   "primeiroRegistro": "2026-09-25"
   },
   {
    "id": "gestos--galeria-superficie",
@@ -2646,7 +2647,8 @@
    "tipo": "galeria",
    "site": "",
    "ig": "galeriasuperficie",
-   "visto": "2026-09-25"
+   "visto": "2026-09-25",
+   "primeiroRegistro": "2026-09-25"
   },
   {
    "id": "miracoes--massape-projetos",
@@ -2662,7 +2664,8 @@
    "tipo": "hibrido",
    "site": "",
    "ig": "massape_projetos",
-   "visto": "2026-09-25"
+   "visto": "2026-09-25",
+   "primeiroRegistro": "2026-09-25"
   }
  ],
  "artistas": {
