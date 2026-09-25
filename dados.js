@@ -308,7 +308,15 @@ const EXPOS = [
 /* confirmado no Instagram (@mits.galeria, 23/09/2026). Curadoria e lista
    de artistas apareciam no cartaz mas cortados/ilegiveis no zoom -- nao
    incluidos, para nao chutar nome. */
-{t:"Coordenadas Improváveis",a:"",v:"MITS Galeria",ini:"2026-09-24",fim:"",d:"Coletiva na MITS Galeria.",img:"",cred:""}
+{t:"Coordenadas Improváveis",a:"",v:"MITS Galeria",ini:"2026-09-24",fim:"",d:"Coletiva na MITS Galeria.",img:"",cred:""},
+/* confirmado no Instagram (@espacorepublica, 25/09/2026). Lista de artistas
+   tirada do cartaz da 2a edicao (imagem do post); flyer tipografico, sem
+   imagem de obra disponivel. */
+{t:"Vestígios: cartografias de gestos do Espaço República",a:"Alberto Boni, Alessandro Corrêa, Alexis Lopes, Andrea Natali, Andréia Reis, Claudia Briza, Claudia Vicente, Daniel Almeida, Duda Breda, Elaine Fontes, Gabriella Arantes, Gabriela Siqueira, Gisele Hasler, Igor Romana, Jacson Trierveiler, Jaques Faing, João Rietmann, Luciana Arantes, Luisa Bresser, Maazo Heck, Maria do Carmo Verdi, Marina Sadala, Michaela A F, Phil Haji-Touma, Rafael Beck, Sheila Kracochansky, Silvana Boni, Silvio Dworecki, Sylvia Sóglia, Tamara Roman, Tiago Alencar, Veridiana Magalhães, Witor Ressutti, Zico Farina",v:"Espaço República",ini:"2026-09-24",fim:"2026-10-10",d:"Segunda edição da mostra dos artistas residentes do Espaço República, com curadoria de Ana Carolina Ralston, reunindo 34 artistas. Visitação de quarta a sábado, 12h às 18h, com programação de ateliês abertos aos sábados.",img:"",cred:""},
+/* confirmado no Instagram (@galeriasuperficie, 17 e 23/09/2026). */
+{t:"Gestos",v:"Galeria Superfície",ini:"2026-08-29",fim:"2026-10-17",d:"Coletiva com 27 artistas de diferentes gerações, a partir da ideia de gesto do livro de Vilém Flusser. Curadoria de Paulo Venancio Filho e Gustavo Nóbrega, inaugura a nova sede da galeria na Vila Madalena.",img:"img/gestos-galeria-superficie.jpg",cred:"Cortesia Galeria Superfície",vista:true},
+/* confirmado no Instagram (@massape_projetos, 21/09/2026). */
+{t:"Mirações",a:"Yohana Oizumi, Bruno Romi",v:"Massapê Projetos",ini:"2026-10-03",fim:null,d:"Individual dupla com curadoria de Ana Cândida de Avelar. Instalação, performance, desenho, colagem, pintura e escultura a partir do imaginário religioso cristão. Abertura em 3 de outubro, das 14h às 18h, com performance às 15h; encerramento não divulgado.",img:"",cred:""}
 ];
 
 /* ================= IMERSIVAS =================
