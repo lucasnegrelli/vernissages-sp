@@ -3,10 +3,9 @@
  * captar.js — legenda de post vira entrada do dados.js.
  *
  * POR QUE ISTO EXISTE
- * Cinco casas do mapa só divulgam no Instagram: A7MA, Mata Lab, Massapê,
- * Espaço República e Vazio Criativo. Perfil exige login, então nenhuma
- * varredura alcança — e são justamente os independentes, que é o que o projeto
- * existe para cobrir. Em 25/08/2026, 49 das 91 casas não tinham uma linha de
+ * Várias casas do mapa só divulgam no Instagram (marcadas `soIG` no dados.js).
+ * Desde 25/09/2026 o instagram.js raspa essas casas toda semana; isto aqui é
+ * a via manual, para um post específico fora da rodada. Em 25/08/2026, 49 das 91 casas não tinham uma linha de
  * agenda.
  *
  * O gargalo nunca foi achar o post: é transcrever a legenda para o dados.js sem

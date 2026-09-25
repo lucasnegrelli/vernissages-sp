@@ -6,7 +6,9 @@ window.DATA = (function(){
 /* ================= VENUES =================
 tipo: galeria | institucional | hibrido | feira · ~ = endereço aproximado
 hibrido = loja-conceito, café, ateliê ou espaço independente que mantém
-programa expositivo com curadoria e visitação pública (ex.: Mata Lab). */
+programa expositivo com curadoria e visitação pública (ex.: Mata Lab).
+soIG:true = agenda só sai no Instagram (sem site ou site parado); entra na
+raspagem semanal do instagram.js. */
 const VENUES = [
 // --- Jardins / Cerqueira César / Jardim América / Jardim Paulista (Oeste) ---
 {name:"Galeria Luisa Strina",ig:"galerialuisastrina",site:"https://www.luisastrina.com.br",addr:"R. Padre João Manuel, 755",b:"Cerqueira César",z:"Oeste",tipo:"galeria",lat:-23.5646,lng:-46.6683,info:"Fundada em 1974, decana da arte contemporânea no Brasil. Alfredo Jaar, Cildo Meireles, Leonilson. Segunda a sexta, 10h–19h; sábado, 10h–17h."},
@@ -29,13 +31,13 @@ const VENUES = [
    nao serve mais a galeria. Sem substituto confirmado; nao visitar
    ate achar o endereco certo (Instagram @galeriaberenicearvani talvez
    tenha o link novo, mas isso e trabalho de captar.js, nao de radar). */
-{name:"Galeria Berenice Arvani",ig:"galeriaberenicearvani",site:"",addr:"R. Oscar Freire, 540",b:"Cerqueira César",z:"Oeste",tipo:"galeria",lat:-23.5630,lng:-46.6672,info:"Modernos e contemporâneos brasileiros."},
+{name:"Galeria Berenice Arvani",ig:"galeriaberenicearvani",soIG:true,site:"",addr:"R. Oscar Freire, 540",b:"Cerqueira César",z:"Oeste",tipo:"galeria",lat:-23.5630,lng:-46.6672,info:"Modernos e contemporâneos brasileiros."},
 /* site tirado em 23/09/2026: certificado SSL de galeriasuperficie.com.br
    aponta pra "battlemap.live" — dominio mal configurado ou tomado. Nao
    investigar mais sem checar primeiro se e seguro. */
-{name:"Galeria Superfície",ig:"galeriasuperficie",site:"",addr:"R. Oscar Freire, 240 ~",b:"Cerqueira César",z:"Oeste",tipo:"galeria",lat:-23.5614,lng:-46.6642,info:"Arte conceitual brasileira dos anos 1970 em diante."},
+{name:"Galeria Superfície",ig:"galeriasuperficie",soIG:true,site:"",addr:"R. Oscar Freire, 240 ~",b:"Cerqueira César",z:"Oeste",tipo:"galeria",lat:-23.5614,lng:-46.6642,info:"Arte conceitual brasileira dos anos 1970 em diante."},
 {name:"Paulo Kuczynski Escritório de Arte",ig:"pkgaleria",site:"https://www.pkgaleria.com",addr:"Al. Lorena, 1661",b:"Jardim Paulista",z:"Oeste",tipo:"galeria",lat:-23.5657,lng:-46.6661,info:"Mercado secundário de alto nível; mostras curadas."},
-{name:"Ricardo Camargo Galeria",ig:"ricardocamargogaleria",addr:"R. Bento de Andrade ~",b:"Jardim Paulista",z:"Oeste",tipo:"galeria",lat:-23.5768,lng:-46.6662,info:"Arte brasileira moderna."},
+{name:"Ricardo Camargo Galeria",ig:"ricardocamargogaleria",soIG:true,addr:"R. Bento de Andrade ~",b:"Jardim Paulista",z:"Oeste",tipo:"galeria",lat:-23.5768,lng:-46.6662,info:"Arte brasileira moderna."},
 {name:"Mônica Filgueiras Galeria",addr:"R. Bela Cintra, 1533 ~",b:"Cerqueira César",z:"Oeste",tipo:"galeria",lat:-23.5601,lng:-46.6650,info:"Contemporâneo brasileiro desde os anos 1980."},
 {name:"Danielian São Paulo",ig:"danielian_galeria",site:"https://www.danielian.com.br",addr:"R. Estados Unidos, 2114 e 2157",b:"Jardim Paulista",z:"Oeste",tipo:"galeria",lat:-23.5695,lng:-46.6760,info:"Galeria carioca com espaço recente em SP."},
 // --- Jardim Europa / Paulista ---
@@ -57,7 +59,7 @@ const VENUES = [
 {name:"Mendes Wood DM",ig:"mendeswooddm",site:"https://mendeswooddm.com",addr:"R. Barra Funda, 216",b:"Barra Funda",z:"Centro",tipo:"galeria",lat:-23.5266,lng:-46.6572,info:"SP, Bruxelas, NY, Paris. Sonia Gomes, Paulo Nazareth, Solange Pessoa. Terça a sexta, 11h–19h; sábado, 10h–17h."},
 {name:"Fortes D'Aloia & Gabriel — Galpão",ig:"fortesdaloiagabriel",site:"https://fdag.com.br",addr:"R. James Holland, 71",b:"Barra Funda",z:"Centro",tipo:"galeria",lat:-23.5245,lng:-46.6633,info:"Galpão industrial para mostras de grande escala. Terça a sexta, 10h–19h; sábado, 10h–18h."},
 {name:"Galeria Vermelho",ig:"galeriavermelho",site:"https://galeriavermelho.com.br",addr:"R. Minas Gerais, 350",b:"Higienópolis",z:"Centro",tipo:"galeria",lat:-23.5541,lng:-46.6592,info:"Desde 2002. Performance, instalação e política. Verbo (mostra anual de performance). Terça a sexta, 10h–19h; sábado, 11h–17h."},
-{name:"HOA Galeria",ig:"hoa.goooold",addr:"Higienópolis ~",b:"Higienópolis",z:"Centro",tipo:"galeria",lat:-23.5480,lng:-46.6560,info:"Fundada por Igi Ayedun; foco em artistas negros e periféricos. Endereço a confirmar: guias da cidade dão Barra Funda. O domínio hoatour.art caiu e hoje serve outra coisa — não use."},
+{name:"HOA Galeria",ig:"hoa.goooold",soIG:true,addr:"Higienópolis ~",b:"Higienópolis",z:"Centro",tipo:"galeria",lat:-23.5480,lng:-46.6560,info:"Fundada por Igi Ayedun; foco em artistas negros e periféricos. Endereço a confirmar: guias da cidade dão Barra Funda. O domínio hoatour.art caiu e hoje serve outra coisa — não use."},
 {name:"Galeria Jaqueline Martins",ig:"galeriajaquelinemartins",addr:"R. Dr. Cesário Mota Jr., 443",b:"Vila Buarque",z:"Centro",tipo:"galeria",lat:-23.5452,lng:-46.6502,info:"SP e Bruxelas. Vanguardas dos anos 1970–80 e contemporâneo. Hudinilson Jr. O domínio galeriajaquelinemartins.com saiu do ar; use o Instagram."},
 {name:"A Gentil Carioca SP",ig:"agentilcarioca",site:"https://agentilcarioca.com.br",addr:"R. Barão de Itapetininga ~",b:"República",z:"Centro",tipo:"galeria",lat:-23.5445,lng:-46.6422,info:"Filial paulistana da galeria carioca fundada por Ernesto Neto, Márcio Botner e Laura Lima."},
 /* site tirado em 23/09/2026: segaleria.com.br redireciona pro site do
@@ -65,12 +67,12 @@ const VENUES = [
 {name:"Sé Galeria",site:"",addr:"Al. Lorena, 1257 (Vila Modernista, casa 2)",b:"Jardim Paulista",z:"Oeste",tipo:"galeria",lat:-23.5670,lng:-46.6631,info:"Nasceu no centro histórico e mudou para os Jardins em 2019; o nome ficou."},
 // --- Adições via Guia das Artes ---
 {name:"Baró Galeria",ig:"barogaleria",site:"https://barogaleria.com",addr:"R. Amauri, 62 (pop-up Taller Zaragoza)",b:"Jardim Europa",z:"Oeste",tipo:"galeria",lat:-23.5800,lng:-46.6815,info:"Dirigida por Maria Baró. Sede transferida para a Espanha; retomou presença em São Paulo em 2026 com pop-up no Taller Zaragoza, em Jardim Europa. Diálogo Brasil–Espanha–América Latina."},
-{name:"A7MA Galeria",addr:"R. Medeiros de Albuquerque, 250",b:"Vila Madalena",z:"Oeste",tipo:"galeria",lat:-23.5545,lng:-46.6858,site:"https://a7ma.com.br",ig:"a7magaleria",info:"Arte urbana e cultura de rua na Vila Madalena. Divulga majoritariamente pelo Instagram."},
+{name:"A7MA Galeria",addr:"R. Medeiros de Albuquerque, 250",b:"Vila Madalena",z:"Oeste",tipo:"galeria",lat:-23.5545,lng:-46.6858,site:"https://a7ma.com.br",ig:"a7magaleria",soIG:true,info:"Arte urbana e cultura de rua na Vila Madalena. Divulga majoritariamente pelo Instagram."},
 {name:"Amoa Konoya Arte Indígena",ig:"amoakonoya",addr:"R. João Moura, 1002 ~",b:"Pinheiros",z:"Oeste",tipo:"galeria",lat:-23.5602,lng:-46.6851,info:"Dedicada à arte dos povos indígenas do Brasil."},
 /* NAO adicionar site: blauprojects.com (visto no Instagram @blauprojects,
    23/09/2026) redireciona pra afiliado da AliExpress — dominio expirado
    e tomado, terceiro caso do dia (junto com Virgilio e Adelina). */
-{name:"Blau Projects",ig:"blauprojects",addr:"R. Fradique Coutinho ~",b:"Pinheiros",z:"Oeste",tipo:"galeria",lat:-23.5608,lng:-46.6882,info:"Artistas emergentes e múltiplas linguagens."},
+{name:"Blau Projects",ig:"blauprojects",soIG:true,addr:"R. Fradique Coutinho ~",b:"Pinheiros",z:"Oeste",tipo:"galeria",lat:-23.5608,lng:-46.6882,info:"Artistas emergentes e múltiplas linguagens."},
 {name:"Galeria Aura",ig:"aura.galeria",site:"https://aura.art.br",addr:"R. da Consolação, 2767",b:"Jardim Paulista",z:"Oeste",tipo:"galeria",lat:-23.5566,lng:-46.6612,info:"Entre Porto Alegre e SP; foco em projetos expositivos e feiras."},
 /* site tirado em 23/09/2026: a extensao de seguranca do navegador
    bloqueou yehudihollanderpappi.com por classificacao de risco. Pode ser
@@ -82,9 +84,9 @@ const VENUES = [
    o grid de exposicoes na outra. NAO visitar — nem o radar-fontes.js,
    nem ninguem — enquanto isso nao for investigado (site comprometido ou
    dominio expirado/repassado). */
-{name:"Adelina Galeria",ig:"adelinainstituto",site:"",addr:"Pinheiros (endereço a confirmar)",b:"Pinheiros",z:"Oeste",tipo:"galeria",lat:-23.5648,lng:-46.6920,info:"Arte contemporânea com foco em novos diálogos e pertencimento."},
+{name:"Adelina Galeria",ig:"adelinainstituto",soIG:true,site:"",addr:"Pinheiros (endereço a confirmar)",b:"Pinheiros",z:"Oeste",tipo:"galeria",lat:-23.5648,lng:-46.6920,info:"Arte contemporânea com foco em novos diálogos e pertencimento."},
 {name:"Arte Infinita",addr:"Jardim Europa (endereço a confirmar)",b:"Jardim Europa",z:"Oeste",tipo:"galeria",lat:-23.5740,lng:-46.6760,info:"Fundada por Viviane Teperman em 2001; ênfase em escultura."},
-{name:"Arteedições Galeria",ig:"arteedicoes_galeria",addr:"Jardins (endereço a confirmar)",b:"Jardim Paulista",z:"Oeste",tipo:"galeria",lat:-23.5655,lng:-46.6638,info:"Gravuras e edições: Hirst, Kapoor, Opie, Sonia Gomes, Leda Catunda."},
+{name:"Arteedições Galeria",ig:"arteedicoes_galeria",soIG:true,addr:"Jardins (endereço a confirmar)",b:"Jardim Paulista",z:"Oeste",tipo:"galeria",lat:-23.5655,lng:-46.6638,info:"Gravuras e edições: Hirst, Kapoor, Opie, Sonia Gomes, Leda Catunda."},
 {name:"A Casa das Artes",addr:"Itaim Bibi (endereço a confirmar)",b:"Itaim Bibi",z:"Sul",tipo:"galeria",lat:-23.5820,lng:-46.6780,info:"Direção de Marta Veloso de Souza; modernos e contemporâneos."},
 // --- Itaim / Moema / Vila Mariana (Sul) ---
 {name:"Galeria Marília Razuk",ig:"galeriamariliarazuk",site:"https://www.galeriamariliarazuk.com.br",addr:"R. Jerônimo da Veiga, 131",b:"Itaim Bibi",z:"Sul",tipo:"galeria",lat:-23.5842,lng:-46.6752,info:"Desde 1992. Contemporâneo brasileiro."},
@@ -119,18 +121,18 @@ const VENUES = [
 {name:"Cultura Artística",ig:"culturaartistica",site:"https://culturaartistica.org",addr:"R. Nestor Pestana, 196",b:"Consolação",z:"Centro",tipo:"institucional",lat:-23.5455,lng:-46.6440,ing:{g:true},info:"Teatro de Rino Levi; nova área expositiva inaugurada em 2026 com o programa Aberto Solo."},
 {name:"MIS — Museu da Imagem e do Som",ig:"mis_sp",site:"https://www.mis-sp.org.br",addr:"Av. Europa, 158",b:"Jardim Europa",z:"Oeste",tipo:"institucional",lat:-23.5716,lng:-46.6706,ing:{conf:true,obs:"varia conforme a mostra"},info:"Museu estadual dedicado à imagem, ao som e à cultura audiovisual."},
 {name:"Museu da Imigração",ig:"museudaimigracao",site:"https://museudaimigracao.org.br",addr:"R. Visconde de Parnaíba, 1316 ~",b:"Mooca",z:"Leste",tipo:"institucional",lat:-23.5497,lng:-46.6047,ing:{conf:true,obs:"confirme valores e gratuidades no site"},info:"Antiga Hospedaria de Imigrantes do Brás; acervo e mostras sobre migração."},
-{name:"Vazio Criativo",ig:"vazio_criativo_",addr:"R. Lavradio, 573 ~",b:"Barra Funda",z:"Centro",tipo:"hibrido",lat:-23.5245,lng:-46.6650,ing:{g:true,obs:"terça a sexta, 10h–18h; sábado, 10h–16h"},info:"Espaço independente na Barra Funda que abriga mostras coletivas e projetos de artistas."},
+{name:"Vazio Criativo",ig:"vazio_criativo_",soIG:true,addr:"R. Lavradio, 573 ~",b:"Barra Funda",z:"Centro",tipo:"hibrido",lat:-23.5245,lng:-46.6650,ing:{g:true,obs:"terça a sexta, 10h–18h; sábado, 10h–16h"},info:"Espaço independente na Barra Funda que abriga mostras coletivas e projetos de artistas."},
 // --- HÍBRIDOS: lojas-conceito, cafés, ateliês e espaços independentes com programa expositivo ---
-{name:"Mata Lab — Mata São Paulo",ig:"matalabsp",addr:"Al. Rio Claro, 260",b:"Bela Vista",z:"Centro",tipo:"hibrido",lat:-23.5642,lng:-46.6522,ing:{g:true,obs:"visitação gratuita; aberto todos os dias"},info:"Loja-conceito de design e natureza com espaço expositivo próprio, o Mata Lab; mostras com curadoria e entrada franca."},
+{name:"Mata Lab — Mata São Paulo",ig:"matalabsp",soIG:true,addr:"Al. Rio Claro, 260",b:"Bela Vista",z:"Centro",tipo:"hibrido",lat:-23.5642,lng:-46.6522,ing:{g:true,obs:"visitação gratuita; aberto todos os dias"},info:"Loja-conceito de design e natureza com espaço expositivo próprio, o Mata Lab; mostras com curadoria e entrada franca."},
 {name:"Auroras",ig:"auroras.art.br",site:"https://auroras.art.br",addr:"Av. São Valério, 426",b:"Morumbi",z:"Sul",tipo:"hibrido",lat:-23.6010,lng:-46.7180,ing:{g:true,obs:"sábados 11h–18h; demais dias com agendamento"},info:"Casa modernista de Gian Carlo Gasperini onde Ricardo Kugelmas mora e realiza cerca de cinco mostras por ano, cruzando artistas brasileiros e internacionais."},
-{name:"Massapê Projetos",ig:"massape_projetos",addr:"R. Fortunato, 68",b:"Santa Cecília",z:"Centro",tipo:"hibrido",lat:-23.5395,lng:-46.6495,ing:{g:true,obs:"segunda a sexta, com agendamento"},info:"Plataforma de arte contemporânea gerida por artistas; galeria e ateliê compartilhado com Mano Penalva, Marcelo Pacheco, Marina Rodrigues, Fabiana Preti e Tchelo."},
-{name:"Espaço República",ig:"espacorepublica",addr:"Av. São Luís, 86",b:"República",z:"Centro",tipo:"hibrido",lat:-23.5448,lng:-46.6405,ing:{g:true},info:"Núcleo cultural aberto em 2025 no centro histórico: cinco andares com ateliês privativos e coletivos, cursos, residência e andar expositivo. A Sala Vera Helena abriga as mostras."},
+{name:"Massapê Projetos",ig:"massape_projetos",soIG:true,addr:"R. Fortunato, 68",b:"Santa Cecília",z:"Centro",tipo:"hibrido",lat:-23.5395,lng:-46.6495,ing:{g:true,obs:"segunda a sexta, com agendamento"},info:"Plataforma de arte contemporânea gerida por artistas; galeria e ateliê compartilhado com Mano Penalva, Marcelo Pacheco, Marina Rodrigues, Fabiana Preti e Tchelo."},
+{name:"Espaço República",ig:"espacorepublica",soIG:true,addr:"Av. São Luís, 86",b:"República",z:"Centro",tipo:"hibrido",lat:-23.5448,lng:-46.6405,ing:{g:true},info:"Núcleo cultural aberto em 2025 no centro histórico: cinco andares com ateliês privativos e coletivos, cursos, residência e andar expositivo. A Sala Vera Helena abriga as mostras."},
 {name:"Ateliê397",ig:"atelie397",site:"https://atelie397.com",addr:"Travessa Dona Paula, 126",b:"Higienópolis",z:"Centro",tipo:"hibrido",lat:-23.5432,lng:-46.6558,ing:{g:true},info:"Desde 2003, um dos espaços independentes mais longevos da cidade: ateliê, residências e exposições de arte contemporânea. Mantém o Clínica Geral, grupo de acompanhamento de projetos."},
 {name:"Ateliê Fidalga",site:"https://ateliefidalga.com.br",addr:"R. Fidalga, 299",b:"Vila Madalena",z:"Oeste",tipo:"hibrido",lat:-23.5578,lng:-46.6902,ing:{g:true},info:"Programa de formação e convivência entre artistas de diferentes gerações, com mostras coletivas periódicas."},
 /* site tirado em 23/09/2026: aparelhaluzia.com.br nao resolve (DNS morto,
    confirmado no navegador e por fetch direto — ENOTFOUND). */
-{name:"Aparelha Luzia",ig:"aparelhaluzia",site:"",addr:"R. Apa, 78",b:"Santa Cecília",z:"Centro",tipo:"hibrido",lat:-23.5375,lng:-46.6497,ing:{conf:true,obs:"varia conforme a programação"},info:"Quilombo urbano fundado em 2016: arte, cultura e política negra, com exposições, shows e encontros."},
-{name:"Galeria Café",ig:"galeriacafesp",addr:"Praça Benedito Calixto, 103",b:"Pinheiros",z:"Oeste",tipo:"hibrido",lat:-23.5605,lng:-46.6862,ing:{g:true,obs:"exposições no térreo durante o dia"},info:"Café e bar com andar térreo dedicado a exposições com curadoria da Dasartes; obras à venda."},
+{name:"Aparelha Luzia",ig:"aparelhaluzia",soIG:true,site:"",addr:"R. Apa, 78",b:"Santa Cecília",z:"Centro",tipo:"hibrido",lat:-23.5375,lng:-46.6497,ing:{conf:true,obs:"varia conforme a programação"},info:"Quilombo urbano fundado em 2016: arte, cultura e política negra, com exposições, shows e encontros."},
+{name:"Galeria Café",ig:"galeriacafesp",soIG:true,addr:"Praça Benedito Calixto, 103",b:"Pinheiros",z:"Oeste",tipo:"hibrido",lat:-23.5605,lng:-46.6862,ing:{g:true,obs:"exposições no térreo durante o dia"},info:"Café e bar com andar térreo dedicado a exposições com curadoria da Dasartes; obras à venda."},
 {name:"Galeria Metrópole",site:"https://metropolegaleria.com.br",addr:"Av. São Luís, 187",b:"República",z:"Centro",tipo:"hibrido",lat:-23.5455,lng:-46.6415,ing:{g:true},info:"Edifício modernista transformado em polo criativo: lojas de design, ateliês, cafés e espaços de arte no centro."},
 {name:"Galpão da Lapa",ig:"galpaodalapa",site:"https://galpaodalapa.art.br",addr:"Vila Anastácio, complexo Ceagesp (endereço exato a confirmar)",b:"Vila Anastácio",z:"Oeste",tipo:"institucional",lat:-23.5236,lng:-46.7159,info:"Coleção privada de arte contemporânea brasileira (mais de 2.000 obras, reunida por Andrea Pereira e José Olympio) instalada em galpão histórico do complexo Ceagesp. Visitas guiadas gratuitas mediante agendamento, quintas e sábados."},
 {name:"Galeria Contempo",site:"https://galeriacontempo.com.br",addr:"Al. Gabriel Monteiro da Silva, 1644",b:"Jardim Europa",z:"Oeste",tipo:"galeria",lat:-23.5730,lng:-46.6706,info:"Dirigida por Marcia e Mônica Felmanas; em 2026 promoveu o retorno da obra de Aldir Mendes de Souza ao circuito expositivo. Segunda a sexta, 10h–19h; sábado, 10h–16h."},
@@ -157,7 +159,7 @@ const VENUES = [
    da Locaweb "Dominio nao encontrado" — hospedagem sem site ativo. */
 {name:"Gravura Brasileira",site:"",addr:"R. Ásia, 219",b:"Cerqueira César",z:"Oeste",tipo:"galeria",lat:-23.5549,lng:-46.6840,info:"Fundada em 1998, único espaço do país dedicado exclusivamente à gravura. Acervo de cerca de 3 mil gravuras originais."},
 {name:"Instituto Çarê",ig:"institutoculturalcare",site:"https://institutocare.org.br",addr:"R. Dr. Avelino Chaves, 138",b:"Vila Leopoldina",z:"Oeste",tipo:"institucional",lat:-23.5364,lng:-46.7290,info:"Organização sem fins lucrativos criada em 2019, com núcleos de Acervos, Artes Visuais, Educação, Música e Pesquisa."},
-{name:"Lombardi Galeria",ig:"lombardigaleria",addr:"R. Joaquim Antunes, 187",b:"Jardim Paulistano",z:"Oeste",tipo:"galeria",lat:-23.5666,lng:-46.6797,info:"Projeto focado em fotografia autoral como linguagem artística."},
+{name:"Lombardi Galeria",ig:"lombardigaleria",soIG:true,addr:"R. Joaquim Antunes, 187",b:"Jardim Paulistano",z:"Oeste",tipo:"galeria",lat:-23.5666,lng:-46.6797,info:"Projeto focado em fotografia autoral como linguagem artística."},
 {name:"Martins&Montero",ig:"martinsemontero",site:"https://martinsemontero.com",addr:"R. Jamaica, 50 ~",b:"Jardim América",z:"Oeste",tipo:"galeria",lat:-23.5680,lng:-46.6680,info:"Unidades em São Paulo e Bruxelas."},
 /* endereco corrigido em 23/09/2026: bio do Instagram (@mits.galeria) diz
    "Al.Tietê 618, Casa_7" — diferente do R. Padre João Manuel, 740 que
@@ -176,7 +178,7 @@ const VENUES = [
 {name:"Olhão",addr:"R. Barra Funda, 288",b:"Barra Funda",z:"Centro",tipo:"hibrido",lat:-23.5313,lng:-46.6544,info:"Espaço experimental — jardim, cozinha, banheiro e telhado ocupados com objetos, esculturas, pinturas, performances e instalações. Visitas por agendamento."},
 {name:"Paço das Artes",site:"https://pacodasartes.org.br",addr:"R. Dr. Albuquerque Lins, 1345",b:"Higienópolis",z:"Centro",tipo:"institucional",lat:-23.5420,lng:-46.6589,info:"Instituição da Secretaria de Cultura do Estado de SP."},
 {name:"Pinacoteca Contemporânea",site:"https://pinacoteca.org.br",addr:"Av. Tiradentes, 273",b:"Luz",z:"Centro",tipo:"institucional",lat:-23.5332,lng:-46.6333,info:"Terceiro prédio da Pinacoteca de São Paulo, inaugurado em 2023, integrado aos prédios Pina Luz e Pina Estação — ingresso único."},
-{name:"Quadra Galeria",ig:"quadragaleria",addr:"R. Barão de Tatuí, 521",b:"Vila Buarque",z:"Centro",tipo:"galeria",lat:-23.5405,lng:-46.6547,info:"Unidades em São Paulo e Rio de Janeiro."},
+{name:"Quadra Galeria",ig:"quadragaleria",soIG:true,addr:"R. Barão de Tatuí, 521",b:"Vila Buarque",z:"Centro",tipo:"galeria",lat:-23.5405,lng:-46.6547,info:"Unidades em São Paulo e Rio de Janeiro."},
 /* site tirado em 23/09/2026: redbullstation.com.br nao resolve (DNS
    morto, confirmado por fetch direto — ENOTFOUND). */
 {name:"Red Bull Station",site:"",addr:"R. Frei Caneca, 569",b:"Consolação",z:"Centro",tipo:"institucional",lat:-23.5542,lng:-46.6524,info:"Antiga subestação de energia desativada desde 2004, reformada para arte. Programa de residência artística regular."},
@@ -190,7 +192,7 @@ const VENUES = [
    nem o radar-fontes.js, nem ninguem. Confirmado abrindo em duas abas
    separadas. Precisa achar o dominio novo da galeria (se existir) antes
    de repor este campo. */
-{name:"Galeria Virgilio",ig:"galeria.virgilio",site:"",addr:"R. Dr. Virgilio de Carvalho Pinto, 426",b:"Pinheiros",z:"Oeste",tipo:"galeria",lat:-23.5620,lng:-46.6845,info:"Aberta em 2002 por Izabel Pinheiro, representa artistas contemporâneos emergentes."},
+{name:"Galeria Virgilio",ig:"galeria.virgilio",soIG:true,site:"",addr:"R. Dr. Virgilio de Carvalho Pinto, 426",b:"Pinheiros",z:"Oeste",tipo:"galeria",lat:-23.5620,lng:-46.6845,info:"Aberta em 2002 por Izabel Pinheiro, representa artistas contemporâneos emergentes."},
 {name:"Memorial da América Latina",site:"https://memorial.org.br",addr:"Av. Auro Soares de Moura Andrade, 664",b:"Barra Funda",z:"Oeste",tipo:"institucional",lat:-23.5275,lng:-46.6654,info:"Galeria Marta Traba: único espaço museológico do Brasil inteiramente dedicado à arte latino-americana, 1.000 m² circulares."},
 {name:"Pavilhão das Culturas Brasileiras",addr:"Parque Ibirapuera, portão 2 ~",b:"Ibirapuera",z:"Sul",tipo:"institucional",lat:-23.5890,lng:-46.6600,info:"Edifício de 11 mil m² projetado por Oscar Niemeyer nos anos 1950, tombado nas três esferas de patrimônio."}
 ];
@@ -299,9 +301,8 @@ const EXPOS = [
 {t:"Afríquia: o artista como colecionador",a:"",v:"Museu Afro Brasil Emanoel Araujo",ini:"2026-06-26",fim:"",d:"Reúne mais de 200 obras e materiais de arquivo — esculturas, pinturas, máscaras, fotografias, livros, discos e têxteis, com destaque para peças da Nigéria e do Benin — mostrando como Emanoel Araujo formou o acervo de arte africana do museu. Curadoria de Gabrielle Nascimento.",img:"",cred:""},
 {t:"Há quanto tempo pensando nisso",a:"Rachel Zuanon, Edson Pfutzenreuter, Sylvia Furegatti, Marta Strambi, Mauricius Farina, Sérgio Niculitcheff, Luise Weiss, Gilberto Alexandre Sobrinho, Cesar & Lois",v:"Memorial da América Latina",ini:"2026-09-23",fim:"2026-10-13",d:"Nove docentes-artistas do Instituto de Artes da Unicamp, com trabalhos em pintura, fotografia, gravura, xilogravura, vídeo e instalações multissensoriais, na Galeria Marta Traba. Curadoria de Sylvia Furegatti, Mauricius Farina e César Baio.",img:"",cred:""},
 {t:"Esgarçar",a:"Andrey Rossi, Beatriz Lindenberg, Bruno Cançado, Desali, Giovani Fantauzzi, Julia Pereira, Laura Villarosa, Liane Roditi, Manoel Veiga, Manuela Costa Lima, Maria Helena Andrés, Marina Rodrigues, Marinalva Rosa, Michelle Rosset, Moara Tupinambá, Naira Pennacchi, Paula Huven, Renata Egreja, Thany Sanches, Yasmin Guimarães, Yohana Oizumi",v:"AM Galeria",ini:"2026-09-12",fim:"2026-10-10",d:"Coletiva com 21 artistas, curadoria de Mario Gioia, cruzando pintura, fotografia, têxtil, escultura, vídeo, performance e desenho em torno de noções de limite (dentro/fora, figuração/abstração).",img:"img/esgarcar-am-galeria.jpg",cred:"Cortesia AM Galeria",vista:true},
-/* confirmado no Instagram (@vazio_criativo_, 23/09/2026) — proibido raspar
-   perfil em automação, mas checagem manual pontual foi autorizada. Só
-   cartaz disponível, sem imagem de obra. */
+/* confirmado no Instagram (@vazio_criativo_, 23/09/2026), checagem manual.
+   Só cartaz disponível, sem imagem de obra. */
 {t:"Roxo em Tons",a:"",v:"Vazio Criativo",ini:"2026-10-03",fim:"2026-10-09",d:"Tons Coletivo apresenta exposição coletiva para ver o mundo em roxo, com curadoria de Audrey Barbosa.",img:"",cred:""},
 {t:"Passeio Noturno — André Crespo",a:"André Crespo",v:"A7MA Galeria",ini:"2026-09-25",fim:null,d:"Pinturas da noite de Paris feitas por um corpo à deriva, que deixa a cidade escolher o caminho. Curadoria de Rogério D’Avila Ortiz. Abertura em 25 de setembro, das 16h às 22h; encerramento não divulgado.",img:"",cred:""},
 /* confirmado no Instagram (@mits.galeria, 23/09/2026). Curadoria e lista

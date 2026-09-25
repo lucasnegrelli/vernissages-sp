@@ -41,3 +41,6 @@ _to_delete/
 
 # Override pessoal de permissoes do Claude Code, nao e pra time nenhum.
 .claude/settings.local.json
+
+# Prospecção do serviço de sites (leads-sites.js) — lista de clientes, não vai pro site.
+/NEGOCIO/

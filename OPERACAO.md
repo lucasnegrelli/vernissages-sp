@@ -294,27 +294,51 @@ velocidades reduziram o buraco; não o fecharam. O resto vem do envio das casas.
 
 ### Espaço que só divulga no Instagram
 
-Perfil exige login e o runbook proíbe raspar. **A7MA, Mata Lab, Massapê,
-Espaço República e Vazio Criativo não têm entrada por varredura — nenhuma.**
+**Raspar Instagram é permitido desde 25/09/2026, só neste recorte:** casas
+marcadas `soIG: true` no dados.js, uma vez por semana. A regra antiga
+("perfil exige login e o runbook proíbe raspar") caiu no dia em que a A7MA
+abriu "Passeio Noturno" anunciada só no Instagram — site parado desde 2023
+— e nenhuma varredura viu. Em 25/09 eram 36 das 124 casas sem site nenhum.
 
-Há duas vias, e nenhuma delas é raspar perfil.
+**Como roda.** `.github/workflows/instagram.yml`, toda quarta às 08h de SP:
 
-**1. Você lê o post e cola a legenda no `captar.js`.**
+1. `instagram.js` busca os posts dos últimos 10 dias de cada casa `soIG`
+   pelo Apify (actor `apify/instagram-post-scraper`, segredo `APIFY_TOKEN`)
+   e escreve `PENDENTE/INSTAGRAM.md`. Pula post já processado
+   (`INSTAGRAM-VISTOS.json`, versionado).
+2. O Claude Code lê as legendas com o prompt `.github/prompts/instagram.md`,
+   decide o que é mostra e escreve no `EXPOS`.
+3. `espelhar.js` roda no mesmo job — URL do CDN do Instagram expira em
+   horas — e o `check.js` é o portão. Reprovou: nada é commitado e os posts
+   voltam na semana seguinte.
+
+**Por que Apify e não direto.** Testado em 25/09: a rota do próprio
+Instagram devolveu 429 deslogado e 429 logado. Raspar direto exigiria a
+sessão de uma conta, e quem leva o bloqueio é a conta. O Apify usa proxy
+dele e não encosta em conta nenhuma. Custo: US$ 2,70 por 1.000 posts;
+17 perfis × poucos posts por semana cabe no crédito grátis mensal.
+
+**Pôr ou tirar uma casa da raspagem:** `soIG: true` no venue do dados.js.
+Critério: a agenda da casa só existe no Instagram (sem site, site parado,
+domínio expirado). Não marque casa com site vivo — ali a varredura normal
+já pega, e cada perfil a mais é custo. Perfil que aparece em "Perfis que
+não abriram" no resumo do job teve o handle trocado: corrija o `ig`.
+
+**Na mão continua valendo.** Para um post específico, fora da rodada:
 
 ```
 node captar.js --venue "A7MA Galeria" --texto post.txt
 ```
 
-Ele devolve a linha pronta do `EXPOS` e **declara o que não conseguiu ler** em
-vez de chutar: título, datas, artistas, e o aviso de ano quando a legenda não
-traz o ano — que é o erro clássico em mostra que atravessa a virada. Confere o
-endereço da legenda contra o da base e acusa divergência. Não abre Instagram,
-não baixa nada.
+Ele devolve a linha pronta do `EXPOS` e **declara o que não conseguiu ler**
+em vez de chutar: título, datas, artistas, e o aviso de ano quando a
+legenda não traz o ano — que é o erro clássico em mostra que atravessa a
+virada. Não abre Instagram, não baixa nada.
 
-**Imagem do Instagram oficial da própria casa pode.** É a mesma postura que o
-`espelhar.js` já aplica ao site da galeria, e ela está escrita lá desde sempre:
-cópia local, crédito obrigatório no campo `cred`, arquivo apagado de `img/` e
-entrada revertida se a casa pedir remoção. Sem exceção.
+**Imagem do Instagram oficial da própria casa pode.** É a mesma postura que
+o `espelhar.js` já aplica ao site da galeria: cópia local, crédito
+obrigatório no campo `cred`, arquivo apagado de `img/` e entrada revertida
+se a casa pedir remoção. Sem exceção. Na mão:
 
 ```
 node captar.js --venue "A7MA Galeria" --texto post.txt \
@@ -323,22 +347,19 @@ node espelhar.js
 ```
 
 **Rode o `espelhar.js` no mesmo dia.** URL de CDN do Instagram é assinada e
-expira em horas; depois de espelhada o arquivo vive em `img/` e isso deixa de
-importar, mas antes disso a janela é curta.
+expira em horas.
 
 Duas coisas que não mudam: **nunca chutar autoria de foto** — se o post não
-nomeia o fotógrafo, o padrão é `Cortesia <casa>` —, e **olhar a imagem depois
-de espelhada**, porque cartaz e vista de sala passam em peso e dimensão. Sendo
-parede e não obra, marque `vista: true`.
+nomeia o fotógrafo, o padrão é `Cortesia <casa>` —, e **olhar a imagem**,
+porque cartaz e vista de sala passam em peso e dimensão. Cartaz não entra;
+sendo parede e não obra, marque `vista: true`.
 
 Sem imagem a mostra entra na agenda e no mapa normalmente, e só fica fora dos
 formatos que mostram obra — comportamento correto, não falha.
 
-**2. O formulário "Divulgue sua abertura"**, no pré-rodapé do site, que abre o
-`openForm()` do `index.html` e volta por e-mail. Ele existia no código desde
-sempre e **não era chamado de lugar nenhum** — o canal estava escrito e
-inalcançável até 25/08. Ao passar por uma dessas casas na fila do radar, o
-trabalho não é caçar o release: é mandar o link do formulário para o perfil.
+**O formulário "Divulgue sua abertura"**, no pré-rodapé do site, continua
+sendo a outra via: ao passar por uma casa sem canal, mande o link do
+formulário para o perfil.
 
 Encare o número. Em 20/08 eram 36 das 91 casas sem uma única mostra registrada,
 e não só espaço independente: Almeida & Dale, Choque Cultural, Kogan Amaro e
@@ -354,10 +375,10 @@ Agregadores: `artequeacontece.com.br/eventos/categoria/sao-paulo/AAAA-MM/`,
 **Sempre confirme a cidade** — galeria com filial fora de SP aparece nos
 agregadores como se fosse daqui.
 
-Instagram: priorize `tipo: hibrido` e independentes (Mata Lab, Auroras, Massapê,
+Instagram (checagem na mão, fora da rodada semanal): priorize `tipo: hibrido` e independentes (Mata Lab, Auroras, Massapê,
 Ateliê397, Aparelha Luzia, Espaço República, Galeria Café, Ateliê Fidalga,
-Galeria Metrópole, GRUTA, HOA, Sé Galeria, Casa do Povo, A7MA — esta só divulga
-por lá). **Nunca use URL de imagem do CDN do Instagram: expira.**
+Galeria Metrópole, GRUTA, HOA, Sé Galeria, Casa do Povo). URL de imagem do CDN do Instagram expira em horas: só use
+se o `espelhar.js` rodar no mesmo dia.
 
 ### Imagens — a parte que mais importa
 

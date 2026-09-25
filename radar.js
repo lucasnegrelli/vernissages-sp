@@ -121,10 +121,11 @@ const fila = [
 ].slice(0, FILA);
 
 /* Onde procurar cada uma. Casa sem site é o caso difícil: o release não existe
-   em lugar nenhum além do Instagram, e o runbook proíbe raspar de lá. */
+   em lugar nenhum além do Instagram. Marcada soIG, a rodada semanal do
+   instagram.js cobre; sem a marca, ninguém olha. */
 const rota = x => {
   if (x.venue.site) return x.venue.site;
-  if (x.venue.ig) return 'so Instagram: @' + x.venue.ig + ' — procure antes nos agregadores';
+  if (x.venue.ig) return 'so Instagram: @' + x.venue.ig + (x.venue.soIG ? ' — coberto pela rodada semanal (instagram.js)' : ' — sem soIG, ninguem olha: marque no dados.js');
   return 'sem site e sem Instagram — nao ha por onde comecar';
 };
 
@@ -174,10 +175,9 @@ if (semNada.length){
 const soIg = nunca.filter(x => !x.venue.site && x.venue.ig);
 if (soIg.length){
   s += '\n## So Instagram (' + soIg.length + ')\n\n';
-  s += 'O runbook proibe raspar Instagram, e com razao: URL de imagem do CDN\n';
-  s += 'expira. Mas o **fato** da mostra costuma aparecer nos agregadores alguns\n';
-  s += 'dias depois. Procure por nome da casa antes de gastar visita de perfil.\n\n';
-  soIg.forEach(x => { s += '- ' + x.venue.name + ' — @' + x.venue.ig + '\n'; });
+  s += 'Casa marcada `soIG` entra na raspagem semanal (instagram.yml, quarta).\n';
+  s += 'Sem a marca, ninguem olha: se a agenda dela so sai no Instagram, marque.\n\n';
+  soIg.forEach(x => { s += '- ' + x.venue.name + ' — @' + x.venue.ig + (x.venue.soIG ? ' (raspada)' : ' (SEM soIG)') + '\n'; });
 }
 
 /* A conta, agora com as duas velocidades. Uma casa de ciclo C precisa de 7/C

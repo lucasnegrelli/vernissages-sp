@@ -1,0 +1,105 @@
+name: Instagram das casas sem site
+
+# Raspa uma vez por semana o perfil das casas marcadas `soIG: true` no
+# dados.js e transforma post de mostra em entrada do EXPOS. Criado em
+# 25/09/2026, quando "Passeio Noturno" (A7MA) abriu anunciada só no
+# Instagram e nenhuma varredura viu. Ver OPERACAO.md, "Espaço que só
+# divulga no Instagram".
+#
+# Tres partes, na ordem:
+#   1. instagram.js — busca via Apify (segredo APIFY_TOKEN), sem conta do
+#      Instagram envolvida. Deterministico.
+#   2. Claude Code — le as legendas e decide o que e mostra. Julgamento.
+#   3. espelhar.js + check.js + commit. A URL de imagem do CDN do Instagram
+#      expira em horas, entao o espelhamento roda AQUI, no mesmo job: push
+#      feito com GITHUB_TOKEN nao dispara o espelhar-imagens.yml.
+
+on:
+  schedule:
+    # quarta 11:00 UTC = 08:00 em SP. Abertura de galeria concentra de quinta
+    # a sabado; quarta pega o anuncio da semana a tempo do fim de semana.
+    - cron: '0 11 * * 3'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: instagram
+  cancel-in-progress: false
+
+jobs:
+  instagram:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Raspar perfis soIG
+        id: raspa
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+        run: node instagram.js
+
+      - name: Instalar Claude Code
+        if: steps.raspa.outputs.novos != '0'
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Ler legendas e escrever no dados.js
+        if: steps.raspa.outputs.novos != '0'
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          claude -p "$(cat .github/prompts/instagram.md)" \
+            --allowedTools "Bash,Read,Write,Edit,Glob,Grep,WebFetch" \
+            --dangerously-skip-permissions \
+            | tee /tmp/instagram.log
+
+      - name: Espelhar imagens (antes do CDN expirar)
+        if: steps.raspa.outputs.novos != '0'
+        run: node espelhar.js
+
+      # Portao: reprovou, o job falha, nada e commitado e os posts NAO viram
+      # "vistos" — a rodada seguinte tenta de novo.
+      - name: Validar
+        if: steps.raspa.outputs.novos != '0'
+        run: node check.js
+
+      - name: Marcar vistos e commitar
+        if: steps.raspa.outputs.novos != '0'
+        run: |
+          node instagram.js --marcar
+          git config user.name "vernissages-bot"
+          git config user.email "actions@github.com"
+          git add dados.js img INSTAGRAM-VISTOS.json
+          if git diff --staged --quiet; then
+            echo "Nada mudou."
+            exit 0
+          fi
+          git commit -m "Instagram: mostras das casas sem site (rodada semanal)"
+          for i in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "push rejeitado, tentativa $i - rebaseando e tentando de novo"
+            git fetch origin main
+            git rebase origin/main || exit 1
+            sleep 3
+          done
+          echo "Falhou ao empurrar apos 5 tentativas."
+          exit 1
+
+      - name: Resumo
+        if: always()
+        run: |
+          {
+            echo "## Instagram das casas sem site"
+            echo ""
+            echo '```'
+            [ -f /tmp/instagram.log ] && cat /tmp/instagram.log || echo "Sem posts novos (ou a raspagem falhou — veja o passo 'Raspar perfis soIG')."
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
