@@ -117,3 +117,27 @@ rodízio antigo em `fontes/`, sobrou a Switzer.
 | `vsp-semana` | domingo (rotina na nuvem) | varredura + `node semana.js` + arquivo |
 
 Runbook em `OPERACAO.md`. Geração de social em `COMOGERAR.md`.
+
+---
+
+## Plano combinado em 26/09/2026 (em ordem)
+
+1. **Medição de verdade.** O contador do rodapé (Abacus) funciona, mas só conta
+   aparelho único acumulado: 332 em 26/09. Sem visitas por dia, origem nem
+   página. → Lucas cria conta no **GoatCounter** (código `vernissagessp`);
+   Claude instala o script no site. Sem cookie, sem banner.
+2. **Página "fim de semana"** (`/fim-de-semana`): a agenda do post de quinta,
+   ao vivo, com mapa — vira o link da bio e mira a busca "exposições em SP
+   este fim de semana".
+3. **Temporadas** (ver `DESIGN.md`): estrutura de um arquivo de tokens por mês,
+   lido pelo site e pelos geradores. **Outubro = Concreto** (evolução do que já
+   existe), **novembro = Lambe** (mais ousado, quando o conceito já estiver
+   apresentado).
+4. **"Monta meu sábado"**: a pessoa escolhe bairro e tempo, o site gera o
+   roteiro com mapa (o motor da deriva virando ferramenta). Depois: "perto de
+   mim", salvar mostra + lembrete, mapa como home (MapLibre).
+5. **Formatos novos do social** (ver `IDEIAS.md`): começar por "De graça, vale
+   milhões" e "A história por trás". Vetados: número, entrada, zoom sem revelação.
+6. **Reconstruir rima e aproximação** com profundidade (várias imagens, revelação).
+
+Referências e banco de ideias: `REFERENCIAS.md`, `IDEIAS.md`, `DESIGN.md`.
