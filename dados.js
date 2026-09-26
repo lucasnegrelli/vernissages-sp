@@ -364,11 +364,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Controle | Corrosão | Dispersão",
-  v: "Galeria Leme",
-  quem: "Beto Shwafaty",
-  txt: "Individual com cerca de 15 trabalhos que pensam a sociedade contemporânea a partir de objetos e materiais do cotidiano, incluindo a obra inédita \"O sonho da terra, é o sonho americano\". Abertura em 3 de setembro, até 2 de outubro.",
-  link: "https://galerialeme.com",
+  t: "Mulheres da Boca",
+  v: "MIS — Museu da Imagem e do Som",
+  quem: "Wagner Carvalho",
+  txt: "Fotografias inéditas feitas durante as filmagens do documentário \"Mulheres da Boca\" (1981), nas ruas da Boca do Lixo na virada dos anos 1970 para os 1980; curadoria de Inês Castilho, Marcelo Colaiácovo e William Plotnik. Abertura em 2 de setembro, até 18 de outubro.",
+  link: "https://www.mis-sp.org.br",
   publi: false
 };
 
@@ -383,6 +383,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-09-26", k:"Mulheres da Boca|MIS — Museu da Imagem e do Som"},
   {d:"2026-09-25", k:"Controle | Corrosão | Dispersão|Galeria Leme"},
   {d:"2026-09-24", k:"NO LIMITE: forma e transformação|Paço das Artes"},
   {d:"2026-09-23", k:"Por Elas, Com Elas: Do Moderno ao Contemporâneo|DAN Galeria"},
@@ -444,5 +445,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "25/09/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "26/09/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
