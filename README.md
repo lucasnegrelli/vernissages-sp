@@ -22,6 +22,7 @@ prontas (a publicação é sempre manual).
 | **COMOGERAR.md** | passo a passo para gerar a semana do social |
 | **IDEIAS.md** | banco bruto de 240 ideias de post (o que ainda não virou formato) |
 | **REFERENCIAS.md** | concorrência e inspiração: quem copiar e o quê |
+| **DESIGN.md** | referências estéticas e a direção visual única de site + Instagram |
 | **REPERTORIO.json** | as 204 ideias que o planejador já sabe gerar sozinho |
 | `EDITAIS/` · `NEGOCIO/` | captação e serviço de sites — **fora do git** (dado de negócio) |
 
