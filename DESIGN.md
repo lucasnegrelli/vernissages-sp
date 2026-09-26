@@ -86,3 +86,48 @@ O site continua estático e rápido; nada disso exige backend.
 2. Trocar o mapa para MapLibre com estilo próprio.
 3. Unificar tokens (cores, tipos, espaçamento) num arquivo só, usado pelo site e pelos geradores do social.
 4. Tirar os emojis de títulos, KPIs e pílulas.
+
+---
+
+## Temporadas — uma estética por mês (proposta de 26/09/2026)
+
+Ideia do Lucas: a cada virada de mês, **tudo** muda de estética (posts e site),
+e cada mês reverencia uma referência da cultura visual — de preferência
+paulistana. O conceito da marca deixa de ser "um visual" e passa a ser
+**a curadoria de visuais**: o Vernissages SP como galeria que troca de
+exposição, só que da própria cara. Precedentes: a Bienal de SP muda de
+identidade a cada edição; o Pavilhão da Serpentine troca de arquiteto todo ano.
+
+**O que nunca muda (o esqueleto):** o nome escrito do mesmo jeito em algum
+lugar fixo; a estrutura dos formatos (agenda, deriva…); onde ficam data, título
+e casa; a voz do texto; o selo "Temporada NN · nome".
+
+**O que muda todo mês:** fontes, cores, textura, grafismo (círculo, risco,
+papel, fio), estilo do mapa.
+
+**Cada temporada vira conteúdo:** o primeiro post do mês explica a referência
+(quem fez, quando, por que importa) — é "história por trás" de graça.
+
+**Como fica técnico:** um arquivo por mês (`temporadas/2026-10.json`) com os
+tokens — fontes, cores, textura, variações de componente. Site e geradores do
+social leem a temporada do mês corrente. Trocar de mês = trocar um arquivo.
+
+### Banco de temporadas (SP e Brasil primeiro)
+
+| # | temporada | referência |
+|---|---|---|
+| 1 | **Lambe** | lambe-lambe da Gráfica Fidalga: letra de madeira, papel fluorescente |
+| 2 | **Concreto** | Wollner, Geraldo de Barros, Grupo Ruptura, cartazes da Bienal |
+| 3 | **Arquivo** | imprensa e editoras independentes: serifa, papel, jornal |
+| 4 | **Rota** | sinalização do Metrô de SP e placas de rua: mono, diagrama |
+| 5 | **Brutalista** | Lina Bo Bardi, SESC Pompeia, Paulo Mendes da Rocha: concreto aparente, letreiro pintado |
+| 6 | **Abridor de letras** | pintura de letreiro popular de boteco e comércio |
+| 7 | **Boca do Lixo** | cartazes do cinema da Boca (liga com "Mulheres da Boca", no MIS) |
+| 8 | **Caipira de 22** | as "cores caipiras" de Tarsila, modernismo de 22 |
+| 9 | **Tropicália** | capas de disco (Rogério Duarte e outros) |
+| 10 | **Xerox** | fanzine e cartaz punk paulistano dos anos 80: fotocópia, recorte |
+| 11 | **Neon do Centro** | letreiros luminosos do Centro velho, Galeria do Rock |
+| 12 | **Pixo** | a tipografia da pichação paulistana (tratada com respeito e crédito) |
+
+Proposta de início: **outubro = Lambe** (a jam da A7MA e a cidade na rua),
+**novembro = Concreto**.
