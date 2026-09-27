@@ -199,7 +199,6 @@ const VENUES = [
 
 /* ================= EXPOS ================= */
 const EXPOS = [
-{t:"Sem Palavras — Vânia Mignone",a:"Vânia Mignone",v:"Casa Triângulo",ini:"2026-08-08",fim:"2026-09-19",d:"Individual com 17 pinturas inéditas. A artista trabalha com MDF e colagem e integra palavras à composição das cenas.",img:"img/sem-palavras-casa-triangulo.webp",cred:"Cortesia Casa Triângulo"},
 {t:"Uma língua nova",a:"Arnold Schmidt, Aurelino dos Santos, Clovis Aparecido dos Santos, Enio Sérgio, Esther Morgannah, Josef Hofer, Ranchinho",v:"Galeria Estação",ini:"2026-08-25",fim:"2026-09-26",d:"Coletiva com curadoria de José Augusto Ribeiro. Reúne 60 obras de artistas diagnosticados com transtornos mentais e deficiência intelectual.",img:"",cred:""},
 {t:"To Love — Claudia Andujar e George Love",a:"Claudia Andujar, George Love",v:"Galeria Vermelho",ini:"2026-08-15",fim:null,d:"Curadoria de Eder Chiodetto sobre a produção experimental de George Love e seu diálogo com Claudia Andujar nos anos 1960 e 1970. A mostra marca o início da representação do Arquivo de George Love pela galeria. Abertura em 15 de agosto; encerramento não divulgado.",img:"img/to-love-galeria-vermelho.png",cred:"Cortesia Galeria Vermelho"},
 {t:"No meio da pedra — André Vargas",a:"André Vargas",v:"Galeria Vermelho",ini:"2026-08-15",fim:null,d:"Segunda individual do artista na galeria. Abertura em 15 de agosto; encerramento não divulgado.",img:"img/no-meio-da-pedra-galeria-vermelho.jpg",cred:"Cortesia Galeria Vermelho"},
@@ -207,18 +206,12 @@ const EXPOS = [
 {t:"Rajada encarnada — coletiva",v:"Casa de Cultura do Parque",ini:"2026-07-25",fim:"2026-10-25",d:"II Ciclo Expositivo em parceria com o ICCo. Quarta a domingo, 11h–18h.",img:"img/rajada-encarnada-casa-de-cultura-do-parque.png",cred:"Cortesia Casa de Cultura do Parque"},
 {t:"Política da superfície — coletiva",v:"Casa de Cultura do Parque",ini:"2026-07-25",fim:"2026-10-25",d:"II Ciclo Expositivo em parceria com o ICCo. Quarta a domingo, 11h–18h.",img:"img/politica-da-superficie-casa-de-cultura-do-parque.png",cred:"Cortesia Casa de Cultura do Parque"},
 {t:"Mitologias do Mistério — Gabriel Omep",a:"Gabriel Omep",v:"Casa de Cultura do Parque",ini:"2026-07-25",fim:"2026-10-25",d:"Quatro séries — Alfabeto Ferramenta, Orís, Guardiões e Indumentária — em pintura sobre papelão, numa parede de 280 x 1020 cm. Curadoria de Claudio Cretti e texto crítico de André Pitol. Parte do II Ciclo Expositivo.",img:"img/mitologias-do-misterio-casa-de-cultura-do-parque.png",cred:"Cortesia Casa de Cultura do Parque"},
-{t:"Charline von Heyl — individual",a:"Charline von Heyl",v:"Auroras",ini:"2026-06-14",fim:"2026-09-19",d:"Primeira exposição da pintora alemã-americana no Brasil: quinze pinturas recentes, entre grandes formatos e a série Sabotagerie (2026). Organizada em colaboração com a Petzel Gallery. Entrada gratuita, sábados 11h–18h.",img:"img/charline-von-heyl-auroras.png",vista:true,cred:"Cortesia Auroras"},
-{t:"Masao Yamamoto — individual",a:"Masao Yamamoto",v:"Galeria Marcelo Guarnieri",ini:"2026-08-01",fim:"2026-09-19",d:"Fotografias em pequeno formato do mestre japonês; poética do silêncio.",img:"img/masao-yamamoto-galeria-marcelo-guarnieri.webp",cred:"Cortesia Galeria Marcelo Guarnieri",vista:true},
-{t:"Mensageiro da Manhã — André Ricardo",a:"André Ricardo",v:"Almeida & Dale | Millan",ini:"2026-08-15",fim:"2026-09-19",d:"Nove pinturas a têmpera e o primeiro conjunto de monotipias do artista, com formas trazidas da luz da Ilha do Ferro, no sertão alagoano. Texto de Renato Menezes.",img:"img/mensageiro-da-manha-almeida-dale-millan.jpg",cred:"Cortesia Almeida & Dale"},
-{t:"Abstenções (uma miragem, mas permanente) — Nino Kapanadze",a:"Nino Kapanadze",v:"Almeida & Dale | Millan",ini:"2026-08-15",fim:"2026-09-19",d:"Individual da artista com curadoria de Cristiano Raimondi, no espaço Fradique 1360.",img:"img/abstencoes-uma-miragem-mas-permanente-almeida-dale-millan.jpg",cred:"Cortesia Almeida & Dale"},
 {t:"Bauci: a cidade e os olhos — Érica Magalhães",a:"Érica Magalhães",v:"Galeria Aura",ini:"2026-08-08",fim:"2026-09-23",d:"Esculturas que equilibram porcelana e concreto; texto curatorial de Tatiana Ferraz.",img:"img/bauci-a-cidade-e-os-olhos-galeria-aura.webp",cred:"Érica Magalhães, Sem título, 2026. Foto: Flavio Freire"},
 {t:"Brasil das Múltiplas Faces",v:"Itaú Cultural",ini:"2025-10-22",fim:"2027-10-31",d:"Mostra de longa duração com obras do acervo do Itaú Cultural. Entrada gratuita."},
 {t:"Joan Miró: Mestre das Formas",a:"Joan Miró",v:"MAB FAAP",ini:"2026-08-07",fim:"2026-10-12",d:"140 obras originais do catalão, várias inéditas no Brasil. Ingresso pago, vendido em mmf26.com.br."},
-{t:"O Lado Escuro da Lua — Alfredo Jaar",a:"Alfredo Jaar",v:"Galeria Luisa Strina",ini:"2026-08-08",fim:"2026-09-19",d:"Trabalhos feitos no Chile entre 1974 e 1981, das grades de onzes sobre o golpe de 1973 ao projeto Estudos sobre a felicidade. Texto de Edward A. Vazquez.",img:"img/o-lado-escuro-da-lua-galeria-luisa-strina.webp",cred:"Cortesia Galeria Luisa Strina"},
 {t:"confluências — Carolina Caycedo",a:"Carolina Caycedo",v:"MASP",ini:"2026-07-03",fim:"2026-10-04",d:"Fotografia, instalação, vídeo, performance e desenho no cruzamento entre arte, saberes ribeirinhos e movimentos sociais. Curadoria de Isabella Rjeille.",img:"img/confluencias-masp.jpg",cred:"Vista da exposição. Foto Eduardo Ortega / Cortesia MASP",vista:true},
 {t:"Casa María Lionza — Sol Calero",a:"Sol Calero",v:"MASP",ini:"2026-07-03",fim:"2027-01-30",d:"Pavilhão no Vão Livre em dezesseis cores, com padrões pintados à mão e mosaicos, em referência a Lina Bo Bardi e às fachadas nordestinas. Curadoria de Adriano Pedrosa e Laura Cosendey."},
 {t:"Histórias Latino-Americanas",v:"MASP",ini:"2026-09-04",fim:"2027-01-31",d:"Coletiva internacional em cinco núcleos temáticos sobre a construção histórica da ideia de América Latina. Curadoria de Amanda Carneiro e Julieta González, curadora-adjunta do MASP, com assistência de Teo Teotonio."},
-{t:"Presença — Anna Maria Maiolino",a:"Anna Maria Maiolino",v:"Galeria Luisa Strina",ini:"2026-08-08",fim:"2026-09-19",d:"Individual da ítalo-brasileira, com obras de 1974 a 2026: as esculturas de vidro soprado da série Emanados, o raku de São Seis Raku, as radiografias de Marcas na Transparência e a fotografia X, da Fotopoemação. Texto de Lotte Johnson, curadora da Barbican.",img:"img/presenca-galeria-luisa-strina.webp",cred:"Sem título, da série Marcas na Transparência, 1998-2002 (detalhe). Cortesia Galeria Luisa Strina"},
 {t:"Smoke — Lucia Nogueira",a:"Lucia Nogueira",v:"Gomide&Co",ini:"2026-08-07",fim:"2026-10-03",d:"Individual da artista no espaço da Avenida Paulista, organizada com o espólio de Lucia Nogueira.",img:"img/smoke-gomide-co.webp",cred:"Cortesia Gomide&Co"},
 {t:"Quadros — Ubirajara Ribeiro",a:"Ubirajara Ribeiro",v:"Gomide&Co",ini:"2026-08-07",fim:"2026-10-03",d:"Individual no mezanino da galeria, em paralelo a Lucia Nogueira.",img:"img/quadros-gomide-co.webp",cred:"Cortesia Gomide&Co"},
 {t:"Flores e Vasos — coletiva",a:"Rochelle Costi, Gaspar Gasparian, Robert Mapplethorpe",v:"Luciana Brito Galeria",ini:"2026-08-22",fim:"2026-10-17",d:"Curadoria de Nessia Pope. Fotografias de 1947 a 2020 em torno do gênero, entre vintages, prata e jato de tinta.",img:"",cred:""},
@@ -231,7 +224,6 @@ const EXPOS = [
 {t:"Cantaria — Daniel Jorge",a:"Daniel Jorge",v:"Mendes Wood DM",ini:"2026-08-22",fim:"2026-11-06",d:"Primeira individual do artista em São Paulo: 23 obras em pedra-sabão, entre escultura, relevo, instalação e performance. Ensaio de Carlos Quijon Jr.",img:"img/cantaria-daniel-jorge.jpg",cred:"Foto Renan Benedito / Cortesia Mendes Wood DM"},
 {t:"Déboussolé est le mot exact — Jean Claracq",a:"Jean Claracq",v:"Mendes Wood DM",ini:"2026-08-22",fim:"2026-11-06",d:"Dez pinturas de pequeno formato, a maioria entre 10 e 20 centímetros. Texto de Renato Menezes.",img:"img/deboussole-jean-claracq.jpg",cred:"Cortesia do artista e Mendes Wood DM"},
 {t:"É Tempo Ainda",v:"Janaina Torres Galeria",ini:"2026-08-15",fim:"2026-10-17",d:"Vinte e seis artistas de gerações diferentes, com curadoria de Heloisa Amaral Peixoto, nos dez anos da galeria.",img:"img/e-tempo-ainda-janaina-torres-galeria.webp",cred:"Cortesia Janaina Torres Galeria"},
-{t:"Céu de concreto — Luiz Carlos Paulino",a:"Luiz Carlos Paulino",v:"Central Galeria",ini:"2026-08-15",fim:"2026-09-19",d:"Individual do artista com texto crítico de Lilia Moritz Schwarcz.",img:"img/ceu-de-concreto-central-galeria.webp",cred:"Cortesia Central Galeria"},
 {t:"Uma Obra: Pintura sem fim",a:"Gui Teixeira",v:"Pinacoteca de São Paulo",ini:"2026-07-04",fim:"2028-01-31",d:"Terceira edição do projeto Uma Obra: uma parede de carpete recebe centenas de peças de feltro colorido que o público move e recompõe (Pina Luz). Colaboração do artista Gui Teixeira.",img:"img/uma-obra-pintura-sem-fim-pinacoteca-de-sao-paulo.jpg",cred:"Cortesia Pinacoteca de São Paulo"},
 {t:"Para crianças: experiências com a arte desde 1968",v:"Pinacoteca Contemporânea",ini:"2026-05-30",fim:"2026-10-18",d:"Onze artistas e obras que convidam crianças a intervir; a mais antiga é de 1968. Concebida pela Haus der Kunst, de Munique, com a Pinacoteca (Pina Contemporânea).",img:"img/para-criancas-experiencias-com-a-arte-desde-1968-pinacoteca-.jpg",cred:"Vista da exposição. Foto Levi Fanan / Cortesia Pinacoteca de São Paulo",vista:true},
 {t:"Beatriz Milhazes: gravuras do acervo da Pinacoteca",a:"Beatriz Milhazes",v:"Estação Pinacoteca",ini:"2026-05-16",fim:"2027-03-14",d:"27 gravuras feitas entre 1996 e 2019 com a Durham Press (Pina Estação).",img:"img/beatriz-milhazes-gravuras-do-acervo-da-pinacoteca-pinacoteca.jpg",cred:"Vista da exposição. Foto Levi Fanan / Cortesia Pinacoteca de São Paulo",vista:true},
@@ -248,7 +240,6 @@ const EXPOS = [
 {t:"Beijo de Língua — Nelson Felix",a:"Nelson Felix",v:"MAC USP",ini:"2026-05-30",fim:"2026-11-29",d:"Individual do escultor carioca no MAC USP. Entrada gratuita."},
 {t:"39º Panorama da Arte Brasileira: Depois que tudo foi dito",v:"MAM São Paulo",ini:"2026-09-12",fim:"2027-01-24",d:"Curadoria de Diane Lima, com 33 artistas de 13 estados. A mostra marca o retorno do museu à sede do Ibirapuera após a reforma da marquise."},
 {t:"Constelação em trânsito: uma escuta cartográfica",v:"Galpão da Lapa",ini:"2025-09-06",fim:"2027-03-01",d:"Mostra de longa duração da coleção privada de arte contemporânea brasileira do Galpão da Lapa, organizada em três eixos - Arquiteturas do Inconsciente, Geometrias do Sul e Topologias do Orgânico - a partir de uma escuta do próprio acervo. Visitas guiadas gratuitas mediante agendamento, quintas e sábados.",img:"img/constelacao-em-transito-uma-escuta-cartografica-galpao-da-la.jpg",cred:"Cortesia Galpão da Lapa"},
-{t:"Arteônica da Paisagem — Aldir Mendes de Souza",a:"Aldir Mendes de Souza",v:"Galeria Contempo",ini:"2026-08-15",fim:"2026-09-19",d:"Cerca de 20 obras marcam o retorno da produção do artista ao circuito após cerca de 15 anos. Curadoria de Fabrício Reiner.",img:"img/arteonica-da-paisagem-galeria-contempo.jpg",cred:"Cortesia Galeria Contempo"},
 {t:"Vonta de vi dada dada — Ernesto Neto (Jardins)",a:"Ernesto Neto",v:"Fortes D'Aloia & Gabriel — Galeria",ini:"2026-08-22",fim:"2026-10-17",d:"Individual aberta simultaneamente nas duas sedes paulistanas da galeria. Esculturas em crochê de algodão, cordas trançadas, bambu, aço corten e barro, com a série inédita de esculturas de parede que o artista chama de InsePás.",img:"img/vonta-de-vi-dada-dada-fortes-d-aloia-gabriel-galeria.jpg",cred:"Vista da exposição. Foto Eduardo Ortega / Cortesia Fortes D'Aloia & Gabriel",vista:true},
 {t:"Vonta de vi dada dada — Ernesto Neto (Barra Funda)",a:"Ernesto Neto",v:"Fortes D'Aloia & Gabriel — Galpão",ini:"2026-08-22",fim:"2026-10-24",d:"Metade em galpão da individual que Neto abriu nas duas sedes da galeria no mesmo dia. Inclui escultura monumental em aço corten cuja estrutura ramificada evoca ao mesmo tempo paisagem montanhosa e corpo vivo.",img:"img/vonta-de-vi-dada-dada-fortes-d-aloia-gabriel-galpao.jpg",cred:"Vista da exposição. Foto Eduardo Ortega / Cortesia Fortes D'Aloia & Gabriel",vista:true},
 {t:"O homem nu — Efrain Almeida",a:"Efrain Almeida",v:"Fortes D'Aloia & Gabriel — Galpão",ini:"2026-08-22",fim:"2026-10-24",d:"Primeira mostra abrangente do artista na galeria desde sua morte: obras produzidas entre 1995 e 2024, entre escultura em madeira umburana, pintura a óleo, bordado e aquarela. Texto de Márcia Fortes.",img:"img/o-homem-nu-fortes-d-aloia-gabriel-galpao.jpg",cred:"Vista da exposição. Foto Eduardo Ortega / Cortesia Fortes D'Aloia & Gabriel",vista:true},
@@ -258,8 +249,6 @@ const EXPOS = [
 
 /* --- confirmadas na fonte primária em 14/09/2026, casas já mapeadas sem nada em cartaz na base --- */
 {t:"Uma Coisa Leva à Outra",a:"Fernanda Pompermayer",v:"Galeria Luis Maluf",ini:"2026-08-22",fim:"2026-09-23",d:"Exposição individual, na unidade da Barra Funda.",img:"",cred:""},
-{t:"Mensageiro da Manhã",a:"André Ricardo",v:"Almeida & Dale",ini:"2026-08-15",fim:"2026-09-19",d:"Exposição individual.",img:"",cred:""},
-{t:"Abstenções (uma miragem, mas permanente)",a:"Nino Kapanadze",v:"Almeida & Dale",ini:"2026-08-15",fim:"2026-09-19",d:"Exposição individual.",img:"",cred:""},
 {t:"Autobiografia de um Fio",a:"Sheila Hicks",v:"Galeria Nara Roesler",ini:"2026-08-29",fim:"2026-10-24",d:"Exposição individual.",img:"img/autobiografia-de-um-fio-galeria-nara-roesler.webp",cred:"Foto Tatiana Mito / Cortesia Nara Roesler"},
 {t:"Abismos Urbanos e o Plano Celeste",a:"Eduardo Coimbra",v:"Galeria Lume",ini:"2026-09-12",fim:"2026-11-14",d:"Exposição individual.",img:"img/abismos-urbanos-e-o-plano-celeste-galeria-lume.jpg",cred:"Cortesia Galeria Lume"},
 {t:"Território de Disputa",a:"Kilian Glasner",v:"Galeria Lume",ini:"2026-09-12",fim:"2026-11-14",d:"Pinturas feitas com saibro — laterita alaranjada recolhida no sertão —, cortadas pelas faixas brancas de uma quadra de tênis, como alegoria de disputa por território.",img:"img/territorio-de-disputa-galeria-lume.jpg",cred:"Cortesia Galeria Lume"},
@@ -268,7 +257,6 @@ const EXPOS = [
 {t:"Longitudes",a:"Johanna Calle",v:"Galeria Marília Razuk",ini:"2026-09-12",fim:"2026-12-12",d:"Exposição individual.",img:"img/longitudes-galeria-marilia-razuk.webp",cred:"Cortesia Galeria Marília Razuk"},
 {t:"Cavalinhas e Falésias",a:"Carolina Colichio",v:"Galeria Marília Razuk",ini:"2026-09-12",fim:"2026-11-03",d:"Exposição individual.",img:"img/cavalinhas-e-falesias-galeria-marilia-razuk.webp",cred:"Cortesia Galeria Marília Razuk"},
 {t:"Antonio Peticov – A Exposição",a:"Antonio Peticov",v:"Centro Cultural São Paulo (CCSP)",ini:"2026-09-15",fim:"2026-09-20",d:"Retrospectiva de 50 anos de carreira, cerca de 400 obras entre pintura, desenho, escultura, instalação, gravura e música, no Piso Caio Graco.",img:"",cred:""},
-{t:"Água / Óleo",a:"Marina Sader, Poli Pieratti",v:"GRUTA Espaço de Arte Contemporânea",ini:"2026-08-22",fim:"2026-09-19",d:"Coletiva com curadoria de Ariana Nuala, na sede da Barra Funda.",img:"",cred:""},
 
 /* --- casas novas mapeadas hoje: mostra atual confirmada na fonte --- */
 {t:"Habitar São Paulo: relatos femininos",a:"",v:"Casa Museu Ema Klabin",ini:"2026-05-30",fim:"2026-09-27",d:"Coletiva de relatos femininos sobre a cidade de São Paulo.",img:"",cred:""},
@@ -364,11 +352,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Mulheres da Boca",
-  v: "MIS — Museu da Imagem e do Som",
-  quem: "Wagner Carvalho",
-  txt: "Fotografias inéditas feitas durante as filmagens do documentário \"Mulheres da Boca\" (1981), nas ruas da Boca do Lixo na virada dos anos 1970 para os 1980; curadoria de Inês Castilho, Marcelo Colaiácovo e William Plotnik. Abertura em 2 de setembro, até 18 de outubro.",
-  link: "https://www.mis-sp.org.br",
+  t: "Esgarçar",
+  v: "AM Galeria",
+  quem: "Andrey Rossi, Beatriz Lindenberg, Bruno Cançado, Desali, Giovani Fantauzzi, Julia Pereira, Laura Villarosa, Liane Roditi, Manoel Veiga, Manuela Costa Lima, Maria Helena Andrés, Marina Rodrigues, Marinalva Rosa, Michelle Rosset, Moara Tupinambá, Naira Pennacchi, Paula Huven, Renata Egreja, Thany Sanches, Yasmin Guimarães, Yohana Oizumi",
+  txt: "Coletiva com 21 artistas, curadoria de Mario Gioia, cruzando pintura, fotografia, têxtil, escultura, vídeo, performance e desenho em torno de noções de limite (dentro/fora, figuração/abstração). Abertura em 12 de setembro, até 10 de outubro.",
+  link: "https://amgaleria.com.br",
   publi: false
 };
 
@@ -383,6 +371,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-09-27", k:"Esgarçar|AM Galeria"},
   {d:"2026-09-26", k:"Mulheres da Boca|MIS — Museu da Imagem e do Som"},
   {d:"2026-09-25", k:"Controle | Corrosão | Dispersão|Galeria Leme"},
   {d:"2026-09-24", k:"NO LIMITE: forma e transformação|Paço das Artes"},
@@ -445,5 +434,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "26/09/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "27/09/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
