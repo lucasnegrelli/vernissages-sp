@@ -160,4 +160,11 @@ Referências e banco de ideias: `REFERENCIAS.md`, `IDEIAS.md`, `DESIGN.md`.
   simulando `--date=2026-10-05`: paleta Concreto entra corretamente). Fora
   disso, de propósito: `aproximacao.js` (será reconstruído, item 6) e
   `numero.js`/`entrada.js` (formatos vetados).
-- **1 · segue esperando** a conta do GoatCounter.
+- **1 · feito:** conta criada (código real é `vernissages`, não `vernissagessp` como
+  estava anotado — a URL do painel é `vernissages.goatcounter.com`). Script
+  instalado no `index.html` e no template do `gerar.js` (`pagina()`), então
+  toda página gerada — mostra, artista, acervo, artistas, editais, fim de
+  semana — já mede. Configuração padrão do GoatCounter já é sem cookie e sem
+  necessidade de banner (sessão por hash rotativo, não por cookie); não mexi
+  em mais nada no painel. Falta só o Lucas conferir o dashboard depois do
+  próximo deploy pra ver as primeiras visitas chegando.

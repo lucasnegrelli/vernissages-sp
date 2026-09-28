@@ -183,6 +183,7 @@ function pagina({ titulo, desc, canonical, corpo, jsonld, wide }) {
 <link rel="icon" type="image/png" href="${SITE}/icon-192.png">
 <style>${CSS}</style>
 <link rel="stylesheet" href="${SITE}/temporada.css">
+<script data-goatcounter="https://vernissages.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld)}</scr`+`ipt>` : ''}
 </head>
 <body>
