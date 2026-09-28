@@ -63,7 +63,7 @@
   "numero-duracao-galeria": "2026-09-25",
   "entrada-na-abertura": "2026-09-27",
   "obra-recem-aberta": "2026-09-28",
-  "undefined": "2026-10-01",
+  "undefined": "2026-10-08",
   "salao-jardins-tres-bairros": "2026-10-02",
   "deriva-jardim-europa": "2026-10-03",
   "deriva-pinheiros": "2026-10-05",
@@ -71,5 +71,9 @@
   "deriva-luz": "2026-10-03",
   "numero-oeste": "2026-10-05",
   "numero-fecha30": "2026-10-02",
-  "entrada-etiqueta-de-parede": "2026-10-05"
+  "entrada-etiqueta-de-parede": "2026-10-05",
+  "salao-museus-oeste": "2026-10-05",
+  "aproximacao-bordado": "2026-10-07",
+  "obra-morumbi": "2026-10-09",
+  "deriva-so-galeria": "2026-10-10"
 }

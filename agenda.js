@@ -82,7 +82,11 @@ async function escolher(DATA, hoje, cfg) {
     else if (e.fim && e.fim >= de && e.fim <= fechaAte && e.ini < de) tipo = 'fecha';
     if (!tipo) continue;
     let rel = null, dim = null;
-    try { rel = exigirObra(e, { recusarVista: false }); dim = await medir(rel); } catch { rel = null; }
+    /* Achado 28/09/2026: o carrossel aceitava vista de sala (recusarVista:
+       false) — o resto do sistema (obra/rima/aproximação) sempre recusou.
+       "Nunca foto de galeria, só foto de obra" vale aqui também; sem
+       reprodução melhor, a mostra entra sem imagem, não com a errada. */
+    try { rel = exigirObra(e, { recusarVista: true }); dim = await medir(rel); } catch { rel = null; }
     if (dim && (!dim.w || dim.w < 700)) rel = null;
     itens.push({ e, v, tipo, rel, dim, dia: tipo === 'abre' ? e.ini : e.fim, hora: tipo === 'abre' ? horaAbertura(e) : '' });
   }

@@ -1,82 +1,66 @@
 {
-  "titulo": "Semana de 01/10 a 07/10/2026",
+  "titulo": "Semana de 05/10 a 11/10/2026",
   "_leiame": [
     "ESTE ARQUIVO É GERADO. Rode `node planejar.js` para refazê-lo a partir do REPERTORIO.json.",
     "Editar à mão funciona e é legítimo — mas a edição se perde no próximo planejar.js.",
     "Para mudar o repertório de vez, mexa no REPERTORIO.json, não aqui.",
-    "Gerado em 2026-09-25."
+    "Gerado em 2026-09-28."
   ],
   "fora": [
     "Terra que Desmancha, Evapora e Solidifica — Coletivo Poíesis|Vazio Criativo"
   ],
   "posts": [
     {
-      "data": "2026-10-01",
-      "formato": "agenda",
-      "ordem": 1,
-      "paleta": "escuro"
-    },
-    {
-      "data": "2026-10-02",
-      "formato": "numero",
-      "ordem": 1,
-      "paleta": "escuro",
-      "textura": 0.06,
-      "ideia": "numero-fecha30",
-      "nome": "numero-fecha30",
-      "_titulo": "O número: quantas mostras somem em um mês",
-      "_troca": "sem obra inédita com imagem >=1400px na base em 02/10",
-      "ajustes": {
-        "conta": "fecha30"
-      }
-    },
-    {
-      "data": "2026-10-03",
-      "formato": "deriva",
-      "ordem": 1,
-      "paleta": "linho",
-      "textura": 0.09,
-      "ideia": "deriva-luz",
-      "nome": "deriva-luz",
-      "ajustes": {
-        "filtro": {
-          "bairro": "Jardim Europa"
-        }
-      },
-      "_titulo": "Luz a pé: as três Pinacotecas",
-      "_troca": "Jardim Europa já saiu em 27/09; config escrito à mão com as três casas"
-    },
-    {
       "data": "2026-10-05",
-      "formato": "entrada",
+      "formato": "salao",
       "ordem": 1,
-      "paleta": "cal",
-      "textura": 0.06,
-      "ideia": "entrada-etiqueta-de-parede",
-      "nome": "entrada-etiqueta-de-parede",
-      "_titulo": "Como ler a etiqueta de parede",
-      "_troca": "numero-oeste fica para outra semana: dois números seguidos",
+      "paleta": "temporada",
+      "textura": 0.05,
+      "ideia": "salao-museus-oeste",
+      "nome": "salao-museus-oeste",
       "ajustes": {
-        "virada": "A etiqueta não explica a obra. Ela diz o mínimo para você não precisar perguntar o óbvio.",
-        "porta": [
-          "A primeira linha é o nome do artista. A segunda, o título da obra — em itálico, quando a casa segue a norma.",
-          "Depois vem o ano. Se tem dois anos separados por traço, a obra levou esse tempo para ficar pronta.",
-          "A linha seguinte é a técnica: óleo sobre tela, fotografia, instalação. É a receita, não o sentido.",
-          "Por último, as medidas: altura antes da largura, em centímetros. Serve para imaginar a obra antes de chegar perto.",
-          "Às vezes aparece \"cortesia\" e o nome da galeria ou do colecionador: é de quem a obra é hoje."
-        ]
+        "texto": [
+          "A Zona Oeste inteira numa parede só: galeria comercial ao lado de museu, sem hierarquia de importância.",
+          "É o recorte mais denso do mapa — cabe pouco de fora dele numa mesma tarde."
+        ],
+        "virada": "Museu com ingresso barato a poucas quadras de galeria de graça. A combinação é o roteiro.",
+        "filtro": {
+          "zona": "Oeste"
+        }
       }
     },
     {
       "data": "2026-10-07",
       "formato": "aproximacao",
       "ordem": 1,
-      "paleta": "tinta",
+      "paleta": "temporada",
       "textura": 0.05,
-      "ideia": "aproximacao-cor-unica",
-      "nome": "aproximacao-cor-unica",
-      "pular": true,
-      "_pular": "curada da semana seguinte: escrever config na próxima rodada"
+      "ideia": "aproximacao-bordado",
+      "nome": "aproximacao-bordado"
+    },
+    {
+      "data": "2026-10-08",
+      "formato": "agenda",
+      "ordem": 1,
+      "paleta": "temporada"
+    },
+    {
+      "data": "2026-10-09",
+      "formato": "obra",
+      "ordem": 1,
+      "paleta": "temporada",
+      "textura": 0.05,
+      "ideia": "obra-morumbi",
+      "nome": "obra-forte"
+    },
+    {
+      "data": "2026-10-10",
+      "formato": "deriva",
+      "ordem": 1,
+      "paleta": "temporada",
+      "textura": 0.07,
+      "ideia": "deriva-so-galeria",
+      "nome": "deriva-jardim-europa"
     }
   ]
 }
