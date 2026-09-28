@@ -448,7 +448,10 @@ function paginaFimDeSemana(DATA) {
     const v = V[e.v];
     if (!v || !e.ini || e.ini > J.domingo) return;
     if (e.fim && e.fim < HOJE) return;
-    const x = { e, v, id: slug(e.t) + '--' + slug(e.v), gratis: !!(v.ing && v.ing.g), hora: horaFds(e, v) };
+    /* Mesma régua do rodapé do site (ingressoDe/ingTag no index.html): `ing`
+       explícito manda; sem ele, galeria comercial é sempre entrada franca. */
+    const gratis = v.ing ? !!v.ing.g : v.tipo === 'galeria';
+    const x = { e, v, id: slug(e.t) + '--' + slug(e.v), gratis, hora: horaFds(e, v) };
     if (e.ini >= semanaAtras) abre.push(x);
     else if (e.fim && e.fim <= fechaAte) fecha.push(x);
     else if (!e.fim || e.fim >= J.sabado) cartaz.push(x);
@@ -593,6 +596,7 @@ function paginaMontaMeuSabado() {
 .mms-campo label{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:1.4px;color:var(--muted);margin-bottom:6px}
 .mms-campo select{width:100%;background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:12px;padding:10px 14px;font-size:.95rem}
 .mms-campo select:focus{outline:none;border-color:var(--accent)}
+.mms-campo select option{background:#15151a;color:#f3f3f7}
 #mms-ir{background:var(--accent);color:var(--onaccent);border:none;border-radius:22px;padding:11px 22px;font-size:.92rem;font-weight:700;cursor:pointer;justify-self:start}
 #mms-ir:hover{opacity:.9}
 #mms-aviso{display:none;color:var(--accent2);font-size:.9rem;margin:14px 0}
@@ -751,6 +755,13 @@ function desenhar(paradas,totalMetros){
   zapLinhas.push('Montado em ${SITE}/monta-meu-sabado.html');
   document.getElementById('mms-zap').href='https://wa.me/?text='+encodeURIComponent(zapLinhas.join('\\n'));
 
+  /* O mapa entra visível ANTES do L.map() inicializar — se o container
+     nasce dentro de um ancestral com display:none, o Leaflet mede 0x0 no
+     instante da criação e nunca mais acerta o tamanho sozinho (achado
+     28/09/2026: mapa em branco na primeira vez que a pessoa monta um
+     roteiro, funcionando só a partir da segunda). */
+  document.getElementById('mms-resultado').style.display='block';
+
   var el=document.getElementById('mms-mapa');
   el.style.display='';
   if(typeof L==='undefined'){el.style.display='none';}
@@ -766,9 +777,8 @@ function desenhar(paradas,totalMetros){
         .bindPopup('<b>'+(i+1)+'. '+p.v.name.replace(/</g,'&lt;')+'</b><br>'+p.e.t.replace(/</g,'&lt;'))
         .addTo(mapaObj);
     });
-    mapaObj.fitBounds(latlngs,{padding:[36,36],maxZoom:16});
+    setTimeout(function(){ mapaObj.invalidateSize(); mapaObj.fitBounds(latlngs,{padding:[36,36],maxZoom:16}); }, 0);
   }
-  document.getElementById('mms-resultado').style.display='block';
 }
 })();
 </scr`+`ipt>`;

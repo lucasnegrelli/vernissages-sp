@@ -98,6 +98,7 @@ ul.lista li,.grid2 a{transition:.2s}
 .mms-campo label{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:1.4px;color:var(--muted);margin-bottom:6px}
 .mms-campo select{width:100%;background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:12px;padding:10px 14px;font-size:.95rem}
 .mms-campo select:focus{outline:none;border-color:var(--accent)}
+.mms-campo select option{background:#15151a;color:#f3f3f7}
 #mms-ir{background:var(--accent);color:var(--onaccent);border:none;border-radius:22px;padding:11px 22px;font-size:.92rem;font-weight:700;cursor:pointer;justify-self:start}
 #mms-ir:hover{opacity:.9}
 #mms-aviso{display:none;color:var(--accent2);font-size:.9rem;margin:14px 0}
@@ -256,6 +257,13 @@ function desenhar(paradas,totalMetros){
   zapLinhas.push('Montado em https://vernissagessp.com.br/monta-meu-sabado.html');
   document.getElementById('mms-zap').href='https://wa.me/?text='+encodeURIComponent(zapLinhas.join('\n'));
 
+  /* O mapa entra visível ANTES do L.map() inicializar — se o container
+     nasce dentro de um ancestral com display:none, o Leaflet mede 0x0 no
+     instante da criação e nunca mais acerta o tamanho sozinho (achado
+     28/09/2026: mapa em branco na primeira vez que a pessoa monta um
+     roteiro, funcionando só a partir da segunda). */
+  document.getElementById('mms-resultado').style.display='block';
+
   var el=document.getElementById('mms-mapa');
   el.style.display='';
   if(typeof L==='undefined'){el.style.display='none';}
@@ -271,9 +279,8 @@ function desenhar(paradas,totalMetros){
         .bindPopup('<b>'+(i+1)+'. '+p.v.name.replace(/</g,'&lt;')+'</b><br>'+p.e.t.replace(/</g,'&lt;'))
         .addTo(mapaObj);
     });
-    mapaObj.fitBounds(latlngs,{padding:[36,36],maxZoom:16});
+    setTimeout(function(){ mapaObj.invalidateSize(); mapaObj.fitBounds(latlngs,{padding:[36,36],maxZoom:16}); }, 0);
   }
-  document.getElementById('mms-resultado').style.display='block';
 }
 })();
 </script>
