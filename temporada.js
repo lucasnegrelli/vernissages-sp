@@ -80,6 +80,9 @@ function css(T) {
 }
 body{background:var(--bg)}
 body::before,body::after{display:none!important}
+/* faixa de cor no topo — a assinatura do cartaz de Bienal, não um detalhe
+   de painel: uma barra só, sem gradiente, sem sombra. */
+html{border-top:6px solid var(--accent)}
 *{box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;text-shadow:none!important}
 header,.top{background:var(--bg)!important;border-bottom:${fil} solid var(--ink)!important}
 h1,header h1,.top a{font-family:var(--display);font-weight:${f.pesoTitulo};letter-spacing:${f.trackingTitulo}}
@@ -93,7 +96,18 @@ header h1 span,.top a span{color:var(--accent)}
 .btn:hover,.wk:hover,.pano-go:hover,.navedital:hover{background:var(--accent)!important;color:var(--onaccent)!important;border-color:var(--accent)!important;transform:none!important}
 ul.lista li:hover,.grid2 a:hover,.card:hover{transform:none!important;border-color:var(--ink)!important}
 ::selection{background:var(--accent);color:var(--onaccent)}
+/* As pílulas de status (verde/azul/vermelho fixos) são exatamente a "cara de
+   painel" que o DESIGN.md manda tirar — na temporada, status vira só
+   acento e neutro, nunca semáforo. */
+.tag{background:transparent!important;background-image:none!important;border-width:${fil}!important}
+.tag.current,.tag.paid,.tag.tbc{color:var(--muted)!important;border-color:var(--border)!important}
+.tag.closing,.tag.fair{color:var(--accent)!important;border-color:var(--accent)!important}
+.tag.free{color:var(--ink)!important;border-color:var(--ink)!important}
 footer::before{content:'${T.selo.replace(/'/g, "\\'")}';display:block;font-family:var(--display);font-weight:${f.pesoTitulo};color:var(--accent);letter-spacing:.02em;margin-bottom:10px;text-transform:uppercase;font-size:.78rem}
+/* mesma assinatura no cabeçalho — a temporada não é só cor trocada */
+.hbrand::after{content:'${T.selo.replace(/'/g, "\\'")}';display:block;font-family:var(--display);
+  font-weight:700;color:var(--accent);letter-spacing:.18em;text-transform:uppercase;
+  font-size:.68rem;margin-top:8px}
 `;
 }
 

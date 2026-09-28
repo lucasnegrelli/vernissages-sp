@@ -61,6 +61,23 @@
     mask-image:radial-gradient(ellipse 85% 55% at 50% 0%,#000 20%,transparent 78%)}
   ::selection{background:var(--accent);color:var(--onaccent)}
 
+  /* ---------- hero 3D (só outubro/2026, ver o script logo após <body>) ---------- */
+  #hero3d{position:relative;height:100svh;min-height:560px;overflow:hidden;background:#0A0A0A}
+  #hero3d-cena{position:absolute;inset:0;z-index:0}
+  .hero3d-txt{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;
+    justify-content:center;padding:0 32px;max-width:1320px;margin:0 auto;pointer-events:none}
+  .hero3d-kick{font-size:.85rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;
+    color:#FF3B1D;margin-bottom:18px}
+  .hero3d-h1{font-family:'Inter Tight',ui-sans-serif,system-ui,sans-serif;font-weight:800;
+    letter-spacing:-.04em;line-height:.92;text-transform:uppercase;color:#F2F0EA;
+    font-size:clamp(2.6rem,8vw,6rem);max-width:900px}
+  .hero3d-sub{margin-top:22px;font-size:1.15rem;color:#B9B6AE;max-width:480px;font-weight:400}
+  .hero3d-baixo{pointer-events:auto;position:absolute;left:32px;bottom:28px;width:40px;height:40px;
+    border:1px solid #3A3936;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    color:#F2F0EA;text-decoration:none;font-size:1.1rem;transition:.2s}
+  .hero3d-baixo:hover{border-color:#FF3B1D;color:#FF3B1D}
+  @media(prefers-reduced-motion:reduce){#hero3d-cena{opacity:.9}}
+
   /* ---------- header ---------- */
   header{position:sticky;top:0;z-index:60;padding:16px 0 14px;
     background:rgba(10,10,13,.62);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
@@ -656,6 +673,21 @@
 <script data-goatcounter="https://vernissages.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
+<!-- Hero 3D — só na temporada Concreto (outubro/2026). Decide antes do
+     primeiro paint pra não piscar; fora de outubro isto não existe (nem o
+     Three.js é baixado) e o site abre direto no header de sempre. -->
+<script>
+(function(){
+  var mesHoje = new Date(Date.now() - 3 * 3600e3).toISOString().slice(0, 7);
+  if (mesHoje !== '2026-10') return;
+  document.write('<div id="hero3d"><div id="hero3d-cena"></div><div class="hero3d-txt">' +
+    '<div class="hero3d-kick">Temporada 01 · Concreto</div>' +
+    '<h1 class="hero3d-h1">VERNISSAGES<br>SÃO PAULO</h1>' +
+    '<p class="hero3d-sub">Galerias, aberturas de exposições e roteiros de arte em São Paulo</p>' +
+    '<a class="hero3d-baixo" href="#kpis" aria-label="Ver a agenda">↓</a>' +
+    '</div></div>');
+})();
+</script>
 <header>
   <div class="hwrap">
     <div class="hbrand">
@@ -1813,6 +1845,91 @@ if(window.caches){
 }
 
 draw();
+</script>
+<script>
+/* Hero 3D — cena da temporada Concreto. Só roda se #hero3d existir (o
+   script logo após <body> já decidiu isso por mês); fora de outubro/2026
+   esta tag nem baixa o Three.js. Paralaxe de mouse (rotação do grupo +
+   deslocamento da câmera) e de scroll (câmera avança em Z). Formas com
+   MeshBasicMaterial — chapadas, sem sombra nem brilho, pela mesma regra do
+   resto do site nesta temporada. */
+(function(){
+  var el = document.getElementById('hero3d-cena');
+  if (!el) return;
+
+  var s = document.createElement('script');
+  s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+  s.onload = iniciar;
+  document.head.appendChild(s);
+
+  function iniciar(){
+    var reduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var mobile = window.innerWidth < 700;
+    var N_FORMAS = mobile ? 12 : 22;
+
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(50, el.clientWidth / el.clientHeight, 1, 2000);
+    camera.position.z = 700;
+
+    var renderer = new THREE.WebGLRenderer({antialias: true, alpha: false});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setSize(el.clientWidth, el.clientHeight);
+    renderer.setClearColor(0x0A0A0A, 1);
+    el.appendChild(renderer.domElement);
+
+    var CORES = [0xF2F0EA, 0xB9B6AE, 0x8C8A84, 0x3A3936];
+    var ACENTO = 0xFF3B1D;
+    var grupo = new THREE.Group();
+    scene.add(grupo);
+
+    function circulo(raio, cor){ return new THREE.Mesh(new THREE.CircleGeometry(raio, 48), new THREE.MeshBasicMaterial({color: cor, side: THREE.DoubleSide})); }
+    function anelForma(raio, esp, cor){ return new THREE.Mesh(new THREE.RingGeometry(raio - esp, raio, 48), new THREE.MeshBasicMaterial({color: cor, side: THREE.DoubleSide})); }
+    function retangulo(w, h, cor){ return new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({color: cor, side: THREE.DoubleSide})); }
+
+    for (var i = 0; i < N_FORMAS; i++){
+      var tipo = Math.random();
+      var cor = Math.random() < 0.14 ? ACENTO : CORES[Math.floor(Math.random() * CORES.length)];
+      var mesh;
+      if (tipo < 0.35) mesh = Math.random() < 0.5 ? circulo(30 + Math.random() * 70, cor) : anelForma(30 + Math.random() * 70, 6 + Math.random() * 8, cor);
+      else if (tipo < 0.65) { var sd = 30 + Math.random() * 90; mesh = retangulo(sd, sd, cor); }
+      else if (tipo < 0.85) mesh = retangulo(40 + Math.random() * 120, 40 + Math.random() * 160, cor);
+      else { mesh = retangulo(120 + Math.random() * 260, 4 + Math.random() * 5, cor); mesh.rotation.z = Math.random() < 0.5 ? 0 : Math.PI / 2; }
+      var z = -600 + Math.random() * 1200;
+      mesh.position.set((Math.random() - 0.5) * 1600, (Math.random() - 0.5) * 1000, z);
+      mesh.rotation.z += (Math.random() - 0.5) * 0.3;
+      grupo.add(mesh);
+    }
+
+    var mouseX = 0, mouseY = 0, alvoX = 0, alvoY = 0, scrollY = 0;
+    window.addEventListener('mousemove', function(e){
+      alvoX = (e.clientX / window.innerWidth - 0.5) * 2;
+      alvoY = (e.clientY / window.innerHeight - 0.5) * 2;
+    });
+    window.addEventListener('scroll', function(){ scrollY = window.scrollY; }, {passive: true});
+    window.addEventListener('resize', function(){
+      camera.aspect = el.clientWidth / el.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(el.clientWidth, el.clientHeight);
+    });
+
+    if (reduzido) {
+      renderer.render(scene, camera);
+    } else {
+      (function animar(){
+        requestAnimationFrame(animar);
+        mouseX += (alvoX - mouseX) * 0.04;
+        mouseY += (alvoY - mouseY) * 0.04;
+        grupo.rotation.y = mouseX * 0.5;
+        grupo.rotation.x = -mouseY * 0.35;
+        camera.position.x += (mouseX * 260 - camera.position.x) * 0.06;
+        camera.position.y += (-mouseY * 180 - camera.position.y) * 0.06;
+        camera.position.z = 700 - Math.min(scrollY, 500) * 0.5;
+        camera.lookAt(0, 0, 0);
+        renderer.render(scene, camera);
+      })();
+    }
+  }
+})();
 </script>
 </body>
 </html>
