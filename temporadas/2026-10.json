@@ -32,5 +32,6 @@
   "forma": {
     "raio": 0,
     "filete": 2
-  }
+  },
+  "marca": "circulo"
 }

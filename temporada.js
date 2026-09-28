@@ -60,6 +60,25 @@ function rgba(hex, a) {
   return `rgba(${parseInt(h.slice(0, 2), 16)},${parseInt(h.slice(2, 4), 16)},${parseInt(h.slice(4, 6), 16)},${a})`;
 }
 
+/* A marca não é um logo fixo — é um sistema que muda e continua
+   reconhecível (Experimental Jetset/Whitney "Responsive W", Wolff
+   Olins/Tate, os dois citados no DESIGN.md). Uma peça geométrica ao lado do
+   "SP" do header, amarrada à mesma regra visual da temporada (círculo
+   cheio/vazio no Concreto, risco no Lambe) — não é enfeite solto, é o
+   mesmo vocabulário das peças de social aplicado ao próprio nome do site. */
+function marca(nome) {
+  if (!nome) return '';
+  const base = `header h1 span::after,.top a span::after{content:'';display:inline-block;
+    margin-left:.22em;vertical-align:.05em;background:var(--accent)}`;
+  if (nome === 'circulo') return base + `
+header h1 span::after,.top a span::after{width:.32em;height:.32em;border-radius:50%}`;
+  if (nome === 'quadrado') return base + `
+header h1 span::after,.top a span::after{width:.3em;height:.3em}`;
+  if (nome === 'risco') return base + `
+header h1 span::after,.top a span::after{width:.7em;height:.12em;vertical-align:.18em}`;
+  return '';
+}
+
 /* A camada do site. Sobrepõe os tokens do index.html e do template do
    gerar.js, e desliga o que o DESIGN.md chama de "cara de painel": vidro,
    sombra, degradê de fundo e canto arredondado. */
@@ -88,6 +107,7 @@ header,.top{background:var(--bg)!important;border-bottom:${fil} solid var(--ink)
 h1,header h1,.top a{font-family:var(--display);font-weight:${f.pesoTitulo};letter-spacing:${f.trackingTitulo}}
 h2{font-family:var(--display);font-weight:${f.pesoTitulo};border-bottom:${fil} solid var(--ink)}
 header h1 span,.top a span{color:var(--accent)}
+${marca(T.marca)}
 .kpi b{font-family:var(--display);font-weight:${f.pesoTitulo};color:var(--ink)}
 /* os véus amarelos que estavam escritos direto no CSS viram filete da cor do mês */
 .navedital,.tag.opening,.wk .nw.hj,.bchip.on,.bchip.on .bchip-bar,.pano-go,.btn.intel,.cta,.card,.wk,.pano,.box,ul.lista li,.grid2 a{background:transparent!important;background-image:none!important}
