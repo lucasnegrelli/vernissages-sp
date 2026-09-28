@@ -90,6 +90,10 @@ const arg = (n, d) => {
 const LIMITE = Number(arg('--limite', '0')) || 0;
 const SO_VENUE = arg('--venue', '');
 const SAIDA = arg('--saida', path.join(RAIZ, 'PENDENTE', 'IMAGENS-PROPOSTAS.md'));
+/* Por padrão só busca quem não tem `img`. --rebuscar entra na fila mesmo
+   quem já tem — para quando a proposta atual saiu vista de sala e vale
+   tentar de novo com a heurística de legenda (28/09/2026). */
+const REBUSCAR = process.argv.includes('--rebuscar');
 
 /* ---------- helpers ---------- */
 
@@ -170,7 +174,10 @@ const INDICES = ['/exposicoes', '/exposicoes/', '/exhibitions', '/exhibitions/',
    mais que na URL, porque URL costuma ter slug truncado. */
 function pontuar(link, alvo){
   const tl = new Set(toks(link.texto));
-  const tu = new Set(toks(decodeURIComponent(link.href)));
+  /* decodeURIComponent lanca em "%" que nao e sequencia hex valida — link com
+     query string tipo "?desconto=20%off" (achado 28/09/2026, Marli Matsumoto). */
+  let href; try { href = decodeURIComponent(link.href); } catch { href = link.href; }
+  const tu = new Set(toks(href));
   let p = 0;
   for (const t of alvo){
     if (tl.has(t)) p += 3;
@@ -213,6 +220,17 @@ const medidor = require(path.join(RAIZ, 'medir-imagem.js'));
 const LIXO_RE = /(logo|icone?|favicon|avatar|placeholder|sprite|banner|botao|button|arrow|seta|pattern|bg[-_.]|background|assinatura|selo|watermark)/i;
 const EXT_RE = /\.(jpe?g|png|webp)(\?|#|$)/i;
 
+/* Achado em 28/09/2026, olhando o acervo de verdade: a maior imagem da
+   página nem sempre é a obra — muita vez é a vista da sala (ou a fachada),
+   e essas venciam por serem grandes e passarem no filtro de LIXO_RE, que só
+   pega arquivo de interface. A legenda/alt da imagem costuma denunciar qual
+   é qual: a galeria escreve "vista da exposição" para o ambiente e a ficha
+   técnica (medida, técnica, "sem título") para a obra. Não é perfeito —
+   segue proposta pra revisão, nunca escreve sozinho — mas empurra o placar
+   na direção certa antes de um humano olhar. */
+const VISTA_RE = /(vista\s+d[aeo]s?\s+(expos|mostra|sala|galeria)|installation\s*view|instala[cç][aã]o\s+geral|fachada|facade|abertura\s+d[ae]|vernissage|opening\s+night|espa[cç]o\s+expositivo|interior\s+d[ae]\s+galeria)/i;
+const OBRA_RE = /(\d+\s*[x×]\s*\d+\s*(cm|m)|[oó]leo\s+sobre|t[ée]cnica\s+mista|acr[ií]lic|escultura|fotografia|grav(ura|ação)|colagem|desenho\s+sobre|impress[aã]o|sem\s+t[ií]tulo|untitled|instala[cç][aã]o\s+de\b)/i;
+
 /* Pega a maior entrada de um srcset. O atributo lista a mesma imagem em
    varias larguras — "foto-400.jpg 400w, foto-2000.jpg 2000w" — e o numero
    antes do w e a largura real declarada pelo proprio site. */
@@ -229,28 +247,34 @@ function doSrcset(valor, base) {
 
 function candidatas(html, base) {
   const vistas = new Map();
-  const por = (url, origem, declarada) => {
+  const por = (url, origem, declarada, legenda) => {
     if (!url || !/^https?:/i.test(url)) return;
     if (LIXO_RE.test(url)) return;
     const ant = vistas.get(url);
     if (!ant || (declarada || 0) > (ant.declarada || 0)) {
-      vistas.set(url, { url, origem, declarada: declarada || 0 });
+      vistas.set(url, { url, origem, declarada: declarada || 0, legenda: legenda || (ant && ant.legenda) || '' });
+    } else if (ant && !ant.legenda && legenda) {
+      ant.legenda = legenda;
     }
   };
 
-  // srcset de <img> e de <source> dentro de <picture>
+  // srcset de <img> e de <source> dentro de <picture> — o alt, quando existe,
+  // vem no mesmo <img> e é o sinal mais direto de "isto é a obra" vs "isto é
+  // a sala": ver VISTA_RE/OBRA_RE.
   let m, re = /<(?:img|source)\b[^>]*\bsrcset=["']([^"']+)["'][^>]*>/gi;
   while ((m = re.exec(html)) !== null) {
-    for (const c of doSrcset(m[1], base)) por(c.url, 'srcset', c.declarada);
+    const altM = m[0].match(/\balt=["']([^"']*)["']/i);
+    for (const c of doSrcset(m[1], base)) por(c.url, 'srcset', c.declarada, altM && altM[1]);
   }
 
   // src e os atributos de lazy-loading mais comuns
   re = /<img\b([^>]*)>/gi;
   while ((m = re.exec(html)) !== null) {
     const attrs = m[1];
+    const altM = attrs.match(/\balt=["']([^"']*)["']/i);
     for (const a of ['data-src', 'data-lazy-src', 'data-original', 'data-large', 'data-full', 'src']) {
       const mm = attrs.match(new RegExp('\\b' + a + '=["\']([^"\']+)["\']', 'i'));
-      if (mm) { try { por(new URL(mm[1], base).href, a); } catch {} }
+      if (mm) { try { por(new URL(mm[1], base).href, a, 0, altM && altM[1]); } catch {} }
     }
   }
 
@@ -316,15 +340,20 @@ async function melhorImagem(html, base) {
     if (!d || !d.w) continue;
     const diag = medidor.diagnosticar(d);
     medidas.push({ ...c, w: d.w, h: d.h, area: d.w * d.h, grau: diag.grau });
-    /* Achou reproducao grande de verdade: nao vale gastar as outras. */
-    if (d.w >= 2000 && diag.grau === 'ok') break;
+    /* Achou reproducao grande de verdade, com legenda de obra: nao vale
+       gastar as outras. Legenda de vista de sala nunca corta a busca cedo —
+       melhor testar mais uma candidata que travar na primeira sala vazia. */
+    if (d.w >= 2000 && diag.grau === 'ok' && !VISTA_RE.test(c.legenda || '')) break;
   }
   if (!medidas.length) return null;
 
-  /* Card de rede social so vence se nao houver mais nada. */
+  /* Card de rede social so vence se nao houver mais nada; dentro do mesmo
+     tamanho, a legenda decide: "vista da exposicao" perde pra qualquer
+     outra, "oleo sobre tela, 80 x 60 cm" ganha. Sem legenda, so o tamanho. */
   const peso = g => (g === 'ok' ? 2 : g === 'curta' ? 1 : 0);
-  medidas.sort((a, b) => peso(b.grau) - peso(a.grau) || b.area - a.area);
-  return { melhor: medidas[0], testadas: medidas.length };
+  const sinal = c => VISTA_RE.test(c.legenda || '') ? -1 : OBRA_RE.test(c.legenda || '') ? 1 : 0;
+  medidas.sort((a, b) => peso(b.grau) - peso(a.grau) || sinal(b) - sinal(a) || b.area - a.area);
+  return { melhor: medidas[0], testadas: medidas.length, possivelVista: sinal(medidas[0]) < 0 };
 }
 
 /* Crédito: DELIBERADAMENTE não tenta adivinhar o fotógrafo.
@@ -425,6 +454,7 @@ async function descobrir(e, v){
   r.grau = escolha.melhor.grau;
   r.origem = escolha.melhor.origem;
   r.testadas = escolha.testadas;
+  r.possivelVista = escolha.possivelVista;
   r.cred = credito(pag.html, v.name);
   return r;
 }
@@ -445,7 +475,8 @@ function relatorio(achados, faltas){
     const SINAL = { ok: '✓', curta: '~', cartao: '✗ card' };
     for (const a of achados){
       const cred = a.cred || '`Cortesia ' + a.venue + '` — **CONFERIR**';
-      s += '| ' + a.t + ' | ' + a.venue + ' | ' + (SINAL[a.grau] || '?') + ' ' + (a.dim || '?') +
+      const vista = a.possivelVista ? ' ⚠️ **pode ser vista de sala**' : '';
+      s += '| ' + a.t + ' | ' + a.venue + ' | ' + (SINAL[a.grau] || '?') + ' ' + (a.dim || '?') + vista +
            ' | ' + (a.origem || '?') + ' | `' + a.img + '` | ' + cred +
            ' | ' + a.confianca + ' | ' + a.pagina + ' |\n';
     }
@@ -454,13 +485,18 @@ function relatorio(achados, faltas){
 
     const cards = achados.filter(a => a.grau === 'cartao');
     const curtas = achados.filter(a => a.grau === 'curta');
+    const vistas = achados.filter(a => a.possivelVista);
     s += '**Tamanho.** `✓` serve para qualquer peça, inclusive recorte fechado. `~` está\n';
     s += 'abaixo de ' + medidor.LARGURA_MIN_RECORTE + ' px e só serve de capa. `✗ card` é medida de preview de\n';
     s += 'link — a página não expôs nada melhor, e vale procurar na viewing room ou\n';
     s += 'pedir a reprodução à galeria antes de aceitar.\n\n';
     if (cards.length) s += '- ' + cards.length + ' proposta(s) só têm card de rede social disponível.\n';
     if (curtas.length) s += '- ' + curtas.length + ' proposta(s) não aguentam recorte fechado.\n';
-    if (cards.length || curtas.length) s += '\n';
+    if (vistas.length) s += '- ⚠️ ' + vistas.length + ' proposta(s) marcadas "pode ser vista de sala" — a\n' +
+      '  legenda da imagem na fonte fala de ambiente/exposição, não de obra. Confira\n' +
+      '  antes de aceitar; se for mesmo vista de sala, procure outra candidata na\n' +
+      '  página ou peça a reprodução à galeria.\n';
+    if (cards.length || curtas.length || vistas.length) s += '\n';
   }
 
   if (faltas.length){
@@ -505,7 +541,7 @@ function relatorio(achados, faltas){
   const V = {};
   D.venues.forEach(v => V[v.name] = v);
 
-  let alvo = D.expos.filter(e => !e.img);
+  let alvo = REBUSCAR ? D.expos.slice() : D.expos.filter(e => !e.img);
   if (SO_VENUE) alvo = alvo.filter(e => norm(e.v).includes(norm(SO_VENUE)));
   if (LIMITE) alvo = alvo.slice(0, LIMITE);
 
