@@ -247,7 +247,7 @@ async function principal() {
   const hoje = flag('date', new Date().toISOString().slice(0, 10));
   const cfg = JSON.parse(fs.readFileSync(path.resolve(flag('config')), 'utf8'));
   const saida = path.resolve(RAIZ, flag('out', '.'));
-  cfg.paleta = PALETAS[cfg.paleta] || PALETAS.escuro;
+  cfg.paleta = PALETAS[cfg.paleta] || PALETAS.temporada || PALETAS.escuro;
   cfg.carimbo = carimbo(cfg, hoje);
 
   const DATA = carregarDados();

@@ -5,6 +5,8 @@ on:
     paths:
       - 'dados.js'
       - 'gerar.js'
+      - 'temporada.js'
+      - 'temporadas/**'
       - '.github/workflows/build.yml'
   schedule:
     - cron: '0 14 * * *'
@@ -27,6 +29,9 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Temporada do mes (temporada.css)
+        run: node temporada.js --css
+
       - name: Gerar acervo, paginas e sitemap
         run: node gerar.js
 
@@ -34,7 +39,7 @@ jobs:
         run: |
           git config user.name "vernissages-bot"
           git config user.email "actions@github.com"
-          git add -A acervo.json arquivo.html artistas.html editais.html sitemap.xml robots.txt m a
+          git add -A acervo.json arquivo.html artistas.html editais.html fim-de-semana.html temporada.css sitemap.xml robots.txt m a
           if git diff --staged --quiet; then
             echo "Nada mudou no acervo."
             exit 0

@@ -1,0 +1,38 @@
+{
+  "n": 2,
+  "nome": "Lambe",
+  "mes": "2026-11",
+  "selo": "Temporada 02 · Lambe",
+  "referencia": "O lambe-lambe da Gráfica Fidalga (Vila Madalena): letra de madeira, papel fluorescente, cartaz colado em série no muro.",
+  "regras": [
+    "letra condensada de madeira em caixa-alta, empilhada",
+    "papel fluorescente chapado por formato (rosa, amarelo, verde, laranja), tinta preta",
+    "repetição de cartaz em série como grafismo",
+    "canto reto, sem sombra, sem vidro",
+    "nada escrito sobre a obra (regra fixa, vale para toda temporada)"
+  ],
+  "cores": {
+    "fundo": "#FFE419",
+    "texto": "#111111",
+    "acento": "#FF4FA0",
+    "meio": "#2B2B2B",
+    "fraco": "#4A4A4A",
+    "apagado": "#8C8420",
+    "traco": "#6E6818",
+    "papel": "#FFE419",
+    "tinta": "#111111",
+    "extras": ["#FF4FA0", "#3BE37B", "#FF7A1F"]
+  },
+  "fontes": {
+    "css": "https://fonts.googleapis.com/css2?family=Anton&family=Alfa+Slab+One&family=Inter+Tight:wght@400;500;700;800&display=swap",
+    "titulo": "'Anton', 'Inter Tight', sans-serif",
+    "texto": "'Inter Tight', 'Switzer', sans-serif",
+    "pesoTitulo": 400,
+    "trackingTitulo": "0"
+  },
+  "forma": {
+    "raio": 0,
+    "filete": 8
+  },
+  "rascunho": "Tokens de partida tirados do identidades-b.js (B2). Revisar antes de 01/11: o Lucas achou o Lambe ousado — o site provavelmente fica com o papel creme e o fluorescente só no social."
+}

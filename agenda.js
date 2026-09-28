@@ -42,7 +42,12 @@ const base = require('./rima.js');
 const { carregarDados, exigirObra, medir, RAIZ, esc, tituloCurto, autoria, PALETAS } = base;
 
 const W = 1080, H = 1350;
-const ACENTO = '#C96F4A';           // o terracota da foto de perfil
+/* Em mês com temporada, acento, fonte e selo vêm do temporadas/AAAA-MM.json;
+   fora dela, o terracota da foto de perfil e a Switzer. */
+const TEMP = require('./temporada.js').atual();
+const ACENTO = TEMP ? TEMP.cores.acento : '#C96F4A';
+const FONTE = TEMP ? TEMP.fontes.titulo : "'Switzer',sans-serif";
+const FONTE_CSS = TEMP ? `@import url('${TEMP.fontes.css}');` : '';
 const DIAS = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB'];
 const dt = iso => new Date(iso + 'T12:00:00');
 const somaDias = (iso, n) => { const d = dt(iso); d.setDate(d.getDate() + n); return d.toISOString().slice(0, 10); };
@@ -91,11 +96,11 @@ async function escolher(DATA, hoje, cfg) {
 /* ---------- desenho ---------- */
 
 function css(p) {
-  return `
+  return `${FONTE_CSS}
 @font-face{font-family:'Switzer';src:url('fontes/Switzer-Variable.woff2') format('woff2-variations');font-weight:100 900;font-display:block}
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#000}
-.s{position:relative;width:${W}px;height:${H}px;background:${p.fundo};color:${p.texto};font-family:'Switzer',sans-serif;overflow:hidden}
+.s{position:relative;width:${W}px;height:${H}px;background:${p.fundo};color:${p.texto};font-family:${FONTE};overflow:hidden}
 .et{font-size:18px;font-weight:600;letter-spacing:.28em;text-transform:uppercase}
 .marca{position:absolute;left:72px;bottom:60px;font-size:17px;font-weight:600;letter-spacing:.30em;text-transform:uppercase;color:${p.apagado}}
 .pag{position:absolute;right:72px;bottom:60px;font-size:17px;font-weight:600;letter-spacing:.2em;color:${p.apagado}}
@@ -155,7 +160,7 @@ function capa(sel, hoje) {
   const gratis = sel.itens.filter(x => x.v.ing && x.v.ing.g).length;
   const fotos = sel.itens.filter(x => x.rel).slice(0, 3);
   return `<div class="s capa">
-    <div class="topo"><span class="et">Vernissages SP</span><span class="et">o fim de semana</span></div>
+    <div class="topo"><span class="et">Vernissages SP</span><span class="et">${TEMP ? esc(TEMP.selo) : 'o fim de semana'}</span></div>
     <div class="grande">Arte em SP<br>este fim<br>de semana</div>
     <div class="datas">${curto(sel.de)} — ${curto(sel.domingo)}</div>
     <div class="mosaico">${fotos.map(x => `<div style="background-image:url('${esc(x.rel)}')"></div>`).join('')}</div>
@@ -210,7 +215,7 @@ function lista(sel, n, total) {
 }
 
 function montarHTML(sel, cfg, hoje) {
-  const p = PALETAS[cfg.paleta] || PALETAS.escuro;
+  const p = PALETAS[cfg.paleta] || PALETAS.temporada || PALETAS.escuro;
   /* Slide de mostra só para quem tem obra: slide tipográfico em série cansa.
      Quem não tem imagem aparece na lista final, que é onde o plano se faz. */
   const comObra = sel.itens.filter(x => x.rel).slice(0, cfg.max || 8);

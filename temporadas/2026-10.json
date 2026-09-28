@@ -1,0 +1,36 @@
+{
+  "n": 1,
+  "nome": "Concreto",
+  "mes": "2026-10",
+  "selo": "Temporada 01 · Concreto",
+  "referencia": "Concretismo paulista — Alexandre Wollner, Geraldo de Barros, Grupo Ruptura (1952) e os cartazes da Bienal de São Paulo — com a tipografia-imagem do Stedelijk (Mevis & Van Deursen).",
+  "regras": [
+    "grade de 6 colunas; texto em blocos, como poesia concreta",
+    "círculo cheio = abre; círculo vazio = últimos dias",
+    "risco vermelho sobre o que está acabando",
+    "canto reto, filete de 2 px no lugar de caixa; nada de sombra, vidro ou degradê",
+    "nada escrito sobre a obra (regra fixa, vale para toda temporada)"
+  ],
+  "cores": {
+    "fundo": "#0A0A0A",
+    "texto": "#F2F0EA",
+    "acento": "#FF3B1D",
+    "meio": "#B9B6AE",
+    "fraco": "#8C8A84",
+    "apagado": "#3A3936",
+    "traco": "#56544F",
+    "papel": "#F2F0EA",
+    "tinta": "#0A0A0A"
+  },
+  "fontes": {
+    "css": "https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700;800&display=swap",
+    "titulo": "'Inter Tight', 'Switzer', sans-serif",
+    "texto": "'Inter Tight', 'Switzer', sans-serif",
+    "pesoTitulo": 800,
+    "trackingTitulo": "-0.05em"
+  },
+  "forma": {
+    "raio": 0,
+    "filete": 2
+  }
+}

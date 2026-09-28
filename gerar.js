@@ -7,6 +7,7 @@
      a/<slug>.html    uma página por artista
      arquivo.html     índice de todas as mostras (em cartaz + encerradas)
      artistas.html    índice de artistas
+     fim-de-semana.html  o que abre, fecha e segue em cartaz no sábado/domingo
      sitemap.xml, robots.txt
    Não depende de nada além do Node.
    ============================================================ */
@@ -181,13 +182,14 @@ function pagina({ titulo, desc, canonical, corpo, jsonld, wide }) {
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="${SITE}/icon-192.png">
 <style>${CSS}</style>
+<link rel="stylesheet" href="${SITE}/temporada.css">
 ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld)}</scr`+`ipt>` : ''}
 </head>
 <body>
 <div class="top">
 <a href="${SITE}/">VERNISSAGES <span>SP</span></a>
 <div class="nav">
-<a href="${SITE}/">Agenda</a><a href="${SITE}/arquivo.html">Acervo</a><a href="${SITE}/artistas.html">Artistas</a><a href="${SITE}/editais.html">Editais</a>
+<a href="${SITE}/">Agenda</a><a href="${SITE}/fim-de-semana.html">Fim de semana</a><a href="${SITE}/arquivo.html">Acervo</a><a href="${SITE}/artistas.html">Artistas</a><a href="${SITE}/editais.html">Editais</a>
 </div>
 </div>
 <div class="wrap${wide ? ' wide' : ''}">
@@ -406,6 +408,176 @@ li.style.display=!q||li.dataset.b.indexOf(q)>-1?'':'none';});
   });
 }
 
+/* ---------- o fim de semana ----------
+   A agenda do carrossel de quinta (agenda.js), só que viva e com mapa: o que
+   abre, o que está nos últimos dias e o resto em cartaz, para o sábado e o
+   domingo que vêm. É o link da bio e mira a busca "exposições em SP este fim
+   de semana". Regenera todo dia com o build (14:00 UTC), então a janela anda
+   sozinha. */
+const DSEM = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'];
+const somaDias = (iso, n) => { const d = new Date(iso + 'T12:00:00Z'); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+const dow = iso => new Date(iso + 'T12:00:00Z').getUTCDay();
+const diaCurto = iso => `${DSEM[dow(iso)]} ${iso.slice(8, 10)}/${iso.slice(5, 7)}`;
+
+function janelaFds(hoje) {
+  const domingo = somaDias(hoje, (7 - dow(hoje)) % 7);
+  return { de: hoje, sabado: somaDias(domingo, -1), domingo };
+}
+
+/* Horário de sábado e domingo, quando a base diz ("sábado, 10h–17h",
+   "Quarta a domingo, 11h–18h"). Procura na mostra e depois na casa; se não
+   achar, não inventa. */
+function horaFds(e, v) {
+  const H = '(\\d{1,2}h(?:\\d{2})?\\s*[–-]\\s*\\d{1,2}h(?:\\d{2})?)';
+  const out = [];
+  [['sáb', 's[áa]bados?'], ['dom', 'domingos?']].forEach(([lab, pal]) => {
+    const rx = new RegExp(pal + ',?\\s*(?:das\\s*)?' + H, 'i');
+    const m = String(e.d || '').match(rx) || String(v.info || '').match(rx);
+    if (m) out.push(lab + ' ' + m[1].replace(/\s/g, ''));
+  });
+  return out.join(' · ');
+}
+
+function paginaFimDeSemana(DATA) {
+  const V = {}; DATA.venues.forEach(v => V[v.name] = v);
+  const J = janelaFds(HOJE);
+  const semanaAtras = somaDias(HOJE, -6), fechaAte = somaDias(J.domingo, 2);
+  const abre = [], fecha = [], cartaz = [];
+  (DATA.expos || []).forEach(e => {
+    const v = V[e.v];
+    if (!v || !e.ini || e.ini > J.domingo) return;
+    if (e.fim && e.fim < HOJE) return;
+    const x = { e, v, id: slug(e.t) + '--' + slug(e.v), gratis: !!(v.ing && v.ing.g), hora: horaFds(e, v) };
+    if (e.ini >= semanaAtras) abre.push(x);
+    else if (e.fim && e.fim <= fechaAte) fecha.push(x);
+    else if (!e.fim || e.fim >= J.sabado) cartaz.push(x);
+  });
+  abre.sort((a, b) => a.e.ini.localeCompare(b.e.ini));
+  fecha.sort((a, b) => a.e.fim.localeCompare(b.e.fim));
+  const ZONAS = ['Centro', 'Oeste', 'Sul', 'Norte', 'Leste'];
+  cartaz.sort((a, b) => (ZONAS.indexOf(a.v.z) - ZONAS.indexOf(b.v.z)) || a.v.b.localeCompare(b.v.b, 'pt') || a.v.name.localeCompare(b.v.name, 'pt'));
+
+  const quando = x => x.e.ini >= HOJE ? `abre ${diaCurto(x.e.ini)}`
+    : x.e.ini >= semanaAtras ? `abriu ${diaCurto(x.e.ini)}`
+    : x.e.fim ? `até ${diaCurto(x.e.fim)}` : 'sem data de fim';
+  const card = (x, k) => `<li class="${k}" data-lat="${x.v.lat || ''}">
+${x.e.img ? `<a class="th" href="${SITE}/m/${x.id}.html"><img src="${SITE}/${esc(x.e.img)}" alt="${esc(x.e.t)}" loading="lazy"></a>` : ''}
+<div class="tx">
+<div class="qd">${k === 'fecha' ? `último dia ${diaCurto(x.e.fim)}` : quando(x)}${x.gratis ? '<span class="tag on">GRÁTIS</span>' : ''}</div>
+<a class="t" href="${SITE}/m/${x.id}.html">${esc(x.e.t)}</a>
+<div class="l2">${esc(x.v.name)} · ${esc(x.v.b)}</div>
+${x.hora ? `<div class="l3">${esc(x.hora)}</div>` : ''}
+</div>
+</li>`;
+  const linha = x => `<li><a href="${SITE}/m/${x.id}.html">${esc(x.e.t)}</a> <span>${esc(x.v.name)} · ${esc(x.v.b)}${x.gratis ? ' · grátis' : ''}${x.e.fim ? ' · até ' + dataBR(x.e.fim).slice(0, 5) : ''}</span></li>`;
+  const porZona = {}; cartaz.forEach(x => (porZona[x.v.z] = porZona[x.v.z] || []).push(x));
+
+  const pinos = [...abre.map(x => [x, 'abre']), ...fecha.map(x => [x, 'fecha']), ...cartaz.map(x => [x, 'cartaz'])]
+    .filter(([x]) => x.v.lat && x.v.lng)
+    .map(([x, k]) => ({ la: x.v.lat, ln: x.v.lng, k, t: x.e.t, v: x.v.name, u: `${SITE}/m/${x.id}.html` }));
+  const nGratis = [...abre, ...fecha, ...cartaz].filter(x => x.gratis).length;
+  const fds = `${J.sabado.slice(8, 10)} e ${J.domingo.slice(8, 10)}/${J.domingo.slice(5, 7)}`;
+
+  const corpo = `
+<style>
+.fds-conta{display:flex;gap:34px;flex-wrap:wrap;margin:22px 0 6px}
+.fds-conta b{display:block;font-size:2.3rem;font-weight:800;line-height:1;letter-spacing:-1px}
+.fds-conta span{font-size:.72rem;text-transform:uppercase;letter-spacing:1.6px;color:var(--muted)}
+.fds-conta .ab b{color:var(--accent2)}
+#mapa{height:360px;border-radius:var(--radius);border:1px solid var(--line);margin:22px 0 4px;background:#101015}
+.leg{font-size:.76rem;color:var(--muted);display:flex;gap:16px;flex-wrap:wrap}
+.leg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+ul.lista li{display:flex;gap:14px;align-items:flex-start}
+ul.lista li.abre{border-left-color:var(--accent2)}
+ul.lista li.fecha{border-left-color:var(--ink)}
+ul.lista .th{flex:none;width:92px;height:92px;border-radius:var(--radius-sm);overflow:hidden;background:#111}
+ul.lista .th img{width:100%;height:100%;object-fit:cover;display:block}
+ul.lista .tx{flex:1;min-width:0}
+.qd{font-size:.72rem;text-transform:uppercase;letter-spacing:1.4px;color:var(--accent2);font-weight:700;margin-bottom:3px}
+li.fecha .qd{color:var(--ink)}
+.qd .tag{margin-left:8px}
+ul.mini{list-style:none;font-size:.9rem}
+ul.mini li{padding:8px 0;border-bottom:1px solid var(--hair)}
+ul.mini a{color:var(--text);text-decoration:none;font-weight:500}
+ul.mini a:hover{color:var(--accent)}
+ul.mini span{color:var(--muted);font-size:.8rem}
+h3.zona{font-size:.8rem;color:var(--accent2);letter-spacing:1.4px;text-transform:uppercase;margin:22px 0 4px}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:rgba(20,20,26,.95);color:var(--ink)}
+.leaflet-popup-content{font-size:.82rem;line-height:1.5}
+.leaflet-popup-content a{color:var(--accent);text-decoration:none}
+</style>
+<h1>Exposições em São Paulo neste fim de semana</h1>
+<div class="sub">sábado e domingo, ${fds}</div>
+<p class="txt">O que abre, o que está nos últimos dias e o que segue em cartaz nas galerias e museus de São Paulo — num lugar só, para montar o sábado e mandar para quem vai com você.</p>
+<div class="fds-conta">
+<div class="ab"><b>${abre.length}</b><span>${abre.length === 1 ? 'abertura na semana' : 'aberturas na semana'}</span></div>
+<div><b>${fecha.length}</b><span>${fecha.length === 1 ? 'última chance' : 'últimas chances'}</span></div>
+<div><b>${abre.length + fecha.length + cartaz.length}</b><span>em cartaz</span></div>
+${nGratis ? `<div><b>${nGratis}</b><span>de graça</span></div>` : ''}
+</div>
+<div id="mapa"></div>
+<div class="leg"><span><i style="background:#c96f4a"></i>abre</span><span><i style="background:#f3f3f7"></i>últimos dias</span><span><i style="background:#6b6b78"></i>em cartaz</span></div>
+${abre.length ? `<h2>Abre · aberturas da semana</h2>
+<ul class="lista">
+${abre.map(x => card(x, 'abre')).join('\n')}
+</ul>` : ''}
+${fecha.length ? `<h2>Últimos dias · fecha até ${diaCurto(fechaAte)}</h2>
+<ul class="lista">
+${fecha.map(x => card(x, 'fecha')).join('\n')}
+</ul>` : ''}
+${cartaz.length ? `<h2>Também em cartaz · ${cartaz.length} mostras</h2>
+${ZONAS.filter(z => porZona[z]).map(z => `<h3 class="zona">Zona ${esc(z)}</h3>
+<ul class="mini">
+${porZona[z].map(linha).join('\n')}
+</ul>`).join('\n')}` : ''}
+<p class="txt" style="color:var(--muted);font-size:.86rem">Horários conforme divulgação de cada espaço — muita galeria fecha no domingo; confirme antes de sair. Atualizado em ${dataBR(HOJE)}.</p>
+<div class="btns">
+<a class="btn" href="${SITE}/">Agenda completa e mapa</a>
+<a class="btn" href="https://instagram.com/vernissagessp" target="_blank" rel="noopener">@vernissagessp</a>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<scr`+`ipt src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></scr`+`ipt>
+<scr`+`ipt>
+(function(){
+var P=${JSON.stringify(pinos).replace(/</g, '\\u003c')};
+var el=document.getElementById('mapa');
+if(typeof L==='undefined'||!P.length){el.style.display='none';el.nextElementSibling.style.display='none';return;}
+var m=L.map(el,{scrollWheelZoom:false});
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',{attribution:'Esri, HERE, Garmin, © OpenStreetMap contributors',maxZoom:16}).addTo(m);
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}',{maxZoom:16}).addTo(m);
+var C={abre:['#c96f4a',8],fecha:['#f3f3f7',7],cartaz:['#6b6b78',5]},b=[];
+function e(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+['cartaz','fecha','abre'].forEach(function(k){P.filter(function(p){return p.k===k}).forEach(function(p){
+L.circleMarker([p.la,p.ln],{radius:C[k][1],color:'#0a0a0d',weight:1.5,fillColor:C[k][0],fillOpacity:.95})
+.bindPopup('<b>'+e(p.t)+'</b><br>'+e(p.v)+'<br><a href="'+e(p.u)+'">ver a mostra →</a>').addTo(m);
+if(k!=='cartaz')b.push([p.la,p.ln]);});});
+if(b.length<2)b=P.map(function(p){return[p.la,p.ln]});
+m.fitBounds(b,{padding:[30,30],maxZoom:14});
+})();
+</scr`+`ipt>`;
+
+  const lista = [...abre, ...fecha];
+  const jsonld = {
+    '@context': 'https://schema.org', '@type': 'ItemList',
+    name: `Exposições em São Paulo no fim de semana de ${fds}`,
+    itemListElement: lista.map((x, i) => ({
+      '@type': 'ListItem', position: i + 1,
+      item: {
+        '@type': 'ExhibitionEvent', name: x.e.t, startDate: x.e.ini, ...(x.e.fim ? { endDate: x.e.fim } : {}),
+        url: `${SITE}/m/${x.id}.html`,
+        eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+        location: { '@type': 'Place', name: x.v.name, address: { '@type': 'PostalAddress', streetAddress: String(x.v.addr).replace(' ~', ''), addressLocality: 'São Paulo', addressRegion: 'SP', addressCountry: 'BR' } }
+      }
+    }))
+  };
+
+  return pagina({
+    titulo: `Exposições em SP neste fim de semana (${fds}) | Vernissages SP`,
+    desc: `Arte em São Paulo no fim de semana de ${fds}: ${abre.length} aberturas, ${fecha.length} mostras nos últimos dias e ${abre.length + fecha.length + cartaz.length} em cartaz${nGratis ? `, ${nGratis} de graça` : ''}. Com mapa, horários e endereços.`,
+    canonical: `${SITE}/fim-de-semana.html`, corpo, jsonld
+  });
+}
+
 /* ---------- execução ---------- */
 function main() {
   const DATA = carregarDados();
@@ -424,9 +596,10 @@ function main() {
   fs.writeFileSync(path.join(RAIZ, 'arquivo.html'), paginaArquivo(acervo.expos));
   fs.writeFileSync(path.join(RAIZ, 'artistas.html'), paginaArtistas(acervo.artistas));
   fs.writeFileSync(path.join(RAIZ, 'editais.html'), paginaEditais(DATA.editais || []));
+  fs.writeFileSync(path.join(RAIZ, 'fim-de-semana.html'), paginaFimDeSemana(DATA));
   fs.writeFileSync(path.join(RAIZ, 'acervo.json'), JSON.stringify(acervo, null, 1));
 
-  const urls = [`${SITE}/`, `${SITE}/arquivo.html`, `${SITE}/artistas.html`, `${SITE}/editais.html`]
+  const urls = [`${SITE}/`, `${SITE}/fim-de-semana.html`, `${SITE}/arquivo.html`, `${SITE}/artistas.html`, `${SITE}/editais.html`]
     .concat(acervo.expos.map(e => `${SITE}/m/${e.id}.html`))
     .concat(Object.keys(acervo.artistas).map(k => `${SITE}/a/${k}.html`));
   fs.writeFileSync(path.join(RAIZ, 'sitemap.xml'),

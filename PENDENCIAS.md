@@ -141,3 +141,23 @@ Runbook em `OPERACAO.md`. Geração de social em `COMOGERAR.md`.
 6. **Reconstruir rima e aproximação** com profundidade (várias imagens, revelação).
 
 Referências e banco de ideias: `REFERENCIAS.md`, `IDEIAS.md`, `DESIGN.md`.
+
+### Andamento em 28/09/2026
+- **2 · feito e testado:** `gerar.js` escreve `fim-de-semana.html` todo dia
+  (abre na semana · últimos dias · também em cartaz por zona, mapa Leaflet,
+  horário de sáb/dom quando a base diz, JSON-LD ItemList). Link no menu das
+  páginas, no rodapé do `index.html` e no sitemap. `node gerar.js` rodado
+  localmente: 157 mostras, 387 URLs no sitemap, `fim-de-semana.html` gerado
+  sem erro. Trocar o link da bio para `vernissagessp.com.br/fim-de-semana.html`
+  é com o Lucas.
+- **3 · estrutura feita, propagação para os geradores concluída:**
+  `temporadas/2026-10.json` (Concreto) e `2026-11.json` (Lambe, rascunho) +
+  `temporada.js` (lê o mês; `--css` escreve `temporada.css`, rodando no
+  `build.yml` antes do `gerar.js`). Site: `temporada.css` carregado por último
+  no `index.html` e nas páginas do `gerar.js`. Social: `PALETAS.temporada` no
+  `rima.js`; `agenda.js`, `obra.js`, `salao.js` e `deriva.js` agora caem em
+  `PALETAS.temporada` quando a peça não tem paleta explícita no config (testado
+  simulando `--date=2026-10-05`: paleta Concreto entra corretamente). Fora
+  disso, de propósito: `aproximacao.js` (será reconstruído, item 6) e
+  `numero.js`/`entrada.js` (formatos vetados).
+- **1 · segue esperando** a conta do GoatCounter.

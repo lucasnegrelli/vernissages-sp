@@ -216,7 +216,7 @@ async function principal() {
     cfg = JSON.parse(fs.readFileSync(path.resolve(flag('config')), 'utf8'));
   }
   const paletaNome = cfg.paleta;
-  cfg.paleta = PALETAS[cfg.paleta] || PALETAS.escuro;
+  cfg.paleta = PALETAS[cfg.paleta] || PALETAS.temporada || PALETAS.escuro;
 
   const DATA = carregarDados();
   const cand = await escolher(DATA, hoje, cfg);

@@ -167,6 +167,9 @@ const PALETAS = {
   linho:  { fundo: '#DCD3C2', texto: '#1B1712', meio: '#4B4437', fraco: '#6E6555',
             apagado: '#958973', traco: '#9E9280' }
 };
+/* A paleta do mês (temporadas/AAAA-MM.json, ver temporada.js). Só existe em
+   mês com temporada; sem ela, quem pede 'temporada' cai no padrão do gerador. */
+{ const T = require('./temporada.js').atual(); if (T) PALETAS.temporada = require('./temporada.js').paleta(T); }
 
 /* Grao.
  *

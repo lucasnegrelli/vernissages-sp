@@ -400,7 +400,7 @@ async function principal() {
     p.distAnterior = i ? Math.round(metros(paradas[i - 1].v, p.v) / 10) * 10 : null;
   });
 
-  cfg.paleta = PALETAS[cfg.paleta] || PALETAS.papel;
+  cfg.paleta = PALETAS[cfg.paleta] || PALETAS.temporada || PALETAS.papel;
   cfg.ruas = await buscarRuas(paradas);
   if (cfg.ruas.length) console.log("  mapa: " + cfg.ruas.length + " ruas do OSM");
 
