@@ -168,8 +168,12 @@ const PALETAS = {
             apagado: '#958973', traco: '#9E9280' }
 };
 /* A paleta do mês (temporadas/AAAA-MM.json, ver temporada.js). Só existe em
-   mês com temporada; sem ela, quem pede 'temporada' cai no padrão do gerador. */
-{ const T = require('./temporada.js').atual(); if (T) PALETAS.temporada = require('./temporada.js').paleta(T); }
+   mês com temporada; sem ela, quem pede 'temporada' cai no padrão do gerador.
+   MARCA_HTML é "Vernissages SP" + a peça geométrica do mês (mesma marca do
+   header do site) — sem temporada, os geradores que a usam caem no texto puro. */
+const _TEMP = require('./temporada.js').atual();
+if (_TEMP) PALETAS.temporada = require('./temporada.js').paleta(_TEMP);
+const MARCA_HTML = require('./temporada.js').marcaSocial(_TEMP);
 
 /* Grao.
  *
@@ -327,7 +331,7 @@ function montarHTML(A, B, cfg) {
     <img class="obra" src="${esc(B.rel)}" style="left:0;top:${gTop}px;width:${gW}px;height:${gH}px">
     <img class="obra" src="${esc(A.rel)}" style="right:88px;top:${pTop}px;width:${pW}px;height:${pH}px">
     <div class="tese" style="top:${tTop}px;width:864px;font-size:${tFs}px">${esc(cfg.tese)}</div>
-    <div class="marca">Vernissages SP</div>
+    <div class="marca">${MARCA_HTML}</div>
   </div>`;
 
   const arg = `<div class="slide">
@@ -335,7 +339,7 @@ function montarHTML(A, B, cfg) {
     <div class="risco" style="top:150px"></div>
     <div class="arg" style="top:236px">${cfg.argumento.map(p => '<p style="margin-bottom:28px">' + esc(p) + '</p>').join('')}
       <span class="virada">${esc(cfg.virada)}</span></div>
-    <div class="marca">Vernissages SP</div>
+    <div class="marca">${MARCA_HTML}</div>
     <div class="pag">4/5</div>
   </div>`;
 
@@ -521,4 +525,4 @@ function descreverFiltro(filtro) {
 module.exports = { carregarDados, acharExpo, exigirObra, medir, chave, RAIZ,
                    CSS, esc, porExtenso, porExtensoAno, carimbo, arroba,
                    tituloCurto, autoria, PALETAS, cssPaleta, grao,
-                   passaFiltro, descreverFiltro };
+                   passaFiltro, descreverFiltro, MARCA_HTML };

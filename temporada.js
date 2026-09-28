@@ -60,6 +60,25 @@ function rgba(hex, a) {
   return `rgba(${parseInt(h.slice(0, 2), 16)},${parseInt(h.slice(2, 4), 16)},${parseInt(h.slice(4, 6), 16)},${a})`;
 }
 
+/* A mesma marca do header do site (ver marca() abaixo, gerada como CSS ali)
+   — aqui em HTML pronto, porque o social é screenshot de Puppeteer, não CSS
+   vivo. "Vernissages SP" + a peça geométrica do mês logo depois, na cor de
+   acento. Sem temporada ou sem `marca` no JSON, devolve só o texto puro —
+   nunca quebra uma peça por falta de configuração. */
+function marcaSocial(T, acentoCor, tamanhoPx) {
+  const rotulo = 'Vernissages SP';
+  if (!T || !T.marca) return rotulo;
+  const px = tamanhoPx || 14;
+  const cor = acentoCor || (T.cores && T.cores.acento) || '#FF3B1D';
+  const base = `display:inline-block;margin-left:${Math.round(px * .5)}px;background:${cor};vertical-align:middle`;
+  const forma = T.marca === 'circulo' ? `width:${px}px;height:${px}px;border-radius:50%`
+    : T.marca === 'quadrado' ? `width:${Math.round(px * .9)}px;height:${Math.round(px * .9)}px`
+    : T.marca === 'risco' ? `width:${Math.round(px * 2.2)}px;height:${Math.round(px * .32)}px`
+    : '';
+  if (!forma) return rotulo;
+  return `${rotulo}<span style="${base};${forma}"></span>`;
+}
+
 /* A marca não é um logo fixo — é um sistema que muda e continua
    reconhecível (Experimental Jetset/Whitney "Responsive W", Wolff
    Olins/Tate, os dois citados no DESIGN.md). Uma peça geométrica ao lado do
@@ -131,7 +150,7 @@ footer::before{content:'${T.selo.replace(/'/g, "\\'")}';display:block;font-famil
 `;
 }
 
-module.exports = { carregar, atual, paleta, css, mesDeHoje };
+module.exports = { carregar, atual, paleta, css, mesDeHoje, marcaSocial };
 
 if (require.main === module) {
   const argv = process.argv.slice(2);

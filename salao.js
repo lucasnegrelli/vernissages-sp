@@ -57,7 +57,7 @@ const fs = require('fs');
 const path = require('path');
 const base = require('./rima.js');
 const { carregarDados, exigirObra, medir, RAIZ, CSS, esc, carimbo,
-        arroba, tituloCurto, autoria, porExtenso, PALETAS, cssPaleta } = base;
+        arroba, tituloCurto, autoria, porExtenso, PALETAS, cssPaleta, MARCA_HTML } = base;
 
 const W = 1080, H = 1350;
 const COLUNAS = 4;
@@ -158,7 +158,7 @@ function slideTese(L, cfg, n, total) {
         <span class="virada" style="margin-top:34px;font-size:42px">${esc(cfg.virada)}</span>
       </div>
     </div>
-    <div class="marca">Vernissages SP</div>
+    <div class="marca">${MARCA_HTML}</div>
     <div class="pag">${n}/${total}</div>
   </div>`;
 }

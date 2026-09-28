@@ -39,7 +39,7 @@
 const fs = require('fs');
 const path = require('path');
 const base = require('./rima.js');
-const { carregarDados, exigirObra, medir, RAIZ, esc, tituloCurto, autoria, PALETAS } = base;
+const { carregarDados, exigirObra, medir, RAIZ, esc, tituloCurto, autoria, PALETAS, MARCA_HTML } = base;
 
 const W = 1080, H = 1350;
 /* Em mês com temporada, acento, fonte e selo vêm do temporadas/AAAA-MM.json;
@@ -191,7 +191,7 @@ function slideMostra(x, n, total) {
       ${quem ? `<div class="quem">${esc(quem)}</div>` : ''}
       <div class="onde">${esc(x.v.name)} · ${esc(x.v.b)}${x.v.ing && x.v.ing.g ? ' · grátis' : ''}</div>
     </div>
-    <div class="marca">Vernissages SP</div>
+    <div class="marca">${MARCA_HTML}</div>
     <div class="pag">${n}/${total}</div>
   </div>`;
 }
@@ -209,7 +209,7 @@ function lista(sel, n, total) {
       ${fecha.length ? '<div class="sec fecha">últimos dias</div>' + fecha.map(li).join('') : ''}
       <div class="pe flui"><b>Manda pra quem vai com você.</b><br>Mapa e agenda completa: link na bio.</div>
     </div>
-    <div class="marca">Vernissages SP</div>
+    <div class="marca">${MARCA_HTML}</div>
     <div class="pag">${n}/${total}</div>
   </div>`;
 }

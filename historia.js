@@ -41,7 +41,7 @@ const path = require('path');
 const base = require('./rima.js');
 const { carregarDados, acharExpo, exigirObra, medir, RAIZ,
         CSS, esc, porExtenso, carimbo, arroba, tituloCurto, autoria,
-        PALETAS, cssPaleta } = base;
+        PALETAS, cssPaleta, MARCA_HTML } = base;
 
 const W = 1080, H = 1350;
 const MIN_PARTES = 3, MAX_PARTES = 6;
@@ -57,7 +57,7 @@ function slideCapaTexto(cfg, total) {
     <div class="kick">a história por trás</div>
     <div class="risco" style="top:150px"></div>
     <div class="tese" style="top:230px">${esc(cfg.titulo)}</div>
-    <div class="marca">Vernissages SP</div>
+    <div class="marca">${MARCA_HTML}</div>
     <div class="pag">1/${total}</div>
   </div>`;
 }
@@ -67,7 +67,7 @@ function slideParte(texto, n, total, ultima) {
     <div class="kick">a história por trás</div>
     <div class="risco" style="top:150px"></div>
     <div class="arg" style="top:280px">${ultima ? '<span class="virada">' + esc(texto) + '</span>' : esc(texto)}</div>
-    <div class="marca">Vernissages SP</div>
+    <div class="marca">${MARCA_HTML}</div>
     <div class="pag">${n}/${total}</div>
   </div>`;
 }

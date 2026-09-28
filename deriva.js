@@ -45,7 +45,7 @@ const path = require('path');
 const base = require('./rima.js');
 const { carregarDados, acharExpo, exigirObra, medir, chave, RAIZ,
         CSS, esc, porExtenso, carimbo, arroba, tituloCurto, autoria,
-        PALETAS, cssPaleta } = base;
+        PALETAS, cssPaleta, MARCA_HTML } = base;
 
 const W = 1080, H = 1350;
 const RAIO_CLUSTER = 750;   // metros: o que se atravessa sem pensar
@@ -272,7 +272,7 @@ function slideMapa(paradas, totalMetros, cfg, total) {
   const min = Math.round(totalMetros / 1.25 / 60);
   return `<div class="slide">
     <div class="dv-et" style="left:72px;color:${ACENTO}">roteiro a pé</div>
-    <div class="dv-et" style="right:72px;color:${pal.fraco}">Vernissages SP</div>
+    <div class="dv-et" style="right:72px;color:${pal.fraco}">${MARCA_HTML}</div>
     <div class="dv-h">${esc(bairroDe(paradas))}<br>a pé</div>
     <div class="dv-map">${svgMapa(paradas, 1080, 760, 130, pal, cfg.ruas)}</div>
     <div class="dv-conta">

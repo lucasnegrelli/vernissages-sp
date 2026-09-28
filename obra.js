@@ -45,7 +45,7 @@ const path = require('path');
 const base = require('./rima.js');
 const { carregarDados, exigirObra, medir, RAIZ, CSS, esc, porExtenso,
         arroba, tituloCurto, autoria, PALETAS, cssPaleta, passaFiltro,
-        descreverFiltro } = base;
+        descreverFiltro, MARCA_HTML } = base;
 
 const W = 1080, H = 1350;
 const MIN_LARGURA = 1400;
@@ -173,7 +173,7 @@ function slideEtiqueta(o, cfg, hoje) {
       ${nota ? `<div class="nota">${esc(nota)}</div>` : ''}
     </div>
     <div class="cred">${esc(o.e.cred)}</div>
-    <div class="marca">Vernissages SP</div>
+    <div class="marca">${MARCA_HTML}</div>
   </div>`;
 }
 

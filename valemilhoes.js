@@ -41,7 +41,7 @@ const path = require('path');
 const base = require('./rima.js');
 const { carregarDados, acharExpo, exigirObra, medir, RAIZ,
         CSS, esc, porExtenso, carimbo, arroba, tituloCurto, autoria,
-        PALETAS, cssPaleta } = base;
+        PALETAS, cssPaleta, MARCA_HTML } = base;
 
 const W = 1080, H = 1350;
 
@@ -68,7 +68,7 @@ function slideRecorde(o, cfg) {
       r.ano ? ', de ' + esc(autoria(o.e) || '') : ''} alcançou${
       r.leiloeira ? ' na ' + esc(r.leiloeira) : ' em leilão'}${r.ano ? ', em ' + esc(String(r.ano)) : ''}.
       <span class="virada">Pra ver o trabalho dele agora, a entrada é de graça.</span></div>
-    <div class="marca">Vernissages SP</div>
+    <div class="marca">${MARCA_HTML}</div>
     <div class="pag">2/3</div>
   </div>`;
 }

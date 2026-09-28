@@ -51,7 +51,7 @@ const path = require('path');
 const base = require('./rima.js');
 const { carregarDados, acharExpo, exigirObra, medir, chave, RAIZ,
         CSS, esc, porExtenso, carimbo, arroba, tituloCurto, autoria,
-        PALETAS, cssPaleta } = base;
+        PALETAS, cssPaleta, MARCA_HTML } = base;
 
 const W = 1080, H = 1350;
 
@@ -119,7 +119,7 @@ function montarHTML(o, cfg) {
     <div class="risco" style="top:150px"></div>
     <div class="arg" style="top:236px">${cfg.leitura.map(p => '<p style="margin-bottom:28px">' + esc(p) + '</p>').join('')}
       <span class="virada">${esc(cfg.virada)}</span></div>
-    <div class="marca">Vernissages SP</div>
+    <div class="marca">${MARCA_HTML}</div>
     <div class="pag">${total - 1}/${total}</div>
   </div>`;
 
