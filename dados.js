@@ -256,7 +256,6 @@ const EXPOS = [
 {t:"Desculpe, Rafael",a:"Felipe Scandelari",v:"Galeria Dezoito",ini:"2026-09-12",fim:"2026-10-24",d:"Exposição individual, na sede paulistana da galeria.",img:"",cred:""},
 {t:"Longitudes",a:"Johanna Calle",v:"Galeria Marília Razuk",ini:"2026-09-12",fim:"2026-12-12",d:"Exposição individual.",img:"img/longitudes-galeria-marilia-razuk.webp",cred:"Cortesia Galeria Marília Razuk"},
 {t:"Cavalinhas e Falésias",a:"Carolina Colichio",v:"Galeria Marília Razuk",ini:"2026-09-12",fim:"2026-11-03",d:"Exposição individual.",img:"img/cavalinhas-e-falesias-galeria-marilia-razuk.webp",cred:"Cortesia Galeria Marília Razuk"},
-{t:"Antonio Peticov – A Exposição",a:"Antonio Peticov",v:"Centro Cultural São Paulo (CCSP)",ini:"2026-09-15",fim:"2026-09-20",d:"Retrospectiva de 50 anos de carreira, cerca de 400 obras entre pintura, desenho, escultura, instalação, gravura e música, no Piso Caio Graco.",img:"",cred:""},
 
 /* --- casas novas mapeadas hoje: mostra atual confirmada na fonte --- */
 {t:"Habitar São Paulo: relatos femininos",a:"",v:"Casa Museu Ema Klabin",ini:"2026-05-30",fim:"2026-09-27",d:"Coletiva de relatos femininos sobre a cidade de São Paulo.",img:"",cred:""},
@@ -352,11 +351,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Esgarçar",
-  v: "AM Galeria",
-  quem: "Andrey Rossi, Beatriz Lindenberg, Bruno Cançado, Desali, Giovani Fantauzzi, Julia Pereira, Laura Villarosa, Liane Roditi, Manoel Veiga, Manuela Costa Lima, Maria Helena Andrés, Marina Rodrigues, Marinalva Rosa, Michelle Rosset, Moara Tupinambá, Naira Pennacchi, Paula Huven, Renata Egreja, Thany Sanches, Yasmin Guimarães, Yohana Oizumi",
-  txt: "Coletiva com 21 artistas, curadoria de Mario Gioia, cruzando pintura, fotografia, têxtil, escultura, vídeo, performance e desenho em torno de noções de limite (dentro/fora, figuração/abstração). Abertura em 12 de setembro, até 10 de outubro.",
-  link: "https://amgaleria.com.br",
+  t: "Território de Disputa",
+  v: "Galeria Lume",
+  quem: "Kilian Glasner",
+  txt: "Pinturas feitas com saibro — laterita alaranjada recolhida no sertão —, cortadas pelas faixas brancas de uma quadra de tênis, como alegoria de disputa por território. Abertura em 12 de setembro, até 14 de novembro.",
+  link: "https://www.galerialume.com",
   publi: false
 };
 
@@ -371,6 +370,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-09-28", k:"Território de Disputa|Galeria Lume"},
   {d:"2026-09-27", k:"Esgarçar|AM Galeria"},
   {d:"2026-09-26", k:"Mulheres da Boca|MIS — Museu da Imagem e do Som"},
   {d:"2026-09-25", k:"Controle | Corrosão | Dispersão|Galeria Leme"},
@@ -434,5 +434,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "27/09/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "28/09/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
