@@ -4,7 +4,7 @@ import { useState, type FormEvent } from "react";
 
 export function SubscribeForm({ className = "" }: { className?: string }) {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "loading" | "error" | "done">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
   async function handleSubmit(event: FormEvent) {
@@ -26,11 +26,21 @@ export function SubscribeForm({ className = "" }: { className?: string }) {
         return;
       }
 
-      window.location.href = data.url;
+      setStatus("done");
     } catch {
       setStatus("error");
       setErrorMessage("Falha de conexão. Tente novamente.");
     }
+  }
+
+  if (status === "done") {
+    return (
+      <div className={`w-full max-w-md ${className}`}>
+        <p className="border border-gold px-4 py-4 text-sm text-neutral-100">
+          Inscrito. Você recebe a próxima edição no domingo à noite.
+        </p>
+      </div>
+    );
   }
 
   return (
@@ -52,14 +62,14 @@ export function SubscribeForm({ className = "" }: { className?: string }) {
           disabled={status === "loading"}
           className="whitespace-nowrap bg-gold px-6 py-4 text-sm font-semibold uppercase tracking-wider text-black transition hover:bg-gold-bright disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {status === "loading" ? "Processando..." : "Assinar Acesso Fechado"}
+          {status === "loading" ? "Inscrevendo..." : "Quero receber, de graça"}
         </button>
       </form>
       {status === "error" && (
         <p className="mt-2 text-xs text-red-400">{errorMessage}</p>
       )}
       <p className="mt-3 text-xs text-neutral-600">
-        Vagas por edição. Cancele quando quiser, sem letra miúda.
+        De graça. Sem cartão, sem letra miúda. Cancele quando quiser.
       </p>
     </div>
   );

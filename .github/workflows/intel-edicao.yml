@@ -1,0 +1,32 @@
+name: Intel — edição da semana
+
+# Monta a edição do boletim pago a partir do dados.js e agenda no Supabase
+# para o cron de domingo (20h SP) da Vercel enviar. Manda prévia ao dono.
+# Criado em 28/09/2026: até ali só a edição 1 existia e domingo não saía nada.
+# Para não enviar uma edição: apagar a linha em newsletter_issues antes de domingo.
+
+on:
+  schedule:
+    # sábado 15:00 UTC = 12h SP: depois da raspagem de quarta e do radar de sábado
+    - cron: '0 15 * * 6'
+  workflow_dispatch:
+
+jobs:
+  edicao:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Gerar e agendar
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          OWNER_EMAIL: ${{ secrets.OWNER_EMAIL }}
+        run: node intel/scripts/gerar-edicao.mjs | tee /tmp/edicao.log
+      - name: Resumo
+        if: always()
+        run: |
+          { echo '## Intel — edição da semana'; echo '```'; cat /tmp/edicao.log; echo '```'; } >> "$GITHUB_STEP_SUMMARY"

@@ -4,11 +4,11 @@ import { getResend } from "@/lib/resend";
 import { getSupabaseAdmin } from "@/lib/supabase";
 import { NewsletterEmail } from "@/emails/NewsletterEmail";
 import type { NewsletterIssue } from "@/types";
+import { SENDER, avisarDono } from "@/lib/avisar";
 
 export const runtime = "nodejs";
 export const maxDuration = 300;
 
-const SENDER = "Vernissages SP: Intel <intel@vernissagessp.com>";
 const BATCH_SIZE = 100;
 
 function chunk<T>(items: T[], size: number): T[][] {
@@ -33,6 +33,12 @@ export async function GET(req: NextRequest) {
   const supabaseAdmin = getSupabaseAdmin();
   const resend = getResend();
 
+  /* Resumo semanal para o dono, saia a edição ou não: quantos em cada status. */
+  const { data: todos } = await supabaseAdmin.from("subscribers").select("status");
+  const conta: Record<string, number> = {};
+  (todos ?? []).forEach((s: { status: string }) => { conta[s.status] = (conta[s.status] ?? 0) + 1; });
+  const resumo = `ativos ${conta.active ?? 0} · pendentes ${conta.pending ?? 0} · atrasados ${conta.past_due ?? 0} · cancelados ${conta.canceled ?? 0}`;
+
   const { data: issue, error: issueError } = await supabaseAdmin
     .from("newsletter_issues")
     .select("*")
@@ -50,6 +56,10 @@ export async function GET(req: NextRequest) {
   }
 
   if (!issue) {
+    await avisarDono("Domingo SEM edição", [
+      "Não havia edição agendada no Supabase (newsletter_issues). Nada foi enviado.",
+      resumo,
+    ]);
     return NextResponse.json({ message: "Nenhuma edição pendente para envio." });
   }
 
@@ -66,6 +76,7 @@ export async function GET(req: NextRequest) {
   }
 
   if (!subscribers || subscribers.length === 0) {
+    await avisarDono(`Edição ${issue.issue_number} não saiu: nenhum assinante ativo`, [resumo]);
     return NextResponse.json({
       message: "Nenhum assinante ativo. Edição mantida como pendente.",
     });
@@ -99,6 +110,12 @@ export async function GET(req: NextRequest) {
     .from("newsletter_issues")
     .update({ sent_at: new Date().toISOString() })
     .eq("id", issue.id);
+
+  await avisarDono(`Edição ${issue.issue_number} enviada: ${sent} de ${subscribers.length}`, [
+    `Assunto: ${issue.subject}`,
+    resumo,
+    failures.length ? "Falhas: " + failures.join(" | ") : "Sem falhas.",
+  ]);
 
   return NextResponse.json({
     issue: issue.issue_number,

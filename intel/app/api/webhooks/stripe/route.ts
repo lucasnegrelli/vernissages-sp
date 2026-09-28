@@ -3,6 +3,7 @@ import type Stripe from "stripe";
 import { getStripe } from "@/lib/stripe";
 import { getSupabaseAdmin } from "@/lib/supabase";
 import type { SubscriberStatus } from "@/types";
+import { avisarDono } from "@/lib/avisar";
 
 export const runtime = "nodejs";
 
@@ -53,6 +54,10 @@ export async function POST(req: NextRequest) {
             activated_at: new Date().toISOString(),
           })
           .eq("email", email.toLowerCase());
+        await avisarDono(`Nova assinatura paga: ${email}`, [
+          `${email} pagou e está ativo. Recebe a próxima edição de domingo.`,
+          `Cliente no Stripe: ${session.customer}`,
+        ]);
       }
       break;
     }
@@ -63,6 +68,9 @@ export async function POST(req: NextRequest) {
         .from("subscribers")
         .update({ status: mapSubscriptionStatus(subscription.status) })
         .eq("stripe_subscription_id", subscription.id);
+      if (mapSubscriptionStatus(subscription.status) === "past_due") {
+        await avisarDono("Pagamento atrasado", [`Assinatura ${subscription.id} ficou com pagamento pendente.`]);
+      }
       break;
     }
 
@@ -72,6 +80,7 @@ export async function POST(req: NextRequest) {
         .from("subscribers")
         .update({ status: "canceled", canceled_at: new Date().toISOString() })
         .eq("stripe_subscription_id", subscription.id);
+      await avisarDono("Cancelamento", [`Assinatura ${subscription.id} foi cancelada.`]);
       break;
     }
 

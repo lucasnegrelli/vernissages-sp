@@ -1,11 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getStripe } from "@/lib/stripe";
 import { getSupabaseAdmin } from "@/lib/supabase";
+import { avisarDono } from "@/lib/avisar";
 
 export const runtime = "nodejs";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+/**
+ * De graça desde 28/09/2026 — sem checkout do Stripe, sem "pending" à espera
+ * de pagamento. O e-mail digitado já entra "active" e recebe a próxima
+ * edição de domingo. O fluxo pago (Stripe) fica pronto no código (webhook,
+ * STRIPE_PRICE_ID) para o dia em que o Lucas decidir cobrar de novo — só
+ * este endpoint muda.
+ */
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
   const rawEmail = typeof body?.email === "string" ? body.email : "";
@@ -16,7 +23,6 @@ export async function POST(req: NextRequest) {
   }
 
   const supabaseAdmin = getSupabaseAdmin();
-  const stripe = getStripe();
 
   const { data: existing, error: lookupError } = await supabaseAdmin
     .from("subscribers")
@@ -33,14 +39,17 @@ export async function POST(req: NextRequest) {
 
   if (existing?.status === "active") {
     return NextResponse.json(
-      { error: "Este e-mail já tem acesso ativo ao Intel." },
+      { error: "Este e-mail já está inscrito no Intel." },
       { status: 409 }
     );
   }
 
   const { error: upsertError } = await supabaseAdmin
     .from("subscribers")
-    .upsert({ email, status: "pending" }, { onConflict: "email" });
+    .upsert(
+      { email, status: "active", activated_at: new Date().toISOString() },
+      { onConflict: "email" }
+    );
 
   if (upsertError) {
     return NextResponse.json(
@@ -49,30 +58,10 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const origin =
-    req.headers.get("origin") ??
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    "https://intel.vernissagessp.com";
+  await avisarDono(`Nova inscrição (de graça): ${email}`, [
+    `${email} se inscreveu no Intel. Recebe a próxima edição de domingo.`,
+    existing ? `Já existia como "${existing.status}".` : "Primeiro contato deste e-mail.",
+  ]);
 
-  const session = await stripe.checkout.sessions.create({
-    mode: "subscription",
-    customer_email: email,
-    line_items: [{ price: process.env.STRIPE_PRICE_ID!, quantity: 1 }],
-    success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${origin}/?checkout=cancelado`,
-    allow_promotion_codes: true,
-    metadata: { subscriber_email: email },
-    subscription_data: {
-      metadata: { subscriber_email: email },
-    },
-  });
-
-  if (!session.url) {
-    return NextResponse.json(
-      { error: "Falha ao iniciar checkout." },
-      { status: 502 }
-    );
-  }
-
-  return NextResponse.json({ url: session.url });
+  return NextResponse.json({ ok: true });
 }

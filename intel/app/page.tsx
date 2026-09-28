@@ -26,18 +26,18 @@ const SOLUTIONS = [
   },
   {
     number: "2",
-    title: "Radar de movimentações",
-    body: "Curadores mudando de instituição, artistas mudando de galeria, sinais de reposicionamento antes de virarem notícia.",
+    title: "O que fecha antes que você vá",
+    body: "Toda mostra com prazo nos próximos dias, em ordem de urgência — inclusive as que não divulgaram data e estão perto do fim do ciclo.",
   },
   {
     number: "3",
-    title: "Quem vai estar lá",
-    body: "Inteligência de presença: quem monta, quem cura, quem compra — para você saber com quem conversar antes de entrar na sala.",
+    title: "O circuito que não sai em lista",
+    body: "Aberturas de espaços independentes que só anunciam no Instagram, galerias novas e mudanças de endereço — levantadas toda semana nas 124 casas do mapa.",
   },
   {
     number: "4",
-    title: "Leitura de mercado",
-    body: "Onde o capital está migrando dentro do circuito — de qual bairro, geração e mídium — e o que isso significa para quem coleciona ou expõe.",
+    title: "Leitura de mercado, com fonte",
+    body: "Resultados públicos de leilão e feira que envolvem quem está em cartaz em São Paulo, sempre com a fonte citada. Nada de boato de corredor.",
   },
 ];
 
@@ -50,24 +50,24 @@ export default function Home() {
           Vernissages SP <span className="text-gold">/ Intel</span>
         </span>
         <span className="hidden text-xs uppercase tracking-widest text-neutral-600 sm:block">
-          Acesso restrito
+          De graça
         </span>
       </header>
 
       {/* HERO */}
       <section className="mx-auto flex max-w-4xl flex-col items-start gap-8 border-b border-neutral-900 px-6 pb-24 pt-12">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-          Acesso restrito — circuito de arte contemporânea de São Paulo
+          De graça — circuito de arte contemporânea de São Paulo
         </p>
         <h1 className="font-serif text-4xl leading-[1.1] text-neutral-50 sm:text-6xl">
           Quando você souber da exposição, a peça boa já foi vendida.
         </h1>
         <p className="max-w-2xl text-lg leading-relaxed text-neutral-400">
-          As decisões que movem preço, prestígio e acesso no circuito
-          paulistano acontecem 72 horas antes da abertura pública — em
-          conversas que você não está tendo. O{" "}
+          Toda a semana do circuito paulistano — o que abre, o que fecha, o
+          que só aparece no Instagram das casas pequenas e o que o mercado
+          registrou — num e-mail só, no domingo à noite. O{" "}
           <strong className="text-neutral-200">Vernissages SP: Intel</strong>{" "}
-          te coloca na mesa antes da porta abrir.
+          é a leitura de quem mapeia 124 espaços toda semana.
         </p>
         <SubscribeForm className="pt-4" />
       </section>
@@ -108,7 +108,7 @@ export default function Home() {
           A solução
         </p>
         <h2 className="mt-4 font-serif text-3xl text-neutral-50 sm:text-4xl">
-          O que chega toda segunda-feira
+          O que chega todo domingo à noite
         </h2>
         <p className="mt-4 max-w-2xl text-neutral-400">
           Não é agenda cultural. É inteligência de mercado com data de
@@ -148,22 +148,22 @@ export default function Home() {
         </p>
       </section>
 
-      {/* PREÇO / CTA */}
+      {/* CTA */}
       <section className="mx-auto max-w-4xl px-6 py-24 text-center">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-          Acesso fechado
+          Inscrição aberta
         </p>
         <p className="mt-6 font-serif text-6xl text-neutral-50 sm:text-7xl">
-          R$ 47<span className="text-2xl text-neutral-500">/mês</span>
+          De graça
         </p>
         <p className="mt-3 text-sm text-neutral-500">
-          Menos que o Uber até a próxima vernissage.
+          Enquanto o Intel ainda está se firmando, o acesso é livre.
         </p>
 
         <ul className="mx-auto mt-10 flex max-w-md flex-col gap-3 text-left text-sm text-neutral-400">
           <li className="flex gap-3">
             <span className="text-gold">—</span>
-            Edição semanal, toda segunda, antes da semana começar.
+            Edição semanal, domingo às 20h, antes da semana começar.
           </li>
           <li className="flex gap-3">
             <span className="text-gold">—</span>
@@ -171,8 +171,7 @@ export default function Home() {
           </li>
           <li className="flex gap-3">
             <span className="text-gold">—</span>
-            Cancelamento direto pelo portal de faturamento, sem letra
-            miúda.
+            Sem cartão, sem letra miúda. Cancele quando quiser.
           </li>
         </ul>
 

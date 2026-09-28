@@ -86,6 +86,8 @@ const styles = {
     margin: "0 0 8px",
   },
   paragraph: {
+    /* a edição gerada (scripts/gerar-edicao.mjs) usa uma linha por mostra */
+    whiteSpace: "pre-line" as const,
     color: "#c7c7c0",
     fontSize: "15px",
     lineHeight: "1.6",
