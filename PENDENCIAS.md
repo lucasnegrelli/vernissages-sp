@@ -155,6 +155,16 @@ Referências e banco de ideias: `REFERENCIAS.md`, `IDEIAS.md`, `DESIGN.md`.
   Linkado no menu, no rodapé e no sitemap. Ainda faltam os incrementos que o
   plano deixou como "depois": "perto de mim" (geolocalização), salvar mostra
   + lembrete, mapa como home (MapLibre).
+- **5 · motor pronto para os dois primeiros formatos, testado:**
+  `valemilhoes.js` ("De graça, vale milhões") e `historia.js` ("A história
+  por trás"), registrados no `semana.js` como `curado: true` — mesma régua da
+  rima e da aproximação, falham sem config em vez de inventar fato de mercado
+  ou de história. Testadas as quatro travas (sem fonte, casa não gratuita,
+  poucas partes, sem fonte histórica) e a renderização completa dos dois com
+  dados marcados como exemplo (não publicados). Falta a curadoria — o Lucas
+  escrever o primeiro `SOCIAL/MM/DD/valemilhoes.json` e `historia.json` de
+  verdade, com fato e fonte reais. `numero`/`entrada` seguem vetados;
+  `aproximação` segue esperando a reconstrução do item 6.
 
 ### Andamento em 28/09/2026
 - **2 · feito e testado:** `gerar.js` escreve `fim-de-semana.html` todo dia

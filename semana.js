@@ -54,6 +54,10 @@ const FORMATOS = {
   deriva:      { script: 'deriva.js',      curado: false },
   entrada:     { script: 'entrada.js',     curado: false },
   salao:       { script: 'salao.js',       curado: false },
+  valemilhoes: { script: 'valemilhoes.js', curado: true,
+                 precisa: 'a mostra (obra), o recorde de leilão (recorde.valor, obraLeiloada, leiloeira, ano) e recorde.fonte' },
+  historia:    { script: 'historia.js',    curado: true,
+                 precisa: 'o título, de 3 a 6 parágrafos (partes) e a fonte do fato histórico' },
   /* Fixo da semana desde 25/09/2026: sai TODA semana, então não entram na
      memória de descanso (USADAS). A mesma janela nunca repete — o conteúdo
      muda com a agenda. */

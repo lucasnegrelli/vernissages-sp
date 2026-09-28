@@ -8,6 +8,17 @@ o que ainda precisa virar formato.
 zoom que não revela nada. **Mantidos, mas a reconstruir:** rima e aproximação.
 **Funcionou:** agenda e deriva com mapa.
 
+**Motor pronto em 28/09** para os dois primeiros formatos desta lista (item 1
+"De graça, vale milhões" e item 2 "A história por trás"): `valemilhoes.js` e
+`historia.js`, registrados no `semana.js` como `curado: true` — mesma régua da
+rima e da aproximação, falham sem config. Falta só a curadoria: escrever
+`SOCIAL/MM/DD/valemilhoes.json` (mostra + `recorde.valor/obraLeiloada/
+leiloeira/ano/fonte`, a casa tem de ser de entrada franca) ou
+`SOCIAL/MM/DD/historia.json` (`titulo`, 3 a 6 `partes`, `fonte`; `obra` é
+opcional — sem ela a capa e o fecho ficam tipográficos). Nenhum dos dois
+inventa fato de mercado ou de história: o script escolhe imagem, paleta e
+tipografia; o Lucas escolhe e confere o fato e a fonte.
+
 Referências a estudar: @thirstygallerina (lista semanal), @sp.afora (guia de SP),
 Jerry Gogosian (humor do meio), See Saw (curadoria por bairro), **Saatchi**
 (Saatchi Art / Saatchi Gallery — ver como mostram preço e artista novo).
