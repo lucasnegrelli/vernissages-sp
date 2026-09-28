@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monta seu sábado — roteiro de galerias em São Paulo | Vernissages SP</title>
+<meta name="description" content="Escolha um bairro e o tempo que você tem: a ferramenta monta um roteiro a pé entre as galerias e museus em cartaz em São Paulo, na ordem mais curta, com mapa e distância.">
+<link rel="canonical" href="https://vernissagessp.com.br/monta-meu-sabado.html">
+<meta property="og:title" content="Monta seu sábado — roteiro de galerias em São Paulo | Vernissages SP">
+<meta property="og:description" content="Escolha um bairro e o tempo que você tem: a ferramenta monta um roteiro a pé entre as galerias e museus em cartaz em São Paulo, na ordem mais curta, com mapa e distância.">
+<meta property="og:url" content="https://vernissagessp.com.br/monta-meu-sabado.html">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://vernissagessp.com.br/og-image.png">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="https://vernissagessp.com.br/icon-192.png">
+<style>
+:root{--bg:#0a0a0d;--ink:#f3f3f7;--text:#f3f3f7;--muted:#8b8b9a;--text2:#c2c2d0;--accent:#e8c15a;--accent2:#c96f4a;--violet:#a78bfa;--green:#7fd8a0;--red:#f08a7a;--blue:#8fb6f9;--glass:rgba(255,255,255,.045);--glass2:rgba(255,255,255,.075);--line:rgba(255,255,255,.10);--line2:rgba(255,255,255,.20);--hair:rgba(255,255,255,.055);--panel:rgba(255,255,255,.045);--panel2:rgba(255,255,255,.075);--border:rgba(255,255,255,.10);--blur:blur(16px) saturate(150%)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,'Segoe UI',Inter,sans-serif;line-height:1.65;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(58vw 46vh at 10% -8%,rgba(232,193,90,.13),transparent 62%),radial-gradient(48vw 42vh at 94% 4%,rgba(167,139,250,.12),transparent 62%),radial-gradient(72vw 55vh at 48% 104%,rgba(201,111,74,.09),transparent 60%)}
+body::after{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);background-size:72px 72px;-webkit-mask-image:radial-gradient(ellipse 85% 55% at 50% 0%,#000 20%,transparent 78%);mask-image:radial-gradient(ellipse 85% 55% at 50% 0%,#000 20%,transparent 78%)}
+::selection{background:var(--accent);color:#0a0a0d}
+a{color:var(--blue)}
+.top{border-bottom:1px solid var(--border);padding:20px 24px}
+.top a{color:var(--text);text-decoration:none;font-weight:600;letter-spacing:2.5px;font-size:1rem}
+.top a span{color:var(--accent)}
+.nav{margin-top:6px;font-size:.8rem;color:var(--muted)}
+.nav a{color:var(--muted);text-decoration:none;margin-right:14px}
+.nav a:hover{color:var(--accent)}
+.wrap{max-width:780px;margin:0 auto;padding:36px 24px 70px}
+.wide{max-width:1080px}
+h1{font-size:1.9rem;line-height:1.25;font-weight:600;letter-spacing:-.4px;margin-bottom:10px}
+h2{font-size:.78rem;text-transform:uppercase;letter-spacing:1.8px;color:var(--muted);margin:40px 0 14px;padding-bottom:9px;border-bottom:1px solid var(--border)}
+.sub{color:var(--accent2);font-size:1rem;margin-bottom:4px}
+.meta{color:var(--muted);font-size:.88rem;margin-bottom:20px}
+.tag{display:inline-block;padding:2px 10px;border-radius:11px;font-size:.68rem;font-weight:700;letter-spacing:.5px;margin-left:8px;vertical-align:2px}
+.tag.on{background:rgba(127,185,138,.15);color:var(--green)}
+.tag.off{background:rgba(154,154,166,.15);color:var(--muted)}
+.tag.soon{background:rgba(232,193,90,.16);color:var(--accent)}
+p.txt{margin:14px 0;font-size:1.02rem}
+.box{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin:18px 0}
+.box dl{display:grid;grid-template-columns:130px 1fr;gap:8px 14px;font-size:.92rem}
+.box dt{color:var(--muted)}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.btn{background:var(--panel2);border:1px solid var(--border);color:var(--blue);border-radius:14px;padding:6px 14px;font-size:.83rem;text-decoration:none}
+.btn:hover{border-color:var(--blue)}
+ul.lista{list-style:none;display:flex;flex-direction:column;gap:12px}
+ul.lista li{background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--border);border-radius:11px;padding:14px 16px}
+ul.lista li.on{border-left-color:var(--green)}
+ul.lista li.soon{border-left-color:var(--accent)}
+ul.lista li a.t{color:var(--text);font-weight:600;font-size:1.02rem;text-decoration:none}
+ul.lista li a.t:hover{color:var(--accent)}
+ul.lista li .l2{color:var(--accent2);font-size:.86rem;margin-top:3px}
+ul.lista li .l3{color:var(--muted);font-size:.8rem;margin-top:3px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.grid2 a{display:block;background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:13px 15px;text-decoration:none;color:var(--text)}
+.grid2 a:hover{border-color:var(--accent)}
+.grid2 a small{display:block;color:var(--muted);font-size:.76rem;margin-top:3px}
+.busca{width:100%;background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:22px;padding:10px 18px;font-size:.95rem;margin-bottom:18px}
+.busca:focus{outline:none;border-color:var(--accent)}
+footer{border-top:1px solid var(--border);margin-top:50px;padding-top:20px;color:var(--muted);font-size:.78rem;line-height:1.7}
+footer a{color:var(--accent2)}
+@media(max-width:600px){.wrap{padding:26px 18px 60px}h1{font-size:1.5rem}.box dl{grid-template-columns:1fr;gap:2px 0}.box dt{margin-top:8px}}
+/* ===== TOKENS ===== */
+:root{--font:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Inter,sans-serif;--radius:16px;--radius-sm:10px;--bw:1px;--ls:0px;--onaccent:#0a0a0d}
+body,button,input,select,textarea,.btn{font-family:var(--font);letter-spacing:var(--ls)}
+.box,ul.lista li,.grid2 a{border-radius:var(--radius)}
+.box,.grid2 a{border-width:var(--bw)}
+.btn,.busca{border-radius:calc(var(--radius) + 6px);border-width:var(--bw)}
+.tag{border-radius:var(--radius-sm)}
+/* ===== VIDRO ===== */
+.box,ul.lista li,.grid2 a{background:var(--glass);border:1px solid var(--line);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);box-shadow:0 1px 0 rgba(255,255,255,.06) inset,0 12px 32px -18px rgba(0,0,0,.9)}
+ul.lista li:hover,.grid2 a:hover{background:var(--glass2);border-color:var(--line2);transform:translateY(-2px)}
+ul.lista li,.grid2 a{transition:.2s}
+.top{background:rgba(10,10,13,.62);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border-bottom:1px solid var(--hair);position:sticky;top:0;z-index:60}
+.btn,.busca{background:var(--glass2);border:1px solid var(--line);color:var(--text2);transition:.18s}
+.btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(232,193,90,.09)}
+.busca:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(232,193,90,.10)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+</style>
+<link rel="stylesheet" href="https://vernissagessp.com.br/temporada.css">
+<script data-goatcounter="https://vernissages.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+</head>
+<body>
+<div class="top">
+<a href="https://vernissagessp.com.br/">VERNISSAGES <span>SP</span></a>
+<div class="nav">
+<a href="https://vernissagessp.com.br/">Agenda</a><a href="https://vernissagessp.com.br/fim-de-semana.html">Fim de semana</a><a href="https://vernissagessp.com.br/monta-meu-sabado.html">Monta seu sábado</a><a href="https://vernissagessp.com.br/arquivo.html">Acervo</a><a href="https://vernissagessp.com.br/artistas.html">Artistas</a><a href="https://vernissagessp.com.br/editais.html">Editais</a>
+</div>
+</div>
+<div class="wrap">
+
+<style>
+.mms-form{display:grid;gap:16px;margin:22px 0 8px;max-width:420px}
+.mms-campo label{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:1.4px;color:var(--muted);margin-bottom:6px}
+.mms-campo select{width:100%;background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:12px;padding:10px 14px;font-size:.95rem}
+.mms-campo select:focus{outline:none;border-color:var(--accent)}
+#mms-ir{background:var(--accent);color:var(--onaccent);border:none;border-radius:22px;padding:11px 22px;font-size:.92rem;font-weight:700;cursor:pointer;justify-self:start}
+#mms-ir:hover{opacity:.9}
+#mms-aviso{display:none;color:var(--accent2);font-size:.9rem;margin:14px 0}
+#mms-resultado{display:none;margin-top:32px}
+#mms-mapa{height:340px;border-radius:var(--radius);border:1px solid var(--line);margin:16px 0;background:#101015}
+.mms-conta{display:flex;gap:30px;flex-wrap:wrap;margin:18px 0 4px}
+.mms-conta b{display:block;font-size:1.9rem;font-weight:800;letter-spacing:-1px;color:var(--accent2)}
+.mms-conta span{font-size:.7rem;text-transform:uppercase;letter-spacing:1.4px;color:var(--muted)}
+ul.mms-lista{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:14px}
+ul.mms-lista li{display:flex;gap:14px;align-items:flex-start;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:13px 15px}
+ul.mms-lista .k{flex:none;width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--onaccent);font-weight:800;font-size:.85rem;display:flex;align-items:center;justify-content:center}
+ul.mms-lista .tx a{color:var(--text);font-weight:600;text-decoration:none}
+ul.mms-lista .tx a:hover{color:var(--accent)}
+ul.mms-lista .l2{color:var(--accent2);font-size:.84rem;margin-top:2px}
+ul.mms-lista .l3{color:var(--muted);font-size:.78rem;margin-top:2px}
+#mms-zap{margin-top:18px}
+</style>
+<h1>Monta seu sábado</h1>
+<p class="txt">Escolhe um bairro e quanto tempo você tem — a página monta um roteiro a pé entre as mostras em cartaz, na ordem mais curta possível, com mapa e distância.</p>
+<form class="mms-form" id="mms-form">
+<div class="mms-campo"><label for="mms-bairro">Bairro</label><select id="mms-bairro" required><option value="">Escolha…</option></select></div>
+<div class="mms-campo"><label for="mms-tempo">Tempo disponível</label>
+<select id="mms-tempo">
+<option value="2">Só de passagem (2 paradas)</option>
+<option value="4" selected>Uma tarde (4 paradas)</option>
+<option value="6">O sábado inteiro (6 paradas)</option>
+</select></div>
+<button id="mms-ir" type="submit">Montar roteiro</button>
+</form>
+<p id="mms-aviso"></p>
+<div id="mms-resultado">
+<div class="mms-conta">
+<div><b id="mms-n"></b><span>paradas</span></div>
+<div><b id="mms-km"></b><span>km a pé</span></div>
+<div><b id="mms-min"></b><span>min andando</span></div>
+</div>
+<div id="mms-mapa"></div>
+<ul class="mms-lista" id="mms-listaparadas"></ul>
+<a class="btn" id="mms-zap" href="#" target="_blank" rel="noopener">Mandar no WhatsApp</a>
+<p class="txt" style="color:var(--muted);font-size:.86rem;margin-top:18px">Distância em linha reta entre as casas — a calçada é um pouco mais longa. Confira o horário de cada espaço antes de sair.</p>
+</div>
+<noscript><p class="txt">Esta ferramenta precisa de JavaScript pra montar o roteiro.</p></noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="dados.js"></script>
+<script>
+(function(){
+if(!window.DATA||!window.DATA.venues){return;}
+var TODAY=new Date();
+var HOJESTR=new Date(TODAY.getTime()-TODAY.getTimezoneOffset()*6e4).toISOString().slice(0,10);
+var VENUES=window.DATA.venues, EXPOS=window.DATA.expos;
+var GRUPO_BAIRRO=window.DATA.grupoBairro||{};
+function bairroLabel(v){return GRUPO_BAIRRO[v.b]||v.b;}
+var vByName={}; VENUES.forEach(function(v){vByName[v.name]=v;});
+function slug(s){return String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+  .toLowerCase().replace(/&/g,' e ').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,80);}
+
+var porVenue={};
+EXPOS.forEach(function(e){
+  var v=vByName[e.v];
+  if(!v||typeof v.lat!=='number')return;
+  if(!e.ini||e.ini>HOJESTR)return;
+  if(e.fim&&e.fim<HOJESTR)return;
+  var atual=porVenue[e.v];
+  if(!atual||(e.d||'').length>(atual.e.d||'').length) porVenue[e.v]={e:e,v:v};
+});
+var candidatos=Object.keys(porVenue).map(function(k){return porVenue[k];});
+
+var porGrupo={};
+candidatos.forEach(function(c){var g=bairroLabel(c.v);(porGrupo[g]=porGrupo[g]||[]).push(c);});
+var grupos=Object.keys(porGrupo).filter(function(g){return porGrupo[g].length>=2;})
+  .sort(function(a,b){return porGrupo[b].length-porGrupo[a].length||a.localeCompare(b,'pt');});
+
+var selBairro=document.getElementById('mms-bairro');
+var aviso=document.getElementById('mms-aviso');
+if(!grupos.length){
+  aviso.textContent='Nenhum bairro com mostras suficientes em cartaz agora pra montar um roteiro.';
+  aviso.style.display='block';
+  document.getElementById('mms-form').style.display='none';
+} else {
+  grupos.forEach(function(g){
+    var op=document.createElement('option'); op.value=g; op.textContent=g+' ('+porGrupo[g].length+')';
+    selBairro.appendChild(op);
+  });
+}
+
+/* geografia e rota — mesmo motor do deriva.js (SOCIAL) */
+function rad(g){return g*Math.PI/180;}
+function metros(a,b){
+  var R=6371000, dLat=rad(b.lat-a.lat), dLng=rad(b.lng-a.lng);
+  var h=Math.pow(Math.sin(dLat/2),2)+Math.cos(rad(a.lat))*Math.cos(rad(b.lat))*Math.pow(Math.sin(dLng/2),2);
+  return 2*R*Math.asin(Math.sqrt(h));
+}
+function melhorRota(pontos){
+  var n=pontos.length, idx=[]; for(var i=0;i<n;i++)idx.push(i);
+  var melhor=null, menor=Infinity;
+  (function permutar(atual,resto){
+    if(!resto.length){
+      var d=0; for(var i=1;i<atual.length;i++) d+=metros(pontos[atual[i-1]],pontos[atual[i]]);
+      if(d<menor){menor=d;melhor=atual.slice();}
+      return;
+    }
+    for(var i=0;i<resto.length;i++) permutar(atual.concat(resto[i]), resto.slice(0,i).concat(resto.slice(i+1)));
+  })([],idx);
+  return {ordem:melhor,total:menor};
+}
+function apertar(membros,teto){
+  var m=membros.slice();
+  while(m.length>teto){
+    var cx=0,cy=0; m.forEach(function(x){cx+=x.v.lat;cy+=x.v.lng;}); cx/=m.length; cy/=m.length;
+    var pior=0,dPior=-1;
+    m.forEach(function(x,i){var d=metros(x.v,{lat:cx,lng:cy}); if(d>dPior){dPior=d;pior=i;}});
+    m.splice(pior,1);
+  }
+  return m;
+}
+
+var mapaObj=null;
+document.getElementById('mms-form').addEventListener('submit',function(ev){
+  ev.preventDefault();
+  var grupo=selBairro.value, teto=+document.getElementById('mms-tempo').value;
+  aviso.style.display='none';
+  if(!grupo)return;
+  var sel=(porGrupo[grupo]||[]).slice();
+  if(sel.length<2){
+    aviso.textContent='Poucas mostras por aqui agora — tenta outro bairro.';
+    aviso.style.display='block';
+    document.getElementById('mms-resultado').style.display='none';
+    return;
+  }
+  if(sel.length>teto) sel=apertar(sel,teto);
+  var r=melhorRota(sel.map(function(c){return c.v;}));
+  var paradas=r.ordem.map(function(i){return sel[i];});
+  desenhar(paradas,r.total);
+});
+
+function desenhar(paradas,totalMetros){
+  var km=(totalMetros/1000).toFixed(1).replace('.',',');
+  var min=Math.round(totalMetros/1.25/60);
+  document.getElementById('mms-n').textContent=paradas.length;
+  document.getElementById('mms-km').textContent=km;
+  document.getElementById('mms-min').textContent=min;
+
+  var ul=document.getElementById('mms-listaparadas'); ul.innerHTML='';
+  var zapLinhas=['Meu roteiro em São Paulo:'];
+  paradas.forEach(function(p,i){
+    var id=slug(p.e.t)+'--'+slug(p.v.name);
+    var li=document.createElement('li');
+    li.innerHTML='<div class="k">'+(i+1)+'</div><div class="tx">'+
+      '<a href="https://vernissagessp.com.br/m/'+id+'.html">'+p.e.t.replace(/</g,'&lt;')+'</a>'+
+      '<div class="l2">'+p.v.name.replace(/</g,'&lt;')+' · '+p.v.b.replace(/</g,'&lt;')+'</div>'+
+      '<div class="l3">'+p.v.addr.replace(/</g,'&lt;').replace(' ~','')+'</div></div>';
+    ul.appendChild(li);
+    zapLinhas.push((i+1)+'. '+p.v.name+' — '+p.e.t);
+  });
+  zapLinhas.push('Montado em https://vernissagessp.com.br/monta-meu-sabado.html');
+  document.getElementById('mms-zap').href='https://wa.me/?text='+encodeURIComponent(zapLinhas.join('\n'));
+
+  var el=document.getElementById('mms-mapa');
+  el.style.display='';
+  if(typeof L==='undefined'){el.style.display='none';}
+  else{
+    if(mapaObj){mapaObj.remove();}
+    mapaObj=L.map(el,{scrollWheelZoom:false});
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',{attribution:'Esri, HERE, Garmin, © OpenStreetMap contributors',maxZoom:16}).addTo(mapaObj);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}',{maxZoom:16}).addTo(mapaObj);
+    var latlngs=paradas.map(function(p){return [p.v.lat,p.v.lng];});
+    L.polyline(latlngs,{color:'#c96f4a',weight:4}).addTo(mapaObj);
+    paradas.forEach(function(p,i){
+      L.circleMarker([p.v.lat,p.v.lng],{radius:9,color:'#0a0a0d',weight:1.5,fillColor:'#c96f4a',fillOpacity:.95})
+        .bindPopup('<b>'+(i+1)+'. '+p.v.name.replace(/</g,'&lt;')+'</b><br>'+p.e.t.replace(/</g,'&lt;'))
+        .addTo(mapaObj);
+    });
+    mapaObj.fitBounds(latlngs,{padding:[36,36],maxZoom:16});
+  }
+  document.getElementById('mms-resultado').style.display='block';
+}
+})();
+</script>
+<footer>
+Vernissages SP — mapa vivo das galerias e aberturas de São Paulo, atualizado diariamente.<br>
+Datas conforme divulgação dos espaços; confirme antes de visitar. <a href="https://vernissagessp.com.br/">Voltar à agenda</a> · <a href="https://instagram.com/vernissagessp" target="_blank" rel="noopener">Instagram</a>
+</footer>
+</div>
+</body>
+</html>

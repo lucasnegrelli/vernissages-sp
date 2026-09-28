@@ -39,7 +39,7 @@ jobs:
         run: |
           git config user.name "vernissages-bot"
           git config user.email "actions@github.com"
-          git add -A acervo.json arquivo.html artistas.html editais.html fim-de-semana.html temporada.css sitemap.xml robots.txt m a
+          git add -A acervo.json arquivo.html artistas.html editais.html fim-de-semana.html monta-meu-sabado.html temporada.css sitemap.xml robots.txt m a
           if git diff --staged --quiet; then
             echo "Nada mudou no acervo."
             exit 0

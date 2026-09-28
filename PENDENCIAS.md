@@ -142,6 +142,20 @@ Runbook em `OPERACAO.md`. Geração de social em `COMOGERAR.md`.
 
 Referências e banco de ideias: `REFERENCIAS.md`, `IDEIAS.md`, `DESIGN.md`.
 
+- **4 · MVP feito e testado no navegador:** `/monta-meu-sabado.html`. A pessoa
+  escolhe um bairro (agrupado como no rodapé — "Jardins" é o circuito, não o
+  bairro do IBGE) e quanto tempo tem (2, 4 ou 6 paradas); a página monta o
+  roteiro a pé na ordem mais curta (mesmo motor do `deriva.js`: haversine +
+  melhor ordem por força bruta + `apertar` quando sobram candidatos), desenha
+  mapa Leaflet com a rota e lista as paradas com link pra página da mostra e
+  botão "mandar no WhatsApp". Tudo roda no navegador a partir do `dados.js` já
+  carregado — não depende de mais nada gerado, nunca fica velho. Testado local
+  com servidor HTTP: bairro com 12 candidatos reduzido a 6 em 17ms, troca de
+  bairro sem duplicar mapa, link de mostra bate com o arquivo real em `m/`.
+  Linkado no menu, no rodapé e no sitemap. Ainda faltam os incrementos que o
+  plano deixou como "depois": "perto de mim" (geolocalização), salvar mostra
+  + lembrete, mapa como home (MapLibre).
+
 ### Andamento em 28/09/2026
 - **2 · feito e testado:** `gerar.js` escreve `fim-de-semana.html` todo dia
   (abre na semana · últimos dias · também em cartaz por zona, mapa Leaflet,

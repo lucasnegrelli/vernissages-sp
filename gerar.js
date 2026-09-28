@@ -190,7 +190,7 @@ ${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld)}</scr`+`
 <div class="top">
 <a href="${SITE}/">VERNISSAGES <span>SP</span></a>
 <div class="nav">
-<a href="${SITE}/">Agenda</a><a href="${SITE}/fim-de-semana.html">Fim de semana</a><a href="${SITE}/arquivo.html">Acervo</a><a href="${SITE}/artistas.html">Artistas</a><a href="${SITE}/editais.html">Editais</a>
+<a href="${SITE}/">Agenda</a><a href="${SITE}/fim-de-semana.html">Fim de semana</a><a href="${SITE}/monta-meu-sabado.html">Monta seu sábado</a><a href="${SITE}/arquivo.html">Acervo</a><a href="${SITE}/artistas.html">Artistas</a><a href="${SITE}/editais.html">Editais</a>
 </div>
 </div>
 <div class="wrap${wide ? ' wide' : ''}">
@@ -579,6 +579,207 @@ m.fitBounds(b,{padding:[30,30],maxZoom:14});
   });
 }
 
+/* ---------- monta meu sábado ----------
+   A pessoa escolhe um bairro (agrupado como no rodapé — "Jardins" é o
+   circuito, não o bairro do IBGE) e quanto tempo tem, e a página monta um
+   roteiro a pé: o motor da deriva.js (haversine + a melhor ordem por força
+   bruta, até 6 paradas) virando ferramenta em vez de peça de Instagram. Tudo
+   roda no navegador da pessoa a partir do dados.js já carregado — sem
+   depender de mais nenhum arquivo gerado, então nunca fica velho. */
+function paginaMontaMeuSabado() {
+  const corpo = `
+<style>
+.mms-form{display:grid;gap:16px;margin:22px 0 8px;max-width:420px}
+.mms-campo label{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:1.4px;color:var(--muted);margin-bottom:6px}
+.mms-campo select{width:100%;background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:12px;padding:10px 14px;font-size:.95rem}
+.mms-campo select:focus{outline:none;border-color:var(--accent)}
+#mms-ir{background:var(--accent);color:var(--onaccent);border:none;border-radius:22px;padding:11px 22px;font-size:.92rem;font-weight:700;cursor:pointer;justify-self:start}
+#mms-ir:hover{opacity:.9}
+#mms-aviso{display:none;color:var(--accent2);font-size:.9rem;margin:14px 0}
+#mms-resultado{display:none;margin-top:32px}
+#mms-mapa{height:340px;border-radius:var(--radius);border:1px solid var(--line);margin:16px 0;background:#101015}
+.mms-conta{display:flex;gap:30px;flex-wrap:wrap;margin:18px 0 4px}
+.mms-conta b{display:block;font-size:1.9rem;font-weight:800;letter-spacing:-1px;color:var(--accent2)}
+.mms-conta span{font-size:.7rem;text-transform:uppercase;letter-spacing:1.4px;color:var(--muted)}
+ul.mms-lista{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:14px}
+ul.mms-lista li{display:flex;gap:14px;align-items:flex-start;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:13px 15px}
+ul.mms-lista .k{flex:none;width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--onaccent);font-weight:800;font-size:.85rem;display:flex;align-items:center;justify-content:center}
+ul.mms-lista .tx a{color:var(--text);font-weight:600;text-decoration:none}
+ul.mms-lista .tx a:hover{color:var(--accent)}
+ul.mms-lista .l2{color:var(--accent2);font-size:.84rem;margin-top:2px}
+ul.mms-lista .l3{color:var(--muted);font-size:.78rem;margin-top:2px}
+#mms-zap{margin-top:18px}
+</style>
+<h1>Monta seu sábado</h1>
+<p class="txt">Escolhe um bairro e quanto tempo você tem — a página monta um roteiro a pé entre as mostras em cartaz, na ordem mais curta possível, com mapa e distância.</p>
+<form class="mms-form" id="mms-form">
+<div class="mms-campo"><label for="mms-bairro">Bairro</label><select id="mms-bairro" required><option value="">Escolha…</option></select></div>
+<div class="mms-campo"><label for="mms-tempo">Tempo disponível</label>
+<select id="mms-tempo">
+<option value="2">Só de passagem (2 paradas)</option>
+<option value="4" selected>Uma tarde (4 paradas)</option>
+<option value="6">O sábado inteiro (6 paradas)</option>
+</select></div>
+<button id="mms-ir" type="submit">Montar roteiro</button>
+</form>
+<p id="mms-aviso"></p>
+<div id="mms-resultado">
+<div class="mms-conta">
+<div><b id="mms-n"></b><span>paradas</span></div>
+<div><b id="mms-km"></b><span>km a pé</span></div>
+<div><b id="mms-min"></b><span>min andando</span></div>
+</div>
+<div id="mms-mapa"></div>
+<ul class="mms-lista" id="mms-listaparadas"></ul>
+<a class="btn" id="mms-zap" href="#" target="_blank" rel="noopener">Mandar no WhatsApp</a>
+<p class="txt" style="color:var(--muted);font-size:.86rem;margin-top:18px">Distância em linha reta entre as casas — a calçada é um pouco mais longa. Confira o horário de cada espaço antes de sair.</p>
+</div>
+<noscript><p class="txt">Esta ferramenta precisa de JavaScript pra montar o roteiro.</p></noscript>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<scr`+`ipt src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></scr`+`ipt>
+<scr`+`ipt src="dados.js"></scr`+`ipt>
+<scr`+`ipt>
+(function(){
+if(!window.DATA||!window.DATA.venues){return;}
+var TODAY=new Date();
+var HOJESTR=new Date(TODAY.getTime()-TODAY.getTimezoneOffset()*6e4).toISOString().slice(0,10);
+var VENUES=window.DATA.venues, EXPOS=window.DATA.expos;
+var GRUPO_BAIRRO=window.DATA.grupoBairro||{};
+function bairroLabel(v){return GRUPO_BAIRRO[v.b]||v.b;}
+var vByName={}; VENUES.forEach(function(v){vByName[v.name]=v;});
+function slug(s){return String(s||'').normalize('NFD').replace(/[\\u0300-\\u036f]/g,'')
+  .toLowerCase().replace(/&/g,' e ').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+\$/g,'').slice(0,80);}
+
+var porVenue={};
+EXPOS.forEach(function(e){
+  var v=vByName[e.v];
+  if(!v||typeof v.lat!=='number')return;
+  if(!e.ini||e.ini>HOJESTR)return;
+  if(e.fim&&e.fim<HOJESTR)return;
+  var atual=porVenue[e.v];
+  if(!atual||(e.d||'').length>(atual.e.d||'').length) porVenue[e.v]={e:e,v:v};
+});
+var candidatos=Object.keys(porVenue).map(function(k){return porVenue[k];});
+
+var porGrupo={};
+candidatos.forEach(function(c){var g=bairroLabel(c.v);(porGrupo[g]=porGrupo[g]||[]).push(c);});
+var grupos=Object.keys(porGrupo).filter(function(g){return porGrupo[g].length>=2;})
+  .sort(function(a,b){return porGrupo[b].length-porGrupo[a].length||a.localeCompare(b,'pt');});
+
+var selBairro=document.getElementById('mms-bairro');
+var aviso=document.getElementById('mms-aviso');
+if(!grupos.length){
+  aviso.textContent='Nenhum bairro com mostras suficientes em cartaz agora pra montar um roteiro.';
+  aviso.style.display='block';
+  document.getElementById('mms-form').style.display='none';
+} else {
+  grupos.forEach(function(g){
+    var op=document.createElement('option'); op.value=g; op.textContent=g+' ('+porGrupo[g].length+')';
+    selBairro.appendChild(op);
+  });
+}
+
+/* geografia e rota — mesmo motor do deriva.js (SOCIAL) */
+function rad(g){return g*Math.PI/180;}
+function metros(a,b){
+  var R=6371000, dLat=rad(b.lat-a.lat), dLng=rad(b.lng-a.lng);
+  var h=Math.pow(Math.sin(dLat/2),2)+Math.cos(rad(a.lat))*Math.cos(rad(b.lat))*Math.pow(Math.sin(dLng/2),2);
+  return 2*R*Math.asin(Math.sqrt(h));
+}
+function melhorRota(pontos){
+  var n=pontos.length, idx=[]; for(var i=0;i<n;i++)idx.push(i);
+  var melhor=null, menor=Infinity;
+  (function permutar(atual,resto){
+    if(!resto.length){
+      var d=0; for(var i=1;i<atual.length;i++) d+=metros(pontos[atual[i-1]],pontos[atual[i]]);
+      if(d<menor){menor=d;melhor=atual.slice();}
+      return;
+    }
+    for(var i=0;i<resto.length;i++) permutar(atual.concat(resto[i]), resto.slice(0,i).concat(resto.slice(i+1)));
+  })([],idx);
+  return {ordem:melhor,total:menor};
+}
+function apertar(membros,teto){
+  var m=membros.slice();
+  while(m.length>teto){
+    var cx=0,cy=0; m.forEach(function(x){cx+=x.v.lat;cy+=x.v.lng;}); cx/=m.length; cy/=m.length;
+    var pior=0,dPior=-1;
+    m.forEach(function(x,i){var d=metros(x.v,{lat:cx,lng:cy}); if(d>dPior){dPior=d;pior=i;}});
+    m.splice(pior,1);
+  }
+  return m;
+}
+
+var mapaObj=null;
+document.getElementById('mms-form').addEventListener('submit',function(ev){
+  ev.preventDefault();
+  var grupo=selBairro.value, teto=+document.getElementById('mms-tempo').value;
+  aviso.style.display='none';
+  if(!grupo)return;
+  var sel=(porGrupo[grupo]||[]).slice();
+  if(sel.length<2){
+    aviso.textContent='Poucas mostras por aqui agora — tenta outro bairro.';
+    aviso.style.display='block';
+    document.getElementById('mms-resultado').style.display='none';
+    return;
+  }
+  if(sel.length>teto) sel=apertar(sel,teto);
+  var r=melhorRota(sel.map(function(c){return c.v;}));
+  var paradas=r.ordem.map(function(i){return sel[i];});
+  desenhar(paradas,r.total);
+});
+
+function desenhar(paradas,totalMetros){
+  var km=(totalMetros/1000).toFixed(1).replace('.',',');
+  var min=Math.round(totalMetros/1.25/60);
+  document.getElementById('mms-n').textContent=paradas.length;
+  document.getElementById('mms-km').textContent=km;
+  document.getElementById('mms-min').textContent=min;
+
+  var ul=document.getElementById('mms-listaparadas'); ul.innerHTML='';
+  var zapLinhas=['Meu roteiro em São Paulo:'];
+  paradas.forEach(function(p,i){
+    var id=slug(p.e.t)+'--'+slug(p.v.name);
+    var li=document.createElement('li');
+    li.innerHTML='<div class="k">'+(i+1)+'</div><div class="tx">'+
+      '<a href="${SITE}/m/'+id+'.html">'+p.e.t.replace(/</g,'&lt;')+'</a>'+
+      '<div class="l2">'+p.v.name.replace(/</g,'&lt;')+' · '+p.v.b.replace(/</g,'&lt;')+'</div>'+
+      '<div class="l3">'+p.v.addr.replace(/</g,'&lt;').replace(' ~','')+'</div></div>';
+    ul.appendChild(li);
+    zapLinhas.push((i+1)+'. '+p.v.name+' — '+p.e.t);
+  });
+  zapLinhas.push('Montado em ${SITE}/monta-meu-sabado.html');
+  document.getElementById('mms-zap').href='https://wa.me/?text='+encodeURIComponent(zapLinhas.join('\\n'));
+
+  var el=document.getElementById('mms-mapa');
+  el.style.display='';
+  if(typeof L==='undefined'){el.style.display='none';}
+  else{
+    if(mapaObj){mapaObj.remove();}
+    mapaObj=L.map(el,{scrollWheelZoom:false});
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',{attribution:'Esri, HERE, Garmin, © OpenStreetMap contributors',maxZoom:16}).addTo(mapaObj);
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}',{maxZoom:16}).addTo(mapaObj);
+    var latlngs=paradas.map(function(p){return [p.v.lat,p.v.lng];});
+    L.polyline(latlngs,{color:'#c96f4a',weight:4}).addTo(mapaObj);
+    paradas.forEach(function(p,i){
+      L.circleMarker([p.v.lat,p.v.lng],{radius:9,color:'#0a0a0d',weight:1.5,fillColor:'#c96f4a',fillOpacity:.95})
+        .bindPopup('<b>'+(i+1)+'. '+p.v.name.replace(/</g,'&lt;')+'</b><br>'+p.e.t.replace(/</g,'&lt;'))
+        .addTo(mapaObj);
+    });
+    mapaObj.fitBounds(latlngs,{padding:[36,36],maxZoom:16});
+  }
+  document.getElementById('mms-resultado').style.display='block';
+}
+})();
+</scr`+`ipt>`;
+
+  return pagina({
+    titulo: 'Monta seu sábado — roteiro de galerias em São Paulo | Vernissages SP',
+    desc: 'Escolha um bairro e o tempo que você tem: a ferramenta monta um roteiro a pé entre as galerias e museus em cartaz em São Paulo, na ordem mais curta, com mapa e distância.',
+    canonical: `${SITE}/monta-meu-sabado.html`, corpo
+  });
+}
+
 /* ---------- execução ---------- */
 function main() {
   const DATA = carregarDados();
@@ -598,9 +799,10 @@ function main() {
   fs.writeFileSync(path.join(RAIZ, 'artistas.html'), paginaArtistas(acervo.artistas));
   fs.writeFileSync(path.join(RAIZ, 'editais.html'), paginaEditais(DATA.editais || []));
   fs.writeFileSync(path.join(RAIZ, 'fim-de-semana.html'), paginaFimDeSemana(DATA));
+  fs.writeFileSync(path.join(RAIZ, 'monta-meu-sabado.html'), paginaMontaMeuSabado());
   fs.writeFileSync(path.join(RAIZ, 'acervo.json'), JSON.stringify(acervo, null, 1));
 
-  const urls = [`${SITE}/`, `${SITE}/fim-de-semana.html`, `${SITE}/arquivo.html`, `${SITE}/artistas.html`, `${SITE}/editais.html`]
+  const urls = [`${SITE}/`, `${SITE}/fim-de-semana.html`, `${SITE}/monta-meu-sabado.html`, `${SITE}/arquivo.html`, `${SITE}/artistas.html`, `${SITE}/editais.html`]
     .concat(acervo.expos.map(e => `${SITE}/m/${e.id}.html`))
     .concat(Object.keys(acervo.artistas).map(k => `${SITE}/a/${k}.html`));
   fs.writeFileSync(path.join(RAIZ, 'sitemap.xml'),
