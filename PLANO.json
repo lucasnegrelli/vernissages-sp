@@ -11,6 +11,18 @@
   ],
   "posts": [
     {
+      "data": "2026-10-02",
+      "formato": "obra",
+      "ordem": 1,
+      "paleta": "temporada",
+      "textura": 0.05,
+      "ideia": "obra-mulheres-da-boca",
+      "nome": "obra-mulheres-da-boca",
+      "ajustes": {
+        "evitar": ["Vonta de vi dada dada — Ernesto Neto (Barra Funda)|Fortes D'Aloia & Gabriel — Galpão"]
+      }
+    },
+    {
       "data": "2026-10-05",
       "formato": "salao",
       "ordem": 1,
@@ -55,12 +67,12 @@
     },
     {
       "data": "2026-10-10",
-      "formato": "deriva",
+      "formato": "encerra",
       "ordem": 1,
       "paleta": "temporada",
-      "textura": 0.07,
-      "ideia": "deriva-so-galeria",
-      "nome": "deriva-jardim-europa"
+      "textura": 0.05,
+      "ideia": "encerra-homem-nu",
+      "nome": "encerra-homem-nu"
     }
   ]
 }
