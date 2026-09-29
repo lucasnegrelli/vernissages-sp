@@ -103,19 +103,13 @@ function slideCapaTexto(cfg, total) {
 /* Cada parte centralizada verticalmente no quadro, não colada no topo — uma
    frase sozinha lá em cima com o resto do quadro vazio embaixo lia como
    peça quebrada, não como pausa editorial (29/09/2026, mesmo ajuste já
-   feito no cartaz.js e no roteiro.js). */
+   feito no cartaz.js e no roteiro.js). O numeral gigante que ficava aqui
+   (29/09) saiu no mesmo dia: o Lucas achou "nada a ver" — decoração sem
+   função, não dado. n/total já diz a posição, pequeno, no rodapé. */
 function slideParte(texto, beat, n, total, ultima) {
-  /* O numeral gigante em fundo (a parte é a N-esima das partes narrativas,
-     sem contar capa, contexto e fecho) da peso visual real ao quadro e
-     reforca a estrutura em partes da propria historia — nao e enfeite
-     solto, e o mesmo dado que ja existia pequeno no rodape (n/total), so
-     que grande o bastante pra preencher o quadro (29/09/2026, resposta ao
-     "muito espaco vazio"). Passado à parte de n/total porque o slide de
-     contexto desloca a posição absoluta sem mudar a ordem narrativa. */
   return `<div class="slide">
     <div class="kick">a história por trás</div>
     <div class="risco" style="top:150px"></div>
-    <div class="numeral">${String(beat).padStart(2, '0')}</div>
     <div style="position:absolute;left:88px;right:88px;top:214px;bottom:170px;
                 display:flex;flex-direction:column;justify-content:center">
       <div class="arg" style="position:static;width:auto">${ultima ? '<span class="virada">' + esc(texto) + '</span>' : esc(texto)}</div>
@@ -128,17 +122,17 @@ function slideParte(texto, beat, n, total, ultima) {
 /* Variante composta: imagem em cima (contida, nunca cortada — mesma regra
    do slideContexto), texto embaixo, no MESMO slide. 29/09/2026: o Lucas
    pediu pra imagem entrar "entre os textos ou no mesmo slide", como
-   diagramação, não só numa peça isolada. Reaproveita a foto de contexto já
-   sourced em vez de exigir uma nova pra cada parte — a composição muda
-   (recorte, posição do texto), a imagem pode repetir. */
-function slideParteComImagem(texto, img, beat, n, total, ultima) {
+   diagramação. Resposta seguinte, mesmo dia: cada imagem tem que ser
+   DIFERENTE — "seja do artista, seja da obra, seja de elementos, seja do
+   cenário... sem repetir os elementos". Cada parte que usa este slide leva
+   uma foto própria (`imagensPartes[i]`), nunca a mesma reaproveitada. */
+function slideParteComImagem(texto, img, n, total, ultima) {
   const cx = W - 88 * 2, cy = 620;
   const k = Math.min(cx / img.dim.w, cy / img.dim.h, 1.4);
   const w = Math.round(img.dim.w * k), h = Math.round(img.dim.h * k);
   return `<div class="slide slide--contexto">
     <div class="kick">a história por trás</div>
     <div class="risco" style="top:150px"></div>
-    <div class="numeral">${String(beat).padStart(2, '0')}</div>
     <img src="${esc(img.img)}" style="position:absolute;object-fit:contain;
       left:${Math.round((W - w) / 2)}px;top:${Math.round(200 + (cy - h) / 2)}px;width:${w}px;height:${h}px">
     <div style="position:absolute;left:88px;right:88px;top:${200 + cy + 30}px;bottom:170px;
@@ -192,7 +186,7 @@ function montarHTML(o, ctx, imagensPartes, cfg) {
   const off = 2 + nContexto;
   const partes = cfg.partes.map((p, i) => {
     const beat = i + 1, n = i + off, ultima = i === cfg.partes.length - 1;
-    return imagensPartes[i] ? slideParteComImagem(p, imagensPartes[i], beat, n, total, ultima)
+    return imagensPartes[i] ? slideParteComImagem(p, imagensPartes[i], n, total, ultima)
                              : slideParte(p, beat, n, total, ultima);
   }).join('');
   const fecho = slideFecho(o, cfg, total);
@@ -203,8 +197,6 @@ function montarHTML(o, ctx, imagensPartes, cfg) {
     .tese{font-size:76px;line-height:1.08}
     .arg{font-size:44px;line-height:1.34}
     .arg .virada{font-size:54px;line-height:1.26}
-    .numeral{position:absolute;right:88px;top:70px;font-size:150px;font-weight:700;
-      letter-spacing:-.03em;color:${cfg.paleta.apagado};line-height:1}
     ${cssPaleta(cfg.paleta, cfg.textura)}</style></head><body>` +
     capa + contexto + partes + fecho + `</body></html>`;
 }
