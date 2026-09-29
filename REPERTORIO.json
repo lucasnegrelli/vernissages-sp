@@ -11,7 +11,8 @@
     "LINHA EDITORIAL — 01/09/2026. Agosto saiu repetitivo porque a maioria das ideias era formato de lista (cinza sobre preto, a obra de miniatura). O eixo agora é a IMAGEM: `obra` (uma reprodução por vez, tela cheia, SEM marca por cima), `encerra` (última semana de uma mostra), `estreia` (o que abre agora). `numero` põe um dado só, gigante. `rolê` e `duração` saíram do social — a linha do tempo virou o painel 'O panorama', ao vivo no site. `rima` e `aproximação` seguem: são os dois com olho humano, e é neles que a voz aparece. A régua é a variedade de recorte, não a economia de ideias — quanto mais ângulos, melhor, desde que cada um produza uma imagem diferente.",
     "LOTE DE 23/09/2026 — o Lucas achou o feed repetitivo (a peça de entrada e a de número, semanas diferentes, diziam a mesma coisa: 'é de graça'). Causa raiz: `entrada.js` sempre abre no custo de entrada, não importa a ideia — é estrutural do formato, então `numero-gratis` deveria descansar mais que as outras, não só os 30 dias padrão. Acrescentei 13 ideias novas nesta rodada: 4 `obra`/2 `deriva` por bairro específico (Pinheiros, Bela Vista, Ibirapuera, República, Jardim Europa — o filtro já aceita bairro, não é código novo), 1 `salao` recortado nos três bairros de Jardins, 3 `rima` (preço oposto, arquivo/documento, mesmo artista em décadas diferentes) e 3 `aproximacao` (grão de fotografia, fio de têxtil, cor única) — todas curadas, aguardam config manual quando sorteadas.",
     "25/09/2026: +134 ideias (pedido: 200+, nunca repetir). descansoPadrao 30 -> 150 dias.",
-    "28/09/2026: numero e entrada vetados (IDEIAS.md, 26/09) — removidas 36 ideias desses dois formatos. O planejar.js não sorteia mais nenhum dos dois."
+    "28/09/2026: numero e entrada vetados (IDEIAS.md, 26/09) — removidas 36 ideias desses dois formatos. O planejar.js não sorteia mais nenhum dos dois.",
+    "28/09/2026: +12 ideias em ângulos ainda não cobertos (espelho/reflexo, som vs. silêncio, artista em duas casas, coletivas, parceria entre vizinhos) — não repetição de recorte geográfico, que já estava bem coberto."
   ],
   "descansoPadrao": 150,
   "ideias": [
@@ -2638,6 +2639,133 @@
         "barro"
       ],
       "precisa": "a chave da obra, os zooms e a leitura — obra de artista de rua em galeria, com a marca do spray ou do estêncil"
+    },
+    {
+      "id": "rima-copia-original",
+      "formato": "rima",
+      "curado": true,
+      "titulo": "Uma reprodução e o original, na mesma semana",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "papel"
+      ]
+    },
+    {
+      "id": "rima-som-silencio",
+      "formato": "rima",
+      "curado": true,
+      "titulo": "Uma mostra com som e uma mostra em silêncio total",
+      "paletas": [
+        "escuro",
+        "linho",
+        "tinta"
+      ]
+    },
+    {
+      "id": "rima-dentro-fora",
+      "formato": "rima",
+      "curado": true,
+      "titulo": "A obra que fica na parede e a que invade a sala",
+      "paletas": [
+        "escuro",
+        "barro",
+        "papel"
+      ]
+    },
+    {
+      "id": "aproximacao-espelho",
+      "formato": "aproximacao",
+      "curado": true,
+      "titulo": "Aproximação numa superfície que reflete — o espelho, o vidro, o metal polido",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "papel"
+      ]
+    },
+    {
+      "id": "aproximacao-luz-projetada",
+      "formato": "aproximacao",
+      "curado": true,
+      "titulo": "Onde a luz da sala vira parte da obra, não só iluminação",
+      "paletas": [
+        "escuro",
+        "barro"
+      ]
+    },
+    {
+      "id": "aproximacao-erro-restauro",
+      "formato": "aproximacao",
+      "curado": true,
+      "titulo": "A marca do tempo: craquelê, mancha, remendo de restauro",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ]
+    },
+    {
+      "id": "estreia-parceria-duas-casas",
+      "formato": "estreia",
+      "curado": false,
+      "titulo": "Duas casas vizinhas que abrem no mesmo dia, sem combinar",
+      "paletas": [
+        "cal",
+        "linho"
+      ]
+    },
+    {
+      "id": "estreia-depois-de-reforma",
+      "formato": "estreia",
+      "curado": false,
+      "titulo": "A primeira mostra depois de uma casa reformar o espaço",
+      "paletas": [
+        "cal",
+        "papel"
+      ]
+    },
+    {
+      "id": "encerra-ninguem-viu",
+      "formato": "encerra",
+      "curado": false,
+      "titulo": "Fecha essa semana e quase não apareceu em lugar nenhum",
+      "paletas": [
+        "barro",
+        "escuro"
+      ]
+    },
+    {
+      "id": "encerra-fila-historica",
+      "formato": "encerra",
+      "curado": false,
+      "titulo": "Última semana de uma mostra que virou fila (poucas, mas acontece)",
+      "paletas": [
+        "escuro",
+        "tinta"
+      ]
+    },
+    {
+      "id": "salao-artista-unico-varias-casas",
+      "formato": "salao",
+      "curado": false,
+      "titulo": "Um artista com mostra em mais de uma casa ao mesmo tempo",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "barro"
+      ]
+    },
+    {
+      "id": "deriva-so-coletivas",
+      "formato": "deriva",
+      "curado": false,
+      "titulo": "Um roteiro só de mostras coletivas",
+      "paletas": [
+        "papel",
+        "cal",
+        "linho"
+      ]
     }
   ]
 }
