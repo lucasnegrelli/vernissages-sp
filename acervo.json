@@ -2235,10 +2235,10 @@
    "d": "Reúne diferentes grupos de trabalhos em que o acaso, o descontrole e o gesto errático operam como motores de criação, com curadoria de Germano Dushá.",
    "bairro": "Vila Madalena",
    "zona": "Oeste",
-   "addr": "Vila Madalena ~",
+   "addr": "R. João Alberto Moreira, 128",
    "tipo": "galeria",
    "site": "https://marlimatsumoto.com.br",
-   "ig": "",
+   "ig": "marlimatsumoto_",
    "visto": "2026-09-29",
    "primeiroRegistro": "2026-09-23"
   },
@@ -4333,13 +4333,13 @@
   },
   "marli-matsumoto-arte-contemporanea": {
    "name": "Marli Matsumoto Arte Contemporânea",
-   "addr": "Vila Madalena ~",
+   "addr": "R. João Alberto Moreira, 128",
    "b": "Vila Madalena",
    "z": "Oeste",
    "tipo": "galeria",
    "site": "https://marlimatsumoto.com.br",
-   "ig": "",
-   "info": "Galeria + anexo experimental."
+   "ig": "marlimatsumoto_",
+   "info": "Galeria + anexo experimental. Casa modernista de fim dos anos 1950."
   },
   "galeria-leme": {
    "name": "Galeria Leme",
