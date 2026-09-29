@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * instagram.js — raspa, uma vez por semana, o perfil das casas que só divulgam lá.
+ * instagram.js — raspa, uma vez por semana, o perfil das casas com Instagram.
  *
  * POR QUE ISTO EXISTE
  * Parte do mapa não tem site, ou tem site parado. A A7MA é o caso-modelo: a
@@ -10,17 +10,29 @@
  * proibia raspar Instagram; o Lucas derrubou a regra para este recorte: só as
  * casas marcadas `soIG: true` no dados.js, uma vez por semana.
  *
+ * 29/09/2026: escopo ampliado de `soIG` para toda casa com `ig` (78 vs 18).
+ * Motivo mudou: não é só achar mostra que nenhuma outra varredura pegaria —
+ * é também achar FOTO DE OBRA pra mostra que já está no dados.js mas img:""
+ * (o cartaz.js virou o caso mais visível disso: formato sem foto que fica
+ * melhor com uma quando existe uma boa). O passo 3 do prompt já cobria isso
+ * ("mostra que já existe: só complete o que falta"), só faltava a raspagem
+ * chegar nessas casas. Custo Apify ainda cabe folgado no crédito grátis: ver
+ * conta abaixo.
+ *
  * POR QUE PELO APIFY E NÃO DIRETO
  * Testado em 25/09/2026: a rota pública do Instagram (web_profile_info)
  * devolveu 429 deslogado, do IP de casa, e 429 também logado, de dentro do
  * navegador. Raspar direto exigiria a sessão de uma conta, e é a conta que
  * leva o bloqueio. O actor `apify/instagram-post-scraper` roda com proxy
  * próprio e não encosta em conta nenhuma. Custo medido na página do actor:
- * US$ 2,70 por 1.000 posts; ~20 perfis × poucos posts por semana cabe no
- * crédito grátis mensal com folga.
+ * US$ 2,70 por 1.000 posts; com POR_PERFIL=8 e ~78 perfis, o teto é ~624
+ * posts/semana (~2,7 mil/mês) SE toda casa postasse o máximo toda semana —
+ * na prática bem menos, a maioria não posta 8x/semana. Ainda assim, se o
+ * crédito grátis apertar, baixar `--por-perfil` é o primeiro corte, não
+ * voltar o escopo pra soIG.
  *
  * O QUE ELE FAZ
- * Busca os posts dos últimos dias de cada casa `soIG`, descarta os já vistos
+ * Busca os posts dos últimos dias de cada casa com `ig`, descarta os já vistos
  * (INSTAGRAM-VISTOS.json, versionado) e escreve:
  *   PENDENTE/INSTAGRAM.md          legendas + imagens, para a rotina ler
  *   PENDENTE/instagram-novos.json  os mesmos posts, crus
@@ -61,7 +73,7 @@ function venues() {
   const win = {};
   new Function('window', fs.readFileSync(path.join(RAIZ, 'dados.js'), 'utf8') +
                '\n;window.DATA=window.DATA||DATA;')(win);
-  return (win.DATA.venues || []).filter(v => v.soIG && v.ig);
+  return (win.DATA.venues || []).filter(v => v.ig);
 }
 
 async function buscarApify(handles) {
@@ -110,7 +122,7 @@ async function principal() {
   if (argv.includes('--marcar')) return marcar();
 
   const casas = venues();
-  if (!casas.length) { console.error('Nenhuma casa com soIG:true no dados.js.'); process.exit(1); }
+  if (!casas.length) { console.error('Nenhuma casa com `ig` no dados.js.'); process.exit(1); }
   const porHandle = {};
   casas.forEach(v => { porHandle[v.ig.toLowerCase()] = v; });
 
@@ -148,7 +160,7 @@ async function principal() {
   gravar(NOVOS, novos);
 
   let s = '# Instagram — ' + hoje() + '\n\n';
-  s += casas.length + ' casas `soIG`, posts dos últimos ' + DIAS + ' dias, ' + novos.length + ' novos.\n';
+  s += casas.length + ' casas com Instagram, posts dos últimos ' + DIAS + ' dias, ' + novos.length + ' novos.\n';
   s += 'Imagens são URL de CDN do Instagram: expiram em horas. Só servem se o\n';
   s += '`espelhar.js` rodar no mesmo job (o workflow já faz isso).\n';
   if (falhas.length) s += '\n## Perfis que não abriram\n\n' + falhas.map(f => '- ' + f).join('\n') + '\n';

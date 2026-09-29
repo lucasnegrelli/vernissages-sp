@@ -294,20 +294,28 @@ velocidades reduziram o buraco; não o fecharam. O resto vem do envio das casas.
 
 ### Espaço que só divulga no Instagram
 
-**Raspar Instagram é permitido desde 25/09/2026, só neste recorte:** casas
-marcadas `soIG: true` no dados.js, uma vez por semana. A regra antiga
-("perfil exige login e o runbook proíbe raspar") caiu no dia em que a A7MA
-abriu "Passeio Noturno" anunciada só no Instagram — site parado desde 2023
-— e nenhuma varredura viu. Em 25/09 eram 36 das 124 casas sem site nenhum.
+**Raspar Instagram é permitido desde 25/09/2026.** A regra antiga ("perfil
+exige login e o runbook proíbe raspar") caiu no dia em que a A7MA abriu
+"Passeio Noturno" anunciada só no Instagram — site parado desde 2023 — e
+nenhuma varredura viu. Em 25/09 eram 36 das 124 casas sem site nenhum;
+nasceu com o recorte `soIG: true`, uma vez por semana.
+
+29/09/2026: escopo ampliado de `soIG` (18 casas) para **toda casa com `ig`**
+no dados.js (78 casas). Motivo: o pipeline já sabia completar `img` de
+mostra existente sem foto (passo 3 do prompt), mas só via posts das 18
+soIG. O cartaz.js (formato tipográfico sem foto) deixou visível quanto
+faltava foto de obra em mostras de casas que TÊM site — a raspagem semanal
+virou também fonte de imagem, não só de descoberta de mostra invisível.
 
 **Como roda.** `.github/workflows/instagram.yml`, toda quarta às 08h de SP:
 
-1. `instagram.js` busca os posts dos últimos 10 dias de cada casa `soIG`
+1. `instagram.js` busca os posts dos últimos 10 dias de cada casa com `ig`
    pelo Apify (actor `apify/instagram-post-scraper`, segredo `APIFY_TOKEN`)
    e escreve `PENDENTE/INSTAGRAM.md`. Pula post já processado
    (`INSTAGRAM-VISTOS.json`, versionado).
 2. O Claude Code lê as legendas com o prompt `.github/prompts/instagram.md`,
-   decide o que é mostra e escreve no `EXPOS`.
+   decide o que é mostra nova ou completa `img`/`fim`/`a` de mostra já
+   existente, e escreve no `EXPOS`.
 3. `espelhar.js` roda no mesmo job — URL do CDN do Instagram expira em
    horas — e o `check.js` é o portão. Reprovou: nada é commitado e os posts
    voltam na semana seguinte.
@@ -315,14 +323,17 @@ abriu "Passeio Noturno" anunciada só no Instagram — site parado desde 2023
 **Por que Apify e não direto.** Testado em 25/09: a rota do próprio
 Instagram devolveu 429 deslogado e 429 logado. Raspar direto exigiria a
 sessão de uma conta, e quem leva o bloqueio é a conta. O Apify usa proxy
-dele e não encosta em conta nenhuma. Custo: US$ 2,70 por 1.000 posts;
-17 perfis × poucos posts por semana cabe no crédito grátis mensal.
+dele e não encosta em conta nenhuma. Custo: US$ 2,70 por 1.000 posts; com
+78 perfis o teto é ~2,7 mil posts/mês se todos postassem o máximo toda
+semana, na prática bem menos — ver instagram.js para a conta. Apertou o
+crédito grátis: baixe `--por-perfil` antes de cortar escopo.
 
-**Pôr ou tirar uma casa da raspagem:** `soIG: true` no venue do dados.js.
-Critério: a agenda da casa só existe no Instagram (sem site, site parado,
-domínio expirado). Não marque casa com site vivo — ali a varredura normal
-já pega, e cada perfil a mais é custo. Perfil que aparece em "Perfis que
-não abriram" no resumo do job teve o handle trocado: corrija o `ig`.
+**Pôr ou tirar uma casa da raspagem:** basta ter (ou não) `ig` no venue do
+dados.js — não depende mais de `soIG`. `soIG: true` continua existindo só
+para marcar, informativamente, a casa cuja agenda só existe no Instagram
+(sem site, site parado, domínio expirado); não controla mais quem entra na
+raspagem. Perfil que aparece em "Perfis que não abriram" no resumo do job
+teve o handle trocado: corrija o `ig`.
 
 **Na mão continua valendo.** Para um post específico, fora da rodada:
 

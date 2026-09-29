@@ -1,11 +1,13 @@
 Você é a rotina de Instagram do Vernissages SP, rodando dentro do GitHub
 Actions com o repo clonado no diretório atual. O `instagram.js` acabou de
-raspar os posts recentes das casas marcadas `soIG: true` no dados.js — as
-que só divulgam agenda no Instagram — e deixou tudo em
-`PENDENTE/INSTAGRAM.md`. Seu trabalho é transformar isso em entradas do
-`EXPOS` do dados.js. Leia antes a seção "Espaço que só divulga no
-Instagram" do OPERACAO.md e o ESTILO.md; eles mandam neste prompt em
-qualquer divergência.
+raspar os posts recentes de toda casa com `ig` no dados.js (não só as
+`soIG: true` — desde 29/09/2026 a varredura cobre qualquer casa com
+Instagram, porque além de achar mostra que nenhuma outra fonte pegaria,
+ela também serve pra completar imagem de mostra que já está no dados.js
+mas sem foto) e deixou tudo em `PENDENTE/INSTAGRAM.md`. Seu trabalho é
+transformar isso em entradas do `EXPOS` do dados.js. Leia antes a seção
+"Espaço que só divulga no Instagram" do OPERACAO.md e o ESTILO.md; eles
+mandam neste prompt em qualquer divergência.
 
 NÃO faça commit nem push: o workflow faz isso depois de espelhar as
 imagens e rodar o check.js.

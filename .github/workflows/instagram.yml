@@ -1,10 +1,13 @@
 name: Instagram das casas sem site
 
-# Raspa uma vez por semana o perfil das casas marcadas `soIG: true` no
-# dados.js e transforma post de mostra em entrada do EXPOS. Criado em
-# 25/09/2026, quando "Passeio Noturno" (A7MA) abriu anunciada só no
-# Instagram e nenhuma varredura viu. Ver OPERACAO.md, "Espaço que só
-# divulga no Instagram".
+# Raspa uma vez por semana o perfil de toda casa com `ig` no dados.js e
+# transforma post de mostra em entrada do EXPOS — nova (casa sem site que
+# só divulga lá) ou já existente sem foto (completa `img`/`fim`/`a`). Criado
+# em 25/09/2026, quando "Passeio Noturno" (A7MA) abriu anunciada só no
+# Instagram e nenhuma varredura viu; escopo ampliado de `soIG` pra toda
+# casa em 29/09/2026, pra também minerar foto de obra pro que já estava no
+# dados.js sem imagem (motivação: cartaz.js). Ver OPERACAO.md, "Espaço que
+# só divulga no Instagram".
 #
 # Tres partes, na ordem:
 #   1. instagram.js — busca via Apify (segredo APIFY_TOKEN), sem conta do
