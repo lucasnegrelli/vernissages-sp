@@ -32,6 +32,12 @@
       revela o pixel. O piso da régua do OPERACAO.md é 1600; aqui 1400 é o
       mínimo absoluto, e o score prefere as grandes.
    3. FLYER NÃO É OBRA. `cartaz: true` no dados.js exclui na hora.
+   4. PROPORÇÃO LONGE DEMAIS DO ALVO NÃO ENTRA. O slide cheio usa
+      object-fit:cover centrado — numa imagem muito mais larga (ou mais alta)
+      que o quadro 4:5, isso corta mais da metade do lado maior, sempre pelo
+      meio, sem saber onde está o motivo. 09/10/2026: "O homem nu" (Efrain
+      Almeida, 2360×1328) cortou a ave bem na cabeça. Acima de 1.6× de
+      desvio da proporção do quadro, fora.
 
    Uso:
      node obra.js --config=SOCIAL/09/03/obra.json --out=SOCIAL/09/03 --date=2026-09-03
@@ -49,6 +55,16 @@ const { carregarDados, exigirObra, medir, RAIZ, CSS, esc, porExtenso,
 
 const W = 1080, H = 1350;
 const MIN_LARGURA = 1400;
+const ALVO_PROP = W / H;
+/* Acima disso, o object-fit:cover do slide cheio corta mais da metade do
+   lado maior pra encaixar no quadro 4:5 — e o corte e sempre centrado, entao
+   qualquer motivo fora do meio (uma ave no canto esquerdo de uma foto bem
+   larga, por exemplo) sai cortado ao meio ou desaparece. 09/10/2026: "O
+   homem nu" (Efrain Almeida, 2360x1328) cortou a ave exatamente na cabeca —
+   a proporcao da imagem (1.78) contra o alvo (0.8) so deixava 45% da largura
+   visivel. Mesma logica do MIN_LARGURA: melhor nao usar a imagem do que usar
+   ela mutilada. */
+const LIMITE_PROP = 1.6;
 
 const _dias = (a, b) => Math.round((Date.parse(b + 'T12:00:00') - Date.parse(a + 'T12:00:00')) / 864e5);
 
@@ -90,6 +106,8 @@ async function escolher(DATA, hoje, cfg) {
     let dim;
     try { dim = await medir(rel); } catch { continue; }
     if (!dim.w || dim.w < MIN_LARGURA) continue;
+    const prop = dim.w / dim.h;
+    if (Math.max(prop / ALVO_PROP, ALVO_PROP / prop) > LIMITE_PROP) continue;
 
     const v = V[e.v];
     const kb = fs.statSync(path.resolve(RAIZ, rel)).size / 1024;
@@ -224,7 +242,8 @@ async function principal() {
   console.log(cand.length + ' obra(s) elegível(is) em cartaz em ' + hoje +
     (cfg.filtro ? ' no recorte' : ''));
   if (!cand.length) throw new Error('Nenhuma obra passa a régua (imagem em disco, ≥' +
-    MIN_LARGURA + ' px, crédito, não vista de sala, não cartaz). Amplie o filtro ou espelhe imagem.');
+    MIN_LARGURA + ' px, proporção até ' + LIMITE_PROP + '× do quadro 4:5, crédito, não vista de sala, ' +
+    'não cartaz). Amplie o filtro ou espelhe imagem.');
 
   const o = cand[0];
   console.log('PICK ' + o.e.t + '|' + o.e.v);
