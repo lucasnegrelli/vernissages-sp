@@ -2813,28 +2813,16 @@
       ]
     },
     {
-      "id": "roteiro-do-bairro",
-      "formato": "roteiro",
-      "curado": false,
-      "titulo": "Um bairro, todas as mostras abertas nele agora — um circuito a pé",
+      "id": "historia-por-tras",
+      "formato": "historia",
+      "curado": true,
+      "titulo": "Um fato de história da arte, verificado, em 3 a 6 partes — autônomo ou ligado a uma mostra em cartaz",
       "paletas": [
         "escuro",
-        "barro",
-        "tinta"
-      ]
-    },
-    {
-      "id": "roteiro-institucional",
-      "formato": "roteiro",
-      "curado": false,
-      "titulo": "O roteiro recortado só em museu e centro cultural (tipo institucional)",
-      "paletas": [
         "tinta",
-        "papel"
+        "barro"
       ],
-      "ajustes": {
-        "filtro": { "tipo": "institucional" }
-      }
+      "precisa": "o título, as partes (texto) e a fonte que o Lucas conferiu — pesquisa real (WebSearch/WebFetch), nunca de memória"
     }
   ]
 }

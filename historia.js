@@ -56,17 +56,34 @@ function slideCapaTexto(cfg, total) {
   return `<div class="slide">
     <div class="kick">a história por trás</div>
     <div class="risco" style="top:150px"></div>
-    <div class="tese" style="top:230px">${esc(cfg.titulo)}</div>
+    <div style="position:absolute;left:88px;right:88px;top:214px;bottom:170px;
+                display:flex;flex-direction:column;justify-content:center">
+      <div class="tese" style="position:static;width:auto">${esc(cfg.titulo)}</div>
+    </div>
     <div class="marca">${MARCA_HTML}</div>
     <div class="pag">1/${total}</div>
   </div>`;
 }
 
+/* Cada parte centralizada verticalmente no quadro, não colada no topo — uma
+   frase sozinha lá em cima com o resto do quadro vazio embaixo lia como
+   peça quebrada, não como pausa editorial (29/09/2026, mesmo ajuste já
+   feito no cartaz.js e no roteiro.js). */
 function slideParte(texto, n, total, ultima) {
+  /* O numeral gigante em fundo (a parte é a N-esima de total-2, sem contar
+     capa e fecho) da peso visual real ao quadro e reforca a estrutura em
+     partes da propria historia — nao e enfeite solto, e o mesmo dado que
+     ja existia pequeno no rodape (n/total), so que grande o bastante pra
+     preencher o quadro (29/09/2026, resposta ao "muito espaco vazio"). */
+  const beat = n - 1, beatTotal = total - 2;
   return `<div class="slide">
     <div class="kick">a história por trás</div>
     <div class="risco" style="top:150px"></div>
-    <div class="arg" style="top:280px">${ultima ? '<span class="virada">' + esc(texto) + '</span>' : esc(texto)}</div>
+    <div class="numeral">${String(beat).padStart(2, '0')}</div>
+    <div style="position:absolute;left:88px;right:88px;top:214px;bottom:170px;
+                display:flex;flex-direction:column;justify-content:center">
+      <div class="arg" style="position:static;width:auto">${ultima ? '<span class="virada">' + esc(texto) + '</span>' : esc(texto)}</div>
+    </div>
     <div class="marca">${MARCA_HTML}</div>
     <div class="pag">${n}/${total}</div>
   </div>`;
@@ -77,7 +94,10 @@ function slideFecho(o, cfg, total) {
     return `<div class="slide">
       <div class="kick">a fonte</div>
       <div class="risco" style="top:150px"></div>
-      <div class="arg" style="top:230px;font-size:26px;color:${cfg.paleta.fraco}">${esc(cfg.fonte)}</div>
+      <div style="position:absolute;left:88px;right:88px;top:214px;bottom:170px;
+                  display:flex;flex-direction:column;justify-content:center">
+        <div class="arg" style="position:static;width:auto;font-size:26px;color:${cfg.paleta.fraco}">${esc(cfg.fonte)}</div>
+      </div>
       <div class="marca">vernissagessp.com.br</div>
       <div class="pag">${total}/${total}</div>
     </div>`;
@@ -111,6 +131,11 @@ function montarHTML(o, cfg) {
     .slide--cheia{background:#000}
     .slide--cheia::after{display:none}
     .slide .sangra{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+    .tese{font-size:76px;line-height:1.08}
+    .arg{font-size:44px;line-height:1.34}
+    .arg .virada{font-size:54px;line-height:1.26}
+    .numeral{position:absolute;right:88px;top:70px;font-size:150px;font-weight:700;
+      letter-spacing:-.03em;color:${cfg.paleta.apagado};line-height:1}
     ${cssPaleta(cfg.paleta, cfg.textura)}</style></head><body>` +
     capa + partes + fecho + `</body></html>`;
 }

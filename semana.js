@@ -62,8 +62,13 @@ const FORMATOS = {
      memória de descanso (USADAS). A mesma janela nunca repete — o conteúdo
      muda com a agenda. */
   agenda:      { script: 'agenda.js',      curado: false, fixo: true },
-  cartaz:      { script: 'cartaz.js',      curado: false },
-  roteiro:     { script: 'roteiro.js',     curado: false }
+  historia:    { script: 'historia.js',    curado: true,
+                 precisa: 'o título, as partes (texto) e a fonte do fato histórico' }
+  /* cartaz e roteiro saíram da rotação em 29/09/2026 — o Lucas achou os dois
+     pobres/pouco atrativos ao ver ao vivo (cartaz: título longo quebra a
+     cascata e sobra vazio sem foto; roteiro: lista de serviço, sem voz).
+     Os scripts continuam no repo; não sorteiam mais. historia.js entrou no
+     lugar: texto sem imagem, mas com pesquisa real e voz, não logística. */
   /* reel.js não entra aqui: monta vídeo com filmagem do Lucas (--clipes),
      não com a base. Roda na mão, depois do rolê. */
   /* role e duracao saíram em 01/09: a deriva cobre o percurso, e o diagrama de
