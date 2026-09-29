@@ -15,6 +15,15 @@ Curador e arquivista. Objetivo, culto, direto. O texto informa; não convence.
 - Sem chamada para ação afetiva. A informação é a chamada.
 - Frases curtas. Voz ativa. Nada de subordinação empilhada.
 - Não interpretar a obra além do que a fonte afirma. Na dúvida, descrever.
+- **Sem travessão nenhum em texto corrido** — nem de aside ("fez X — o que
+  Y"), nem de atribuição de citação ("frase" — Fulano: usar "Fulano disse:
+  'frase'" ou dois pontos). É a marca mais reconhecível de texto gerado por
+  IA; o Lucas pediu pra nunca mais aparecer, em legenda, em peça gráfica,
+  em lugar nenhum (29/09/2026). Frase separada, vírgula, dois-pontos ou "e"
+  no lugar. A ÚNICA exceção é o travessão ESTRUTURAL de campo — `Título —
+  Artista` como rótulo nos formatos gráficos (`tituloCurto`/`autoria` em
+  rima.js) — porque isso é separador de dado, não frase; não é prosa e
+  ninguém lê como frase.
 
 ## 2. Estrutura do texto de divulgação
 
