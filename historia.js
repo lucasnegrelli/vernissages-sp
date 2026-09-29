@@ -29,6 +29,16 @@
    3. SE HÁ OBRA, VALEM AS TRAVAS DA RIMA. Imagem em disco, crédito, não
       vista de sala. Sem `obra` no config a capa é só tipográfica — a peça
       não trava se a história não tiver uma mostra específica em cartaz.
+   4. `contexto` (opcional): uma foto de CONTEXTO, não de obra — retrato do
+      artista, o prédio, o lugar do fato. 29/09/2026: o Lucas viu os dois
+      primeiros "história por trás" (Miró, MASP) e achou "muito visual na
+      descrição e não mostra nada" — só texto lia como peça quebrada, não
+      como escolha. `contexto` é a resposta: `{img, cred, legenda?}`, exige
+      crédito (mesma régua de toda imagem do sistema), entra logo depois da
+      capa. NUNCA cortada — object-fit:contain, não cover: são fotos de
+      arquivo/terceiros (Wikimedia Commons etc.), e cortar uma delas sem
+      necessidade é o tipo de coisa que uma licença ou um espólio pode pedir
+      pra não fazer (foi pedido explícito no uso do retrato de Miró aqui).
 
    Uso:
      node historia.js --config=SOCIAL/10/12/historia.json --out=SOCIAL/10/12
@@ -52,6 +62,25 @@ function slideCapaObra(o) {
   </div>`;
 }
 
+/* Foto de contexto (retrato, prédio, lugar) — nunca de obra. Contida, não
+   cortada: object-fit:contain dentro de uma caixa seguindo a proporção real
+   do arquivo, então nunca estica nem devora nada pra caber no 4:5. */
+function slideContexto(ctx, n, total) {
+  const cx = W - 88 * 2, cy = 900;
+  const k = Math.min(cx / ctx.dim.w, cy / ctx.dim.h, 1.6); // nunca amplia mais que 1.6x
+  const w = Math.round(ctx.dim.w * k), h = Math.round(ctx.dim.h * k);
+  return `<div class="slide slide--contexto">
+    <div class="kick">a história por trás</div>
+    <div class="risco" style="top:150px"></div>
+    <img src="${esc(ctx.img)}" style="position:absolute;object-fit:contain;
+      left:${Math.round((W - w) / 2)}px;top:${Math.round(200 + (cy - h) / 2)}px;width:${w}px;height:${h}px">
+    ${ctx.legenda ? `<div class="cred" style="bottom:148px;width:700px">${esc(ctx.legenda)}</div>` : ''}
+    <div class="cred" style="bottom:116px;width:700px">${esc(ctx.cred)}</div>
+    <div class="marca">${MARCA_HTML}</div>
+    <div class="pag">${n}/${total}</div>
+  </div>`;
+}
+
 function slideCapaTexto(cfg, total) {
   return `<div class="slide">
     <div class="kick">a história por trás</div>
@@ -69,13 +98,14 @@ function slideCapaTexto(cfg, total) {
    frase sozinha lá em cima com o resto do quadro vazio embaixo lia como
    peça quebrada, não como pausa editorial (29/09/2026, mesmo ajuste já
    feito no cartaz.js e no roteiro.js). */
-function slideParte(texto, n, total, ultima) {
-  /* O numeral gigante em fundo (a parte é a N-esima de total-2, sem contar
-     capa e fecho) da peso visual real ao quadro e reforca a estrutura em
-     partes da propria historia — nao e enfeite solto, e o mesmo dado que
-     ja existia pequeno no rodape (n/total), so que grande o bastante pra
-     preencher o quadro (29/09/2026, resposta ao "muito espaco vazio"). */
-  const beat = n - 1, beatTotal = total - 2;
+function slideParte(texto, beat, n, total, ultima) {
+  /* O numeral gigante em fundo (a parte é a N-esima das partes narrativas,
+     sem contar capa, contexto e fecho) da peso visual real ao quadro e
+     reforca a estrutura em partes da propria historia — nao e enfeite
+     solto, e o mesmo dado que ja existia pequeno no rodape (n/total), so
+     que grande o bastante pra preencher o quadro (29/09/2026, resposta ao
+     "muito espaco vazio"). Passado à parte de n/total porque o slide de
+     contexto desloca a posição absoluta sem mudar a ordem narrativa. */
   return `<div class="slide">
     <div class="kick">a história por trás</div>
     <div class="risco" style="top:150px"></div>
@@ -122,10 +152,13 @@ function slideFecho(o, cfg, total) {
   </div>`;
 }
 
-function montarHTML(o, cfg) {
-  const total = cfg.partes.length + 2;
+function montarHTML(o, ctx, cfg) {
+  const nContexto = ctx ? 1 : 0;
+  const total = cfg.partes.length + 2 + nContexto;
   const capa = o ? slideCapaObra(o) : slideCapaTexto(cfg, total);
-  const partes = cfg.partes.map((p, i) => slideParte(p, i + 2, total, i === cfg.partes.length - 1)).join('');
+  const contexto = ctx ? slideContexto(ctx, 2, total) : '';
+  const off = 2 + nContexto;
+  const partes = cfg.partes.map((p, i) => slideParte(p, i + 1, i + off, total, i === cfg.partes.length - 1)).join('');
   const fecho = slideFecho(o, cfg, total);
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>${CSS}
     .slide--cheia{background:#000}
@@ -137,7 +170,7 @@ function montarHTML(o, cfg) {
     .numeral{position:absolute;right:88px;top:70px;font-size:150px;font-weight:700;
       letter-spacing:-.03em;color:${cfg.paleta.apagado};line-height:1}
     ${cssPaleta(cfg.paleta, cfg.textura)}</style></head><body>` +
-    capa + partes + fecho + `</body></html>`;
+    capa + contexto + partes + fecho + `</body></html>`;
 }
 
 async function principal() {
@@ -170,10 +203,21 @@ async function principal() {
   } else {
     console.log('sem obra vinculada — capa e fecho tipográficos');
   }
+
+  let ctx = null;
+  if (cfg.contexto) {
+    if (!cfg.contexto.img) throw new Error('`contexto.img` faltando.');
+    if (!cfg.contexto.cred) throw new Error('SEM CREDITO: `contexto` precisa de `cred` — mesma régua de toda imagem do sistema.');
+    const rel = String(cfg.contexto.img).replace(/^\.?\//, '');
+    if (!fs.existsSync(path.resolve(RAIZ, rel))) throw new Error('`contexto.img` não existe em disco: ' + rel);
+    ctx = { img: rel, cred: cfg.contexto.cred, legenda: cfg.contexto.legenda };
+    ctx.dim = await medir(rel);
+    console.log('contexto ' + ctx.dim.w + 'x' + ctx.dim.h + ' — ' + rel + ' — ' + ctx.cred);
+  }
   console.log(cfg.partes.length + ' parte(s) · fonte: ' + cfg.fonte);
 
   const tmp = path.join(RAIZ, '.historia-tmp.html');
-  fs.writeFileSync(tmp, montarHTML(o, cfg), 'utf8');
+  fs.writeFileSync(tmp, montarHTML(o, ctx, cfg), 'utf8');
 
   const puppeteer = require(path.join(RAIZ, '.render', 'node_modules', 'puppeteer-core'));
   const browser = await puppeteer.launch({
