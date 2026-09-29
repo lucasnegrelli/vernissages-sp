@@ -39,6 +39,12 @@
       arquivo/terceiros (Wikimedia Commons etc.), e cortar uma delas sem
       necessidade é o tipo de coisa que uma licença ou um espólio pode pedir
       pra não fazer (foi pedido explícito no uso do retrato de Miró aqui).
+   5. `imagensPartes` (opcional): mesma ideia, mas COMPOSTA na própria parte
+      em vez de isolada — `{"<índice 0-based>": {img, cred, legenda?}}`.
+      29/09/2026, mesma conversa: "toda imagem tem que ter, entre os textos
+      ou no mesmo slide dos textos... uma diagramação." A imagem pode
+      repetir uma já usada em `contexto` — o que muda é o recorte da
+      composição, não a foto precisar ser inédita a cada parte.
 
    Uso:
      node historia.js --config=SOCIAL/10/12/historia.json --out=SOCIAL/10/12
@@ -119,6 +125,32 @@ function slideParte(texto, beat, n, total, ultima) {
   </div>`;
 }
 
+/* Variante composta: imagem em cima (contida, nunca cortada — mesma regra
+   do slideContexto), texto embaixo, no MESMO slide. 29/09/2026: o Lucas
+   pediu pra imagem entrar "entre os textos ou no mesmo slide", como
+   diagramação, não só numa peça isolada. Reaproveita a foto de contexto já
+   sourced em vez de exigir uma nova pra cada parte — a composição muda
+   (recorte, posição do texto), a imagem pode repetir. */
+function slideParteComImagem(texto, img, beat, n, total, ultima) {
+  const cx = W - 88 * 2, cy = 620;
+  const k = Math.min(cx / img.dim.w, cy / img.dim.h, 1.4);
+  const w = Math.round(img.dim.w * k), h = Math.round(img.dim.h * k);
+  return `<div class="slide slide--contexto">
+    <div class="kick">a história por trás</div>
+    <div class="risco" style="top:150px"></div>
+    <div class="numeral">${String(beat).padStart(2, '0')}</div>
+    <img src="${esc(img.img)}" style="position:absolute;object-fit:contain;
+      left:${Math.round((W - w) / 2)}px;top:${Math.round(200 + (cy - h) / 2)}px;width:${w}px;height:${h}px">
+    <div style="position:absolute;left:88px;right:88px;top:${200 + cy + 30}px;bottom:170px;
+                display:flex;flex-direction:column;justify-content:center">
+      <div class="arg" style="position:static;width:auto;font-size:34px;line-height:1.3">${ultima ? '<span class="virada" style="font-size:40px">' + esc(texto) + '</span>' : esc(texto)}</div>
+    </div>
+    <div class="cred" style="bottom:116px;width:700px;font-size:14px">${esc(img.cred)}</div>
+    <div class="marca">${MARCA_HTML}</div>
+    <div class="pag">${n}/${total}</div>
+  </div>`;
+}
+
 function slideFecho(o, cfg, total) {
   if (!o) {
     return `<div class="slide">
@@ -152,13 +184,17 @@ function slideFecho(o, cfg, total) {
   </div>`;
 }
 
-function montarHTML(o, ctx, cfg) {
+function montarHTML(o, ctx, imagensPartes, cfg) {
   const nContexto = ctx ? 1 : 0;
   const total = cfg.partes.length + 2 + nContexto;
   const capa = o ? slideCapaObra(o) : slideCapaTexto(cfg, total);
   const contexto = ctx ? slideContexto(ctx, 2, total) : '';
   const off = 2 + nContexto;
-  const partes = cfg.partes.map((p, i) => slideParte(p, i + 1, i + off, total, i === cfg.partes.length - 1)).join('');
+  const partes = cfg.partes.map((p, i) => {
+    const beat = i + 1, n = i + off, ultima = i === cfg.partes.length - 1;
+    return imagensPartes[i] ? slideParteComImagem(p, imagensPartes[i], beat, n, total, ultima)
+                             : slideParte(p, beat, n, total, ultima);
+  }).join('');
   const fecho = slideFecho(o, cfg, total);
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>${CSS}
     .slide--cheia{background:#000}
@@ -204,20 +240,30 @@ async function principal() {
     console.log('sem obra vinculada — capa e fecho tipográficos');
   }
 
+  async function resolverImagem(campo, nome) {
+    if (!campo.img) throw new Error('`' + nome + '.img` faltando.');
+    if (!campo.cred) throw new Error('SEM CREDITO: `' + nome + '` precisa de `cred` — mesma régua de toda imagem do sistema.');
+    const rel = String(campo.img).replace(/^\.?\//, '');
+    if (!fs.existsSync(path.resolve(RAIZ, rel))) throw new Error('`' + nome + '.img` não existe em disco: ' + rel);
+    const img = { img: rel, cred: campo.cred, legenda: campo.legenda };
+    img.dim = await medir(rel);
+    console.log(nome + ' ' + img.dim.w + 'x' + img.dim.h + ' — ' + rel + ' — ' + img.cred);
+    return img;
+  }
+
   let ctx = null;
-  if (cfg.contexto) {
-    if (!cfg.contexto.img) throw new Error('`contexto.img` faltando.');
-    if (!cfg.contexto.cred) throw new Error('SEM CREDITO: `contexto` precisa de `cred` — mesma régua de toda imagem do sistema.');
-    const rel = String(cfg.contexto.img).replace(/^\.?\//, '');
-    if (!fs.existsSync(path.resolve(RAIZ, rel))) throw new Error('`contexto.img` não existe em disco: ' + rel);
-    ctx = { img: rel, cred: cfg.contexto.cred, legenda: cfg.contexto.legenda };
-    ctx.dim = await medir(rel);
-    console.log('contexto ' + ctx.dim.w + 'x' + ctx.dim.h + ' — ' + rel + ' — ' + ctx.cred);
+  if (cfg.contexto) ctx = await resolverImagem(cfg.contexto, 'contexto');
+
+  const imagensPartes = {};
+  if (cfg.imagensPartes) {
+    for (const i of Object.keys(cfg.imagensPartes)) {
+      imagensPartes[i] = await resolverImagem(cfg.imagensPartes[i], 'imagensPartes[' + i + ']');
+    }
   }
   console.log(cfg.partes.length + ' parte(s) · fonte: ' + cfg.fonte);
 
   const tmp = path.join(RAIZ, '.historia-tmp.html');
-  fs.writeFileSync(tmp, montarHTML(o, ctx, cfg), 'utf8');
+  fs.writeFileSync(tmp, montarHTML(o, ctx, imagensPartes, cfg), 'utf8');
 
   const puppeteer = require(path.join(RAIZ, '.render', 'node_modules', 'puppeteer-core'));
   const browser = await puppeteer.launch({
