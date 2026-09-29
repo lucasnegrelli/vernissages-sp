@@ -23,6 +23,30 @@
       }
     },
     {
+      "data": "2026-10-04",
+      "formato": "cartaz",
+      "ordem": 1,
+      "paleta": "temporada",
+      "textura": 0.05,
+      "ideia": "cartaz-do-dia",
+      "nome": "cartaz-do-dia",
+      "ajustes": {
+        "evitar": ["Joan Miró: Mestre das Formas|MAB FAAP"]
+      }
+    },
+    {
+      "data": "2026-10-06",
+      "formato": "obra",
+      "ordem": 1,
+      "paleta": "temporada",
+      "textura": 0.05,
+      "ideia": "obra-higienopolis",
+      "nome": "obra-higienopolis",
+      "ajustes": {
+        "filtro": { "bairro": "Higienópolis" }
+      }
+    },
+    {
       "data": "2026-10-05",
       "formato": "salao",
       "ordem": 1,
@@ -67,12 +91,12 @@
     },
     {
       "data": "2026-10-10",
-      "formato": "encerra",
+      "formato": "cartaz",
       "ordem": 1,
       "paleta": "temporada",
       "textura": 0.05,
-      "ideia": "encerra-homem-nu",
-      "nome": "encerra-homem-nu"
+      "ideia": "cartaz-meio-do-caminho",
+      "nome": "cartaz-meio-do-caminho"
     }
   ]
 }

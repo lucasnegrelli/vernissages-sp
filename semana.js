@@ -61,7 +61,8 @@ const FORMATOS = {
   /* Fixo da semana desde 25/09/2026: sai TODA semana, então não entram na
      memória de descanso (USADAS). A mesma janela nunca repete — o conteúdo
      muda com a agenda. */
-  agenda:      { script: 'agenda.js',      curado: false, fixo: true }
+  agenda:      { script: 'agenda.js',      curado: false, fixo: true },
+  cartaz:      { script: 'cartaz.js',      curado: false }
   /* reel.js não entra aqui: monta vídeo com filmagem do Lucas (--clipes),
      não com a base. Roda na mão, depois do rolê. */
   /* role e duracao saíram em 01/09: a deriva cobre o percurso, e o diagrama de
@@ -114,8 +115,8 @@ function prepararConfig(post, plano) {
    cair na mesma obra — o eixo do feed é justamente a variedade de trabalho. O
    semana.js junta o que já saiu (linha `PICK t|v` do gerador) e passa adiante
    no campo `evitar`. `deriva` também escolhe obras (uma por parada). */
-const FAMILIA_OBRA = new Set(['obra', 'encerra', 'estreia']);
-const CONSOME_OBRA = new Set(['obra', 'encerra', 'estreia', 'deriva']);
+const FAMILIA_OBRA = new Set(['obra', 'encerra', 'estreia', 'cartaz']);
+const CONSOME_OBRA = new Set(['obra', 'encerra', 'estreia', 'deriva', 'cartaz']);
 
 /* ---------- memória entre semanas ----------
 

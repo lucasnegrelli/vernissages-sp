@@ -12,7 +12,8 @@
     "LOTE DE 23/09/2026 — o Lucas achou o feed repetitivo (a peça de entrada e a de número, semanas diferentes, diziam a mesma coisa: 'é de graça'). Causa raiz: `entrada.js` sempre abre no custo de entrada, não importa a ideia — é estrutural do formato, então `numero-gratis` deveria descansar mais que as outras, não só os 30 dias padrão. Acrescentei 13 ideias novas nesta rodada: 4 `obra`/2 `deriva` por bairro específico (Pinheiros, Bela Vista, Ibirapuera, República, Jardim Europa — o filtro já aceita bairro, não é código novo), 1 `salao` recortado nos três bairros de Jardins, 3 `rima` (preço oposto, arquivo/documento, mesmo artista em décadas diferentes) e 3 `aproximacao` (grão de fotografia, fio de têxtil, cor única) — todas curadas, aguardam config manual quando sorteadas.",
     "25/09/2026: +134 ideias (pedido: 200+, nunca repetir). descansoPadrao 30 -> 150 dias.",
     "28/09/2026: numero e entrada vetados (IDEIAS.md, 26/09) — removidas 36 ideias desses dois formatos. O planejar.js não sorteia mais nenhum dos dois.",
-    "28/09/2026: +12 ideias em ângulos ainda não cobertos (espelho/reflexo, som vs. silêncio, artista em duas casas, coletivas, parceria entre vizinhos) — não repetição de recorte geográfico, que já estava bem coberto."
+    "28/09/2026: +12 ideias em ângulos ainda não cobertos (espelho/reflexo, som vs. silêncio, artista em duas casas, coletivas, parceria entre vizinhos) — não repetição de recorte geográfico, que já estava bem coberto.",
+    "29/09/2026: formato novo — cartaz.js. Não é uma pauta nova pra um formato que já existe: é estrutura nova, o único do sistema sem foto (tipografia em cascata + barra de progresso real do tempo de mostra). Resolve de quebra as mostras sem imagem boa, que nunca apareciam em nada. +4 ideias."
   ],
   "descansoPadrao": 150,
   "ideias": [
@@ -2765,6 +2766,49 @@
         "papel",
         "cal",
         "linho"
+      ]
+    },
+    {
+      "id": "cartaz-do-dia",
+      "formato": "cartaz",
+      "curado": false,
+      "titulo": "O cartaz: só tipografia, a barra do tempo real de mostra",
+      "paletas": [
+        "escuro",
+        "barro",
+        "tinta"
+      ]
+    },
+    {
+      "id": "cartaz-sem-imagem",
+      "formato": "cartaz",
+      "curado": false,
+      "titulo": "O cartaz de uma mostra que nunca teve foto boa disponível",
+      "paletas": [
+        "escuro",
+        "tinta",
+        "papel"
+      ]
+    },
+    {
+      "id": "cartaz-meio-do-caminho",
+      "formato": "cartaz",
+      "curado": false,
+      "titulo": "O cartaz de uma mostra exatamente na metade do tempo em cartaz",
+      "paletas": [
+        "barro",
+        "escuro"
+      ]
+    },
+    {
+      "id": "cartaz-institucional",
+      "formato": "cartaz",
+      "curado": false,
+      "titulo": "O cartaz de uma mostra de museu ou centro cultural",
+      "paletas": [
+        "tinta",
+        "escuro",
+        "papel"
       ]
     }
   ]
