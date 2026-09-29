@@ -70,17 +70,21 @@ Os outros formatos existentes, por peso:
 |---|---|---|
 | **obra** | uma obra, tela cheia + etiqueta | 3–4×/semana, monta sozinho |
 | **encerra / estreia** | o mesmo desenho da obra, com selo de prazo e contagem em dias | conforme a agenda, monta sozinho |
-| **numero** | um dado só, gigante, calculado da base — o primo de *O panorama* | ~1×/semana, monta sozinho |
 | **rima** | duas mostras lado a lado por uma afinidade | 1×/semana, curadoria sua |
 | **aproximação** | chegar perto de uma obra até a filigrana | 1×/semana, curadoria sua |
-| **entrada** | como se entra numa galeria — porta, preço, sábado | ~1×/semana, monta sozinho |
 | **deriva** | um percurso a pé entre casas próximas | ~1×/semana, monta sozinho |
 | **salão** | tudo em cartaz na mesma parede (o Salon vs o cubo branco) | 1×/mês |
+| **cartaz** | tipografia em cascata + barra de progresso real do tempo de mostra, sem foto | ~1×/semana, monta sozinho |
+| **roteiro** | um bairro, todas as mostras abertas nele, um circuito a pé | ~1×/semana, monta sozinho |
 
 Saíram do social em 01/09: **rolê** (percurso, redundante com a deriva) e
 **duração** (o diagrama de linha do tempo — agora é o painel *O panorama*, ao
 vivo no site, melhor). Os arquivos `role.js` e `duracao.js` foram apagados em
 10/09.
+
+Vetados em 26/09 (IDEIAS.md): **número** (um dado só, gigante) e **entrada**
+(como se entra numa galeria — porta, preço, sábado). O planejar.js não sorteia
+mais nenhum dos dois; os scripts ficam no repo só por histórico.
 
 **Paletas** — seis, três escuras (`escuro`, `tinta`, `barro`) e três claras
 (`papel`, `cal`, `linho`). Nenhuma tem cor de acento: todas trabalham por

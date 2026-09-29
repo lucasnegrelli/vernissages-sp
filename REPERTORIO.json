@@ -13,7 +13,8 @@
     "25/09/2026: +134 ideias (pedido: 200+, nunca repetir). descansoPadrao 30 -> 150 dias.",
     "28/09/2026: numero e entrada vetados (IDEIAS.md, 26/09) — removidas 36 ideias desses dois formatos. O planejar.js não sorteia mais nenhum dos dois.",
     "28/09/2026: +12 ideias em ângulos ainda não cobertos (espelho/reflexo, som vs. silêncio, artista em duas casas, coletivas, parceria entre vizinhos) — não repetição de recorte geográfico, que já estava bem coberto.",
-    "29/09/2026: formato novo — cartaz.js. Não é uma pauta nova pra um formato que já existe: é estrutura nova, o único do sistema sem foto (tipografia em cascata + barra de progresso real do tempo de mostra). Resolve de quebra as mostras sem imagem boa, que nunca apareciam em nada. +4 ideias."
+    "29/09/2026: formato novo — cartaz.js. Não é uma pauta nova pra um formato que já existe: é estrutura nova, o único do sistema sem foto (tipografia em cascata + barra de progresso real do tempo de mostra). Resolve de quebra as mostras sem imagem boa, que nunca apareciam em nada. +4 ideias.",
+    "29/09/2026: formato novo — roteiro.js. Veio de benchmark real (WebSearch/WebFetch em contas do setor, não memória): @thirstygallerina publica toda quarta uma lista das aberturas por bairro em NY, endereço incluído; nenhum formato daqui agregava várias mostras por região numa peça só — todos são peça a peça. O roteiro agrupa por `b` (bairro) as mostras abertas agora, sem depender de foto (mesma lógica do cartaz: cobre quem não tem imagem boa). A escolha do bairro é automática (o mais denso que não tenha saído recentemente); `bairro` no config força um recorte específico quando há motivo editorial. +2 ideias."
   ],
   "descansoPadrao": 150,
   "ideias": [
@@ -2810,6 +2811,30 @@
         "escuro",
         "papel"
       ]
+    },
+    {
+      "id": "roteiro-do-bairro",
+      "formato": "roteiro",
+      "curado": false,
+      "titulo": "Um bairro, todas as mostras abertas nele agora — um circuito a pé",
+      "paletas": [
+        "escuro",
+        "barro",
+        "tinta"
+      ]
+    },
+    {
+      "id": "roteiro-institucional",
+      "formato": "roteiro",
+      "curado": false,
+      "titulo": "O roteiro recortado só em museu e centro cultural (tipo institucional)",
+      "paletas": [
+        "tinta",
+        "papel"
+      ],
+      "ajustes": {
+        "filtro": { "tipo": "institucional" }
+      }
     }
   ]
 }
