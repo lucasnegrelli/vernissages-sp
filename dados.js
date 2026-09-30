@@ -351,11 +351,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Cavalinhas e Falésias",
-  v: "Galeria Marília Razuk",
-  quem: "Carolina Colichio",
-  txt: "Exposição individual. Abertura em 12 de setembro, até 3 de novembro.",
-  link: "https://www.galeriamariliarazuk.com.br",
+  t: "ambiguidade construtiva e ativação do espaço",
+  v: "Galeria Raquel Arnaud",
+  quem: "Wolfram Ullrich",
+  txt: "Exposição individual; imagem de divulgação de autoria de Elizabeth Jobim. Abertura em 2 de setembro, até 30 de outubro.",
+  link: "https://www.raquelarnaud.com",
   publi: false
 };
 
@@ -370,6 +370,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-09-30", k:"ambiguidade construtiva e ativação do espaço|Galeria Raquel Arnaud"},
   {d:"2026-09-29", k:"Cavalinhas e Falésias|Galeria Marília Razuk"},
   {d:"2026-09-28", k:"Território de Disputa|Galeria Lume"},
   {d:"2026-09-27", k:"Esgarçar|AM Galeria"},
@@ -435,5 +436,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "29/09/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "30/09/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
