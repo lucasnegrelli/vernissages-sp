@@ -1,2 +1,44 @@
 /* temporada.css — gerado por temporada.js; não editar à mão */
-/* 2026-09: sem temporada, o site fica com a cara de sempre */
+/* Temporada 01 · Concreto — Concretismo paulista — Alexandre Wollner, Geraldo de Barros, Grupo Ruptura (1952) e os cartazes da Bienal de São Paulo — com a tipografia-imagem do Stedelijk (Mevis & Van Deursen). */
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;700;800&display=swap');
+:root{
+  --bg:#0A0A0A;--ink:#F2F0EA;--text:#F2F0EA;--muted:#8C8A84;--text2:#B9B6AE;
+  --accent:#FF3B1D;--accent2:#FF3B1D;--onaccent:#0A0A0A;
+  --glass:transparent;--glass2:rgba(242,240,234,0.04);--panel:transparent;--panel2:rgba(242,240,234,0.04);
+  --line:rgba(242,240,234,0.22);--line2:#F2F0EA;--hair:rgba(242,240,234,0.12);--border:rgba(242,240,234,0.22);
+  --radius:0px;--radius-sm:0px;--bw:2px;--blur:none;--shadow:none;
+  --font:'Inter Tight', 'Switzer', sans-serif;--display:'Inter Tight', 'Switzer', sans-serif;
+}
+body{background:var(--bg)}
+body::before,body::after{display:none!important}
+/* faixa de cor no topo — a assinatura do cartaz de Bienal, não um detalhe
+   de painel: uma barra só, sem gradiente, sem sombra. */
+html{border-top:6px solid var(--accent)}
+*{box-shadow:none!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;text-shadow:none!important}
+header,.top{background:var(--bg)!important;border-bottom:2px solid var(--ink)!important}
+h1,header h1,.top a{font-family:var(--display);font-weight:800;letter-spacing:-0.05em}
+h2{font-family:var(--display);font-weight:800;border-bottom:2px solid var(--ink)}
+header h1 span,.top a span{color:var(--accent)}
+header h1 span::after,.top a span::after{content:'';display:inline-block;
+    margin-left:.22em;vertical-align:.05em;background:var(--accent)}
+header h1 span::after,.top a span::after{width:.32em;height:.32em;border-radius:50%}
+.kpi b{font-family:var(--display);font-weight:800;color:var(--ink)}
+/* os véus amarelos que estavam escritos direto no CSS viram filete da cor do mês */
+.navedital,.tag.opening,.wk .nw.hj,.bchip.on,.bchip.on .bchip-bar,.pano-go,.btn.intel,.cta,.card,.wk,.pano,.box,ul.lista li,.grid2 a{background:transparent!important;background-image:none!important}
+.navedital,.tag.opening,.wk .nw.hj,.bchip.on,.pano-go,.btn.intel,.cta{border-color:var(--accent)!important}
+.navedital-n,.ctabtn{background:var(--accent)!important;color:var(--onaccent)!important}
+.btn:hover,.wk:hover,.pano-go:hover,.navedital:hover{background:var(--accent)!important;color:var(--onaccent)!important;border-color:var(--accent)!important;transform:none!important}
+ul.lista li:hover,.grid2 a:hover,.card:hover{transform:none!important;border-color:var(--ink)!important}
+::selection{background:var(--accent);color:var(--onaccent)}
+/* As pílulas de status (verde/azul/vermelho fixos) são exatamente a "cara de
+   painel" que o DESIGN.md manda tirar — na temporada, status vira só
+   acento e neutro, nunca semáforo. */
+.tag{background:transparent!important;background-image:none!important;border-width:2px!important}
+.tag.current,.tag.paid,.tag.tbc{color:var(--muted)!important;border-color:var(--border)!important}
+.tag.closing,.tag.fair{color:var(--accent)!important;border-color:var(--accent)!important}
+.tag.free{color:var(--ink)!important;border-color:var(--ink)!important}
+footer::before{content:'Temporada 01 · Concreto';display:block;font-family:var(--display);font-weight:800;color:var(--accent);letter-spacing:.02em;margin-bottom:10px;text-transform:uppercase;font-size:.78rem}
+/* mesma assinatura no cabeçalho — a temporada não é só cor trocada */
+.hbrand::after{content:'Temporada 01 · Concreto';display:block;font-family:var(--display);
+  font-weight:700;color:var(--accent);letter-spacing:.18em;text-transform:uppercase;
+  font-size:.68rem;margin-top:8px}
