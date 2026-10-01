@@ -206,7 +206,6 @@ const EXPOS = [
 {t:"Rajada encarnada — coletiva",a:"Rodrigo Andrade",v:"Casa de Cultura do Parque",ini:"2026-07-25",fim:"2026-10-25",d:"II Ciclo Expositivo em parceria com o ICCo. Quarta a domingo, 11h–18h.",img:"img/rajada-encarnada-casa-de-cultura-do-parque.png",cred:"Cortesia Casa de Cultura do Parque"},
 {t:"Política da superfície — coletiva",v:"Casa de Cultura do Parque",ini:"2026-07-25",fim:"2026-10-25",d:"II Ciclo Expositivo em parceria com o ICCo. Quarta a domingo, 11h–18h.",img:"img/politica-da-superficie-casa-de-cultura-do-parque.png",cred:"Cortesia Casa de Cultura do Parque"},
 {t:"Mitologias do Mistério — Gabriel Omep",a:"Gabriel Omep",v:"Casa de Cultura do Parque",ini:"2026-07-25",fim:"2026-10-25",d:"Quatro séries — Alfabeto Ferramenta, Orís, Guardiões e Indumentária — em pintura sobre papelão, numa parede de 280 x 1020 cm. Curadoria de Claudio Cretti e texto crítico de André Pitol. Parte do II Ciclo Expositivo.",img:"img/mitologias-do-misterio-casa-de-cultura-do-parque.png",cred:"Cortesia Casa de Cultura do Parque"},
-{t:"Bauci: a cidade e os olhos — Érica Magalhães",a:"Érica Magalhães",v:"Galeria Aura",ini:"2026-08-08",fim:"2026-09-23",d:"Esculturas que equilibram porcelana e concreto; texto curatorial de Tatiana Ferraz.",img:"img/bauci-a-cidade-e-os-olhos-galeria-aura.webp",cred:"Érica Magalhães, Sem título, 2026. Foto: Flavio Freire"},
 {t:"Brasil das Múltiplas Faces",v:"Itaú Cultural",ini:"2025-10-22",fim:"2027-10-31",d:"Mostra de longa duração com obras do acervo do Itaú Cultural. Entrada gratuita."},
 {t:"Joan Miró: Mestre das Formas",a:"Joan Miró",v:"MAB FAAP",ini:"2026-08-07",fim:"2026-10-12",d:"140 obras originais do catalão, várias inéditas no Brasil. Ingresso pago, vendido em mmf26.com.br.",img:"img/joan-miro-mestre-das-formas-mab-faap.jpg",cred:"Cortesia MAB FAAP"},
 {t:"confluências — Carolina Caycedo",a:"Carolina Caycedo",v:"MASP",ini:"2026-07-03",fim:"2026-10-04",d:"Fotografia, instalação, vídeo, performance e desenho no cruzamento entre arte, saberes ribeirinhos e movimentos sociais. Curadoria de Isabella Rjeille.",img:"img/confluencias-masp.jpg",cred:"Vista da exposição. Foto Eduardo Ortega / Cortesia MASP",vista:true},
@@ -248,7 +247,6 @@ const EXPOS = [
 {t:"Por Elas, Com Elas: Do Moderno ao Contemporâneo",v:"DAN Galeria",ini:"2026-09-09",fim:"2026-11-07",d:"Coletiva com obras de meados do século 20 aos dias atuais, em núcleo histórico — com Tarsila do Amaral, Anita Malfatti, Lygia Clark e Tomie Ohtake — e núcleo contemporâneo. Curadoria de Maria Alice Milliet.",img:"img/por-elas-com-elas-do-moderno-ao-contemporaneo-dan-galeria.jpg",cred:"Cortesia DAN Galeria"},
 
 /* --- confirmadas na fonte primária em 14/09/2026, casas já mapeadas sem nada em cartaz na base --- */
-{t:"Uma Coisa Leva à Outra",a:"Fernanda Pompermayer",v:"Galeria Luis Maluf",ini:"2026-08-22",fim:"2026-09-23",d:"Exposição individual, na unidade da Barra Funda.",img:"",cred:""},
 {t:"Autobiografia de um Fio",a:"Sheila Hicks",v:"Galeria Nara Roesler",ini:"2026-08-29",fim:"2026-10-24",d:"Exposição individual.",img:"img/autobiografia-de-um-fio-galeria-nara-roesler.webp",cred:"Foto Tatiana Mito / Cortesia Nara Roesler"},
 {t:"Abismos Urbanos e o Plano Celeste",a:"Eduardo Coimbra",v:"Galeria Lume",ini:"2026-09-12",fim:"2026-11-14",d:"Exposição individual.",img:"img/abismos-urbanos-e-o-plano-celeste-galeria-lume.jpg",cred:"Cortesia Galeria Lume"},
 {t:"Território de Disputa",a:"Kilian Glasner",v:"Galeria Lume",ini:"2026-09-12",fim:"2026-11-14",d:"Pinturas feitas com saibro — laterita alaranjada recolhida no sertão —, cortadas pelas faixas brancas de uma quadra de tênis, como alegoria de disputa por território.",img:"img/territorio-de-disputa-galeria-lume.jpg",cred:"Cortesia Galeria Lume"},
@@ -372,11 +370,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "ambiguidade construtiva e ativação do espaço",
-  v: "Galeria Raquel Arnaud",
-  quem: "Wolfram Ullrich",
-  txt: "Exposição individual; imagem de divulgação de autoria de Elizabeth Jobim. Abertura em 2 de setembro, até 30 de outubro.",
-  link: "https://www.raquelarnaud.com",
+  t: "nome ar — Jarbas Lopes",
+  v: "Galeria Luisa Strina",
+  quem: "Jarbas Lopes",
+  txt: "Obras inéditas na Sala 1, com ensaios críticos de Érica Burini e Luiz Villares. Abertura em 1º de outubro, das 18h às 21h, com performance do artista às 19h.",
+  link: "https://www.luisastrina.com.br",
   publi: false
 };
 
@@ -391,6 +389,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-10-01", k:"nome ar — Jarbas Lopes|Galeria Luisa Strina"},
   {d:"2026-09-30", k:"ambiguidade construtiva e ativação do espaço|Galeria Raquel Arnaud"},
   {d:"2026-09-29", k:"Cavalinhas e Falésias|Galeria Marília Razuk"},
   {d:"2026-09-28", k:"Território de Disputa|Galeria Lume"},
@@ -457,5 +456,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "30/09/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "01/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
