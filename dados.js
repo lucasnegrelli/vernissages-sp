@@ -370,11 +370,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "nome ar — Jarbas Lopes",
-  v: "Galeria Luisa Strina",
-  quem: "Jarbas Lopes",
-  txt: "Obras inéditas na Sala 1, com ensaios críticos de Érica Burini e Luiz Villares. Abertura em 1º de outubro, das 18h às 21h, com performance do artista às 19h.",
-  link: "https://www.luisastrina.com.br",
+  t: "Passeio Noturno — André Crespo",
+  v: "A7MA Galeria",
+  quem: "André Crespo",
+  txt: "Pinturas da noite de Paris feitas por um corpo à deriva, que deixa a cidade escolher o caminho. Curadoria de Rogério D’Avila Ortiz. Abertura em 25 de setembro, das 16h às 22h; aberta todos os dias, das 10h às 19h.",
+  link: "https://a7ma.com.br",
   publi: false
 };
 
@@ -389,6 +389,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-10-02", k:"Passeio Noturno — André Crespo|A7MA Galeria"},
   {d:"2026-10-01", k:"nome ar — Jarbas Lopes|Galeria Luisa Strina"},
   {d:"2026-09-30", k:"ambiguidade construtiva e ativação do espaço|Galeria Raquel Arnaud"},
   {d:"2026-09-29", k:"Cavalinhas e Falésias|Galeria Marília Razuk"},
@@ -456,5 +457,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "01/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "02/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
