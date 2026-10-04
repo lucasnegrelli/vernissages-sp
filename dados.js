@@ -199,7 +199,6 @@ const VENUES = [
 
 /* ================= EXPOS ================= */
 const EXPOS = [
-{t:"Uma língua nova",a:"Arnold Schmidt, Aurelino dos Santos, Clovis Aparecido dos Santos, Enio Sérgio, Esther Morgannah, Josef Hofer, Ranchinho",v:"Galeria Estação",ini:"2026-08-25",fim:"2026-09-26",d:"Coletiva com curadoria de José Augusto Ribeiro. Reúne 60 obras de artistas diagnosticados com transtornos mentais e deficiência intelectual.",img:"",cred:""},
 {t:"To Love — Claudia Andujar e George Love",a:"Claudia Andujar, George Love",v:"Galeria Vermelho",ini:"2026-08-15",fim:null,d:"Curadoria de Eder Chiodetto sobre a produção experimental de George Love e seu diálogo com Claudia Andujar nos anos 1960 e 1970. A mostra marca o início da representação do Arquivo de George Love pela galeria. Abertura em 15 de agosto; encerramento não divulgado.",img:"img/to-love-galeria-vermelho.png",cred:"Cortesia Galeria Vermelho"},
 {t:"No meio da pedra — André Vargas",a:"André Vargas",v:"Galeria Vermelho",ini:"2026-08-15",fim:null,d:"Segunda individual do artista na galeria. Abertura em 15 de agosto; encerramento não divulgado.",img:"img/no-meio-da-pedra-galeria-vermelho.jpg",cred:"Cortesia Galeria Vermelho"},
 {t:"Ocupação JAMAC",a:"JAMAC — Jardim Miriam Arte Clube",v:"Galeria Vermelho",ini:"2024-10-04",fim:"2026-12-19",d:"O coletivo fundado por Mônica Nador em 2004 ocupa a banca da galeria com os projetos Inventários e Aprender algo novo. Quinta e sexta, 12h–18h; sábado, 11h–17h."},
@@ -233,8 +232,6 @@ const EXPOS = [
 {t:"Tudo que eu sei, eu aprendi à noite — Luísa Matsushita",a:"Luísa Matsushita",v:"Cultura Artística",ini:"2026-08-15",fim:"2026-09-27",d:"Pinturas inéditas sobre o centro e a noite paulistana; estreia do programa Aberto Solo.",img:"img/tudo-que-eu-sei-eu-aprendi-a-noite-cultura-artistica.jpg",cred:"Divulgação"},
 {t:"Tecituras",v:"Farol Santander",ini:"2026-07-17",fim:"2026-10-18",d:"Cerca de 30 obras têxteis de 30 artistas brasileiros; curadoria de Denise Mattar."},
 {t:"Pequeno mapa do tempo — Paula Siebra",a:"Paula Siebra",v:"Mendes Wood DM — Casa Iramaia",ini:"2026-08-25",fim:"2026-10-24",d:"Pinturas a óleo sobre os ciclos de chuva, festa, vento e seca em Fortaleza.",img:"img/pequeno-mapa-do-tempo-mendes-wood-dm-casa-iramaia.webp",cred:"Cortesia Mendes Wood DM"},
-{t:"Tudo que inventei aconteceu — Flávia Junqueira",a:"Flávia Junqueira",v:"Zipper Galeria",ini:"2026-08-08",fim:"2026-09-26",d:"Fotografias inéditas produzidas ao longo de um mês em Nova York.",img:"img/tudo-que-inventei-aconteceu-zipper-galeria.webp",cred:"Cortesia Zipper Galeria"},
-{t:"No corpo e na paisagem, o que resta é o pó — Henrique Detomi",a:"Henrique Detomi",v:"Zipper Galeria",ini:"2026-08-08",fim:"2026-09-26",d:"Pintura a partir da caminhada e da terra aberta do interior de Minas.",img:"img/no-corpo-e-na-paisagem-o-que-resta-e-o-po-zipper-galeria.webp",cred:"Cortesia Zipper Galeria"},
 {t:"Assim Bordei Meus Sonhos: Margarida L. Kanciukaitis Pandolfo",a:"Margarida L. Kanciukaitis Pandolfo",v:"Museu da Imigração",ini:"2026-07-10",fim:"2026-10-06",d:"Cerca de 100 peças em bordado, retalho, crochê e pintura, algumas feitas com os filhos, OSGEMEOS, que assinam a curadoria. Primeira individual da artista no Brasil.",img:"img/assim-bordei-meus-sonhos-margarida-l-kanciukaitis-pandolfo-m.png",cred:"Cortesia Museu da Imigracao"},
 {t:"Beijo de Língua — Nelson Felix",a:"Nelson Felix",v:"MAC USP",ini:"2026-05-30",fim:"2026-11-29",d:"Individual do escultor carioca no MAC USP. Entrada gratuita."},
 {t:"39º Panorama da Arte Brasileira: Depois que tudo foi dito",v:"MAM São Paulo",ini:"2026-09-12",fim:"2027-01-24",d:"Curadoria de Diane Lima, com 33 artistas de 13 estados. A mostra marca o retorno do museu à sede do Ibirapuera após a reforma da marquise."},
@@ -277,7 +274,6 @@ const EXPOS = [
 {t:"Mulheres da Boca",a:"Wagner Carvalho",v:"MIS — Museu da Imagem e do Som",ini:"2026-09-02",fim:"2026-10-18",d:"Fotografias inéditas feitas durante as filmagens do documentário \"Mulheres da Boca\" (1981), nas ruas da Boca do Lixo na virada dos anos 1970 para os 1980; curadoria de Inês Castilho, Marcelo Colaiácovo e William Plotnik.",img:"img/mulheres-da-boca-mis.png",cred:"Fotografia de Wagner Carvalho"},
 {t:"50 anos sem JK",a:"Jean Manzon",v:"MIS — Museu da Imagem e do Som",ini:"2026-08-15",fim:"2026-10-04",d:"Fotografias inéditas de Juscelino Kubitschek da coleção do fotógrafo francês Jean Manzon, somadas a imagens do acervo do MIS; curadoria de André Sturm, em parceria com o Consulado-Geral da República Tcheca em São Paulo.",img:"img/50-anos-sem-jk-mis.jpg",cred:"Cortesia MIS"},
 {t:"Chão de histórias | Nova Fotografia 2026",a:"Ana Leal",v:"MIS — Museu da Imagem e do Som",ini:"2026-08-11",fim:"2026-09-27",d:"Quarta exposição do programa anual Nova Fotografia do MIS; série fotográfica sobre o sertão pernambucano, cruzando fotografia, colagem, tecidos e argila em torno de memória e território.",img:"img/chao-de-historias-mis.png",cred:"Cortesia MIS"},
-{t:"Invenção da Paisagem-Memória",a:"Jeane Terra",v:"Casa Seva",ini:"2026-08-19",fim:"2026-09-26",d:"Mostra realizada em parceria entre Casa Seva e Janaina Torres Galeria, com curadoria de Heloisa Amaral Peixoto.",img:"",cred:""},
 {t:"Frei Agostinho de Jesus – séc. XVII: Pioneiro da Arte Sacra no Brasil",a:"Frei Agostinho de Jesus",v:"Fundação Maria Luisa e Oscar Americano",ini:"2026-05-17",fim:"2026-10-02",d:"Primeira individual do escultor-oleiro Frei Agostinho de Jesus (c.1600/10–1661), ativo em Santana de Parnaíba a partir de 1643; reúne esculturas em terracota, oratórios bandeiristas, prataria sacra e mobiliário colonial. Curadoria de Rafael Schunk.",img:"img/frei-agostinho-fmloa.webp",cred:"Cortesia Fundação Maria Luisa e Oscar Americano",vista:true},
 {t:"loopinpindorama",a:"",v:"Martins&Montero",ini:"2026-08-20",fim:"2026-10-17",d:"Coletiva com curadoria de Felipe Molitor que articula obras do acervo da galeria com artistas convidados: uma sala de videoarte brasileira em sistema de projeção interativa e um conjunto de pinturas, esculturas, fotografias e instalações organizado por afinidades formais.",img:"",cred:""},
 {t:"Elementares",a:"Denise Milan",v:"Museu de Arte Sacra de São Paulo",ini:"2026-05-29",fim:"2026-09-27",d:"Quatro décadas de pesquisa com geodos e cristais organizados em cinco núcleos, incluindo peças em alumínio fundido derivadas de formas cristalinas. Curadoria de Naomi Moniz, apoio DAN Galeria.",img:"img/elementares-museu-arte-sacra.jpg",cred:"Cortesia Museu de Arte Sacra de São Paulo"},
@@ -371,11 +367,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "MUNDO CADUCO",
-  v: "GRUTA Espaço de Arte Contemporânea",
-  quem: "Gabrilândia, Lucas Matoso, Marina Cespe",
-  txt: "Coletiva com curadoria de Daniel Donato, dentro do Plano de Exposições da Gruta. Abertura das 14h às 19h.",
-  link: "https://www.gruta.cc",
+  t: "Ecos — Ricardo Ribeiro",
+  v: "Galeria Marcelo Guarnieri",
+  quem: "Ricardo Ribeiro",
+  txt: "Segunda individual do artista na galeria: cerca de trinta fotografias feitas entre 2019 e 2022 em Guaribas (PI) e Timbó (SC). Curadoria de Igor Morales. Encerramento não divulgado. Abertura em 3 de outubro.",
+  link: "https://www.galeriamarceloguarnieri.com.br",
   publi: false
 };
 
@@ -390,6 +386,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-10-04", k:"Ecos — Ricardo Ribeiro|Galeria Marcelo Guarnieri"},
   {d:"2026-10-03", k:"MUNDO CADUCO|GRUTA Espaço de Arte Contemporânea"},
   {d:"2026-10-02", k:"Passeio Noturno — André Crespo|A7MA Galeria"},
   {d:"2026-10-01", k:"nome ar — Jarbas Lopes|Galeria Luisa Strina"},
@@ -459,5 +456,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "03/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "04/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
