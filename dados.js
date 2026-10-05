@@ -229,7 +229,6 @@ const EXPOS = [
 {t:"Ibirapema — Olinda Tupinambá",a:"Olinda Tupinambá",v:"Pinacoteca de São Paulo",ini:"2026-04-11",fim:"2026-12-27",d:"Filme de 2022 comissionado para a mostra Atos Modernos, com a transformação em onça como método. Curadoria de Ana Paula Lopes."},
 {t:"Solange Pessoa: outras escalas",a:"Solange Pessoa",v:"Itaú Cultural",ini:"2026-08-04",fim:"2026-11-01",d:"150 desenhos inéditos, filmes experimentais e uma instalação da artista mineira.",img:"img/solange-pessoa-outras-escalas-itau-cultural.jpg",cred:"Capa do material do Itaú Cultural — não é reprodução de obra",vista:true},
 {t:"Delírio Tropical – Recanto",v:"Sesc Pinheiros",ini:"2026-05-06",fim:"2026-10-12",d:"Cerca de 280 obras de 130 artistas de todas as regiões; curadoria de Orlando Maneschy e Keyla Sobral."},
-{t:"Tudo que eu sei, eu aprendi à noite — Luísa Matsushita",a:"Luísa Matsushita",v:"Cultura Artística",ini:"2026-08-15",fim:"2026-09-27",d:"Pinturas inéditas sobre o centro e a noite paulistana; estreia do programa Aberto Solo.",img:"img/tudo-que-eu-sei-eu-aprendi-a-noite-cultura-artistica.jpg",cred:"Divulgação"},
 {t:"Tecituras",v:"Farol Santander",ini:"2026-07-17",fim:"2026-10-18",d:"Cerca de 30 obras têxteis de 30 artistas brasileiros; curadoria de Denise Mattar."},
 {t:"Pequeno mapa do tempo — Paula Siebra",a:"Paula Siebra",v:"Mendes Wood DM — Casa Iramaia",ini:"2026-08-25",fim:"2026-10-24",d:"Pinturas a óleo sobre os ciclos de chuva, festa, vento e seca em Fortaleza.",img:"img/pequeno-mapa-do-tempo-mendes-wood-dm-casa-iramaia.webp",cred:"Cortesia Mendes Wood DM"},
 {t:"Assim Bordei Meus Sonhos: Margarida L. Kanciukaitis Pandolfo",a:"Margarida L. Kanciukaitis Pandolfo",v:"Museu da Imigração",ini:"2026-07-10",fim:"2026-10-06",d:"Cerca de 100 peças em bordado, retalho, crochê e pintura, algumas feitas com os filhos, OSGEMEOS, que assinam a curadoria. Primeira individual da artista no Brasil.",img:"img/assim-bordei-meus-sonhos-margarida-l-kanciukaitis-pandolfo-m.png",cred:"Cortesia Museu da Imigracao"},
@@ -253,7 +252,6 @@ const EXPOS = [
 {t:"Cavalinhas e Falésias",a:"Carolina Colichio",v:"Galeria Marília Razuk",ini:"2026-09-12",fim:"2026-11-03",d:"Exposição individual.",img:"img/cavalinhas-e-falesias-galeria-marilia-razuk.webp",cred:"Cortesia Galeria Marília Razuk"},
 
 /* --- casas novas mapeadas hoje: mostra atual confirmada na fonte --- */
-{t:"Habitar São Paulo: relatos femininos",a:"",v:"Casa Museu Ema Klabin",ini:"2026-05-30",fim:"2026-09-27",d:"Coletiva de relatos femininos sobre a cidade de São Paulo.",img:"img/habitar-sao-paulo-relatos-femininos-casa-museu-ema-klabin.jpg",cred:"Cortesia Casa Museu Ema Klabin"},
 {t:"Do museu ao ateliê, do ateliê ao museu: o que a gráfica pode imaginar?",a:"",v:"Museu Lasar Segall",ini:"2026-07-18",fim:"2026-10-19",d:"Coletiva reunindo gravura em metal, xilogravura, monotipia e desenho de doze artistas visuais.",img:"",cred:""},
 
 /* --- 91 de 125 casas sem nada em cartaz (23/09/2026): apuração de 50 casas
@@ -273,10 +271,8 @@ const EXPOS = [
 {t:"O Barco",a:"Grada Kilomba",v:"Sesc Pompeia",ini:"2026-09-22",fim:"2026-10-25",d:"Instalação de 134 blocos de madeira queimada somando mais de 220 m², desenhando a silhueta do porão de um navio negreiro; dezoito blocos trazem um poema da artista em seis línguas. Curadoria de Marília Loureiro e Júlia Rebouças.",img:"",cred:""},
 {t:"Mulheres da Boca",a:"Wagner Carvalho",v:"MIS — Museu da Imagem e do Som",ini:"2026-09-02",fim:"2026-10-18",d:"Fotografias inéditas feitas durante as filmagens do documentário \"Mulheres da Boca\" (1981), nas ruas da Boca do Lixo na virada dos anos 1970 para os 1980; curadoria de Inês Castilho, Marcelo Colaiácovo e William Plotnik.",img:"img/mulheres-da-boca-mis.png",cred:"Fotografia de Wagner Carvalho"},
 {t:"50 anos sem JK",a:"Jean Manzon",v:"MIS — Museu da Imagem e do Som",ini:"2026-08-15",fim:"2026-10-04",d:"Fotografias inéditas de Juscelino Kubitschek da coleção do fotógrafo francês Jean Manzon, somadas a imagens do acervo do MIS; curadoria de André Sturm, em parceria com o Consulado-Geral da República Tcheca em São Paulo.",img:"img/50-anos-sem-jk-mis.jpg",cred:"Cortesia MIS"},
-{t:"Chão de histórias | Nova Fotografia 2026",a:"Ana Leal",v:"MIS — Museu da Imagem e do Som",ini:"2026-08-11",fim:"2026-09-27",d:"Quarta exposição do programa anual Nova Fotografia do MIS; série fotográfica sobre o sertão pernambucano, cruzando fotografia, colagem, tecidos e argila em torno de memória e território.",img:"img/chao-de-historias-mis.png",cred:"Cortesia MIS"},
 {t:"Frei Agostinho de Jesus – séc. XVII: Pioneiro da Arte Sacra no Brasil",a:"Frei Agostinho de Jesus",v:"Fundação Maria Luisa e Oscar Americano",ini:"2026-05-17",fim:"2026-10-02",d:"Primeira individual do escultor-oleiro Frei Agostinho de Jesus (c.1600/10–1661), ativo em Santana de Parnaíba a partir de 1643; reúne esculturas em terracota, oratórios bandeiristas, prataria sacra e mobiliário colonial. Curadoria de Rafael Schunk.",img:"img/frei-agostinho-fmloa.webp",cred:"Cortesia Fundação Maria Luisa e Oscar Americano",vista:true},
 {t:"loopinpindorama",a:"",v:"Martins&Montero",ini:"2026-08-20",fim:"2026-10-17",d:"Coletiva com curadoria de Felipe Molitor que articula obras do acervo da galeria com artistas convidados: uma sala de videoarte brasileira em sistema de projeção interativa e um conjunto de pinturas, esculturas, fotografias e instalações organizado por afinidades formais.",img:"",cred:""},
-{t:"Elementares",a:"Denise Milan",v:"Museu de Arte Sacra de São Paulo",ini:"2026-05-29",fim:"2026-09-27",d:"Quatro décadas de pesquisa com geodos e cristais organizados em cinco núcleos, incluindo peças em alumínio fundido derivadas de formas cristalinas. Curadoria de Naomi Moniz, apoio DAN Galeria.",img:"img/elementares-museu-arte-sacra.jpg",cred:"Cortesia Museu de Arte Sacra de São Paulo"},
 {t:"NO LIMITE: forma e transformação",a:"",v:"Paço das Artes",ini:"2026-09-26",fim:"2026-11-15",d:"Coletiva com 17 artistas de 6 países que explora o conceito de \"situação-limite\" do filósofo Karl Jaspers, combinando aspectos psicológicos com elementos como água, pedras, sal e luz. Curadoria de Martin Juef, cocuradoria de Francisco Klinger Carvalho.",img:"img/no-limite-paco-das-artes.png",cred:"Nina E. Schönefeld, still de vídeo / Cortesia Paço das Artes"},
 {t:"Um Xirê para Emanoel",a:"Alberto Pitta",v:"Museu Afro Brasil Emanoel Araujo",ini:"2026-05-22",fim:"",d:"Reúne 22 serigrafias e pinturas de Alberto Pitta em homenagem a Emanoel Araujo (1940–2022), ao lado de duas esculturas em relevo do acervo do museu e bonecas Abayomi de Mãe Detinha de Xangô. Curadoria de Vera Nunes.",img:"",cred:""},
 {t:"Afríquia: o artista como colecionador",a:"",v:"Museu Afro Brasil Emanoel Araujo",ini:"2026-06-26",fim:"",d:"Reúne mais de 200 obras e materiais de arquivo — esculturas, pinturas, máscaras, fotografias, livros, discos e têxteis, com destaque para peças da Nigéria e do Benin — mostrando como Emanoel Araujo formou o acervo de arte africana do museu. Curadoria de Gabrielle Nascimento.",img:"",cred:""},
@@ -367,11 +363,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Ecos — Ricardo Ribeiro",
-  v: "Galeria Marcelo Guarnieri",
-  quem: "Ricardo Ribeiro",
-  txt: "Segunda individual do artista na galeria: cerca de trinta fotografias feitas entre 2019 e 2022 em Guaribas (PI) e Timbó (SC). Curadoria de Igor Morales. Encerramento não divulgado. Abertura em 3 de outubro.",
-  link: "https://www.galeriamarceloguarnieri.com.br",
+  t: "Quarto de máscaras — Maya Weishof",
+  v: "Almeida & Dale | Millan",
+  quem: "Maya Weishof",
+  txt: "Individual de pinturas com texto do curador Carlos Quijon Jr. e expografia de Camilo Oliveira. No endereço Fradique 1430. Abertura em 26 de setembro, até 24 de outubro.",
+  link: "https://almeidaedale.com.br",
   publi: false
 };
 
@@ -386,6 +382,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-10-05", k:"Quarto de máscaras — Maya Weishof|Almeida & Dale | Millan"},
   {d:"2026-10-04", k:"Ecos — Ricardo Ribeiro|Galeria Marcelo Guarnieri"},
   {d:"2026-10-03", k:"MUNDO CADUCO|GRUTA Espaço de Arte Contemporânea"},
   {d:"2026-10-02", k:"Passeio Noturno — André Crespo|A7MA Galeria"},
@@ -456,5 +453,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "04/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "05/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
