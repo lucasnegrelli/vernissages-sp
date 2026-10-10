@@ -271,7 +271,6 @@ const EXPOS = [
 {t:"O Barco",a:"Grada Kilomba",v:"Sesc Pompeia",ini:"2026-09-22",fim:"2026-10-25",d:"Instalação de 134 blocos de madeira queimada somando mais de 220 m², desenhando a silhueta do porão de um navio negreiro; dezoito blocos trazem um poema da artista em seis línguas. Curadoria de Marília Loureiro e Júlia Rebouças.",img:"",cred:""},
 {t:"Mulheres da Boca",a:"Wagner Carvalho",v:"MIS — Museu da Imagem e do Som",ini:"2026-09-02",fim:"2026-10-18",d:"Fotografias inéditas feitas durante as filmagens do documentário \"Mulheres da Boca\" (1981), nas ruas da Boca do Lixo na virada dos anos 1970 para os 1980; curadoria de Inês Castilho, Marcelo Colaiácovo e William Plotnik.",img:"img/mulheres-da-boca-mis.png",cred:"Fotografia de Wagner Carvalho"},
 {t:"50 anos sem JK",a:"Jean Manzon",v:"MIS — Museu da Imagem e do Som",ini:"2026-08-15",fim:"2026-10-04",d:"Fotografias inéditas de Juscelino Kubitschek da coleção do fotógrafo francês Jean Manzon, somadas a imagens do acervo do MIS; curadoria de André Sturm, em parceria com o Consulado-Geral da República Tcheca em São Paulo.",img:"img/50-anos-sem-jk-mis.jpg",cred:"Cortesia MIS"},
-{t:"Frei Agostinho de Jesus – séc. XVII: Pioneiro da Arte Sacra no Brasil",a:"Frei Agostinho de Jesus",v:"Fundação Maria Luisa e Oscar Americano",ini:"2026-05-17",fim:"2026-10-02",d:"Primeira individual do escultor-oleiro Frei Agostinho de Jesus (c.1600/10–1661), ativo em Santana de Parnaíba a partir de 1643; reúne esculturas em terracota, oratórios bandeiristas, prataria sacra e mobiliário colonial. Curadoria de Rafael Schunk.",img:"img/frei-agostinho-fmloa.webp",cred:"Cortesia Fundação Maria Luisa e Oscar Americano",vista:true},
 {t:"loopinpindorama",a:"",v:"Martins&Montero",ini:"2026-08-20",fim:"2026-10-17",d:"Coletiva com curadoria de Felipe Molitor que articula obras do acervo da galeria com artistas convidados: uma sala de videoarte brasileira em sistema de projeção interativa e um conjunto de pinturas, esculturas, fotografias e instalações organizado por afinidades formais.",img:"",cred:""},
 {t:"NO LIMITE: forma e transformação",a:"",v:"Paço das Artes",ini:"2026-09-26",fim:"2026-11-15",d:"Coletiva com 17 artistas de 6 países que explora o conceito de \"situação-limite\" do filósofo Karl Jaspers, combinando aspectos psicológicos com elementos como água, pedras, sal e luz. Curadoria de Martin Juef, cocuradoria de Francisco Klinger Carvalho.",img:"img/no-limite-paco-das-artes.png",cred:"Nina E. Schönefeld, still de vídeo / Cortesia Paço das Artes"},
 {t:"Um Xirê para Emanoel",a:"Alberto Pitta",v:"Museu Afro Brasil Emanoel Araujo",ini:"2026-05-22",fim:"2026-10-03",d:"Reúne 22 serigrafias e pinturas de Alberto Pitta em homenagem a Emanoel Araujo (1940–2022), ao lado de duas esculturas em relevo do acervo do museu e bonecas Abayomi de Mãe Detinha de Xangô. Curadoria de Vera Nunes.",img:"",cred:""},
@@ -369,11 +368,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Não há só uma maneira — Oriol Vilanova",
-  v: "Galeria Luisa Strina",
-  quem: "Oriol Vilanova",
-  txt: "Primeira individual do artista espanhol no Brasil, na Sala 2, sobre coleções e colecionadores. Inclui a performance Palabras prestadas, com datas a divulgar. Abertura em 1 de outubro, até 14 de novembro.",
-  link: "https://www.luisastrina.com.br",
+  t: "Longitudes",
+  v: "Galeria Marília Razuk",
+  quem: "Johanna Calle",
+  txt: "Exposição individual. Abertura em 12 de setembro, até 12 de dezembro.",
+  link: "https://www.galeriamariliarazuk.com.br",
   publi: false
 };
 
@@ -388,6 +387,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-10-10", k:"Longitudes|Galeria Marília Razuk"},
   {d:"2026-10-09", k:"Não há só uma maneira — Oriol Vilanova|Galeria Luisa Strina"},
   {d:"2026-10-08", k:"Toda minúcia — André Barion|Galeria Estação"},
   {d:"2026-10-07", k:"Abismos Urbanos e o Plano Celeste|Galeria Lume"},
@@ -463,5 +463,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "09/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "10/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
