@@ -210,8 +210,6 @@ const EXPOS = [
 {t:"confluências — Carolina Caycedo",a:"Carolina Caycedo",v:"MASP",ini:"2026-07-03",fim:"2026-10-04",d:"Fotografia, instalação, vídeo, performance e desenho no cruzamento entre arte, saberes ribeirinhos e movimentos sociais. Curadoria de Isabella Rjeille.",img:"img/confluencias-masp.jpg",cred:"Vista da exposição. Foto Eduardo Ortega / Cortesia MASP",vista:true},
 {t:"Casa María Lionza — Sol Calero",a:"Sol Calero",v:"MASP",ini:"2026-07-03",fim:"2027-01-30",d:"Pavilhão no Vão Livre em dezesseis cores, com padrões pintados à mão e mosaicos, em referência a Lina Bo Bardi e às fachadas nordestinas. Curadoria de Adriano Pedrosa e Laura Cosendey."},
 {t:"Histórias Latino-Americanas",v:"MASP",ini:"2026-09-04",fim:"2027-01-31",d:"Coletiva internacional em cinco núcleos temáticos sobre a construção histórica da ideia de América Latina. Curadoria de Amanda Carneiro e Julieta González, curadora-adjunta do MASP, com assistência de Teo Teotonio."},
-{t:"Smoke — Lucia Nogueira",a:"Lucia Nogueira",v:"Gomide&Co",ini:"2026-08-07",fim:"2026-10-03",d:"Individual da artista no espaço da Avenida Paulista, organizada com o espólio de Lucia Nogueira.",img:"img/smoke-gomide-co.webp",cred:"Vista da exposição. Cortesia Gomide&Co",vista:true},
-{t:"Quadros — Ubirajara Ribeiro",a:"Ubirajara Ribeiro",v:"Gomide&Co",ini:"2026-08-07",fim:"2026-10-03",d:"Individual no mezanino da galeria, em paralelo a Lucia Nogueira.",img:"img/quadros-gomide-co.webp",cred:"Vista da exposição. Cortesia Gomide&Co",vista:true},
 {t:"Flores e Vasos — coletiva",a:"Rochelle Costi, Gaspar Gasparian, Robert Mapplethorpe",v:"Luciana Brito Galeria",ini:"2026-08-22",fim:"2026-10-17",d:"Curadoria de Nessia Pope. Fotografias de 1947 a 2020 em torno do gênero, entre vintages, prata e jato de tinta.",img:"img/flores-e-vasos-luciana-brito-galeria.webp",cred:"Cortesia Luciana Brito Galeria"},
 /* img/flores-e-vasos.jpg tirada em 23/09: e um padrao de azulejo circular, nao
    flor nem vaso — nao bate com a descricao nem com nenhum dos tres fotografos
@@ -273,7 +271,6 @@ const EXPOS = [
 {t:"50 anos sem JK",a:"Jean Manzon",v:"MIS — Museu da Imagem e do Som",ini:"2026-08-15",fim:"2026-10-04",d:"Fotografias inéditas de Juscelino Kubitschek da coleção do fotógrafo francês Jean Manzon, somadas a imagens do acervo do MIS; curadoria de André Sturm, em parceria com o Consulado-Geral da República Tcheca em São Paulo.",img:"img/50-anos-sem-jk-mis.jpg",cred:"Cortesia MIS"},
 {t:"loopinpindorama",a:"",v:"Martins&Montero",ini:"2026-08-20",fim:"2026-10-17",d:"Coletiva com curadoria de Felipe Molitor que articula obras do acervo da galeria com artistas convidados: uma sala de videoarte brasileira em sistema de projeção interativa e um conjunto de pinturas, esculturas, fotografias e instalações organizado por afinidades formais.",img:"img/loopinpindorama-martins-montero.jpg",cred:"Vista da exposição. Cortesia Martins&Montero",vista:true},
 {t:"NO LIMITE: forma e transformação",a:"",v:"Paço das Artes",ini:"2026-09-26",fim:"2026-11-15",d:"Coletiva com 17 artistas de 6 países que explora o conceito de \"situação-limite\" do filósofo Karl Jaspers, combinando aspectos psicológicos com elementos como água, pedras, sal e luz. Curadoria de Martin Juef, cocuradoria de Francisco Klinger Carvalho.",img:"img/no-limite-paco-das-artes.png",cred:"Nina E. Schönefeld, still de vídeo / Cortesia Paço das Artes"},
-{t:"Um Xirê para Emanoel",a:"Alberto Pitta",v:"Museu Afro Brasil Emanoel Araujo",ini:"2026-05-22",fim:"2026-10-03",d:"Reúne 22 serigrafias e pinturas de Alberto Pitta em homenagem a Emanoel Araujo (1940–2022), ao lado de duas esculturas em relevo do acervo do museu e bonecas Abayomi de Mãe Detinha de Xangô. Curadoria de Vera Nunes.",img:"",cred:""},
 {t:"Afríquia: o artista como colecionador",a:"",v:"Museu Afro Brasil Emanoel Araujo",ini:"2026-06-26",fim:"",d:"Reúne mais de 200 obras e materiais de arquivo — esculturas, pinturas, máscaras, fotografias, livros, discos e têxteis, com destaque para peças da Nigéria e do Benin — mostrando como Emanoel Araujo formou o acervo de arte africana do museu. Curadoria de Gabrielle Nascimento.",img:"",cred:""},
 {t:"Há quanto tempo pensando nisso",a:"Rachel Zuanon, Edson Pfutzenreuter, Sylvia Furegatti, Marta Strambi, Mauricius Farina, Sérgio Niculitcheff, Luise Weiss, Gilberto Alexandre Sobrinho, Cesar & Lois",v:"Memorial da América Latina",ini:"2026-09-23",fim:"2026-10-13",d:"Nove docentes-artistas do Instituto de Artes da Unicamp, com trabalhos em pintura, fotografia, gravura, xilogravura, vídeo e instalações multissensoriais, na Galeria Marta Traba. Curadoria de Sylvia Furegatti, Mauricius Farina e César Baio.",img:"",cred:""},
 {t:"Esgarçar",a:"Andrey Rossi, Beatriz Lindenberg, Bruno Cançado, Desali, Giovani Fantauzzi, Julia Pereira, Laura Villarosa, Liane Roditi, Manoel Veiga, Manuela Costa Lima, Maria Helena Andrés, Marina Rodrigues, Marinalva Rosa, Michelle Rosset, Moara Tupinambá, Naira Pennacchi, Paula Huven, Renata Egreja, Thany Sanches, Yasmin Guimarães, Yohana Oizumi",v:"AM Galeria",ini:"2026-09-12",fim:"2026-10-10",d:"Coletiva com 21 artistas, curadoria de Mario Gioia, cruzando pintura, fotografia, têxtil, escultura, vídeo, performance e desenho em torno de noções de limite (dentro/fora, figuração/abstração).",img:"img/esgarcar-am-galeria.jpg",cred:"Cortesia AM Galeria",vista:true},
@@ -371,11 +368,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Longitudes",
-  v: "Galeria Marília Razuk",
-  quem: "Johanna Calle",
-  txt: "Exposição individual. Abertura em 12 de setembro, até 12 de dezembro.",
-  link: "https://www.galeriamariliarazuk.com.br",
+  t: "vem, vira, vai, voo — Selva de Carvalho",
+  v: "Verve Galeria",
+  quem: "Selva de Carvalho",
+  txt: "Instalação inédita na vitrine da Sala de Projetos, no Edifício Louvre. Abertura das 12h às 17h; encerramento não divulgado.",
+  link: "https://www.vervegaleria.com",
   publi: false
 };
 
@@ -390,6 +387,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-10-11", k:"vem, vira, vai, voo — Selva de Carvalho|Verve Galeria"},
   {d:"2026-10-10", k:"Longitudes|Galeria Marília Razuk"},
   {d:"2026-10-09", k:"Não há só uma maneira — Oriol Vilanova|Galeria Luisa Strina"},
   {d:"2026-10-08", k:"Toda minúcia — André Barion|Galeria Estação"},
@@ -466,5 +464,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "10/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "11/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
