@@ -207,7 +207,6 @@ const EXPOS = [
 {t:"Mitologias do Mistério — Gabriel Omep",a:"Gabriel Omep",v:"Casa de Cultura do Parque",ini:"2026-07-25",fim:"2026-10-25",d:"Quatro séries — Alfabeto Ferramenta, Orís, Guardiões e Indumentária — em pintura sobre papelão, numa parede de 280 x 1020 cm. Curadoria de Claudio Cretti e texto crítico de André Pitol. Parte do II Ciclo Expositivo.",img:"img/mitologias-do-misterio-casa-de-cultura-do-parque.png",cred:"Cortesia Casa de Cultura do Parque"},
 {t:"Brasil das Múltiplas Faces",v:"Itaú Cultural",ini:"2025-10-22",fim:"2027-10-31",d:"Mostra de longa duração com obras do acervo do Itaú Cultural. Entrada gratuita."},
 {t:"Joan Miró: Mestre das Formas",a:"Joan Miró",v:"MAB FAAP",ini:"2026-08-07",fim:"2026-10-12",d:"140 obras originais do catalão, várias inéditas no Brasil. Ingresso pago, vendido em mmf26.com.br.",img:"img/joan-miro-mestre-das-formas-mab-faap.jpg",cred:"Cortesia MAB FAAP"},
-{t:"confluências — Carolina Caycedo",a:"Carolina Caycedo",v:"MASP",ini:"2026-07-03",fim:"2026-10-04",d:"Fotografia, instalação, vídeo, performance e desenho no cruzamento entre arte, saberes ribeirinhos e movimentos sociais. Curadoria de Isabella Rjeille.",img:"img/confluencias-masp.jpg",cred:"Vista da exposição. Foto Eduardo Ortega / Cortesia MASP",vista:true},
 {t:"Casa María Lionza — Sol Calero",a:"Sol Calero",v:"MASP",ini:"2026-07-03",fim:"2027-01-30",d:"Pavilhão no Vão Livre em dezesseis cores, com padrões pintados à mão e mosaicos, em referência a Lina Bo Bardi e às fachadas nordestinas. Curadoria de Adriano Pedrosa e Laura Cosendey."},
 {t:"Histórias Latino-Americanas",v:"MASP",ini:"2026-09-04",fim:"2027-01-31",d:"Coletiva internacional em cinco núcleos temáticos sobre a construção histórica da ideia de América Latina. Curadoria de Amanda Carneiro e Julieta González, curadora-adjunta do MASP, com assistência de Teo Teotonio."},
 {t:"Flores e Vasos — coletiva",a:"Rochelle Costi, Gaspar Gasparian, Robert Mapplethorpe",v:"Luciana Brito Galeria",ini:"2026-08-22",fim:"2026-10-17",d:"Curadoria de Nessia Pope. Fotografias de 1947 a 2020 em torno do gênero, entre vintages, prata e jato de tinta.",img:"img/flores-e-vasos-luciana-brito-galeria.webp",cred:"Cortesia Luciana Brito Galeria"},
@@ -268,7 +267,6 @@ const EXPOS = [
 {t:"Tatiana Blass: Contrarregra",a:"Tatiana Blass",v:"Instituto Tomie Ohtake",ini:"2026-08-28",fim:"2026-10-25",d:"Cerca de 50 obras produzidas entre 2008 e 2026 — pinturas, esculturas, instalações e vídeos em vidro, bronze, cera e cerâmica —, das séries Contraluz, Metade da fala no chão, Quebra-quebra e Nó; curadoria de Ana Roman e Lahayda Mamani Poma.",img:"img/tatiana-blass-contrarregra-instituto-tomie-ohtake.jpg",cred:"Vista da exposição. Cortesia Instituto Tomie Ohtake",vista:true},
 {t:"O Barco",a:"Grada Kilomba",v:"Sesc Pompeia",ini:"2026-09-22",fim:"2026-10-25",d:"Instalação de 134 blocos de madeira queimada somando mais de 220 m², desenhando a silhueta do porão de um navio negreiro; dezoito blocos trazem um poema da artista em seis línguas. Curadoria de Marília Loureiro e Júlia Rebouças.",img:"",cred:""},
 {t:"Mulheres da Boca",a:"Wagner Carvalho",v:"MIS — Museu da Imagem e do Som",ini:"2026-09-02",fim:"2026-10-18",d:"Fotografias inéditas feitas durante as filmagens do documentário \"Mulheres da Boca\" (1981), nas ruas da Boca do Lixo na virada dos anos 1970 para os 1980; curadoria de Inês Castilho, Marcelo Colaiácovo e William Plotnik.",img:"img/mulheres-da-boca-mis.png",cred:"Fotografia de Wagner Carvalho"},
-{t:"50 anos sem JK",a:"Jean Manzon",v:"MIS — Museu da Imagem e do Som",ini:"2026-08-15",fim:"2026-10-04",d:"Fotografias inéditas de Juscelino Kubitschek da coleção do fotógrafo francês Jean Manzon, somadas a imagens do acervo do MIS; curadoria de André Sturm, em parceria com o Consulado-Geral da República Tcheca em São Paulo.",img:"img/50-anos-sem-jk-mis.jpg",cred:"Cortesia MIS"},
 {t:"loopinpindorama",a:"",v:"Martins&Montero",ini:"2026-08-20",fim:"2026-10-17",d:"Coletiva com curadoria de Felipe Molitor que articula obras do acervo da galeria com artistas convidados: uma sala de videoarte brasileira em sistema de projeção interativa e um conjunto de pinturas, esculturas, fotografias e instalações organizado por afinidades formais.",img:"img/loopinpindorama-martins-montero.jpg",cred:"Vista da exposição. Cortesia Martins&Montero",vista:true},
 {t:"NO LIMITE: forma e transformação",a:"",v:"Paço das Artes",ini:"2026-09-26",fim:"2026-11-15",d:"Coletiva com 17 artistas de 6 países que explora o conceito de \"situação-limite\" do filósofo Karl Jaspers, combinando aspectos psicológicos com elementos como água, pedras, sal e luz. Curadoria de Martin Juef, cocuradoria de Francisco Klinger Carvalho.",img:"img/no-limite-paco-das-artes.png",cred:"Nina E. Schönefeld, still de vídeo / Cortesia Paço das Artes"},
 {t:"Afríquia: o artista como colecionador",a:"",v:"Museu Afro Brasil Emanoel Araujo",ini:"2026-06-26",fim:"",d:"Reúne mais de 200 obras e materiais de arquivo — esculturas, pinturas, máscaras, fotografias, livros, discos e têxteis, com destaque para peças da Nigéria e do Benin — mostrando como Emanoel Araujo formou o acervo de arte africana do museu. Curadoria de Gabrielle Nascimento.",img:"",cred:""},
@@ -368,11 +366,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "vem, vira, vai, voo — Selva de Carvalho",
-  v: "Verve Galeria",
-  quem: "Selva de Carvalho",
-  txt: "Instalação inédita na vitrine da Sala de Projetos, no Edifício Louvre. Abertura das 12h às 17h; encerramento não divulgado.",
-  link: "https://www.vervegaleria.com",
+  t: "Estado de Transe — Dora Smék",
+  v: "Central Galeria",
+  quem: "Dora Smék",
+  txt: "Segunda individual da artista na galeria, com esculturas, instalações e vídeo inéditos. Texto de Yago Toscano. Segunda a sexta, 10h às 19h; sábado, 11h às 17h. Abertura em 3 de outubro, até 14 de novembro.",
+  link: "https://www.centralgaleria.com",
   publi: false
 };
 
@@ -387,6 +385,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-10-12", k:"Estado de Transe — Dora Smék|Central Galeria"},
   {d:"2026-10-11", k:"vem, vira, vai, voo — Selva de Carvalho|Verve Galeria"},
   {d:"2026-10-10", k:"Longitudes|Galeria Marília Razuk"},
   {d:"2026-10-09", k:"Não há só uma maneira — Oriol Vilanova|Galeria Luisa Strina"},
@@ -464,5 +463,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "11/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "12/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
