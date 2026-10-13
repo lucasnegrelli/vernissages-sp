@@ -62,5 +62,8 @@ Latino-Americanas (MASP) também esperam conferência na fonte.
       e `README.md` ficam na raiz de propósito: as rotinas de nuvem (`.github/prompts/`) e o `check.js` apontam pra eles.
 - [x] Triagem de resto (13/10): `estudio.html` removido; imagens da Carmela Gross e propostas antigas de `PENDENTE/` tiradas da pasta.
 - [x] `.html` soltos: todos são páginas do site, exceto `limpar.html` (ferramenta interna, só o index aponta).
-- [ ] **Rotina de nuvem `vsp-semana` está PAUSADA desde 14/09** (claude.ai/code/routines): é ela que aplica as issues de radar e garimpo. Religar ou aplicar à mão toda semana.
+- [x] Rotina de domingo: a rotina de nuvem (pausada desde 14/09 em claude.ai/code/routines) já foi substituída pela
+      Action `vsp-semana.yml`, que roda e está verde (última 11/10). Não religar a antiga.
+- [ ] **A Action aplica as issues de radar e garimpo mas não as fecha** (`issues: read` no workflow), por isso elas
+      acumularam. Decisão do Lucas: dar `issues: write` ao workflow e um passo 7 no prompt pra fechar com comentário.
 - [ ] Scripts `.js` ficam na raiz: movê-los exige editar `require` e 5 workflows, só em sessão própria com teste.
