@@ -65,6 +65,14 @@ PASSOS:
    GITHUB_TOKEN do próprio job não dispara outros workflows (limitação do
    GitHub, não falha sua). A prova de validação já é a saída do
    `node check.js` do passo 5.
+7. FECHE as issues `radar` e `garimpo` que você tratou, uma por uma, com
+   `gh issue close <n> --repo lucasnegrelli/vernissages-sp --comment "<texto>"`.
+   O comentário tem 3 blocos curtos: APLICADO (o que entrou no dados.js,
+   com o hash do commit), NÃO CONFIRMADO (o que ficou de fora e por quê) e
+   PENDENTE PRO LUCAS (casas não mapeadas e qualquer decisão dele). Nada que
+   ficou de fora pode se perder: se não couber no comentário, escreva também
+   em PENDENCIAS.md, seção 2. Sem novidade confirmada e sem nada de novo na
+   issue, deixe aberta. Se o push do passo 6 falhou, NÃO feche nada.
 
 TRAVAS (sempre): nunca poste no Instagram; nunca invente data, endereço,
 autoria ou crédito — na dúvida deixe de fora e diga no resumo; nunca

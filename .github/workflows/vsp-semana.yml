@@ -39,7 +39,9 @@ on:
 
 permissions:
   contents: write
-  issues: read
+  # issues: write desde 13/10/2026 (autorizado pelo Lucas), pra rotina fechar as
+  # issues de radar e garimpo que ela já tratou. Antes elas acumulavam abertas.
+  issues: write
 
 # Mesma logica do resto: nao deixa duas rodadas se atropelarem no push.
 concurrency:

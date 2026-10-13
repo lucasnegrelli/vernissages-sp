@@ -64,6 +64,5 @@ Latino-Americanas (MASP) também esperam conferência na fonte.
 - [x] `.html` soltos: todos são páginas do site, exceto `limpar.html` (ferramenta interna, só o index aponta).
 - [x] Rotina de domingo: a rotina de nuvem (pausada desde 14/09 em claude.ai/code/routines) já foi substituída pela
       Action `vsp-semana.yml`, que roda e está verde (última 11/10). Não religar a antiga.
-- [ ] **A Action aplica as issues de radar e garimpo mas não as fecha** (`issues: read` no workflow), por isso elas
-      acumularam. Decisão do Lucas: dar `issues: write` ao workflow e um passo 7 no prompt pra fechar com comentário.
+- [x] A Action aplicava as issues mas não as fechava (`issues: read`). Em 13/10 ganhou `issues: write` e um passo 7 no prompt: fecha com comentário (aplicado / não confirmado / pendente). Conferir na próxima execução (domingo 18/10 ou após o garimpo de sábado).
 - [ ] Scripts `.js` ficam na raiz: movê-los exige editar `require` e 5 workflows, só em sessão própria com teste.
