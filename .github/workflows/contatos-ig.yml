@@ -1,0 +1,47 @@
+name: Contatos das casas (Instagram)
+
+# Manual (Actions > Run workflow). Lê a bio do Instagram das casas que só
+# divulgam lá e extrai e-mail e telefone, pra abordagem comercial do serviço
+# de site. Criado em 13/10/2026. Ver contatos-ig.js.
+#
+# PRIVACIDADE: o repositório é público. O resultado NÃO é commitado: sobe como
+# artifact (visível só pra quem tem acesso ao repo, some em 7 dias). Baixe com
+#   gh run download <id> -n contatos-ig
+# e coloque o contatos-ig.json em NEGOCIO/VENDAS/ (pasta fora do git).
+
+on:
+  workflow_dispatch:
+    inputs:
+      so:
+        description: 'Opcional: só estes handles, separados por vírgula (vazio = todas as candidatas)'
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+
+jobs:
+  contatos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Ler as bios
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+          SO: ${{ github.event.inputs.so }}
+        run: |
+          if [ -n "$SO" ]; then node contatos-ig.js --so="$SO"; else node contatos-ig.js; fi
+
+      - name: Publicar como artifact (privado, 7 dias)
+        uses: actions/upload-artifact@v4
+        with:
+          name: contatos-ig
+          path: contatos-ig.json
+          retention-days: 7
+          if-no-files-found: error

@@ -44,3 +44,6 @@ _to_delete/
 
 # Prospecção do serviço de sites (leads-sites.js) — lista de clientes, não vai pro site.
 /NEGOCIO/
+
+# Contatos raspados da bio do Instagram: dado de terceiros, nunca no repo público.
+/contatos-ig.json
