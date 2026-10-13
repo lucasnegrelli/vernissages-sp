@@ -1,83 +1,77 @@
 {
-  "titulo": "Semana de 12/10 a 18/10/2026",
+  "titulo": "Semana de 19/10 a 25/10/2026",
   "_leiame": [
     "ESTE ARQUIVO É GERADO. Rode `node planejar.js` para refazê-lo a partir do REPERTORIO.json.",
     "Editar à mão funciona e é legítimo — mas a edição se perde no próximo planejar.js.",
     "Para mudar o repertório de vez, mexa no REPERTORIO.json, não aqui.",
-    "Gerado em 2026-10-05."
+    "Gerado em 2026-10-13."
   ],
   "fora": [
     "Terra que Desmancha, Evapora e Solidifica — Coletivo Poíesis|Vazio Criativo"
   ],
   "posts": [
     {
-      "data": "2026-10-12",
+      "data": "2026-10-19",
       "formato": "deriva",
       "ordem": 1,
-      "paleta": "papel",
-      "textura": 0.07,
-      "ideia": "deriva-bela-vista",
-      "nome": "deriva-bela-vista",
-      "ajustes": {
-        "tese": "Da Paulista para dentro do Bixiga, as casas mais próximas.",
-        "virada": "Metade do percurso é avenida, metade é rua de sobrado. A arte está nas duas.",
-        "filtro": {
-          "bairro": [
-            "Bela Vista",
-            "Paraíso",
-            "Consolação"
-          ]
-        }
-      }
-    },
-    {
-      "data": "2026-10-14",
-      "formato": "obra",
-      "ordem": 1,
-      "paleta": "temporada",
+      "paleta": "escuro",
       "textura": 0.05,
-      "ideia": "obra-jardim-paulista",
-      "nome": "obra-jardim-paulista",
+      "ideia": "deriva-so-instituicoes",
+      "nome": "deriva-so-instituicoes",
       "ajustes": {
+        "tese": "Os museus mais próximos uns dos outros nesta semana.",
+        "virada": "Museu cobra ingresso; quase todos têm um dia gratuito. Confira antes de sair.",
         "filtro": {
-          "bairro": "Jardim Paulista"
+          "tipo": "institucional"
         }
       }
     },
     {
-      "data": "2026-10-15",
+      "data": "2026-10-21",
+      "formato": "estreia",
+      "ordem": 1,
+      "paleta": "linho",
+      "textura": 0.05,
+      "nome": "estreia-proximos-dias",
+      "_nota": "13/10/2026: aproximacao \"Arte urbana de perto\" trocada por estreia — a base não tem obra de arte de rua com imagem que sirva."
+    },
+    {
+      "data": "2026-10-22",
       "formato": "agenda",
       "ordem": 1,
       "paleta": "escuro"
     },
     {
-      "data": "2026-10-16",
-      "formato": "encerra",
+      "data": "2026-10-23",
+      "formato": "obra",
       "ordem": 1,
-      "paleta": "barro",
-      "textura": 0.07,
-      "ideia": "encerra-longa-que-acaba",
-      "nome": "encerra-longa-que-acaba",
+      "paleta": "escuro",
+      "textura": 0.05,
+      "ideia": "obra-tres-semanas",
+      "nome": "obra-tres-semanas",
       "ajustes": {
         "filtro": {
-          "fechaEm": 14,
-          "duraMais": 90
+          "fechaEm": 21,
+          "temFim": true
         }
       }
     },
     {
-      "data": "2026-10-17",
+      "data": "2026-10-24",
       "formato": "deriva",
       "ordem": 1,
       "paleta": "papel",
       "textura": 0.07,
-      "ideia": "deriva-recem-abertas",
-      "nome": "deriva-recem-abertas",
+      "ideia": "deriva-itaim",
+      "nome": "deriva-itaim",
       "ajustes": {
-        "tese": "As estreias do mês, em ordem de caminhada.",
-        "virada": "Mostra recém-aberta tem a sala mais arrumada e a equipe mais disposta a conversar.",
+        "tese": "Galerias entre prédios comerciais, num trecho curto.",
+        "virada": "Hora do almoço é o melhor horário: galeria vazia, calçada cheia.",
         "filtro": {
-          "abriuEm": 30
+          "bairro": [
+            "Itaim Bibi",
+            "Jardim Europa"
+          ]
         }
       }
     }
