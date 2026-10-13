@@ -75,6 +75,7 @@ rima e aproximação serão reconstruídas. Formatos novos em estudo no `docs/ID
 | `planejar.js` · `semana.js` | planejam e geram a semana do social |
 | `agenda.js` · `deriva.js` | os dois formatos fixos (carrossel do fim de semana; roteiro com mapa OSM) |
 | `obra.js` · `rima.js` · `aproximacao.js` · `numero.js` · `entrada.js` · `salao.js` | formatos do repertório (vários em revisão) |
+| `stories.js` | stories do dia (1080x1920) direto da base: abre hoje/amanhã, último dia, fecha amanhã; `--seco` lista |
 | `reel.js` | monta Reel a partir de filmagem própria (`--clipes=pasta`) |
 | `engajar.js` | lista semanal de quem comentar à mão, com gancho |
 | `leads-sites.js` | prospecção do serviço de sites |
