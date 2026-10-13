@@ -57,8 +57,9 @@ Latino-Americanas (MASP) também esperam conferência na fonte.
 
 - [x] Notas de negócio (`MVP.md`, `Copywriter.md`, `Social Media.md`) movidas pra `NEGOCIO/` (fora do git; repo é público).
 - [x] Este arquivo refeito.
-- [ ] Issues de radar e garimpo de 29/08 a 03/10 (#1 a #13) superadas por #14 e #15; fechar.
-- [ ] `.md` da raiz para `docs/`, com links do README atualizados (conferir antes quem lê `ESTILO.md`).
+- [x] Issues de radar e garimpo de 29/08 a 03/10 (#1 a #13) fechadas; ficam #14 e #15.
+- [x] `IDEIAS.md`, `REFERENCIAS.md` e `DESIGN.md` em `docs/`. `OPERACAO.md`, `ESTILO.md`, `POSTS.md`, `COMOGERAR.md`
+      e `README.md` ficam na raiz de propósito: as rotinas de nuvem (`.github/prompts/`) e o `check.js` apontam pra eles.
 - [ ] Triagem de resto: `PENDENTE/`, `img/constelacao-carmela-gross-*` (sem referência na base), `desktop.ini`.
 - [ ] Descobrir quais dos `.html` soltos estão no ar (`estudio`, `limpar`, `monta-meu-sabado`, `fim-de-semana`).
 - [ ] Scripts `.js` ficam na raiz: movê-los exige editar `require` e 5 workflows, só em sessão própria com teste.

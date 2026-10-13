@@ -20,9 +20,9 @@ prontas (a publicação é sempre manual).
 | **POSTS.md** | sistema visual das peças (grade da semana, tipografia, paletas, acento terracota) |
 | **ESTILO.md** | voz do texto |
 | **COMOGERAR.md** | passo a passo para gerar a semana do social |
-| **IDEIAS.md** | banco bruto de 240 ideias de post (o que ainda não virou formato) |
-| **REFERENCIAS.md** | concorrência e inspiração: quem copiar e o quê |
-| **DESIGN.md** | referências estéticas e a direção visual única de site + Instagram |
+| **docs/IDEIAS.md** | banco bruto de 240 ideias de post (o que ainda não virou formato) |
+| **docs/REFERENCIAS.md** | concorrência e inspiração: quem copiar e o quê |
+| **docs/DESIGN.md** | referências estéticas e a direção visual única de site + Instagram |
 | **REPERTORIO.json** | as 204 ideias que o planejador já sabe gerar sozinho |
 | `EDITAIS/` · `NEGOCIO/` | captação e serviço de sites — **fora do git** (dado de negócio) |
 
@@ -50,7 +50,7 @@ sáb **deriva** (roteiro a pé com mapa de ruas reais) · demais dias do repert�
 Legenda de cada post em `SOCIAL/MM/DD/LEGENDA.txt`. Nada é postado sozinho.
 
 **Em revisão (26/09/2026):** número, entrada e aproximação-zoom foram vetados;
-rima e aproximação serão reconstruídas. Formatos novos em estudo no `IDEIAS.md`
+rima e aproximação serão reconstruídas. Formatos novos em estudo no `docs/IDEIAS.md`
 (mercado, história por trás, "Fui", quanto custa?).
 
 ### 4. Negócio
