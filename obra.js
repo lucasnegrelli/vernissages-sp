@@ -65,6 +65,11 @@ const ALVO_PROP = W / H;
    visivel. Mesma logica do MIN_LARGURA: melhor nao usar a imagem do que usar
    ela mutilada. */
 const LIMITE_PROP = 1.6;
+/* 13/10/2026: imagem em paisagem passa da régua SE o dados.js trouxer `foco` (0 a 100,
+   posição horizontal do recorte 4:5: 0 = borda esquerda, 50 = centro, 100 = direita),
+   escolhido por quem olhou a obra. Sem `foco`, a trava de 09/10 continua valendo.
+   Teto de 2.6× pra não virar tira. */
+const LIMITE_COM_FOCO = 2.6;
 
 const _dias = (a, b) => Math.round((Date.parse(b + 'T12:00:00') - Date.parse(a + 'T12:00:00')) / 864e5);
 
@@ -107,7 +112,9 @@ async function escolher(DATA, hoje, cfg) {
     try { dim = await medir(rel); } catch { continue; }
     if (!dim.w || dim.w < MIN_LARGURA) continue;
     const prop = dim.w / dim.h;
-    if (Math.max(prop / ALVO_PROP, ALVO_PROP / prop) > LIMITE_PROP) continue;
+    const desvio = Math.max(prop / ALVO_PROP, ALVO_PROP / prop);
+    const temFoco = typeof e.foco === 'number' && e.foco >= 0 && e.foco <= 100;
+    if (desvio > (temFoco ? LIMITE_COM_FOCO : LIMITE_PROP)) continue;
 
     const v = V[e.v];
     const kb = fs.statSync(path.resolve(RAIZ, rel)).size / 1024;
@@ -139,7 +146,7 @@ async function escolher(DATA, hoje, cfg) {
    Daily, e é o que faz a imagem parecer obra em vez de anúncio. */
 function slideCheia(o) {
   return `<div class="slide slide--cheia">
-    <img class="sangra" src="${esc(o.rel)}">
+    <img class="sangra" src="${esc(o.rel)}"${typeof o.e.foco === 'number' ? ' style="object-position:' + o.e.foco + '% 50%"' : ''}>
   </div>`;
 }
 
