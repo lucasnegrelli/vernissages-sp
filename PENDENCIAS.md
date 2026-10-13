@@ -60,6 +60,7 @@ Latino-Americanas (MASP) também esperam conferência na fonte.
 - [x] Issues de radar e garimpo de 29/08 a 03/10 (#1 a #13) fechadas; ficam #14 e #15.
 - [x] `IDEIAS.md`, `REFERENCIAS.md` e `DESIGN.md` em `docs/`. `OPERACAO.md`, `ESTILO.md`, `POSTS.md`, `COMOGERAR.md`
       e `README.md` ficam na raiz de propósito: as rotinas de nuvem (`.github/prompts/`) e o `check.js` apontam pra eles.
-- [ ] Triagem de resto: `PENDENTE/`, `img/constelacao-carmela-gross-*` (sem referência na base), `desktop.ini`.
-- [ ] Descobrir quais dos `.html` soltos estão no ar (`estudio`, `limpar`, `monta-meu-sabado`, `fim-de-semana`).
+- [x] Triagem de resto (13/10): `estudio.html` removido; imagens da Carmela Gross e propostas antigas de `PENDENTE/` tiradas da pasta.
+- [x] `.html` soltos: todos são páginas do site, exceto `limpar.html` (ferramenta interna, só o index aponta).
+- [ ] **Rotina de nuvem `vsp-semana` está PAUSADA desde 14/09** (claude.ai/code/routines): é ela que aplica as issues de radar e garimpo. Religar ou aplicar à mão toda semana.
 - [ ] Scripts `.js` ficam na raiz: movê-los exige editar `require` e 5 workflows, só em sessão própria com teste.
