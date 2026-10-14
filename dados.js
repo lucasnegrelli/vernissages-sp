@@ -230,7 +230,6 @@ const EXPOS = [
 {t:"Mundo Pequeno — Martin Parr",a:"Martin Parr",v:"Centro Cultural FIESP",ini:"2026-10-15",fim:"2027-04-04",d:"45 fotografias de Martin Parr (Magnum Photos) sobre turismo de massa, consumo e a obsessão de provar que se esteve ali, mostradas pela primeira vez no Brasil, com projeções e fotolivros. Curadoria de João Kulcsár. Terça a domingo, das 10h às 20h.",img:"",cred:""},
 {t:"Tecituras",v:"Farol Santander",ini:"2026-07-17",fim:"2026-10-18",d:"Cerca de 30 obras têxteis de 30 artistas brasileiros; curadoria de Denise Mattar."},
 {t:"Pequeno mapa do tempo — Paula Siebra",a:"Paula Siebra",v:"Mendes Wood DM — Casa Iramaia",ini:"2026-08-25",fim:"2026-10-24",d:"Pinturas a óleo sobre os ciclos de chuva, festa, vento e seca em Fortaleza.",img:"img/pequeno-mapa-do-tempo-mendes-wood-dm-casa-iramaia.webp",cred:"Cortesia Mendes Wood DM"},
-{t:"Assim Bordei Meus Sonhos: Margarida L. Kanciukaitis Pandolfo",a:"Margarida L. Kanciukaitis Pandolfo",v:"Museu da Imigração",ini:"2026-07-10",fim:"2026-10-06",d:"Cerca de 100 peças em bordado, retalho, crochê e pintura, algumas feitas com os filhos, OSGEMEOS, que assinam a curadoria. Primeira individual da artista no Brasil.",img:"img/assim-bordei-meus-sonhos-margarida-l-kanciukaitis-pandolfo-m.png",cred:"Cortesia Museu da Imigracao"},
 {t:"Beijo de Língua — Nelson Felix",a:"Nelson Felix",v:"MAC USP",ini:"2026-05-30",fim:"2026-11-29",d:"Individual do escultor carioca no MAC USP. Entrada gratuita."},
 {t:"39º Panorama da Arte Brasileira: Depois que tudo foi dito",v:"MAM São Paulo",ini:"2026-09-12",fim:"2027-01-24",d:"Curadoria de Diane Lima, com 33 artistas de 13 estados. A mostra marca o retorno do museu à sede do Ibirapuera após a reforma da marquise."},
 {t:"Constelação em trânsito: uma escuta cartográfica",v:"Galpão da Lapa",ini:"2025-09-06",fim:"2027-03-01",d:"Mostra de longa duração da coleção privada de arte contemporânea brasileira do Galpão da Lapa, organizada em três eixos - Arquiteturas do Inconsciente, Geometrias do Sul e Topologias do Orgânico - a partir de uma escuta do próprio acervo. Visitas guiadas gratuitas mediante agendamento, quintas e sábados.",img:"img/constelacao-em-transito-uma-escuta-cartografica-galpao-da-la.jpg",cred:"Cortesia Galpão da Lapa"},
@@ -368,11 +367,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Two Big Footers — Atsushi Kaga e Tarsila do Amaral",
-  v: "Almeida & Dale | Millan",
-  quem: "Atsushi Kaga, Tarsila do Amaral",
-  txt: "Obras inéditas do artista japonês Atsushi Kaga em diálogo com obras históricas de Tarsila do Amaral. Sede da Rua Fradique Coutinho, 1360. Abertura em 26 de setembro, até 24 de outubro.",
-  link: "https://almeidaedale.com.br",
+  t: "Aquilo Que Não Cabe — Jessica Costa",
+  v: "Zipper Galeria",
+  quem: "Jessica Costa",
+  txt: "Individual com curadoria de Carollina Lauriano, a primeira da artista no salão principal. Esculturas e tapeçarias que usam a modelagem de vestuário para pensar o volume do corpo. Abertura em 8 de outubro, das 18h às 21h.",
+  link: "https://www.zippergaleria.com.br",
   publi: false
 };
 
@@ -387,6 +386,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-10-14", k:"Aquilo Que Não Cabe — Jessica Costa|Zipper Galeria"},
   {d:"2026-10-13", k:"Two Big Footers — Atsushi Kaga e Tarsila do Amaral|Almeida & Dale | Millan"},
   {d:"2026-10-12", k:"Estado de Transe — Dora Smék|Central Galeria"},
   {d:"2026-10-11", k:"vem, vira, vai, voo — Selva de Carvalho|Verve Galeria"},
@@ -466,5 +466,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "13/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "14/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
