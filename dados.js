@@ -275,7 +275,6 @@ const EXPOS = [
 {t:"Esgarçar",a:"Andrey Rossi, Beatriz Lindenberg, Bruno Cançado, Desali, Giovani Fantauzzi, Julia Pereira, Laura Villarosa, Liane Roditi, Manoel Veiga, Manuela Costa Lima, Maria Helena Andrés, Marina Rodrigues, Marinalva Rosa, Michelle Rosset, Moara Tupinambá, Naira Pennacchi, Paula Huven, Renata Egreja, Thany Sanches, Yasmin Guimarães, Yohana Oizumi",v:"AM Galeria",ini:"2026-09-12",fim:"2026-10-10",d:"Coletiva com 21 artistas, curadoria de Mario Gioia, cruzando pintura, fotografia, têxtil, escultura, vídeo, performance e desenho em torno de noções de limite (dentro/fora, figuração/abstração).",img:"img/esgarcar-am-galeria.jpg",cred:"Cortesia AM Galeria",vista:true},
 /* confirmado no Instagram (@vazio_criativo_, 23/09/2026), checagem manual.
    Só cartaz disponível, sem imagem de obra. */
-{t:"Roxo em Tons",a:"",v:"Vazio Criativo",ini:"2026-10-03",fim:"2026-10-09",d:"Tons Coletivo apresenta exposição coletiva para ver o mundo em roxo, com curadoria de Audrey Barbosa.",img:"",cred:""},
 {t:"Passeio Noturno — André Crespo",a:"André Crespo",v:"A7MA Galeria",ini:"2026-09-25",fim:"2026-10-17",d:"Pinturas da noite de Paris feitas por um corpo à deriva, que deixa a cidade escolher o caminho. Curadoria de Rogério D’Avila Ortiz. Abertura em 25 de setembro, das 16h às 22h; aberta todos os dias, das 10h às 19h.",img:"img/passeio-noturno-a7ma-galeria.webp",cred:"Cortesia A7MA Galeria"},
 /* confirmado no Instagram (@mits.galeria, 23/09/2026). Curadoria e lista
    de artistas apareciam no cartaz mas cortados/ilegiveis no zoom -- nao
@@ -371,11 +370,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Tábula Opaca — coletiva",
-  v: "Galeria Aura",
-  quem: "Fernanda Pacca, Jacque Faus, Kuenan Mayu, Olívia Lacerda, Uýra, Xinga Xow, Yaraçá",
-  txt: "Curadoria do Projeto Mulheres Arquivadas. A mostra investiga a opacidade e a fugitividade como resistência aos sistemas de classificação. Abertura em 24 de outubro, a partir das 11h; encerramento não divulgado.",
-  link: "https://aura.art.br",
+  t: "Corrente Contínua — tecfase",
+  v: "Choque Cultural",
+  quem: "",
+  txt: "Individual com TVs pintadas, pinturas, colagem e vídeos. Aberta em 26 de setembro; encerramento não divulgado. Abertura em 26 de setembro.",
+  link: "http://choquecultural.com.br",
   publi: false
 };
 
@@ -390,6 +389,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-10-17", k:"Corrente Contínua — tecfase|Choque Cultural"},
   {d:"2026-10-16", k:"Tábula Opaca — coletiva|Galeria Aura"},
   {d:"2026-10-15", k:"Shh... — Edgard de Souza|Galeria Vermelho"},
   {d:"2026-10-14", k:"Aquilo Que Não Cabe — Jessica Costa|Zipper Galeria"},
@@ -472,5 +472,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "16/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "17/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
