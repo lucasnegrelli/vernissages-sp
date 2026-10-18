@@ -272,7 +272,6 @@ const EXPOS = [
 {t:"NO LIMITE: forma e transformação",a:"",v:"Paço das Artes",ini:"2026-09-26",fim:"2026-11-15",d:"Coletiva com 17 artistas de 6 países que explora o conceito de \"situação-limite\" do filósofo Karl Jaspers, combinando aspectos psicológicos com elementos como água, pedras, sal e luz. Curadoria de Martin Juef, cocuradoria de Francisco Klinger Carvalho.",img:"img/no-limite-paco-das-artes.png",cred:"Nina E. Schönefeld, still de vídeo / Cortesia Paço das Artes"},
 {t:"Afríquia: o artista como colecionador",a:"",v:"Museu Afro Brasil Emanoel Araujo",ini:"2026-06-26",fim:"",d:"Reúne mais de 200 obras e materiais de arquivo — esculturas, pinturas, máscaras, fotografias, livros, discos e têxteis, com destaque para peças da Nigéria e do Benin — mostrando como Emanoel Araujo formou o acervo de arte africana do museu. Curadoria de Gabrielle Nascimento.",img:"",cred:""},
 {t:"Há quanto tempo pensando nisso",a:"Rachel Zuanon, Edson Pfutzenreuter, Sylvia Furegatti, Marta Strambi, Mauricius Farina, Sérgio Niculitcheff, Luise Weiss, Gilberto Alexandre Sobrinho, Cesar & Lois",v:"Memorial da América Latina",ini:"2026-09-23",fim:"2026-10-13",d:"Nove docentes-artistas do Instituto de Artes da Unicamp, com trabalhos em pintura, fotografia, gravura, xilogravura, vídeo e instalações multissensoriais, na Galeria Marta Traba. Curadoria de Sylvia Furegatti, Mauricius Farina e César Baio.",img:"",cred:""},
-{t:"Esgarçar",a:"Andrey Rossi, Beatriz Lindenberg, Bruno Cançado, Desali, Giovani Fantauzzi, Julia Pereira, Laura Villarosa, Liane Roditi, Manoel Veiga, Manuela Costa Lima, Maria Helena Andrés, Marina Rodrigues, Marinalva Rosa, Michelle Rosset, Moara Tupinambá, Naira Pennacchi, Paula Huven, Renata Egreja, Thany Sanches, Yasmin Guimarães, Yohana Oizumi",v:"AM Galeria",ini:"2026-09-12",fim:"2026-10-10",d:"Coletiva com 21 artistas, curadoria de Mario Gioia, cruzando pintura, fotografia, têxtil, escultura, vídeo, performance e desenho em torno de noções de limite (dentro/fora, figuração/abstração).",img:"img/esgarcar-am-galeria.jpg",cred:"Cortesia AM Galeria",vista:true},
 /* confirmado no Instagram (@vazio_criativo_, 23/09/2026), checagem manual.
    Só cartaz disponível, sem imagem de obra. */
 {t:"Passeio Noturno — André Crespo",a:"André Crespo",v:"A7MA Galeria",ini:"2026-09-25",fim:"2026-10-17",d:"Pinturas da noite de Paris feitas por um corpo à deriva, que deixa a cidade escolher o caminho. Curadoria de Rogério D’Avila Ortiz. Abertura em 25 de setembro, das 16h às 22h; aberta todos os dias, das 10h às 19h.",img:"img/passeio-noturno-a7ma-galeria.webp",cred:"Cortesia A7MA Galeria"},
@@ -283,11 +282,9 @@ const EXPOS = [
 /* confirmado no Instagram (@espacorepublica, 25/09/2026). Lista de artistas
    tirada do cartaz da 2a edicao (imagem do post); flyer tipografico, sem
    imagem de obra disponivel. */
-{t:"Vestígios: cartografias de gestos do Espaço República",a:"Alberto Boni, Alessandro Corrêa, Alexis Lopes, Andrea Natali, Andréia Reis, Claudia Briza, Claudia Vicente, Daniel Almeida, Duda Breda, Elaine Fontes, Gabriella Arantes, Gabriela Siqueira, Gisele Hasler, Igor Romana, Jacson Trierveiler, Jaques Faing, João Rietmann, Luciana Arantes, Luisa Bresser, Maazo Heck, Maria do Carmo Verdi, Marina Sadala, Michaela A F, Phil Haji-Touma, Rafael Beck, Sheila Kracochansky, Silvana Boni, Silvio Dworecki, Sylvia Sóglia, Tamara Roman, Tiago Alencar, Veridiana Magalhães, Witor Ressutti, Zico Farina",v:"Espaço República",ini:"2026-09-24",fim:"2026-10-10",d:"Segunda edição da mostra dos artistas residentes do Espaço República, com curadoria de Ana Carolina Ralston, reunindo 34 artistas. Visitação de quarta a sábado, 12h às 18h, com programação de ateliês abertos aos sábados.",img:"",cred:""},
 /* confirmado no Instagram (@galeriasuperficie, 17 e 23/09/2026). */
 {t:"Gestos",v:"Galeria Superfície",ini:"2026-08-29",fim:"2026-10-17",d:"Coletiva com 27 artistas de diferentes gerações, a partir da ideia de gesto do livro de Vilém Flusser. Curadoria de Paulo Venancio Filho e Gustavo Nóbrega, inaugura a nova sede da galeria na Vila Madalena.",img:"img/gestos-galeria-superficie.jpg",cred:"Cortesia Galeria Superfície",vista:true},
 /* confirmado no Instagram (@massape_projetos, 21/09/2026). */
-{t:"Mirações",a:"Yohana Oizumi, Bruno Romi",v:"Massapê Projetos",ini:"2026-10-03",fim:"2026-10-10",d:"Individual dupla com curadoria de Ana Cândida de Avelar. Instalação, performance, desenho, colagem, pintura e escultura a partir do imaginário religioso cristão. Abertura em 3 de outubro, das 14h às 18h, com performance às 15h; visitação com agendamento.",img:"",cred:""},
 {t:"Two Big Footers — Atsushi Kaga e Tarsila do Amaral",a:"Atsushi Kaga, Tarsila do Amaral",v:"Almeida & Dale | Millan",ini:"2026-09-26",fim:"2026-10-24",d:"Obras inéditas do artista japonês Atsushi Kaga em diálogo com obras históricas de Tarsila do Amaral. Sede da Rua Fradique Coutinho, 1360.",img:"img/two-big-footers-almeida-dale-millan.jpg",cred:"Vista da exposição. Foto Julia Thompson / Cortesia Almeida & Dale | Millan",vista:true},
 {t:"Quarto de máscaras — Maya Weishof",a:"Maya Weishof",v:"Almeida & Dale | Millan",ini:"2026-09-26",fim:"2026-10-24",d:"Individual de pinturas com texto do curador Carlos Quijon Jr. e expografia de Camilo Oliveira. No endereço Fradique 1430.",img:"img/quarto-de-mascaras-almeida-dale-millan.jpg",cred:"Vista da exposição. Foto Julia Thompson / Cortesia Almeida & Dale | Millan",vista:true},
 {t:"Victor Arruda: a tragédia e o escárnio",a:"Victor Arruda",v:"Almeida & Dale | Millan",ini:"2026-09-26",fim:"2026-10-17",d:"Individual de Victor Arruda com curadoria de Giancarlo Hannud, no endereço Fradique 1360.",img:"img/victor-arruda-a-tragedia-e-o-escarnio-almeida-dale-millan.jpg",cred:"Cortesia Almeida & Dale | Millan",foco:43},
@@ -370,11 +367,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Corrente Contínua — tecfase",
-  v: "Choque Cultural",
-  quem: "",
-  txt: "Individual com TVs pintadas, pinturas, colagem e vídeos. Aberta em 26 de setembro; encerramento não divulgado. Abertura em 26 de setembro.",
-  link: "http://choquecultural.com.br",
+  t: "O tudo e o todo — André Vargas",
+  v: "Casa de Cultura do Parque",
+  quem: "André Vargas",
+  txt: "Oito bandeiras feitas a partir de paramentas de orixás formam as palavras TUDO e TODO na fachada, na edição do Dando Bandeira. Quarta a domingo, 11h às 18h. Abertura em 3 de outubro, até 25 de abril.",
+  link: "https://ccparque.com.br",
   publi: false
 };
 
@@ -389,6 +386,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-10-18", k:"O tudo e o todo — André Vargas|Casa de Cultura do Parque"},
   {d:"2026-10-17", k:"Corrente Contínua — tecfase|Choque Cultural"},
   {d:"2026-10-16", k:"Tábula Opaca — coletiva|Galeria Aura"},
   {d:"2026-10-15", k:"Shh... — Edgard de Souza|Galeria Vermelho"},
@@ -472,5 +470,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "17/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "18/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
