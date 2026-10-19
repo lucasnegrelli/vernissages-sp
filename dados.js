@@ -367,11 +367,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "O tudo e o todo — André Vargas",
-  v: "Casa de Cultura do Parque",
-  quem: "André Vargas",
-  txt: "Oito bandeiras feitas a partir de paramentas de orixás formam as palavras TUDO e TODO na fachada, na edição do Dando Bandeira. Quarta a domingo, 11h às 18h. Abertura em 3 de outubro, até 25 de abril.",
-  link: "https://ccparque.com.br",
+  t: "Espaço Profundo",
+  v: "A Gentil Carioca SP",
+  quem: "Mariana Rocha",
+  txt: "Pinturas que expandem a pesquisa da artista sobre corpos d'água, aproximando dimensões corporal e cósmica; texto de André Pitol, curador adjunto da 36ª Bienal de São Paulo. Abertura em 15 de agosto, até 24 de outubro.",
+  link: "https://agentilcarioca.com.br",
   publi: false
 };
 
@@ -386,6 +386,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-10-19", k:"Espaço Profundo|A Gentil Carioca SP"},
   {d:"2026-10-18", k:"O tudo e o todo — André Vargas|Casa de Cultura do Parque"},
   {d:"2026-10-17", k:"Corrente Contínua — tecfase|Choque Cultural"},
   {d:"2026-10-16", k:"Tábula Opaca — coletiva|Galeria Aura"},
@@ -470,5 +471,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "18/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "19/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
