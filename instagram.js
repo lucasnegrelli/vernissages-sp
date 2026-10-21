@@ -76,7 +76,8 @@ function venues() {
   return (win.DATA.venues || []).filter(v => v.ig);
 }
 
-async function buscarApify(handles) {
+async function buscarApify(handles, opc) {
+  const o = opc || {};
   const token = process.env.APIFY_TOKEN;
   if (!token) {
     console.error('Falta APIFY_TOKEN. Crie a conta em apify.com, copie o token em Settings > API & Integrations\n' +
@@ -89,8 +90,8 @@ async function buscarApify(handles) {
     headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
     body: JSON.stringify({
       username: handles,
-      resultsLimit: POR_PERFIL,
-      onlyPostsNewerThan: DIAS + ' days',
+      resultsLimit: o.limite || POR_PERFIL,
+      onlyPostsNewerThan: (o.dias || DIAS) + ' days',
       skipPinnedPosts: true
     })
   });
@@ -118,8 +119,124 @@ function marcar() {
   console.log(novos.length + ' posts marcados como vistos (' + Object.keys(vistos).length + ' no arquivo).');
 }
 
+/* ---------- modo --faltantes (21/10/2026) ----------
+
+   O modo semanal só olha posts dos últimos 10 dias, então a mostra que abriu há
+   três semanas nunca ganhava foto: o post dela já saiu da janela. Foi o que
+   deixou a base com 4 fotos inéditas (regra "foto nunca repete") e 45 mostras
+   sem imagem utilizável. Aqui a pergunta inverte: quais mostras em cartaz não
+   têm foto de obra servível? Só os perfis dessas casas são buscados, olhando
+   para trás até a abertura de cada mostra.
+
+   Servível = arquivo local, ≥ 1400 px de largura ou cobrindo o quadro 4:5 de
+   1080x1350 (a régua do obra.js), sem `vista: true`. Qualquer coisa abaixo disso conta como faltando. */
+function dimensoes(buf) {
+  try {
+    if (buf[0] === 0x89 && buf[1] === 0x50) return { w: buf.readUInt32BE(16), h: buf.readUInt32BE(20) };
+    if (buf.slice(0, 4).toString('latin1') === 'RIFF' && buf.slice(8, 12).toString('latin1') === 'WEBP') {
+      const t = buf.slice(12, 16).toString('latin1');
+      if (t === 'VP8X') return { w: 1 + buf.readUIntLE(24, 3), h: 1 + buf.readUIntLE(27, 3) };
+      if (t === 'VP8 ') return { w: buf.readUInt16LE(26) & 0x3fff, h: buf.readUInt16LE(28) & 0x3fff };
+      if (t === 'VP8L') { const b = buf.readUInt32LE(21); return { w: 1 + (b & 0x3fff), h: 1 + ((b >> 14) & 0x3fff) }; }
+    }
+    if (buf[0] === 0xff && buf[1] === 0xd8) {
+      let i = 2;
+      while (i < buf.length) {
+        if (buf[i] !== 0xff) { i++; continue; }
+        const m = buf[i + 1];
+        if (m >= 0xc0 && m <= 0xcf && m !== 0xc4 && m !== 0xc8 && m !== 0xcc) return { h: buf.readUInt16BE(i + 5), w: buf.readUInt16BE(i + 7) };
+        i += 2 + buf.readUInt16BE(i + 2);
+      }
+    }
+  } catch (e) { /* cai no null */ }
+  return null;
+}
+
+function carregarDados() {
+  const win = {};
+  new Function('window', fs.readFileSync(path.join(RAIZ, 'dados.js'), 'utf8') +
+               '\n;window.DATA=window.DATA||DATA;')(win);
+  return win.DATA;
+}
+
+function mostrasSemFoto(DATA) {
+  const hoje0 = hoje();
+  const limite = new Date(Date.now() + 14 * 864e5).toISOString().slice(0, 10);
+  const comIg = {};
+  (DATA.venues || []).filter(v => v.ig).forEach(v => { comIg[v.name] = v; });
+  return (DATA.expos || []).filter(e => {
+    if (!comIg[e.v] || e.ini > limite || (e.fim && e.fim < hoje0)) return false;
+    const rel = String(e.img || '').split('?')[0].replace(/^\.?\//, '');
+    if (!rel || /^https?:/i.test(rel) || e.vista) return true;
+    try {
+      const d = dimensoes(fs.readFileSync(path.join(RAIZ, rel)));
+      return !d || (d.w < 1400 && !(d.w >= 1080 && d.h >= 1350));
+    } catch (err) { return true; }
+  });
+}
+
+async function faltantes() {
+  const DATA = carregarDados();
+  const falta = mostrasSemFoto(DATA);
+  const porCasa = {};
+  falta.forEach(e => { (porCasa[e.v] = porCasa[e.v] || []).push(e); });
+  const nomes = Object.keys(porCasa).sort();
+  console.log(falta.length + ' mostras sem foto servível em ' + nomes.length + ' casas.');
+  if (process.env.GITHUB_OUTPUT) fs.appendFileSync(process.env.GITHUB_OUTPUT, 'faltam=' + falta.length + '\n');
+  if (!falta.length) return;
+
+  const casas = (DATA.venues || []).filter(v => porCasa[v.name]);
+  const porHandle = {};
+  casas.forEach(v => { porHandle[v.ig.toLowerCase()] = v; });
+
+  /* Quanto olhar para trás: da abertura mais antiga da casa, com folga de uma
+     semana, no teto de 120 dias (um post mais velho que isso quase nunca é a
+     mostra em cartaz). `--dias` força um valor. */
+  const maisAntiga = falta.reduce((m, e) => (e.ini && e.ini < m ? e.ini : m), hoje());
+  const dias = Number(flag('dias', '0')) ||
+    Math.min(120, Math.ceil((Date.now() - Date.parse(maisAntiga + 'T12:00:00')) / 864e5) + 7);
+  const arq = flag('arquivo');
+  const lim = Number(flag('por-perfil', '30')) || 30;
+  const brutos = arq ? lerJSON(path.resolve(arq), []) : await buscarApify(casas.map(v => v.ig), { dias, limite: lim });
+
+  const posts = brutos.filter(p => !p.error && p.shortCode).map(p => {
+    const v = porHandle[String(p.ownerUsername || '').toLowerCase()];
+    return v && {
+      venue: v.name, data: String(p.timestamp || '').slice(0, 10),
+      url: p.url || 'https://www.instagram.com/p/' + p.shortCode + '/',
+      tipo: p.type, legenda: limpa(p.caption), imagens: imagens(p)
+    };
+  }).filter(Boolean).sort((a, b) => b.data.localeCompare(a.data));
+  const quebrados = brutos.filter(p => p.error).map(p => (p.username || p.inputUrl || '?') + ': ' + p.error);
+
+  let s = '# Fotos que faltam — ' + hoje() + '\n\n';
+  s += falta.length + ' mostras em cartaz sem foto de obra servível (sem `img`, abaixo de 1400 px ou `vista: true`),\n';
+  s += 'em ' + nomes.length + ' casas. Posts dos últimos ' + dias + ' dias de cada casa, ' + posts.length + ' no total.\n';
+  s += 'Imagens são URL de CDN do Instagram: expiram em horas.\n';
+  if (quebrados.length) s += '\n## Perfis que não abriram\n\n' + quebrados.map(f => '- ' + f).join('\n') + '\n';
+  for (const nome of nomes) {
+    s += '\n## ' + nome + ' (@' + casas.find(v => v.name === nome).ig + ')\n\n**Mostras sem foto:**\n';
+    porCasa[nome].forEach(e => {
+      const motivo = !e.img ? 'sem img' : e.vista ? 'vista de sala' : 'imagem pequena (' + e.img + ')';
+      s += '- ' + e.t + (e.a ? ' — ' + e.a : '') + ' · ' + (e.ini || '?') + ' a ' + (e.fim || 'sem fim') + ' · ' + motivo + '\n';
+    });
+    const meus = posts.filter(p => p.venue === nome);
+    if (!meus.length) s += '\n(nenhum post no período)\n';
+    for (const p of meus) {
+      s += '\n### ' + p.data + ' · ' + p.tipo + ' · ' + p.url + '\n\n';
+      s += (p.legenda || '(sem legenda)').slice(0, 700).split('\n').map(l => '> ' + l).join('\n') + '\n';
+      if (p.imagens.length) s += '\nImagens:\n' + p.imagens.map((u, i) => (i + 1) + '. ' + u).join('\n') + '\n';
+    }
+  }
+  fs.mkdirSync(DIR_PEND, { recursive: true });
+  fs.writeFileSync(path.join(DIR_PEND, 'INSTAGRAM-FOTOS.md'), s);
+  console.log(posts.length + ' posts -> PENDENTE/INSTAGRAM-FOTOS.md');
+  if (quebrados.length) console.log('Perfis que não abriram (' + quebrados.length + '):\n  ' + quebrados.join('\n  '));
+}
+
 async function principal() {
   if (argv.includes('--marcar')) return marcar();
+  if (argv.includes('--faltantes')) return faltantes();
 
   const casas = venues();
   if (!casas.length) { console.error('Nenhuma casa com `ig` no dados.js.'); process.exit(1); }

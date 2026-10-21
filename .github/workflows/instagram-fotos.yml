@@ -1,0 +1,106 @@
+name: Fotos de obra pelo Instagram
+
+# Fornece o que faltava ao social: foto de obra. Criado em 21/10/2026, quando o
+# Lucas decretou "foto nunca repete" e a base mostrou ter 4 fotos inéditas e 52
+# mostras em cartaz sem foto servível. O garimpo por site de galeria
+# (imagens.yml) bateu o teto: 10 propostas, as mesmas em duas semanas, nenhuma
+# obra (retrato de homenageado, foto de processo, vista de sala, banner).
+#
+# O instagram.yml semanal não resolvia isso porque só olha os últimos 10 dias de
+# post: a mostra que abriu há três semanas já saiu da janela e nunca ganhava
+# foto. Aqui a pergunta inverte. O instagram.js --faltantes lista as mostras em
+# cartaz sem foto servível e busca só os perfis dessas casas, olhando para trás
+# até a abertura de cada mostra.
+#
+# Mesmas três partes do instagram.yml:
+#   1. instagram.js --faltantes: Apify (segredo APIFY_TOKEN). Determinístico.
+#   2. Claude Code: acha o post da mostra e escolhe a foto da obra. Julgamento.
+#   3. espelhar.js + check.js + commit. A URL do CDN do Instagram expira em
+#      horas, então o espelhamento roda AQUI, no mesmo job.
+
+on:
+  schedule:
+    # segunda 09:00 UTC = 06:00 em SP: a semana começa com foto nova na base.
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: instagram-fotos
+  cancel-in-progress: false
+
+jobs:
+  fotos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Listar mostras sem foto e raspar os perfis
+        id: raspa
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+        run: node instagram.js --faltantes
+
+      - name: Instalar Claude Code
+        if: steps.raspa.outputs.faltam != '0'
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Achar a foto da obra e escrever no dados.js
+        if: steps.raspa.outputs.faltam != '0'
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          claude -p "$(cat .github/prompts/instagram-fotos.md)" \
+            --allowedTools "Bash,Read,Write,Edit,Glob,Grep,WebFetch" \
+            --dangerously-skip-permissions \
+            | tee /tmp/instagram-fotos.log
+
+      - name: Espelhar imagens (antes do CDN expirar)
+        if: steps.raspa.outputs.faltam != '0'
+        run: node espelhar.js
+
+      # Portão: reprovou, o job falha e nada é commitado.
+      - name: Validar
+        if: steps.raspa.outputs.faltam != '0'
+        run: node check.js
+
+      - name: Commitar
+        if: steps.raspa.outputs.faltam != '0'
+        run: |
+          git config user.name "vernissages-bot"
+          git config user.email "actions@github.com"
+          git add dados.js img
+          if git diff --staged --quiet; then
+            echo "Nada mudou."
+            exit 0
+          fi
+          git commit -m "Instagram: fotos de obra para mostras sem imagem"
+          for i in 1 2 3 4 5; do
+            if git push; then
+              exit 0
+            fi
+            echo "push rejeitado, tentativa $i - rebaseando e tentando de novo"
+            git fetch origin main
+            git rebase origin/main || exit 1
+            sleep 3
+          done
+          echo "Falhou ao empurrar apos 5 tentativas."
+          exit 1
+
+      - name: Resumo
+        if: always()
+        run: |
+          {
+            echo "## Fotos de obra pelo Instagram"
+            echo ""
+            echo '```'
+            [ -f /tmp/instagram-fotos.log ] && cat /tmp/instagram-fotos.log || echo "Nada a fazer (ou a raspagem falhou — veja o passo 'Listar mostras sem foto')."
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

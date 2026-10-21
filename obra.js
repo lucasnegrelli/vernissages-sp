@@ -55,6 +55,10 @@ const { carregarDados, exigirObra, medir, RAIZ, CSS, esc, porExtenso,
 
 const W = 1080, H = 1350;
 const MIN_LARGURA = 1400;
+/* Foto de Instagram vem com 1080 px de largura. Num quadro de 1080x1350 isso e
+   resolucao nativa quando a foto ja cobre o quadro (>= 1080 x 1350, o 4:5 da
+   rede): nada e ampliado, entao o argumento do piso de 1400 nao se aplica. */
+const COBRE_QUADRO = d => d.w >= 1080 && d.h >= 1350;
 const ALVO_PROP = W / H;
 /* Acima disso, o object-fit:cover do slide cheio corta mais da metade do
    lado maior pra encaixar no quadro 4:5 — e o corte e sempre centrado, entao
@@ -110,7 +114,7 @@ async function escolher(DATA, hoje, cfg) {
     catch { continue; }
     let dim;
     try { dim = await medir(rel); } catch { continue; }
-    if (!dim.w || dim.w < MIN_LARGURA) continue;
+    if (!dim.w || (dim.w < MIN_LARGURA && !COBRE_QUADRO(dim))) continue;
     const prop = dim.w / dim.h;
     const desvio = Math.max(prop / ALVO_PROP, ALVO_PROP / prop);
     const temFoco = typeof e.foco === 'number' && e.foco >= 0 && e.foco <= 100;

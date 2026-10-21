@@ -98,8 +98,8 @@ function fotosVetadas() {
   if (process.env.VSP_FOTOS_LIVRE === '1') return (_fotosVetadas = mapa);
   const arg = process.argv.find(a => a.startsWith('--date='));
   const corte = process.env.VSP_FOTOS_ATE || (arg ? arg.slice(7) : new Date().toISOString().slice(0, 10));
-  let postadas = {};
-  try { postadas = JSON.parse(fs.readFileSync(path.join(RAIZ, 'SOCIAL', 'POSTADAS.json'), 'utf8')); } catch { /* sem memória */ }
+  let usadas = {};
+  try { usadas = JSON.parse(fs.readFileSync(path.join(RAIZ, 'SOCIAL', 'FOTOS-USADAS.json'), 'utf8')); } catch { /* sem memória */ }
   let extra = [];
   try { extra = JSON.parse(process.env.VSP_FOTOS_EXTRA || '[]'); } catch { /* ignora */ }
   const porChave = {};
@@ -108,14 +108,16 @@ function fotosVetadas() {
     try { return crypto.createHash('md5').update(fs.readFileSync(path.resolve(RAIZ, rel))).digest('hex'); }
     catch { return null; }
   };
-  const vetar = (k, quando) => {
+  /* FOTOS-USADAS.json guarda o hash da foto NO DIA em que a peça saiu. Antes o
+     veto recalculava a partir da imagem atual da mostra, e uma mostra já postada
+     que ganhasse foto nova (Instagram, garimpo) teria a foto nova vetada. */
+  for (const [h, d] of Object.entries(usadas)) { if (!h.startsWith('_') && d < corte) mapa.set(h, d); }
+  for (const k of extra) {
     const x = porChave[k];
     const rel = x && String(x.img || '').split('?')[0].replace(/^\.?\//, '');
     const h = rel && !/^https?:/i.test(rel) && hash(rel);
-    if (h && !mapa.has(h)) mapa.set(h, quando);
-  };
-  for (const [k, d] of Object.entries(postadas)) { if (!k.startsWith('_') && d < corte) vetar(k, d); }
-  for (const k of extra) vetar(k, 'nesta semana');
+    if (h && !mapa.has(h)) mapa.set(h, 'nesta semana');
+  }
   return (_fotosVetadas = mapa);
 }
 

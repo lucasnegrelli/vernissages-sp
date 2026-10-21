@@ -16,10 +16,11 @@ name: Garimpo de imagens
 
 on:
   schedule:
-    # Todo dia 08:00 UTC = 05:00 em Sao Paulo. Era so sabado, mas imagem e o
-    # gargalo do social (20/10: obra, encerra e estreia sem peca por falta de
-    # imagem), entao a proposta tem que estar pronta de manha, todo dia.
-    - cron: '0 8 * * *'
+    # Sabado 09:00 UTC = 06:00 em Sao Paulo. Rodou todo dia por algumas horas em
+    # 21/10/2026, mas a rodada diaria devolveu as mesmas 10 propostas da semana
+    # anterior (nenhuma era obra): o garimpo por site de galeria bateu o teto.
+    # A fonte de foto de obra agora e o instagram-fotos.yml; este fica semanal.
+    - cron: '0 9 * * 6'
   workflow_dispatch:
     inputs:
       limite:

@@ -136,6 +136,7 @@ const CONSOME_OBRA = new Set(['obra', 'encerra', 'estreia', 'deriva', 'cartaz', 
    semana.js confere as duas listas antes de gerar e escreve nelas depois. */
 const USADAS_PATH = path.join(RAIZ, 'SOCIAL', 'USADAS.json');
 const POSTADAS_PATH = path.join(RAIZ, 'SOCIAL', 'POSTADAS.json');
+const FOTOS_PATH = path.join(RAIZ, 'SOCIAL', 'FOTOS-USADAS.json');   // hash da foto -> data (ver rima.js, fotosVetadas)
 const POSTADAS_JANELA = Infinity;   // foto nunca repete (21/10/2026): era 45 dias
 const DESCANSO_IDEIA = (() => {
   try { return JSON.parse(fs.readFileSync(path.join(RAIZ, 'REPERTORIO.json'), 'utf8')).descansoPadrao || 35; }
@@ -306,6 +307,21 @@ function principal() {
         if (k && post.data > (pNovo[k] || '')) pNovo[k] = post.data;
       }
     }
+    /* hash da foto de cada mostra usada, no dia em que saiu: mostra que ganhe foto
+       nova depois nao tem a foto nova vetada. */
+    const fNovo = lerJson(FOTOS_PATH);
+    const porChave = {};
+    for (const x of (require('./rima.js').carregarDados().expos || [])) porChave[x.t + '|' + x.v] = x;
+    for (const { post, r } of feitas) {
+      for (const k of (r.picks || [])) {
+        const x = porChave[k];
+        const rel = x && String(x.img || '').split('?')[0].replace(/^\.?\//, '');
+        let h = null;
+        try { if (rel && !/^https?:/i.test(rel)) h = require('crypto').createHash('md5').update(fs.readFileSync(path.join(RAIZ, rel))).digest('hex'); } catch (e) { /* sem arquivo */ }
+        if (h && post.data > (fNovo[h] || '')) fNovo[h] = post.data;
+      }
+    }
+    fs.writeFileSync(FOTOS_PATH, JSON.stringify(fNovo, null, 2) + '\n');
     fs.mkdirSync(path.dirname(USADAS_PATH), { recursive: true });
     fs.writeFileSync(USADAS_PATH, JSON.stringify(uNovo, null, 2) + '\n');
     fs.writeFileSync(POSTADAS_PATH, JSON.stringify(pNovo, null, 2) + '\n');

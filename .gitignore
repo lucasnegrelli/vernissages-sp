@@ -14,6 +14,7 @@
 /SOCIAL/*
 !/SOCIAL/USADAS.json
 !/SOCIAL/POSTADAS.json
+!/SOCIAL/FOTOS-USADAS.json
 
 # Arte-fonte e identidade visual.
 /LOGO/
