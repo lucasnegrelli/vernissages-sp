@@ -66,3 +66,9 @@ Latino-Americanas (MASP) também esperam conferência na fonte.
       Action `vsp-semana.yml`, que roda e está verde (última 11/10). Não religar a antiga.
 - [x] A Action aplicava as issues mas não as fechava (`issues: read`). Em 13/10 ganhou `issues: write` e um passo 7 no prompt: fecha com comentário (aplicado / não confirmado / pendente). Conferir na próxima execução (domingo 18/10 ou após o garimpo de sábado).
 - [ ] Scripts `.js` ficam na raiz: movê-los exige editar `require` e 5 workflows, só em sessão própria com teste.
+
+## Domingo 21/10/2026 — sobras das issues radar/garimpo
+- NÃO confirmado: "A Elegância do Olhar" (Galeria Mario Cohen) — site da casa não menciona; fica fora.
+- Divergências descartadas: Histórias Latino-Americanas (MASP confirma fim 31/01/2027, base certa); Tudo aquilo que move (Frente confirma abertura 29/09, base certa); Cavalinhas e Falésias (Razuk confirma 12/09, base certa). Sol Calero: página do MASP não dá fim; base mantida (30/01/2027) — conferir com o Lucas.
+- Imagens recusadas: Itaú (retrato de Anísio Teixeira), Museu da Imigração (cartaz Canva), Museu Afro Brasil (banner genérico), MIS (réguas/banners), Galeria Frente (thumb 180px), IMS (página não confere). Demais: não verificadas/sem confirmação.
+- Casas não mapeadas (só relato): Claraboia, Rosewood SP, Museu FAMA (Itu), Pinacoteca Miguel Dutra (Piracicaba), Move Arte, Mayer Mizrahi, WG Galeria, Casa Yara DW, Alma da Rua, Pina Contemporânea, Mitre Galeria, Cemitério Parque das Cerejeiras, Gomide&Co (variação de nome?), CCSP (variação?).
