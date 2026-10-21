@@ -269,7 +269,6 @@ const EXPOS = [
 {t:"loopinpindorama",a:"",v:"Martins&Montero",ini:"2026-08-20",fim:"2026-10-17",d:"Coletiva com curadoria de Felipe Molitor que articula obras do acervo da galeria com artistas convidados: uma sala de videoarte brasileira em sistema de projeção interativa e um conjunto de pinturas, esculturas, fotografias e instalações organizado por afinidades formais.",img:"img/loopinpindorama-martins-montero.jpg",cred:"Vista da exposição. Cortesia Martins&Montero",vista:true},
 {t:"NO LIMITE: forma e transformação",a:"",v:"Paço das Artes",ini:"2026-09-26",fim:"2026-11-15",d:"Coletiva com 17 artistas de 6 países que explora o conceito de \"situação-limite\" do filósofo Karl Jaspers, combinando aspectos psicológicos com elementos como água, pedras, sal e luz. Curadoria de Martin Juef, cocuradoria de Francisco Klinger Carvalho.",img:"img/no-limite-paco-das-artes.png",cred:"Nina E. Schönefeld, still de vídeo / Cortesia Paço das Artes"},
 {t:"Afríquia: o artista como colecionador",a:"",v:"Museu Afro Brasil Emanoel Araujo",ini:"2026-06-26",fim:"",d:"Reúne mais de 200 obras e materiais de arquivo — esculturas, pinturas, máscaras, fotografias, livros, discos e têxteis, com destaque para peças da Nigéria e do Benin — mostrando como Emanoel Araujo formou o acervo de arte africana do museu. Curadoria de Gabrielle Nascimento.",img:"",cred:""},
-{t:"Há quanto tempo pensando nisso",a:"Rachel Zuanon, Edson Pfutzenreuter, Sylvia Furegatti, Marta Strambi, Mauricius Farina, Sérgio Niculitcheff, Luise Weiss, Gilberto Alexandre Sobrinho, Cesar & Lois",v:"Memorial da América Latina",ini:"2026-09-23",fim:"2026-10-13",d:"Nove docentes-artistas do Instituto de Artes da Unicamp, com trabalhos em pintura, fotografia, gravura, xilogravura, vídeo e instalações multissensoriais, na Galeria Marta Traba. Curadoria de Sylvia Furegatti, Mauricius Farina e César Baio.",img:"",cred:""},
 /* confirmado no Instagram (@vazio_criativo_, 23/09/2026), checagem manual.
    Só cartaz disponível, sem imagem de obra. */
 {t:"Passeio Noturno — André Crespo",a:"André Crespo",v:"A7MA Galeria",ini:"2026-09-25",fim:"2026-10-17",d:"Pinturas da noite de Paris feitas por um corpo à deriva, que deixa a cidade escolher o caminho. Curadoria de Rogério D’Avila Ortiz. Abertura em 25 de setembro, das 16h às 22h; aberta todos os dias, das 10h às 19h.",img:"img/passeio-noturno-a7ma-galeria.webp",cred:"Cortesia A7MA Galeria"},
@@ -365,11 +364,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Sheila Hicks: o que que é isso?",
-  v: "Instituto Tomie Ohtake",
-  quem: "Sheila Hicks",
-  txt: "Cerca de 30 obras de seis décadas de carreira em fibra têxtil — tecelagens, relevos, esculturas de escala arquitetônica — e fotografias feitas por Hicks e por Sergio Larrain na América Latina nos anos 1950; curadoria de Ana Roman, Luis Pérez-Oramas e Paulo Miyada. Abertura em 28 de agosto, até 25 de outubro.",
-  link: "https://www.institutotomieohtake.org.br",
+  t: "O parado das coisas — Felipe Cohen",
+  v: "Almeida & Dale | Millan",
+  quem: "Felipe Cohen",
+  txt: "Conjunto inédito de seis obras em mármore de Carrara, papel vegetal, granito, calcário, compensado e pau-marfim. Texto de Diego Matos. No endereço Fradique 1430. Abertura em 26 de setembro, até 24 de outubro.",
+  link: "https://almeidaedale.com.br",
   publi: false
 };
 
@@ -384,6 +383,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-10-21", k:"O parado das coisas — Felipe Cohen|Almeida & Dale | Millan"},
   {d:"2026-10-20", k:"Sheila Hicks: o que que é isso?|Instituto Tomie Ohtake"},
   {d:"2026-10-19", k:"Espaço Profundo|A Gentil Carioca SP"},
   {d:"2026-10-18", k:"O tudo e o todo — André Vargas|Casa de Cultura do Parque"},
@@ -470,5 +470,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "20/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "21/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
