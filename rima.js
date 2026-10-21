@@ -143,7 +143,9 @@ function exigirObra(e, opcoes) {
     hex.startsWith('ffd8ff') || hex.startsWith('89504e47') || hex.startsWith('47494638') ||
     (hex.startsWith('52494646') && buf.slice(8, 12).toString('latin1') === 'WEBP');
   if (!ehImagem) throw new Error('SEM OBRA: ' + rel + ' nao e imagem reconhecivel.');
-  if (buf.length < 40000) {
+  /* `conferida: true` no dados.js = alguem abriu a imagem e ela e obra. Serve para
+     imagem limpa que comprime abaixo do piso (ex.: 22 KB, 1440x1440, branca). */
+  if (buf.length < 40000 && !e.conferida) {
     throw new Error('SEM OBRA: ' + rel + ' tem so ' + Math.round(buf.length / 1024) +
       ' KB. Abaixo disso e quase sempre logo, flyer ou placeholder — nao obra.');
   }
@@ -363,8 +365,12 @@ function montarHTML(A, B, cfg) {
   /* A grande sangra na borda esquerda e a pequena recua para a margem direita:
      a diagonal desce no sentido da leitura e o olho cai no texto. Simetria
      aqui seria mentira — as duas obras nao tem o mesmo tamanho na vida real. */
-  const gW = 700, gH = Math.round(gW * B.dim.h / B.dim.w);
-  const pW = 210, pH = Math.round(pW * A.dim.h / A.dim.w);
+  /* Obra grande em retrato estourava por cima da tese (21/10/2026): limita a altura
+     a 560 px e estreita a largura na mesma proporcao. */
+  const GH_MAX = 560;
+  let gW = 700, gH = Math.round(gW * B.dim.h / B.dim.w);
+  if (gH > GH_MAX) { gH = GH_MAX; gW = Math.round(GH_MAX * B.dim.w / B.dim.h); }
+  let pW = 210, pH = Math.round(pW * A.dim.h / A.dim.w);
   const gTop = 150, pTop = gTop + gH + 62;
 
   /* A tese da capa cai num espaço fixo (do topo até a assinatura). Tese longa
@@ -373,6 +379,10 @@ function montarHTML(A, B, cfg) {
   const tL = (cfg.tese || '').length;
   const tFs = tL > 170 ? 40 : tL > 130 ? 44 : tL > 95 ? 48 : 52;
   const tTop = tL > 130 ? 920 : 970;
+  /* Miniatura em retrato descia por cima da tese (21/10/2026): encolhe ate caber
+     acima do texto, na mesma proporcao. */
+  const pMax = tTop - 24 - pTop;
+  if (pH > pMax) { pH = pMax; pW = Math.round(pMax * A.dim.w / A.dim.h); }
 
   const capa = `<div class="slide">
     <div class="kick">${esc(cfg.kicker || 'rima')}</div>

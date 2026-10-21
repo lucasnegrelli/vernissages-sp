@@ -1,5 +1,5 @@
 {
-  "titulo": "21/10 a 29/10/2026 (foto nunca repete)",
+  "titulo": "21/10 a 31/10/2026 (foto nunca repete)",
   "_leiame": [
     "ESTE ARQUIVO É GERADO. Rode `node planejar.js` para refazê-lo a partir do REPERTORIO.json.",
     "Editar à mão funciona e é legítimo — mas a edição se perde no próximo planejar.js.",
@@ -34,11 +34,16 @@
     },
     {
       "data": "2026-10-24",
-      "formato": "estreia",
+      "formato": "encerra",
       "ordem": 1,
-      "paleta": "linho",
+      "paleta": "papel",
       "textura": 0.05,
-      "nome": "estreia"
+      "nome": "encerra",
+      "ajustes": {
+        "filtro": {
+          "fechaEm": 7
+        }
+      }
     },
     {
       "data": "2026-10-26",
@@ -49,10 +54,38 @@
       "nome": "obra"
     },
     {
+      "data": "2026-10-28",
+      "formato": "rima",
+      "ordem": 1,
+      "paleta": "escuro",
+      "nome": "rima-circulo-arco"
+    },
+    {
       "data": "2026-10-29",
       "formato": "agenda",
       "ordem": 1,
       "paleta": "escuro"
+    },
+    {
+      "data": "2026-10-30",
+      "formato": "encerra",
+      "ordem": 1,
+      "paleta": "linho",
+      "textura": 0.05,
+      "nome": "encerra",
+      "ajustes": {
+        "filtro": {
+          "fechaEm": 7
+        }
+      }
+    },
+    {
+      "data": "2026-10-31",
+      "formato": "obra",
+      "ordem": 1,
+      "paleta": "tinta",
+      "textura": 0.05,
+      "nome": "obra-sabado-31"
     }
   ]
 }
