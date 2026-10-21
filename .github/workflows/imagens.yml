@@ -16,10 +16,10 @@ name: Garimpo de imagens
 
 on:
   schedule:
-    # Sabado 09:00 UTC = 06:00 em Sao Paulo. Roda antes do domingo de propositor:
-    # a vsp-semana usa a varredura, e chegar com o relatorio pronto na vespera
-    # e melhor que competir com ela pelo mesmo teto de paginas externas.
-    - cron: '0 9 * * 6'
+    # Todo dia 08:00 UTC = 05:00 em Sao Paulo. Era so sabado, mas imagem e o
+    # gargalo do social (20/10: obra, encerra e estreia sem peca por falta de
+    # imagem), entao a proposta tem que estar pronta de manha, todo dia.
+    - cron: '0 8 * * *'
   workflow_dispatch:
     inputs:
       limite:
@@ -109,6 +109,24 @@ jobs:
             if (texto.length > TETO) {
               texto = texto.slice(0, TETO) +
                 '\n\n---\n\n**Cortado aqui.** O relatorio inteiro esta no artifact `imagens-propostas` desta rodada.\n';
+            }
+
+            // Rodando todo dia, issue velha vira ruido: fecha as abertas do
+            // garimpo antes de abrir a de hoje.
+            const abertas = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: 'garimpo',
+              state: 'open'
+            });
+            for (const i of abertas.data) {
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: i.number,
+                state: 'closed',
+                state_reason: 'not_planned'
+              });
             }
 
             await github.rest.issues.create({
