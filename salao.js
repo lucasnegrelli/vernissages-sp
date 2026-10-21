@@ -56,7 +56,7 @@
 const fs = require('fs');
 const path = require('path');
 const base = require('./rima.js');
-const { carregarDados, exigirObra, medir, RAIZ, CSS, esc, carimbo,
+const { chave, carregarDados, exigirObra, medir, RAIZ, CSS, esc, carimbo,
         arroba, tituloCurto, autoria, porExtenso, PALETAS, cssPaleta, MARCA_HTML } = base;
 
 const W = 1080, H = 1350;
@@ -269,6 +269,7 @@ async function principal() {
   const { html, nDestaques } = montarHTML(L, cfg);
   console.log('  destaque: ' + nDestaques + ' de ' + obras.length + ' obras' +
     (nDestaques < obras.length ? ' (teto de ' + SLIDE_MAX_IG + ' slides do Instagram)' : ''));
+  obras.forEach(o => console.log('PICK ' + chave(o.e)));   // memoria: foto nunca repete
   const tmp = path.join(RAIZ, '.salao-tmp.html');
   fs.writeFileSync(tmp, html, 'utf8');
 

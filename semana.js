@@ -136,7 +136,7 @@ const CONSOME_OBRA = new Set(['obra', 'encerra', 'estreia', 'deriva', 'cartaz', 
    semana.js confere as duas listas antes de gerar e escreve nelas depois. */
 const USADAS_PATH = path.join(RAIZ, 'SOCIAL', 'USADAS.json');
 const POSTADAS_PATH = path.join(RAIZ, 'SOCIAL', 'POSTADAS.json');
-const POSTADAS_JANELA = 45;   // dias que uma mostra fica fora do feed depois de sair
+const POSTADAS_JANELA = Infinity;   // foto nunca repete (21/10/2026): era 45 dias
 const DESCANSO_IDEIA = (() => {
   try { return JSON.parse(fs.readFileSync(path.join(RAIZ, 'REPERTORIO.json'), 'utf8')).descansoPadrao || 35; }
   catch { return 35; }
@@ -217,7 +217,9 @@ function rodar(post, plano, seco, jaEscolhidas, postadas, planoInicio) {
     '--config=' + caminho,
     '--out=' + out,
     '--date=' + post.data
-  ], { cwd: RAIZ, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], maxBuffer: 1 << 24 });
+  ], { cwd: RAIZ, encoding: 'utf8',
+     env: Object.assign({}, process.env, { VSP_FOTOS_ATE: planoInicio, VSP_FOTOS_EXTRA: JSON.stringify(jaEscolhidas) },
+       process.argv.includes('--forcar') ? { VSP_FOTOS_LIVRE: '1' } : {}), stdio: ['ignore', 'pipe', 'pipe'], maxBuffer: 1 << 24 });
 
   const arquivos = (saida.match(/^OK /gm) || []).length;
   const picks = (saida.match(/^PICK (.+)$/gm) || []).map(l => l.replace(/^PICK /, '')).concat(consumidas);

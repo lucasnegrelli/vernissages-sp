@@ -63,7 +63,7 @@
   "numero-duracao-galeria": "2026-09-25",
   "entrada-na-abertura": "2026-09-27",
   "obra-recem-aberta": "2026-09-28",
-  "undefined": "2026-10-15",
+  "undefined": "2026-10-29",
   "salao-jardins-tres-bairros": "2026-10-02",
   "deriva-jardim-europa": "2026-10-03",
   "deriva-pinheiros": "2026-10-05",
@@ -88,5 +88,14 @@
   "rima-mesmo-artista-decadas": "2026-10-14",
   "encerra-longa-que-acaba": "2026-10-16",
   "deriva-recem-abertas": "2026-10-17",
-  "obra-jardim-paulista": "2026-10-14"
+  "obra-jardim-paulista": "2026-10-14",
+  "deriva-so-instituicoes": "2026-10-19",
+  "aproximacao-arte-urbana": "2026-10-21",
+  "obra-tres-semanas": "2026-10-23",
+  "deriva-itaim": "2026-10-24",
+  "salao-fecha-21": "2026-10-26",
+  "rima-casa": "2026-10-28",
+  "deriva-higienopolis": "2026-10-30",
+  "deriva-cerqueira-cesar": "2026-10-31",
+  "obra": "2026-10-23"
 }

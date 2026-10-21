@@ -39,7 +39,7 @@
 const fs = require('fs');
 const path = require('path');
 const base = require('./rima.js');
-const { carregarDados, exigirObra, medir, RAIZ, esc, tituloCurto, autoria, PALETAS, MARCA_HTML } = base;
+const { chave, carregarDados, exigirObra, medir, RAIZ, esc, tituloCurto, autoria, PALETAS, MARCA_HTML } = base;
 
 const W = 1080, H = 1350;
 /* Em mês com temporada, acento, fonte e selo vêm do temporadas/AAAA-MM.json;
@@ -224,6 +224,7 @@ function montarHTML(sel, cfg, hoje) {
      Quem não tem imagem aparece na lista final, que é onde o plano se faz. */
   const comObra = sel.itens.filter(x => x.rel).slice(0, cfg.max || 8);
   const total = comObra.length + 2;
+  comObra.forEach(x => console.log('PICK ' + chave(x.e)));   // memoria: foto nunca repete
   const s = capa(sel, hoje) + comObra.map((x, i) => slideMostra(x, i + 2, total)).join('') + lista(sel, total, total);
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>${css(p)}</style></head><body>${s}</body></html>`;
 }

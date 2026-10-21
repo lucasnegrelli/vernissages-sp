@@ -77,6 +77,48 @@ function acharExpo(DATA, k) {
    O campo `vista` e preenchido a mao por quem abriu a imagem para olhar —
    passo que o runbook ja exige e que nenhuma verificacao de arquivo substitui.
    Ver POSTS.md §7. */
+/* FOTO NUNCA REPETE (regra do Lucas, 21/10/2026: "não quero repetir foto
+   nunca mais"). Antes valia uma janela de 45 dias por TÍTULO de mostra, só para
+   obra/deriva; agenda e salão ignoravam a memória e não registravam nada, e a
+   base já teve a mesma foto em duas mostras. Agora o veto é por IMAGEM (hash
+   do arquivo, não o nome) e vale para todo formato, porque todos passam por
+   exigirObra. Foto vetada lança erro: agenda cai pro slide tipográfico, a
+   parede do salão pula a obra, o resto aborta e diz por quê.
+
+   O que conta como "já saiu": cada mostra de SOCIAL/POSTADAS.json com data
+   ANTERIOR ao corte (VSP_FOTOS_ATE, ou --date da peça, ou hoje) mais as chaves
+   de VSP_FOTOS_EXTRA (o que o semana.js já escolheu nesta rodada). A data de
+   corte existe pra re-rodar o mesmo plano não vetar a peça pela própria
+   memória. VSP_FOTOS_LIVRE=1 desliga (uso: --forcar). */
+let _fotosVetadas = null;
+function fotosVetadas() {
+  if (_fotosVetadas) return _fotosVetadas;
+  const crypto = require('crypto');
+  const mapa = new Map();
+  if (process.env.VSP_FOTOS_LIVRE === '1') return (_fotosVetadas = mapa);
+  const arg = process.argv.find(a => a.startsWith('--date='));
+  const corte = process.env.VSP_FOTOS_ATE || (arg ? arg.slice(7) : new Date().toISOString().slice(0, 10));
+  let postadas = {};
+  try { postadas = JSON.parse(fs.readFileSync(path.join(RAIZ, 'SOCIAL', 'POSTADAS.json'), 'utf8')); } catch { /* sem memória */ }
+  let extra = [];
+  try { extra = JSON.parse(process.env.VSP_FOTOS_EXTRA || '[]'); } catch { /* ignora */ }
+  const porChave = {};
+  for (const x of (carregarDados().expos || [])) porChave[x.t + '|' + x.v] = x;
+  const hash = rel => {
+    try { return crypto.createHash('md5').update(fs.readFileSync(path.resolve(RAIZ, rel))).digest('hex'); }
+    catch { return null; }
+  };
+  const vetar = (k, quando) => {
+    const x = porChave[k];
+    const rel = x && String(x.img || '').split('?')[0].replace(/^\.?\//, '');
+    const h = rel && !/^https?:/i.test(rel) && hash(rel);
+    if (h && !mapa.has(h)) mapa.set(h, quando);
+  };
+  for (const [k, d] of Object.entries(postadas)) { if (!k.startsWith('_') && d < corte) vetar(k, d); }
+  for (const k of extra) vetar(k, 'nesta semana');
+  return (_fotosVetadas = mapa);
+}
+
 function exigirObra(e, opcoes) {
   const rel = String(e.img || '').split('?')[0].split('#')[0].replace(/^\.?\//, '');
   const onde = 'mostra "' + e.t + '" (' + e.v + ')';
@@ -104,6 +146,10 @@ function exigirObra(e, opcoes) {
       ' KB. Abaixo disso e quase sempre logo, flyer ou placeholder — nao obra.');
   }
   if (!e.cred) throw new Error('SEM CREDITO: ' + onde + '. Credito ausente trava a peca.');
+
+  const ja = fotosVetadas().get(require('crypto').createHash('md5').update(buf).digest('hex'));
+  if (ja) throw new Error('FOTO REPETIDA: ' + onde + ' usa uma imagem que ja saiu no feed (' + ja + '). ' +
+    'Foto nao repete. Consiga outra reproducao desta mostra (garimpo) ou escolha outra.');
   return rel;
 }
 
