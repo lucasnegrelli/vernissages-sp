@@ -241,7 +241,7 @@ function montarHTML(sel, cfg, hoje) {
 
 function legenda(sel) {
   // Instagram recusa legenda acima de 2200 caracteres: compacta por níveis até caber em LIMITE
-  const LIMITE = 2100;
+  const LIMITE = 2000;
   const abre = sel.itens.filter(x => x.tipo === 'abre'), fecha = sel.itens.filter(x => x.tipo === 'fecha');
   const niveis = [
     x => '• ' + diaSemana(x.dia) + ' ' + curto(x.dia) + ' — ' + tituloCurto(x.e) + (autoria(x.e) ? ', ' + autoria(x.e) : '') +
