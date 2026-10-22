@@ -245,9 +245,9 @@ function legenda(sel) {
   const abre = sel.itens.filter(x => x.tipo === 'abre'), fecha = sel.itens.filter(x => x.tipo === 'fecha');
   const niveis = [
     x => '• ' + diaSemana(x.dia) + ' ' + curto(x.dia) + ' — ' + tituloCurto(x.e) + (autoria(x.e) ? ', ' + autoria(x.e) : '') +
-         ' @ ' + x.v.name + (x.v.ig ? ' (@' + x.v.ig + ')' : '') + ', ' + x.v.b,
-    x => '• ' + diaSemana(x.dia) + ' ' + curto(x.dia) + ' — ' + tituloCurto(x.e) + (autoria(x.e) ? ', ' + autoria(x.e) : '') + ' @ ' + x.v.name + (x.v.ig ? ' (@' + x.v.ig + ')' : ''),
-    x => '• ' + curto(x.dia) + ' ' + tituloCurto(x.e) + ' @ ' + x.v.name + (x.v.ig ? ' (@' + x.v.ig + ')' : '')
+         ' · ' + x.v.name + (x.v.ig ? ' @' + x.v.ig : '') + ', ' + x.v.b,
+    x => '• ' + diaSemana(x.dia) + ' ' + curto(x.dia) + ' — ' + tituloCurto(x.e) + (autoria(x.e) ? ', ' + autoria(x.e) : '') + ' · ' + x.v.name + (x.v.ig ? ' @' + x.v.ig : ''),
+    x => '• ' + curto(x.dia) + ' ' + tituloCurto(x.e) + ' · ' + x.v.name + (x.v.ig ? ' @' + x.v.ig : '')
   ];
   let s;
   for (const l of niveis) {
