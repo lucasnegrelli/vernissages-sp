@@ -145,7 +145,7 @@ const VENUES = [
 {name:"Casa Museu Ema Klabin",site:"https://emaklabin.org.br",addr:"R. Portugal, 43",b:"Jardim Europa",z:"Oeste",tipo:"institucional",lat:-23.5735,lng:-46.6757,info:"Casa-museu da Fundação Ema Gordon Klabin, com acervo de arte e objetos. Quarta a domingo, 11h–17h."},
 {name:"Fibra Galeria",addr:"R. Tinhorão, 69",b:"Higienópolis",z:"Centro",tipo:"galeria",lat:-23.5444,lng:-46.6618,info:"Galeria e leiloeira desde 2012, com exposições individuais e coletivas além de leilões mensais."},
 {name:"Fólio Galeria",ig:"foliogaleria",site:"https://www.foliolivraria.com.br",addr:"R. Pedroso Alvarenga, 1046",b:"Itaim Bibi",z:"Sul",tipo:"galeria",lat:-23.5824,lng:-46.6804,info:"Especializada em livros de artista, edições limitadas e obras em papel desde 2000. Atendimento com hora marcada. Site e catálogo, sem mostra rotativa."},
-{name:"Galeria Frente",site:"https://galeriafrente.com.br",addr:"R. Dr. Melo Alves, 400",b:"Cerqueira César",z:"Oeste",tipo:"galeria",lat:-23.5609,lng:-46.6705,info:"Já expôs Portinari, Tarsila do Amaral e Tomie Ohtake."},
+{name:"Galeria Frente",ig:"galeriafrente",site:"https://galeriafrente.com.br",addr:"R. Dr. Melo Alves, 400",b:"Cerqueira César",z:"Oeste",tipo:"galeria",lat:-23.5609,lng:-46.6705,info:"Já expôs Portinari, Tarsila do Amaral e Tomie Ohtake."},
 {name:"Fundação Maria Luisa e Oscar Americano",site:"https://fundacaooscaramericano.org.br",addr:"Av. Morumbi, 4077",b:"Morumbi",z:"Oeste",tipo:"institucional",lat:-23.6013,lng:-46.7096,info:"Casa-museu com 75 mil m² de área verde. Terça a domingo, 10h–17h30."},
 /* site tirado em 23/09/2026: bergamingomide.com.br nao resolve (DNS
    morto, confirmado no navegador e por fetch direto — ENOTFOUND). */
