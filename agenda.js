@@ -240,13 +240,23 @@ function montarHTML(sel, cfg, hoje) {
 }
 
 function legenda(sel) {
-  const l = x => '• ' + diaSemana(x.dia) + ' ' + curto(x.dia) + ' — ' + tituloCurto(x.e) + (autoria(x.e) ? ', ' + autoria(x.e) : '') +
-                 ' @ ' + x.v.name + (x.v.ig ? ' (@' + x.v.ig + ')' : '') + ', ' + x.v.b;
+  // Instagram recusa legenda acima de 2200 caracteres: compacta por níveis até caber em LIMITE
+  const LIMITE = 1900;
   const abre = sel.itens.filter(x => x.tipo === 'abre'), fecha = sel.itens.filter(x => x.tipo === 'fecha');
-  let s = 'Arte em SP de ' + curto(sel.de) + ' a ' + curto(sel.domingo) + '.\n\n';
-  if (abre.length) s += 'ABRE\n' + abre.map(l).join('\n') + '\n\n';
-  if (fecha.length) s += 'ÚLTIMOS DIAS\n' + fecha.map(l).join('\n') + '\n\n';
-  s += 'Salva e manda pra quem vai com você. Mapa, horários e o resto da agenda no link da bio.\n';
+  const niveis = [
+    x => '• ' + diaSemana(x.dia) + ' ' + curto(x.dia) + ' — ' + tituloCurto(x.e) + (autoria(x.e) ? ', ' + autoria(x.e) : '') +
+         ' @ ' + x.v.name + (x.v.ig ? ' (@' + x.v.ig + ')' : '') + ', ' + x.v.b,
+    x => '• ' + diaSemana(x.dia) + ' ' + curto(x.dia) + ' — ' + tituloCurto(x.e) + (autoria(x.e) ? ', ' + autoria(x.e) : '') + ' @ ' + x.v.name,
+    x => '• ' + curto(x.dia) + ' ' + tituloCurto(x.e) + ' @ ' + x.v.name
+  ];
+  let s;
+  for (const l of niveis) {
+    s = 'Arte em SP de ' + curto(sel.de) + ' a ' + curto(sel.domingo) + '.\n\n';
+    if (abre.length) s += 'ABRE\n' + abre.map(l).join('\n') + '\n\n';
+    if (fecha.length) s += 'ÚLTIMOS DIAS\n' + fecha.map(l).join('\n') + '\n\n';
+    s += 'Salva e manda pra quem vai com você. Mapa, horários e o resto da agenda no link da bio.\n';
+    if (s.length <= LIMITE) break;
+  }
   const collab = [...new Set(sel.itens.filter(x => x.v.ig).map(x => '@' + x.v.ig))];
   return { texto: s, collab };
 }
