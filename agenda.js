@@ -241,13 +241,13 @@ function montarHTML(sel, cfg, hoje) {
 
 function legenda(sel) {
   // Instagram recusa legenda acima de 2200 caracteres: compacta por níveis até caber em LIMITE
-  const LIMITE = 1900;
+  const LIMITE = 2100;
   const abre = sel.itens.filter(x => x.tipo === 'abre'), fecha = sel.itens.filter(x => x.tipo === 'fecha');
   const niveis = [
     x => '• ' + diaSemana(x.dia) + ' ' + curto(x.dia) + ' — ' + tituloCurto(x.e) + (autoria(x.e) ? ', ' + autoria(x.e) : '') +
          ' @ ' + x.v.name + (x.v.ig ? ' (@' + x.v.ig + ')' : '') + ', ' + x.v.b,
-    x => '• ' + diaSemana(x.dia) + ' ' + curto(x.dia) + ' — ' + tituloCurto(x.e) + (autoria(x.e) ? ', ' + autoria(x.e) : '') + ' @ ' + x.v.name,
-    x => '• ' + curto(x.dia) + ' ' + tituloCurto(x.e) + ' @ ' + x.v.name
+    x => '• ' + diaSemana(x.dia) + ' ' + curto(x.dia) + ' — ' + tituloCurto(x.e) + (autoria(x.e) ? ', ' + autoria(x.e) : '') + ' @ ' + x.v.name + (x.v.ig ? ' (@' + x.v.ig + ')' : ''),
+    x => '• ' + curto(x.dia) + ' ' + tituloCurto(x.e) + ' @ ' + x.v.name + (x.v.ig ? ' (@' + x.v.ig + ')' : '')
   ];
   let s;
   for (const l of niveis) {
