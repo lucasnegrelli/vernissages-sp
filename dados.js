@@ -239,7 +239,7 @@ const EXPOS = [
 {t:"ambiguidade construtiva e ativação do espaço",a:"Wolfram Ullrich",v:"Galeria Raquel Arnaud",ini:"2026-09-02",fim:"2026-10-30",d:"Exposição individual.",img:"img/ambiguidade-construtiva-e-ativacao-do-espaco-galeria-raquel-.jpg",cred:"Cortesia Galeria Raquel Arnaud"},
 {t:"Desculpe, Rafael",a:"Felipe Scandelari",v:"Galeria Dezoito",ini:"2026-09-12",fim:"2026-10-24",d:"Exposição individual, na sede paulistana da galeria.",img:"",cred:""},
 {t:"Longitudes",a:"Johanna Calle",v:"Galeria Marília Razuk",ini:"2026-09-12",fim:"2026-12-12",d:"Exposição individual.",img:"img/longitudes-galeria-marilia-razuk.jpg",cred:"Cortesia Galeria Marília Razuk"},
-{t:"Cavalinhas e Falésias",a:"Carolina Colichio",v:"Galeria Marília Razuk",ini:"2026-09-12",fim:"2026-11-03",d:"Exposição individual.",img:"img/cavalinhas-e-falesias-galeria-marilia-razuk.webp",cred:"Cortesia Galeria Marília Razuk"},
+{t:"Cavalinhas e Falésias",a:"Carolina Colichio",v:"Galeria Marília Razuk",ini:"2026-09-12",fim:"2026-11-03",d:"Exposição individual.",img:"img/cavalinhas-e-falesias-galeria-marilia-razuk.jpg",cred:"Cortesia Galeria Marília Razuk"},
 
 /* --- casas novas mapeadas hoje: mostra atual confirmada na fonte --- */
 {t:"Do museu ao ateliê, do ateliê ao museu: o que a gráfica pode imaginar?",a:"",v:"Museu Lasar Segall",ini:"2026-07-18",fim:"2026-10-19",d:"Coletiva reunindo gravura em metal, xilogravura, monotipia e desenho de doze artistas visuais.",img:"",cred:""},
@@ -311,7 +311,7 @@ const EXPOS = [
 {t:"Troca de segredos — Barrão",a:"Barrão",v:"Fortes D'Aloia & Gabriel — Galeria",ini:"2026-11-03",fim:null,d:"Esculturas feitas de fragmentos de porcelana de objetos decorativos e utilitários coletados em feiras de usados, e aquarelas do mesmo pensamento escultórico. Abertura em 3 de novembro, das 18h às 21h; encerramento não divulgado.",img:"",cred:""},
 {t:"Ver o mundo — João Luiz Musa",a:"João Luiz Musa",v:"Luciana Brito Galeria",ini:"2026-11-07",fim:null,d:"Primeira individual do artista desde 2012. Reúne fotografias da pesquisa de livre-docência na ECA-USP. Abertura em 7 de novembro; encerramento não divulgado.",img:"",cred:""},
 {t:"Steps — Abbas Kiarostami",a:"Abbas Kiarostami",v:"MIS — Museu da Imagem e do Som",ini:"2026-10-20",fim:"2026-11-08",d:"Sessenta fotografias em preto e branco de escadarias, a maioria feita na Itália, apresentadas com o filme Me leve para casa (2016), finalizado por Ahmad Kiarostami. Terça a sexta, 10h às 19h; entrada gratuita.",img:"",cred:""},
-{t:"Superfície dos dias — coletiva",a:"",v:"Vazio Criativo",ini:"2026-10-17",fim:"2026-10-28",d:"Coletiva com 14 artistas, com orientação e curadoria de Letícia Castro. Visitação de terça a sábado, das 13h às 17h.",img:"",cred:""},
+{t:"Superfície dos dias — coletiva",a:"",v:"Vazio Criativo",ini:"2026-10-17",fim:"2026-10-28",d:"Coletiva com 14 artistas, com orientação e curadoria de Letícia Castro. Visitação de terça a sábado, das 13h às 17h.",img:"img/superficie-dos-dias-vazio-criativo.webp",cred:"Cortesia Vazio Criativo"},
 ];
 
 /* ================= IMERSIVAS =================
