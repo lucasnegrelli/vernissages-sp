@@ -221,8 +221,30 @@ async function rodar() {
   if (falhas) process.exit(1);
 }
 
+// Renova o token de 60 dias do Instagram Login (rodada mensal). O Instagram
+// devolve o MESMO token com a validade estendida; se vier um diferente, o
+// secret do repo ficaria velho, então falha de propósito pra avisar.
+async function renovar() {
+  const dir = path.join(RAIZ, 'contas');
+  let falhas = 0;
+  for (const f of fs.readdirSync(dir).filter(x => x.endsWith('.json'))) {
+    const cfg = ler(path.join(dir, f));
+    if ((cfg.fluxo || 'instagram') !== 'instagram') continue;
+    const token = process.env[cfg.tokenEnv];
+    if (!token) { console.error(`${f}: falta ${cfg.tokenEnv}`); falhas++; continue; }
+    const r = await fetch(`https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=${token}`);
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok || j.error) { console.error(`${f}: ${JSON.stringify(j.error || j)}`); falhas++; continue; }
+    const dias = Math.round(j.expires_in / 86400);
+    if (j.access_token !== token) { console.error(`${f}: o token mudou, atualize o secret ${cfg.tokenEnv}`); falhas++; continue; }
+    console.log(`${f}: renovado, vale por mais ${dias} dias`);
+  }
+  if (falhas) process.exit(1);
+}
+
 (async () => {
   if (cmd === 'enfileirar') await enfileirar();
+  else if (cmd === 'renovar') await renovar();
   else if (cmd === 'rodar') await rodar();
-  else console.log('uso: publicar.js enfileirar AAAA-MM-DD | rodar [--seco]');
+  else console.log('uso: publicar.js enfileirar AAAA-MM-DD | rodar [--seco] | renovar');
 })().catch(e => { console.error(e.message); process.exit(1); });
