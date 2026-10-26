@@ -1,7 +1,7 @@
 {
   "conta": "vernissagessp",
   "id": "2026-10-26_marco-100-01",
-  "status": "aprovado",
+  "status": "postado",
   "tipo": "story",
   "quando": "2026-10-26T19:00:00-03:00",
   "imagens": [
@@ -9,5 +9,8 @@
   ],
   "legenda": "",
   "collab": [],
-  "collabExtra": []
+  "collabExtra": [],
+  "collabUsado": false,
+  "midiaId": "18238861756319469",
+  "postadoEm": "2026-10-26T23:06:03.876Z"
 }
