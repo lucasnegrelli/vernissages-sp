@@ -1,0 +1,50 @@
+name: Publicar no Instagram
+
+# Esvazia a fila (fila/<conta>/*/post.json) no horário. Quem aprova é o
+# Lucas, ao rodar `publicar.js enfileirar` e dar push; aqui só sai o que já
+# está aprovado e venceu. Ver o cabeçalho do publicar.js.
+#
+# Cron do GitHub atrasa alguns minutos (às vezes mais) e não é pontual; por
+# isso roda de hora em hora e o publicar.js decide pelo `quando` de cada post.
+
+on:
+  schedule:
+    - cron: '7 * * * *'
+  workflow_dispatch:
+    inputs:
+      seco:
+        description: 'Só listar o que postaria'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publicar
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Publicar o que venceu
+        env:
+          IG_TOKEN_VERNISSAGESSP: ${{ secrets.IG_TOKEN_VERNISSAGESSP }}
+        run: node publicar.js rodar ${{ inputs.seco && '--seco' || '' }}
+
+      # `if: always()` porque o post pode ter saído e o job falhar depois (outro
+      # post da fila deu erro): o status precisa ir pro repo de qualquer jeito,
+      # senão a próxima rodada posta de novo.
+      - name: Gravar o status da fila
+        if: always()
+        run: |
+          git config user.name "vsp-publicar"
+          git config user.email "actions@users.noreply.github.com"
+          git add fila
+          git diff --cached --quiet || { git commit -m "fila: status das publicações"; git pull --rebase -q; git push; }
