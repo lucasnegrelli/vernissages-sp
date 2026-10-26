@@ -39,7 +39,7 @@ jobs:
       - name: Dependências de renderização
         run: |
           mkdir -p .render && cd .render
-          npm init -y >/dev/null
+          echo '{"name":"render","private":true}' > package.json
           npm i puppeteer-core sharp >/dev/null 2>&1
           ls node_modules | head -3
 
