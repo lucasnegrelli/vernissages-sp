@@ -1,7 +1,7 @@
 {
   "conta": "vernissagessp",
   "id": "teste_story",
-  "status": "aprovado",
+  "status": "postado",
   "tipo": "story",
   "quando": "2026-10-26T18:43:43.015Z",
   "imagens": [
@@ -9,5 +9,7 @@
   ],
   "legenda": "",
   "collab": [],
-  "collabExtra": []
+  "collabExtra": [],
+  "midiaId": "18200478949387125",
+  "postadoEm": "2026-10-26T18:44:26.036Z"
 }
