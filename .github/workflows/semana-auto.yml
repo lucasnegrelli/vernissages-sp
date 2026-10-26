@@ -1,0 +1,65 @@
+﻿name: Semana no piloto automático
+
+# Gera a semana inteira no GitHub (planejar.js + semana.js, com Chrome do
+# runner) e, se `publicar` estiver ligado, enfileira cada dia em fila/ para o
+# publicar.yml postar. Antes disso, rode em modo seco: ele só devolve os PNG
+# como artifact para olhar.
+#
+# Domingo 19:30 em SP. Gera a semana que COMEÇA na segunda seguinte.
+
+on:
+  schedule:
+    - cron: '30 22 * * 0'
+  workflow_dispatch:
+    inputs:
+      publicar:
+        description: 'Enfileirar para publicar (desligado = só gerar e devolver os PNG)'
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: semana-auto
+  cancel-in-progress: false
+
+jobs:
+  semana:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      CHROME: /usr/bin/google-chrome
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Dependências de renderização
+        run: |
+          mkdir -p .render && cd .render
+          npm init -y >/dev/null
+          npm i puppeteer-core sharp >/dev/null 2>&1
+          ls node_modules | head -3
+
+      - name: Planejar e gerar
+        run: |
+          node planejar.js
+          node semana.js 2>&1 | tee semana.log || true
+
+      - name: Conferir o que saiu
+        run: |
+          find SOCIAL -name '*.png' -newer PLANO.json | sort | head -60 || true
+          grep -E "ABORT|FALHOU|OK " semana.log | tail -30 || true
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: semana-pngs
+          path: |
+            SOCIAL/**/*.png
+            SOCIAL/**/*LEGENDA*
+            PLANO.json
+            semana.log
+          if-no-files-found: warn
+          retention-days: 7
