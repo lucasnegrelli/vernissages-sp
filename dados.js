@@ -218,13 +218,11 @@ const EXPOS = [
 {t:"Déboussolé est le mot exact — Jean Claracq",a:"Jean Claracq",v:"Mendes Wood DM",ini:"2026-08-22",fim:"2026-11-06",d:"Dez pinturas de pequeno formato, a maioria entre 10 e 20 centímetros. Texto de Renato Menezes.",img:"img/deboussole-jean-claracq.jpg",cred:"Cortesia do artista e Mendes Wood DM"},
 {t:"É Tempo Ainda",v:"Janaina Torres Galeria",ini:"2026-08-15",fim:"2026-12-18",d:"Vinte e seis artistas de gerações diferentes, com curadoria de Heloisa Amaral Peixoto, nos dez anos da galeria.",img:"img/e-tempo-ainda-janaina-torres-galeria.webp",cred:"Cortesia Janaina Torres Galeria"},
 {t:"Uma Obra: Pintura sem fim",a:"Gui Teixeira",v:"Pinacoteca de São Paulo",ini:"2026-07-04",fim:"2028-01-31",d:"Terceira edição do projeto Uma Obra: uma parede de carpete recebe centenas de peças de feltro colorido que o público move e recompõe (Pina Luz). Colaboração do artista Gui Teixeira.",img:"img/uma-obra-pintura-sem-fim-pinacoteca-de-sao-paulo.jpg",cred:"Cortesia Pinacoteca de São Paulo"},
-{t:"Para crianças: experiências com a arte desde 1968",v:"Pinacoteca Contemporânea",ini:"2026-05-30",fim:"2026-10-18",d:"Onze artistas e obras que convidam crianças a intervir; a mais antiga é de 1968. Concebida pela Haus der Kunst, de Munique, com a Pinacoteca (Pina Contemporânea).",img:"img/para-criancas-experiencias-com-a-arte-desde-1968-pinacoteca-.jpg",cred:"Vista da exposição. Foto Levi Fanan / Cortesia Pinacoteca de São Paulo",vista:true},
 {t:"Beatriz Milhazes: gravuras do acervo da Pinacoteca",a:"Beatriz Milhazes",v:"Estação Pinacoteca",ini:"2026-05-16",fim:"2027-03-14",d:"27 gravuras feitas entre 1996 e 2019 com a Durham Press (Pina Estação).",img:"img/beatriz-milhazes-gravuras-do-acervo-da-pinacoteca-pinacoteca.jpg",cred:"Vista da exposição. Foto Levi Fanan / Cortesia Pinacoteca de São Paulo",vista:true},
 {t:"trágico subúrbio — Paulo Pedro Leal",a:"Paulo Pedro Leal",v:"Pinacoteca de São Paulo",ini:"2026-04-11",fim:"2026-11-08",d:"Mais de 50 pinturas dos anos 1950 e 1960, entre naufrágios, conflitos urbanos e cenas de rua. Primeira mostra institucional do artista autodidata carioca.",img:"img/tragico-suburbio-pinacoteca-de-sao-paulo.jpg",cred:"Vista da exposição. Foto Levi Fanan / Cortesia Pinacoteca de São Paulo",vista:true},
 {t:"Ibirapema — Olinda Tupinambá",a:"Olinda Tupinambá",v:"Pinacoteca de São Paulo",ini:"2026-04-11",fim:"2026-12-27",d:"Filme de 2022 comissionado para a mostra Atos Modernos, com a transformação em onça como método. Curadoria de Ana Paula Lopes."},
 {t:"Solange Pessoa: outras escalas",a:"Solange Pessoa",v:"Itaú Cultural",ini:"2026-08-04",fim:"2026-11-01",d:"150 desenhos inéditos, filmes experimentais e uma instalação da artista mineira.",img:"img/solange-pessoa-outras-escalas-itau-cultural.jpg",cred:"Capa do material do Itaú Cultural — não é reprodução de obra",vista:true},
 {t:"Mundo Pequeno — Martin Parr",a:"Martin Parr",v:"Centro Cultural FIESP",ini:"2026-10-15",fim:"2027-04-04",d:"45 fotografias de Martin Parr (Magnum Photos) sobre turismo de massa, consumo e a obsessão de provar que se esteve ali, mostradas pela primeira vez no Brasil, com projeções e fotolivros. Curadoria de João Kulcsár. Terça a domingo, das 10h às 20h.",img:"",cred:""},
-{t:"Tecituras",v:"Farol Santander",ini:"2026-07-17",fim:"2026-10-18",d:"Cerca de 30 obras têxteis de 30 artistas brasileiros; curadoria de Denise Mattar."},
 {t:"Pequeno mapa do tempo — Paula Siebra",a:"Paula Siebra",v:"Mendes Wood DM — Casa Iramaia",ini:"2026-08-25",fim:"2026-10-24",d:"Pinturas a óleo sobre os ciclos de chuva, festa, vento e seca em Fortaleza.",img:"img/pequeno-mapa-do-tempo-mendes-wood-dm-casa-iramaia.webp",cred:"Cortesia Mendes Wood DM"},
 {t:"Beijo de Língua — Nelson Felix",a:"Nelson Felix",v:"MAC USP",ini:"2026-05-30",fim:"2026-11-29",d:"Individual do escultor carioca no MAC USP. Entrada gratuita."},
 {t:"39º Panorama da Arte Brasileira: Depois que tudo foi dito",v:"MAM São Paulo",ini:"2026-09-12",fim:"2027-01-24",d:"Curadoria de Diane Lima, com 33 artistas de 13 estados. A mostra marca o retorno do museu à sede do Ibirapuera após a reforma da marquise.",img:"img/39-panorama-da-arte-brasileira-depois-que-tudo-foi-dito-mam-.webp",cred:"Foto Ding Musa / Cortesia MAM São Paulo",vista:true},
@@ -261,7 +259,6 @@ const EXPOS = [
 {t:"Sheila Hicks: o que que é isso?",a:"Sheila Hicks",v:"Instituto Tomie Ohtake",ini:"2026-08-28",fim:"2026-10-25",d:"Cerca de 30 obras de seis décadas de carreira em fibra têxtil — tecelagens, relevos, esculturas de escala arquitetônica — e fotografias feitas por Hicks e por Sergio Larrain na América Latina nos anos 1950; curadoria de Ana Roman, Luis Pérez-Oramas e Paulo Miyada.",img:"img/sheila-hicks-o-que-que-e-isso-instituto-tomie-ohtake.jpg",cred:"Cortesia Instituto Tomie Ohtake"},
 {t:"Tatiana Blass: Contrarregra",a:"Tatiana Blass",v:"Instituto Tomie Ohtake",ini:"2026-08-28",fim:"2026-10-25",d:"Cerca de 50 obras produzidas entre 2008 e 2026 — pinturas, esculturas, instalações e vídeos em vidro, bronze, cera e cerâmica —, das séries Contraluz, Metade da fala no chão, Quebra-quebra e Nó; curadoria de Ana Roman e Lahayda Mamani Poma.",img:"img/tatiana-blass-contrarregra-instituto-tomie-ohtake.jpg",cred:"Cortesia Instituto Tomie Ohtake"},
 {t:"O Barco",a:"Grada Kilomba",v:"Sesc Pompeia",ini:"2026-09-22",fim:"2026-10-25",d:"Instalação de 134 blocos de madeira queimada somando mais de 220 m², desenhando a silhueta do porão de um navio negreiro; dezoito blocos trazem um poema da artista em seis línguas. Curadoria de Marília Loureiro e Júlia Rebouças.",img:"",cred:""},
-{t:"Mulheres da Boca",a:"Wagner Carvalho",v:"MIS — Museu da Imagem e do Som",ini:"2026-09-02",fim:"2026-10-18",d:"Fotografias inéditas feitas durante as filmagens do documentário \"Mulheres da Boca\" (1981), nas ruas da Boca do Lixo na virada dos anos 1970 para os 1980; curadoria de Inês Castilho, Marcelo Colaiácovo e William Plotnik.",img:"img/mulheres-da-boca-mis.png",cred:"Fotografia de Wagner Carvalho"},
 {t:"NO LIMITE: forma e transformação",a:"",v:"Paço das Artes",ini:"2026-09-26",fim:"2026-11-15",d:"Coletiva com 17 artistas de 6 países que explora o conceito de \"situação-limite\" do filósofo Karl Jaspers, combinando aspectos psicológicos com elementos como água, pedras, sal e luz. Curadoria de Martin Juef, cocuradoria de Francisco Klinger Carvalho.",img:"img/no-limite-paco-das-artes.png",cred:"Nina E. Schönefeld, still de vídeo / Cortesia Paço das Artes"},
 {t:"Afríquia: o artista como colecionador",a:"",v:"Museu Afro Brasil Emanoel Araujo",ini:"2026-06-26",fim:"2027-01-31",d:"Reúne mais de 200 obras e materiais de arquivo — esculturas, pinturas, máscaras, fotografias, livros, discos e têxteis, com destaque para peças da Nigéria e do Benin — mostrando como Emanoel Araujo formou o acervo de arte africana do museu. Curadoria de Gabrielle Nascimento.",img:"",cred:""},
 /* confirmado no Instagram (@vazio_criativo_, 23/09/2026), checagem manual.
@@ -362,11 +359,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Cardosinho: Acervo Especial",
-  v: "Galeria Estação",
-  quem: "José Bernardo Cardoso Júnior",
-  txt: "Sala com oito pinturas recém-adquiridas de José Bernardo Cardoso Júnior (1861–1947), todas sem título e feitas entre 1931 e 1947. Ele começou a pintar por volta dos 70 anos, após se aposentar do ensino. Abertura em 6 de outubro, até 28 de novembro.",
-  link: "https://www.galeriaestacao.com.br",
+  t: "O Vaso de Ojuara — Claudia Marchetti",
+  v: "Zipper Galeria",
+  quem: "Claudia Marchetti",
+  txt: "Individual no Zip'Up com texto crítico de Paula Alzugaray: quatorze pinturas recentes, o primeiro conjunto da artista em vinte anos. Abertura em 8 de outubro, das 18h às 21h.",
+  link: "https://www.zippergaleria.com.br",
   publi: false
 };
 
@@ -381,6 +378,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-10-26", k:"O Vaso de Ojuara — Claudia Marchetti|Zipper Galeria"},
   {d:"2026-10-25", k:"Cardosinho: Acervo Especial|Galeria Estação"},
   {d:"2026-10-24", k:"Khāmoshī — Fernanda Valadares|Galeria Aura"},
   {d:"2026-10-23", k:"Fazendo a América | Making America — Rosângela Rennó|Galeria Vermelho"},
@@ -472,5 +470,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "25/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "26/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
