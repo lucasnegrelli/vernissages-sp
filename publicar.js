@@ -221,11 +221,13 @@ async function rodar() {
   if (falhas) process.exit(1);
 }
 
-// Renova o token de 60 dias do Instagram Login (rodada mensal). O Instagram
-// devolve o MESMO token com a validade estendida; se vier um diferente, o
-// secret do repo ficaria velho, então falha de propósito pra avisar.
+// Renova o token de 60 dias do Instagram Login (rodada quinzenal). O
+// Instagram devolve um token NOVO a cada renovação, então o secret precisa ser
+// reescrito: este comando grava o novo valor num arquivo (RENOVADO_ARQ) e a
+// Action faz `gh secret set` a partir dele. O valor nunca vai pro log.
 async function renovar() {
   const dir = path.join(RAIZ, 'contas');
+  const saida = process.env.RENOVADO_ARQ;
   let falhas = 0;
   for (const f of fs.readdirSync(dir).filter(x => x.endsWith('.json'))) {
     const cfg = ler(path.join(dir, f));
@@ -235,9 +237,8 @@ async function renovar() {
     const r = await fetch(`https://graph.instagram.com/refresh_access_token?grant_type=ig_refresh_token&access_token=${token}`);
     const j = await r.json().catch(() => ({}));
     if (!r.ok || j.error) { console.error(`${f}: ${JSON.stringify(j.error || j)}`); falhas++; continue; }
-    const dias = Math.round(j.expires_in / 86400);
-    if (j.access_token !== token) { console.error(`${f}: o token mudou, atualize o secret ${cfg.tokenEnv}`); falhas++; continue; }
-    console.log(`${f}: renovado, vale por mais ${dias} dias`);
+    console.log(`${f}: renovado, vale por mais ${Math.round(j.expires_in / 86400)} dias`);
+    if (saida) fs.writeFileSync(saida, j.access_token);
   }
   if (falhas) process.exit(1);
 }

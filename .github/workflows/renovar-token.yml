@@ -1,9 +1,11 @@
 name: Renovar token do Instagram
 
-# O token do Instagram Login vale 60 dias; renovar estende por mais 60 sem
-# trocar o valor (o publicar.js falha se o Instagram devolver outro). Roda
-# todo dia 1 e 15, bem antes de vencer. Se falhar, o GitHub avisa por e-mail:
-# aí é gerar token novo no painel da Meta e atualizar o secret.
+# O token do Instagram Login vale 60 dias e o Instagram devolve um valor NOVO
+# a cada renovação. O GITHUB_TOKEN de uma Action não escreve secrets, então a
+# gravação usa o secret GH_PAT_SECRETS: um token pessoal do GitHub restrito a
+# este repositório, com permissão "Secrets: read and write". Sem ele a Action
+# falha de propósito (o GitHub avisa por e-mail) e o token é trocado na mão no
+# painel da Meta. Roda dias 1 e 15, bem antes de vencer.
 
 on:
   schedule:
@@ -18,7 +20,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Renovar
+
+      - name: Renovar e gravar o token novo
         env:
           IG_TOKEN_VERNISSAGESSP: ${{ secrets.IG_TOKEN_VERNISSAGESSP }}
-        run: node publicar.js renovar
+          GH_TOKEN: ${{ secrets.GH_PAT_SECRETS }}
+          RENOVADO_ARQ: ${{ runner.temp }}/novo-token
+        run: |
+          if [ -z "$GH_TOKEN" ]; then echo "::error::falta o secret GH_PAT_SECRETS"; exit 1; fi
+          node publicar.js renovar
+          gh secret set IG_TOKEN_VERNISSAGESSP --repo "$GITHUB_REPOSITORY" < "$RENOVADO_ARQ"
+          rm -f "$RENOVADO_ARQ"
