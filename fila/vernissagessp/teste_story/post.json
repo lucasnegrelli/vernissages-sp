@@ -1,14 +1,13 @@
 {
   "conta": "vernissagessp",
   "id": "teste_story",
-  "status": "erro",
+  "status": "aprovado",
   "tipo": "story",
-  "quando": "2026-10-26T18:38:23.206Z",
+  "quando": "2026-10-26T18:43:43.015Z",
   "imagens": [
     "01.jpg"
   ],
   "legenda": "",
   "collab": [],
-  "collabExtra": [],
-  "erro": "POST 17841458210575691/media: {\"message\":\"Access token does not contain a valid app ID\",\"type\":\"OAuthException\",\"code\":190,\"fbtrace_id\":\"APalZkXFEYd45BomYVuSgZ-\"}"
+  "collabExtra": []
 }
