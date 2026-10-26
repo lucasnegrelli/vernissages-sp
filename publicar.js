@@ -22,8 +22,8 @@
      fica status "perdido" e o job falha pra avisar.
    - Collab: a API aceita no máx. 3. Pega as 3 primeiras; as demais ficam
      como @ na própria legenda e o Lucas convida na mão, se quiser.
-   - Collab só existe no fluxo Facebook Login (Page token, graph.facebook.com).
-     Por isso este script usa esse fluxo, não o Instagram Login.
+   - Collab: ligado por conta (campo collab). Só foi documentado no fluxo Facebook;
+     no Instagram Login a API pode recusar, e então o post sai sem Collab.
    - Multi-conta: cada conta é um arquivo em contas/<conta>.json. O token
      nunca vai pro repo: vem do ambiente (campo tokenEnv).
    ============================================================ */
@@ -151,24 +151,30 @@ async function publicarPost(post, dir, cfg, token) {
   const A = (m, c, p) => api(m, c, p, token, fluxo);
   // Collab só foi documentado no fluxo Facebook; no Instagram Login fica opt-in.
   const collab = cfg.collab === false ? [] : post.collab;
-  let container;
-  if (post.tipo === 'carrossel') {
-    const filhos = [];
-    for (const f of post.imagens) {
-      const c = await A('POST', `${ig}/media`, { image_url: url(f), is_carousel_item: 'true' });
-      filhos.push(c.id);
+  // Collab é opcional: se a API recusar (conta que não aceita convite, fluxo sem
+  // suporte), o post sai SEM ele em vez de falhar. Registra em post.collabUsado.
+  const criar = async comCollab => {
+    const extra = comCollab && collab.length ? { collaborators: JSON.stringify(collab) } : {};
+    if (post.tipo === 'carrossel') {
+      const filhos = [];
+      for (const f of post.imagens) {
+        const c = await A('POST', `${ig}/media`, { image_url: url(f), is_carousel_item: 'true' });
+        filhos.push(c.id);
+      }
+      for (const c of filhos) await aguardar(c, token, fluxo);
+      return (await A('POST', `${ig}/media`, { media_type: 'CAROUSEL', children: filhos.join(','), caption: post.legenda, ...extra })).id;
     }
-    for (const c of filhos) await aguardar(c, token, fluxo);
-    const p = { media_type: 'CAROUSEL', children: filhos.join(','), caption: post.legenda };
-    if (collab.length) p.collaborators = JSON.stringify(collab);
-    container = (await A('POST', `${ig}/media`, p)).id;
-  } else if (post.tipo === 'story') {
-    container = (await A('POST', `${ig}/media`, { media_type: 'STORIES', image_url: url(post.imagens[0]) })).id;
-  } else {
-    const p = { image_url: url(post.imagens[0]), caption: post.legenda };
-    if (collab.length) p.collaborators = JSON.stringify(collab);
-    container = (await A('POST', `${ig}/media`, p)).id;
-  }
+    if (post.tipo === 'story') {
+      return (await A('POST', `${ig}/media`, { media_type: 'STORIES', image_url: url(post.imagens[0]) })).id;
+    }
+    return (await A('POST', `${ig}/media`, { image_url: url(post.imagens[0]), caption: post.legenda, ...extra })).id;
+  };
+  let container, usouCollab = false;
+  if (collab.length && post.tipo !== 'story') {
+    try { container = await criar(true); await aguardar(container, token, fluxo); usouCollab = true; }
+    catch (e) { console.warn(`${post.id}: sem Collab (${String(e.message).slice(0, 160)})`); container = await criar(false); }
+  } else container = await criar(false);
+  post.collabUsado = usouCollab;
   await aguardar(container, token, fluxo);
   return (await A('POST', `${ig}/media_publish`, { creation_id: container })).id;
 }

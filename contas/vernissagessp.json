@@ -3,7 +3,7 @@
   "usuario": "vernissagessp",
   "igUserId": "17841458210575691",
   "fluxo": "instagram",
-  "collab": false,
+  "collab": true,
   "tokenEnv": "IG_TOKEN_VERNISSAGESSP",
   "horaPadrao": "19:00"
 }
