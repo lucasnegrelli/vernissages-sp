@@ -41,9 +41,30 @@ jobs:
           echo '{"name":"render","private":true}' > package.json
           npm i puppeteer-core sharp >/dev/null 2>&1
 
-      - name: Gerar e enfileirar o dia
+      - name: Gerar feed e stories
+        run: node dia-auto.js --fase=gerar | tee /tmp/dia.log
+
+      - name: Instalar Claude Code
+        run: npm install -g @anthropic-ai/claude-code
+
+      # A agenda já escreve a própria legenda; obra, encerra e estreia precisam
+      # que alguém escreva. Sem legenda o feed não sai (stories saem).
+      - name: Legendar o feed
+        continue-on-error: true
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
         run: |
-          node dia-auto.js --feed="${{ inputs.feed || '12:00' }}" --story="${{ inputs.story || '09:00' }}" | tee /tmp/dia.log
+          DATA=$(node -e "console.log(new Date(Date.now()-3*3600e3).toISOString().slice(0,10))")
+          D=SOCIAL/${DATA:5:2}/${DATA:8:2}
+          if [ -f "$D/_feed.json" ] && ! ls $D/*-LEGENDA.md >/dev/null 2>&1; then
+            claude -p "DATA=$DATA. $(cat .github/prompts/legendar.md)" \
+              --allowedTools "Read,Write,Glob" --dangerously-skip-permissions | tee -a /tmp/dia.log
+          else
+            echo "legenda: nada a escrever (agenda traz a sua, ou sem feed)" | tee -a /tmp/dia.log
+          fi
+
+      - name: Enfileirar o dia
+        run: node dia-auto.js --fase=enfileirar --feed="${{ inputs.feed || '12:00' }}" --story="${{ inputs.story || '09:00' }}" | tee -a /tmp/dia.log
 
       - name: Commitar fila e memória
         if: always()
