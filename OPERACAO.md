@@ -10,6 +10,7 @@ Fonte única da rotina. **A operação virou quase toda GitHub Actions em
 | Espelha imagem externa pra `img/` | push em `dados.js` | `espelhar-imagens.yml` (Action) | — |
 | **Radar** — mostra nova, data divergente, `fim:null`, **e edital/chamada aberta** | sábado 08:12 UTC | `radar.yml` → abre issue `radar` | `radar-fontes.js` + `radar-editais.js` |
 | **Garimpo de imagens** | sábado 09:00 UTC | `imagens.yml` → abre issue `garimpo` | `descobrir-imagens.js` |
+| **Caçador de imagens** | sexta 12:00 UTC | `cacar-imagens.yml`: acha, Claude olha as folhas, `check.js` aprova, commita | `cacar-imagens.js` + `.github/prompts/cacar-imagens.md` |
 | **Manutenção do `dados.js`** — lê as issues, confere, edita, publica | domingo 13:17 UTC | rotina de nuvem `vsp-semana` | [Parte 2](#parte-2--rotina-de-domingo) |
 | Lote de social da semana | — | **manual, por enquanto** | [Parte 2](#parte-2--rotina-de-domingo) / `COMOGERAR.md` |
 
@@ -513,6 +514,35 @@ Uma linha por fase: o que a varredura trouxe, quantas peças o lote gerou,
 quais abortaram e por quê, o que ficou pendente.
 
 ---
+
+---
+
+## Caçador de imagens (26/10/2026)
+
+**Por que existe.** Em 26/10 só 53% das mostras em cartaz tinham imagem que passasse na régua (37 de 70). A imagem
+existia: o agregador que o radar lê traz capa e link de toda mostra, e o radar descartava. O garimpo antigo propunha
+em markdown para o Lucas olhar uma a uma, e esse olhar era o gargalo.
+
+**Como funciona (3 etapas, `cacar-imagens.yml`):**
+1. `cacar-imagens.js` acha a mostra no agregador (Arte Que Acontece) e, se nada servir, no site da casa (motor do
+   `descobrir-imagens.js`, com Chrome para site em JavaScript). Tenta a versão grande de cada miniatura (Artlogic
+   `w_600` → `w_2600`, WordPress `-WxH`, `?w=`), mede, tira repetida (md5 já no feed) e monta uma **folha de contato
+   numerada** por mostra em `PENDENTE/cacador/`.
+2. Claude Code olha as folhas e escreve `PENDENTE/cacador/decisoes.json`, seguindo `.github/prompts/cacar-imagens.md`
+   (obra x vista de sala x cartaz x retrato x logo; bate com a mostra?; crédito sem inventar).
+3. `node cacar-imagens.js --aplicar` copia para `img/` (reduz acima de 2800 px), edita a linha no `dados.js` e roda o
+   `check.js`. **Reprovou: desfaz tudo.** Dúvida real vira `"escolha": null` e fica no resumo: é o 1% do Lucas.
+
+**Memória:** `acervo-imagens.json` (versionado) guarda, por mostra, os links (`aqa`, `site`, `oficial`), as candidatas
+medidas e a escolhida. O link da página da mostra deixou de se perder.
+
+**Armadilhas já vistas (não repetir):**
+- Imagem **idêntica em duas mostras da mesma casa** é imagem genérica do site, não da mostra: `null`.
+- Cartaz de **outra exposição** da mesma casa é o erro mais caro: na dúvida, `null`.
+- Legenda que não prova qual foto descreve: crédito neutro `Cortesia <casa>`, nunca autoria chutada.
+- Original de 8 a 10 mil px não entra no repo: o `--aplicar` reduz.
+- `--faltantes` repete só o que ainda não tem candidata que sirva; `--so=trecho` testa uma mostra.
+- Casa que pedir remoção: apagar o arquivo de `img/` e esvaziar `img` da mostra. Sem exceção.
 
 # PARTE 3 — Vale para as duas
 

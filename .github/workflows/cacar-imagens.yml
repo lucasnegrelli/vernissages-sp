@@ -1,0 +1,97 @@
+name: Caçador de imagens
+
+# Fecha o buraco de imagem do dados.js (47% das mostras em cartaz sem imagem
+# que passasse na régua, em 26/10/2026). Três etapas:
+#   1. cacar-imagens.js  acha a mostra no agregador e no site da casa, baixa os
+#                        candidatos, mede, tira repetidas e monta a folha de contato
+#   2. Claude Code       olha as folhas e decide (prompt: .github/prompts/cacar-imagens.md)
+#   3. --aplicar         copia p/ img/, edita o dados.js e roda o check.js;
+#                        reprovou, desfaz tudo e o job falha
+# O portão é o check.js. Dúvida real vira "escolha: null" e entra no resumo:
+# é o 1% do Lucas. Roda sexta 12:00 UTC, antes do planejar de domingo, e
+# depois que o radar e o garimpo de sábado já mexeram no dados.js.
+
+on:
+  schedule:
+    - cron: '0 12 * * 5'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cacar-imagens
+  cancel-in-progress: false
+
+jobs:
+  cacar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      CHROME: /usr/bin/google-chrome
+      RENDER_DIR: ${{ github.workspace }}/.render
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Dependências (puppeteer-core e sharp)
+        run: |
+          mkdir -p .render && cd .render
+          echo '{"name":"render","private":true}' > package.json
+          npm i puppeteer-core sharp >/dev/null 2>&1
+
+      - name: Caçar candidatas
+        id: cacar
+        run: |
+          node cacar-imagens.js | tee /tmp/cacar.log
+          N=$(node -e "try{console.log(require('./PENDENTE/cacador/fila.json').length)}catch{console.log(0)}")
+          echo "fila=$N" >> "$GITHUB_OUTPUT"
+
+      - name: Instalar Claude Code
+        if: steps.cacar.outputs.fila != '0'
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Julgar as folhas
+        if: steps.cacar.outputs.fila != '0'
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          claude -p "$(cat .github/prompts/cacar-imagens.md)" \
+            --allowedTools "Bash,Read,Write,Glob,Grep" \
+            --dangerously-skip-permissions \
+            | tee /tmp/julgamento.log
+          test -f PENDENTE/cacador/decisoes.json
+
+      - name: Aplicar (check.js é o portão)
+        if: steps.cacar.outputs.fila != '0'
+        run: node cacar-imagens.js --aplicar | tee /tmp/aplicar.log
+
+      - name: Commitar
+        if: steps.cacar.outputs.fila != '0'
+        run: |
+          git config user.name "vernissages-bot"
+          git config user.email "actions@github.com"
+          git add dados.js img acervo-imagens.json
+          if git diff --staged --quiet; then echo "Nada mudou."; exit 0; fi
+          git commit -m "Caçador de imagens: rodada semanal"
+          for i in 1 2 3 4 5; do
+            if git push; then exit 0; fi
+            echo "push rejeitado, tentativa $i"
+            git fetch origin main && git rebase origin/main || exit 1
+            sleep 3
+          done
+          exit 1
+
+      - name: Resumo
+        if: always()
+        run: |
+          {
+            echo "## Caçador de imagens"
+            echo '```'
+            tail -40 /tmp/cacar.log 2>/dev/null
+            echo '--- aplicado ---'
+            cat /tmp/aplicar.log 2>/dev/null
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

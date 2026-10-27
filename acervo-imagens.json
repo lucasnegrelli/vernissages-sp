@@ -1,0 +1,1619 @@
+{
+  "To Love — Claudia Andujar e George Love|Galeria Vermelho": {
+    "links": {
+      "siteErro": "nenhum link casou com o titulo (home + indices, ate com render)"
+    },
+    "candidatos": []
+  },
+  "No meio da pedra — André Vargas|Galeria Vermelho": {
+    "links": {
+      "siteErro": "nenhum link casou com o titulo (home + indices, ate com render)"
+    },
+    "candidatos": []
+  },
+  "Ocupação JAMAC|Galeria Vermelho": {
+    "links": {
+      "siteErro": "nenhum link casou com o titulo (home + indices, ate com render)"
+    },
+    "candidatos": []
+  },
+  "Brasil das Múltiplas Faces|Itaú Cultural": {
+    "links": {
+      "aqa": "https://artequeacontece.com.br/evento/brasil-das-multiplas-faces-no-itau-cultural/",
+      "site": "https://www.itaucultural.org.br/secoes/agenda/pioneiro-da-educacao-do-brasil-anisio-teixeira-e-homenageado-pelo-ocupacao",
+      "siteConfianca": 3
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2025/10/42_VendedorasDePeixe_1952_EmilianoDiCavalcanti_FotoJoaoLMusa.jpg",
+        "md5": "b947abc429ac3346aabdd8f05cde1595",
+        "fonte": "aqa",
+        "w": 1025,
+        "h": 485,
+        "kb": 48,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 2,
+        "url": "https://s3.sa-east-1.amazonaws.com/prd.editor.fundacaoitau.org.br/public/image/20488/file/optimized-ee9df9dc167d7c0f75b22a62005de66a.jpeg",
+        "md5": "c9ca9f4349f0e67029fb401f73d2aa5e",
+        "fonte": "site",
+        "w": 1920,
+        "h": 1080,
+        "kb": 546,
+        "serveObra": false,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": "Emiliano di Cavalcanti, \"Vendedoras de Peixe\" 1952. Divulgação.",
+    "atualizado": "2026-10-26",
+    "escolhida": 1,
+    "img": "img/brasil-das-multiplas-faces-itau-cultural.webp",
+    "cred": "Emiliano di Cavalcanti, Vendedoras de Peixe, 1952. Divulgação Itaú Cultural",
+    "motivo": "pintura do acervo (Di Cavalcanti), só 1025x485: serve ao site, o formato obra recusa pela régua"
+  },
+  "Casa María Lionza — Sol Calero|MASP": {
+    "links": {
+      "aqa": "https://artequeacontece.com.br/evento/sol-calero-casa-maria-lionza-masp-sao-paulo/"
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/06/Sol-Calero-Casa-Maria-Lionza-2026_1-scaled.jpg",
+        "md5": "e209052ef3de6297f34d5208331ca764",
+        "fonte": "aqa",
+        "w": 2560,
+        "h": 1808,
+        "kb": 161,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/06/Sol-Calero-Casa-Maria-Lionza-2026_1.jpg",
+        "md5": "4cc9a34ccb2200f68bcac2f2d50154cf",
+        "fonte": "aqa",
+        "w": 9933,
+        "h": 7016,
+        "kb": 3146,
+        "serveObra": false,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": "Foto: Divulgação",
+    "atualizado": "2026-10-26",
+    "escolhida": 1,
+    "img": "img/casa-maria-lionza-masp.webp",
+    "cred": "Cortesia MASP",
+    "motivo": "obra da mostra, casas coloridas, 2560x1808; foco central"
+  },
+  "Histórias Latino-Americanas|MASP": {
+    "links": {
+      "aqa": "https://artequeacontece.com.br/evento/historias-latino-americanas-no-masp/",
+      "site": "https://masp.org.br/exposicoes/historias-latino-americanas",
+      "siteConfianca": 10
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/09/Arte_Cusquenha_-_Virgem_de_Copacabana-1.jpg",
+        "md5": "63beeb2f137a6c150b03f92ab38bc722",
+        "fonte": "aqa",
+        "w": 1024,
+        "h": 1415,
+        "kb": 497,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 2,
+        "url": "https://assets.masp.org.br/uploads/exposure-sponsors/KtqmWu8d3tYtfPUUoxmd-o85hFyNAl7NSp6BHd0iI.png",
+        "md5": "bffae620c568b276ad691d6eff9a375a",
+        "fonte": "site",
+        "w": 3674,
+        "h": 850,
+        "kb": 27,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 3,
+        "url": "https://assets.masp.org.br/images/img_01_masp_preto_branco.jpg",
+        "md5": "2e9488f19a6085e89dd8ce6cf419425c",
+        "fonte": "site",
+        "w": 1366,
+        "h": 654,
+        "kb": 175,
+        "serveObra": false,
+        "serveComFoco": false
+      }
+    ],
+    "credLegenda": "Foto: Divulgação",
+    "atualizado": "2026-10-26",
+    "escolhida": 1,
+    "img": "img/historias-latino-americanas-masp.webp",
+    "cred": "Arte cusquenha, Virgem de Copacabana. Divulgação MASP",
+    "motivo": "pintura colonial, 1024x1415: abaixo da régua do feed, serve ao site"
+  },
+  "Cantaria — Daniel Jorge|Mendes Wood DM": {
+    "links": {
+      "aqa": "https://artequeacontece.com.br/evento/cantaria-de-daniel-jorge-na-mendes-wood-dm/",
+      "site": "https://mendeswooddm.com/exhibitions/418-cantaria-daniel-jorge/",
+      "siteConfianca": 10
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto,dpr_auto/artlogicstorage/mendeswooddm/images/view/657068e0b22701890bcc3c98834cbbf3j/mendeswooddm-daniel-jorge-untitled-from-the-bandeiras-e-assentamentos-series-sem-t-tulo-da-s-rie-bandeiras-e-assentamentos-2026.jpg",
+        "md5": "78fabf8c3c2e57b2c13353baf0c2e694",
+        "fonte": "site",
+        "w": 2600,
+        "h": 3898,
+        "kb": 310,
+        "serveObra": true,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://static-assets.artlogic.net/w_2600,h_2600,c_limit,f_auto,fl_lossy,q_auto,dpr_auto/ws-mendeswood/usr/images/exhibitions/group_images_override/418/5.jpg",
+        "md5": "c550a76067adcb8517c49a9f48001e01",
+        "fonte": "site",
+        "w": 2600,
+        "h": 1734,
+        "kb": 232,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 3,
+        "url": "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto,dpr_auto/artlogicstorage/mendeswooddm/images/view/4159676c2adb25bf3a89a7c4ef28d28cj/mendeswooddm-daniel-jorge-b-ssola-leste-from-the-era-do-escambo-series-b-ssola-leste-da-s-rie-era-do-escambo-2026.jpg",
+        "md5": "5455af6fbdbc400bf89204b39349c432",
+        "fonte": "site",
+        "w": 2600,
+        "h": 3898,
+        "kb": 415,
+        "serveObra": true,
+        "serveComFoco": true
+      },
+      {
+        "n": 4,
+        "url": "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto,dpr_auto/artlogicstorage/mendeswooddm/images/view/643699db998f655b2ebe216c50f961c7j/mendeswooddm-daniel-jorge-untitled-from-the-terrenos-acidentados-series-sem-t-tulo-da-s-rie-terrenos-acidentados-2026.jpg",
+        "md5": "1826850ef86802d9c53b503ae043fafc",
+        "fonte": "site",
+        "w": 2600,
+        "h": 3687,
+        "kb": 1448,
+        "serveObra": true,
+        "serveComFoco": true
+      },
+      {
+        "n": 5,
+        "url": "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto,dpr_auto/artlogicstorage/mendeswooddm/images/view/52b3fbaecc8341dc2e91ad31d2fed9c6j/mendeswooddm-daniel-jorge-mergulho-iii-from-the-terrenos-acidentados-series-mergulho-iii-da-s-rie-terrenos-acidentados-2026.jpg",
+        "md5": "0983b299c14ebf675096a1e4b610d3b5",
+        "fonte": "site",
+        "w": 2600,
+        "h": 2482,
+        "kb": 1051,
+        "serveObra": true,
+        "serveComFoco": true
+      },
+      {
+        "n": 6,
+        "url": "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto,dpr_auto/artlogicstorage/mendeswooddm/images/view/bc24642121808c2bbe196eae068a4f42j/mendeswooddm-daniel-jorge-mergulho-ii-from-the-terrenos-acidentados-series-mergulho-ii-da-s-rie-terrenos-acidentados-2026.jpg",
+        "md5": "edae473f6ef306262f2cc0403dc96bcd",
+        "fonte": "site",
+        "w": 2600,
+        "h": 2482,
+        "kb": 996,
+        "serveObra": true,
+        "serveComFoco": true
+      },
+      {
+        "n": 7,
+        "url": "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto,dpr_auto/artlogicstorage/mendeswooddm/images/view/b6f74d2c0554a91caf6e8625352a824bj/mendeswooddm-daniel-jorge-mergulho-i-from-the-terrenos-acidentados-series-mergulho-i-da-s-rie-terrenos-acidentados-2026.jpg",
+        "md5": "ef387e1b7a75978787f63dcad0622efa",
+        "fonte": "site",
+        "w": 2600,
+        "h": 2482,
+        "kb": 1099,
+        "serveObra": true,
+        "serveComFoco": true
+      },
+      {
+        "n": 8,
+        "url": "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto,dpr_auto/artlogicstorage/mendeswooddm/images/view/4e2925c15d3d66ce0d1c2b3fcec015c5j/mendeswooddm-daniel-jorge-boiar-entregar-o-peso-a-correnteza-2024.jpg",
+        "md5": "f8318140453e7e0c2e3a91682b7cd799",
+        "fonte": "site",
+        "w": 2600,
+        "h": 1734,
+        "kb": 427,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 9,
+        "url": "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto,dpr_auto/artlogicstorage/mendeswooddm/images/view/99609636363c48c1aa5a2ff7c2a53a21j/mendeswooddm-daniel-jorge-orif-cio-from-the-esquema-espiralar-da-mem-ria-series-orif-cio-da-s-rie-esquema-espiralar-da-mem-ria-2024.jpg",
+        "md5": "1a57d99f862f85bc26704cebb5af254a",
+        "fonte": "site",
+        "w": 2600,
+        "h": 2513,
+        "kb": 631,
+        "serveObra": true,
+        "serveComFoco": true
+      },
+      {
+        "n": 10,
+        "url": "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto,dpr_auto/artlogicstorage/mendeswooddm/images/view/e0f79e20d0978956c3ef98e29e6bebadj/mendeswooddm-daniel-jorge-alforria-equilibrada-from-the-corpo-geogr-fico-series-alforria-equilibrada-da-s-rie-corpo-geogr-fico-2024.jpg",
+        "md5": "05bacfb4c72c6f8be62a7d7fb241257c",
+        "fonte": "site",
+        "w": 2600,
+        "h": 3898,
+        "kb": 88,
+        "serveObra": true,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": "Foto: Divulgação",
+    "atualizado": "2026-10-26",
+    "escolhida": 4,
+    "img": "img/cantaria-mendes-wood-dm.jpg",
+    "cred": "Foto: Divulgação / Mendes Wood DM",
+    "motivo": "relevo em têxtil escuro, 2600x3687, margem branca, sobrevive ao corte 4:5"
+  },
+  "Uma Obra: Pintura sem fim|Pinacoteca de São Paulo": {
+    "links": {
+      "site": "https://pinacoteca.org.br/programacao/exposicoes/uma-obra-pintura-sem-fim/",
+      "siteConfianca": 13
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://pinacoteca.org.br/wp-content/uploads/2026/06/uma-obra-III_eleitoral_jul26.png",
+        "md5": "bc69f8ce9939cfc51cf575c27ab2da83",
+        "fonte": "site",
+        "w": 2346,
+        "h": 1391,
+        "kb": 89,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://pinacoteca.org.br/wp-content/uploads/2025/12/thumb_para-criancas_mai26.jpg",
+        "md5": "ca8cfebc6330992d22ecee8014272485",
+        "fonte": "site",
+        "w": 520,
+        "h": 391,
+        "kb": 166,
+        "serveObra": false,
+        "serveComFoco": false
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-26",
+    "sem": "tela preta com logo e cartaz de OUTRA exposição (Para Crianças)",
+    "semEm": "2026-10-26"
+  },
+  "Beatriz Milhazes: gravuras do acervo da Pinacoteca|Estação Pinacoteca": {
+    "links": {
+      "aqa": "https://artequeacontece.com.br/evento/beatriz-milhazes-gravuras-acervo-pinacoteca-sao-paulo/"
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/05/O-pato-1996.jpg",
+        "md5": "5b3799806c061ca1e8b9921cfc96a567",
+        "fonte": "aqa",
+        "w": 1772,
+        "h": 1190,
+        "kb": 185,
+        "serveObra": false,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": "Beatriz Milhazes, O pato, 1996. Foto: Cortesia da artista e Pinacoteca de São Paulo.",
+    "atualizado": "2026-10-26",
+    "escolhida": 1,
+    "img": "img/beatriz-milhazes-gravuras-do-acervo-da-pinacoteca-estacao-pi.webp",
+    "cred": "Beatriz Milhazes, O pato, 1996. Foto: Cortesia da artista e Pinacoteca de São Paulo",
+    "motivo": "gravura, 1772x1190, composição centrada"
+  },
+  "trágico subúrbio — Paulo Pedro Leal|Pinacoteca de São Paulo": {
+    "links": {
+      "aqa": "https://artequeacontece.com.br/evento/tragico-suburbio-de-paulo-pedro-leal-na-pinacoteca/",
+      "site": "https://pinacoteca.org.br/programacao/exposicoes/paulo-pedro-leal-2/",
+      "siteConfianca": 16
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/04/afogamento-de-mendigos-ppl1.png",
+        "md5": "f577c543aad0056f28a00e80fb2eadde",
+        "fonte": "aqa",
+        "w": 494,
+        "h": 403,
+        "kb": 45,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 2,
+        "url": "https://pinacoteca.org.br/wp-content/uploads/2025/12/PPL_eleitoral_jul26.png",
+        "md5": "4cb4f41dc3f51e0b32407367557980e0",
+        "fonte": "site",
+        "w": 1603,
+        "h": 622,
+        "kb": 50,
+        "serveObra": false,
+        "serveComFoco": false
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-26",
+    "escolhida": 1,
+    "img": "img/tragico-suburbio-pinacoteca-de-sao-paulo.webp",
+    "cred": "Cortesia Pinacoteca de São Paulo",
+    "motivo": "pintura da mostra, só 494x403: serve a card pequeno do site, nunca ao feed"
+  },
+  "Ibirapema — Olinda Tupinambá|Pinacoteca de São Paulo": {
+    "links": {
+      "siteErro": "nenhum link casou com o titulo (home + indices, ate com render)"
+    },
+    "candidatos": []
+  },
+  "Solange Pessoa: outras escalas|Itaú Cultural": {
+    "links": {
+      "site": "https://www.itaucultural.org.br/secoes/agenda/exposicao-apresenta-obras-de-solange-pessoa",
+      "siteConfianca": 7
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://s3.sa-east-1.amazonaws.com/prd.editor.fundacaoitau.org.br/public/image/20444/file/optimized-41c9362f2f8915711b351e995729bff9.jpeg",
+        "md5": "6e1e1fa332041a8e75d5ca3a45e8fd7f",
+        "fonte": "site",
+        "w": 550,
+        "h": 600,
+        "kb": 45,
+        "serveObra": false,
+        "serveComFoco": false
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-26",
+    "sem": "cartaz com texto (550x600)",
+    "semEm": "2026-10-26"
+  },
+  "Mundo Pequeno — Martin Parr|Centro Cultural FIESP": {
+    "links": {
+      "site": "https://centrocultural.fiesp.com.br/evento/mundo-pequeno-do-fotografo-martin-parr",
+      "siteConfianca": 8
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://cronos-media.sesisenaisp.org.br/api/media/1-0/files?img=img_66_261002_8cedeca0-0f4f-4521-879a-ee872034daff_o.png&tipo=s",
+        "md5": "06b96e0f6718e54c66a818527c367308",
+        "fonte": "site",
+        "w": 150,
+        "h": 99,
+        "kb": 43,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 2,
+        "url": "https://cronos-media.sesisenaisp.org.br/api/media/1-0/files?img=img_66_261002_79ab1a6d-a4c8-4a4d-afe3-eef24505a2a7_o.png&tipo=s",
+        "md5": "1e496a7e39d4a8f75573a4f3a4aafcdb",
+        "fonte": "site",
+        "w": 150,
+        "h": 112,
+        "kb": 44,
+        "serveObra": false,
+        "serveComFoco": false
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-26",
+    "sem": "duas fotos reais do Parr, mas miniaturas de 150 px; buscar em outra fonte (site do Sesi-SP)",
+    "semEm": "2026-10-26"
+  },
+  "Beijo de Língua — Nelson Felix|MAC USP": {
+    "links": {
+      "aqa": "https://artequeacontece.com.br/evento/beijo-de-lingua-de-nelson-felix-no-mac-usp/"
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/05/NF_03.jpg",
+        "md5": "eaa0adfda296ff98206a978c7be3cbfa",
+        "fonte": "aqa",
+        "w": 1201,
+        "h": 1800,
+        "kb": 74,
+        "serveObra": true,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": "Foto: Cortesia do artista",
+    "atualizado": "2026-10-26",
+    "escolhida": 1,
+    "img": "img/beijo-de-lingua-mac-usp.webp",
+    "cred": "Cortesia do artista",
+    "motivo": "obra emoldurada, 1201x1800, parede branca"
+  },
+  "39º Panorama da Arte Brasileira: Depois que tudo foi dito|MAM São Paulo": {
+    "links": {
+      "aqa": "https://artequeacontece.com.br/evento/39-panorama-arte-brasileira-depois-que-tudo-foi-dito-mam-sao-paulo/"
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/05/captura-de-tela-2026-05-19-as-114154.png",
+        "md5": "afde21340510a871501b829c56e54268",
+        "fonte": "aqa",
+        "w": 2358,
+        "h": 1745,
+        "kb": 3677,
+        "serveObra": false,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": "Foto: Divulgação MAM",
+    "atualizado": "2026-10-26",
+    "sem": "key visual com o título em areia; é arte de divulgação com texto, não obra",
+    "semEm": "2026-10-26"
+  },
+  "Constelação em trânsito: uma escuta cartográfica|Galpão da Lapa": {
+    "links": {
+      "aqa": "https://artequeacontece.com.br/evento/constelacao-em-transito-no-galpao-da-lapa/"
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/04/Vista-de-Constelacao-em-Transito-no-Galpao-da-Lapa.jpg",
+        "md5": "3af21f10e2eaa5197be0ba856cfa1a59",
+        "fonte": "aqa",
+        "w": 1920,
+        "h": 1056,
+        "kb": 159,
+        "serveObra": false,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": "Vista de \"Constelação em Trânsito\" no Galpão da Lapa.",
+    "atualizado": "2026-10-26",
+    "escolhida": 1,
+    "img": "img/constelacao-em-transito-uma-escuta-cartografica-galpao-da-la.webp",
+    "cred": "Cortesia Galpão da Lapa",
+    "motivo": "vista de sala da mostra, 1920x1056; única opção, marcada vista"
+  },
+  "Por Elas, Com Elas: Do Moderno ao Contemporâneo|DAN Galeria": {
+    "links": {
+      "aqa": "https://artequeacontece.com.br/evento/por-elas-com-elas-do-moderno-ao-contemporaneo-na-dan-galeria/"
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/09/MG_6827-copy-scaled-1.jpg",
+        "md5": "b5f550f5a028261bac585d0393402e68",
+        "fonte": "aqa",
+        "w": 1600,
+        "h": 1422,
+        "kb": 101,
+        "serveObra": true,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-26",
+    "escolhida": 1,
+    "img": "img/por-elas-com-elas-do-moderno-ao-contemporaneo-dan-galeria.jpg",
+    "cred": "Cortesia DAN Galeria",
+    "motivo": "escultura de caixas vermelhas, 1600x1422, fundo limpo"
+  },
+  "Território de Disputa|Galeria Lume": {
+    "links": {
+      "site": "https://galerialume.com/exposicao/territorio-de-disputa/",
+      "siteConfianca": 7
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://galerialume.com/wp-content/uploads/2026/09/kilianglanser_-demarcacao_detalhe.jpg",
+        "md5": "110b0ccf57df0366b556a834f46bd0e9",
+        "fonte": "site",
+        "w": 1920,
+        "h": 1305,
+        "kb": 467,
+        "serveObra": false,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-26",
+    "escolhida": 1,
+    "img": "img/territorio-de-disputa-galeria-lume.jpg",
+    "cred": "Cortesia Galeria Lume",
+    "motivo": "pintura craquelada laranja com faixas, 1920x1305"
+  },
+  "Marlene Barros: tecitura do feminino|CCBB São Paulo": {
+    "links": {
+      "site": "https://ccbb.com.br/sao-paulo/programacao/marlene-barros-tecitura-do-feminino/",
+      "siteConfianca": 9
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://ccbbstg.blob.core.windows.net/site-2025/2026/08/fotografia-Bruno-Leao-scaled.jpg",
+        "md5": "8fd1d00ee5fd4ba3337c89bc1cfd2269",
+        "fonte": "site",
+        "w": 2560,
+        "h": 1708,
+        "kb": 492,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://static.ccbb.com.br/site-2025/2026/08/Marlene-Barros.jpeg",
+        "md5": "9652a3f2b3716660211274722c732bd7",
+        "fonte": "site",
+        "w": 853,
+        "h": 1280,
+        "kb": 121,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 3,
+        "url": "https://static.ccbb.com.br/site-2025/2026/08/Betania_recorte_2x3.jpg",
+        "md5": "ab516ce28520cbd9820f333e43bcfca2",
+        "fonte": "site",
+        "w": 853,
+        "h": 1280,
+        "kb": 223,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 4,
+        "url": "https://static.ccbb.com.br/site-2025/2026/08/Aretha-6abfc32c84bd5.png",
+        "md5": "afef191be5b3e0e67bcabea27cbccdbc",
+        "fonte": "site",
+        "w": 667,
+        "h": 1000,
+        "kb": 933,
+        "serveObra": false,
+        "serveComFoco": false
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-26",
+    "escolhida": 1,
+    "img": "img/marlene-barros-tecitura-do-feminino-ccbb-sao-paulo.jpg",
+    "cred": "Cortesia CCBB São Paulo",
+    "motivo": "crochê com palavra bordada, 2560x1708; as outras 3 são retratos"
+  },
+  "Fernando Lemos: quanto mais desejo, mais invento o que vejo|IMS Paulista": {
+    "links": {
+      "aqa": "https://artequeacontece.com.br/evento/quanto-mais-desejo-mais-invento-o-que-vejo-de-fernando-lemos-no-ims-paulista/"
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/10/fernando-lemos-exposicao-ims-paulista.jpg",
+        "md5": "968e96d8371db687b9d30b31c6270720",
+        "fonte": "aqa",
+        "w": 1500,
+        "h": 1534,
+        "kb": 149,
+        "serveObra": true,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": "Obra \"Eu, poeta\". Foto: Arquivo Fernando Lemos / Acervo Instituto Moreira Salles",
+    "atualizado": "2026-10-26",
+    "escolhida": 1,
+    "img": "img/fernando-lemos-quanto-mais-desejo-mais-invento-o-que-vejo-im.webp",
+    "cred": "Fernando Lemos, Eu, poeta. Arquivo Fernando Lemos / Acervo Instituto Moreira Salles",
+    "motivo": "fotografia 'Eu, poeta', 1500x1534"
+  },
+  "NO LIMITE: forma e transformação|Paço das Artes": {
+    "links": {
+      "site": "https://pacodasartes.org.br/exposicao/no-limite-forma-e-transformacao/",
+      "siteConfianca": 10
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://pacodasartes.org.br/wp-content/uploads/2026/09/paco_posit-horiz_NO-LIMITE-scaled.png",
+        "md5": "276c05a6bf2176b2b3de0827711da838",
+        "fonte": "site",
+        "w": 2560,
+        "h": 843,
+        "kb": 131,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 2,
+        "url": "https://pacodasartes.org.br/wp-content/uploads/2026/09/paco_posit-horiz_NO-LIMITE.png",
+        "md5": "3b6780ce72f4464874f06d7c1873e798",
+        "fonte": "site",
+        "w": 7890,
+        "h": 2599,
+        "kb": 260,
+        "serveObra": false,
+        "serveComFoco": false
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-26",
+    "sem": "só banners pretos com logos",
+    "semEm": "2026-10-26"
+  },
+  "Afríquia: o artista como colecionador|Museu Afro Brasil Emanoel Araujo": {
+    "links": {
+      "site": "https://museuafrobrasil.org.br/exposicao/afriquia-o-artista-como-colecionador/",
+      "siteConfianca": 13
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://museuafrobrasil.org.br/wp-content/uploads/2025/04/img_apoie_01.jpg",
+        "md5": "73b1d09f84dfda9f5b626a1f19c6554d",
+        "fonte": "site",
+        "w": 1920,
+        "h": 1240,
+        "kb": 383,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://museuafrobrasil.org.br/wp-content/uploads/2026/06/cropped-mab-preto.png",
+        "md5": "70805b7166df81399499045ff0648b66",
+        "fonte": "site",
+        "w": 791,
+        "h": 144,
+        "kb": 20,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 3,
+        "url": "https://museuafrobrasil.org.br/wp-content/uploads/2026/09/Site-miniatura.png",
+        "md5": "5ea4166020f752e245b08173fe328888",
+        "fonte": "site",
+        "w": 1189,
+        "h": 713,
+        "kb": 25,
+        "serveObra": false,
+        "serveComFoco": false
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-26",
+    "sem": "foto genérica do salão do museu, logo e cartaz de outro evento",
+    "semEm": "2026-10-26"
+  },
+  "Coordenadas Improváveis|MITS Galeria": {
+    "links": {
+      "siteErro": "nenhum link casou com o titulo (home + indices, ate com render)"
+    },
+    "candidatos": []
+  },
+  "Tudo aquilo que move|Galeria Frente": {
+    "links": {
+      "aqa": "https://artequeacontece.com.br/evento/tudo-aquilo-que-move-galeria-frente/"
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/09/tudo-aquilo-que-move-galeria-frente-scaled.jpg",
+        "md5": "00b09682d18d2f6af5d4d2a109b9959a",
+        "fonte": "aqa",
+        "w": 2560,
+        "h": 1671,
+        "kb": 370,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/09/tudo-aquilo-que-move-galeria-frente.jpg",
+        "md5": "a131ff262637e1da6ba9f679fef51acc",
+        "fonte": "aqa",
+        "w": 7939,
+        "h": 5183,
+        "kb": 3476,
+        "serveObra": false,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": "Obra “Sem título” de Fabiana Preti. Foto: Luan Torres",
+    "atualizado": "2026-10-26",
+    "escolhida": 1,
+    "img": "img/tudo-aquilo-que-move-galeria-frente.webp",
+    "cred": "Fabiana Preti, Sem título. Foto: Luan Torres",
+    "motivo": "pintura laranja, 2560x1671 (a #2 é o mesmo arquivo gigante)"
+  },
+  "Pablo Delano: Museu da Antiga Colônia|MASP": {
+    "links": {
+      "aqa": "https://artequeacontece.com.br/evento/pablo-delano-o-museu-da-antiga-colonia-no-masp/"
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/10/pablo-delano-exposica-masp.jpg",
+        "md5": "ffbc48695f939e922f5708144cccaeb5",
+        "fonte": "aqa",
+        "w": 1500,
+        "h": 1095,
+        "kb": 168,
+        "serveObra": false,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": "Obra \"As duas bandeiras\" (2020-em processo). Foto: Divulgação / MASP",
+    "atualizado": "2026-10-26",
+    "escolhida": 1,
+    "img": "img/pablo-delano-museu-da-antiga-colonia-masp.webp",
+    "cred": "Pablo Delano, As duas bandeiras (2020-em processo). Divulgação MASP",
+    "motivo": "obra citada na legenda, 1500x1095, sujeitos centrados"
+  },
+  "Rosa Elena Curruchich: crônicas de Comalapa|MASP": {
+    "links": {
+      "aqa": "https://artequeacontece.com.br/evento/rosa-elena-curruchich-cronicas-de-comalapa-no-masp/"
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/10/Rosa-Elena-Curruchich-Van-a-escoger-capitana-del-nuevo-ano-c.-1980.-Acervo-MASP-scaled.jpg",
+        "md5": "cef327d37c01d4e22dedda0af67614cf",
+        "fonte": "aqa",
+        "w": 2560,
+        "h": 1607,
+        "kb": 303,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/10/Rosa-Elena-Curruchich-Van-a-escoger-capitana-del-nuevo-ano-c.-1980.-Acervo-MASP.jpg",
+        "md5": "66c1a884e9a2033c62b820d121bd9e90",
+        "fonte": "aqa",
+        "w": 5000,
+        "h": 3139,
+        "kb": 3119,
+        "serveObra": false,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": "Rosa Elena Curruchich, Van a escoger capitana del nuevo año, c. 1980. Acervo MASP. Foto: Eduardo Ortega",
+    "atualizado": "2026-10-26",
+    "escolhida": 1,
+    "img": "img/rosa-elena-curruchich-cronicas-de-comalapa-masp.webp",
+    "cred": "Rosa Elena Curruchich, Van a escoger capitana del nuevo año, c. 1980. Acervo MASP. Foto: Eduardo Ortega",
+    "motivo": "pintura emoldurada, 2560x1607; moldura inteira cabe no recorte"
+  },
+  "Horizontes do Solo|Ateliê397": {
+    "links": {
+      "aqa": "https://artequeacontece.com.br/evento/horizontes-do-solo-de-barbara-banida-claudio-cretti-e-pedro-franca-no-atelie397/"
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/10/horizontes-solo-atelie397-scaled-e1791982998187.jpg",
+        "md5": "9e06084f54912f0de445531a0af1a536",
+        "fonte": "aqa",
+        "w": 1707,
+        "h": 1084,
+        "kb": 206,
+        "serveObra": false,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": "Obra \"Modular Satélite\", de Pedro França. Foto: Paulo Pereira",
+    "atualizado": "2026-10-26",
+    "escolhida": 1,
+    "img": "img/horizontes-do-solo-atelie397.webp",
+    "cred": "Cortesia Ateliê397",
+    "motivo": "painel de relevos na parede, 1707x1084; legenda não prova qual foto é, crédito neutro"
+  },
+  "Estado de Transe — Dora Smék|Central Galeria": {
+    "links": {
+      "site": "https://www.centralgaleria.com/exposicoes/dora-smek-estado-de-transe",
+      "siteConfianca": 13
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://images.squarespace-cdn.com/content/v1/62a1065dc3312a38fe5914c1/1790785145866-5MSRGCGKTYSS7UW6HVIH/Dora+Sm%C3%A9k_ID6341_ph+Ana+Pigosso_high_a2.jpg?format=2500w",
+        "md5": "63af27878663a2f99a21ecf5bd61bb2a",
+        "fonte": "site",
+        "w": 2500,
+        "h": 1406,
+        "kb": 139,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://images.squarespace-cdn.com/content/v1/62a1065dc3312a38fe5914c1/1790789849858-WUZM35PQ32L40AS16Q4J/Dora%2BSm%25C3%25A9k_ID6341_ph%2BAna%2BPigosso_low_d.jpg?format=2500w",
+        "md5": "39bea6570499bdab589f1497aab18acd",
+        "fonte": "site",
+        "w": 1950,
+        "h": 1097,
+        "kb": 96,
+        "serveObra": false,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-26",
+    "escolhida": 1,
+    "img": "img/estado-de-transe-central-galeria.webp",
+    "cred": "Cortesia Central Galeria",
+    "motivo": "escultura em bronze e latão, 2500x1406"
+  },
+  "Círio de Nazaré. Do sagrado ao profano: uma extensão do Brasil | Nova Fotografia 2026|MIS — Museu da Imagem e do Som": {
+    "links": {
+      "site": "https://mis-sp.org.br/exposicao/cirio-de-nazare-do-sagrado-ao-profano-uma-extensao-do-brasil-nova-fotografia-2026/",
+      "siteConfianca": 28
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://mis-sp.org.br/wp-content/uploads/2026/06/regua_NOVA-FOTO_posit_horiz-V1_periodo-eleitoral-scaled.png",
+        "md5": "276ed3b03d3c2bc76d9b7b19abd3b9bd",
+        "fonte": "site",
+        "w": 2560,
+        "h": 1307,
+        "kb": 186,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://mis-sp.org.br/wp-content/uploads/2023/12/cropped-marca-texto-768x71.png",
+        "md5": "10b25492774636cc01b8001dc8a24656",
+        "fonte": "site",
+        "w": 768,
+        "h": 71,
+        "kb": 22,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 3,
+        "url": "https://mis-sp.org.br/wp-content/uploads/2026/06/regua_NOVA-FOTO_posit_horiz-V1_periodo-eleitoral.png",
+        "md5": "bedffd1c50ab26cbaf2853da08fc6363",
+        "fonte": "site",
+        "w": 6120,
+        "h": 3124,
+        "kb": 258,
+        "serveObra": false,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-26",
+    "sem": "só banners pretos com logos de patrocinadores",
+    "semEm": "2026-10-26"
+  },
+  "Marília Mendonça: Sentimento Louco|MIS — Museu da Imagem e do Som": {
+    "links": {
+      "site": "https://mis-sp.org.br/exposicao/marilia-mendonca-sentimento-louco/",
+      "siteConfianca": 13
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://mis-sp.org.br/wp-content/uploads/2026/07/regua-marilia_horiz_V4-1_page-0001-scaled.jpg",
+        "md5": "eae03b8c32922e61c2d363fcc8728504",
+        "fonte": "site",
+        "w": 2560,
+        "h": 1011,
+        "kb": 164,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 2,
+        "url": "https://mis-sp.org.br/wp-content/uploads/2023/12/cropped-marca-texto-768x71.png",
+        "md5": "10b25492774636cc01b8001dc8a24656",
+        "fonte": "site",
+        "w": 768,
+        "h": 71,
+        "kb": 22,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 3,
+        "url": "https://mis-sp.org.br/wp-content/uploads/2026/07/regua-marilia_horiz_V4-1_page-0001.jpg",
+        "md5": "a8a64c9ed4a714fc8c3ed585e77b2cab",
+        "fonte": "site",
+        "w": 2872,
+        "h": 1134,
+        "kb": 400,
+        "serveObra": false,
+        "serveComFoco": false
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-26",
+    "sem": "quadro de patrocinadores e logo",
+    "semEm": "2026-10-26"
+  },
+  "NZO: Memórias Afro-brasileiras|Museu Afro Brasil Emanoel Araujo": {
+    "links": {
+      "site": "https://museuafrobrasil.org.br/exposicao/nzo-memorias-afro-brasileiras/",
+      "siteConfianca": 13
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://museuafrobrasil.org.br/wp-content/uploads/2025/04/img_apoie_01.jpg",
+        "md5": "73b1d09f84dfda9f5b626a1f19c6554d",
+        "fonte": "site",
+        "w": 1920,
+        "h": 1240,
+        "kb": 383,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://museuafrobrasil.org.br/wp-content/uploads/2026/06/cropped-mab-preto.png",
+        "md5": "70805b7166df81399499045ff0648b66",
+        "fonte": "site",
+        "w": 791,
+        "h": 144,
+        "kb": 20,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 3,
+        "url": "https://museuafrobrasil.org.br/wp-content/uploads/2026/09/Site-miniatura.png",
+        "md5": "5ea4166020f752e245b08173fe328888",
+        "fonte": "site",
+        "w": 1189,
+        "h": 713,
+        "kb": 25,
+        "serveObra": false,
+        "serveComFoco": false
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-26",
+    "sem": "mesma folha genérica do Afríquia, nada da mostra",
+    "semEm": "2026-10-26"
+  },
+  "Tinta sobre Memória — Luiz Fukushiro|Museu da Imigração": {
+    "links": {
+      "site": "https://museudaimigracao.org.br/exposicoes/temporarias/tinta-sobre-a-memoria-residencia-artistica-2026",
+      "siteConfianca": 10
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://museudaimigracao.org.br//uploads//portal//eventos//exposicoes//design-sem-nome-2-23-09-2026-11-29.png",
+        "md5": "bab021c4a68d003a825a4098aa89e74a",
+        "fonte": "site",
+        "w": 1600,
+        "h": 1064,
+        "kb": 3030,
+        "serveObra": false,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-26",
+    "escolhida": 1,
+    "img": "img/tinta-sobre-memoria-museu-da-imigracao.png",
+    "cred": "Cortesia Museu da Imigração",
+    "motivo": "papel artesanal com tinta, 1600x1064; única candidata, enquadramento no papel e na mão"
+  },
+  "vem, vira, vai, voo — Selva de Carvalho|Verve Galeria": {
+    "links": {
+      "siteErro": "nenhum link casou com o titulo (home + indices, ate com render)",
+      "site": "https://www.vervegaleria.com/exposicoes/sala-de-projetos-vem-vira-vai-voo/",
+      "siteConfianca": 19
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://www.vervegaleria.com/wp-content/uploads/2026/10/Selva-de-Carvalho_vem-vira-vai-voo_Sala-de-Projetos2-1-scaled.jpg",
+        "md5": "8d404a974847ba11cd8e9ce113efdab5",
+        "fonte": "site",
+        "w": 2560,
+        "h": 1706,
+        "kb": 584,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://www.vervegaleria.com/wp-content/uploads/2026/10/Selva-de-Carvalho_vem-vira-vai-voo_Sala-de-Projetos2-1.jpg",
+        "md5": "8d89f56cef472a4bd07d5954cd24399d",
+        "fonte": "site",
+        "w": 2732,
+        "h": 1821,
+        "kb": 1057,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 3,
+        "url": "https://www.vervegaleria.com/wp-content/uploads/2026/10/Selva-de-Carvalho_vira.png",
+        "md5": "b0a5a90e1add5425698671935f33c1e7",
+        "fonte": "site",
+        "w": 1024,
+        "h": 1536,
+        "kb": 1833,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 4,
+        "url": "https://www.vervegaleria.com/wp-content/uploads/2026/10/Selva-de-Carvalho_voo.jpg",
+        "md5": "43a041a4d2ef4feb07e308f9907463a2",
+        "fonte": "site",
+        "w": 3642,
+        "h": 5463,
+        "kb": 4430,
+        "serveObra": true,
+        "serveComFoco": true
+      },
+      {
+        "n": 5,
+        "url": "https://www.vervegaleria.com/wp-content/uploads/2026/08/MG_7642-copy.jpg",
+        "md5": "d8c9d2b67faa879b339780e1d68050cc",
+        "fonte": "site",
+        "w": 2346,
+        "h": 1564,
+        "kb": 1231,
+        "serveObra": false,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-26",
+    "escolhida": 4,
+    "img": "img/vem-vira-vai-voo-verve-galeria.jpg",
+    "cred": "Cortesia Verve Galeria",
+    "motivo": "peça têxtil suspensa, 3642x5463, fundo limpo; a #3 é 1024 px"
+  },
+  "Cardosinho: Acervo Especial|Galeria Estação": {
+    "links": {
+      "siteErro": "nenhum link casou com o titulo (home + indices, ate com render)"
+    },
+    "candidatos": []
+  },
+  "Aquilo Que Não Cabe — Jessica Costa|Zipper Galeria": {
+    "links": {
+      "aqa": "https://artequeacontece.com.br/evento/aquilo-que-nao-cabe-de-jessica-costa-na-zipper-galeria/"
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/10/aquilo-que-nao-cabe-jessica-costa-zipper-galeria-scaled.jpg",
+        "md5": "fa02539b7c2cb698d89acf4261319fef",
+        "fonte": "aqa",
+        "w": 2560,
+        "h": 1707,
+        "kb": 442,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/10/aquilo-que-nao-cabe-jessica-costa-zipper-galeria.jpg",
+        "md5": "beaa8a044e1e7d15b5d76857cfcc1624",
+        "fonte": "aqa",
+        "w": 6720,
+        "h": 4480,
+        "kb": 7342,
+        "serveObra": false,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": "Obra \"Voluptuosa II\" (2026), de Jessica Costa. Foto: Divulgação",
+    "atualizado": "2026-10-26",
+    "escolhida": 1,
+    "img": "img/aquilo-que-nao-cabe-zipper-galeria.jpg",
+    "cred": "Jessica Costa, Voluptuosa II, 2026. Divulgação Zipper Galeria",
+    "motivo": "escultura têxtil vermelha, 2560x1707 (a #2 é o mesmo arquivo gigante)"
+  },
+  "O Vaso de Ojuara — Claudia Marchetti|Zipper Galeria": {
+    "links": {
+      "aqa": "https://artequeacontece.com.br/evento/o-vaso-de-ojuara-de-claudia-marchetti-na-zipper-galeria/"
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/10/o-vaso-ojuara-claudia-marchetti-zipper-galeria-scaled.jpg",
+        "md5": "c5f25014d8b4207b4481cb33b3a02bd3",
+        "fonte": "aqa",
+        "w": 2560,
+        "h": 1375,
+        "kb": 658,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/10/o-vaso-ojuara-claudia-marchetti-zipper-galeria.jpg",
+        "md5": "c817304e93d2c45754db3bbbfee79781",
+        "fonte": "aqa",
+        "w": 5122,
+        "h": 2751,
+        "kb": 13212,
+        "serveObra": false,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": "Foto: Biah Schmidt",
+    "atualizado": "2026-10-26",
+    "escolhida": 1,
+    "img": "img/o-vaso-de-ojuara-zipper-galeria.jpg",
+    "cred": "Foto: Biah Schmidt / Zipper Galeria",
+    "motivo": "políptico pintado, 2560x1375; o recorte 4:5 mostra só a jarra grande (foco 70), o site mostra inteiro"
+  },
+  "Jacqueline Humphries e JH Studio|Auroras": {
+    "links": {
+      "siteErro": "nenhum link casou com o titulo (home + indices, ate com render)"
+    },
+    "candidatos": []
+  },
+  "Deslocar, Desalinhar, Interromper — Antonio Bokel|Galeria Luis Maluf": {
+    "links": {
+      "site": "https://luismaluf.com/atual/antonio-bokel-deslocar-desalinhar-interromper/",
+      "siteConfianca": 15
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://luismaluf.com/wp-content/uploads/2026/10/1.-2026_Out_FotoVistas_Exposicao_JenniferBrito_AK.jpg",
+        "md5": "cf88aa43358c3f2754af0720eb01ee47",
+        "fonte": "site",
+        "w": 1200,
+        "h": 800,
+        "kb": 251,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 2,
+        "url": "https://luismaluf.com/wp-content/uploads/2026/10/2.-2026_Out_FotoVistas_Exposicao_JenniferBrito_AK1.1.jpg",
+        "md5": "dbf74a58f1c0fd13de8d8c1072ff40df",
+        "fonte": "site",
+        "w": 1200,
+        "h": 800,
+        "kb": 158,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 3,
+        "url": "https://luismaluf.com/wp-content/uploads/2026/10/3.-2026_Out_FotoVistas_Exposicao_JenniferBrito_AK3.jpg",
+        "md5": "9ba9a9fd5c8c0a5a9170666ef70a3482",
+        "fonte": "site",
+        "w": 1200,
+        "h": 800,
+        "kb": 175,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 4,
+        "url": "https://luismaluf.com/wp-content/uploads/2026/10/4.-2026_Out_FotoVistas_Exposicao_JenniferBrito_AK2.jpg",
+        "md5": "b6c6c3ada3389642dc1ec23283fcd6be",
+        "fonte": "site",
+        "w": 1200,
+        "h": 800,
+        "kb": 133,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 5,
+        "url": "https://luismaluf.com/wp-content/uploads/2026/10/5.-2026_Out_FotoVistas_Exposicao_JenniferBrito_AK4.jpg",
+        "md5": "3bbe39856ff5b9ee4556ec0dacf86b9a",
+        "fonte": "site",
+        "w": 1200,
+        "h": 800,
+        "kb": 121,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 6,
+        "url": "https://luismaluf.com/wp-content/uploads/2026/10/6.-2026_Out_FotoVistas_Exposicao_JenniferBrito_AK5.jpg",
+        "md5": "cb6c73688543466e516be6efbcca305c",
+        "fonte": "site",
+        "w": 1200,
+        "h": 800,
+        "kb": 118,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 7,
+        "url": "https://luismaluf.com/wp-content/uploads/2026/10/7.-2026_Out_FotoVistas_Exposicao_JenniferBrito_AK7.jpg",
+        "md5": "e831107619193c2073841a9e36e39727",
+        "fonte": "site",
+        "w": 1200,
+        "h": 800,
+        "kb": 181,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 8,
+        "url": "https://luismaluf.com/wp-content/uploads/2026/10/8.-2026_Out_FotoVistas_Exposicao_JenniferBrito_AK6.jpg",
+        "md5": "3dd4dce5ab82571d4970c371117159c1",
+        "fonte": "site",
+        "w": 1200,
+        "h": 800,
+        "kb": 130,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 9,
+        "url": "https://luismaluf.com/wp-content/uploads/2026/10/9.-2026_Out_FotoVistas_Exposicao_JenniferBrito_AK9.jpg",
+        "md5": "1ebf73f209887c8a691e028cc84702e3",
+        "fonte": "site",
+        "w": 1200,
+        "h": 800,
+        "kb": 220,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 10,
+        "url": "https://luismaluf.com/wp-content/uploads/2026/10/10.-2026_Out_FotoVistas_Exposicao_JenniferBrito_AK10.jpg",
+        "md5": "b1baa0d514e6ea99e8793fb3f9df3674",
+        "fonte": "site",
+        "w": 1200,
+        "h": 800,
+        "kb": 188,
+        "serveObra": false,
+        "serveComFoco": false
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-26",
+    "escolhida": 8,
+    "img": "img/deslocar-desalinhar-interromper-galeria-luis-maluf.jpg",
+    "cred": "Cortesia Galeria Luis Maluf",
+    "motivo": "escultura em aço corten com esfera dourada e pintura, 1200x800, vista de galeria; serve ao site"
+  },
+  "Pequenos Afetos|Farol Santander": {
+    "links": {
+      "siteErro": "nenhum link casou com o titulo (home + indices, ate com render)"
+    },
+    "candidatos": []
+  },
+  "Geometrias do Invisível — Andrea Natali|Espaço República": {
+    "links": {},
+    "candidatos": []
+  },
+  "Belezas Brasileiras|MIS — Museu da Imagem e do Som": {
+    "links": {
+      "site": "https://mis-sp.org.br/exposicao/belezas-brasileiras/",
+      "siteConfianca": 31
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://mis-sp.org.br/wp-content/uploads/2023/08/img_expo_linha-fotografia-tb.jpg",
+        "md5": "fbf38d8e59baf13aa31321f72a2eaf2c",
+        "fonte": "site",
+        "w": 1920,
+        "h": 1240,
+        "kb": 225,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://mis-sp.org.br/wp-content/uploads/2023/12/cropped-marca-texto-768x71.png",
+        "md5": "10b25492774636cc01b8001dc8a24656",
+        "fonte": "site",
+        "w": 768,
+        "h": 71,
+        "kb": 22,
+        "serveObra": false,
+        "serveComFoco": false
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-26",
+    "sem": "mesma câmera antiga que aparece na página de Steps: imagem genérica do site, não da mostra",
+    "semEm": "2026-10-26"
+  },
+  "Afropindorama: tecnologia do afeto. Práticas de bem viver|Museu Afro Brasil Emanoel Araujo": {
+    "links": {
+      "site": "https://museuafrobrasil.org.br/exposicao/afropindorama/",
+      "siteConfianca": 4
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://museuafrobrasil.org.br/wp-content/uploads/2025/04/img_apoie_01.jpg",
+        "md5": "73b1d09f84dfda9f5b626a1f19c6554d",
+        "fonte": "site",
+        "w": 1920,
+        "h": 1240,
+        "kb": 383,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://museuafrobrasil.org.br/wp-content/uploads/2026/06/cropped-mab-preto.png",
+        "md5": "70805b7166df81399499045ff0648b66",
+        "fonte": "site",
+        "w": 791,
+        "h": 144,
+        "kb": 20,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 3,
+        "url": "https://museuafrobrasil.org.br/wp-content/uploads/2026/09/Site-miniatura.png",
+        "md5": "5ea4166020f752e245b08173fe328888",
+        "fonte": "site",
+        "w": 1189,
+        "h": 713,
+        "kb": 25,
+        "serveObra": false,
+        "serveComFoco": false
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-26",
+    "sem": "mesma folha genérica das outras mostras do museu",
+    "semEm": "2026-10-26"
+  },
+  "Quarto de hora — Elisa Arruda|AM Galeria": {
+    "links": {
+      "site": "https://amgaleria.com.br/quarto-de-hora-expo-elisa-arruda/",
+      "siteConfianca": 13
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://amgaleria.com.br/wp-content/uploads/AM-Galeria-SPtranparente-scaled.png",
+        "md5": "8ad14916f8f472be7688299467289f5b",
+        "fonte": "site",
+        "w": 2560,
+        "h": 249,
+        "kb": 44,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 2,
+        "url": "https://amgaleria.com.br/wp-content/uploads/Neblina.jpg",
+        "md5": "e77bdb9e5fd5fa9a6af7b7bc48f36977",
+        "fonte": "site",
+        "w": 1086,
+        "h": 1448,
+        "kb": 59,
+        "serveObra": true,
+        "serveComFoco": true
+      },
+      {
+        "n": 3,
+        "url": "https://amgaleria.com.br/wp-content/uploads/am_galeria_H_transparente-copiar.png",
+        "md5": "6ff3e1f94af7cfd4016ebe9c934cf5a0",
+        "fonte": "site",
+        "w": 2259,
+        "h": 273,
+        "kb": 34,
+        "serveObra": false,
+        "serveComFoco": false
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-26",
+    "escolhida": 2,
+    "img": "img/quarto-de-hora-am-galeria.jpg",
+    "cred": "Cortesia AM Galeria",
+    "motivo": "obra geométrica octogonal, 1086x1448; as outras duas são logos"
+  },
+  "Troca de segredos — Barrão|Fortes D'Aloia & Gabriel — Galeria": {
+    "links": {
+      "siteErro": "nenhum link casou com o titulo (home + indices, ate com render)",
+      "site": "https://fdag.com.br/exposicoes/troca-de-segredos/",
+      "siteConfianca": 5
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://fdag.com.br/app/uploads/2026/10/fdag-barrao-202609-7.jpg",
+        "md5": "140ae859b54b5ddb93d7db73dcdc04af",
+        "fonte": "site",
+        "w": 5194,
+        "h": 4364,
+        "kb": 3543,
+        "serveObra": true,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-26",
+    "escolhida": 1,
+    "img": "img/troca-de-segredos-fortes-d-aloia-gabriel-galeria.jpg",
+    "cred": "Cortesia Fortes D'Aloia & Gabriel",
+    "motivo": "escultura em cerâmica com sapo, 5194x4364, fundo limpo"
+  },
+  "Ver o mundo — João Luiz Musa|Luciana Brito Galeria": {
+    "links": {
+      "site": "https://lucianabritogaleria.com.br/exhibitions/184-joao-luiz-musa-ver-o-mundo/",
+      "siteConfianca": 16
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto/ws-artlogicwebsite0106/usr/images/artworks/main_image/items/5a/5a9fafebce774baa9a09af288c2f493e/018407.jpg",
+        "md5": "d28fd61094b774c17cfb081ab1883f64",
+        "fonte": "site",
+        "w": 2600,
+        "h": 1734,
+        "kb": 74,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://static-assets.artlogic.net/w_2600,h_2600,c_limit,f_auto,fl_lossy,q_auto/ws-artlogicwebsite0106/usr/images/exhibitions/group_images_override/184/018414_detalhe.jpg",
+        "md5": "66a282fdb4d1b9af5711efb939077c8c",
+        "fonte": "site",
+        "w": 2600,
+        "h": 1945,
+        "kb": 215,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 3,
+        "url": "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto/ws-artlogicwebsite0106/usr/images/artworks/main_image/items/98/98160b3933ef4e64b77d1de9da804725/018404_2.jpg",
+        "md5": "45c8f30d9a3b6c5fa086b0afd367b985",
+        "fonte": "site",
+        "w": 2600,
+        "h": 1734,
+        "kb": 468,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 4,
+        "url": "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto/ws-artlogicwebsite0106/usr/images/artworks/main_image/items/1d/1d87bc88999e4d488187f27975d12561/018405.jpg",
+        "md5": "f92e6ea96cfd6da6b0b87a49cefb7583",
+        "fonte": "site",
+        "w": 2600,
+        "h": 1734,
+        "kb": 195,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 5,
+        "url": "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto/ws-artlogicwebsite0106/usr/images/artworks/main_image/items/fa/fa812a4d75d346848586597669b55542/018408.jpg",
+        "md5": "69da07ee9680ae231171b04a7697500f",
+        "fonte": "site",
+        "w": 2600,
+        "h": 1734,
+        "kb": 204,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 6,
+        "url": "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto/ws-artlogicwebsite0106/usr/images/artworks/main_image/items/02/02dbe465e4124119845ec52bbad49b35/018409.jpg",
+        "md5": "cd10c2cf687aa53f9af9c088c765effc",
+        "fonte": "site",
+        "w": 2600,
+        "h": 1734,
+        "kb": 186,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 7,
+        "url": "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto/ws-artlogicwebsite0106/usr/images/artworks/main_image/items/ee/ee1f25441b4b41a990cbb1918dd672b9/018406.jpg",
+        "md5": "d65bf12a816684515cb6c56f7685fcaa",
+        "fonte": "site",
+        "w": 2600,
+        "h": 1734,
+        "kb": 147,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 8,
+        "url": "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto/ws-artlogicwebsite0106/usr/images/artworks/main_image/items/15/15d7adf4ae064e8699ec1da65c57c61f/018414_artlogic.jpg",
+        "md5": "4c5258e5b0e401e23d1a85f104e30aaa",
+        "fonte": "site",
+        "w": 2600,
+        "h": 1734,
+        "kb": 111,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 9,
+        "url": "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto/ws-artlogicwebsite0106/usr/images/artworks/main_image/items/f2/f28f40aa5ff5481099b3748d36f31952/018412_artlogic.jpg",
+        "md5": "e3fe42c88eaacd86c1b1b4e7fa2da5aa",
+        "fonte": "site",
+        "w": 2600,
+        "h": 1734,
+        "kb": 94,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 10,
+        "url": "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto/ws-artlogicwebsite0106/usr/images/artworks/main_image/items/52/52091729b624400fbd2c83a78b25e290/018417_artlogic.jpg",
+        "md5": "60ec9210283d4f463c37b2a56bf4f872",
+        "fonte": "site",
+        "w": 2600,
+        "h": 1734,
+        "kb": 117,
+        "serveObra": false,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-26",
+    "escolhida": 2,
+    "img": "img/ver-o-mundo-luciana-brito-galeria.webp",
+    "cred": "Cortesia Luciana Brito Galeria",
+    "motivo": "única fotografia sem moldura nem parede, 2600x1945; as outras 9 mostram o quadro na parede"
+  },
+  "Steps — Abbas Kiarostami|MIS — Museu da Imagem e do Som": {
+    "links": {
+      "site": "https://mis-sp.org.br/exposicao/steps/",
+      "siteConfianca": 10
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://mis-sp.org.br/wp-content/uploads/2023/08/img_expo_linha-fotografia-tb.jpg",
+        "md5": "fbf38d8e59baf13aa31321f72a2eaf2c",
+        "fonte": "site",
+        "w": 1920,
+        "h": 1240,
+        "kb": 225,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://mis-sp.org.br/wp-content/uploads/2023/12/cropped-marca-texto-768x71.png",
+        "md5": "10b25492774636cc01b8001dc8a24656",
+        "fonte": "site",
+        "w": 768,
+        "h": 71,
+        "kb": 22,
+        "serveObra": false,
+        "serveComFoco": false
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-26",
+    "sem": "mesma câmera antiga de Belezas Brasileiras: imagem genérica do site",
+    "semEm": "2026-10-26"
+  }
+}

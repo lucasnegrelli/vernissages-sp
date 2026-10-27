@@ -507,7 +507,11 @@ function relatorio(achados, faltas){
   return s;
 }
 
-(async () => {
+/* Exporta o motor para o cacar-imagens.js (26/10/2026). O CLI so roda quando
+   o arquivo e chamado direto. */
+module.exports = { descobrir, pegar, pegarRender, candidatas, melhorImagem, fecharBrowser };
+
+if (require.main === module) (async () => {
   /* Modo de conferencia: roda so a escolha de imagem numa pagina, sem o
      pipeline de descoberta. Serve para auditar por que uma galeria so entrega
      card, e para testar a heuristica sem gastar meia hora de varredura.
