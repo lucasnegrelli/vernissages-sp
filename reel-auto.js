@@ -44,6 +44,7 @@ const argv = process.argv.slice(2);
 const flag = (n, d) => { const a = argv.find(x => x.startsWith(`--${n}=`)); return a ? a.split('=').slice(1).join('=') : d; };
 const hoje = flag('date', new Date(Date.now() - 3 * 3600e3).toISOString().slice(0, 10));
 const N = parseInt(flag('n', '5'), 10);
+const FFMPEG = process.env.FFMPEG || 'ffmpeg';
 const REND = process.env.RENDER_DIR || path.join(RAIZ, '.render');
 const USADOS = path.join(RAIZ, 'SOCIAL', 'REELS-USADOS.json');
 
@@ -153,7 +154,7 @@ function clipe(img, ov, dur, saida, zoomIn) {
   const z = zoomIn ? `min(1+0.0011*on,1.14)` : `max(1.14-0.0011*on,1)`;
   const filtro = `[0:v]zoompan=z='${z}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=${frames}:s=${W}x${H}:fps=${FPS}[v];` +
                  `[v][1:v]overlay=0:0:shortest=1,format=yuv420p[o]`;
-  execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-i', img, '-loop', '1', '-framerate', String(FPS), '-i', ov,
+  execFileSync(FFMPEG, ['-y', '-loglevel', 'error', '-i', img, '-loop', '1', '-framerate', String(FPS), '-i', ov,
     '-filter_complex', filtro, '-map', '[o]', '-t', String(dur), '-r', String(FPS),
     '-c:v', 'libx264', '-preset', 'medium', '-crf', '20', '-pix_fmt', 'yuv420p', '-an', saida]);
 }
@@ -205,7 +206,7 @@ async function principal() {
     : path.join(RAIZ, 'SOCIAL', hoje.slice(5, 7), hoje.slice(8, 10));
   fs.mkdirSync(saidaDir, { recursive: true });
   const mp4 = path.join(saidaDir, 'reel.mp4');
-  execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', txt,
+  execFileSync(FFMPEG, ['-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', txt,
     '-f', 'lavfi', '-i', 'anullsrc=r=44100:cl=stereo', '-shortest',
     '-c:v', 'libx264', '-preset', 'medium', '-crf', '21', '-pix_fmt', 'yuv420p', '-movflags', '+faststart',
     '-c:a', 'aac', '-b:a', '96k', mp4]);
