@@ -242,7 +242,6 @@ const EXPOS = [
 {t:"Cavalinhas e Falésias",a:"Carolina Colichio",v:"Galeria Marília Razuk",ini:"2026-09-12",fim:"2026-11-03",d:"Exposição individual.",img:"img/cavalinhas-e-falesias-galeria-marilia-razuk.jpg",cred:"Cortesia Galeria Marília Razuk"},
 
 /* --- casas novas mapeadas hoje: mostra atual confirmada na fonte --- */
-{t:"Do museu ao ateliê, do ateliê ao museu: o que a gráfica pode imaginar?",a:"",v:"Museu Lasar Segall",ini:"2026-07-18",fim:"2026-10-19",d:"Coletiva reunindo gravura em metal, xilogravura, monotipia e desenho de doze artistas visuais.",img:"",cred:""},
 
 /* --- 91 de 125 casas sem nada em cartaz (23/09/2026): apuração de 50 casas
    com sinal no site, em 5 frentes paralelas. 18 mostras confirmadas na fonte
@@ -359,11 +358,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "O Vaso de Ojuara — Claudia Marchetti",
-  v: "Zipper Galeria",
-  quem: "Claudia Marchetti",
-  txt: "Individual no Zip'Up com texto crítico de Paula Alzugaray: quatorze pinturas recentes, o primeiro conjunto da artista em vinte anos. Abertura em 8 de outubro, das 18h às 21h.",
-  link: "https://www.zippergaleria.com.br",
+  t: "Rosa Elena Curruchich: crônicas de Comalapa",
+  v: "MASP",
+  quem: "Rosa Elena Curruchich",
+  txt: "Primeira mostra da artista guatemalteca no Brasil: mais de 80 obras de pequeno formato. Curadoria de Yudi Rafael e Guilherme Giufrida. Abertura em 30 de outubro, até 4 de abril.",
+  link: "https://masp.org.br",
   publi: false
 };
 
@@ -378,6 +377,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-10-27", k:"Rosa Elena Curruchich: crônicas de Comalapa|MASP"},
   {d:"2026-10-26", k:"O Vaso de Ojuara — Claudia Marchetti|Zipper Galeria"},
   {d:"2026-10-25", k:"Cardosinho: Acervo Especial|Galeria Estação"},
   {d:"2026-10-24", k:"Khāmoshī — Fernanda Valadares|Galeria Aura"},
@@ -470,5 +470,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "26/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "27/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
