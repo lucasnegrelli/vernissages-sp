@@ -7,7 +7,7 @@
         encerra -> obra -> estreia e fica com a primeira que passar nas réguas
         do próprio gerador (imagem, foto nunca repete, mostra descansada)
      2. gera até 4 stories do dia (stories.js)
-     3. enfileira: stories às 09:00, feed às 12:00 (publicar.js enfileirar).
+     3. enfileira: stories às 08:30, feed às 11:30 (30 min de folga: o cron do GitHub atrasa até ~15 min) (publicar.js enfileirar).
         Quem vai visitar decide de manhã; 19h chega tarde para "abre hoje".
    O publicar.yml (de hora em hora) posta o que venceu.
 
@@ -118,10 +118,10 @@ function fase2(temStory, temFeed) {
     try { console.log(rodar('publicar.js', ['enfileirar', DATA, `--conta=${CONTA}`, `--so=${so}`, `--quando=${q}`])); }
     catch (e) { console.log(`enfileirar ${so}: ` + String(e.stderr || e.message).trim().split('\n').pop()); }
   };
-  if (!temStory) enf('story', flag('story', '09:00'));
+  if (!temStory) enf('story', flag('story', '08:30'));
   const comLegenda = arquivos().some(x => /-LEGENDA.md$/.test(x));
   const temPngFeed = arquivos().some(x => x.endsWith('.png') && !x.startsWith('story'));
-  if (!temFeed && temPngFeed && comLegenda) enf('feed', flag('feed', '12:00'));
+  if (!temFeed && temPngFeed && comLegenda) enf('feed', flag('feed', '11:30'));
   else if (!temFeed) console.log('AVISO: sem feed hoje (sem peça ou sem legenda)');
   if (!filaDoDia().length) { console.log('nada entrou na fila'); process.exit(1); }
 }
