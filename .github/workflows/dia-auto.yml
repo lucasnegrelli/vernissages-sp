@@ -41,6 +41,9 @@ jobs:
           echo '{"name":"render","private":true}' > package.json
           npm i puppeteer-core sharp >/dev/null 2>&1
 
+      - name: ffmpeg (Reel)
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg >/dev/null
+
       - name: Gerar feed e stories
         run: node dia-auto.js --fase=gerar | tee /tmp/dia.log
 
