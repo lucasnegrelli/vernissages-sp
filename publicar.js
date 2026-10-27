@@ -136,8 +136,8 @@ async function api(metodo, caminho, params, token, fluxo = 'instagram') {
   return j;
 }
 
-async function aguardar(id, token, fluxo) {
-  for (let i = 0; i < 30; i++) {
+async function aguardar(id, token, fluxo, tentativas = 30) {
+  for (let i = 0; i < tentativas; i++) {
     const { status_code, status } = await api('GET', id, { fields: 'status_code,status' }, token, fluxo);
     if (status_code === 'FINISHED') return;
     if (status_code === 'ERROR' || status_code === 'EXPIRED') throw new Error(`container ${id}: ${status_code} ${status || ''}`);
@@ -166,6 +166,9 @@ async function publicarPost(post, dir, cfg, token) {
       for (const c of filhos) await aguardar(c, token, fluxo);
       return (await A('POST', `${ig}/media`, { media_type: 'CAROUSEL', children: filhos.join(','), caption: post.legenda, ...extra })).id;
     }
+    if (post.tipo === 'reel') {
+      return (await A('POST', `${ig}/media`, { media_type: 'REELS', video_url: url(post.imagens[0]), caption: post.legenda, share_to_feed: 'true' })).id;
+    }
     if (post.tipo === 'story') {
       return (await A('POST', `${ig}/media`, { media_type: 'STORIES', image_url: url(post.imagens[0]) })).id;
     }
@@ -176,7 +179,7 @@ async function publicarPost(post, dir, cfg, token) {
   // um a um e convida só quem a API aceita; o resto fica em post.collabRecusados.
   let container, usados = [];
   if (collab.length && post.tipo !== 'story') {
-    try { container = await criar(collab); await aguardar(container, token, fluxo); usados = collab; }
+    try { container = await criar(collab); await aguardar(container, token, fluxo, post.tipo === 'reel' ? 90 : 30); usados = collab; }
     catch (e) {
       console.warn(`${post.id}: Collab recusado (${String(e.message).slice(0, 120)}); testando um a um`);
       const bons = [];
@@ -187,14 +190,14 @@ async function publicarPost(post, dir, cfg, token) {
       post.collabRecusados = collab.filter(u => !bons.some(b => b.u === u));
       if (bons.length === 1) { container = bons[0].c; usados = [bons[0].u]; }
       else if (bons.length > 1) {
-        try { usados = bons.map(b => b.u); container = await criar(usados); await aguardar(container, token, fluxo); }
+        try { usados = bons.map(b => b.u); container = await criar(usados); await aguardar(container, token, fluxo, post.tipo === 'reel' ? 90 : 30); }
         catch (e3) { usados = []; container = await criar([]); }
       } else container = await criar([]);
     }
   } else container = await criar([]);
   post.collabUsado = usados.length > 0;
   post.collabConvidados = usados;
-  await aguardar(container, token, fluxo);
+  await aguardar(container, token, fluxo, post.tipo === 'reel' ? 90 : 30);
   return (await A('POST', `${ig}/media_publish`, { creation_id: container })).id;
 }
 

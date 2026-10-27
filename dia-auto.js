@@ -44,6 +44,7 @@ function horaDoDia(ini, fim, sal) {
 }
 const HORA_STORY = horaDoDia(6.5, 9.5, 's');
 const HORA_FEED = horaDoDia(10, 13.5, 'f');
+const HORA_REEL = horaDoDia(17, 19.5, 'r');   // Reel à noite: é o horário de rolagem por descoberta
 const PASTA = path.join(RAIZ, 'SOCIAL', MES, DIA);
 console.log(`horários do dia: stories ${HORA_STORY}, feed ${HORA_FEED}`);
 const dow = new Date(DATA + 'T12:00:00Z').getUTCDay();   // 4 = quinta
@@ -86,6 +87,15 @@ function gerarFeed() {
   }
   console.log('feed: nenhuma peça passou nas réguas\n  ' + motivos.join('\n  '));
   return null;
+}
+
+/* Reel: terça (últimos dias/semana) e sexta (fim de semana). Falha aqui nunca derruba o dia. */
+function gerarReel() {
+  if (![2, 5].includes(dow)) return;
+  const ja = filaDoDia().some(n => /reel/.test(n));
+  if (ja) return;
+  try { console.log(rodar('reel-auto.js', [`--date=${DATA}`, '--fila', `--quando=${flag('reel', HORA_REEL)}`])); }
+  catch (e) { console.log('reel: ' + (String(e.stdout || '') + String(e.stderr || '') || e.message).trim().split(String.fromCharCode(10)).slice(-2).join(' | ')); }
 }
 
 function gerarStories() {
@@ -144,8 +154,9 @@ function fase2(temStory, temFeed) {
   const ja = filaDoDia();
   const temFeed = ja.some(n => !/story/.test(n));
   const temStory = ja.some(n => /story/.test(n));
-  if (temFeed && temStory) { console.log(`fila do dia já existe (${ja.length}): nada a fazer`); return; }
+  const temReel = ja.some(n => /reel/.test(n)), querReel = [2, 5].includes(dow) && !temReel;
+  if (temFeed && temStory && !querReel) { console.log(`fila do dia já existe (${ja.length}): nada a fazer`); return; }
   if (SECO) { console.log('seco: pararia aqui'); return; }
-  if (fase === 'gerar' || fase === 'tudo') { if (!temFeed) fase1(); else gerarStories(); }
+  if (fase === 'gerar' || fase === 'tudo') { if (!temFeed) fase1(); else if (!temStory) gerarStories(); gerarReel(); }
   if (fase === 'enfileirar' || fase === 'tudo') fase2(temStory, temFeed);
 })();
