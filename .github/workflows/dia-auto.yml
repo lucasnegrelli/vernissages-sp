@@ -11,10 +11,10 @@ on:
     inputs:
       feed:
         description: 'Hora do feed (HH:MM, Brasília)'
-        default: '19:00'
+        default: '12:00'
       story:
         description: 'Hora dos stories (HH:MM, Brasília)'
-        default: '12:00'
+        default: '09:00'
 
 permissions:
   contents: write
@@ -43,7 +43,7 @@ jobs:
 
       - name: Gerar e enfileirar o dia
         run: |
-          node dia-auto.js --feed="${{ inputs.feed || '19:00' }}" --story="${{ inputs.story || '12:00' }}" | tee /tmp/dia.log
+          node dia-auto.js --feed="${{ inputs.feed || '12:00' }}" --story="${{ inputs.story || '09:00' }}" | tee /tmp/dia.log
 
       - name: Commitar fila e memória
         if: always()

@@ -7,7 +7,8 @@
         encerra -> obra -> estreia e fica com a primeira que passar nas réguas
         do próprio gerador (imagem, foto nunca repete, mostra descansada)
      2. gera até 4 stories do dia (stories.js)
-     3. enfileira: stories às 12:00, feed às 19:00 (publicar.js enfileirar)
+     3. enfileira: stories às 09:00, feed às 12:00 (publicar.js enfileirar).
+        Quem vai visitar decide de manhã; 19h chega tarde para "abre hoje".
    O publicar.yml (de hora em hora) posta o que venceu.
 
    Idempotente: se já existe fila do dia, não gera de novo.
@@ -54,7 +55,7 @@ function post(formato) {
 }
 
 function gerarFeed() {
-  const ordem = dow === 4 ? ['agenda', 'encerra', 'obra'] : ['encerra', 'obra', 'estreia'];
+  const ordem = dow === 4 ? ['agenda', 'encerra', 'obra'] : ['encerra', 'obra', 'estreia', 'numero', 'entrada', 'agenda'];
   const motivos = [];
   for (const f of ordem) {
     // limpa o que uma tentativa anterior deixou, para a próxima não herdar config
@@ -68,7 +69,7 @@ function gerarFeed() {
     const png = arquivos().some(x => x.startsWith(f) && x.endsWith('.png'));
     const leg = arquivos().some(x => /LEGENDA/i.test(x) && x.startsWith(f));
     if (png && leg) { console.log(`feed: ${f} gerado`); return f; }
-    const falha = (saida.match(/FALHOU .*/) || saida.match(/ABORTADO — .*/) || [saida.trim().split('\n').pop()])[0];
+    const falha = (saida.match(/FALHOU\s+.*/) || saida.match(/ABORTADO — .*/) || [saida.replace(/\s+/g, ' ').slice(-300)])[0];
     motivos.push(`${f}: ${falha}`);
     console.log(`feed: ${f} não passou (${falha})`);
   }
@@ -85,19 +86,21 @@ function gerarStories() {
 (function principal() {
   console.log(`dia-auto ${DATA} (dow ${dow})${SECO ? ' [seco]' : ''}`);
   const ja = filaDoDia();
-  if (ja.length) { console.log(`fila do dia já existe (${ja.length}): nada a fazer`); return; }
+  const temFeed = ja.some(n => !/story/.test(n));
+  const temStory = ja.some(n => /story/.test(n));
+  if (temFeed && temStory) { console.log(`fila do dia já existe (${ja.length}): nada a fazer`); return; }
   if (SECO) { console.log('seco: pararia aqui'); return; }
 
-  const feed = gerarFeed();
-  gerarStories();
+  const feed = temFeed ? null : gerarFeed();
+  if (!temStory) gerarStories();
   if (!fs.existsSync(PASTA)) { console.log('nada gerado'); process.exit(1); }
 
   const enf = (so, q) => {
     try { console.log(rodar('publicar.js', ['enfileirar', DATA, `--conta=${CONTA}`, `--so=${so}`, `--quando=${q}`])); }
     catch (e) { console.log(`enfileirar ${so}: ` + String(e.stderr || e.message).trim().split('\n').pop()); }
   };
-  enf('story', flag('story', '12:00'));
-  if (feed) enf('feed', flag('feed', '19:00'));
+  if (!temStory) enf('story', flag('story', '09:00'));
+  if (feed) enf('feed', flag('feed', '12:00'));
 
   if (!filaDoDia().length) { console.log('nada entrou na fila'); process.exit(1); }
   if (!feed) console.log('AVISO: só stories hoje, o feed não passou nas réguas');
