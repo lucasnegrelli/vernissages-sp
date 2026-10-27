@@ -86,9 +86,11 @@ async function enfileirar() {
 
   const quandoISO = `${data}T${hora}:00-03:00`;
   const criados = [];
+  const so = flag('so', '');   // 'story' ou 'feed': o dia-auto enfileira cada um no seu horário
   for (const [nome, lista] of Object.entries(grupos)) {
     const meta = await sharp(path.join(pasta, lista[0])).metadata();
     const story = meta.height >= 1900;
+    if ((so === 'story' && !story) || (so === 'feed' && story)) continue;
     const leg = [`${nome}-LEGENDA.md`, 'LEGENDA.txt'].map(f => path.join(pasta, f)).find(fs.existsSync);
     const { legenda, collab } = leg && !story ? separarLegenda(fs.readFileSync(leg, 'utf8')) : { legenda: '', collab: [] };
     if (!story && !legenda) throw new Error(`${nome}: sem legenda`);

@@ -1,0 +1,65 @@
+name: Dia no piloto automático
+
+# Gera e enfileira o dia (1 peça de feed + stories) sozinho, todo dia 07:30 em
+# Brasília. O publicar.yml posta no horário. Ver o cabeçalho do dia-auto.js.
+# Falha só quando nada entrou na fila; "feed não passou" é aviso, não erro.
+
+on:
+  schedule:
+    - cron: '30 10 * * *'
+  workflow_dispatch:
+    inputs:
+      feed:
+        description: 'Hora do feed (HH:MM, Brasília)'
+        default: '19:00'
+      story:
+        description: 'Hora dos stories (HH:MM, Brasília)'
+        default: '12:00'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dia-auto
+  cancel-in-progress: false
+
+jobs:
+  dia:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CHROME: /usr/bin/google-chrome
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Dependências de renderização
+        run: |
+          mkdir -p .render && cd .render
+          echo '{"name":"render","private":true}' > package.json
+          npm i puppeteer-core sharp >/dev/null 2>&1
+
+      - name: Gerar e enfileirar o dia
+        run: |
+          node dia-auto.js --feed="${{ inputs.feed || '19:00' }}" --story="${{ inputs.story || '12:00' }}" | tee /tmp/dia.log
+
+      - name: Commitar fila e memória
+        if: always()
+        run: |
+          git config user.name "vsp-dia-auto"
+          git config user.email "actions@users.noreply.github.com"
+          git add fila SOCIAL/USADAS.json SOCIAL/POSTADAS.json SOCIAL/FOTOS-USADAS.json 2>/dev/null || true
+          if git diff --cached --quiet; then echo "Nada mudou."; exit 0; fi
+          git commit -m "dia-auto: fila do dia"
+          for i in 1 2 3 4 5; do
+            if git pull --rebase -q origin main && git push; then exit 0; fi
+            sleep 3
+          done
+          exit 1
+
+      - name: Resumo
+        if: always()
+        run: |
+          { echo "## Dia no piloto automático"; echo '```'; cat /tmp/dia.log 2>/dev/null; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
