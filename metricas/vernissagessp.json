@@ -6,6 +6,12 @@
       "seguidores": 100,
       "seguindo": 97,
       "posts": 66
+    },
+    {
+      "data": "2026-10-27",
+      "seguidores": 100,
+      "seguindo": 97,
+      "posts": 67
     }
   ],
   "midias": {
@@ -408,6 +414,14 @@
       "comentarios": 0,
       "link": "https://www.instagram.com/p/DcgFRAmHIYO/",
       "formato": null
+    },
+    "18131938636828505": {
+      "tipo": "FEED",
+      "quando": "2026-10-27T15:39:31+0000",
+      "curtidas": 2,
+      "comentarios": 0,
+      "link": "https://www.instagram.com/p/DfAMwiznO1Q/",
+      "formato": "agenda"
     }
   }
 }
