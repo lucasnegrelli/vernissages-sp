@@ -33,7 +33,19 @@ const CONTA = flag('conta', 'vernissagessp');
 const hojeBR = () => new Date(Date.now() - 3 * 3600e3).toISOString().slice(0, 10);
 const DATA = flag('date', hojeBR());
 const [, MES, DIA] = DATA.split('-');
+
+/* Hora variável por dia (decisão de 27/10: sem horário fixo, para o metricas.js medir
+   qual janela rende). Sorteio determinístico pela data, em passos de 15 min. Stories
+   cedo (quem decide a saída vê de manhã), feed depois. O publicar.yml atrasa até ~15 min. */
+function horaDoDia(ini, fim, sal) {
+  let h = 0; for (const c of DATA + sal) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+  const passos = Math.floor((fim - ini) * 4), m = ini * 60 + (h % (passos + 1)) * 15;
+  return String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
+}
+const HORA_STORY = horaDoDia(6.5, 9.5, 's');
+const HORA_FEED = horaDoDia(10, 13.5, 'f');
 const PASTA = path.join(RAIZ, 'SOCIAL', MES, DIA);
+console.log(`horários do dia: stories ${HORA_STORY}, feed ${HORA_FEED}`);
 const dow = new Date(DATA + 'T12:00:00Z').getUTCDay();   // 4 = quinta
 
 const rodar = (script, a) => execFileSync(process.execPath, [path.join(RAIZ, script), ...a],
@@ -118,10 +130,10 @@ function fase2(temStory, temFeed) {
     try { console.log(rodar('publicar.js', ['enfileirar', DATA, `--conta=${CONTA}`, `--so=${so}`, `--quando=${q}`])); }
     catch (e) { console.log(`enfileirar ${so}: ` + String(e.stderr || e.message).trim().split('\n').pop()); }
   };
-  if (!temStory) enf('story', flag('story', '08:30'));
+  if (!temStory) enf('story', flag('story', HORA_STORY));
   const comLegenda = arquivos().some(x => /-LEGENDA.md$/.test(x));
   const temPngFeed = arquivos().some(x => x.endsWith('.png') && !x.startsWith('story'));
-  if (!temFeed && temPngFeed && comLegenda) enf('feed', flag('feed', '11:30'));
+  if (!temFeed && temPngFeed && comLegenda) enf('feed', flag('feed', HORA_FEED));
   else if (!temFeed) console.log('AVISO: sem feed hoje (sem peça ou sem legenda)');
   if (!filaDoDia().length) { console.log('nada entrou na fila'); process.exit(1); }
 }

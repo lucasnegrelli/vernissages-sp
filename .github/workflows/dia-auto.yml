@@ -1,20 +1,20 @@
 name: Dia no piloto automático
 
-# Gera e enfileira o dia (1 peça de feed + stories) sozinho, todo dia 07:30 em
-# Brasília. O publicar.yml posta no horário. Ver o cabeçalho do dia-auto.js.
+# Gera e enfileira o dia (1 peça de feed + stories) sozinho, todo dia 04:30 em
+# Brasília (horário do post é sorteado entre 06:30 e 13:30). O publicar.yml posta no horário. Ver o cabeçalho do dia-auto.js.
 # Falha só quando nada entrou na fila; "feed não passou" é aviso, não erro.
 
 on:
   schedule:
-    - cron: '30 10 * * *'
+    - cron: '30 7 * * *'
   workflow_dispatch:
     inputs:
       feed:
         description: 'Hora do feed (HH:MM, Brasília)'
-        default: '11:30'
+        required: false
       story:
         description: 'Hora dos stories (HH:MM, Brasília)'
-        default: '08:30'
+        required: false
 
 permissions:
   contents: write
@@ -64,7 +64,7 @@ jobs:
           fi
 
       - name: Enfileirar o dia
-        run: node dia-auto.js --fase=enfileirar --feed="${{ inputs.feed || '11:30' }}" --story="${{ inputs.story || '08:30' }}" | tee -a /tmp/dia.log
+        run: node dia-auto.js --fase=enfileirar ${{ inputs.feed && format('--feed={0}', inputs.feed) }} ${{ inputs.story && format('--story={0}', inputs.story) }} | tee -a /tmp/dia.log
 
       - name: Commitar fila e memória
         if: always()
