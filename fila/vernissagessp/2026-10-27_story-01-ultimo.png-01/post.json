@@ -1,7 +1,7 @@
 {
   "conta": "vernissagessp",
   "id": "2026-10-27_story-01-ultimo.png-01",
-  "status": "aprovado",
+  "status": "postado",
   "tipo": "story",
   "quando": "2026-10-27T12:30:00-03:00",
   "imagens": [
@@ -9,5 +9,8 @@
   ],
   "legenda": "",
   "collab": [],
-  "collabExtra": []
+  "collabExtra": [],
+  "collabUsado": false,
+  "midiaId": "18094597715682765",
+  "postadoEm": "2026-10-27T15:39:44.476Z"
 }

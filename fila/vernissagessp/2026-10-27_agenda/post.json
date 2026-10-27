@@ -1,7 +1,7 @@
 {
   "conta": "vernissagessp",
   "id": "2026-10-27_agenda",
-  "status": "aprovado",
+  "status": "postado",
   "tipo": "carrossel",
   "quando": "2026-10-27T12:00:00-03:00",
   "imagens": [
@@ -31,5 +31,8 @@
     "gruta.cc",
     "itaucultural",
     "galeriamariliarazuk"
-  ]
+  ],
+  "collabUsado": false,
+  "midiaId": "18131938636828505",
+  "postadoEm": "2026-10-27T15:39:35.952Z"
 }
