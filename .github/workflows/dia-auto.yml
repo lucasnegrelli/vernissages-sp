@@ -7,6 +7,7 @@ name: Dia no piloto automático
 on:
   schedule:
     - cron: '30 7 * * *'
+    - cron: '45 8 * * *'   # reserva: o cron do GitHub às vezes não dispara (28/10 não rodou); o script é idempotente
   workflow_dispatch:
     inputs:
       feed:
