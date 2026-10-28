@@ -72,7 +72,8 @@ jobs:
         run: |
           git config user.name "vsp-dia-auto"
           git config user.email "actions@users.noreply.github.com"
-          git add fila SOCIAL/USADAS.json SOCIAL/POSTADAS.json SOCIAL/FOTOS-USADAS.json SOCIAL/REELS-USADOS.json 2>/dev/null || true
+          # um a um: git add com caminho inexistente aborta tudo (ex.: REELS-USADOS.json antes do 1o Reel)
+          for p in fila SOCIAL/USADAS.json SOCIAL/POSTADAS.json SOCIAL/FOTOS-USADAS.json SOCIAL/REELS-USADOS.json; do [ -e "$p" ] && git add "$p"; done || true
           if git diff --cached --quiet; then echo "Nada mudou."; exit 0; fi
           git commit -m "dia-auto: fila do dia"
           for i in 1 2 3 4 5; do
