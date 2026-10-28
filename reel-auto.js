@@ -82,7 +82,7 @@ const GANCHO = {
 
 /* coletiva com lista longa de nomes: 3 primeiros + "e outros" (fato, sem inventar) */
 function quemCurto(q) {
-  const n = q.split(/,s*| e /).filter(Boolean);
+  const n = q.split(/,\s*| e /).filter(Boolean);
   return n.length > 4 ? n.slice(0, 3).join(', ') + ' e outros' : q;
 }
 
@@ -97,7 +97,7 @@ function selo(c, modo) {
 function legenda(modo, pick) {
   const [, tit] = GANCHO[modo](pick.length);
   const linhas = pick.map((c, i) =>
-    `${i + 1}. ${tituloCurto(c.e)}${autoria(c.e) ? ', ' + autoria(c.e) : ''}\n   ${c.v.name} ${arroba(c.v.ig)}, ${c.v.b} · até ${porExtenso(c.e.fim)}`);
+    `${i + 1}. ${tituloCurto(c.e)}${autoria(c.e) ? ', ' + quemCurto(autoria(c.e)) : ''}\n   ${(c.v.name + ' ' + arroba(c.v.ig)).trim()},${c.v.b} · até ${porExtenso(c.e.fim)}`);
   return `${tit.charAt(0).toUpperCase() + tit.slice(1)}.\n\n${linhas.join('\n\n')}\n\n` +
     `Salva para não esquecer e manda para quem vai com você.\n\n` +
     `Fotos: cortesia das casas e dos artistas.\n\n` +
