@@ -259,6 +259,18 @@ async function renderizar(html, saida, nome, vw, vh) {
     page.on('pageerror', x => console.log('PAGEERROR: ' + x.message));
     await page.goto('file:///' + tmp.replace(/\\/g, '/'), { waitUntil: 'networkidle0', timeout: 90000 });
     await page.evaluate(() => document.fonts.ready);
+    // lista final: encolhe até caber acima do rodapé (marca/paginação ficam em bottom:60px)
+    const sobra = await page.evaluate(() => {
+      const out = [];
+      document.querySelectorAll('.s.l').forEach(s => {
+        const l = s.querySelector('.lista'); let z = 1;
+        const limite = s.getBoundingClientRect().top + s.offsetHeight - 120;
+        while (l.getBoundingClientRect().bottom > limite && z > 0.55) { z -= 0.02; [...l.children].forEach(c => { c.style.zoom = z; }); }
+        out.push(Math.round(z * 100));
+      });
+      return out;
+    });
+    if (sobra.length) console.log('lista final: escala ' + sobra.join('%, ') + '%');
     await new Promise(r => setTimeout(r, 800));
     fs.mkdirSync(saida, { recursive: true });
     const els = await page.$$('.s');
