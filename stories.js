@@ -42,21 +42,26 @@ const somaDias = (iso, n) => new Date(dia(iso) + n * 864e5).toISOString().slice(
 const curto = iso => iso.slice(8, 10) + '.' + iso.slice(5, 7);
 
 /* O que o story diz, em ordem de peso. O selo é o gancho; a data, o fato. */
-function classificar(e, hoje) {
+function classificar(e, hoje, soComImagem) {
   const amanha = somaDias(hoje, 1);
   if (e.fim === hoje)   return { chave: 'ultimo',  selo: 'último dia',    linha: 'hoje',            peso: 1, paleta: 'escuro' };
   if (e.ini === hoje)   return { chave: 'abre',    selo: 'abre hoje',     linha: 'hoje',            peso: 2, paleta: 'linho'  };
   if (e.fim === amanha) return { chave: 'fecha',   selo: 'fecha amanhã',  linha: curto(e.fim),      peso: 3, paleta: 'tinta'  };
   if (e.ini === amanha) return { chave: 'abreAm',  selo: 'abre amanhã',   linha: curto(e.ini),      peso: 4, paleta: 'barro'  };
+  /* sem fato do dia com obra, o story de reserva é 'fecha em N dias' (só com imagem) */
+  if (soComImagem && e.fim && e.fim > amanha && e.fim <= somaDias(hoje, 7)) {
+    const n = Math.round((dia(e.fim) - dia(hoje)) / 864e5);
+    return { chave: 'semana', selo: 'fecha em ' + n + ' dias', linha: curto(e.fim), peso: 5, paleta: 'escuro' };
+  }
   return null;
 }
 
-async function escolher(DATA, hoje, max) {
+async function escolher(DATA, hoje, max, soComImagem) {
   const V = {}; DATA.venues.forEach(v => V[v.name] = v);
   const fila = [];
   for (const e of DATA.expos || []) {
     if (!V[e.v] || e.cartaz) continue;
-    const c = classificar(e, hoje);
+    const c = classificar(e, hoje, soComImagem);
     if (!c) continue;
     let rel = null, dim = null;
     try {
@@ -64,6 +69,7 @@ async function escolher(DATA, hoje, max) {
       dim = await medir(rel);
       if (!dim.w || dim.w < MIN_LARGURA) { rel = null; dim = null; }
     } catch { rel = null; dim = null; }
+    if (soComImagem && !rel) continue;   // decisão de 28/10: story sem imagem não sai
     fila.push({ e, v: V[e.v], c, rel, dim });
   }
   /* com imagem antes de sem; dentro disso, o selo de maior peso primeiro */
@@ -116,7 +122,7 @@ async function principal() {
   const max = parseInt(flag('max', '8'), 10);
 
   const DATA = carregarDados();
-  const lista = await escolher(DATA, hoje, max);
+  const lista = await escolher(DATA, hoje, max, argv.includes("--com-imagem"));
 
   console.log('STORIES · ' + hoje + ' · ' + lista.length + ' peça(s)');
   lista.forEach((o, i) => console.log('  ' + String(i + 1).padStart(2, '0') + ' ' + o.c.selo.padEnd(14) +

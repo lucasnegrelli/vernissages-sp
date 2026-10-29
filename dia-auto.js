@@ -99,7 +99,7 @@ function gerarReel() {
 }
 
 function gerarStories() {
-  try { rodar('stories.js', [`--date=${DATA}`, '--max=4']); }
+  try { rodar('stories.js', [`--date=${DATA}`, '--max=4', '--com-imagem']); }
   catch (e) { console.log('stories: ' + String(e.stdout || e.message).trim().split('\n').pop()); }
   console.log(`pngs na pasta do dia: ${arquivos().filter(x => x.endsWith('.png')).length}`);
 }
