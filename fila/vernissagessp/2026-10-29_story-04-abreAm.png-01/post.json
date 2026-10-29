@@ -1,7 +1,7 @@
 {
   "conta": "vernissagessp",
   "id": "2026-10-29_story-04-abreAm.png-01",
-  "status": "aprovado",
+  "status": "postado",
   "tipo": "story",
   "quando": "2026-10-29T10:00:00-03:00",
   "imagens": [
@@ -9,5 +9,9 @@
   ],
   "legenda": "",
   "collab": [],
-  "collabExtra": []
+  "collabExtra": [],
+  "collabUsado": false,
+  "collabConvidados": [],
+  "midiaId": "18093392030487539",
+  "postadoEm": "2026-10-29T18:56:53.569Z"
 }

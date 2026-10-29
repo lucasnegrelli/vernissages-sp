@@ -1,7 +1,7 @@
 {
   "conta": "vernissagessp",
   "id": "2026-10-29_agenda",
-  "status": "aprovado",
+  "status": "postado",
   "tipo": "carrossel",
   "quando": "2026-10-29T11:30:00-03:00",
   "imagens": [
@@ -31,5 +31,13 @@
     "gruta.cc",
     "itaucultural",
     "galeriamariliarazuk"
-  ]
+  ],
+  "collabUsado": true,
+  "collabConvidados": [
+    "amgaleriadearte",
+    "masp",
+    "museuafrobrasil"
+  ],
+  "midiaId": "18103541969048176",
+  "postadoEm": "2026-10-29T18:57:38.028Z"
 }
