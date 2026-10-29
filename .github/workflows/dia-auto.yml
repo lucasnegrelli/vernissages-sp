@@ -8,6 +8,8 @@ on:
   schedule:
     - cron: '30 7 * * *'
     - cron: '45 8 * * *'   # reserva: o cron do GitHub às vezes não dispara (28/10 não rodou); o script é idempotente
+    - cron: '15 10 * * *'
+    - cron: '30 12 * * *'
   workflow_dispatch:
     inputs:
       feed:
