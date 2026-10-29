@@ -1,0 +1,35 @@
+{
+  "conta": "vernissagessp",
+  "id": "2026-10-29_agenda",
+  "status": "aprovado",
+  "tipo": "carrossel",
+  "quando": "2026-10-29T11:30:00-03:00",
+  "imagens": [
+    "01.jpg",
+    "02.jpg",
+    "03.jpg",
+    "04.jpg",
+    "05.jpg",
+    "06.jpg",
+    "07.jpg",
+    "08.jpg",
+    "09.jpg",
+    "10.jpg"
+  ],
+  "legenda": "Arte em SP de 29.10 a 01.11.\n\nABRE\n• QUI 29.10 — Quarto de hora, Elisa Arruda @ AM Galeria (@amgaleriadearte), Itaim Bibi\n• SEX 30.10 — Pablo Delano: Museu da Antiga Colônia, Pablo Delano @ MASP (@masp), Bela Vista\n• SEX 30.10 — Rosa Elena Curruchich: crônicas de Comalapa, Rosa Elena Curruchich @ MASP (@masp), Bela Vista\n• SÁB 31.10 — Encantário Ibejis: Salve as crianças! @ Museu Afro Brasil Emanoel Araujo (@museuafrobrasil), Ibirapuera\n\nÚLTIMOS DIAS\n• QUI 29.10 — Tudo aquilo que move, Diana Motta, Efe Godoy, Fabiana Preti, Giulia Bianchi, Marysia Portinari, Naia Ceschin, Poli Pieratti, Thamiris Mandú, Verena Smit, Victoria Serednicki @ Galeria Frente, Cerqueira César\n• QUI 29.10 — Geometrias do Invisível, Andrea Natali @ Espaço República (@espacorepublica), República\n• SEX 30.10 — ambiguidade construtiva e ativação do espaço, Wolfram Ullrich @ Galeria Raquel Arnaud (@galeriaraquelarnaud), Vila Madalena\n• SÁB 31.10 — Paisagem temática para um novo normal, Daniel Acosta @ Verve Galeria (@vervegaleria), República\n• SÁB 31.10 — Irracional, Frederico Filippi @ Marli Matsumoto Arte Contemporânea (@marlimatsumoto_), Vila Madalena\n• SÁB 31.10 — Fazendo a América | Making America, Rosângela Rennó @ Galeria Vermelho (@galeriavermelho), Higienópolis\n• SÁB 31.10 — Shh..., Edgard de Souza @ Galeria Vermelho (@galeriavermelho), Higienópolis\n• SÁB 31.10 — MUNDO CADUCO, Gabrilândia, Lucas Matoso, Marina Cespe @ GRUTA Espaço de Arte Contemporânea (@gruta.cc), Barra Funda\n• DOM 01.11 — Solange Pessoa: outras escalas, Solange Pessoa @ Itaú Cultural (@itaucultural), Bela Vista\n• TER 03.11 — Cavalinhas e Falésias, Carolina Colichio @ Galeria Marília Razuk (@galeriamariliarazuk), Itaim Bibi\n\nSalva e manda pra quem vai com você. Mapa, horários e o resto da agenda no link da bio.",
+  "collab": [
+    "amgaleriadearte",
+    "masp",
+    "museuafrobrasil"
+  ],
+  "collabExtra": [
+    "espacorepublica",
+    "galeriaraquelarnaud",
+    "vervegaleria",
+    "marlimatsumoto_",
+    "galeriavermelho",
+    "gruta.cc",
+    "itaucultural",
+    "galeriamariliarazuk"
+  ]
+}
