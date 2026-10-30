@@ -1,19 +1,101 @@
 {
   "To Love — Claudia Andujar e George Love|Galeria Vermelho": {
     "links": {
-      "siteErro": "nenhum link casou com o titulo (home + indices, ate com render)"
+      "siteErro": "nenhum link casou com o titulo (home + indices, ate com render)",
+      "site": "https://galeriavermelho.com.br/exposicoes/to-love/",
+      "siteConfianca": 13
     },
-    "candidatos": []
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://galeriavermelho.com.br/wp-content/uploads/2026/08/to-love38.jpg",
+        "md5": "87b5d9bb0f1b81a4728886005713f56b",
+        "fonte": "site",
+        "w": 1620,
+        "h": 1080,
+        "kb": 157,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://galeriavermelho.com.br/wp-content/uploads/2026/08/to-love28.jpg",
+        "md5": "2b05cd6981dc118e4252b3eb77f66cd4",
+        "fonte": "site",
+        "w": 1620,
+        "h": 1080,
+        "kb": 100,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 3,
+        "url": "https://galeriavermelho.com.br/wp-content/uploads/2026/08/tl_06_gll_cr_dx_s002_a3_audio_visual_olivetti_stand_cp.jpg",
+        "md5": "84ab0a79d129d99c9a1dcd26303b85a3",
+        "fonte": "site",
+        "w": 1620,
+        "h": 1080,
+        "kb": 255,
+        "serveObra": false,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-30",
+    "escolhida": 3,
+    "img": "img/to-love-galeria-vermelho.jpg",
+    "cred": "Cortesia Galeria Vermelho",
+    "motivo": "reprodução de fotograma de George Love ('O Pensamento'), 1620x1080; pasta 2026/08 e vistas 1-2 confirmam a mostra"
   },
   "No meio da pedra — André Vargas|Galeria Vermelho": {
     "links": {
-      "siteErro": "nenhum link casou com o titulo (home + indices, ate com render)"
+      "siteErro": "nenhum link casou com o titulo (home + indices, ate com render)",
+      "site": "https://galeriavermelho.com.br/exposicoes/no-meio-da-pedra/",
+      "siteConfianca": 13
     },
-    "candidatos": []
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://galeriavermelho.com.br/wp-content/uploads/2026/08/mg_7178_copy.jpg",
+        "md5": "41ec35d6d623054763dc67e67fca980b",
+        "fonte": "site",
+        "w": 1620,
+        "h": 1080,
+        "kb": 176,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://galeriavermelho.com.br/wp-content/uploads/2026/08/no-meio-da-pedra44.jpg",
+        "md5": "33d640ee791ec2fc4e61c6a75ee96619",
+        "fonte": "site",
+        "w": 1620,
+        "h": 1080,
+        "kb": 170,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 3,
+        "url": "https://galeriavermelho.com.br/wp-content/uploads/2026/08/no-meio-da-pedra34.jpg",
+        "md5": "9e36f2bf16ed6f4d9c655b5e190bb8de",
+        "fonte": "site",
+        "w": 1620,
+        "h": 1080,
+        "kb": 139,
+        "serveObra": false,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-30"
   },
   "Ocupação JAMAC|Galeria Vermelho": {
     "links": {
-      "siteErro": "nenhum link casou com o titulo (home + indices, ate com render)"
+      "siteErro": "nenhum link casou com o titulo (home + indices, ate com render)",
+      "site": "https://galeriavermelho.com.br/verbo/verbo-2025/",
+      "siteConfianca": 15
     },
     "candidatos": []
   },
@@ -48,11 +130,13 @@
       }
     ],
     "credLegenda": "Emiliano di Cavalcanti, \"Vendedoras de Peixe\" 1952. Divulgação.",
-    "atualizado": "2026-10-26",
+    "atualizado": "2026-10-30",
     "escolhida": 1,
     "img": "img/brasil-das-multiplas-faces-itau-cultural.webp",
     "cred": "Emiliano di Cavalcanti, Vendedoras de Peixe, 1952. Divulgação Itaú Cultural",
-    "motivo": "pintura do acervo (Di Cavalcanti), só 1025x485: serve ao site, o formato obra recusa pela régua"
+    "motivo": "pintura do acervo (Di Cavalcanti), só 1025x485: serve ao site, o formato obra recusa pela régua",
+    "sem": "única obra (Di Cavalcanti) tem 1025x485, não serve nem com foco; a outra é retrato",
+    "semEm": "2026-10-30"
   },
   "Casa María Lionza — Sol Calero|MASP": {
     "links": {
@@ -131,11 +215,13 @@
       }
     ],
     "credLegenda": "Foto: Divulgação",
-    "atualizado": "2026-10-26",
+    "atualizado": "2026-10-30",
     "escolhida": 1,
     "img": "img/historias-latino-americanas-masp.webp",
     "cred": "Arte cusquenha, Virgem de Copacabana. Divulgação MASP",
-    "motivo": "pintura colonial, 1024x1415: abaixo da régua do feed, serve ao site"
+    "motivo": "pintura colonial, 1024x1415: abaixo da régua do feed, serve ao site",
+    "sem": "Virgem de Copacabana 1024x1415 reprovada pela resolução e sem confirmação de que está na mostra; demais são banner preto e foto da fachada",
+    "semEm": "2026-10-30"
   },
   "Cantaria — Daniel Jorge|Mendes Wood DM": {
     "links": {
@@ -340,22 +426,24 @@
       },
       {
         "n": 2,
-        "url": "https://pinacoteca.org.br/wp-content/uploads/2025/12/PPL_eleitoral_jul26.png",
-        "md5": "4cb4f41dc3f51e0b32407367557980e0",
+        "url": "https://pinacoteca.org.br/wp-content/uploads/2025/12/regua_ppl_pinacoteca_mar26.png",
+        "md5": "7b386b64c3a812306b56dd71167aae3b",
         "fonte": "site",
-        "w": 1603,
-        "h": 622,
-        "kb": 50,
+        "w": 9593,
+        "h": 1838,
+        "kb": 173,
         "serveObra": false,
         "serveComFoco": false
       }
     ],
     "credLegenda": null,
-    "atualizado": "2026-10-26",
+    "atualizado": "2026-10-30",
     "escolhida": 1,
     "img": "img/tragico-suburbio-pinacoteca-de-sao-paulo.webp",
     "cred": "Cortesia Pinacoteca de São Paulo",
-    "motivo": "pintura da mostra, só 494x403: serve a card pequeno do site, nunca ao feed"
+    "motivo": "pintura da mostra, só 494x403: serve a card pequeno do site, nunca ao feed",
+    "sem": "obra certa mas só 494x403; outra candidata é régua/banner preto",
+    "semEm": "2026-10-30"
   },
   "Ibirapema — Olinda Tupinambá|Pinacoteca de São Paulo": {
     "links": {
@@ -1290,11 +1378,13 @@
       }
     ],
     "credLegenda": null,
-    "atualizado": "2026-10-26",
+    "atualizado": "2026-10-30",
     "escolhida": 8,
     "img": "img/deslocar-desalinhar-interromper-galeria-luis-maluf.jpg",
     "cred": "Cortesia Galeria Luis Maluf",
-    "motivo": "escultura em aço corten com esfera dourada e pintura, 1200x800, vista de galeria; serve ao site"
+    "motivo": "escultura em aço corten com esfera dourada e pintura, 1200x800, vista de galeria; serve ao site",
+    "sem": "vistas boas da mostra (ex. 5, 7, 8), mas todas 1200x800 e reprovadas pelo filtro de resolução; Lucas decide se aceita",
+    "semEm": "2026-10-30"
   },
   "Pequenos Afetos|Farol Santander": {
     "links": {
@@ -1615,5 +1705,308 @@
     "atualizado": "2026-10-26",
     "sem": "mesma câmera antiga de Belezas Brasileiras: imagem genérica do site",
     "semEm": "2026-10-26"
+  },
+  "Pull/Pulso — Marcia Grostein|Luciana Brito Galeria": {
+    "links": {
+      "site": "https://lucianabritogaleria.com.br/exhibitions/185-artista-visitante-marcia-grostein-pull-pulso/",
+      "siteConfianca": 13
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://static-assets.artlogic.net/w_2600,h_2600,c_limit,f_auto,fl_lossy,q_auto/ws-artlogicwebsite0106/usr/images/artworks/main_image/items/25/25b45000818e4d70bca97ea00c0107cb/img_0023-editar_artlogic2.jpg",
+        "md5": "79c3ae9df3d30aa9b384deef8a4a6f53",
+        "fonte": "site",
+        "w": 2587,
+        "h": 2600,
+        "kb": 928,
+        "serveObra": true,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto/ws-artlogicwebsite0106/usr/images/artworks/main_image/items/25/25b45000818e4d70bca97ea00c0107cb/img_0023-editar_artlogic2.jpg",
+        "md5": "681528e8fb2f6dea434ffe9ec92f935b",
+        "fonte": "site",
+        "w": 2600,
+        "h": 2613,
+        "kb": 934,
+        "serveObra": true,
+        "serveComFoco": true
+      },
+      {
+        "n": 3,
+        "url": "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto/ws-artlogicwebsite0106/usr/images/artworks/main_image/items/bb/bb9808bc6df545c1af5a991f7979688d/img_0023-editar_artlogic.jpg",
+        "md5": "bf7cba7200b444c16405c82776f1c25e",
+        "fonte": "site",
+        "w": 2600,
+        "h": 2613,
+        "kb": 849,
+        "serveObra": true,
+        "serveComFoco": true
+      },
+      {
+        "n": 4,
+        "url": "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto/ws-artlogicwebsite0106/usr/images/artworks/main_image/items/2d/2da3e8e6cd914ffb9f8b60253a943df6/img_0023-editar_artlogic3.jpg",
+        "md5": "1c70c901e6583d0b595cefc50f4f5784",
+        "fonte": "site",
+        "w": 2600,
+        "h": 2613,
+        "kb": 434,
+        "serveObra": true,
+        "serveComFoco": true
+      },
+      {
+        "n": 5,
+        "url": "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto/ws-artlogicwebsite0106/usr/images/artworks/main_image/items/d5/d5cf76f84395464a99d4cb76f4c3c2cc/018451_fm.jpg",
+        "md5": "954914512662a12193014b260edc72ae",
+        "fonte": "site",
+        "w": 1751,
+        "h": 2348,
+        "kb": 460,
+        "serveObra": true,
+        "serveComFoco": true
+      },
+      {
+        "n": 6,
+        "url": "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto/ws-artlogicwebsite0106/usr/images/artworks/main_image/items/75/75ed6bf571564695bb0ba2eb3b9342f4/018452_fm.jpg",
+        "md5": "b228bc88c6fc0957d87f2ff4bb96cbb4",
+        "fonte": "site",
+        "w": 1722,
+        "h": 2277,
+        "kb": 336,
+        "serveObra": true,
+        "serveComFoco": true
+      },
+      {
+        "n": 7,
+        "url": "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto/ws-artlogicwebsite0106/usr/images/artworks/main_image/items/7b/7b2ca8fc53a34eaa94462b5a55e67a1b/018453_fm.jpg",
+        "md5": "f9438b39c3850002e60d7cd419079abe",
+        "fonte": "site",
+        "w": 1725,
+        "h": 2334,
+        "kb": 420,
+        "serveObra": true,
+        "serveComFoco": true
+      },
+      {
+        "n": 8,
+        "url": "https://static-assets.artlogic.net/w_2600,h_2600,c_fill,f_auto,fl_lossy,q_auto/ws-artlogicwebsite0106/usr/images/artworks/main_image/items/25/25b45000818e4d70bca97ea00c0107cb/img_0023-editar_artlogic2.jpg",
+        "md5": "bcc3aa355e700aba7d3affd0e3b9daa6",
+        "fonte": "site",
+        "w": 2600,
+        "h": 2600,
+        "kb": 936,
+        "serveObra": true,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-30",
+    "escolhida": 1,
+    "img": "img/pull-pulso-luciana-brito-galeria.webp",
+    "cred": "Cortesia Luciana Brito Galeria",
+    "motivo": "pintura inteira, 2587x2600, da página da mostra"
+  },
+  "Atrás da superfície — Paulo Monteiro|Mendes Wood DM — Casa Iramaia": {
+    "links": {
+      "site": "https://mendeswooddm.com/exhibitions/428-atras-da-superficie-paulo-monteiro/",
+      "siteConfianca": 13
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://static-assets.artlogic.net/w_2600,h_2600,c_limit,f_auto,fl_lossy,q_auto,dpr_auto/ws-mendeswood/usr/images/exhibitions/group_images_override/428/261013eeo_mwdm_067-to-al.jpg",
+        "md5": "e03b94a2f577ba79b4acca17469a43fb",
+        "fonte": "site",
+        "w": 2600,
+        "h": 2118,
+        "kb": 1095,
+        "serveObra": true,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://static-assets.artlogic.net/w_2600,h_2600,c_fill,f_auto,fl_lossy,q_auto,dpr_auto/ws-mendeswood/usr/images/artists/artist_image/items/3f/3fd4ee4a55314ccaad75fb8f20c8ea5f/pmt_04.jpg",
+        "md5": "15ded367353185cbe2a95ad919dcc9c7",
+        "fonte": "site",
+        "w": 2600,
+        "h": 2600,
+        "kb": 169,
+        "serveObra": true,
+        "serveComFoco": true
+      },
+      {
+        "n": 3,
+        "url": "https://static-assets.artlogic.net/w_2600,h_2600,c_fill,f_auto,fl_lossy,q_auto,dpr_auto/ws-mendeswood/usr/images/exhibitions/main_image_override/428/261013eeo_mwdm_067-to-al.jpg",
+        "md5": "a40b901d9325d37b3445f1bfa9399690",
+        "fonte": "site",
+        "w": 2600,
+        "h": 2600,
+        "kb": 1132,
+        "serveObra": true,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-30",
+    "escolhida": 1,
+    "img": "img/atras-da-superficie-mendes-wood-dm-casa-iramaia.webp",
+    "cred": "Cortesia Mendes Wood DM",
+    "motivo": "detalhe de pintura, imagem de grupo da página da mostra, 2600x2118; cand. 2 é retrato do artista"
+  },
+  "Caleidoscópio Xapiri Yanomami — Leão Serva|MIS — Museu da Imagem e do Som": {
+    "links": {
+      "site": "https://mis-sp.org.br/exposicao/caleidoscopio-xapiri-yanomam/",
+      "siteConfianca": 10
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://mis-sp.org.br/wp-content/uploads/2026/08/reguas_mis_posit_SITE-PAREDE-TV_V3_periodo-eleitoral-scaled.png",
+        "md5": "afd4d8de8fb65bc8ddd12c62deb3b0d2",
+        "fonte": "site",
+        "w": 2560,
+        "h": 970,
+        "kb": 166,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 2,
+        "url": "https://mis-sp.org.br/wp-content/uploads/2023/12/cropped-marca-texto-768x71.png",
+        "md5": "10b25492774636cc01b8001dc8a24656",
+        "fonte": "site",
+        "w": 768,
+        "h": 71,
+        "kb": 22,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 3,
+        "url": "https://mis-sp.org.br/wp-content/uploads/2026/08/reguas_mis_posit_SITE-PAREDE-TV_V3_periodo-eleitoral.png",
+        "md5": "1451cfb10a86fee5dc16c503160ba87b",
+        "fonte": "site",
+        "w": 8517,
+        "h": 3228,
+        "kb": 374,
+        "serveObra": false,
+        "serveComFoco": false
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-30",
+    "sem": "só réguas/logo, pretas e com texto",
+    "semEm": "2026-10-30"
+  },
+  "Encantário Ibejis: Salve as crianças!|Museu Afro Brasil Emanoel Araujo": {
+    "links": {
+      "site": "https://museuafrobrasil.org.br/exposicao/encantario-ibeji-salve-as-criancas/",
+      "siteConfianca": 10
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://museuafrobrasil.org.br/wp-content/uploads/2025/04/img_apoie_01.jpg",
+        "md5": "73b1d09f84dfda9f5b626a1f19c6554d",
+        "fonte": "site",
+        "w": 1920,
+        "h": 1240,
+        "kb": 383,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://museuafrobrasil.org.br/wp-content/uploads/2026/06/cropped-mab-preto.png",
+        "md5": "70805b7166df81399499045ff0648b66",
+        "fonte": "site",
+        "w": 791,
+        "h": 144,
+        "kb": 20,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 3,
+        "url": "https://museuafrobrasil.org.br/wp-content/uploads/2026/09/Site-miniatura.png",
+        "md5": "5ea4166020f752e245b08173fe328888",
+        "fonte": "site",
+        "w": 1189,
+        "h": 713,
+        "kb": 25,
+        "serveObra": false,
+        "serveComFoco": false
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-30",
+    "sem": "vista genérica do acervo permanente, logo e banner de outro evento",
+    "semEm": "2026-10-30"
+  },
+  "Diáfana — Gretta Sarfaty|Museu Judaico de São Paulo": {
+    "links": {
+      "siteErro": "nenhum link casou com o titulo (home + indices, ate com render)"
+    },
+    "candidatos": []
+  },
+  "Zanine Caldas: Criação de mundos|Instituto Tomie Ohtake": {
+    "links": {
+      "site": "https://www.institutotomieohtake.org.br/exposicoes/zanine-caldas-criacao-de-mundos/",
+      "siteConfianca": 13
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://www.institutotomieohtake.org.br/wp-content/uploads/2026/09/260917EEO_tomie_casa_006-scaled.jpg",
+        "md5": "f3ebf826e1db8859a10282c1b75d7b25",
+        "fonte": "site",
+        "w": 2560,
+        "h": 1707,
+        "kb": 704,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://www.institutotomieohtake.org.br/wp-content/uploads/2026/09/260917EEO_tomie_casa_006.jpg",
+        "md5": "62fbec968eaae61f626155a28d1318df",
+        "fonte": "site",
+        "w": 8917,
+        "h": 5947,
+        "kb": 28540,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 3,
+        "url": "https://www.institutotomieohtake.org.br/wp-content/uploads/2026/09/260917EEO_tomie_casa_016-scaled.jpg",
+        "md5": "1edffad7128b1c4d71d124b9bb7fc2f9",
+        "fonte": "site",
+        "w": 2560,
+        "h": 1708,
+        "kb": 775,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 4,
+        "url": "https://www.institutotomieohtake.org.br/wp-content/uploads/2026/09/260917EEO_tomie_casa_016.jpg",
+        "md5": "baffd84bff9940b513c7510d9d3ea72b",
+        "fonte": "site",
+        "w": 8826,
+        "h": 5887,
+        "kb": 31360,
+        "serveObra": false,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-10-30",
+    "escolhida": 4,
+    "img": "img/zanine-caldas-criacao-de-mundos-instituto-tomie-ohtake.jpg",
+    "cred": "Cortesia Instituto Tomie Ohtake",
+    "motivo": "vista da instalação com fotos e objetos, 8826x5887; sem reprodução de obra disponível"
   }
 }
