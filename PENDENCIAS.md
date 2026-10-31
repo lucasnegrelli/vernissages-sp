@@ -72,3 +72,12 @@ Latino-Americanas (MASP) também esperam conferência na fonte.
 - Divergências descartadas: Histórias Latino-Americanas (MASP confirma fim 31/01/2027, base certa); Tudo aquilo que move (Frente confirma abertura 29/09, base certa); Cavalinhas e Falésias (Razuk confirma 12/09, base certa). Sol Calero: página do MASP não dá fim; base mantida (30/01/2027) — conferir com o Lucas.
 - Imagens recusadas: Itaú (retrato de Anísio Teixeira), Museu da Imigração (cartaz Canva), Museu Afro Brasil (banner genérico), MIS (réguas/banners), Galeria Frente (thumb 180px), IMS (página não confere). Demais: não verificadas/sem confirmação.
 - Casas não mapeadas (só relato): Claraboia, Rosewood SP, Museu FAMA (Itu), Pinacoteca Miguel Dutra (Piracicaba), Move Arte, Mayer Mizrahi, WG Galeria, Casa Yara DW, Alma da Rua, Pina Contemporânea, Mitre Galeria, Cemitério Parque das Cerejeiras, Gomide&Co (variação de nome?), CCSP (variação?).
+
+## Domingo 31/10/2026 — sobras das issues radar #21/#19 e garimpo #22
+- NÃO confirmado (fora do dados.js): A Elegância do Olhar (Mario Cohen), A vigília do fogo (Metrópole), Sara Ramo (Pinacoteca; home só cita o título, sem datas), Amarelinha / Hino às galáxias / Ainda quero mergulhar (Almeida & Dale: datas 07/11/26–09/01/27 confirmadas na home, mas sem espaço/curadoria/fato para o campo `d`).
+- África – Ancestralidade e Sincretismos (Oscar Americano): curadoria Rafael Schunk e Renato Araújo; site diz "Até 01 de Março" sem ano, agregador diz 2027-03-23. Falta confirmar data.
+- MASP Sol Calero (fim base 30/01/2027 vs agregador 30/05/2027): MASP não confirmado nesta rodada, base mantida.
+- To Love (Galeria Vermelho, fim null): site deu 403; segue na base.
+- Imagens do garimpo recusadas: Museu Afro Brasil (img_apoie_01.jpg, banner genérico repetido em 4 mostras), MIS (img_expo_linha-fotografia-tb.jpg genérica; réguas/banners de período eleitoral).
+- Casas não mapeadas (só relato): Claraboia, Sardenberg, Rosewood SP, Museu FAMA, Pinacoteca Miguel Dutra, Move Arte, Mayer Mizrahi, WG Galeria, Casa Yara DW, Pina Contemporânea, Mitre Galeria, Cemitério Parque das Cerejeiras, AM Galeria SP, Gomide&Co (grafia), Karla Osorio, CCSP.
+- Mitologias do Mistério (Casa de Cultura do Parque) também tem fim 25/10 passado e não foi removida (não estava no radar).
