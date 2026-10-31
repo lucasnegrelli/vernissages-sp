@@ -365,11 +365,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Horizontes do Solo",
-  v: "Ateliê397",
-  quem: "Bárbara Banida, Cláudio Cretti, Pedro França",
-  txt: "Coletiva com curadoria de Érica Burini, originada na primeira edição da residência artística IOD'A, no Piauí. Quarta a sábado, 14h às 18h; abertura das 19h às 22h.",
-  link: "https://atelie397.com",
+  t: "Pull/Pulso — Marcia Grostein",
+  v: "Luciana Brito Galeria",
+  quem: "Marcia Grostein",
+  txt: "Primeira individual da artista no Brasil desde 1995, no programa Artista Visitante, com colaboração da Kreëmart. Radicada em Nova York desde 1979, reúne trabalhos sobre as relações entre materiais, suportes e linguagens. Abertura em 7 de novembro; encerramento não divulgado.",
+  link: "https://lucianabritogaleria.com.br",
   publi: false
 };
 
@@ -384,6 +384,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-10-31", k:"Pull/Pulso — Marcia Grostein|Luciana Brito Galeria"},
   {d:"2026-10-30", k:"Horizontes do Solo|Ateliê397"},
   {d:"2026-10-29", k:"Mucki Botkay: pinturas bordadas|Galatea"},
   {d:"2026-10-28", k:"Troca de segredos — Barrão|Fortes D'Aloia & Gabriel — Galeria"},
@@ -480,5 +481,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "30/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "31/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
