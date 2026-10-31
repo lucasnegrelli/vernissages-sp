@@ -30,6 +30,12 @@
       "seguidores": 101,
       "seguindo": 98,
       "posts": 70
+    },
+    {
+      "data": "2026-10-31",
+      "seguidores": 102,
+      "seguindo": 98,
+      "posts": 72
     }
   ],
   "midias": {
@@ -464,6 +470,22 @@
       "comentarios": 0,
       "link": "https://www.instagram.com/p/DfFtAkMlHDg/",
       "formato": "agenda"
+    },
+    "18028186805914694": {
+      "tipo": "FEED",
+      "quando": "2026-10-31T15:43:19+0000",
+      "curtidas": 2,
+      "comentarios": 0,
+      "link": "https://www.instagram.com/p/DfKgX04EWXn/",
+      "formato": "obra"
+    },
+    "18108942404253771": {
+      "tipo": "REELS",
+      "quando": "2026-10-30T22:56:33+0000",
+      "curtidas": 1,
+      "comentarios": 0,
+      "link": "https://www.instagram.com/reel/DfItIMhjxyB/",
+      "formato": "reel"
     }
   }
 }
