@@ -221,20 +221,15 @@ const EXPOS = [
 {t:"Ibirapema — Olinda Tupinambá",a:"Olinda Tupinambá",v:"Pinacoteca de São Paulo",ini:"2026-04-11",fim:"2026-12-27",d:"Filme de 2022 comissionado para a mostra Atos Modernos, com a transformação em onça como método. Curadoria de Ana Paula Lopes."},
 {t:"Solange Pessoa: outras escalas",a:"Solange Pessoa",v:"Itaú Cultural",ini:"2026-08-04",fim:"2026-11-01",d:"150 desenhos inéditos, filmes experimentais e uma instalação da artista mineira.",img:"img/solange-pessoa-outras-escalas-itau-cultural.jpg",cred:"Capa do material do Itaú Cultural — não é reprodução de obra",vista:true},
 {t:"Mundo Pequeno — Martin Parr",a:"Martin Parr",v:"Centro Cultural FIESP",ini:"2026-10-15",fim:"2027-04-04",d:"45 fotografias de Martin Parr (Magnum Photos) sobre turismo de massa, consumo e a obsessão de provar que se esteve ali, mostradas pela primeira vez no Brasil, com projeções e fotolivros. Curadoria de João Kulcsár. Terça a domingo, das 10h às 20h.",img:"",cred:""},
-{t:"Pequeno mapa do tempo — Paula Siebra",a:"Paula Siebra",v:"Mendes Wood DM — Casa Iramaia",ini:"2026-08-25",fim:"2026-10-24",d:"Pinturas a óleo sobre os ciclos de chuva, festa, vento e seca em Fortaleza.",img:"img/pequeno-mapa-do-tempo-mendes-wood-dm-casa-iramaia.webp",cred:"Cortesia Mendes Wood DM"},
 {t:"Beijo de Língua — Nelson Felix",a:"Nelson Felix",v:"MAC USP",ini:"2026-05-30",fim:"2026-11-29",d:"Individual do escultor carioca no MAC USP. Entrada gratuita.",img:"img/beijo-de-lingua-mac-usp.webp",cred:"Cortesia do artista"},
 {t:"39º Panorama da Arte Brasileira: Depois que tudo foi dito",v:"MAM São Paulo",ini:"2026-09-12",fim:"2027-01-24",d:"Curadoria de Diane Lima, com 33 artistas de 13 estados. A mostra marca o retorno do museu à sede do Ibirapuera após a reforma da marquise.",img:"img/39-panorama-da-arte-brasileira-depois-que-tudo-foi-dito-mam-.webp",cred:"Foto Ding Musa / Cortesia MAM São Paulo",vista:true},
 {t:"Constelação em trânsito: uma escuta cartográfica",v:"Galpão da Lapa",ini:"2025-09-06",fim:"2027-03-01",d:"Mostra de longa duração da coleção privada de arte contemporânea brasileira do Galpão da Lapa, organizada em três eixos - Arquiteturas do Inconsciente, Geometrias do Sul e Topologias do Orgânico - a partir de uma escuta do próprio acervo. Visitas guiadas gratuitas mediante agendamento, quintas e sábados.",img:"img/constelacao-em-transito-uma-escuta-cartografica-galpao-da-la.jpg",cred:"Cortesia Galpão da Lapa",foco:50},
-{t:"Vonta de vi dada dada — Ernesto Neto (Barra Funda)",a:"Ernesto Neto",v:"Fortes D'Aloia & Gabriel — Galpão",ini:"2026-08-22",fim:"2026-10-24",d:"Metade em galpão da individual que Neto abriu nas duas sedes da galeria no mesmo dia. Inclui escultura monumental em aço corten cuja estrutura ramificada evoca ao mesmo tempo paisagem montanhosa e corpo vivo.",img:"img/vonta-de-vi-dada-dada-fortes-d-aloia-gabriel-galpao.jpg",cred:"Foto Pepe Schettino / Cortesia Fortes D'Aloia & Gabriel"},
-{t:"O homem nu — Efrain Almeida",a:"Efrain Almeida",v:"Fortes D'Aloia & Gabriel — Galpão",ini:"2026-08-22",fim:"2026-10-24",d:"Primeira mostra abrangente do artista na galeria desde sua morte: obras produzidas entre 1995 e 2024, entre escultura em madeira umburana, pintura a óleo, bordado e aquarela. Texto de Márcia Fortes.",img:"img/o-homem-nu-fortes-d-aloia-gabriel-galpao.jpg",cred:"Foto Eduardo Ortega / Cortesia Fortes D'Aloia & Gabriel"},
 {t:"Por Elas, Com Elas: Do Moderno ao Contemporâneo",v:"DAN Galeria",ini:"2026-09-09",fim:"2026-11-07",d:"Coletiva com obras de meados do século 20 aos dias atuais, em núcleo histórico — com Tarsila do Amaral, Anita Malfatti, Lygia Clark e Tomie Ohtake — e núcleo contemporâneo. Curadoria de Maria Alice Milliet.",img:"img/por-elas-com-elas-do-moderno-ao-contemporaneo-dan-galeria.jpg",cred:"Cortesia DAN Galeria"},
 
 /* --- confirmadas na fonte primária em 14/09/2026, casas já mapeadas sem nada em cartaz na base --- */
-{t:"Autobiografia de um Fio",a:"Sheila Hicks",v:"Galeria Nara Roesler",ini:"2026-08-29",fim:"2026-10-24",d:"Exposição individual.",img:"img/autobiografia-de-um-fio-galeria-nara-roesler.webp",cred:"Foto Tatiana Mito / Cortesia Nara Roesler"},
 {t:"Abismos Urbanos e o Plano Celeste",a:"Eduardo Coimbra",v:"Galeria Lume",ini:"2026-09-12",fim:"2026-11-14",d:"Exposição individual.",img:"img/abismos-urbanos-e-o-plano-celeste-galeria-lume.webp",cred:"Cortesia Galeria Lume",conferida:true},
 {t:"Território de Disputa",a:"Kilian Glasner",v:"Galeria Lume",ini:"2026-09-12",fim:"2026-11-14",d:"Pinturas feitas com saibro — laterita alaranjada recolhida no sertão —, cortadas pelas faixas brancas de uma quadra de tênis, como alegoria de disputa por território.",img:"img/territorio-de-disputa-galeria-lume.jpg",cred:"Cortesia Galeria Lume",foco:50},
 {t:"ambiguidade construtiva e ativação do espaço",a:"Wolfram Ullrich",v:"Galeria Raquel Arnaud",ini:"2026-09-02",fim:"2026-10-30",d:"Exposição individual.",img:"img/ambiguidade-construtiva-e-ativacao-do-espaco-galeria-raquel-.jpg",cred:"Cortesia Galeria Raquel Arnaud"},
-{t:"Desculpe, Rafael",a:"Felipe Scandelari",v:"Galeria Dezoito",ini:"2026-09-12",fim:"2026-10-24",d:"Exposição individual, na sede paulistana da galeria.",img:"",cred:""},
 {t:"Longitudes",a:"Johanna Calle",v:"Galeria Marília Razuk",ini:"2026-09-12",fim:"2026-12-12",d:"Exposição individual.",img:"img/longitudes-galeria-marilia-razuk.jpg",cred:"Cortesia Galeria Marília Razuk"},
 {t:"Cavalinhas e Falésias",a:"Carolina Colichio",v:"Galeria Marília Razuk",ini:"2026-09-12",fim:"2026-11-03",d:"Exposição individual.",img:"img/cavalinhas-e-falesias-galeria-marilia-razuk.jpg",cred:"Cortesia Galeria Marília Razuk"},
 
@@ -249,7 +244,6 @@ const EXPOS = [
 {t:"Espaço tempo",a:"Wojtek Kostrzewa",v:"Danielian São Paulo",ini:"2026-08-17",fim:"2026-10-27",d:"Primeira individual no Brasil do artista polonês radicado em São Paulo, com curadoria de Ginevra Bria; transita entre fotografia, escultura e pintura a partir de códigos visuais e objetos da paisagem urbana.",img:"img/espaco-tempo-danielian-sao-paulo.jpg",cred:"Cortesia Danielian São Paulo"},
 {t:"Irracional",a:"Frederico Filippi",v:"Marli Matsumoto Arte Contemporânea",ini:"2026-08-01",fim:"2026-10-31",d:"Reúne diferentes grupos de trabalhos em que o acaso, o descontrole e o gesto errático operam como motores de criação, com curadoria de Germano Dushá.",img:"img/irracional-marli-matsumoto-arte-contemporanea.jpg",cred:"Cortesia Marli Matsumoto Arte Contemporânea"},
 {t:"Controle | Corrosão | Dispersão",a:"Beto Shwafaty",v:"Galeria Leme",ini:"2026-09-03",fim:"2026-11-13",d:"Individual com cerca de 15 trabalhos que pensam a sociedade contemporânea a partir de objetos e materiais do cotidiano, incluindo a obra inédita \"O sonho da terra, é o sonho americano\".",img:"img/controle-corrosao-dispersao-galeria-leme.jpg",cred:"Cortesia Galeria Leme"},
-{t:"Espaço Profundo",a:"Mariana Rocha",v:"A Gentil Carioca SP",ini:"2026-08-15",fim:"2026-10-24",d:"Pinturas que expandem a pesquisa da artista sobre corpos d'água, aproximando dimensões corporal e cósmica; texto de André Pitol, curador adjunto da 36ª Bienal de São Paulo.",img:"img/espaco-profundo-a-gentil-carioca.jpg",cred:"Cortesia A Gentil Carioca",vista:true},
 {t:"Marlene Barros: tecitura do feminino",a:"Marlene Barros",v:"CCBB São Paulo",ini:"2026-08-26",fim:"2027-01-25",d:"Reúne 15 obras entre esculturas, bordados, crochês, instalações e objetos que discutem a feminilidade como construção histórica, social e cultural; curadoria de Betânia Pinheiro.",img:"img/marlene-barros-tecitura-do-feminino-ccbb-sao-paulo.jpg",cred:"Cortesia CCBB São Paulo",foco:35},
 {t:"Fernando Lemos: quanto mais desejo, mais invento o que vejo",a:"Fernando Lemos",v:"IMS Paulista",ini:"2026-09-19",fim:"2027-02-07",d:"Retrospectiva do centenário de nascimento de Fernando Lemos (1926–2019), com cerca de 400 itens entre fotografias, desenhos, projetos gráficos e poesia produzidos ao longo de 70 anos; curadoria de Thyago Nogueira.",img:"img/fernando-lemos-quanto-mais-desejo-mais-invento-o-que-vejo-im.webp",cred:"Fernando Lemos, Eu, poeta. Arquivo Fernando Lemos / Acervo Instituto Moreira Salles"},
 {t:"Sheila Hicks: o que que é isso?",a:"Sheila Hicks",v:"Instituto Tomie Ohtake",ini:"2026-08-28",fim:"2026-10-25",d:"Cerca de 30 obras de seis décadas de carreira em fibra têxtil — tecelagens, relevos, esculturas de escala arquitetônica — e fotografias feitas por Hicks e por Sergio Larrain na América Latina nos anos 1950; curadoria de Ana Roman, Luis Pérez-Oramas e Paulo Miyada.",img:"img/sheila-hicks-o-que-que-e-isso-instituto-tomie-ohtake.jpg",cred:"Cortesia Instituto Tomie Ohtake"},
@@ -269,9 +263,6 @@ const EXPOS = [
 /* confirmado no Instagram (@galeriasuperficie, 17 e 23/09/2026). */
 {t:"Gestos",v:"Galeria Superfície",ini:"2026-08-29",fim:"2026-12-12",d:"Coletiva com 27 artistas de diferentes gerações, a partir da ideia de gesto do livro de Vilém Flusser. Curadoria de Paulo Venancio Filho e Gustavo Nóbrega, inaugura a nova sede da galeria na Vila Madalena.",img:"img/gestos-galeria-superficie.jpg",cred:"Cortesia Galeria Superfície",vista:true},
 /* confirmado no Instagram (@massape_projetos, 21/09/2026). */
-{t:"Two Big Footers — Atsushi Kaga e Tarsila do Amaral",a:"Atsushi Kaga, Tarsila do Amaral",v:"Almeida & Dale | Millan",ini:"2026-09-26",fim:"2026-10-24",d:"Obras inéditas do artista japonês Atsushi Kaga em diálogo com obras históricas de Tarsila do Amaral. Sede da Rua Fradique Coutinho, 1360.",img:"img/two-big-footers-almeida-dale-millan.jpg",cred:"Vista da exposição. Foto Julia Thompson / Cortesia Almeida & Dale | Millan",vista:true},
-{t:"Quarto de máscaras — Maya Weishof",a:"Maya Weishof",v:"Almeida & Dale | Millan",ini:"2026-09-26",fim:"2026-10-24",d:"Individual de pinturas com texto do curador Carlos Quijon Jr. e expografia de Camilo Oliveira. No endereço Fradique 1430.",img:"img/quarto-de-mascaras-almeida-dale-millan.jpg",cred:"Vista da exposição. Foto Julia Thompson / Cortesia Almeida & Dale | Millan",vista:true},
-{t:"O parado das coisas — Felipe Cohen",a:"Felipe Cohen",v:"Almeida & Dale | Millan",ini:"2026-09-26",fim:"2026-10-24",d:"Conjunto inédito de seis obras em mármore de Carrara, papel vegetal, granito, calcário, compensado e pau-marfim. Texto de Diego Matos. No endereço Fradique 1430.",img:"img/o-parado-das-coisas-almeida-dale-millan.jpg",cred:"Cortesia Almeida & Dale | Millan",vista:true},
 {t:"Tudo aquilo que move",a:"Diana Motta, Efe Godoy, Fabiana Preti, Giulia Bianchi, Marysia Portinari, Naia Ceschin, Poli Pieratti, Thamiris Mandú, Verena Smit, Victoria Serednicki",v:"Galeria Frente",ini:"2026-09-29",fim:"2026-10-29",d:"Coletiva de dez artistas em pintura, tapeçaria, cerâmica e papel, com mais de 40 obras listadas. Curadoria de Ana Carolina Ralston.",img:"img/tudo-aquilo-que-move-galeria-frente.webp",cred:"Fabiana Preti, Sem título. Foto: Luan Torres",foco:50},
 {t:"Pablo Delano: Museu da Antiga Colônia",a:"Pablo Delano",v:"MASP",ini:"2026-10-30",fim:"2027-01-31",d:"Individual no Edifício Lina Bo Bardi, com curadoria de Adriano Pedrosa e Fernando Oliva.",img:"img/pablo-delano-museu-da-antiga-colonia-masp.webp",cred:"Pablo Delano, As duas bandeiras (2020-em processo). Divulgação MASP",foco:50},
 {t:"Rosa Elena Curruchich: crônicas de Comalapa",a:"Rosa Elena Curruchich",v:"MASP",ini:"2026-10-30",fim:"2027-04-04",d:"Primeira mostra da artista guatemalteca no Brasil: mais de 80 obras de pequeno formato. Curadoria de Yudi Rafael e Guilherme Giufrida.",img:"img/rosa-elena-curruchich-cronicas-de-comalapa-masp.webp",cred:"Rosa Elena Curruchich, Van a escoger capitana del nuevo año, c. 1980. Acervo MASP. Foto: Eduardo Ortega",foco:53},
@@ -362,11 +353,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Pull/Pulso — Marcia Grostein",
-  v: "Luciana Brito Galeria",
-  quem: "Marcia Grostein",
-  txt: "Primeira individual da artista no Brasil desde 1995, no programa Artista Visitante, com colaboração da Kreëmart. Radicada em Nova York desde 1979, reúne trabalhos sobre as relações entre materiais, suportes e linguagens. Abertura em 7 de novembro; encerramento não divulgado.",
-  link: "https://lucianabritogaleria.com.br",
+  t: "Atrás da superfície — Paulo Monteiro",
+  v: "Mendes Wood DM — Casa Iramaia",
+  quem: "Paulo Monteiro",
+  txt: "Grupo de pinturas de pequeno formato que revisitam a linha desenhada, com cor construída em camadas, umas transparentes e outras densas. Abertura em 7 de novembro; encerramento não divulgado.",
+  link: "https://mendeswooddm.com",
   publi: false
 };
 
@@ -381,6 +372,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-11-01", k:"Atrás da superfície — Paulo Monteiro|Mendes Wood DM — Casa Iramaia"},
   {d:"2026-10-31", k:"Pull/Pulso — Marcia Grostein|Luciana Brito Galeria"},
   {d:"2026-10-30", k:"Horizontes do Solo|Ateliê397"},
   {d:"2026-10-29", k:"Mucki Botkay: pinturas bordadas|Galatea"},
@@ -478,5 +470,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "31/10/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "01/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
