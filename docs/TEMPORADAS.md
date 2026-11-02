@@ -43,7 +43,7 @@ Ressalvas dos testes:
 
 ## Decisão (02/11/2026)
 
-**Novembro = Temporada 02 Fachada.** O Lambe foi arquivado em `temporadas/_banco/lambe.json`.
+**Novembro = Temporada 02 Transparência (Mira Schendel).** A Fachada (Volpi) foi publicada em 02/11 e reprovada no mesmo dia: o Lucas achou o conjunto carregado e o mapa escuro, e pediu mais limpo e com fio. Ela fica em `temporadas/_banco/fachada.json`, o Lambe em `_banco/lambe.json`. A paleta de papel e tinta ainda vem do render C1, falta conferir contra o JPEG do MoMA.
 
 - Capa do social em índigo (a pintura), festão de bandeirinhas em branco cru, destaques em lilás claro (violeta clareado, só na capa).
 - Mostra de obra e lista em papel branco cru, obra inteira, nada por cima.

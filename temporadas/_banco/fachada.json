@@ -1,0 +1,54 @@
+{
+  "n": 2,
+  "nome": "Fachada",
+  "mes": "2026-11",
+  "selo": "Temporada 02 · Fachada",
+  "referencia": "Alfredo Volpi, Fachada com bandeiras (1959), têmpera sobre tela, 115,5 x 72 cm, acervo do MASP: casarão reduzido a arcos, blocos chapados e bandeirinhas em rabo de andorinha.",
+  "fonte": "https://masp.org.br/acervo/obra/fachada-com-bandeiras",
+  "regras": [
+    "paleta amostrada da própria obra: índigo, violeta fosco e branco cru, sem cor primária",
+    "a capa é a pintura: fundo índigo, letra em branco cru, luz lilás só nos destaques",
+    "a bandeirinha em rabo de andorinha é o grafismo: marca ao lado do nome e festão no topo do site",
+    "canto reto, filete de 2 px, nada de sombra, vidro ou degradê",
+    "a obra nunca é cortada nem recebe nada por cima (regra fixa, vale para toda temporada)"
+  ],
+  "cores": {
+    "fundo": "#E2DACF",
+    "texto": "#272A5C",
+    "acento": "#6F486A",
+    "meio": "#3C3F70",
+    "fraco": "#555884",
+    "apagado": "#9A93A0",
+    "traco": "#8B8498",
+    "papel": "#E2DACF",
+    "tinta": "#2D3068",
+    "capa": "#2D3068",
+    "capaTexto": "#E2DACF",
+    "capaAcento": "#B49BC2",
+    "extras": [
+      "#6F486A",
+      "#2D3068",
+      "#E2DACF"
+    ],
+    "festao": [
+      "#6F486A",
+      "#2D3068"
+    ],
+    "festaoCapa": [
+      "#E2DACF"
+    ]
+  },
+  "fontes": {
+    "css": "https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter+Tight:wght@400;500;700;800&display=swap",
+    "titulo": "'Bricolage Grotesque', 'Inter Tight', sans-serif",
+    "texto": "'Inter Tight', 'Switzer', sans-serif",
+    "pesoTitulo": 800,
+    "trackingTitulo": "-0.03em"
+  },
+  "forma": {
+    "raio": 0,
+    "filete": 2
+  },
+  "marca": "bandeira",
+  "amostragem": "Cores amostradas da reprodução do MASP (JPEG CMYK, perfil FOGRA39) convertida para sRGB: azul #2D3068, violeta #6F486A, branco #E2DACF. O lilás da capa (#B49BC2) é o violeta clareado, para dar contraste sobre o índigo."
+}

@@ -73,6 +73,11 @@ function camadaClara(T) {
 .focoimg .cred,.cardshot .cred{background:${rgba(bg, .88)}!important;color:var(--ink)!important;border:1px solid var(--line)!important}
 .focoimg.gerada{background:var(--bg)!important}
 .wkfade{background:linear-gradient(90deg,transparent,${bg})!important}
+.leaflet-container{background:${c.papel||bg}!important}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:${rgba(c.papel||bg,.98)}!important;color:var(--ink)!important;border:1px solid var(--line2)}
+.leaflet-control-zoom a{background:${c.papel||bg}!important;color:var(--ink)!important;border-color:var(--line2)!important}
+.leaflet-control-attribution{background:${rgba(bg,.8)}!important}
+.leaflet-popup-content hr{border-color:var(--line2)!important}
 .btn,.btn.add,.btn.intel{color:var(--ink)!important;border-color:var(--line2)!important;background:transparent!important}
 .btn.add,.btn.intel{color:var(--accent)!important;border-color:var(--accent)!important}
 @media (max-width:1024px),(hover:none),(pointer:coarse){
