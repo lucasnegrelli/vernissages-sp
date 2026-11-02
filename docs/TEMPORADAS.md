@@ -1,3 +1,5 @@
+> **02/11/2026: temporadas suspensas.** O Lucas decidiu voltar à estética original, sem temporada. Concreto, Lambe, Fachada e Transparência estão em `temporadas/_banco/`. Para reativar, copie um JSON do banco para `temporadas/AAAA-MM.json` e rode `node temporada.js --css`.
+
 # Temporadas: pesquisa e curadoria (02/11/2026)
 
 Concreto (out) e Lambe (nov) não pegaram. Este documento diz por que e propõe o que fazer.
