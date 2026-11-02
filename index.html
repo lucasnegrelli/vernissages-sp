@@ -1003,11 +1003,14 @@ if(TEM_MAPA){
     /* tema claro (temporada Fachada) usa o canvas cinza claro da Esri; escuro segue o dark gray */
     const rgb=(getComputedStyle(document.body).backgroundColor.match(/[0-9]+/g)||[0,0,0]).map(Number);
     const claro=(0.299*rgb[0]+0.587*rgb[1]+0.114*rgb[2])>140;
-    const base=claro?'World_Light_Gray_Base':'World_Dark_Gray_Base', ref=claro?'World_Light_Gray_Reference':'World_Dark_Gray_Reference';
+    /* Os tiles dark_gray da Esri trazem uma borda clara em cada tile (vira grade de linhas no mapa).
+       Usa sempre o canvas claro, que vem limpo, e escurece por CSS (filter) quando o tema é escuro. */
+    const base='World_Light_Gray_Base', ref='World_Light_Gray_Reference';
+    if(!claro)map.getPane('tilePane').style.filter='invert(1) hue-rotate(180deg) brightness(.78) contrast(.82) saturate(.4)';
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/'+base+'/MapServer/tile/{z}/{y}/{x}',
-      {attribution:'Esri, HERE, Garmin, © OpenStreetMap contributors',maxZoom:16,opacity:claro?.38:1}).addTo(map);
+      {attribution:'Esri, HERE, Garmin, © OpenStreetMap contributors',maxZoom:16,opacity:claro?.38:.55}).addTo(map);
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/'+ref+'/MapServer/tile/{z}/{y}/{x}',
-      {maxZoom:16}).addTo(map);
+      {maxZoom:16,opacity:claro?1:.8}).addTo(map);
   }catch(_){ map=null; }
 }
 if(!map){
