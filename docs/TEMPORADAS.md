@@ -43,7 +43,7 @@ Ressalvas dos testes:
 
 ## Decisão (02/11/2026)
 
-**Novembro = Temporada 03 Fachada.** O Lambe foi arquivado em `temporadas/_banco/lambe.json`.
+**Novembro = Temporada 02 Fachada.** O Lambe foi arquivado em `temporadas/_banco/lambe.json`.
 
 - Capa do social em índigo (a pintura), festão de bandeirinhas em branco cru, destaques em lilás claro (violeta clareado, só na capa).
 - Mostra de obra e lista em papel branco cru, obra inteira, nada por cima.

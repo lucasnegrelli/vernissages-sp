@@ -1,5 +1,5 @@
 /* temporada.css — gerado por temporada.js; não editar à mão */
-/* Temporada 03 · Fachada — Alfredo Volpi, Fachada com bandeiras (1959), têmpera sobre tela, 115,5 x 72 cm, acervo do MASP: casarão reduzido a arcos, blocos chapados e bandeirinhas em rabo de andorinha. */
+/* Temporada 02 · Fachada — Alfredo Volpi, Fachada com bandeiras (1959), têmpera sobre tela, 115,5 x 72 cm, acervo do MASP: casarão reduzido a arcos, blocos chapados e bandeirinhas em rabo de andorinha. */
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter+Tight:wght@400;500;700;800&display=swap');
 :root{
   --bg:#E2DACF;--ink:#272A5C;--text:#272A5C;--muted:#555884;--text2:#3C3F70;
@@ -56,8 +56,8 @@ header::after,.top::after{content:'';position:absolute;left:0;right:0;top:100%;h
   .card,.panel,.foco,.wkwrap,.dirwrap{border:var(--bw) solid var(--line2)!important}
 }
 
-footer::before{content:'Temporada 03 · Fachada';display:block;font-family:var(--display);font-weight:800;color:var(--accent);letter-spacing:.02em;margin-bottom:10px;text-transform:uppercase;font-size:.78rem}
+footer::before{content:'Temporada 02 · Fachada';display:block;font-family:var(--display);font-weight:800;color:var(--accent);letter-spacing:.02em;margin-bottom:10px;text-transform:uppercase;font-size:.78rem}
 /* mesma assinatura no cabeçalho — a temporada não é só cor trocada */
-.hbrand::after{content:'Temporada 03 · Fachada';display:block;font-family:var(--display);
+.hbrand::after{content:'Temporada 02 · Fachada';display:block;font-family:var(--display);
   font-weight:700;color:var(--accent);letter-spacing:.18em;text-transform:uppercase;
   font-size:.68rem;margin-top:8px}
