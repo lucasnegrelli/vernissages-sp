@@ -47,6 +47,9 @@ const W = 1080, H = 1350;
 const TEMP = require('./temporada.js').atual();
 const ACENTO = TEMP ? TEMP.cores.acento : '#C96F4A';
 const FONTE = TEMP ? TEMP.fontes.titulo : "'Switzer',sans-serif";
+/* Capa própria da temporada (cores.capa): a capa é a obra do mês, o resto fica em papel. */
+const CAPA = TEMP && TEMP.cores.capa ? TEMP.cores : null;
+const FESTAO = TEMP && TEMP.marca === 'bandeira';
 const FONTE_CSS = TEMP ? `@import url('${TEMP.fontes.css}');` : '';
 const DIAS = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB'];
 const dt = iso => new Date(iso + 'T12:00:00');
@@ -121,6 +124,12 @@ body{background:#000}
 .capa .conta b{display:block;font-size:92px;font-weight:800;line-height:1;letter-spacing:-.04em}
 .capa .conta span{display:block;font-size:22px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:${p.meio};margin-top:8px}
 
+${CAPA ? `.s.capa{background:${CAPA.capa};color:${CAPA.capaTexto}}
+.capa .topo,.capa .conta span{color:${CAPA.capaTexto};opacity:.78}
+.capa .datas{color:${CAPA.capaAcento}}
+.capa .pag{color:${CAPA.capaAcento}}${FESTAO ? `
+.capa .topo{top:104px}.capa .grande{top:168px}.capa .datas{top:590px}.capa .mosaico{top:700px;height:380px}` : ''}` : ''}
+
 /* mostra */
 .m .quadro{position:absolute;left:0;right:0;top:0;height:760px;background:${p.fundo};padding:56px 56px 0;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .m .quadro img{max-width:100%;max-height:100%;display:block}
@@ -164,6 +173,7 @@ function capa(sel, hoje) {
   const gratis = sel.itens.filter(x => x.v.ing && x.v.ing.g).length;
   const fotos = sel.itens.filter(x => x.rel).slice(0, 3);
   return `<div class="s capa">
+    ${FESTAO ? require('./temporada.js').festaoSocial(TEMP, 40, 52) : ''}
     <div class="topo"><span class="et">Vernissages SP</span><span class="et">${TEMP ? esc(TEMP.selo) : 'o fim de semana'}</span></div>
     <div class="grande">Arte em SP<br>este fim<br>de semana</div>
     <div class="datas">${curto(sel.de)} — ${curto(sel.domingo)}</div>

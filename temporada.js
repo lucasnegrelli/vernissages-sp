@@ -60,6 +60,52 @@ function rgba(hex, a) {
   return `rgba(${parseInt(h.slice(0, 2), 16)},${parseInt(h.slice(2, 4), 16)},${parseInt(h.slice(4, 6), 16)},${a})`;
 }
 
+/* Fundo claro? O site base é escuro: muitos fundos estão fixos em #0c0c10/#131318
+   (com !important, para toque) e o card de destaque tem gradiente escuro. Em
+   temporada clara, tudo isso vira papel e tinta, senão o texto some. */
+const luz = hex => { const h = hex.replace('#', ''); const v = [0, 2, 4].map(i => { const x = parseInt(h.slice(i, i + 2), 16) / 255; return x <= .03928 ? x / 12.92 : Math.pow((x + .055) / 1.055, 2.4); }); return .2126 * v[0] + .7152 * v[1] + .0722 * v[2]; };
+const clara = T => luz(T.cores.fundo) > .4;
+function camadaClara(T) {
+  const c = T.cores, bg = c.fundo, ink = c.texto;
+  return `/* temporada clara: sobrescreve os fundos escuros do site base */
+:root{--violet:${c.acento};--blue:${c.tinta || ink};--green:${c.verde || ink};--red:${c.vermelho || c.acento}}
+.focoimg::after{background:linear-gradient(90deg,var(--bg) 0%,${rgba(bg, .55)} 22%,transparent 55%)!important}
+.focoimg .cred,.cardshot .cred{background:${rgba(bg, .88)}!important;color:var(--ink)!important;border:1px solid var(--line)!important}
+.focoimg.gerada{background:var(--bg)!important}
+.wkfade{background:linear-gradient(90deg,transparent,${bg})!important}
+.btn,.btn.add,.btn.intel{color:var(--ink)!important;border-color:var(--line2)!important;background:transparent!important}
+.btn.add,.btn.intel{color:var(--accent)!important;border-color:var(--accent)!important}
+@media (max-width:1024px),(hover:none),(pointer:coarse){
+  header{background:var(--bg)!important}
+  .card,.panel,.foco,.wkwrap,.dirwrap,#modal,#routePanel,.navmenu,.infopop,.wk,th{background:var(--bg)!important}
+  #modalBg{background:${rgba(bg, .94)}!important}
+  #search,select,.chip,.navbtn,.viewtoggle,.btn{background:transparent!important}
+  .card,.panel,.foco,.wkwrap,.dirwrap{border:var(--bw) solid var(--line2)!important}
+}
+`;
+}
+
+/* Bandeirinha em rabo de andorinha (Volpi, Fachada com bandeiras, 1959). */
+const BANDEIRA = 'polygon(0 0,100% 0,100% 100%,50% 62%,0 100%)';
+
+/* Festão: fileira de bandeirinhas, em SVG, para o topo do site e do social.
+   cores: lista que se repete; w = largura de cada bandeira em px. */
+function festaoSvg(cores, w, h) {
+  const passo = w + Math.round(w * .35);
+  const n = cores.length;
+  const corpo = cores.map((c, i) => `<path d='M${i * passo} 0H${i * passo + w}V${h}L${i * passo + w / 2} ${Math.round(h * .62)}L${i * passo} ${h}Z' fill='${c}'/>`).join('');
+  return { svg: `<svg xmlns='http://www.w3.org/2000/svg' width='${n * passo}' height='${h}'>${corpo}</svg>`, largura: n * passo };
+}
+const festaoUrl = (cores, w, h) => 'data:image/svg+xml;utf8,' + encodeURIComponent(festaoSvg(cores, w, h).svg).replace(/'/g, '%27');
+
+/* Festão em HTML pronto para o social (screenshot de Puppeteer). Sem marca
+   "bandeira" no JSON, devolve vazio. */
+function festaoSocial(T, w, h, cores) {
+  if (!T || T.marca !== 'bandeira') return '';
+  const c = cores || T.cores.festaoCapa || T.cores.extras || [T.cores.acento];
+  return `<div style="position:absolute;left:0;right:0;top:0;height:${h}px;background:url('${festaoUrl(c, w, h)}') repeat-x 12px 0"></div>`;
+}
+
 /* A mesma marca do header do site (ver marca() abaixo, gerada como CSS ali)
    — aqui em HTML pronto, porque o social é screenshot de Puppeteer, não CSS
    vivo. "Vernissages SP" + a peça geométrica do mês logo depois, na cor de
@@ -74,6 +120,7 @@ function marcaSocial(T, acentoCor, tamanhoPx) {
   const forma = T.marca === 'circulo' ? `width:${px}px;height:${px}px;border-radius:50%`
     : T.marca === 'quadrado' ? `width:${Math.round(px * .9)}px;height:${Math.round(px * .9)}px`
     : T.marca === 'risco' ? `width:${Math.round(px * 2.2)}px;height:${Math.round(px * .32)}px`
+    : T.marca === 'bandeira' ? `width:${Math.round(px * 1.1)}px;height:${Math.round(px * 1.3)}px;clip-path:${BANDEIRA}`
     : '';
   if (!forma) return rotulo;
   return `${rotulo}<span style="${base};${forma}"></span>`;
@@ -93,6 +140,8 @@ function marca(nome) {
 header h1 span::after,.top a span::after{width:.32em;height:.32em;border-radius:50%}`;
   if (nome === 'quadrado') return base + `
 header h1 span::after,.top a span::after{width:.3em;height:.3em}`;
+  if (nome === 'bandeira') return base + `
+header h1 span::after,.top a span::after{width:.34em;height:.4em;clip-path:${BANDEIRA};vertical-align:.02em}`;
   if (nome === 'risco') return base + `
 header h1 span::after,.top a span::after{width:.7em;height:.12em;vertical-align:.18em}`;
   return '';
@@ -142,6 +191,10 @@ ul.lista li:hover,.grid2 a:hover,.card:hover{transform:none!important;border-col
 .tag.current,.tag.paid,.tag.tbc{color:var(--muted)!important;border-color:var(--border)!important}
 .tag.closing,.tag.fair{color:var(--accent)!important;border-color:var(--accent)!important}
 .tag.free{color:var(--ink)!important;border-color:var(--ink)!important}
+${T.marca === 'bandeira' ? `header,.top{position:relative;margin-bottom:22px}
+header::after,.top::after{content:'';position:absolute;left:0;right:0;top:100%;height:26px;pointer-events:none;z-index:5;
+  background:url("${festaoUrl(c.festao || c.extras || [c.acento], 22, 26)}") repeat-x 12px 0}` : ''}
+${clara(T) ? camadaClara(T) : ''}
 footer::before{content:'${T.selo.replace(/'/g, "\\'")}';display:block;font-family:var(--display);font-weight:${f.pesoTitulo};color:var(--accent);letter-spacing:.02em;margin-bottom:10px;text-transform:uppercase;font-size:.78rem}
 /* mesma assinatura no cabeçalho — a temporada não é só cor trocada */
 .hbrand::after{content:'${T.selo.replace(/'/g, "\\'")}';display:block;font-family:var(--display);
@@ -150,7 +203,7 @@ footer::before{content:'${T.selo.replace(/'/g, "\\'")}';display:block;font-famil
 `;
 }
 
-module.exports = { carregar, atual, paleta, css, mesDeHoje, marcaSocial };
+module.exports = { carregar, atual, paleta, css, mesDeHoje, marcaSocial, festaoSocial };
 
 if (require.main === module) {
   const argv = process.argv.slice(2);
