@@ -42,6 +42,12 @@
       "seguidores": 105,
       "seguindo": 98,
       "posts": 72
+    },
+    {
+      "data": "2026-11-02",
+      "seguidores": 105,
+      "seguindo": 98,
+      "posts": 73
     }
   ],
   "midias": {
@@ -492,6 +498,14 @@
       "comentarios": 0,
       "link": "https://www.instagram.com/reel/DfItIMhjxyB/",
       "formato": "reel"
+    },
+    "18153253561545267": {
+      "tipo": "FEED",
+      "quando": "2026-11-01T18:52:51+0000",
+      "curtidas": 2,
+      "comentarios": 0,
+      "link": "https://www.instagram.com/p/DfNa212GdVl/",
+      "formato": "encerra"
     }
   }
 }
