@@ -605,6 +605,25 @@ function aSemTitulo(a,titulo){
   const t=norm(titulo);
   return String(a||'').split(', ').map(n=>n.trim()).filter(n=>n&&!t.includes(norm(n)));
 }
+/* quebra o título onde ele tem uma divisão natural ("Jacqueline Humphries / e JH Studio"), em vez de
+   deixar o navegador cortar no meio de um nome. Escolhe o separador que deixa as duas linhas mais
+   parecidas; títulos curtos ou sem separador seguem a quebra normal. */
+function quebraTitulo(t){
+  t=String(t||'');
+  if(t.length<24)return esc(t);
+  const seps=[[': ',1],[' — ',0],[' – ',0],[' e ',0],[' & ',0],[' x ',0]];   /* [texto, 1 = fica na linha de cima] */
+  let melhor=null;
+  for(const [sp,fica] of seps){
+    let i=t.indexOf(sp);
+    while(i>-1){
+      const a=t.slice(0,i+(fica?sp.trimEnd().length:0)).trim();
+      const b=t.slice(i+(fica?sp.length:1)).trim();
+      if(a.length>=6&&b.length>=6){const d=Math.abs(a.length-b.length);if(!melhor||d<melhor.d)melhor={a,b,d};}
+      i=t.indexOf(sp,i+1);
+    }
+  }
+  return melhor?esc(melhor.a)+'<br>'+esc(melhor.b):esc(t);
+}
 function artHtml(e){
   const n=aSemTitulo(e.a,tituloLimpo(e));
   return n.length?'<div class="art">'+n.map(x=>'<span data-act="artista" data-n="'+esc(x)+'">'+esc(x)+'</span>').join(' · ')+'</div>':'';
@@ -772,7 +791,7 @@ function renderHero(){
   const desc=f.txt?corteDesc(f.txt,520):'';
   el.innerHTML='<div class="hero"><div class="tx">'+
     '<div class="rot"><b>'+(f.publi?'Apoio · conteúdo patrocinado':'Em foco')+'</b>'+(f.auto&&!f.publi?' · destaque do dia':'')+(v?' · '+esc(v.name)+' · '+esc(v.b):'')+'</div>'+
-    '<h2 class="t-'+tam+'">'+esc(f.t)+'</h2>'+(()=>{const n=aSemTitulo(f.quem,f.t);return n.length?'<div class="art">'+esc(n.join(', '))+'</div>':''})()+
+    '<h2 class="t-'+tam+'">'+quebraTitulo(f.t)+'</h2>'+(()=>{const n=aSemTitulo(f.quem,f.t);return n.length?'<div class="art">'+esc(n.join(', '))+'</div>':''})()+
     '<div class="qd">'+(f.ini?'<div class="quando"><div class="dt">'+datasFoco(f)+'</div><div class="sit">'+situacaoFoco(f)+'</div></div>':'')+(desc?'<p class="desc">'+esc(desc)+'</p>':'')+'</div>'+
     '<div class="botoes">'+(v?'<button type="button" class="bt cheio" data-act="veremapa" data-v="'+esc(v.name)+'">Ver no mapa</button>':'')+
     (f.k!=null?'<button type="button" class="bt" data-act="ficha" data-id="'+f.k+'">Ficha completa</button>':'')+
