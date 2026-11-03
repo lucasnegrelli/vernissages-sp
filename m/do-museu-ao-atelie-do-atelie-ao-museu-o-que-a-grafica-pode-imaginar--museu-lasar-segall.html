@@ -13,108 +13,276 @@
 <meta property="og:image" content="https://vernissagessp.com.br/og-image.png">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F2EFE9">
 <link rel="icon" type="image/png" href="https://vernissagessp.com.br/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="preload" href="https://vernissagessp.com.br/fontes/Switzer-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-:root{--bg:#0a0a0d;--ink:#f3f3f7;--text:#f3f3f7;--muted:#8b8b9a;--text2:#c2c2d0;--accent:#e8c15a;--accent2:#c96f4a;--violet:#a78bfa;--green:#7fd8a0;--red:#f08a7a;--blue:#8fb6f9;--glass:rgba(255,255,255,.045);--glass2:rgba(255,255,255,.075);--line:rgba(255,255,255,.10);--line2:rgba(255,255,255,.20);--hair:rgba(255,255,255,.055);--panel:rgba(255,255,255,.045);--panel2:rgba(255,255,255,.075);--border:rgba(255,255,255,.10);--blur:blur(16px) saturate(150%)}
+@font-face{font-family:Switzer;src:url(https://vernissagessp.com.br/fontes/Switzer-Variable.woff2) format("woff2");font-weight:100 900;font-display:swap}
+:root{--paper:#F2EFE9;--ink:#0E0E0E;--terra:#C96F4A;--mute:#6f6a60;--mute2:#b7b1a4;--gut:clamp(16px,3vw,48px);--serif:"Instrument Serif",Georgia,serif;
+ /* nomes do tema escuro antigo, apontando para o novo */
+ --bg:var(--paper);--text:var(--ink);--text2:#3d3a35;--muted:var(--mute);--accent:var(--terra);--accent2:var(--terra);
+ --panel:transparent;--panel2:transparent;--glass:transparent;--glass2:transparent;--border:rgba(14,14,14,.24);--line:rgba(14,14,14,.24);--line2:var(--ink);--hair:rgba(14,14,14,.14);
+ --radius:0px;--radius-sm:0px;--onaccent:var(--ink);--blue:var(--ink);--green:var(--terra);--red:var(--terra);--violet:var(--terra);--blur:none;--font:Switzer,Helvetica,Arial,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,'Segoe UI',Inter,sans-serif;line-height:1.65;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-body::before{content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(58vw 46vh at 10% -8%,rgba(232,193,90,.13),transparent 62%),radial-gradient(48vw 42vh at 94% 4%,rgba(167,139,250,.12),transparent 62%),radial-gradient(72vw 55vh at 48% 104%,rgba(201,111,74,.09),transparent 60%)}
-body::after{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);background-size:72px 72px;-webkit-mask-image:radial-gradient(ellipse 85% 55% at 50% 0%,#000 20%,transparent 78%);mask-image:radial-gradient(ellipse 85% 55% at 50% 0%,#000 20%,transparent 78%)}
-::selection{background:var(--accent);color:#0a0a0d}
-a{color:var(--blue)}
-.top{border-bottom:1px solid var(--border);padding:20px 24px}
-.top a{color:var(--text);text-decoration:none;font-weight:600;letter-spacing:2.5px;font-size:1rem}
-.top a span{color:var(--accent)}
-.nav{margin-top:6px;font-size:.8rem;color:var(--muted)}
-.nav a{color:var(--muted);text-decoration:none;margin-right:14px}
-.nav a:hover{color:var(--accent)}
-.wrap{max-width:780px;margin:0 auto;padding:36px 24px 70px}
-.wide{max-width:1080px}
-h1{font-size:1.9rem;line-height:1.25;font-weight:600;letter-spacing:-.4px;margin-bottom:10px}
-h2{font-size:.78rem;text-transform:uppercase;letter-spacing:1.8px;color:var(--muted);margin:40px 0 14px;padding-bottom:9px;border-bottom:1px solid var(--border)}
-.sub{color:var(--accent2);font-size:1rem;margin-bottom:4px}
-.meta{color:var(--muted);font-size:.88rem;margin-bottom:20px}
-.tag{display:inline-block;padding:2px 10px;border-radius:11px;font-size:.68rem;font-weight:700;letter-spacing:.5px;margin-left:8px;vertical-align:2px}
-.tag.on{background:rgba(127,185,138,.15);color:var(--green)}
-.tag.off{background:rgba(154,154,166,.15);color:var(--muted)}
-.tag.soon{background:rgba(232,193,90,.16);color:var(--accent)}
-p.txt{margin:14px 0;font-size:1.02rem}
-.box{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin:18px 0}
-.box dl{display:grid;grid-template-columns:130px 1fr;gap:8px 14px;font-size:.92rem}
-.box dt{color:var(--muted)}
-.btns{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
-.btn{background:var(--panel2);border:1px solid var(--border);color:var(--blue);border-radius:14px;padding:6px 14px;font-size:.83rem;text-decoration:none}
-.btn:hover{border-color:var(--blue)}
-ul.lista{list-style:none;display:flex;flex-direction:column;gap:12px}
-ul.lista li{background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--border);border-radius:11px;padding:14px 16px}
-ul.lista li.on{border-left-color:var(--green)}
-ul.lista li.soon{border-left-color:var(--accent)}
-ul.lista li a.t{color:var(--text);font-weight:600;font-size:1.02rem;text-decoration:none}
-ul.lista li a.t:hover{color:var(--accent)}
-ul.lista li .l2{color:var(--accent2);font-size:.86rem;margin-top:3px}
-ul.lista li .l3{color:var(--muted);font-size:.8rem;margin-top:3px}
-.grid2{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
-.grid2 a{display:block;background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:13px 15px;text-decoration:none;color:var(--text)}
-.grid2 a:hover{border-color:var(--accent)}
-.grid2 a small{display:block;color:var(--muted);font-size:.76rem;margin-top:3px}
-.busca{width:100%;background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:22px;padding:10px 18px;font-size:.95rem;margin-bottom:18px}
-.busca:focus{outline:none;border-color:var(--accent)}
-footer{border-top:1px solid var(--border);margin-top:50px;padding-top:20px;color:var(--muted);font-size:.78rem;line-height:1.7}
-footer a{color:var(--accent2)}
-@media(max-width:600px){.wrap{padding:26px 18px 60px}h1{font-size:1.5rem}.box dl{grid-template-columns:1fr;gap:2px 0}.box dt{margin-top:8px}}
-/* ===== TOKENS ===== */
-:root{--font:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Inter,sans-serif;--radius:16px;--radius-sm:10px;--bw:1px;--ls:0px;--onaccent:#0a0a0d}
-body,button,input,select,textarea,.btn{font-family:var(--font);letter-spacing:var(--ls)}
-.box,ul.lista li,.grid2 a{border-radius:var(--radius)}
-.box,.grid2 a{border-width:var(--bw)}
-.btn,.busca{border-radius:calc(var(--radius) + 6px);border-width:var(--bw)}
-.tag{border-radius:var(--radius-sm)}
-/* ===== VIDRO ===== */
-.box,ul.lista li,.grid2 a{background:var(--glass);border:1px solid var(--line);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);box-shadow:0 1px 0 rgba(255,255,255,.06) inset,0 12px 32px -18px rgba(0,0,0,.9)}
-ul.lista li:hover,.grid2 a:hover{background:var(--glass2);border-color:var(--line2);transform:translateY(-2px)}
-ul.lista li,.grid2 a{transition:.2s}
-.top{background:rgba(10,10,13,.62);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border-bottom:1px solid var(--hair);position:sticky;top:0;z-index:60}
-.btn,.busca{background:var(--glass2);border:1px solid var(--line);color:var(--text2);transition:.18s}
-.btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(232,193,90,.09)}
-.busca:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(232,193,90,.10)}
-@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+html{overflow-x:clip}
+body{background:var(--paper);color:var(--ink);font-family:Switzer,Helvetica,Arial,sans-serif;font-size:17px;line-height:1.45;-webkit-font-smoothing:antialiased;overflow-x:clip}
+::selection{background:var(--terra);color:var(--ink)}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+img{max-width:100%}
+:focus-visible{outline:2px solid var(--terra);outline-offset:2px}
 
+/* ---------- cabeçalho ---------- */
+.topo{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:2px solid var(--ink);display:flex;justify-content:space-between;align-items:center;gap:20px;padding:0 var(--gut);min-height:58px}
+.logo{font-weight:800;font-size:clamp(20px,2.4vw,30px);letter-spacing:-.045em;text-transform:uppercase;color:var(--terra);line-height:1;padding:14px 0;white-space:nowrap}
+.topo nav{display:flex;gap:clamp(14px,2vw,28px);align-items:center;overflow-x:auto;scrollbar-width:none}
+.topo nav::-webkit-scrollbar{display:none}
+.topo nav a{position:relative;white-space:nowrap;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:21px 0}
+.topo nav a::after{content:"";position:absolute;left:0;right:100%;bottom:14px;height:2px;background:var(--terra);transition:right .25s ease}
+.topo nav a:hover::after,.topo nav a[aria-current]::after{right:0}
+.topo nav a.cta{background:var(--ink);color:var(--paper);padding:10px 14px;margin:0}
+.topo nav a.cta::after{display:none}
+.topo nav a.cta:hover{background:var(--terra);color:var(--ink)}
+
+/* ---------- corpo ---------- */
+.wrap{max-width:1000px;margin:0 auto;padding:clamp(28px,5vw,72px) var(--gut) 40px}
+.wide{max-width:1500px}
+.kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--terra);margin-bottom:10px}
+.kick span{color:var(--ink)}
+h1{font-weight:800;text-transform:uppercase;font-size:clamp(34px,6vw,96px);line-height:.9;letter-spacing:-.045em;margin:0 0 clamp(14px,2vw,26px);text-wrap:balance;overflow-wrap:break-word}
+h1.g{font-size:clamp(46px,10vw,168px);line-height:.84}
+h1 .tag{font-size:12px;letter-spacing:.12em;vertical-align:middle;margin-left:14px;line-height:1}
+h2{font-weight:800;font-size:clamp(22px,2.6vw,38px);letter-spacing:-.035em;text-transform:uppercase;line-height:.95;margin:clamp(36px,5vw,72px) 0 clamp(12px,1.6vw,20px);padding-bottom:12px;border-bottom:2px solid var(--ink);display:flex;justify-content:space-between;align-items:baseline;gap:14px;text-wrap:balance}
+h2 small{font-size:12px;letter-spacing:.14em;color:var(--mute);font-weight:600}
+.lede{font-size:clamp(18px,1.6vw,24px);line-height:1.4;max-width:62ch;margin:0 0 18px;text-wrap:pretty}
+p.txt{margin:14px 0;font-size:clamp(17px,1.35vw,20px);line-height:1.5;max-width:68ch;text-wrap:pretty}
+.sub{font-family:var(--serif);font-style:italic;font-size:clamp(22px,2.4vw,38px);line-height:1.1;margin:0 0 12px;text-wrap:pretty}
+.sub a:hover{color:var(--terra)}
+.meta{color:var(--mute);font-size:14px;letter-spacing:.04em;margin-bottom:20px}
+.nota{font-size:13px;color:var(--mute);max-width:78ch;line-height:1.5}
+
+/* ---------- peças ---------- */
+.tag{display:inline-block;border:1.5px solid currentColor;padding:2px 8px;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.tag.on{color:var(--ink)}.tag.soon{color:var(--terra)}.tag.off{color:var(--mute)}
+.tag.cheio{background:var(--terra);border-color:var(--terra);color:var(--ink)}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin:clamp(18px,2vw,28px) 0}
+.btn{display:inline-block;border:1.5px solid var(--ink);padding:11px 18px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;transition:background .15s,color .15s}
+.btn:hover{background:var(--ink);color:var(--paper)}
+.btn.cheio{background:var(--ink);color:var(--paper)}
+.btn.cheio:hover{background:var(--terra);border-color:var(--terra);color:var(--ink)}
+.box{border-top:2px solid var(--ink);padding:16px 0;margin:18px 0}
+.box dl{display:grid;grid-template-columns:150px 1fr;gap:10px 18px;font-size:15px}
+.box dt{color:var(--mute);font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding-top:2px}
+.box dd a{border-bottom:1.5px solid var(--terra)}
+.box dd a:hover{color:var(--terra)}
+
+/* busca, filtros */
+.busca{width:100%;background:transparent;border:0;border-bottom:2px solid var(--ink);color:var(--ink);font:800 clamp(22px,3.2vw,46px)/1 Switzer,sans-serif;letter-spacing:-.04em;text-transform:uppercase;padding:6px 0 10px;outline:0;border-radius:0;margin:6px 0 18px}
+.busca::placeholder{color:#a9a399}
+.busca:focus{border-color:var(--terra)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 12px}
+.chips .rot{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--mute);margin-right:4px}
+.chip{border:1.5px solid var(--ink);padding:7px 12px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;transition:background .12s,color .12s}
+.chip:hover{background:rgba(14,14,14,.08)}
+.chip.on{background:var(--ink);color:var(--paper)}
+select.sel{background:transparent;border:0;border-bottom:1.5px solid var(--ink);font:800 12px Switzer,sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:8px 22px 8px 0;border-radius:0;appearance:none;-webkit-appearance:none;cursor:pointer;max-width:260px;background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 9px) 55%,calc(100% - 4px) 55%;background-size:5px 5px;background-repeat:no-repeat;color:var(--ink)}
+.cont{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:8px 0 4px}
+.cont b{color:var(--terra)}
+
+/* listas editoriais (acervo, artista, editais, fim de semana) */
+ul.lista{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,380px),1fr));gap:0 var(--gut)}
+ul.lista li{border-top:2px solid var(--ink);padding:16px 0 20px;position:relative}
+ul.lista li .t{font-weight:800;font-size:clamp(19px,1.7vw,26px);line-height:1;letter-spacing:-.03em;text-transform:uppercase;display:block;text-wrap:balance}
+ul.lista li a.t:hover{color:var(--terra)}
+ul.lista li .t + .tag,ul.lista li .tag{margin-left:0}
+ul.lista li .l2{font-family:var(--serif);font-style:italic;font-size:19px;margin-top:6px;line-height:1.15;color:var(--ink)}
+ul.lista li .l3{color:var(--mute);font-size:13px;margin-top:5px;letter-spacing:.02em;line-height:1.4}
+ul.lista li .qdt{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;margin-bottom:7px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+ul.lista li .qdt .terra{color:var(--terra)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:0 var(--gut)}
+.grid2 a{display:flex;justify-content:space-between;align-items:baseline;gap:10px;border-top:1.5px solid rgba(14,14,14,.3);padding:11px 0;font-weight:700;letter-spacing:-.01em;font-size:17px}
+.grid2 a small{color:var(--mute);font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;white-space:nowrap}
+.grid2 a:hover{color:var(--terra)}
+
+/* imagem recortada na borda real (ver RC_JS): sem moldura branca */
+.rc{position:relative;overflow:hidden;aspect-ratio:var(--ar,.8);opacity:0;background:transparent}
+.rc.ok{opacity:1;transition:opacity .35s}
+.rc img{position:absolute;display:block;max-width:none;width:100%;left:0;top:0;height:auto}
+.th{height:112px;flex:none}
+
+/* ---------- rodapé ---------- */
+footer{margin-top:clamp(50px,7vw,100px);border-top:2px solid var(--ink);padding-top:22px;color:var(--mute);font-size:13px;line-height:1.7}
+footer a{border-bottom:1.5px solid var(--terra);color:var(--ink)}
+footer a:hover{color:var(--terra)}
+footer nav{display:flex;gap:10px 24px;flex-wrap:wrap;margin-bottom:12px;font-weight:700;font-size:14px}
+footer nav a{border:0}
+
+/* ---------- página de mostra ---------- */
+.expo{display:block}
+.expo h1{font-size:clamp(30px,4.6vw,76px);line-height:.92}
+.expo.com{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.85fr);gap:clamp(24px,4vw,72px);align-items:start}
+.quando{border-top:2px solid var(--ink);padding-top:14px;margin:6px 0 18px;display:flex;flex-direction:column;gap:8px}
+.dt{font-weight:800;font-size:clamp(30px,3.8vw,64px);line-height:.92;letter-spacing:-.045em;text-transform:uppercase}
+.dt i{font-style:normal;color:var(--terra);margin:0 .08em}
+.sit{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--terra)}
+.ex-fig{margin:0;position:sticky;top:78px}
+.ex-fig .rc{width:min(100%,calc(78vh*var(--ar,.8)))}
+.ex-fig figcaption{font-size:11px;color:var(--mute);margin-top:8px}
+@media(max-width:860px){.expo.com{grid-template-columns:1fr}.ex-fig{position:static;order:-1}}
+
+/* ---------- listas com miniatura, índices e editais ---------- */
+ul.lista li .thl{flex:none;display:block}
+ul.lista li .thl .rc{height:112px}
+section.let h2{margin-top:clamp(26px,4vw,48px)}
+.bloco{margin-top:clamp(10px,2vw,24px)}
+ul.ed{grid-template-columns:1fr}
+@media(min-width:1100px){ul.ed.radar{grid-template-columns:repeat(2,minmax(0,1fr))}}
+ul.ed li{display:flex;gap:clamp(16px,3vw,48px);align-items:flex-start;justify-content:space-between}
+.prz{flex:none;width:clamp(96px,11vw,150px);text-align:right}
+.prz b{display:block;font-weight:800;font-size:clamp(26px,3.2vw,52px);line-height:.9;letter-spacing:-.05em;text-transform:uppercase}
+.prz span{display:block;margin-top:6px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);font-weight:700}
+.prz.soon b{color:var(--terra)}.prz.off b{color:var(--mute)}
+ul.ed li.off{opacity:.55}
+@media(max-width:700px){ul.ed li{flex-direction:column-reverse;gap:8px}.prz{text-align:left;width:auto;display:flex;gap:10px;align-items:baseline}.prz b{font-size:34px}}
+
+/* ---------- compatibilidade: fim de semana e monta seu sábado ---------- */
+.fds-conta b,.mms-conta b{font-weight:800;color:var(--ink);letter-spacing:-.05em}
+.fds-conta .ab b{color:var(--terra)}.mms-conta b{color:var(--terra)}
+#mapa,#mms-mapa{border:2px solid var(--ink)!important;border-radius:0!important;background:var(--paper)!important}
+ul.lista li{display:flex;gap:16px;align-items:flex-start}
+ul.lista li > .tx,ul.lista li > div:not(.th):not(.rc){flex:1;min-width:0}
+ul.lista .th{width:auto;height:112px;border-radius:0;background:transparent}
+ul.lista .th img{height:100%;width:auto;object-fit:contain}
+.qd{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra);font-weight:800;margin-bottom:5px}
+li.fecha .qd{color:var(--ink)}
+ul.mini{list-style:none}
+ul.mini li{display:block;padding:9px 0;border-top:1.5px solid rgba(14,14,14,.2)}
+ul.mini a{font-weight:700}ul.mini a:hover{color:var(--terra)}
+ul.mini span{color:var(--mute);font-size:13px}
+h3.zona{font-size:12px;color:var(--terra);letter-spacing:.14em;text-transform:uppercase;margin:26px 0 4px;font-weight:800}
+.mms-campo label{color:var(--mute)}
+.mms-campo select{background:transparent!important;border:0!important;border-bottom:2px solid var(--ink)!important;border-radius:0!important;color:var(--ink)!important;font-weight:700}
+.mms-campo select option{background:var(--paper)!important;color:var(--ink)!important}
+#mms-ir{background:var(--ink)!important;color:var(--paper)!important;border-radius:0!important;letter-spacing:.1em;text-transform:uppercase;font-size:12px!important}
+#mms-ir:hover{background:var(--terra)!important;color:var(--ink)!important;opacity:1!important}
+ul.mms-lista li{background:transparent!important;border:0!important;border-top:2px solid var(--ink)!important;border-radius:0!important;padding:14px 0!important}
+ul.mms-lista .k{border-radius:0!important;background:var(--ink)!important;color:var(--paper)!important}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--paper)!important;color:var(--ink)!important;border-radius:0!important}
+.leaflet-popup-content a{color:var(--terra)!important}
+
+@media(max-width:700px){
+  .topo{padding:0 14px;gap:10px;min-height:52px}
+  .topo nav a{padding:18px 0}
+  .box dl{grid-template-columns:1fr;gap:2px 0}.box dt{margin-top:10px}
+  ul.lista{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
-<link rel="stylesheet" href="https://vernissagessp.com.br/temporada.css">
+<script>try{var a=localStorage.getItem('vspAcento');if(a&&/^#[0-9a-f]{6}$/i.test(a))document.documentElement.style.setProperty('--terra',a)}catch(e){}</script>
 <script data-goatcounter="https://vernissages.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ExhibitionEvent","name":"Do museu ao ateliê, do ateliê ao museu: o que a gráfica pode imaginar?","startDate":"2026-07-18","endDate":"2026-10-19","eventStatus":"https://schema.org/EventScheduled","eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode","description":"Coletiva reunindo gravura em metal, xilogravura, monotipia e desenho de doze artistas visuais.","url":"https://vernissagessp.com.br/m/do-museu-ao-atelie-do-atelie-ao-museu-o-que-a-grafica-pode-imaginar--museu-lasar-segall.html","location":{"@type":"Place","name":"Museu Lasar Segall","address":{"@type":"PostalAddress","streetAddress":"R. Berta, 111","addressLocality":"São Paulo","addressRegion":"SP","addressCountry":"BR"}}}</script>
 </head>
 <body>
-<div class="top">
-<a href="https://vernissagessp.com.br/">VERNISSAGES <span>SP</span></a>
-<div class="nav">
-<a href="https://vernissagessp.com.br/">Agenda</a><a href="https://vernissagessp.com.br/fim-de-semana.html">Fim de semana</a><a href="https://vernissagessp.com.br/monta-meu-sabado.html">Monta seu sábado</a><a href="https://vernissagessp.com.br/arquivo.html">Acervo</a><a href="https://vernissagessp.com.br/artistas.html">Artistas</a><a href="https://vernissagessp.com.br/editais.html">Editais</a>
-</div>
-</div>
-<div class="wrap">
+<header class="topo">
+<a class="logo" href="https://vernissagessp.com.br/">Vernissages SP</a>
+<nav aria-label="Principal">
+<a href="https://vernissagessp.com.br/">Agenda</a>
+<a href="https://vernissagessp.com.br/fim-de-semana.html">Fim de semana</a>
+<a href="https://vernissagessp.com.br/monta-meu-sabado.html">Monta seu sábado</a>
+<a href="https://vernissagessp.com.br/arquivo.html" aria-current="page">Acervo</a>
+<a href="https://vernissagessp.com.br/artistas.html">Artistas</a>
+<a href="https://vernissagessp.com.br/editais.html">Editais</a>
+<a class="cta" href="https://vernissagessp.com.br/#divulgue">Divulgue</a>
+</nav>
+</header>
+<main class="wrap">
 
-<h1>Do museu ao ateliê, do ateliê ao museu: o que a gráfica pode imaginar?<span class="tag off">ENCERRADA</span></h1>
+<article class="expo">
+<div class="ex-tx">
+<p class="kick">ENCERRADA <span>· Museu Lasar Segall · Vila Mariana</span></p>
+<h1>Do museu ao ateliê, do ateliê ao museu: o que a gráfica pode imaginar?</h1>
 
-<div class="meta">Museu Lasar Segall · Vila Mariana · Zona Sul</div>
+<div class="quando"><div class="dt">18 jul<i>→</i>19 out</div><div class="sit">encerrada</div></div>
 <p class="txt">Coletiva reunindo gravura em metal, xilogravura, monotipia e desenho de doze artistas visuais.</p>
 <div class="box">
 <dl>
 <dt>Período</dt><dd>18 de julho de 2026 a 19 de outubro de 2026</dd>
-<dt>Espaço</dt><dd>Museu Lasar Segall <span style="color:var(--muted)">(institucional)</span></dd>
-<dt>Endereço</dt><dd>R. Berta, 111 — Vila Mariana, São Paulo</dd>
-
+<dt>Espaço</dt><dd>Museu Lasar Segall <span style="color:var(--mute)">(institucional)</span></dd>
+<dt>Endereço</dt><dd>R. Berta, 111, Vila Mariana, São Paulo</dd>
 </dl>
 </div>
 <div class="btns">
+<a class="btn cheio" href="https://www.google.com/maps/dir/?api=1&destination=Museu%20Lasar%20Segall%2C%20R.%20Berta%2C%20111%2C%20S%C3%A3o%20Paulo" target="_blank" rel="noopener">Como chegar</a>
 <a class="btn" href="https://museulasarsegall.org.br" target="_blank" rel="noopener">Site do espaço</a>
 
-<a class="btn" href="https://www.google.com/maps/dir/?api=1&destination=Museu%20Lasar%20Segall%2C%20R.%20Berta%2C%20111%2C%20S%C3%A3o%20Paulo" target="_blank" rel="noopener">Como chegar</a>
 <a class="btn" href="https://vernissagessp.com.br/">Ver agenda atual</a>
 </div>
-<footer>
-Vernissages SP — mapa vivo das galerias e aberturas de São Paulo, atualizado diariamente.<br>
-Datas conforme divulgação dos espaços; confirme antes de visitar. <a href="https://vernissagessp.com.br/">Voltar à agenda</a> · <a href="https://instagram.com/vernissagessp" target="_blank" rel="noopener">Instagram</a>
-</footer>
 </div>
+
+</article>
+
+<footer>
+<nav aria-label="Rodapé"><a href="https://vernissagessp.com.br/">Agenda</a><a href="https://vernissagessp.com.br/fim-de-semana.html">Este fim de semana</a><a href="https://vernissagessp.com.br/monta-meu-sabado.html">Monta seu sábado</a><a href="https://vernissagessp.com.br/arquivo.html">Acervo</a><a href="https://vernissagessp.com.br/artistas.html">Artistas</a><a href="https://vernissagessp.com.br/editais.html">Editais</a><a href="https://instagram.com/vernissagessp" target="_blank" rel="noopener">Instagram</a></nav>
+Vernissages SP, mapa vivo das galerias e aberturas de São Paulo, atualizado diariamente. Datas conforme divulgação dos espaços; confirme antes de visitar.
+</footer>
+</main>
+<script>
+(function(){
+var A={};
+function analisa(u){
+  if(A[u])return A[u];
+  A[u]=new Promise(function(res){
+    var im=new Image();
+    im.onload=function(){
+      var W=im.naturalWidth,H=im.naturalHeight;if(!W||!H){res(null);return}
+      var box=null;
+      try{
+        var k=Math.min(1,180/Math.max(W,H)),w=Math.max(8,Math.round(W*k)),h=Math.max(8,Math.round(H*k));
+        var c=document.createElement('canvas');c.width=w;c.height=h;
+        var x=c.getContext('2d',{willReadFrequently:true});x.drawImage(im,0,0,w,h);
+        var d=x.getImageData(0,0,w,h).data;
+        var at=function(i,j){var o=(j*w+i)*4;return [d[o],d[o+1],d[o+2]]};
+        var dist=function(a,b){return Math.sqrt(Math.pow(a[0]-b[0],2)+Math.pow(a[1]-b[1],2)+Math.pow(a[2]-b[2],2))};
+        var cant=[at(1,1),at(w-2,1),at(1,h-2),at(w-2,h-2)],bg=null,best=0;
+        cant.forEach(function(c1){var n=cant.filter(function(o){return dist(o,c1)<26}).length;if(n>best){best=n;bg=c1}});
+        if(best>=3){
+          var fg=function(i,j){return dist(at(i,j),bg)>40};
+          var lin=function(j){var n=0;for(var i=0;i<w;i++)if(fg(i,j))n++;return n/w};
+          var col=function(i){var n=0;for(var j=0;j<h;j++)if(fg(i,j))n++;return n/h};
+          var T=.012,y0=0,y1=h-1,x0=0,x1=w-1;
+          while(y0<h-1&&lin(y0)<T)y0++;
+          while(y1>y0&&lin(y1)<T)y1--;
+          while(x0<w-1&&col(x0)<T)x0++;
+          while(x1>x0&&col(x1)<T)x1--;
+          var bw=(x1-x0+1)/w,bh=(y1-y0+1)/h;
+          if((bw<.985||bh<.985)&&bw*bh>=.3&&bw>=.4&&bh>=.4){var kx=W/w,ky=H/h;box={x:Math.round(x0*kx),y:Math.round(y0*ky),w:Math.round((x1-x0+1)*kx),h:Math.round((y1-y0+1)*ky)}}
+        }
+      }catch(e){}
+      res({W:W,H:H,box:box});
+    };
+    im.onerror=function(){res(null)};
+    im.src=u;
+  });
+  return A[u];
+}
+function aplica(rc){
+  analisa(rc.getAttribute('data-u')).then(function(info){
+    var im=rc.querySelector('img');
+    if(info&&im){
+      var b=info.box||{x:0,y:0,w:info.W,h:info.H};
+      rc.style.setProperty('--ar',(b.w/b.h).toFixed(4));
+      im.style.width=(info.W/b.w*100)+'%';im.style.left=(-b.x/b.w*100)+'%';im.style.top=(-b.y/b.h*100)+'%';
+    }
+    rc.classList.add('ok');
+  });
+}
+window.VSPrc=function(root){[].forEach.call((root||document).querySelectorAll('.rc[data-u]:not([data-ok])'),function(rc){rc.setAttribute('data-ok','1');aplica(rc)})};
+VSPrc();
+})();
+</script>
+
 </body>
 </html>

@@ -338,7 +338,9 @@
    "site": "https://masp.org.br",
    "ig": "masp",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-07-30"
+   "primeiroRegistro": "2026-07-30",
+   "img": "img/casa-maria-lionza-masp.webp",
+   "cred": "Cortesia MASP"
   },
   {
    "id": "knockout-pascale-marthine-tayou--pinacoteca-de-sao-paulo",
@@ -780,7 +782,9 @@
    "site": "https://janainatorres.com.br",
    "ig": "janainatorresgaleria",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-07-31"
+   "primeiroRegistro": "2026-07-31",
+   "img": "img/e-tempo-ainda-janaina-torres-galeria.webp",
+   "cred": "Cortesia Janaina Torres Galeria"
   },
   {
    "id": "sala-de-video-regina-jose-galindo--masp",
@@ -814,7 +818,9 @@
    "site": "https://pinacoteca.org.br",
    "ig": "pinasp",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-07-31"
+   "primeiroRegistro": "2026-07-31",
+   "img": "img/uma-obra-pintura-sem-fim-pinacoteca-de-sao-paulo.jpg",
+   "cred": "Cortesia Pinacoteca de São Paulo"
   },
   {
    "id": "para-criancas-experiencias-com-a-arte-desde-1968--pinacoteca-de-sao-paulo",
@@ -865,7 +871,9 @@
    "site": "https://pinacoteca.org.br",
    "ig": "pinasp",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-07-31"
+   "primeiroRegistro": "2026-07-31",
+   "img": "img/tragico-suburbio-pinacoteca-de-sao-paulo.jpg",
+   "cred": "Vista da exposição. Foto Levi Fanan / Cortesia Pinacoteca de São Paulo"
   },
   {
    "id": "um-ato-fotografico-alice-yura--pinacoteca-de-sao-paulo",
@@ -899,7 +907,9 @@
    "site": "https://pinacoteca.org.br",
    "ig": "pinasp",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-07-31"
+   "primeiroRegistro": "2026-07-31",
+   "img": "",
+   "cred": ""
   },
   {
    "id": "macunaima-e-duwid--pinacoteca-de-sao-paulo",
@@ -1103,7 +1113,9 @@
    "site": "https://mendeswooddm.com",
    "ig": "mendeswooddm",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-07-31"
+   "primeiroRegistro": "2026-07-31",
+   "img": "img/cantaria-mendes-wood-dm.jpg",
+   "cred": "Foto: Divulgação / Mendes Wood DM"
   },
   {
    "id": "deboussole-est-le-mot-exact-jean-claracq--mendes-wood-dm",
@@ -1120,7 +1132,9 @@
    "site": "https://mendeswooddm.com",
    "ig": "mendeswooddm",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-07-31"
+   "primeiroRegistro": "2026-07-31",
+   "img": "img/deboussole-jean-claracq.jpg",
+   "cred": "Cortesia do artista e Mendes Wood DM"
   },
   {
    "id": "sendo-lygia-pape--mendes-wood-dm-casa-iramaia",
@@ -1154,7 +1168,9 @@
    "site": "https://www.itaucultural.org.br",
    "ig": "itaucultural",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-08-02"
+   "primeiroRegistro": "2026-08-02",
+   "img": "img/solange-pessoa-outras-escalas-itau-cultural.jpg",
+   "cred": "Capa do material do Itaú Cultural — não é reprodução de obra"
   },
   {
    "id": "delirio-tropical-recanto--sesc-pinheiros",
@@ -1509,7 +1525,9 @@
    "site": "https://mam.org.br",
    "ig": "mamsaopaulo",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-08-04"
+   "primeiroRegistro": "2026-08-04",
+   "img": "img/39-panorama-da-arte-brasileira-depois-que-tudo-foi-dito-mam-.webp",
+   "cred": "Foto Ding Musa / Cortesia MAM São Paulo"
   },
   {
    "id": "to-love-claudia-andujar-e-george-love--galeria-vermelho",
@@ -1526,7 +1544,9 @@
    "site": "https://galeriavermelho.com.br",
    "ig": "galeriavermelho",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-08-05"
+   "primeiroRegistro": "2026-08-05",
+   "img": "img/to-love-galeria-vermelho.jpg",
+   "cred": "Cortesia Galeria Vermelho"
   },
   {
    "id": "ceu-de-concreto-luiz-carlos-paulino--central-galeria",
@@ -1560,7 +1580,9 @@
    "site": "https://galeriavermelho.com.br",
    "ig": "galeriavermelho",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-08-06"
+   "primeiroRegistro": "2026-08-06",
+   "img": "img/no-meio-da-pedra-galeria-vermelho.jpg",
+   "cred": "Cortesia Galeria Vermelho"
   },
   {
    "id": "ocupacao-jamac--galeria-vermelho",
@@ -1577,7 +1599,9 @@
    "site": "https://galeriavermelho.com.br",
    "ig": "galeriavermelho",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-08-06"
+   "primeiroRegistro": "2026-08-06",
+   "img": "",
+   "cred": ""
   },
   {
    "id": "brasil-das-multiplas-faces--itau-cultural",
@@ -1594,7 +1618,9 @@
    "site": "https://www.itaucultural.org.br",
    "ig": "itaucultural",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-08-06"
+   "primeiroRegistro": "2026-08-06",
+   "img": "img/brasil-das-multiplas-faces-itau-cultural.webp",
+   "cred": "Emiliano di Cavalcanti, Vendedoras de Peixe, 1952. Divulgação Itaú Cultural"
   },
   {
    "id": "playful-stormy-continuing-ayako-rokkaku--baro-galeria",
@@ -1662,7 +1688,9 @@
    "site": "https://www.mac.usp.br",
    "ig": "",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-08-06"
+   "primeiroRegistro": "2026-08-06",
+   "img": "img/beijo-de-lingua-mac-usp.webp",
+   "cred": "Cortesia do artista"
   },
   {
    "id": "terra-que-desmancha-evapora-e-solidifica-coletivo-poiesis--vazio-criativo",
@@ -1713,7 +1741,9 @@
    "site": "https://galpaodalapa.art.br",
    "ig": "galpaodalapa",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-08-16"
+   "primeiroRegistro": "2026-08-16",
+   "img": "img/constelacao-em-transito-uma-escuta-cartografica-galpao-da-la.jpg",
+   "cred": "Cortesia Galpão da Lapa"
   },
   {
    "id": "arteonica-da-paisagem-aldir-mendes-de-souza--galeria-contempo",
@@ -1883,7 +1913,9 @@
    "site": "https://masp.org.br",
    "ig": "masp",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-14"
+   "primeiroRegistro": "2026-09-14",
+   "img": "img/historias-latino-americanas-masp.webp",
+   "cred": "Arte cusquenha, Virgem de Copacabana. Divulgação MASP"
   },
   {
    "id": "por-elas-com-elas-do-moderno-ao-contemporaneo--dan-galeria",
@@ -1900,7 +1932,9 @@
    "site": "https://www.dangaleria.com.br",
    "ig": "dangaleria",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-14"
+   "primeiroRegistro": "2026-09-14",
+   "img": "img/por-elas-com-elas-do-moderno-ao-contemporaneo-dan-galeria.jpg",
+   "cred": "Cortesia DAN Galeria"
   },
   {
    "id": "sempre-acesa--galeria-luis-maluf",
@@ -2002,7 +2036,9 @@
    "site": "https://www.galerialume.com",
    "ig": "galerialume",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-14"
+   "primeiroRegistro": "2026-09-14",
+   "img": "img/abismos-urbanos-e-o-plano-celeste-galeria-lume.webp",
+   "cred": "Cortesia Galeria Lume"
   },
   {
    "id": "territorio-de-disputa--galeria-lume",
@@ -2019,7 +2055,9 @@
    "site": "https://www.galerialume.com",
    "ig": "galerialume",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-14"
+   "primeiroRegistro": "2026-09-14",
+   "img": "img/territorio-de-disputa-galeria-lume.jpg",
+   "cred": "Cortesia Galeria Lume"
   },
   {
    "id": "ambiguidade-construtiva-e-ativacao-do-espaco--galeria-raquel-arnaud",
@@ -2036,7 +2074,9 @@
    "site": "https://www.raquelarnaud.com",
    "ig": "galeriaraquelarnaud",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-14"
+   "primeiroRegistro": "2026-09-14",
+   "img": "img/ambiguidade-construtiva-e-ativacao-do-espaco-galeria-raquel-.jpg",
+   "cred": "Cortesia Galeria Raquel Arnaud"
   },
   {
    "id": "desculpe-rafael--galeria-dezoito",
@@ -2070,7 +2110,9 @@
    "site": "https://www.galeriamariliarazuk.com.br",
    "ig": "galeriamariliarazuk",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-14"
+   "primeiroRegistro": "2026-09-14",
+   "img": "img/longitudes-galeria-marilia-razuk.jpg",
+   "cred": "Cortesia Galeria Marília Razuk"
   },
   {
    "id": "cavalinhas-e-falesias--galeria-marilia-razuk",
@@ -2087,7 +2129,9 @@
    "site": "https://www.galeriamariliarazuk.com.br",
    "ig": "galeriamariliarazuk",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-14"
+   "primeiroRegistro": "2026-09-14",
+   "img": "img/cavalinhas-e-falesias-galeria-marilia-razuk.jpg",
+   "cred": "Cortesia Galeria Marília Razuk"
   },
   {
    "id": "antonio-peticov-a-exposicao--centro-cultural-sao-paulo-ccsp",
@@ -2172,7 +2216,9 @@
    "site": "https://pinacoteca.org.br",
    "ig": "",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-22"
+   "primeiroRegistro": "2026-09-22",
+   "img": "img/beatriz-milhazes-gravuras-do-acervo-da-pinacoteca-estacao-pi.webp",
+   "cred": "Beatriz Milhazes, O pato, 1996. Foto: Cortesia da artista e Pinacoteca de São Paulo"
   },
   {
    "id": "para-criancas-experiencias-com-a-arte-desde-1968--pinacoteca-contemporanea",
@@ -2206,7 +2252,9 @@
    "site": "https://www.vervegaleria.com",
    "ig": "vervegaleria",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-23"
+   "primeiroRegistro": "2026-09-23",
+   "img": "img/paisagem-tematica-para-um-novo-normal-verve-galeria.jpg",
+   "cred": "Cortesia Verve Galeria"
   },
   {
    "id": "espaco-tempo--danielian-sao-paulo",
@@ -2223,7 +2271,9 @@
    "site": "https://www.danielian.com.br",
    "ig": "danielian_galeria",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-23"
+   "primeiroRegistro": "2026-09-23",
+   "img": "img/espaco-tempo-danielian-sao-paulo.jpg",
+   "cred": "Cortesia Danielian São Paulo"
   },
   {
    "id": "irracional--marli-matsumoto-arte-contemporanea",
@@ -2240,7 +2290,9 @@
    "site": "https://marlimatsumoto.com.br",
    "ig": "marlimatsumoto_",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-23"
+   "primeiroRegistro": "2026-09-23",
+   "img": "img/irracional-marli-matsumoto-arte-contemporanea.jpg",
+   "cred": "Cortesia Marli Matsumoto Arte Contemporânea"
   },
   {
    "id": "controle-corrosao-dispersao--galeria-leme",
@@ -2257,7 +2309,9 @@
    "site": "https://galerialeme.com",
    "ig": "galerialeme",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-23"
+   "primeiroRegistro": "2026-09-23",
+   "img": "img/controle-corrosao-dispersao-galeria-leme.jpg",
+   "cred": "Cortesia Galeria Leme"
   },
   {
    "id": "espaco-profundo--a-gentil-carioca-sp",
@@ -2291,7 +2345,9 @@
    "site": "https://ccbb.com.br",
    "ig": "ccbbsp",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-23"
+   "primeiroRegistro": "2026-09-23",
+   "img": "img/marlene-barros-tecitura-do-feminino-ccbb-sao-paulo.jpg",
+   "cred": "Cortesia CCBB São Paulo"
   },
   {
    "id": "fernando-lemos-quanto-mais-desejo-mais-invento-o-que-vejo--ims-paulista",
@@ -2308,7 +2364,9 @@
    "site": "https://ims.com.br",
    "ig": "imoreirasalles",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-23"
+   "primeiroRegistro": "2026-09-23",
+   "img": "img/fernando-lemos-quanto-mais-desejo-mais-invento-o-que-vejo-im.webp",
+   "cred": "Fernando Lemos, Eu, poeta. Arquivo Fernando Lemos / Acervo Instituto Moreira Salles"
   },
   {
    "id": "sheila-hicks-o-que-que-e-isso--instituto-tomie-ohtake",
@@ -2495,7 +2553,9 @@
    "site": "https://pacodasartes.org.br",
    "ig": "",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-23"
+   "primeiroRegistro": "2026-09-23",
+   "img": "img/no-limite-paco-das-artes.png",
+   "cred": "Nina E. Schönefeld, still de vídeo / Cortesia Paço das Artes"
   },
   {
    "id": "um-xire-para-emanoel--museu-afro-brasil-emanoel-araujo",
@@ -2529,7 +2589,9 @@
    "site": "https://museuafrobrasil.org.br",
    "ig": "museuafrobrasil",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-23"
+   "primeiroRegistro": "2026-09-23",
+   "img": "",
+   "cred": ""
   },
   {
    "id": "ha-quanto-tempo-pensando-nisso--memorial-da-america-latina",
@@ -2597,7 +2659,9 @@
    "site": "https://www.mitsgaleria.art",
    "ig": "mits.galeria",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-23"
+   "primeiroRegistro": "2026-09-23",
+   "img": "",
+   "cred": ""
   },
   {
    "id": "passeio-noturno-andre-crespo--a7ma-galeria",
@@ -2648,7 +2712,9 @@
    "site": "",
    "ig": "galeriasuperficie",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-25"
+   "primeiroRegistro": "2026-09-25",
+   "img": "img/gestos-galeria-superficie.jpg",
+   "cred": "Cortesia Galeria Superfície"
   },
   {
    "id": "miracoes--massape-projetos",
@@ -2716,7 +2782,9 @@
    "site": "https://atelie397.com",
    "ig": "atelie397",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-30"
+   "primeiroRegistro": "2026-09-30",
+   "img": "img/horizontes-do-solo-atelie397.webp",
+   "cred": "Cortesia Ateliê397"
   },
   {
    "id": "o-tudo-e-o-todo-andre-vargas--casa-de-cultura-do-parque",
@@ -2733,7 +2801,9 @@
    "site": "https://ccparque.com.br",
    "ig": "casadeculturadoparque",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-30"
+   "primeiroRegistro": "2026-09-30",
+   "img": "img/o-tudo-e-o-todo-casa-de-cultura-do-parque.webp",
+   "cred": "Cortesia Casa de Cultura do Parque"
   },
   {
    "id": "metragens-pablo-accinelli-e-gustavo-silvamaral--casa-de-cultura-do-parque",
@@ -2750,7 +2820,9 @@
    "site": "https://ccparque.com.br",
    "ig": "casadeculturadoparque",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-30"
+   "primeiroRegistro": "2026-09-30",
+   "img": "img/metragens-casa-de-cultura-do-parque.webp",
+   "cred": "Cortesia Casa de Cultura do Parque"
   },
   {
    "id": "lava-olhos-de-emergencia-lucas-simoes--casa-triangulo",
@@ -2767,7 +2839,9 @@
    "site": "https://www.casatriangulo.com",
    "ig": "casatriangulo",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-30"
+   "primeiroRegistro": "2026-09-30",
+   "img": "img/lava-olhos-de-emergencia-casa-triangulo.jpg",
+   "cred": "Cortesia Casa Triângulo"
   },
   {
    "id": "estado-de-transe-dora-smek--central-galeria",
@@ -2784,7 +2858,9 @@
    "site": "https://www.centralgaleria.com",
    "ig": "centralgaleria",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-30"
+   "primeiroRegistro": "2026-09-30",
+   "img": "img/estado-de-transe-central-galeria.jpg",
+   "cred": "Foto Ana Pigosso / Cortesia Central Galeria"
   },
   {
    "id": "corrente-continua-tecfase--choque-cultural",
@@ -2801,7 +2877,9 @@
    "site": "http://choquecultural.com.br",
    "ig": "choquecultural",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-30"
+   "primeiroRegistro": "2026-09-30",
+   "img": "img/corrente-continua-choque-cultural.jpg",
+   "cred": "Cortesia Choque Cultural"
   },
   {
    "id": "khamoshi-fernanda-valadares--galeria-aura",
@@ -2818,7 +2896,9 @@
    "site": "https://aura.art.br",
    "ig": "aura.galeria",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-30"
+   "primeiroRegistro": "2026-09-30",
+   "img": "img/khamoshi-galeria-aura.jpg",
+   "cred": "Vista da exposição. Cortesia Galeria Aura"
   },
   {
    "id": "toda-minucia-andre-barion--galeria-estacao",
@@ -2835,7 +2915,9 @@
    "site": "https://www.galeriaestacao.com.br",
    "ig": "galeriaestacao",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-30"
+   "primeiroRegistro": "2026-09-30",
+   "img": "img/toda-minucia-galeria-estacao.jpg",
+   "cred": "Cortesia Galeria Estação"
   },
   {
    "id": "nao-ha-so-uma-maneira-oriol-vilanova--galeria-luisa-strina",
@@ -2852,7 +2934,9 @@
    "site": "https://www.luisastrina.com.br",
    "ig": "galerialuisastrina",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-30"
+   "primeiroRegistro": "2026-09-30",
+   "img": "img/nao-ha-so-uma-maneira-galeria-luisa-strina.jpg",
+   "cred": "Foto Mina Albespy / Cortesia Galeria Luisa Strina"
   },
   {
    "id": "nome-ar-jarbas-lopes--galeria-luisa-strina",
@@ -2869,7 +2953,9 @@
    "site": "https://www.luisastrina.com.br",
    "ig": "galerialuisastrina",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-30"
+   "primeiroRegistro": "2026-09-30",
+   "img": "img/nome-ar-galeria-luisa-strina.jpg",
+   "cred": "Foto Julia Thompson / Cortesia Galeria Luisa Strina"
   },
   {
    "id": "ecos-ricardo-ribeiro--galeria-marcelo-guarnieri",
@@ -2903,7 +2989,9 @@
    "site": "https://galeriavermelho.com.br",
    "ig": "galeriavermelho",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-30"
+   "primeiroRegistro": "2026-09-30",
+   "img": "img/fazendo-a-america-making-america-galeria-vermelho.jpg",
+   "cred": "Cortesia Galeria Vermelho"
   },
   {
    "id": "shh-edgard-de-souza--galeria-vermelho",
@@ -2920,7 +3008,9 @@
    "site": "https://galeriavermelho.com.br",
    "ig": "galeriavermelho",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-30"
+   "primeiroRegistro": "2026-09-30",
+   "img": "img/shh-galeria-vermelho.jpg",
+   "cred": "Foto Filipe Berndt / Cortesia Galeria Vermelho"
   },
   {
    "id": "mundo-caduco--gruta-espaco-de-arte-contemporanea",
@@ -2937,7 +3027,9 @@
    "site": "https://www.gruta.cc",
    "ig": "gruta.cc",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-30"
+   "primeiroRegistro": "2026-09-30",
+   "img": "img/mundo-caduco-gruta-espaco-de-arte-contemporanea.jpg",
+   "cred": "Cortesia GRUTA Espaço de Arte Contemporânea"
   },
   {
    "id": "cirio-de-nazare-do-sagrado-ao-profano-uma-extensao-do-brasil-nova-fotografia-202--mis-museu-da-imagem-e-do-som",
@@ -2954,7 +3046,9 @@
    "site": "https://www.mis-sp.org.br",
    "ig": "mis_sp",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-30"
+   "primeiroRegistro": "2026-09-30",
+   "img": "",
+   "cred": ""
   },
   {
    "id": "marilia-mendonca-sentimento-louco--mis-museu-da-imagem-e-do-som",
@@ -2971,7 +3065,9 @@
    "site": "https://www.mis-sp.org.br",
    "ig": "mis_sp",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-30"
+   "primeiroRegistro": "2026-09-30",
+   "img": "",
+   "cred": ""
   },
   {
    "id": "nzo-memorias-afro-brasileiras--museu-afro-brasil-emanoel-araujo",
@@ -2988,7 +3084,9 @@
    "site": "https://museuafrobrasil.org.br",
    "ig": "museuafrobrasil",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-30"
+   "primeiroRegistro": "2026-09-30",
+   "img": "",
+   "cred": ""
   },
   {
    "id": "tinta-sobre-memoria-luiz-fukushiro--museu-da-imigracao",
@@ -3005,7 +3103,9 @@
    "site": "https://museudaimigracao.org.br",
    "ig": "museudaimigracao",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-30"
+   "primeiroRegistro": "2026-09-30",
+   "img": "img/tinta-sobre-memoria-museu-da-imigracao.png",
+   "cred": "Cortesia Museu da Imigração"
   },
   {
    "id": "vem-vira-vai-voo-selva-de-carvalho--verve-galeria",
@@ -3022,7 +3122,9 @@
    "site": "https://www.vervegaleria.com",
    "ig": "vervegaleria",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-09-30"
+   "primeiroRegistro": "2026-09-30",
+   "img": "img/vem-vira-vai-voo-verve-galeria.jpg",
+   "cred": "Cortesia Verve Galeria"
   },
   {
    "id": "victor-arruda-a-tragedia-e-o-escarnio--almeida-e-dale-millan",
@@ -3056,7 +3158,9 @@
    "site": "https://www.galeriaestacao.com.br",
    "ig": "galeriaestacao",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-10-07"
+   "primeiroRegistro": "2026-10-07",
+   "img": "img/cardosinho-acervo-especial-galeria-estacao.jpg",
+   "cred": "Cortesia Galeria Estação"
   },
   {
    "id": "aquilo-que-nao-cabe-jessica-costa--zipper-galeria",
@@ -3073,7 +3177,9 @@
    "site": "https://www.zippergaleria.com.br",
    "ig": "zippergaleria",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-10-07"
+   "primeiroRegistro": "2026-10-07",
+   "img": "img/aquilo-que-nao-cabe-zipper-galeria.jpg",
+   "cred": "Jessica Costa, Voluptuosa II, 2026. Divulgação Zipper Galeria"
   },
   {
    "id": "o-vaso-de-ojuara-claudia-marchetti--zipper-galeria",
@@ -3090,7 +3196,9 @@
    "site": "https://www.zippergaleria.com.br",
    "ig": "zippergaleria",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-10-07"
+   "primeiroRegistro": "2026-10-07",
+   "img": "img/o-vaso-de-ojuara-zipper-galeria.jpg",
+   "cred": "Foto: Biah Schmidt / Zipper Galeria"
   },
   {
    "id": "jacqueline-humphries-e-jh-studio--auroras",
@@ -3107,7 +3215,9 @@
    "site": "https://auroras.art.br",
    "ig": "auroras.art.br",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-10-07"
+   "primeiroRegistro": "2026-10-07",
+   "img": "img/jacqueline-humphries-e-jh-studio-auroras.jpg",
+   "cred": "Cortesia Auroras"
   },
   {
    "id": "deslocar-desalinhar-interromper-antonio-bokel--galeria-luis-maluf",
@@ -3124,7 +3234,9 @@
    "site": "https://luismaluf.com",
    "ig": "luis_maluf",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-10-07"
+   "primeiroRegistro": "2026-10-07",
+   "img": "img/deslocar-desalinhar-interromper-galeria-luis-maluf.jpg",
+   "cred": "Cortesia Galeria Luis Maluf"
   },
   {
    "id": "pequenos-afetos--farol-santander",
@@ -3141,7 +3253,9 @@
    "site": "https://www.farolsantander.com.br/sp",
    "ig": "farolsantander",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-10-07"
+   "primeiroRegistro": "2026-10-07",
+   "img": "img/pequenos-afetos-farol-santander.jpg",
+   "cred": "Cortesia Farol Santander"
   },
   {
    "id": "o-parado-das-coisas-felipe-cohen--almeida-e-dale-millan",
@@ -3175,7 +3289,9 @@
    "site": "https://galeriafrente.com.br",
    "ig": "galeriafrente",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-10-10"
+   "primeiroRegistro": "2026-10-10",
+   "img": "img/tudo-aquilo-que-move-galeria-frente.webp",
+   "cred": "Fabiana Preti, Sem título. Foto: Luan Torres"
   },
   {
    "id": "rosa-elena-curruchich-cronicas-de-comalapa--masp",
@@ -3192,7 +3308,9 @@
    "site": "https://masp.org.br",
    "ig": "masp",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-10-10"
+   "primeiroRegistro": "2026-10-10",
+   "img": "img/rosa-elena-curruchich-cronicas-de-comalapa-masp.webp",
+   "cred": "Rosa Elena Curruchich, Van a escoger capitana del nuevo año, c. 1980. Acervo MASP. Foto: Eduardo Ortega"
   },
   {
    "id": "mundo-pequeno-martin-parr--centro-cultural-fiesp",
@@ -3209,7 +3327,9 @@
    "site": "https://centrocultural.fiesp.com.br",
    "ig": "",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-10-13"
+   "primeiroRegistro": "2026-10-13",
+   "img": "",
+   "cred": ""
   },
   {
    "id": "tabula-opaca-coletiva--galeria-aura",
@@ -3226,7 +3346,9 @@
    "site": "https://aura.art.br",
    "ig": "aura.galeria",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-10-14"
+   "primeiroRegistro": "2026-10-14",
+   "img": "img/tabula-opaca-galeria-aura.jpg",
+   "cred": "Cortesia Galeria Aura"
   },
   {
    "id": "geometrias-do-invisivel-andrea-natali--espaco-republica",
@@ -3243,7 +3365,9 @@
    "site": "",
    "ig": "espacorepublica",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-10-14"
+   "primeiroRegistro": "2026-10-14",
+   "img": "",
+   "cred": ""
   },
   {
    "id": "belezas-brasileiras--mis-museu-da-imagem-e-do-som",
@@ -3260,7 +3384,9 @@
    "site": "https://www.mis-sp.org.br",
    "ig": "mis_sp",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-10-14"
+   "primeiroRegistro": "2026-10-14",
+   "img": "",
+   "cred": ""
   },
   {
    "id": "afropindorama-tecnologia-do-afeto-praticas-de-bem-viver--museu-afro-brasil-emanoel-araujo",
@@ -3277,7 +3403,9 @@
    "site": "https://museuafrobrasil.org.br",
    "ig": "museuafrobrasil",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-10-14"
+   "primeiroRegistro": "2026-10-14",
+   "img": "",
+   "cred": ""
   },
   {
    "id": "pablo-delano-museu-da-antiga-colonia--masp",
@@ -3294,7 +3422,9 @@
    "site": "https://masp.org.br",
    "ig": "masp",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-10-21"
+   "primeiroRegistro": "2026-10-21",
+   "img": "img/pablo-delano-museu-da-antiga-colonia-masp.webp",
+   "cred": "Pablo Delano, As duas bandeiras (2020-em processo). Divulgação MASP"
   },
   {
    "id": "quarto-de-hora-elisa-arruda--am-galeria",
@@ -3311,7 +3441,9 @@
    "site": "https://amgaleria.com.br",
    "ig": "amgaleriadearte",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-10-21"
+   "primeiroRegistro": "2026-10-21",
+   "img": "img/quarto-de-hora-am-galeria.jpg",
+   "cred": "Cortesia AM Galeria"
   },
   {
    "id": "troca-de-segredos-barrao--fortes-d-aloia-e-gabriel-galeria",
@@ -3328,7 +3460,9 @@
    "site": "https://fdag.com.br",
    "ig": "fortesdaloiagabriel",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-10-21"
+   "primeiroRegistro": "2026-10-21",
+   "img": "img/troca-de-segredos-fortes-d-aloia-gabriel-galeria.jpg",
+   "cred": "Cortesia Fortes D'Aloia & Gabriel"
   },
   {
    "id": "ver-o-mundo-joao-luiz-musa--luciana-brito-galeria",
@@ -3345,7 +3479,9 @@
    "site": "https://lucianabritogaleria.com.br",
    "ig": "lucianabritogaleria",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-10-21"
+   "primeiroRegistro": "2026-10-21",
+   "img": "img/ver-o-mundo-luciana-brito-galeria.webp",
+   "cred": "Cortesia Luciana Brito Galeria"
   },
   {
    "id": "steps-abbas-kiarostami--mis-museu-da-imagem-e-do-som",
@@ -3362,7 +3498,9 @@
    "site": "https://www.mis-sp.org.br",
    "ig": "mis_sp",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-10-21"
+   "primeiroRegistro": "2026-10-21",
+   "img": "",
+   "cred": ""
   },
   {
    "id": "superficie-dos-dias-coletiva--vazio-criativo",
@@ -3379,7 +3517,9 @@
    "site": "",
    "ig": "vazio_criativo_",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-10-21"
+   "primeiroRegistro": "2026-10-21",
+   "img": "img/superficie-dos-dias-vazio-criativo.webp",
+   "cred": "Cortesia Vazio Criativo"
   },
   {
    "id": "mucki-botkay-pinturas-bordadas--galatea",
@@ -3396,7 +3536,9 @@
    "site": "https://galatea.art",
    "ig": "galatea.art_",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-10-28"
+   "primeiroRegistro": "2026-10-28",
+   "img": "img/mucki-botkay-pinturas-bordadas-galatea.jpg",
+   "cred": "Cortesia Galatea"
   },
   {
    "id": "pull-pulso-marcia-grostein--luciana-brito-galeria",
@@ -3413,7 +3555,9 @@
    "site": "https://lucianabritogaleria.com.br",
    "ig": "lucianabritogaleria",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-10-28"
+   "primeiroRegistro": "2026-10-28",
+   "img": "img/pull-pulso-luciana-brito-galeria.webp",
+   "cred": "Cortesia Luciana Brito Galeria"
   },
   {
    "id": "atras-da-superficie-paulo-monteiro--mendes-wood-dm-casa-iramaia",
@@ -3430,7 +3574,9 @@
    "site": "https://mendeswooddm.com",
    "ig": "mendeswooddm",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-10-28"
+   "primeiroRegistro": "2026-10-28",
+   "img": "img/atras-da-superficie-mendes-wood-dm-casa-iramaia.webp",
+   "cred": "Cortesia Mendes Wood DM"
   },
   {
    "id": "caleidoscopio-xapiri-yanomami-leao-serva--mis-museu-da-imagem-e-do-som",
@@ -3447,7 +3593,9 @@
    "site": "https://www.mis-sp.org.br",
    "ig": "mis_sp",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-10-28"
+   "primeiroRegistro": "2026-10-28",
+   "img": "",
+   "cred": ""
   },
   {
    "id": "encantario-ibejis-salve-as-criancas--museu-afro-brasil-emanoel-araujo",
@@ -3464,7 +3612,9 @@
    "site": "https://museuafrobrasil.org.br",
    "ig": "museuafrobrasil",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-10-28"
+   "primeiroRegistro": "2026-10-28",
+   "img": "",
+   "cred": ""
   },
   {
    "id": "diafana-gretta-sarfaty--museu-judaico-de-sao-paulo",
@@ -3481,7 +3631,9 @@
    "site": "https://museujudaicosp.org.br",
    "ig": "museujudaicosp",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-10-28"
+   "primeiroRegistro": "2026-10-28",
+   "img": "",
+   "cred": ""
   },
   {
    "id": "zanine-caldas-criacao-de-mundos--instituto-tomie-ohtake",
@@ -3498,7 +3650,9 @@
    "site": "https://www.institutotomieohtake.org.br",
    "ig": "institutotomieohtake",
    "visto": "2026-11-03",
-   "primeiroRegistro": "2026-10-28"
+   "primeiroRegistro": "2026-10-28",
+   "img": "img/zanine-caldas-criacao-de-mundos-instituto-tomie-ohtake.jpg",
+   "cred": "Cortesia Instituto Tomie Ohtake"
   }
  ],
  "artistas": {

@@ -9,397 +9,915 @@
 <meta property="og:title" content="Artistas com exposições em São Paulo | Vernissages SP">
 <meta property="og:description" content="Índice de 292 artistas com mostras em galerias e museus de São Paulo, com histórico de exposições.">
 <meta property="og:url" content="https://vernissagessp.com.br/artistas.html">
-<meta property="og:type" content="article">
+<meta property="og:type" content="website">
 <meta property="og:image" content="https://vernissagessp.com.br/og-image.png">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#F2EFE9">
 <link rel="icon" type="image/png" href="https://vernissagessp.com.br/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="preload" href="https://vernissagessp.com.br/fontes/Switzer-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-:root{--bg:#0a0a0d;--ink:#f3f3f7;--text:#f3f3f7;--muted:#8b8b9a;--text2:#c2c2d0;--accent:#e8c15a;--accent2:#c96f4a;--violet:#a78bfa;--green:#7fd8a0;--red:#f08a7a;--blue:#8fb6f9;--glass:rgba(255,255,255,.045);--glass2:rgba(255,255,255,.075);--line:rgba(255,255,255,.10);--line2:rgba(255,255,255,.20);--hair:rgba(255,255,255,.055);--panel:rgba(255,255,255,.045);--panel2:rgba(255,255,255,.075);--border:rgba(255,255,255,.10);--blur:blur(16px) saturate(150%)}
+@font-face{font-family:Switzer;src:url(https://vernissagessp.com.br/fontes/Switzer-Variable.woff2) format("woff2");font-weight:100 900;font-display:swap}
+:root{--paper:#F2EFE9;--ink:#0E0E0E;--terra:#C96F4A;--mute:#6f6a60;--mute2:#b7b1a4;--gut:clamp(16px,3vw,48px);--serif:"Instrument Serif",Georgia,serif;
+ /* nomes do tema escuro antigo, apontando para o novo */
+ --bg:var(--paper);--text:var(--ink);--text2:#3d3a35;--muted:var(--mute);--accent:var(--terra);--accent2:var(--terra);
+ --panel:transparent;--panel2:transparent;--glass:transparent;--glass2:transparent;--border:rgba(14,14,14,.24);--line:rgba(14,14,14,.24);--line2:var(--ink);--hair:rgba(14,14,14,.14);
+ --radius:0px;--radius-sm:0px;--onaccent:var(--ink);--blue:var(--ink);--green:var(--terra);--red:var(--terra);--violet:var(--terra);--blur:none;--font:Switzer,Helvetica,Arial,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,'Segoe UI',Inter,sans-serif;line-height:1.65;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-body::before{content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(58vw 46vh at 10% -8%,rgba(232,193,90,.13),transparent 62%),radial-gradient(48vw 42vh at 94% 4%,rgba(167,139,250,.12),transparent 62%),radial-gradient(72vw 55vh at 48% 104%,rgba(201,111,74,.09),transparent 60%)}
-body::after{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);background-size:72px 72px;-webkit-mask-image:radial-gradient(ellipse 85% 55% at 50% 0%,#000 20%,transparent 78%);mask-image:radial-gradient(ellipse 85% 55% at 50% 0%,#000 20%,transparent 78%)}
-::selection{background:var(--accent);color:#0a0a0d}
-a{color:var(--blue)}
-.top{border-bottom:1px solid var(--border);padding:20px 24px}
-.top a{color:var(--text);text-decoration:none;font-weight:600;letter-spacing:2.5px;font-size:1rem}
-.top a span{color:var(--accent)}
-.nav{margin-top:6px;font-size:.8rem;color:var(--muted)}
-.nav a{color:var(--muted);text-decoration:none;margin-right:14px}
-.nav a:hover{color:var(--accent)}
-.wrap{max-width:780px;margin:0 auto;padding:36px 24px 70px}
-.wide{max-width:1080px}
-h1{font-size:1.9rem;line-height:1.25;font-weight:600;letter-spacing:-.4px;margin-bottom:10px}
-h2{font-size:.78rem;text-transform:uppercase;letter-spacing:1.8px;color:var(--muted);margin:40px 0 14px;padding-bottom:9px;border-bottom:1px solid var(--border)}
-.sub{color:var(--accent2);font-size:1rem;margin-bottom:4px}
-.meta{color:var(--muted);font-size:.88rem;margin-bottom:20px}
-.tag{display:inline-block;padding:2px 10px;border-radius:11px;font-size:.68rem;font-weight:700;letter-spacing:.5px;margin-left:8px;vertical-align:2px}
-.tag.on{background:rgba(127,185,138,.15);color:var(--green)}
-.tag.off{background:rgba(154,154,166,.15);color:var(--muted)}
-.tag.soon{background:rgba(232,193,90,.16);color:var(--accent)}
-p.txt{margin:14px 0;font-size:1.02rem}
-.box{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin:18px 0}
-.box dl{display:grid;grid-template-columns:130px 1fr;gap:8px 14px;font-size:.92rem}
-.box dt{color:var(--muted)}
-.btns{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
-.btn{background:var(--panel2);border:1px solid var(--border);color:var(--blue);border-radius:14px;padding:6px 14px;font-size:.83rem;text-decoration:none}
-.btn:hover{border-color:var(--blue)}
-ul.lista{list-style:none;display:flex;flex-direction:column;gap:12px}
-ul.lista li{background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--border);border-radius:11px;padding:14px 16px}
-ul.lista li.on{border-left-color:var(--green)}
-ul.lista li.soon{border-left-color:var(--accent)}
-ul.lista li a.t{color:var(--text);font-weight:600;font-size:1.02rem;text-decoration:none}
-ul.lista li a.t:hover{color:var(--accent)}
-ul.lista li .l2{color:var(--accent2);font-size:.86rem;margin-top:3px}
-ul.lista li .l3{color:var(--muted);font-size:.8rem;margin-top:3px}
-.grid2{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
-.grid2 a{display:block;background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:13px 15px;text-decoration:none;color:var(--text)}
-.grid2 a:hover{border-color:var(--accent)}
-.grid2 a small{display:block;color:var(--muted);font-size:.76rem;margin-top:3px}
-.busca{width:100%;background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:22px;padding:10px 18px;font-size:.95rem;margin-bottom:18px}
-.busca:focus{outline:none;border-color:var(--accent)}
-footer{border-top:1px solid var(--border);margin-top:50px;padding-top:20px;color:var(--muted);font-size:.78rem;line-height:1.7}
-footer a{color:var(--accent2)}
-@media(max-width:600px){.wrap{padding:26px 18px 60px}h1{font-size:1.5rem}.box dl{grid-template-columns:1fr;gap:2px 0}.box dt{margin-top:8px}}
-/* ===== TOKENS ===== */
-:root{--font:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Inter,sans-serif;--radius:16px;--radius-sm:10px;--bw:1px;--ls:0px;--onaccent:#0a0a0d}
-body,button,input,select,textarea,.btn{font-family:var(--font);letter-spacing:var(--ls)}
-.box,ul.lista li,.grid2 a{border-radius:var(--radius)}
-.box,.grid2 a{border-width:var(--bw)}
-.btn,.busca{border-radius:calc(var(--radius) + 6px);border-width:var(--bw)}
-.tag{border-radius:var(--radius-sm)}
-/* ===== VIDRO ===== */
-.box,ul.lista li,.grid2 a{background:var(--glass);border:1px solid var(--line);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);box-shadow:0 1px 0 rgba(255,255,255,.06) inset,0 12px 32px -18px rgba(0,0,0,.9)}
-ul.lista li:hover,.grid2 a:hover{background:var(--glass2);border-color:var(--line2);transform:translateY(-2px)}
-ul.lista li,.grid2 a{transition:.2s}
-.top{background:rgba(10,10,13,.62);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border-bottom:1px solid var(--hair);position:sticky;top:0;z-index:60}
-.btn,.busca{background:var(--glass2);border:1px solid var(--line);color:var(--text2);transition:.18s}
-.btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(232,193,90,.09)}
-.busca:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(232,193,90,.10)}
-@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+html{overflow-x:clip}
+body{background:var(--paper);color:var(--ink);font-family:Switzer,Helvetica,Arial,sans-serif;font-size:17px;line-height:1.45;-webkit-font-smoothing:antialiased;overflow-x:clip}
+::selection{background:var(--terra);color:var(--ink)}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+img{max-width:100%}
+:focus-visible{outline:2px solid var(--terra);outline-offset:2px}
 
+/* ---------- cabeçalho ---------- */
+.topo{position:sticky;top:0;z-index:60;background:var(--paper);border-bottom:2px solid var(--ink);display:flex;justify-content:space-between;align-items:center;gap:20px;padding:0 var(--gut);min-height:58px}
+.logo{font-weight:800;font-size:clamp(20px,2.4vw,30px);letter-spacing:-.045em;text-transform:uppercase;color:var(--terra);line-height:1;padding:14px 0;white-space:nowrap}
+.topo nav{display:flex;gap:clamp(14px,2vw,28px);align-items:center;overflow-x:auto;scrollbar-width:none}
+.topo nav::-webkit-scrollbar{display:none}
+.topo nav a{position:relative;white-space:nowrap;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:21px 0}
+.topo nav a::after{content:"";position:absolute;left:0;right:100%;bottom:14px;height:2px;background:var(--terra);transition:right .25s ease}
+.topo nav a:hover::after,.topo nav a[aria-current]::after{right:0}
+.topo nav a.cta{background:var(--ink);color:var(--paper);padding:10px 14px;margin:0}
+.topo nav a.cta::after{display:none}
+.topo nav a.cta:hover{background:var(--terra);color:var(--ink)}
+
+/* ---------- corpo ---------- */
+.wrap{max-width:1000px;margin:0 auto;padding:clamp(28px,5vw,72px) var(--gut) 40px}
+.wide{max-width:1500px}
+.kick{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--terra);margin-bottom:10px}
+.kick span{color:var(--ink)}
+h1{font-weight:800;text-transform:uppercase;font-size:clamp(34px,6vw,96px);line-height:.9;letter-spacing:-.045em;margin:0 0 clamp(14px,2vw,26px);text-wrap:balance;overflow-wrap:break-word}
+h1.g{font-size:clamp(46px,10vw,168px);line-height:.84}
+h1 .tag{font-size:12px;letter-spacing:.12em;vertical-align:middle;margin-left:14px;line-height:1}
+h2{font-weight:800;font-size:clamp(22px,2.6vw,38px);letter-spacing:-.035em;text-transform:uppercase;line-height:.95;margin:clamp(36px,5vw,72px) 0 clamp(12px,1.6vw,20px);padding-bottom:12px;border-bottom:2px solid var(--ink);display:flex;justify-content:space-between;align-items:baseline;gap:14px;text-wrap:balance}
+h2 small{font-size:12px;letter-spacing:.14em;color:var(--mute);font-weight:600}
+.lede{font-size:clamp(18px,1.6vw,24px);line-height:1.4;max-width:62ch;margin:0 0 18px;text-wrap:pretty}
+p.txt{margin:14px 0;font-size:clamp(17px,1.35vw,20px);line-height:1.5;max-width:68ch;text-wrap:pretty}
+.sub{font-family:var(--serif);font-style:italic;font-size:clamp(22px,2.4vw,38px);line-height:1.1;margin:0 0 12px;text-wrap:pretty}
+.sub a:hover{color:var(--terra)}
+.meta{color:var(--mute);font-size:14px;letter-spacing:.04em;margin-bottom:20px}
+.nota{font-size:13px;color:var(--mute);max-width:78ch;line-height:1.5}
+
+/* ---------- peças ---------- */
+.tag{display:inline-block;border:1.5px solid currentColor;padding:2px 8px;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.tag.on{color:var(--ink)}.tag.soon{color:var(--terra)}.tag.off{color:var(--mute)}
+.tag.cheio{background:var(--terra);border-color:var(--terra);color:var(--ink)}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin:clamp(18px,2vw,28px) 0}
+.btn{display:inline-block;border:1.5px solid var(--ink);padding:11px 18px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;transition:background .15s,color .15s}
+.btn:hover{background:var(--ink);color:var(--paper)}
+.btn.cheio{background:var(--ink);color:var(--paper)}
+.btn.cheio:hover{background:var(--terra);border-color:var(--terra);color:var(--ink)}
+.box{border-top:2px solid var(--ink);padding:16px 0;margin:18px 0}
+.box dl{display:grid;grid-template-columns:150px 1fr;gap:10px 18px;font-size:15px}
+.box dt{color:var(--mute);font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding-top:2px}
+.box dd a{border-bottom:1.5px solid var(--terra)}
+.box dd a:hover{color:var(--terra)}
+
+/* busca, filtros */
+.busca{width:100%;background:transparent;border:0;border-bottom:2px solid var(--ink);color:var(--ink);font:800 clamp(22px,3.2vw,46px)/1 Switzer,sans-serif;letter-spacing:-.04em;text-transform:uppercase;padding:6px 0 10px;outline:0;border-radius:0;margin:6px 0 18px}
+.busca::placeholder{color:#a9a399}
+.busca:focus{border-color:var(--terra)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 0 12px}
+.chips .rot{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--mute);margin-right:4px}
+.chip{border:1.5px solid var(--ink);padding:7px 12px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;transition:background .12s,color .12s}
+.chip:hover{background:rgba(14,14,14,.08)}
+.chip.on{background:var(--ink);color:var(--paper)}
+select.sel{background:transparent;border:0;border-bottom:1.5px solid var(--ink);font:800 12px Switzer,sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:8px 22px 8px 0;border-radius:0;appearance:none;-webkit-appearance:none;cursor:pointer;max-width:260px;background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 9px) 55%,calc(100% - 4px) 55%;background-size:5px 5px;background-repeat:no-repeat;color:var(--ink)}
+.cont{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:8px 0 4px}
+.cont b{color:var(--terra)}
+
+/* listas editoriais (acervo, artista, editais, fim de semana) */
+ul.lista{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,380px),1fr));gap:0 var(--gut)}
+ul.lista li{border-top:2px solid var(--ink);padding:16px 0 20px;position:relative}
+ul.lista li .t{font-weight:800;font-size:clamp(19px,1.7vw,26px);line-height:1;letter-spacing:-.03em;text-transform:uppercase;display:block;text-wrap:balance}
+ul.lista li a.t:hover{color:var(--terra)}
+ul.lista li .t + .tag,ul.lista li .tag{margin-left:0}
+ul.lista li .l2{font-family:var(--serif);font-style:italic;font-size:19px;margin-top:6px;line-height:1.15;color:var(--ink)}
+ul.lista li .l3{color:var(--mute);font-size:13px;margin-top:5px;letter-spacing:.02em;line-height:1.4}
+ul.lista li .qdt{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;margin-bottom:7px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+ul.lista li .qdt .terra{color:var(--terra)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:0 var(--gut)}
+.grid2 a{display:flex;justify-content:space-between;align-items:baseline;gap:10px;border-top:1.5px solid rgba(14,14,14,.3);padding:11px 0;font-weight:700;letter-spacing:-.01em;font-size:17px}
+.grid2 a small{color:var(--mute);font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;white-space:nowrap}
+.grid2 a:hover{color:var(--terra)}
+
+/* imagem recortada na borda real (ver RC_JS): sem moldura branca */
+.rc{position:relative;overflow:hidden;aspect-ratio:var(--ar,.8);opacity:0;background:transparent}
+.rc.ok{opacity:1;transition:opacity .35s}
+.rc img{position:absolute;display:block;max-width:none;width:100%;left:0;top:0;height:auto}
+.th{height:112px;flex:none}
+
+/* ---------- rodapé ---------- */
+footer{margin-top:clamp(50px,7vw,100px);border-top:2px solid var(--ink);padding-top:22px;color:var(--mute);font-size:13px;line-height:1.7}
+footer a{border-bottom:1.5px solid var(--terra);color:var(--ink)}
+footer a:hover{color:var(--terra)}
+footer nav{display:flex;gap:10px 24px;flex-wrap:wrap;margin-bottom:12px;font-weight:700;font-size:14px}
+footer nav a{border:0}
+
+/* ---------- página de mostra ---------- */
+.expo{display:block}
+.expo h1{font-size:clamp(30px,4.6vw,76px);line-height:.92}
+.expo.com{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.85fr);gap:clamp(24px,4vw,72px);align-items:start}
+.quando{border-top:2px solid var(--ink);padding-top:14px;margin:6px 0 18px;display:flex;flex-direction:column;gap:8px}
+.dt{font-weight:800;font-size:clamp(30px,3.8vw,64px);line-height:.92;letter-spacing:-.045em;text-transform:uppercase}
+.dt i{font-style:normal;color:var(--terra);margin:0 .08em}
+.sit{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--terra)}
+.ex-fig{margin:0;position:sticky;top:78px}
+.ex-fig .rc{width:min(100%,calc(78vh*var(--ar,.8)))}
+.ex-fig figcaption{font-size:11px;color:var(--mute);margin-top:8px}
+@media(max-width:860px){.expo.com{grid-template-columns:1fr}.ex-fig{position:static;order:-1}}
+
+/* ---------- listas com miniatura, índices e editais ---------- */
+ul.lista li .thl{flex:none;display:block}
+ul.lista li .thl .rc{height:112px}
+section.let h2{margin-top:clamp(26px,4vw,48px)}
+.bloco{margin-top:clamp(10px,2vw,24px)}
+ul.ed{grid-template-columns:1fr}
+@media(min-width:1100px){ul.ed.radar{grid-template-columns:repeat(2,minmax(0,1fr))}}
+ul.ed li{display:flex;gap:clamp(16px,3vw,48px);align-items:flex-start;justify-content:space-between}
+.prz{flex:none;width:clamp(96px,11vw,150px);text-align:right}
+.prz b{display:block;font-weight:800;font-size:clamp(26px,3.2vw,52px);line-height:.9;letter-spacing:-.05em;text-transform:uppercase}
+.prz span{display:block;margin-top:6px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);font-weight:700}
+.prz.soon b{color:var(--terra)}.prz.off b{color:var(--mute)}
+ul.ed li.off{opacity:.55}
+@media(max-width:700px){ul.ed li{flex-direction:column-reverse;gap:8px}.prz{text-align:left;width:auto;display:flex;gap:10px;align-items:baseline}.prz b{font-size:34px}}
+
+/* ---------- compatibilidade: fim de semana e monta seu sábado ---------- */
+.fds-conta b,.mms-conta b{font-weight:800;color:var(--ink);letter-spacing:-.05em}
+.fds-conta .ab b{color:var(--terra)}.mms-conta b{color:var(--terra)}
+#mapa,#mms-mapa{border:2px solid var(--ink)!important;border-radius:0!important;background:var(--paper)!important}
+ul.lista li{display:flex;gap:16px;align-items:flex-start}
+ul.lista li > .tx,ul.lista li > div:not(.th):not(.rc){flex:1;min-width:0}
+ul.lista .th{width:auto;height:112px;border-radius:0;background:transparent}
+ul.lista .th img{height:100%;width:auto;object-fit:contain}
+.qd{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra);font-weight:800;margin-bottom:5px}
+li.fecha .qd{color:var(--ink)}
+ul.mini{list-style:none}
+ul.mini li{display:block;padding:9px 0;border-top:1.5px solid rgba(14,14,14,.2)}
+ul.mini a{font-weight:700}ul.mini a:hover{color:var(--terra)}
+ul.mini span{color:var(--mute);font-size:13px}
+h3.zona{font-size:12px;color:var(--terra);letter-spacing:.14em;text-transform:uppercase;margin:26px 0 4px;font-weight:800}
+.mms-campo label{color:var(--mute)}
+.mms-campo select{background:transparent!important;border:0!important;border-bottom:2px solid var(--ink)!important;border-radius:0!important;color:var(--ink)!important;font-weight:700}
+.mms-campo select option{background:var(--paper)!important;color:var(--ink)!important}
+#mms-ir{background:var(--ink)!important;color:var(--paper)!important;border-radius:0!important;letter-spacing:.1em;text-transform:uppercase;font-size:12px!important}
+#mms-ir:hover{background:var(--terra)!important;color:var(--ink)!important;opacity:1!important}
+ul.mms-lista li{background:transparent!important;border:0!important;border-top:2px solid var(--ink)!important;border-radius:0!important;padding:14px 0!important}
+ul.mms-lista .k{border-radius:0!important;background:var(--ink)!important;color:var(--paper)!important}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--paper)!important;color:var(--ink)!important;border-radius:0!important}
+.leaflet-popup-content a{color:var(--terra)!important}
+
+@media(max-width:700px){
+  .topo{padding:0 14px;gap:10px;min-height:52px}
+  .topo nav a{padding:18px 0}
+  .box dl{grid-template-columns:1fr;gap:2px 0}.box dt{margin-top:10px}
+  ul.lista{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
-<link rel="stylesheet" href="https://vernissagessp.com.br/temporada.css">
+<script>try{var a=localStorage.getItem('vspAcento');if(a&&/^#[0-9a-f]{6}$/i.test(a))document.documentElement.style.setProperty('--terra',a)}catch(e){}</script>
 <script data-goatcounter="https://vernissages.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
 </head>
 <body>
-<div class="top">
-<a href="https://vernissagessp.com.br/">VERNISSAGES <span>SP</span></a>
-<div class="nav">
-<a href="https://vernissagessp.com.br/">Agenda</a><a href="https://vernissagessp.com.br/fim-de-semana.html">Fim de semana</a><a href="https://vernissagessp.com.br/monta-meu-sabado.html">Monta seu sábado</a><a href="https://vernissagessp.com.br/arquivo.html">Acervo</a><a href="https://vernissagessp.com.br/artistas.html">Artistas</a><a href="https://vernissagessp.com.br/editais.html">Editais</a>
-</div>
-</div>
-<div class="wrap wide">
+<header class="topo">
+<a class="logo" href="https://vernissagessp.com.br/">Vernissages SP</a>
+<nav aria-label="Principal">
+<a href="https://vernissagessp.com.br/">Agenda</a>
+<a href="https://vernissagessp.com.br/fim-de-semana.html">Fim de semana</a>
+<a href="https://vernissagessp.com.br/monta-meu-sabado.html">Monta seu sábado</a>
+<a href="https://vernissagessp.com.br/arquivo.html">Acervo</a>
+<a href="https://vernissagessp.com.br/artistas.html" aria-current="page">Artistas</a>
+<a href="https://vernissagessp.com.br/editais.html">Editais</a>
+<a class="cta" href="https://vernissagessp.com.br/#divulgue">Divulgue</a>
+</nav>
+</header>
+<main class="wrap wide">
 
-<h1>Artistas no acervo</h1>
-<p class="txt">292 artistas com exposições registradas em São Paulo.</p>
-<input class="busca" id="q" type="text" placeholder="Buscar artista…">
-<div class="grid2" id="g">
-<a href="https://vernissagessp.com.br/a/abbas-kiarostami.html" data-b="abbas kiarostami">Abbas Kiarostami<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/adriana-varejao.html" data-b="adriana varejão">Adriana Varejão<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/adriano-gambarini.html" data-b="adriano gambarini">Adriano Gambarini<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/alberto-boni.html" data-b="alberto boni">Alberto Boni<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/alberto-pitta.html" data-b="alberto pitta">Alberto Pitta<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/aldir-mendes-de-souza.html" data-b="aldir mendes de souza">Aldir Mendes de Souza<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/alessandro-correa.html" data-b="alessandro corrêa">Alessandro Corrêa<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/alexis-lopes.html" data-b="alexis lopes">Alexis Lopes<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/alfredo-jaar.html" data-b="alfredo jaar">Alfredo Jaar<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/alice-yura.html" data-b="alice yura">Alice Yura<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/almir-mavignier.html" data-b="almir mavignier">Almir Mavignier<small>2 mostras</small></a>
-<a href="https://vernissagessp.com.br/a/amalia-giacomini.html" data-b="amalia giacomini">Amalia Giacomini<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/amanda-fahur.html" data-b="amanda fahur">Amanda Fahur<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/ana-kawajiri.html" data-b="ana kawajiri">Ana Kawajiri<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/ana-leal.html" data-b="ana leal">Ana Leal<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/ana-raylander-martis-dos-anjos.html" data-b="ana raylander mártis dos anjos">Ana Raylander Mártis dos Anjos<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/anderson-borba.html" data-b="anderson borba">Anderson Borba<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/andre-barion.html" data-b="andré barion">André Barion<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/andre-crespo.html" data-b="andré crespo">André Crespo<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/andre-ricardo.html" data-b="andré ricardo">André Ricardo<small>2 mostras</small></a>
-<a href="https://vernissagessp.com.br/a/andre-vargas.html" data-b="andré vargas">André Vargas<small>2 mostras</small></a>
-<a href="https://vernissagessp.com.br/a/andrea-natali.html" data-b="andrea natali">Andrea Natali<small>2 mostras</small></a>
-<a href="https://vernissagessp.com.br/a/andreia-reis.html" data-b="andréia reis">Andréia Reis<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/andrey-rossi.html" data-b="andrey rossi">Andrey Rossi<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/anna-bella-geiger.html" data-b="anna bella geiger">Anna Bella Geiger<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/anna-maria-maiolino.html" data-b="anna maria maiolino">Anna Maria Maiolino<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/antonio-bokel.html" data-b="antonio bokel">Antonio Bokel<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/antonio-dorta.html" data-b="antonio dorta">Antonio Dorta<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/antonio-peticov.html" data-b="antonio peticov">Antonio Peticov<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/arnold-schmidt.html" data-b="arnold schmidt">Arnold Schmidt<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/arthur-luiz-piza.html" data-b="arthur luiz piza">Arthur Luiz Piza<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/atsushi-kaga.html" data-b="atsushi kaga">Atsushi Kaga<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/aurelino-dos-santos.html" data-b="aurelino dos santos">Aurelino dos Santos<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/ayako-rokkaku.html" data-b="ayako rokkaku">Ayako Rokkaku<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/ayrson-heraclito.html" data-b="ayrson heráclito">Ayrson Heráclito<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/barbara-banida.html" data-b="bárbara banida">Bárbara Banida<small>2 mostras</small></a>
-<a href="https://vernissagessp.com.br/a/barrao.html" data-b="barrão">Barrão<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/beatriz-buendia.html" data-b="beatriz buendia">Beatriz Buendia<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/beatriz-lindenberg.html" data-b="beatriz lindenberg">Beatriz Lindenberg<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/beatriz-milhazes.html" data-b="beatriz milhazes">Beatriz Milhazes<small>2 mostras</small></a>
-<a href="https://vernissagessp.com.br/a/beto-shwafaty.html" data-b="beto shwafaty">Beto Shwafaty<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/bruno-baptistelli.html" data-b="bruno baptistelli">Bruno Baptistelli<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/bruno-cancado.html" data-b="bruno cançado">Bruno Cançado<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/bruno-romi.html" data-b="bruno romi">Bruno Romi<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/carla-chaim.html" data-b="carla chaim">Carla Chaim<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/carlos-zilio.html" data-b="carlos zilio">Carlos Zilio<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/carolina-caycedo.html" data-b="carolina caycedo">Carolina Caycedo<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/carolina-colichio.html" data-b="carolina colichio">Carolina Colichio<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/carolina-neves.html" data-b="carolina neves">Carolina Neves<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/cesar-e-lois.html" data-b="cesar &amp; lois">Cesar &amp; Lois<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/ceu-isatto.html" data-b="céu isatto">Céu Isatto<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/charline-von-heyl.html" data-b="charline von heyl">Charline von Heyl<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/ciccio.html" data-b="ciccio">Ciccio<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/claudia-alarcon.html" data-b="claudia alarcón">Claudia Alarcón<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/claudia-andujar.html" data-b="claudia andujar">Claudia Andujar<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/claudia-briza.html" data-b="claudia briza">Claudia Briza<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/claudia-marchetti.html" data-b="claudia marchetti">Claudia Marchetti<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/claudia-vicente.html" data-b="claudia vicente">Claudia Vicente<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/claudio-cretti.html" data-b="cláudio cretti">Cláudio Cretti<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/clovis-aparecido-dos-santos.html" data-b="clovis aparecido dos santos">Clovis Aparecido dos Santos<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/colectivo-acciones-de-arte-cada.html" data-b="colectivo acciones de arte (cada)">Colectivo Acciones de Arte (CADA)<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/cristina-salgado.html" data-b="cristina salgado">Cristina Salgado<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/daiara-tukano.html" data-b="daiara tukano">Daiara Tukano<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/damian-ortega.html" data-b="damián ortega">Damián Ortega<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/daniel-acosta.html" data-b="daniel acosta">Daniel Acosta<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/daniel-almeida.html" data-b="daniel almeida">Daniel Almeida<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/daniel-jorge.html" data-b="daniel jorge">Daniel Jorge<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/daniel-steegmann-mangrane.html" data-b="daniel steegmann mangrané">Daniel Steegmann Mangrané<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/denise-milan.html" data-b="denise milan">Denise Milan<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/desali.html" data-b="desali">Desali<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/diana-motta.html" data-b="diana motta">Diana Motta<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/dora-smek.html" data-b="dora smék">Dora Smék<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/duda-breda.html" data-b="duda breda">Duda Breda<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/edgard-de-souza.html" data-b="edgard de souza">Edgard de Souza<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/edival-ramosa.html" data-b="edival ramosa">Edival Ramosa<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/edson-pfutzenreuter.html" data-b="edson pfutzenreuter">Edson Pfutzenreuter<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/eduardo-coimbra.html" data-b="eduardo coimbra">Eduardo Coimbra<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/efe-godoy.html" data-b="efe godoy">Efe Godoy<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/efrain-almeida.html" data-b="efrain almeida">Efrain Almeida<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/elaine-fontes.html" data-b="elaine fontes">Elaine Fontes<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/elisa-arruda.html" data-b="elisa arruda">Elisa Arruda<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/emanuel-nassar.html" data-b="emanuel nassar">Emanuel Nassar<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/enio-sergio.html" data-b="enio sérgio">Enio Sérgio<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/erica-magalhaes.html" data-b="érica magalhães">Érica Magalhães<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/ernesto-neto.html" data-b="ernesto neto">Ernesto Neto<small>2 mostras</small></a>
-<a href="https://vernissagessp.com.br/a/esther-morgannah.html" data-b="esther morgannah">Esther Morgannah<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/fabiana-de-barros.html" data-b="fabiana de barros">Fabiana de Barros<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/fabiana-preti.html" data-b="fabiana preti">Fabiana Preti<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/fabricio-augusto.html" data-b="fabricio augusto">Fabricio Augusto<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/felipe-cohen.html" data-b="felipe cohen">Felipe Cohen<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/felipe-scandelari.html" data-b="felipe scandelari">Felipe Scandelari<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/fernanda-pacca.html" data-b="fernanda pacca">Fernanda Pacca<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/fernanda-pompermayer.html" data-b="fernanda pompermayer">Fernanda Pompermayer<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/fernanda-valadares.html" data-b="fernanda valadares">Fernanda Valadares<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/fernando-lemos.html" data-b="fernando lemos">Fernando Lemos<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/flavia-fabbriziani.html" data-b="flavia fabbriziani">Flavia Fabbriziani<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/flavia-junqueira.html" data-b="flávia junqueira">Flávia Junqueira<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/frederico-filippi.html" data-b="frederico filippi">Frederico Filippi<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/frederico-ravioli.html" data-b="frederico ravioli">Frederico Ravioli<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/frei-agostinho-de-jesus.html" data-b="frei agostinho de jesus">Frei Agostinho de Jesus<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/gabriel-bonatto.html" data-b="gabriel bonatto">Gabriel Bonatto<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/gabriel-omep.html" data-b="gabriel omep">Gabriel Omep<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/gabriel-ussami.html" data-b="gabriel ussami">Gabriel Ussami<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/gabriela-siqueira.html" data-b="gabriela siqueira">Gabriela Siqueira<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/gabriella-arantes.html" data-b="gabriella arantes">Gabriella Arantes<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/gabrilandia.html" data-b="gabrilândia">Gabrilândia<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/gaspar-gasparian.html" data-b="gaspar gasparian">Gaspar Gasparian<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/george-love.html" data-b="george love">George Love<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/germana-monte-mor.html" data-b="germana monte-mór">Germana Monte-Mór<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/gi-monteiro.html" data-b="gi monteiro">Gi Monteiro<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/giba-gomes.html" data-b="giba gomes">Giba Gomes<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/gilberto-alexandre-sobrinho.html" data-b="gilberto alexandre sobrinho">Gilberto Alexandre Sobrinho<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/gio-soifer.html" data-b="gio soifer">Gio Soifer<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/giovani-fantauzzi.html" data-b="giovani fantauzzi">Giovani Fantauzzi<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/giovanna-mitrani.html" data-b="giovanna mitrani">Giovanna Mitrani<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/gisele-hasler.html" data-b="gisele hasler">Gisele Hasler<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/giulia-bianchi.html" data-b="giulia bianchi">Giulia Bianchi<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/grada-kilomba.html" data-b="grada kilomba">Grada Kilomba<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/gretta-sarfaty.html" data-b="gretta sarfaty">Gretta Sarfaty<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/gui-teixeira.html" data-b="gui teixeira">Gui Teixeira<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/guilherme-santos-da-silva.html" data-b="guilherme santos da silva">Guilherme Santos da Silva<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/gunga-guerra.html" data-b="gunga guerra">Gunga Guerra<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/gustavo-silvamaral.html" data-b="gustavo silvamaral">Gustavo Silvamaral<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/henrique-detomi.html" data-b="henrique detomi">Henrique Detomi<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/ieda-iane.html" data-b="ieda iane">Ieda Iane<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/igor-romana.html" data-b="igor romana">Igor Romana<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/iran-do-espirito-santo.html" data-b="iran do espírito santo">Iran do Espírito Santo<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/jacque-faus.html" data-b="jacque faus">Jacque Faus<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/jacqueline-humphries.html" data-b="jacqueline humphries">Jacqueline Humphries<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/jacson-trierveiler.html" data-b="jacson trierveiler">Jacson Trierveiler<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/jamac-jardim-miriam-arte-clube.html" data-b="jamac — jardim miriam arte clube">JAMAC — Jardim Miriam Arte Clube<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/janet-vollebregt.html" data-b="janet vollebregt">Janet Vollebregt<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/jaques-faing.html" data-b="jaques faing">Jaques Faing<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/jarbas-lopes.html" data-b="jarbas lopes">Jarbas Lopes<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/jean-claracq.html" data-b="jean claracq">Jean Claracq<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/jean-manzon.html" data-b="jean manzon">Jean Manzon<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/jeane-terra.html" data-b="jeane terra">Jeane Terra<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/jessica-costa.html" data-b="jessica costa">Jessica Costa<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/joan-miro.html" data-b="joan miró">Joan Miró<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/joao-luiz-musa.html" data-b="joão luiz musa">João Luiz Musa<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/joao-rietmann.html" data-b="joão rietmann">João Rietmann<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/joeun-kim-aatchim.html" data-b="joeun kim aatchim">Joeun Kim Aatchim<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/johanna-calle.html" data-b="johanna calle">Johanna Calle<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/jose-bento.html" data-b="josé bento">José Bento<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/jose-bernardo-cardoso-junior.html" data-b="josé bernardo cardoso júnior">José Bernardo Cardoso Júnior<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/jose-patricio.html" data-b="josé patrício">José Patrício<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/josef-hofer.html" data-b="josef hofer">Josef Hofer<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/judy-chicago.html" data-b="judy chicago">Judy Chicago<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/julia-pereira.html" data-b="julia pereira">Julia Pereira<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/karla-koehler.html" data-b="karla koehler">Karla Koehler<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/kilian-glasner.html" data-b="kilian glasner">Kilian Glasner<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/kuenan-mayu.html" data-b="kuenan mayu">Kuenan Mayu<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/la-chola-poblete.html" data-b="la chola poblete">La Chola Poblete<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/laura-belem.html" data-b="laura belém">Laura Belém<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/laura-villarosa.html" data-b="laura villarosa">Laura Villarosa<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/leao-serva.html" data-b="leão serva">Leão Serva<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/liane-roditi.html" data-b="liane roditi">Liane Roditi<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/lucas-matoso.html" data-b="lucas matoso">Lucas Matoso<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/lucas-simoes.html" data-b="lucas simões">Lucas Simões<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/lucia-nogueira.html" data-b="lucia nogueira">Lucia Nogueira<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/luciana-arantes.html" data-b="luciana arantes">Luciana Arantes<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/luisa-bresser.html" data-b="luisa bresser">Luisa Bresser<small>2 mostras</small></a>
-<a href="https://vernissagessp.com.br/a/luisa-matsushita.html" data-b="luísa matsushita">Luísa Matsushita<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/luise-weiss.html" data-b="luise weiss">Luise Weiss<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/luiz-carlos-paulino.html" data-b="luiz carlos paulino">Luiz Carlos Paulino<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/luiz-fukushiro.html" data-b="luiz fukushiro">Luiz Fukushiro<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/luiz-zerbini.html" data-b="luiz zerbini">Luiz Zerbini<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/luiza-lukah.html" data-b="luiza lukah">Luiza Lukah<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/lygia-pape.html" data-b="lygia pape">Lygia Pape<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/maazo-heck.html" data-b="maazo heck">Maazo Heck<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/madu-peruzzo.html" data-b="madu peruzzo">Madu Peruzzo<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/manoel-veiga.html" data-b="manoel veiga">Manoel Veiga<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/manuela-costa-lima.html" data-b="manuela costa lima">Manuela Costa Lima<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/marcia-grostein.html" data-b="marcia grostein">Marcia Grostein<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/margarida-l-kanciukaitis-pandolfo.html" data-b="margarida l. kanciukaitis pandolfo">Margarida L. Kanciukaitis Pandolfo<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/maria-do-carmo-verdi.html" data-b="maria do carmo verdi">Maria do Carmo Verdi<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/maria-helena-andres.html" data-b="maria helena andrés">Maria Helena Andrés<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/mariana-longo.html" data-b="mariana longo">Mariana Longo<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/mariana-rocha.html" data-b="mariana rocha">Mariana Rocha<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/marina-camargo.html" data-b="marina camargo">Marina Camargo<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/marina-cespe.html" data-b="marina cespe">Marina Cespe<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/marina-rodrigues.html" data-b="marina rodrigues">Marina Rodrigues<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/marina-sadala.html" data-b="marina sadala">Marina Sadala<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/marina-sader.html" data-b="marina sader">Marina Sader<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/marina-weffort.html" data-b="marina weffort">Marina Weffort<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/marinalva-rosa.html" data-b="marinalva rosa">Marinalva Rosa<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/marion-de-martino.html" data-b="marion de martino">Marion De Martino<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/marlene-barros.html" data-b="marlene barros">Marlene Barros<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/marta-strambi.html" data-b="marta strambi">Marta Strambi<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/martin-parr.html" data-b="martin parr">Martin Parr<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/marysia-portinari.html" data-b="marysia portinari">Marysia Portinari<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/masao-yamamoto.html" data-b="masao yamamoto">Masao Yamamoto<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/mateo-lopez.html" data-b="mateo lópez">Mateo López<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/mauricius-farina.html" data-b="mauricius farina">Mauricius Farina<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/mauro-restiffe.html" data-b="mauro restiffe">Mauro Restiffe<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/maya-weishof.html" data-b="maya weishof">Maya Weishof<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/mexa.html" data-b="mexa">MEXA<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/michaela-a-f.html" data-b="michaela a f">Michaela A F<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/michelle-rosset.html" data-b="michelle rosset">Michelle Rosset<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/miguel-penha.html" data-b="miguel penha">Miguel Penha<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/moara-tupinamba.html" data-b="moara tupinambá">Moara Tupinambá<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/monica-ventura.html" data-b="mônica ventura">Mônica Ventura<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/mucki-botkay.html" data-b="mucki botkay">Mucki Botkay<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/naia-ceschin.html" data-b="naia ceschin">Naia Ceschin<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/naira-pennacchi.html" data-b="naira pennacchi">Naira Pennacchi<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/natha-calhova.html" data-b="natha calhova">Natha Calhova<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/nazas.html" data-b="nazas">Nazas<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/nelson-felix.html" data-b="nelson felix">Nelson Felix<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/neyde-joppert.html" data-b="neyde joppert">Neyde Joppert<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/nicole-leite.html" data-b="nicole leite">Nicole Leite<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/nina-horikawa.html" data-b="nina horikawa">Nina Horikawa<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/nino-kapanadze.html" data-b="nino kapanadze">Nino Kapanadze<small>2 mostras</small></a>
-<a href="https://vernissagessp.com.br/a/olinda-tupinamba.html" data-b="olinda tupinambá">Olinda Tupinambá<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/olivia-lacerda.html" data-b="olívia lacerda">Olívia Lacerda<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/oriol-vilanova.html" data-b="oriol vilanova">Oriol Vilanova<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/pablo-accinelli.html" data-b="pablo accinelli">Pablo Accinelli<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/pablo-delano.html" data-b="pablo delano">Pablo Delano<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/pascale-marthine-tayou.html" data-b="pascale marthine tayou">Pascale Marthine Tayou<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/paul-kopkau.html" data-b="paul kopkau">Paul Kopkau<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/paula-huven.html" data-b="paula huven">Paula Huven<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/paula-siebra.html" data-b="paula siebra">Paula Siebra<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/paulo-monteiro.html" data-b="paulo monteiro">Paulo Monteiro<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/paulo-pedro-leal.html" data-b="paulo pedro leal">Paulo Pedro Leal<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/pedro-franca.html" data-b="pedro frança">Pedro França<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/peter-granados.html" data-b="peter granados">Peter Granados<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/phil-haji-touma.html" data-b="phil haji-touma">Phil Haji-Touma<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/poli-pieratti.html" data-b="poli pieratti">Poli Pieratti<small>2 mostras</small></a>
-<a href="https://vernissagessp.com.br/a/rachel-zuanon.html" data-b="rachel zuanon">Rachel Zuanon<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/rafael-beck.html" data-b="rafael beck">Rafael Beck<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/ranchinho.html" data-b="ranchinho">Ranchinho<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/raphael-dea-toledo.html" data-b="raphael dea toledo">Raphael Dea Toledo<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/rebecca-watson-horn.html" data-b="rebecca watson horn">Rebecca Watson Horn<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/regina-jose-galindo.html" data-b="regina josé galindo">Regina José Galindo<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/renata-egreja.html" data-b="renata egreja">Renata Egreja<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/ricardo-ribeiro.html" data-b="ricardo ribeiro">Ricardo Ribeiro<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/ricardo-rojas.html" data-b="ricardo rojas">Ricardo Rojas<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/rita-lessa.html" data-b="rita lessa">Rita Lessa<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/robert-mapplethorpe.html" data-b="robert mapplethorpe">Robert Mapplethorpe<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/roberto-burle-marx.html" data-b="roberto burle marx">Roberto Burle Marx<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/rochelle-costi.html" data-b="rochelle costi">Rochelle Costi<small>2 mostras</small></a>
-<a href="https://vernissagessp.com.br/a/rodrigo-andrade.html" data-b="rodrigo andrade">Rodrigo Andrade<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/rosa-elena-curruchich.html" data-b="rosa elena curruchich">Rosa Elena Curruchich<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/rosangela-renno.html" data-b="rosângela rennó">Rosângela Rennó<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/ruchita.html" data-b="ruchita">Ruchita<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/samuel-alves-de-jesus.html" data-b="samuel alves de jesus">Samuel Alves de Jesus<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/sandra-anselmi.html" data-b="sandra anselmi">Sandra Anselmi<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/sandra-cinto.html" data-b="sandra cinto">Sandra Cinto<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/santiago-yahuarcani.html" data-b="santiago yahuarcani">Santiago Yahuarcani<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/selva-de-carvalho.html" data-b="selva de carvalho">Selva de Carvalho<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/sergej-jensen.html" data-b="sergej jensen">Sergej Jensen<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/sergio-niculitcheff.html" data-b="sérgio niculitcheff">Sérgio Niculitcheff<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/sergio-sister.html" data-b="sérgio sister">Sérgio Sister<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/sheila-hicks.html" data-b="sheila hicks">Sheila Hicks<small>2 mostras</small></a>
-<a href="https://vernissagessp.com.br/a/sheila-kracochansky.html" data-b="sheila kracochansky">Sheila Kracochansky<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/silvana-boni.html" data-b="silvana boni">Silvana Boni<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/silvio-dworecki.html" data-b="silvio dworecki">Silvio Dworecki<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/sol-calero.html" data-b="sol calero">Sol Calero<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/solange-pessoa.html" data-b="solange pessoa">Solange Pessoa<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/sylvia-furegatti.html" data-b="sylvia furegatti">Sylvia Furegatti<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/sylvia-soglia.html" data-b="sylvia sóglia">Sylvia Sóglia<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/tais-koshino.html" data-b="tais koshino">Tais Koshino<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/tamara-roman.html" data-b="tamara roman">Tamara Roman<small>2 mostras</small></a>
-<a href="https://vernissagessp.com.br/a/tania-ximena.html" data-b="tania ximena">Tania Ximena<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/tarsila-do-amaral.html" data-b="tarsila do amaral">Tarsila do Amaral<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/tatiana-blass.html" data-b="tatiana blass">Tatiana Blass<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/thamiris-mandu.html" data-b="thamiris mandú">Thamiris Mandú<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/thany-sanches.html" data-b="thany sanches">Thany Sanches<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/thia-sguoti.html" data-b="thiá sguoti">Thiá Sguoti<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/thiago-martins-de-melo.html" data-b="thiago martins de melo">Thiago Martins de Melo<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/tiago-alencar.html" data-b="tiago alencar">Tiago Alencar<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/tito-terapia.html" data-b="tito terapia">Tito Terapia<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/toni-pires.html" data-b="toni pires">Toni Pires<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/ubirajara-ribeiro.html" data-b="ubirajara ribeiro">Ubirajara Ribeiro<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/uyra.html" data-b="uýra">Uýra<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/valdirlei-dias-nunes.html" data-b="valdirlei dias nunes">Valdirlei Dias Nunes<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/vania-mignone.html" data-b="vânia mignone">Vânia Mignone<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/verena-smit.html" data-b="verena smit">Verena Smit<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/veridiana-magalhaes.html" data-b="veridiana magalhães">Veridiana Magalhães<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/victor-arruda.html" data-b="victor arruda">Victor Arruda<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/victoria-serednicki.html" data-b="victoria serednicki">Victoria Serednicki<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/vik-muniz.html" data-b="vik muniz">Vik Muniz<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/vivian-caccuri.html" data-b="vivian caccuri">Vivian Caccuri<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/wagner-carvalho.html" data-b="wagner carvalho">Wagner Carvalho<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/witor-ressutti.html" data-b="witor ressutti">Witor Ressutti<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/wojtek-kostrzewa.html" data-b="wojtek kostrzewa">Wojtek Kostrzewa<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/wolfram-ullrich.html" data-b="wolfram ullrich">Wolfram Ullrich<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/xinga-xow.html" data-b="xinga xow">Xinga Xow<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/yaraca.html" data-b="yaraçá">Yaraçá<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/yasmin-guimaraes.html" data-b="yasmin guimarães">Yasmin Guimarães<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/yohana-oizumi.html" data-b="yohana oizumi">Yohana Oizumi<small>2 mostras</small></a>
-<a href="https://vernissagessp.com.br/a/zanine-caldas.html" data-b="zanine caldas">Zanine Caldas<small>1 mostra</small></a>
-<a href="https://vernissagessp.com.br/a/zico-farina.html" data-b="zico farina">Zico Farina<small>1 mostra</small></a>
+<p class="kick">Índice</p>
+<h1 class="g">Artistas</h1>
+<p class="lede"><b>292</b> artistas com exposições registradas em São Paulo. O número ao lado do nome é a quantidade de mostras no acervo.</p>
+<input class="busca" id="q" type="search" placeholder="Buscar artista" autocomplete="off">
+<div class="chips" id="ord"><span class="rot">Ordem</span><button type="button" class="chip on" data-o="az">A–Z</button><button type="button" class="chip" data-o="qtd">Mais mostras</button></div>
+<div class="chips" id="az"><span class="rot">Ir para</span><a class="chip" href="#l-A">A</a><a class="chip" href="#l-B">B</a><a class="chip" href="#l-C">C</a><a class="chip" href="#l-D">D</a><a class="chip" href="#l-E">E</a><a class="chip" href="#l-F">F</a><a class="chip" href="#l-G">G</a><a class="chip" href="#l-H">H</a><a class="chip" href="#l-I">I</a><a class="chip" href="#l-J">J</a><a class="chip" href="#l-K">K</a><a class="chip" href="#l-L">L</a><a class="chip" href="#l-M">M</a><a class="chip" href="#l-N">N</a><a class="chip" href="#l-O">O</a><a class="chip" href="#l-P">P</a><a class="chip" href="#l-R">R</a><a class="chip" href="#l-S">S</a><a class="chip" href="#l-T">T</a><a class="chip" href="#l-U">U</a><a class="chip" href="#l-V">V</a><a class="chip" href="#l-W">W</a><a class="chip" href="#l-X">X</a><a class="chip" href="#l-Y">Y</a><a class="chip" href="#l-Z">Z</a></div>
+<div class="cont" id="cont" aria-live="polite"></div>
+<div id="porletra">
+<section class="let" id="l-A"><h2>A<small>35</small></h2><div class="grid2">
+<a href="https://vernissagessp.com.br/a/abbas-kiarostami.html" data-b="abbas kiarostami">Abbas Kiarostami<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/adriana-varejao.html" data-b="adriana varejão">Adriana Varejão<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/adriano-gambarini.html" data-b="adriano gambarini">Adriano Gambarini<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/alberto-boni.html" data-b="alberto boni">Alberto Boni<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/alberto-pitta.html" data-b="alberto pitta">Alberto Pitta<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/aldir-mendes-de-souza.html" data-b="aldir mendes de souza">Aldir Mendes de Souza<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/alessandro-correa.html" data-b="alessandro corrêa">Alessandro Corrêa<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/alexis-lopes.html" data-b="alexis lopes">Alexis Lopes<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/alfredo-jaar.html" data-b="alfredo jaar">Alfredo Jaar<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/alice-yura.html" data-b="alice yura">Alice Yura<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/almir-mavignier.html" data-b="almir mavignier">Almir Mavignier<small>2</small></a>
+<a href="https://vernissagessp.com.br/a/amalia-giacomini.html" data-b="amalia giacomini">Amalia Giacomini<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/amanda-fahur.html" data-b="amanda fahur">Amanda Fahur<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/ana-kawajiri.html" data-b="ana kawajiri">Ana Kawajiri<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/ana-leal.html" data-b="ana leal">Ana Leal<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/ana-raylander-martis-dos-anjos.html" data-b="ana raylander mártis dos anjos">Ana Raylander Mártis dos Anjos<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/anderson-borba.html" data-b="anderson borba">Anderson Borba<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/andre-barion.html" data-b="andré barion">André Barion<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/andre-crespo.html" data-b="andré crespo">André Crespo<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/andre-ricardo.html" data-b="andré ricardo">André Ricardo<small>2</small></a>
+<a href="https://vernissagessp.com.br/a/andre-vargas.html" data-b="andré vargas">André Vargas<small>2</small></a>
+<a href="https://vernissagessp.com.br/a/andrea-natali.html" data-b="andrea natali">Andrea Natali<small>2</small></a>
+<a href="https://vernissagessp.com.br/a/andreia-reis.html" data-b="andréia reis">Andréia Reis<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/andrey-rossi.html" data-b="andrey rossi">Andrey Rossi<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/anna-bella-geiger.html" data-b="anna bella geiger">Anna Bella Geiger<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/anna-maria-maiolino.html" data-b="anna maria maiolino">Anna Maria Maiolino<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/antonio-bokel.html" data-b="antonio bokel">Antonio Bokel<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/antonio-dorta.html" data-b="antonio dorta">Antonio Dorta<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/antonio-peticov.html" data-b="antonio peticov">Antonio Peticov<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/arnold-schmidt.html" data-b="arnold schmidt">Arnold Schmidt<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/arthur-luiz-piza.html" data-b="arthur luiz piza">Arthur Luiz Piza<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/atsushi-kaga.html" data-b="atsushi kaga">Atsushi Kaga<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/aurelino-dos-santos.html" data-b="aurelino dos santos">Aurelino dos Santos<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/ayako-rokkaku.html" data-b="ayako rokkaku">Ayako Rokkaku<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/ayrson-heraclito.html" data-b="ayrson heráclito">Ayrson Heráclito<small>1</small></a>
+</div></section>
+<section class="let" id="l-B"><h2>B<small>9</small></h2><div class="grid2">
+<a href="https://vernissagessp.com.br/a/barbara-banida.html" data-b="bárbara banida">Bárbara Banida<small>2</small></a>
+<a href="https://vernissagessp.com.br/a/barrao.html" data-b="barrão">Barrão<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/beatriz-buendia.html" data-b="beatriz buendia">Beatriz Buendia<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/beatriz-lindenberg.html" data-b="beatriz lindenberg">Beatriz Lindenberg<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/beatriz-milhazes.html" data-b="beatriz milhazes">Beatriz Milhazes<small>2</small></a>
+<a href="https://vernissagessp.com.br/a/beto-shwafaty.html" data-b="beto shwafaty">Beto Shwafaty<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/bruno-baptistelli.html" data-b="bruno baptistelli">Bruno Baptistelli<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/bruno-cancado.html" data-b="bruno cançado">Bruno Cançado<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/bruno-romi.html" data-b="bruno romi">Bruno Romi<small>1</small></a>
+</div></section>
+<section class="let" id="l-C"><h2>C<small>18</small></h2><div class="grid2">
+<a href="https://vernissagessp.com.br/a/carla-chaim.html" data-b="carla chaim">Carla Chaim<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/carlos-zilio.html" data-b="carlos zilio">Carlos Zilio<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/carolina-caycedo.html" data-b="carolina caycedo">Carolina Caycedo<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/carolina-colichio.html" data-b="carolina colichio">Carolina Colichio<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/carolina-neves.html" data-b="carolina neves">Carolina Neves<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/cesar-e-lois.html" data-b="cesar &amp; lois">Cesar &amp; Lois<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/ceu-isatto.html" data-b="céu isatto">Céu Isatto<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/charline-von-heyl.html" data-b="charline von heyl">Charline von Heyl<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/ciccio.html" data-b="ciccio">Ciccio<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/claudia-alarcon.html" data-b="claudia alarcón">Claudia Alarcón<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/claudia-andujar.html" data-b="claudia andujar">Claudia Andujar<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/claudia-briza.html" data-b="claudia briza">Claudia Briza<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/claudia-marchetti.html" data-b="claudia marchetti">Claudia Marchetti<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/claudia-vicente.html" data-b="claudia vicente">Claudia Vicente<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/claudio-cretti.html" data-b="cláudio cretti">Cláudio Cretti<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/clovis-aparecido-dos-santos.html" data-b="clovis aparecido dos santos">Clovis Aparecido dos Santos<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/colectivo-acciones-de-arte-cada.html" data-b="colectivo acciones de arte (cada)">Colectivo Acciones de Arte (CADA)<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/cristina-salgado.html" data-b="cristina salgado">Cristina Salgado<small>1</small></a>
+</div></section>
+<section class="let" id="l-D"><h2>D<small>11</small></h2><div class="grid2">
+<a href="https://vernissagessp.com.br/a/daiara-tukano.html" data-b="daiara tukano">Daiara Tukano<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/damian-ortega.html" data-b="damián ortega">Damián Ortega<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/daniel-acosta.html" data-b="daniel acosta">Daniel Acosta<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/daniel-almeida.html" data-b="daniel almeida">Daniel Almeida<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/daniel-jorge.html" data-b="daniel jorge">Daniel Jorge<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/daniel-steegmann-mangrane.html" data-b="daniel steegmann mangrané">Daniel Steegmann Mangrané<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/denise-milan.html" data-b="denise milan">Denise Milan<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/desali.html" data-b="desali">Desali<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/diana-motta.html" data-b="diana motta">Diana Motta<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/dora-smek.html" data-b="dora smék">Dora Smék<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/duda-breda.html" data-b="duda breda">Duda Breda<small>1</small></a>
+</div></section>
+<section class="let" id="l-E"><h2>E<small>13</small></h2><div class="grid2">
+<a href="https://vernissagessp.com.br/a/edgard-de-souza.html" data-b="edgard de souza">Edgard de Souza<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/edival-ramosa.html" data-b="edival ramosa">Edival Ramosa<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/edson-pfutzenreuter.html" data-b="edson pfutzenreuter">Edson Pfutzenreuter<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/eduardo-coimbra.html" data-b="eduardo coimbra">Eduardo Coimbra<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/efe-godoy.html" data-b="efe godoy">Efe Godoy<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/efrain-almeida.html" data-b="efrain almeida">Efrain Almeida<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/elaine-fontes.html" data-b="elaine fontes">Elaine Fontes<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/elisa-arruda.html" data-b="elisa arruda">Elisa Arruda<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/emanuel-nassar.html" data-b="emanuel nassar">Emanuel Nassar<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/enio-sergio.html" data-b="enio sérgio">Enio Sérgio<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/erica-magalhaes.html" data-b="érica magalhães">Érica Magalhães<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/ernesto-neto.html" data-b="ernesto neto">Ernesto Neto<small>2</small></a>
+<a href="https://vernissagessp.com.br/a/esther-morgannah.html" data-b="esther morgannah">Esther Morgannah<small>1</small></a>
+</div></section>
+<section class="let" id="l-F"><h2>F<small>14</small></h2><div class="grid2">
+<a href="https://vernissagessp.com.br/a/fabiana-de-barros.html" data-b="fabiana de barros">Fabiana de Barros<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/fabiana-preti.html" data-b="fabiana preti">Fabiana Preti<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/fabricio-augusto.html" data-b="fabricio augusto">Fabricio Augusto<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/felipe-cohen.html" data-b="felipe cohen">Felipe Cohen<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/felipe-scandelari.html" data-b="felipe scandelari">Felipe Scandelari<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/fernanda-pacca.html" data-b="fernanda pacca">Fernanda Pacca<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/fernanda-pompermayer.html" data-b="fernanda pompermayer">Fernanda Pompermayer<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/fernanda-valadares.html" data-b="fernanda valadares">Fernanda Valadares<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/fernando-lemos.html" data-b="fernando lemos">Fernando Lemos<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/flavia-fabbriziani.html" data-b="flavia fabbriziani">Flavia Fabbriziani<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/flavia-junqueira.html" data-b="flávia junqueira">Flávia Junqueira<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/frederico-filippi.html" data-b="frederico filippi">Frederico Filippi<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/frederico-ravioli.html" data-b="frederico ravioli">Frederico Ravioli<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/frei-agostinho-de-jesus.html" data-b="frei agostinho de jesus">Frei Agostinho de Jesus<small>1</small></a>
+</div></section>
+<section class="let" id="l-G"><h2>G<small>23</small></h2><div class="grid2">
+<a href="https://vernissagessp.com.br/a/gabriel-bonatto.html" data-b="gabriel bonatto">Gabriel Bonatto<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gabriel-omep.html" data-b="gabriel omep">Gabriel Omep<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gabriel-ussami.html" data-b="gabriel ussami">Gabriel Ussami<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gabriela-siqueira.html" data-b="gabriela siqueira">Gabriela Siqueira<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gabriella-arantes.html" data-b="gabriella arantes">Gabriella Arantes<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gabrilandia.html" data-b="gabrilândia">Gabrilândia<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gaspar-gasparian.html" data-b="gaspar gasparian">Gaspar Gasparian<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/george-love.html" data-b="george love">George Love<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/germana-monte-mor.html" data-b="germana monte-mór">Germana Monte-Mór<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gi-monteiro.html" data-b="gi monteiro">Gi Monteiro<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/giba-gomes.html" data-b="giba gomes">Giba Gomes<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gilberto-alexandre-sobrinho.html" data-b="gilberto alexandre sobrinho">Gilberto Alexandre Sobrinho<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gio-soifer.html" data-b="gio soifer">Gio Soifer<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/giovani-fantauzzi.html" data-b="giovani fantauzzi">Giovani Fantauzzi<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/giovanna-mitrani.html" data-b="giovanna mitrani">Giovanna Mitrani<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gisele-hasler.html" data-b="gisele hasler">Gisele Hasler<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/giulia-bianchi.html" data-b="giulia bianchi">Giulia Bianchi<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/grada-kilomba.html" data-b="grada kilomba">Grada Kilomba<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gretta-sarfaty.html" data-b="gretta sarfaty">Gretta Sarfaty<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gui-teixeira.html" data-b="gui teixeira">Gui Teixeira<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/guilherme-santos-da-silva.html" data-b="guilherme santos da silva">Guilherme Santos da Silva<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gunga-guerra.html" data-b="gunga guerra">Gunga Guerra<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gustavo-silvamaral.html" data-b="gustavo silvamaral">Gustavo Silvamaral<small>1</small></a>
+</div></section>
+<section class="let" id="l-H"><h2>H<small>1</small></h2><div class="grid2">
+<a href="https://vernissagessp.com.br/a/henrique-detomi.html" data-b="henrique detomi">Henrique Detomi<small>1</small></a>
+</div></section>
+<section class="let" id="l-I"><h2>I<small>3</small></h2><div class="grid2">
+<a href="https://vernissagessp.com.br/a/ieda-iane.html" data-b="ieda iane">Ieda Iane<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/igor-romana.html" data-b="igor romana">Igor Romana<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/iran-do-espirito-santo.html" data-b="iran do espírito santo">Iran do Espírito Santo<small>1</small></a>
+</div></section>
+<section class="let" id="l-J"><h2>J<small>22</small></h2><div class="grid2">
+<a href="https://vernissagessp.com.br/a/jacque-faus.html" data-b="jacque faus">Jacque Faus<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/jacqueline-humphries.html" data-b="jacqueline humphries">Jacqueline Humphries<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/jacson-trierveiler.html" data-b="jacson trierveiler">Jacson Trierveiler<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/jamac-jardim-miriam-arte-clube.html" data-b="jamac — jardim miriam arte clube">JAMAC — Jardim Miriam Arte Clube<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/janet-vollebregt.html" data-b="janet vollebregt">Janet Vollebregt<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/jaques-faing.html" data-b="jaques faing">Jaques Faing<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/jarbas-lopes.html" data-b="jarbas lopes">Jarbas Lopes<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/jean-claracq.html" data-b="jean claracq">Jean Claracq<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/jean-manzon.html" data-b="jean manzon">Jean Manzon<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/jeane-terra.html" data-b="jeane terra">Jeane Terra<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/jessica-costa.html" data-b="jessica costa">Jessica Costa<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/joan-miro.html" data-b="joan miró">Joan Miró<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/joao-luiz-musa.html" data-b="joão luiz musa">João Luiz Musa<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/joao-rietmann.html" data-b="joão rietmann">João Rietmann<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/joeun-kim-aatchim.html" data-b="joeun kim aatchim">Joeun Kim Aatchim<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/johanna-calle.html" data-b="johanna calle">Johanna Calle<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/jose-bento.html" data-b="josé bento">José Bento<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/jose-bernardo-cardoso-junior.html" data-b="josé bernardo cardoso júnior">José Bernardo Cardoso Júnior<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/jose-patricio.html" data-b="josé patrício">José Patrício<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/josef-hofer.html" data-b="josef hofer">Josef Hofer<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/judy-chicago.html" data-b="judy chicago">Judy Chicago<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/julia-pereira.html" data-b="julia pereira">Julia Pereira<small>1</small></a>
+</div></section>
+<section class="let" id="l-K"><h2>K<small>3</small></h2><div class="grid2">
+<a href="https://vernissagessp.com.br/a/karla-koehler.html" data-b="karla koehler">Karla Koehler<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/kilian-glasner.html" data-b="kilian glasner">Kilian Glasner<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/kuenan-mayu.html" data-b="kuenan mayu">Kuenan Mayu<small>1</small></a>
+</div></section>
+<section class="let" id="l-L"><h2>L<small>17</small></h2><div class="grid2">
+<a href="https://vernissagessp.com.br/a/la-chola-poblete.html" data-b="la chola poblete">La Chola Poblete<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/laura-belem.html" data-b="laura belém">Laura Belém<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/laura-villarosa.html" data-b="laura villarosa">Laura Villarosa<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/leao-serva.html" data-b="leão serva">Leão Serva<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/liane-roditi.html" data-b="liane roditi">Liane Roditi<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/lucas-matoso.html" data-b="lucas matoso">Lucas Matoso<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/lucas-simoes.html" data-b="lucas simões">Lucas Simões<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/lucia-nogueira.html" data-b="lucia nogueira">Lucia Nogueira<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/luciana-arantes.html" data-b="luciana arantes">Luciana Arantes<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/luisa-bresser.html" data-b="luisa bresser">Luisa Bresser<small>2</small></a>
+<a href="https://vernissagessp.com.br/a/luisa-matsushita.html" data-b="luísa matsushita">Luísa Matsushita<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/luise-weiss.html" data-b="luise weiss">Luise Weiss<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/luiz-carlos-paulino.html" data-b="luiz carlos paulino">Luiz Carlos Paulino<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/luiz-fukushiro.html" data-b="luiz fukushiro">Luiz Fukushiro<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/luiz-zerbini.html" data-b="luiz zerbini">Luiz Zerbini<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/luiza-lukah.html" data-b="luiza lukah">Luiza Lukah<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/lygia-pape.html" data-b="lygia pape">Lygia Pape<small>1</small></a>
+</div></section>
+<section class="let" id="l-M"><h2>M<small>34</small></h2><div class="grid2">
+<a href="https://vernissagessp.com.br/a/maazo-heck.html" data-b="maazo heck">Maazo Heck<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/madu-peruzzo.html" data-b="madu peruzzo">Madu Peruzzo<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/manoel-veiga.html" data-b="manoel veiga">Manoel Veiga<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/manuela-costa-lima.html" data-b="manuela costa lima">Manuela Costa Lima<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/marcia-grostein.html" data-b="marcia grostein">Marcia Grostein<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/margarida-l-kanciukaitis-pandolfo.html" data-b="margarida l. kanciukaitis pandolfo">Margarida L. Kanciukaitis Pandolfo<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/maria-do-carmo-verdi.html" data-b="maria do carmo verdi">Maria do Carmo Verdi<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/maria-helena-andres.html" data-b="maria helena andrés">Maria Helena Andrés<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/mariana-longo.html" data-b="mariana longo">Mariana Longo<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/mariana-rocha.html" data-b="mariana rocha">Mariana Rocha<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/marina-camargo.html" data-b="marina camargo">Marina Camargo<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/marina-cespe.html" data-b="marina cespe">Marina Cespe<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/marina-rodrigues.html" data-b="marina rodrigues">Marina Rodrigues<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/marina-sadala.html" data-b="marina sadala">Marina Sadala<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/marina-sader.html" data-b="marina sader">Marina Sader<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/marina-weffort.html" data-b="marina weffort">Marina Weffort<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/marinalva-rosa.html" data-b="marinalva rosa">Marinalva Rosa<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/marion-de-martino.html" data-b="marion de martino">Marion De Martino<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/marlene-barros.html" data-b="marlene barros">Marlene Barros<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/marta-strambi.html" data-b="marta strambi">Marta Strambi<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/martin-parr.html" data-b="martin parr">Martin Parr<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/marysia-portinari.html" data-b="marysia portinari">Marysia Portinari<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/masao-yamamoto.html" data-b="masao yamamoto">Masao Yamamoto<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/mateo-lopez.html" data-b="mateo lópez">Mateo López<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/mauricius-farina.html" data-b="mauricius farina">Mauricius Farina<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/mauro-restiffe.html" data-b="mauro restiffe">Mauro Restiffe<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/maya-weishof.html" data-b="maya weishof">Maya Weishof<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/mexa.html" data-b="mexa">MEXA<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/michaela-a-f.html" data-b="michaela a f">Michaela A F<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/michelle-rosset.html" data-b="michelle rosset">Michelle Rosset<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/miguel-penha.html" data-b="miguel penha">Miguel Penha<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/moara-tupinamba.html" data-b="moara tupinambá">Moara Tupinambá<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/monica-ventura.html" data-b="mônica ventura">Mônica Ventura<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/mucki-botkay.html" data-b="mucki botkay">Mucki Botkay<small>1</small></a>
+</div></section>
+<section class="let" id="l-N"><h2>N<small>9</small></h2><div class="grid2">
+<a href="https://vernissagessp.com.br/a/naia-ceschin.html" data-b="naia ceschin">Naia Ceschin<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/naira-pennacchi.html" data-b="naira pennacchi">Naira Pennacchi<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/natha-calhova.html" data-b="natha calhova">Natha Calhova<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/nazas.html" data-b="nazas">Nazas<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/nelson-felix.html" data-b="nelson felix">Nelson Felix<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/neyde-joppert.html" data-b="neyde joppert">Neyde Joppert<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/nicole-leite.html" data-b="nicole leite">Nicole Leite<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/nina-horikawa.html" data-b="nina horikawa">Nina Horikawa<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/nino-kapanadze.html" data-b="nino kapanadze">Nino Kapanadze<small>2</small></a>
+</div></section>
+<section class="let" id="l-O"><h2>O<small>3</small></h2><div class="grid2">
+<a href="https://vernissagessp.com.br/a/olinda-tupinamba.html" data-b="olinda tupinambá">Olinda Tupinambá<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/olivia-lacerda.html" data-b="olívia lacerda">Olívia Lacerda<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/oriol-vilanova.html" data-b="oriol vilanova">Oriol Vilanova<small>1</small></a>
+</div></section>
+<section class="let" id="l-P"><h2>P<small>12</small></h2><div class="grid2">
+<a href="https://vernissagessp.com.br/a/pablo-accinelli.html" data-b="pablo accinelli">Pablo Accinelli<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/pablo-delano.html" data-b="pablo delano">Pablo Delano<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/pascale-marthine-tayou.html" data-b="pascale marthine tayou">Pascale Marthine Tayou<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/paul-kopkau.html" data-b="paul kopkau">Paul Kopkau<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/paula-huven.html" data-b="paula huven">Paula Huven<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/paula-siebra.html" data-b="paula siebra">Paula Siebra<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/paulo-monteiro.html" data-b="paulo monteiro">Paulo Monteiro<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/paulo-pedro-leal.html" data-b="paulo pedro leal">Paulo Pedro Leal<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/pedro-franca.html" data-b="pedro frança">Pedro França<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/peter-granados.html" data-b="peter granados">Peter Granados<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/phil-haji-touma.html" data-b="phil haji-touma">Phil Haji-Touma<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/poli-pieratti.html" data-b="poli pieratti">Poli Pieratti<small>2</small></a>
+</div></section>
+<section class="let" id="l-R"><h2>R<small>17</small></h2><div class="grid2">
+<a href="https://vernissagessp.com.br/a/rachel-zuanon.html" data-b="rachel zuanon">Rachel Zuanon<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/rafael-beck.html" data-b="rafael beck">Rafael Beck<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/ranchinho.html" data-b="ranchinho">Ranchinho<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/raphael-dea-toledo.html" data-b="raphael dea toledo">Raphael Dea Toledo<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/rebecca-watson-horn.html" data-b="rebecca watson horn">Rebecca Watson Horn<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/regina-jose-galindo.html" data-b="regina josé galindo">Regina José Galindo<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/renata-egreja.html" data-b="renata egreja">Renata Egreja<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/ricardo-ribeiro.html" data-b="ricardo ribeiro">Ricardo Ribeiro<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/ricardo-rojas.html" data-b="ricardo rojas">Ricardo Rojas<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/rita-lessa.html" data-b="rita lessa">Rita Lessa<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/robert-mapplethorpe.html" data-b="robert mapplethorpe">Robert Mapplethorpe<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/roberto-burle-marx.html" data-b="roberto burle marx">Roberto Burle Marx<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/rochelle-costi.html" data-b="rochelle costi">Rochelle Costi<small>2</small></a>
+<a href="https://vernissagessp.com.br/a/rodrigo-andrade.html" data-b="rodrigo andrade">Rodrigo Andrade<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/rosa-elena-curruchich.html" data-b="rosa elena curruchich">Rosa Elena Curruchich<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/rosangela-renno.html" data-b="rosângela rennó">Rosângela Rennó<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/ruchita.html" data-b="ruchita">Ruchita<small>1</small></a>
+</div></section>
+<section class="let" id="l-S"><h2>S<small>16</small></h2><div class="grid2">
+<a href="https://vernissagessp.com.br/a/samuel-alves-de-jesus.html" data-b="samuel alves de jesus">Samuel Alves de Jesus<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/sandra-anselmi.html" data-b="sandra anselmi">Sandra Anselmi<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/sandra-cinto.html" data-b="sandra cinto">Sandra Cinto<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/santiago-yahuarcani.html" data-b="santiago yahuarcani">Santiago Yahuarcani<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/selva-de-carvalho.html" data-b="selva de carvalho">Selva de Carvalho<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/sergej-jensen.html" data-b="sergej jensen">Sergej Jensen<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/sergio-niculitcheff.html" data-b="sérgio niculitcheff">Sérgio Niculitcheff<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/sergio-sister.html" data-b="sérgio sister">Sérgio Sister<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/sheila-hicks.html" data-b="sheila hicks">Sheila Hicks<small>2</small></a>
+<a href="https://vernissagessp.com.br/a/sheila-kracochansky.html" data-b="sheila kracochansky">Sheila Kracochansky<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/silvana-boni.html" data-b="silvana boni">Silvana Boni<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/silvio-dworecki.html" data-b="silvio dworecki">Silvio Dworecki<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/sol-calero.html" data-b="sol calero">Sol Calero<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/solange-pessoa.html" data-b="solange pessoa">Solange Pessoa<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/sylvia-furegatti.html" data-b="sylvia furegatti">Sylvia Furegatti<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/sylvia-soglia.html" data-b="sylvia sóglia">Sylvia Sóglia<small>1</small></a>
+</div></section>
+<section class="let" id="l-T"><h2>T<small>12</small></h2><div class="grid2">
+<a href="https://vernissagessp.com.br/a/tais-koshino.html" data-b="tais koshino">Tais Koshino<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/tamara-roman.html" data-b="tamara roman">Tamara Roman<small>2</small></a>
+<a href="https://vernissagessp.com.br/a/tania-ximena.html" data-b="tania ximena">Tania Ximena<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/tarsila-do-amaral.html" data-b="tarsila do amaral">Tarsila do Amaral<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/tatiana-blass.html" data-b="tatiana blass">Tatiana Blass<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/thamiris-mandu.html" data-b="thamiris mandú">Thamiris Mandú<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/thany-sanches.html" data-b="thany sanches">Thany Sanches<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/thia-sguoti.html" data-b="thiá sguoti">Thiá Sguoti<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/thiago-martins-de-melo.html" data-b="thiago martins de melo">Thiago Martins de Melo<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/tiago-alencar.html" data-b="tiago alencar">Tiago Alencar<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/tito-terapia.html" data-b="tito terapia">Tito Terapia<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/toni-pires.html" data-b="toni pires">Toni Pires<small>1</small></a>
+</div></section>
+<section class="let" id="l-U"><h2>U<small>2</small></h2><div class="grid2">
+<a href="https://vernissagessp.com.br/a/ubirajara-ribeiro.html" data-b="ubirajara ribeiro">Ubirajara Ribeiro<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/uyra.html" data-b="uýra">Uýra<small>1</small></a>
+</div></section>
+<section class="let" id="l-V"><h2>V<small>8</small></h2><div class="grid2">
+<a href="https://vernissagessp.com.br/a/valdirlei-dias-nunes.html" data-b="valdirlei dias nunes">Valdirlei Dias Nunes<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/vania-mignone.html" data-b="vânia mignone">Vânia Mignone<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/verena-smit.html" data-b="verena smit">Verena Smit<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/veridiana-magalhaes.html" data-b="veridiana magalhães">Veridiana Magalhães<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/victor-arruda.html" data-b="victor arruda">Victor Arruda<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/victoria-serednicki.html" data-b="victoria serednicki">Victoria Serednicki<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/vik-muniz.html" data-b="vik muniz">Vik Muniz<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/vivian-caccuri.html" data-b="vivian caccuri">Vivian Caccuri<small>1</small></a>
+</div></section>
+<section class="let" id="l-W"><h2>W<small>4</small></h2><div class="grid2">
+<a href="https://vernissagessp.com.br/a/wagner-carvalho.html" data-b="wagner carvalho">Wagner Carvalho<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/witor-ressutti.html" data-b="witor ressutti">Witor Ressutti<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/wojtek-kostrzewa.html" data-b="wojtek kostrzewa">Wojtek Kostrzewa<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/wolfram-ullrich.html" data-b="wolfram ullrich">Wolfram Ullrich<small>1</small></a>
+</div></section>
+<section class="let" id="l-X"><h2>X<small>1</small></h2><div class="grid2">
+<a href="https://vernissagessp.com.br/a/xinga-xow.html" data-b="xinga xow">Xinga Xow<small>1</small></a>
+</div></section>
+<section class="let" id="l-Y"><h2>Y<small>3</small></h2><div class="grid2">
+<a href="https://vernissagessp.com.br/a/yaraca.html" data-b="yaraçá">Yaraçá<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/yasmin-guimaraes.html" data-b="yasmin guimarães">Yasmin Guimarães<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/yohana-oizumi.html" data-b="yohana oizumi">Yohana Oizumi<small>2</small></a>
+</div></section>
+<section class="let" id="l-Z"><h2>Z<small>2</small></h2><div class="grid2">
+<a href="https://vernissagessp.com.br/a/zanine-caldas.html" data-b="zanine caldas">Zanine Caldas<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/zico-farina.html" data-b="zico farina">Zico Farina<small>1</small></a>
+</div></section>
 </div>
-<script>
-document.getElementById('q').addEventListener('input',function(){
-var q=this.value.toLowerCase().trim();
-document.querySelectorAll('#g a').forEach(function(a){a.style.display=!q||a.dataset.b.indexOf(q)>-1?'':'none';});
-});
-</script>
+<div id="porqtd" style="display:none"><div class="grid2">
+<a href="https://vernissagessp.com.br/a/almir-mavignier.html" data-b="almir mavignier">Almir Mavignier<small>2</small></a>
+<a href="https://vernissagessp.com.br/a/andre-ricardo.html" data-b="andré ricardo">André Ricardo<small>2</small></a>
+<a href="https://vernissagessp.com.br/a/andre-vargas.html" data-b="andré vargas">André Vargas<small>2</small></a>
+<a href="https://vernissagessp.com.br/a/andrea-natali.html" data-b="andrea natali">Andrea Natali<small>2</small></a>
+<a href="https://vernissagessp.com.br/a/barbara-banida.html" data-b="bárbara banida">Bárbara Banida<small>2</small></a>
+<a href="https://vernissagessp.com.br/a/beatriz-milhazes.html" data-b="beatriz milhazes">Beatriz Milhazes<small>2</small></a>
+<a href="https://vernissagessp.com.br/a/ernesto-neto.html" data-b="ernesto neto">Ernesto Neto<small>2</small></a>
+<a href="https://vernissagessp.com.br/a/luisa-bresser.html" data-b="luisa bresser">Luisa Bresser<small>2</small></a>
+<a href="https://vernissagessp.com.br/a/nino-kapanadze.html" data-b="nino kapanadze">Nino Kapanadze<small>2</small></a>
+<a href="https://vernissagessp.com.br/a/poli-pieratti.html" data-b="poli pieratti">Poli Pieratti<small>2</small></a>
+<a href="https://vernissagessp.com.br/a/rochelle-costi.html" data-b="rochelle costi">Rochelle Costi<small>2</small></a>
+<a href="https://vernissagessp.com.br/a/sheila-hicks.html" data-b="sheila hicks">Sheila Hicks<small>2</small></a>
+<a href="https://vernissagessp.com.br/a/tamara-roman.html" data-b="tamara roman">Tamara Roman<small>2</small></a>
+<a href="https://vernissagessp.com.br/a/yohana-oizumi.html" data-b="yohana oizumi">Yohana Oizumi<small>2</small></a>
+<a href="https://vernissagessp.com.br/a/abbas-kiarostami.html" data-b="abbas kiarostami">Abbas Kiarostami<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/adriana-varejao.html" data-b="adriana varejão">Adriana Varejão<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/adriano-gambarini.html" data-b="adriano gambarini">Adriano Gambarini<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/alberto-boni.html" data-b="alberto boni">Alberto Boni<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/alberto-pitta.html" data-b="alberto pitta">Alberto Pitta<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/aldir-mendes-de-souza.html" data-b="aldir mendes de souza">Aldir Mendes de Souza<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/alessandro-correa.html" data-b="alessandro corrêa">Alessandro Corrêa<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/alexis-lopes.html" data-b="alexis lopes">Alexis Lopes<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/alfredo-jaar.html" data-b="alfredo jaar">Alfredo Jaar<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/alice-yura.html" data-b="alice yura">Alice Yura<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/amalia-giacomini.html" data-b="amalia giacomini">Amalia Giacomini<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/amanda-fahur.html" data-b="amanda fahur">Amanda Fahur<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/ana-kawajiri.html" data-b="ana kawajiri">Ana Kawajiri<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/ana-leal.html" data-b="ana leal">Ana Leal<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/ana-raylander-martis-dos-anjos.html" data-b="ana raylander mártis dos anjos">Ana Raylander Mártis dos Anjos<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/anderson-borba.html" data-b="anderson borba">Anderson Borba<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/andre-barion.html" data-b="andré barion">André Barion<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/andre-crespo.html" data-b="andré crespo">André Crespo<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/andreia-reis.html" data-b="andréia reis">Andréia Reis<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/andrey-rossi.html" data-b="andrey rossi">Andrey Rossi<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/anna-bella-geiger.html" data-b="anna bella geiger">Anna Bella Geiger<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/anna-maria-maiolino.html" data-b="anna maria maiolino">Anna Maria Maiolino<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/antonio-bokel.html" data-b="antonio bokel">Antonio Bokel<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/antonio-dorta.html" data-b="antonio dorta">Antonio Dorta<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/antonio-peticov.html" data-b="antonio peticov">Antonio Peticov<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/arnold-schmidt.html" data-b="arnold schmidt">Arnold Schmidt<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/arthur-luiz-piza.html" data-b="arthur luiz piza">Arthur Luiz Piza<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/atsushi-kaga.html" data-b="atsushi kaga">Atsushi Kaga<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/aurelino-dos-santos.html" data-b="aurelino dos santos">Aurelino dos Santos<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/ayako-rokkaku.html" data-b="ayako rokkaku">Ayako Rokkaku<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/ayrson-heraclito.html" data-b="ayrson heráclito">Ayrson Heráclito<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/barrao.html" data-b="barrão">Barrão<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/beatriz-buendia.html" data-b="beatriz buendia">Beatriz Buendia<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/beatriz-lindenberg.html" data-b="beatriz lindenberg">Beatriz Lindenberg<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/beto-shwafaty.html" data-b="beto shwafaty">Beto Shwafaty<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/bruno-baptistelli.html" data-b="bruno baptistelli">Bruno Baptistelli<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/bruno-cancado.html" data-b="bruno cançado">Bruno Cançado<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/bruno-romi.html" data-b="bruno romi">Bruno Romi<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/carla-chaim.html" data-b="carla chaim">Carla Chaim<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/carlos-zilio.html" data-b="carlos zilio">Carlos Zilio<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/carolina-caycedo.html" data-b="carolina caycedo">Carolina Caycedo<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/carolina-colichio.html" data-b="carolina colichio">Carolina Colichio<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/carolina-neves.html" data-b="carolina neves">Carolina Neves<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/cesar-e-lois.html" data-b="cesar &amp; lois">Cesar &amp; Lois<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/ceu-isatto.html" data-b="céu isatto">Céu Isatto<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/charline-von-heyl.html" data-b="charline von heyl">Charline von Heyl<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/ciccio.html" data-b="ciccio">Ciccio<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/claudia-alarcon.html" data-b="claudia alarcón">Claudia Alarcón<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/claudia-andujar.html" data-b="claudia andujar">Claudia Andujar<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/claudia-briza.html" data-b="claudia briza">Claudia Briza<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/claudia-marchetti.html" data-b="claudia marchetti">Claudia Marchetti<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/claudia-vicente.html" data-b="claudia vicente">Claudia Vicente<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/claudio-cretti.html" data-b="cláudio cretti">Cláudio Cretti<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/clovis-aparecido-dos-santos.html" data-b="clovis aparecido dos santos">Clovis Aparecido dos Santos<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/colectivo-acciones-de-arte-cada.html" data-b="colectivo acciones de arte (cada)">Colectivo Acciones de Arte (CADA)<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/cristina-salgado.html" data-b="cristina salgado">Cristina Salgado<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/daiara-tukano.html" data-b="daiara tukano">Daiara Tukano<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/damian-ortega.html" data-b="damián ortega">Damián Ortega<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/daniel-acosta.html" data-b="daniel acosta">Daniel Acosta<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/daniel-almeida.html" data-b="daniel almeida">Daniel Almeida<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/daniel-jorge.html" data-b="daniel jorge">Daniel Jorge<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/daniel-steegmann-mangrane.html" data-b="daniel steegmann mangrané">Daniel Steegmann Mangrané<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/denise-milan.html" data-b="denise milan">Denise Milan<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/desali.html" data-b="desali">Desali<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/diana-motta.html" data-b="diana motta">Diana Motta<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/dora-smek.html" data-b="dora smék">Dora Smék<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/duda-breda.html" data-b="duda breda">Duda Breda<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/edgard-de-souza.html" data-b="edgard de souza">Edgard de Souza<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/edival-ramosa.html" data-b="edival ramosa">Edival Ramosa<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/edson-pfutzenreuter.html" data-b="edson pfutzenreuter">Edson Pfutzenreuter<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/eduardo-coimbra.html" data-b="eduardo coimbra">Eduardo Coimbra<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/efe-godoy.html" data-b="efe godoy">Efe Godoy<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/efrain-almeida.html" data-b="efrain almeida">Efrain Almeida<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/elaine-fontes.html" data-b="elaine fontes">Elaine Fontes<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/elisa-arruda.html" data-b="elisa arruda">Elisa Arruda<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/emanuel-nassar.html" data-b="emanuel nassar">Emanuel Nassar<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/enio-sergio.html" data-b="enio sérgio">Enio Sérgio<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/erica-magalhaes.html" data-b="érica magalhães">Érica Magalhães<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/esther-morgannah.html" data-b="esther morgannah">Esther Morgannah<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/fabiana-de-barros.html" data-b="fabiana de barros">Fabiana de Barros<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/fabiana-preti.html" data-b="fabiana preti">Fabiana Preti<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/fabricio-augusto.html" data-b="fabricio augusto">Fabricio Augusto<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/felipe-cohen.html" data-b="felipe cohen">Felipe Cohen<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/felipe-scandelari.html" data-b="felipe scandelari">Felipe Scandelari<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/fernanda-pacca.html" data-b="fernanda pacca">Fernanda Pacca<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/fernanda-pompermayer.html" data-b="fernanda pompermayer">Fernanda Pompermayer<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/fernanda-valadares.html" data-b="fernanda valadares">Fernanda Valadares<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/fernando-lemos.html" data-b="fernando lemos">Fernando Lemos<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/flavia-fabbriziani.html" data-b="flavia fabbriziani">Flavia Fabbriziani<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/flavia-junqueira.html" data-b="flávia junqueira">Flávia Junqueira<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/frederico-filippi.html" data-b="frederico filippi">Frederico Filippi<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/frederico-ravioli.html" data-b="frederico ravioli">Frederico Ravioli<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/frei-agostinho-de-jesus.html" data-b="frei agostinho de jesus">Frei Agostinho de Jesus<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gabriel-bonatto.html" data-b="gabriel bonatto">Gabriel Bonatto<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gabriel-omep.html" data-b="gabriel omep">Gabriel Omep<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gabriel-ussami.html" data-b="gabriel ussami">Gabriel Ussami<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gabriela-siqueira.html" data-b="gabriela siqueira">Gabriela Siqueira<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gabriella-arantes.html" data-b="gabriella arantes">Gabriella Arantes<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gabrilandia.html" data-b="gabrilândia">Gabrilândia<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gaspar-gasparian.html" data-b="gaspar gasparian">Gaspar Gasparian<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/george-love.html" data-b="george love">George Love<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/germana-monte-mor.html" data-b="germana monte-mór">Germana Monte-Mór<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gi-monteiro.html" data-b="gi monteiro">Gi Monteiro<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/giba-gomes.html" data-b="giba gomes">Giba Gomes<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gilberto-alexandre-sobrinho.html" data-b="gilberto alexandre sobrinho">Gilberto Alexandre Sobrinho<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gio-soifer.html" data-b="gio soifer">Gio Soifer<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/giovani-fantauzzi.html" data-b="giovani fantauzzi">Giovani Fantauzzi<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/giovanna-mitrani.html" data-b="giovanna mitrani">Giovanna Mitrani<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gisele-hasler.html" data-b="gisele hasler">Gisele Hasler<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/giulia-bianchi.html" data-b="giulia bianchi">Giulia Bianchi<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/grada-kilomba.html" data-b="grada kilomba">Grada Kilomba<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gretta-sarfaty.html" data-b="gretta sarfaty">Gretta Sarfaty<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gui-teixeira.html" data-b="gui teixeira">Gui Teixeira<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/guilherme-santos-da-silva.html" data-b="guilherme santos da silva">Guilherme Santos da Silva<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gunga-guerra.html" data-b="gunga guerra">Gunga Guerra<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/gustavo-silvamaral.html" data-b="gustavo silvamaral">Gustavo Silvamaral<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/henrique-detomi.html" data-b="henrique detomi">Henrique Detomi<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/ieda-iane.html" data-b="ieda iane">Ieda Iane<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/igor-romana.html" data-b="igor romana">Igor Romana<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/iran-do-espirito-santo.html" data-b="iran do espírito santo">Iran do Espírito Santo<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/jacque-faus.html" data-b="jacque faus">Jacque Faus<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/jacqueline-humphries.html" data-b="jacqueline humphries">Jacqueline Humphries<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/jacson-trierveiler.html" data-b="jacson trierveiler">Jacson Trierveiler<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/jamac-jardim-miriam-arte-clube.html" data-b="jamac — jardim miriam arte clube">JAMAC — Jardim Miriam Arte Clube<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/janet-vollebregt.html" data-b="janet vollebregt">Janet Vollebregt<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/jaques-faing.html" data-b="jaques faing">Jaques Faing<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/jarbas-lopes.html" data-b="jarbas lopes">Jarbas Lopes<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/jean-claracq.html" data-b="jean claracq">Jean Claracq<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/jean-manzon.html" data-b="jean manzon">Jean Manzon<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/jeane-terra.html" data-b="jeane terra">Jeane Terra<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/jessica-costa.html" data-b="jessica costa">Jessica Costa<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/joan-miro.html" data-b="joan miró">Joan Miró<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/joao-luiz-musa.html" data-b="joão luiz musa">João Luiz Musa<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/joao-rietmann.html" data-b="joão rietmann">João Rietmann<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/joeun-kim-aatchim.html" data-b="joeun kim aatchim">Joeun Kim Aatchim<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/johanna-calle.html" data-b="johanna calle">Johanna Calle<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/jose-bento.html" data-b="josé bento">José Bento<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/jose-bernardo-cardoso-junior.html" data-b="josé bernardo cardoso júnior">José Bernardo Cardoso Júnior<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/jose-patricio.html" data-b="josé patrício">José Patrício<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/josef-hofer.html" data-b="josef hofer">Josef Hofer<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/judy-chicago.html" data-b="judy chicago">Judy Chicago<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/julia-pereira.html" data-b="julia pereira">Julia Pereira<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/karla-koehler.html" data-b="karla koehler">Karla Koehler<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/kilian-glasner.html" data-b="kilian glasner">Kilian Glasner<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/kuenan-mayu.html" data-b="kuenan mayu">Kuenan Mayu<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/la-chola-poblete.html" data-b="la chola poblete">La Chola Poblete<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/laura-belem.html" data-b="laura belém">Laura Belém<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/laura-villarosa.html" data-b="laura villarosa">Laura Villarosa<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/leao-serva.html" data-b="leão serva">Leão Serva<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/liane-roditi.html" data-b="liane roditi">Liane Roditi<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/lucas-matoso.html" data-b="lucas matoso">Lucas Matoso<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/lucas-simoes.html" data-b="lucas simões">Lucas Simões<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/lucia-nogueira.html" data-b="lucia nogueira">Lucia Nogueira<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/luciana-arantes.html" data-b="luciana arantes">Luciana Arantes<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/luisa-matsushita.html" data-b="luísa matsushita">Luísa Matsushita<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/luise-weiss.html" data-b="luise weiss">Luise Weiss<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/luiz-carlos-paulino.html" data-b="luiz carlos paulino">Luiz Carlos Paulino<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/luiz-fukushiro.html" data-b="luiz fukushiro">Luiz Fukushiro<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/luiz-zerbini.html" data-b="luiz zerbini">Luiz Zerbini<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/luiza-lukah.html" data-b="luiza lukah">Luiza Lukah<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/lygia-pape.html" data-b="lygia pape">Lygia Pape<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/maazo-heck.html" data-b="maazo heck">Maazo Heck<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/madu-peruzzo.html" data-b="madu peruzzo">Madu Peruzzo<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/manoel-veiga.html" data-b="manoel veiga">Manoel Veiga<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/manuela-costa-lima.html" data-b="manuela costa lima">Manuela Costa Lima<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/marcia-grostein.html" data-b="marcia grostein">Marcia Grostein<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/margarida-l-kanciukaitis-pandolfo.html" data-b="margarida l. kanciukaitis pandolfo">Margarida L. Kanciukaitis Pandolfo<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/maria-do-carmo-verdi.html" data-b="maria do carmo verdi">Maria do Carmo Verdi<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/maria-helena-andres.html" data-b="maria helena andrés">Maria Helena Andrés<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/mariana-longo.html" data-b="mariana longo">Mariana Longo<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/mariana-rocha.html" data-b="mariana rocha">Mariana Rocha<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/marina-camargo.html" data-b="marina camargo">Marina Camargo<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/marina-cespe.html" data-b="marina cespe">Marina Cespe<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/marina-rodrigues.html" data-b="marina rodrigues">Marina Rodrigues<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/marina-sadala.html" data-b="marina sadala">Marina Sadala<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/marina-sader.html" data-b="marina sader">Marina Sader<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/marina-weffort.html" data-b="marina weffort">Marina Weffort<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/marinalva-rosa.html" data-b="marinalva rosa">Marinalva Rosa<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/marion-de-martino.html" data-b="marion de martino">Marion De Martino<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/marlene-barros.html" data-b="marlene barros">Marlene Barros<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/marta-strambi.html" data-b="marta strambi">Marta Strambi<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/martin-parr.html" data-b="martin parr">Martin Parr<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/marysia-portinari.html" data-b="marysia portinari">Marysia Portinari<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/masao-yamamoto.html" data-b="masao yamamoto">Masao Yamamoto<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/mateo-lopez.html" data-b="mateo lópez">Mateo López<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/mauricius-farina.html" data-b="mauricius farina">Mauricius Farina<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/mauro-restiffe.html" data-b="mauro restiffe">Mauro Restiffe<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/maya-weishof.html" data-b="maya weishof">Maya Weishof<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/mexa.html" data-b="mexa">MEXA<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/michaela-a-f.html" data-b="michaela a f">Michaela A F<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/michelle-rosset.html" data-b="michelle rosset">Michelle Rosset<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/miguel-penha.html" data-b="miguel penha">Miguel Penha<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/moara-tupinamba.html" data-b="moara tupinambá">Moara Tupinambá<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/monica-ventura.html" data-b="mônica ventura">Mônica Ventura<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/mucki-botkay.html" data-b="mucki botkay">Mucki Botkay<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/naia-ceschin.html" data-b="naia ceschin">Naia Ceschin<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/naira-pennacchi.html" data-b="naira pennacchi">Naira Pennacchi<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/natha-calhova.html" data-b="natha calhova">Natha Calhova<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/nazas.html" data-b="nazas">Nazas<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/nelson-felix.html" data-b="nelson felix">Nelson Felix<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/neyde-joppert.html" data-b="neyde joppert">Neyde Joppert<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/nicole-leite.html" data-b="nicole leite">Nicole Leite<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/nina-horikawa.html" data-b="nina horikawa">Nina Horikawa<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/olinda-tupinamba.html" data-b="olinda tupinambá">Olinda Tupinambá<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/olivia-lacerda.html" data-b="olívia lacerda">Olívia Lacerda<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/oriol-vilanova.html" data-b="oriol vilanova">Oriol Vilanova<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/pablo-accinelli.html" data-b="pablo accinelli">Pablo Accinelli<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/pablo-delano.html" data-b="pablo delano">Pablo Delano<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/pascale-marthine-tayou.html" data-b="pascale marthine tayou">Pascale Marthine Tayou<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/paul-kopkau.html" data-b="paul kopkau">Paul Kopkau<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/paula-huven.html" data-b="paula huven">Paula Huven<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/paula-siebra.html" data-b="paula siebra">Paula Siebra<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/paulo-monteiro.html" data-b="paulo monteiro">Paulo Monteiro<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/paulo-pedro-leal.html" data-b="paulo pedro leal">Paulo Pedro Leal<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/pedro-franca.html" data-b="pedro frança">Pedro França<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/peter-granados.html" data-b="peter granados">Peter Granados<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/phil-haji-touma.html" data-b="phil haji-touma">Phil Haji-Touma<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/rachel-zuanon.html" data-b="rachel zuanon">Rachel Zuanon<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/rafael-beck.html" data-b="rafael beck">Rafael Beck<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/ranchinho.html" data-b="ranchinho">Ranchinho<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/raphael-dea-toledo.html" data-b="raphael dea toledo">Raphael Dea Toledo<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/rebecca-watson-horn.html" data-b="rebecca watson horn">Rebecca Watson Horn<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/regina-jose-galindo.html" data-b="regina josé galindo">Regina José Galindo<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/renata-egreja.html" data-b="renata egreja">Renata Egreja<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/ricardo-ribeiro.html" data-b="ricardo ribeiro">Ricardo Ribeiro<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/ricardo-rojas.html" data-b="ricardo rojas">Ricardo Rojas<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/rita-lessa.html" data-b="rita lessa">Rita Lessa<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/robert-mapplethorpe.html" data-b="robert mapplethorpe">Robert Mapplethorpe<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/roberto-burle-marx.html" data-b="roberto burle marx">Roberto Burle Marx<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/rodrigo-andrade.html" data-b="rodrigo andrade">Rodrigo Andrade<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/rosa-elena-curruchich.html" data-b="rosa elena curruchich">Rosa Elena Curruchich<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/rosangela-renno.html" data-b="rosângela rennó">Rosângela Rennó<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/ruchita.html" data-b="ruchita">Ruchita<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/samuel-alves-de-jesus.html" data-b="samuel alves de jesus">Samuel Alves de Jesus<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/sandra-anselmi.html" data-b="sandra anselmi">Sandra Anselmi<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/sandra-cinto.html" data-b="sandra cinto">Sandra Cinto<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/santiago-yahuarcani.html" data-b="santiago yahuarcani">Santiago Yahuarcani<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/selva-de-carvalho.html" data-b="selva de carvalho">Selva de Carvalho<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/sergej-jensen.html" data-b="sergej jensen">Sergej Jensen<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/sergio-niculitcheff.html" data-b="sérgio niculitcheff">Sérgio Niculitcheff<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/sergio-sister.html" data-b="sérgio sister">Sérgio Sister<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/sheila-kracochansky.html" data-b="sheila kracochansky">Sheila Kracochansky<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/silvana-boni.html" data-b="silvana boni">Silvana Boni<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/silvio-dworecki.html" data-b="silvio dworecki">Silvio Dworecki<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/sol-calero.html" data-b="sol calero">Sol Calero<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/solange-pessoa.html" data-b="solange pessoa">Solange Pessoa<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/sylvia-furegatti.html" data-b="sylvia furegatti">Sylvia Furegatti<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/sylvia-soglia.html" data-b="sylvia sóglia">Sylvia Sóglia<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/tais-koshino.html" data-b="tais koshino">Tais Koshino<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/tania-ximena.html" data-b="tania ximena">Tania Ximena<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/tarsila-do-amaral.html" data-b="tarsila do amaral">Tarsila do Amaral<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/tatiana-blass.html" data-b="tatiana blass">Tatiana Blass<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/thamiris-mandu.html" data-b="thamiris mandú">Thamiris Mandú<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/thany-sanches.html" data-b="thany sanches">Thany Sanches<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/thia-sguoti.html" data-b="thiá sguoti">Thiá Sguoti<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/thiago-martins-de-melo.html" data-b="thiago martins de melo">Thiago Martins de Melo<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/tiago-alencar.html" data-b="tiago alencar">Tiago Alencar<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/tito-terapia.html" data-b="tito terapia">Tito Terapia<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/toni-pires.html" data-b="toni pires">Toni Pires<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/ubirajara-ribeiro.html" data-b="ubirajara ribeiro">Ubirajara Ribeiro<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/uyra.html" data-b="uýra">Uýra<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/valdirlei-dias-nunes.html" data-b="valdirlei dias nunes">Valdirlei Dias Nunes<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/vania-mignone.html" data-b="vânia mignone">Vânia Mignone<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/verena-smit.html" data-b="verena smit">Verena Smit<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/veridiana-magalhaes.html" data-b="veridiana magalhães">Veridiana Magalhães<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/victor-arruda.html" data-b="victor arruda">Victor Arruda<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/victoria-serednicki.html" data-b="victoria serednicki">Victoria Serednicki<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/vik-muniz.html" data-b="vik muniz">Vik Muniz<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/vivian-caccuri.html" data-b="vivian caccuri">Vivian Caccuri<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/wagner-carvalho.html" data-b="wagner carvalho">Wagner Carvalho<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/witor-ressutti.html" data-b="witor ressutti">Witor Ressutti<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/wojtek-kostrzewa.html" data-b="wojtek kostrzewa">Wojtek Kostrzewa<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/wolfram-ullrich.html" data-b="wolfram ullrich">Wolfram Ullrich<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/xinga-xow.html" data-b="xinga xow">Xinga Xow<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/yaraca.html" data-b="yaraçá">Yaraçá<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/yasmin-guimaraes.html" data-b="yasmin guimarães">Yasmin Guimarães<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/zanine-caldas.html" data-b="zanine caldas">Zanine Caldas<small>1</small></a>
+<a href="https://vernissagessp.com.br/a/zico-farina.html" data-b="zico farina">Zico Farina<small>1</small></a>
+</div></div>
 <footer>
-Vernissages SP — mapa vivo das galerias e aberturas de São Paulo, atualizado diariamente.<br>
-Datas conforme divulgação dos espaços; confirme antes de visitar. <a href="https://vernissagessp.com.br/">Voltar à agenda</a> · <a href="https://instagram.com/vernissagessp" target="_blank" rel="noopener">Instagram</a>
+<nav aria-label="Rodapé"><a href="https://vernissagessp.com.br/">Agenda</a><a href="https://vernissagessp.com.br/fim-de-semana.html">Este fim de semana</a><a href="https://vernissagessp.com.br/monta-meu-sabado.html">Monta seu sábado</a><a href="https://vernissagessp.com.br/arquivo.html">Acervo</a><a href="https://vernissagessp.com.br/artistas.html">Artistas</a><a href="https://vernissagessp.com.br/editais.html">Editais</a><a href="https://instagram.com/vernissagessp" target="_blank" rel="noopener">Instagram</a></nav>
+Vernissages SP, mapa vivo das galerias e aberturas de São Paulo, atualizado diariamente. Datas conforme divulgação dos espaços; confirme antes de visitar.
 </footer>
-</div>
+</main>
+<script>
+(function(){
+var A={};
+function analisa(u){
+  if(A[u])return A[u];
+  A[u]=new Promise(function(res){
+    var im=new Image();
+    im.onload=function(){
+      var W=im.naturalWidth,H=im.naturalHeight;if(!W||!H){res(null);return}
+      var box=null;
+      try{
+        var k=Math.min(1,180/Math.max(W,H)),w=Math.max(8,Math.round(W*k)),h=Math.max(8,Math.round(H*k));
+        var c=document.createElement('canvas');c.width=w;c.height=h;
+        var x=c.getContext('2d',{willReadFrequently:true});x.drawImage(im,0,0,w,h);
+        var d=x.getImageData(0,0,w,h).data;
+        var at=function(i,j){var o=(j*w+i)*4;return [d[o],d[o+1],d[o+2]]};
+        var dist=function(a,b){return Math.sqrt(Math.pow(a[0]-b[0],2)+Math.pow(a[1]-b[1],2)+Math.pow(a[2]-b[2],2))};
+        var cant=[at(1,1),at(w-2,1),at(1,h-2),at(w-2,h-2)],bg=null,best=0;
+        cant.forEach(function(c1){var n=cant.filter(function(o){return dist(o,c1)<26}).length;if(n>best){best=n;bg=c1}});
+        if(best>=3){
+          var fg=function(i,j){return dist(at(i,j),bg)>40};
+          var lin=function(j){var n=0;for(var i=0;i<w;i++)if(fg(i,j))n++;return n/w};
+          var col=function(i){var n=0;for(var j=0;j<h;j++)if(fg(i,j))n++;return n/h};
+          var T=.012,y0=0,y1=h-1,x0=0,x1=w-1;
+          while(y0<h-1&&lin(y0)<T)y0++;
+          while(y1>y0&&lin(y1)<T)y1--;
+          while(x0<w-1&&col(x0)<T)x0++;
+          while(x1>x0&&col(x1)<T)x1--;
+          var bw=(x1-x0+1)/w,bh=(y1-y0+1)/h;
+          if((bw<.985||bh<.985)&&bw*bh>=.3&&bw>=.4&&bh>=.4){var kx=W/w,ky=H/h;box={x:Math.round(x0*kx),y:Math.round(y0*ky),w:Math.round((x1-x0+1)*kx),h:Math.round((y1-y0+1)*ky)}}
+        }
+      }catch(e){}
+      res({W:W,H:H,box:box});
+    };
+    im.onerror=function(){res(null)};
+    im.src=u;
+  });
+  return A[u];
+}
+function aplica(rc){
+  analisa(rc.getAttribute('data-u')).then(function(info){
+    var im=rc.querySelector('img');
+    if(info&&im){
+      var b=info.box||{x:0,y:0,w:info.W,h:info.H};
+      rc.style.setProperty('--ar',(b.w/b.h).toFixed(4));
+      im.style.width=(info.W/b.w*100)+'%';im.style.left=(-b.x/b.w*100)+'%';im.style.top=(-b.y/b.h*100)+'%';
+    }
+    rc.classList.add('ok');
+  });
+}
+window.VSPrc=function(root){[].forEach.call((root||document).querySelectorAll('.rc[data-u]:not([data-ok])'),function(rc){rc.setAttribute('data-ok','1');aplica(rc)})};
+VSPrc();
+})();
+</script>
+<script>
+(function(){
+var q='',modo='az';
+function ap(){
+  var alvo=document.getElementById(modo==='az'?'porletra':'porqtd'),n=0;
+  [].forEach.call(alvo.querySelectorAll('.grid2 a'),function(a){var ok=!q||a.dataset.b.indexOf(q)>-1;a.style.display=ok?'':'none';if(ok)n++;});
+  [].forEach.call(alvo.querySelectorAll('section.let'),function(s){var v=[].some.call(s.querySelectorAll('a'),function(a){return a.style.display!=='none'});s.style.display=v?'':'none';});
+  document.getElementById('cont').innerHTML='<b>'+n+'</b> artista'+(n===1?'':'s');
+}
+document.getElementById('q').addEventListener('input',function(){q=this.value.toLowerCase().trim();ap();});
+document.getElementById('ord').addEventListener('click',function(e){var b=e.target.closest('.chip');if(!b)return;[].forEach.call(this.querySelectorAll('.chip'),function(c){c.classList.toggle('on',c===b)});modo=b.dataset.o;
+  document.getElementById('porletra').style.display=modo==='az'?'':'none';document.getElementById('porqtd').style.display=modo==='qtd'?'':'none';document.getElementById('az').style.display=modo==='az'?'':'none';ap();});
+ap();
+})();
+</script>
 </body>
 </html>
