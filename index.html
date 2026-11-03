@@ -599,6 +599,16 @@ function tituloLimpo(e){
   });
   return t||e.t;
 }
+/* a linha de artistas não repete quem já está no título ("Jacqueline Humphries e JH Studio" não precisa
+   de "Jacqueline Humphries" de novo logo abaixo) */
+function aSemTitulo(a,titulo){
+  const t=norm(titulo);
+  return String(a||'').split(', ').map(n=>n.trim()).filter(n=>n&&!t.includes(norm(n)));
+}
+function artHtml(e){
+  const n=aSemTitulo(e.a,tituloLimpo(e));
+  return n.length?'<div class="art">'+n.map(x=>'<span data-act="artista" data-n="'+esc(x)+'">'+esc(x)+'</span>').join(' · ')+'</div>':'';
+}
 const datasE=e=>e.st==='opening'?('abre '+dm(e.ini)+(e.fim?' · até '+dm(e.fim):'')):('até '+(e.fim?dm(e.fim):'—'));
 const tagE=e=>e.ven.tipo==='feira'?'Feira':e.st==='opening'?('Abre '+dm(e.ini)):e.st==='closing'?'Últimos dias':(e.fim?'Até '+dm(e.fim):'Em cartaz');
 
@@ -762,7 +772,7 @@ function renderHero(){
   const desc=f.txt?corteDesc(f.txt,520):'';
   el.innerHTML='<div class="hero"><div class="tx">'+
     '<div class="rot"><b>'+(f.publi?'Apoio · conteúdo patrocinado':'Em foco')+'</b>'+(f.auto&&!f.publi?' · destaque do dia':'')+(v?' · '+esc(v.name)+' · '+esc(v.b):'')+'</div>'+
-    '<h2 class="t-'+tam+'">'+esc(f.t)+'</h2>'+(f.quem?'<div class="art">'+esc(f.quem)+'</div>':'')+
+    '<h2 class="t-'+tam+'">'+esc(f.t)+'</h2>'+(()=>{const n=aSemTitulo(f.quem,f.t);return n.length?'<div class="art">'+esc(n.join(', '))+'</div>':''})()+
     '<div class="qd">'+(f.ini?'<div class="quando"><div class="dt">'+datasFoco(f)+'</div><div class="sit">'+situacaoFoco(f)+'</div></div>':'')+(desc?'<p class="desc">'+esc(desc)+'</p>':'')+'</div>'+
     '<div class="botoes">'+(v?'<button type="button" class="bt cheio" data-act="veremapa" data-v="'+esc(v.name)+'">Ver no mapa</button>':'')+
     (f.k!=null?'<button type="button" class="bt" data-act="ficha" data-id="'+f.k+'">Ficha completa</button>':'')+
@@ -1119,7 +1129,7 @@ function renderAgenda(){
       return '<article class="item"><div class="rc" data-u="'+esc(e.img)+'" data-act="ficha" data-id="'+e.k+'"><img src="'+esc(e.img)+'" alt="" loading="lazy" onerror="this.closest(\'.item\').remove()"></div>'+
         '<div class="tx"><div class="st"><span>'+esc(v.name)+'</span><b>'+esc(tagE(e))+'</b></div>'+
         '<h3 data-act="ficha" data-id="'+e.k+'">'+esc(tituloLimpo(e))+'</h3>'+
-        (e.a?'<div class="art">'+e.a.split(', ').map(n=>'<span data-act="artista" data-n="'+esc(n)+'">'+esc(n)+'</span>').join(' · ')+'</div>':'')+
+        artHtml(e)+
         '<div class="ca"><span>'+esc(v.b||'')+'</span>'+ingTag(v)+(F.near&&userPos?'<span>'+distKm(v).toFixed(1).replace('.',',')+' km</span>':'')+'</div>'+
         '<div class="lk"><button type="button" data-act="veremapa" data-v="'+esc(v.name)+'">Mapa</button>'+
         (v.site?'<a href="'+esc(v.site)+'" target="_blank" rel="noopener">Site</a>':'')+
@@ -1204,7 +1214,7 @@ function fichaMostra(id){
   abreModal((e.img?'<div class="foto"><div class="rc" data-u="'+esc(e.img)+'"><img src="'+esc(e.img)+'" alt="'+esc(e.t)+'" onerror="this.closest(\'.foto\').remove()"></div></div>'+(e.cred?'<div class="cred">'+esc(e.cred)+'</div>':''):'')+
     '<div class="sub" style="margin-top:'+(e.img?'10':'0')+'px">'+(e.st==='closing'?'Últimos dias · ':'')+esc(datasE(e).replace(/^./,c=>c.toUpperCase()))+'</div>'+
     '<h3>'+esc(tituloLimpo(e))+'</h3>'+
-    (e.a?'<div class="art">'+e.a.split(', ').map(n=>'<span data-act="artista" data-n="'+esc(n)+'">'+esc(n)+'</span>').join(' · ')+'</div>':'')+
+    artHtml(e)+
     '<div class="sub">'+esc(v.name)+' · '+esc(v.addr)+' · '+esc(v.b)+'</div>'+
     (e.d?'<div class="corpo">'+esc(e.d)+'</div>':'')+(it?'<div class="sub">'+esc(it)+'</div>':'')+
     '<div class="links">'+links+'<button type="button" class="bt" data-act="veremapa" data-v="'+esc(v.name)+'">Ver no mapa</button></div>');
