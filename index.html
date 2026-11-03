@@ -52,28 +52,58 @@ img{max-width:100%}
 /* ---------- topo ---------- */
 .marca{font-weight:800;font-size:10.6vw;line-height:.82;letter-spacing:-.055em;padding:2.2vw 0 1.2vw;white-space:nowrap;text-transform:uppercase;will-change:transform}
 .marca span{display:inline-block;padding-right:.07em;background:var(--marca-bg,var(--terra));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
-.nav{display:flex;justify-content:space-between;align-items:center;gap:20px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:12px 0;font-size:14px;letter-spacing:.02em}
-.nav nav{display:flex;gap:26px;flex-wrap:wrap}
-.nav nav a:hover{color:var(--terra)}
-.nav .sub{color:var(--mute);text-align:right}
+
+/* ---------- menu ---------- */
+.nav{display:flex;align-items:center;gap:clamp(18px,2.6vw,44px);border-top:2px solid var(--ink);border-bottom:1px solid var(--ink)}
+.nav nav{display:flex;align-items:center;gap:clamp(18px,2.2vw,36px)}
+.nav a{position:relative;display:inline-block;padding:17px 0;white-space:nowrap}
+.nav a::after{content:"";position:absolute;left:0;right:100%;bottom:11px;height:2px;background:var(--terra);transition:right .25s ease}
+.nav a:hover::after{right:0}
+.nav .n-prim a{font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.nav .n-sec{padding-left:clamp(18px,2.6vw,44px);border-left:1px solid rgba(14,14,14,.35)}
+.nav .n-sec a{font-size:15px;font-weight:500;color:var(--mute);letter-spacing:-.005em}
+.nav .n-sec a:hover{color:var(--ink)}
+.nav .sub{margin-left:auto;font-size:13px;color:var(--mute);text-align:right;display:none}
+.nav .n-cta{margin-left:auto;padding:0}
+.nav .n-cta::after{display:none}
+.nav .n-cta .bt{padding:11px 18px;font-size:12px}
+@media(min-width:1280px){.nav .sub{display:block}.nav .n-cta{margin-left:0}}
 
 /* ---------- destaque ---------- */
-.hero{display:grid;grid-template-columns:5fr 7fr;gap:var(--gut);padding:clamp(18px,2.4vw,40px) 0;border-bottom:1px solid var(--ink)}
-.hero .tx{display:flex;flex-direction:column;justify-content:space-between;gap:20px;min-height:34vw}
-.rot{font-size:12px;letter-spacing:.14em;text-transform:uppercase}.rot b{color:var(--terra);font-weight:700}
-.hero h1,.hero h2{font-weight:800;text-transform:uppercase;font-size:clamp(34px,5.2vw,86px);line-height:.9;letter-spacing:-.04em;margin:14px 0}
-.hero .art{font-family:var(--serif);font-style:italic;font-size:clamp(22px,2.2vw,34px);line-height:1.1}
-.hero .meta{font-size:15px}.hero .meta .dt{font-weight:800;font-size:clamp(20px,2vw,30px);letter-spacing:-.02em;text-transform:uppercase}
-.hero .meta p{margin-top:10px;max-width:46ch}
-.botoes{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.hero{--ar:1;--ar-m:1;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(24px,3.4vw,64px);align-items:center;padding:clamp(24px,3vw,56px) 0 clamp(28px,3.4vw,60px);border-bottom:1px solid var(--ink)}
+.hero .tx{display:flex;flex-direction:column;gap:clamp(12px,1.5vw,24px);min-width:0}
+.rot{grid-area:rot;font-size:12px;letter-spacing:.14em;text-transform:uppercase}.rot b{color:var(--terra);font-weight:700}
+.hero h2{grid-area:tit;font-weight:800;text-transform:uppercase;line-height:.9;letter-spacing:-.04em;margin:0;overflow-wrap:anywhere}
+.hero h2.t-xl{font-size:clamp(54px,8.2vw,150px)}
+.hero h2.t-l{font-size:clamp(44px,6vw,110px)}
+.hero h2.t-m{font-size:clamp(36px,4.6vw,84px)}
+.hero h2.t-s{font-size:clamp(30px,3.6vw,64px)}
+.hero .art{grid-area:art;font-family:var(--serif);font-style:italic;font-size:clamp(22px,2.4vw,40px);line-height:1.08}
+.hero .qd{grid-area:qd;display:flex;flex-direction:column;gap:clamp(10px,1.2vw,18px)}
+.hero .quando{border-top:2px solid var(--ink);padding-top:clamp(10px,1.2vw,18px);display:flex;flex-direction:column;gap:8px}
+.hero .dt{font-weight:800;font-size:clamp(30px,3.8vw,68px);line-height:.92;letter-spacing:-.045em;text-transform:uppercase}
+.hero .dt i{font-style:normal;color:var(--terra);margin:0 .08em}
+.hero .sit{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.hero .sit b{color:var(--terra);font-weight:800}
+.hero .desc{font-size:clamp(17px,1.4vw,22px);line-height:1.45;max-width:46ch}
+.hero .botoes{grid-area:btn}
+.botoes{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
 .bt{display:inline-block;border:1.5px solid currentColor;padding:8px 14px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;transition:background .15s,color .15s}
 .bt:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .bt.cheio{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .bt.cheio:hover{background:var(--terra);color:var(--ink);border-color:var(--terra)}
-.hero figure{overflow:hidden;height:44vw;max-height:640px;background:#d9d4c8;position:relative}
+.hero .bt{padding:13px 20px;font-size:13px}
+.hero .fg{min-width:0}
+.hero figure{margin:0;height:min(78vh,50vw);aspect-ratio:var(--ar);max-width:58vw;overflow:hidden;background:#d9d4c8;position:relative}
 .hero figure img{width:100%;height:122%;object-fit:cover;display:block;will-change:transform}
 .hero figure .capa{position:absolute;inset:0;background:var(--terra);color:var(--ink);display:flex;align-items:flex-end;padding:20px;font-weight:800;font-size:clamp(34px,6vw,100px);line-height:.88;letter-spacing:-.05em;text-transform:uppercase}
-.hero figcaption{font-size:11px;color:var(--mute);margin-top:6px}
+.hero figcaption{font-size:11px;color:var(--mute);margin-top:8px}
+/* obra deitada: imagem em cima, na largura toda; título à esquerda, data e descrição à direita */
+.hero.pais{grid-template-columns:1fr;gap:clamp(20px,2.4vw,40px)}
+.hero.pais .fg{order:-1}
+.hero.pais figure{width:100%;max-width:none;height:auto;max-height:70vh;aspect-ratio:var(--ar)}
+.hero.pais .tx{display:grid;grid-template-columns:7fr 5fr;column-gap:clamp(24px,4vw,80px);row-gap:clamp(10px,1.4vw,22px);grid-template-areas:"rot rot" "tit qd" "art qd" "btn qd";align-items:start}
+.hero.pais .tx .botoes{align-self:start}
 
 /* ---------- mapa + filtros ---------- */
 .mapaSec{background:var(--ink);color:var(--paper);padding:clamp(40px,6vw,100px) 0 0;border-top:1px solid rgba(242,239,233,.28)}
@@ -280,8 +310,24 @@ footer a:hover{color:var(--terra)}
 }
 @media(max-width:820px){
   body{font-size:16px}
-  .nav nav{gap:8px 16px;font-size:13px}
-  .hero{grid-template-columns:1fr}.hero .tx{min-height:0}.hero figure{height:72vw;order:-1}
+  .nav{gap:22px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .nav::-webkit-scrollbar{display:none}
+  .nav nav{flex:none;gap:22px}
+  .nav a{padding:15px 0}
+  .nav .n-sec{padding-left:22px}
+  .nav .n-cta{margin-left:0;flex:none}
+  .nav .sub{display:none!important}
+  .hero,.hero.pais{grid-template-columns:1fr;gap:20px;padding-top:18px}
+  .hero .fg{order:-1}
+  .hero figure,.hero.pais figure{width:100%;max-width:none;height:auto;max-height:72vh;aspect-ratio:var(--ar-m)}
+  .hero.pais .tx{display:flex;flex-direction:column;gap:14px}
+  .hero h2.t-xl{font-size:clamp(46px,15vw,84px)}
+  .hero h2.t-l{font-size:clamp(40px,12vw,72px)}
+  .hero h2.t-m{font-size:clamp(34px,10vw,64px)}
+  .hero h2.t-s{font-size:clamp(28px,8vw,52px)}
+  .hero .dt{font-size:clamp(30px,9vw,52px)}
+  .hero .desc{font-size:17px}
+  .hero .bt{padding:12px 16px}
   .filtros{gap:10px}
   .f-mais{display:inline-block}
   .f-extra{display:none}.f-extra.aberto{display:flex}
@@ -337,16 +383,19 @@ footer a:hover{color:var(--terra)}
 <div class="wrap">
   <h1 class="marca" id="marca"><span id="marcaTx">Vernissages SP</span></h1>
   <div class="nav">
-    <nav aria-label="Principal">
+    <nav class="n-prim" aria-label="Seções">
+      <a href="#semana" data-go="semana">Semana</a>
       <a href="#mapa" data-go="mapa">Mapa</a>
       <a href="#agenda" data-go="agenda">Agenda</a>
       <a href="#espacos" data-go="espacos">Espaços</a>
+    </nav>
+    <nav class="n-sec" aria-label="Mais páginas">
       <a href="artistas.html">Artistas</a>
       <a href="arquivo.html">Acervo</a>
       <a href="editais.html">Editais<span class="nbadge" id="navEditalN" hidden></span></a>
-      <a href="#divulgue" data-act="form">Divulgue</a>
     </nav>
     <span class="sub">Galerias, aberturas e roteiros de arte em São Paulo</span>
+    <a class="n-cta" href="#divulgue" data-act="form"><span class="bt cheio">Divulgue sua abertura</span></a>
   </div>
 </div>
 
@@ -591,21 +640,52 @@ function dataFoco(f){
 }
 let FOCO=null;
 function capaErro(img){const d=document.createElement('div');d.className='capa';d.textContent=img.dataset.n||'';img.replaceWith(d);}
+function situacaoFoco(f){
+  if(!f.ini)return '';
+  if(f.ini>HOJE){const n=dias(HOJE,f.ini);return '<b>'+(n<=0?'Abre hoje':n===1?'Abre amanhã':'Abre em '+n+' dias')+'</b>'+(f.fim?' · até '+dl(f.fim):'');}
+  if(f.ini===HOJE)return '<b>Abre hoje</b>'+(f.fim?' · até '+dl(f.fim):'');
+  if(!f.fim)return '<b>Em cartaz</b> · encerramento não divulgado';
+  const n=dias(HOJE,f.fim);
+  return '<b>'+(n<=7?'Últimos dias':'Em cartaz')+'</b> · '+(n<=0?'último dia':n===1?'fecha amanhã':'fecha em '+n+' dias');
+}
+function datasFoco(f){
+  if(!f.ini)return '';
+  if(f.fim&&f.ini<=HOJE||f.fim&&f.ini>HOJE)return esc(dl(f.ini))+'<i>→</i>'+esc(dl(f.fim));
+  return (f.ini>HOJE?'Abre ':'Desde ')+esc(dl(f.ini));
+}
+function corteDesc(t,max){
+  t=String(t||'').trim();
+  if(t.length<=max)return t;
+  const c=t.slice(0,max),p=Math.max(c.lastIndexOf('. '),c.lastIndexOf('! '),c.lastIndexOf('? '));
+  return (p>max*.55?c.slice(0,p+1):c.replace(/\s+\S*$/,'')+'…');
+}
+function medeImagem(url,box){
+  const k='vspAr3:'+url,c=LS.get(k);
+  const aplica=ar=>{box.style.setProperty('--ar',ar.toFixed(3));box.style.setProperty('--ar-m',Math.max(ar,.8).toFixed(3));box.classList.toggle('pais',ar>1.15);if(window.ScrollTrigger)ScrollTrigger.refresh();};
+  if(c&&+c>0){aplica(+c);return;}
+  const p=new Image();
+  p.onload=()=>{const ar=p.naturalWidth/p.naturalHeight;if(ar>0){LS.set(k,String(ar));aplica(ar);}};
+  p.src=url;
+}
 function renderHero(){
   const el=document.getElementById('hero');
   const f=FOCO=escolherFoco(); if(!f){el.style.display='none';return}
   const v=vByName[f.v]||null;
   const imgOk=f.img&&String(f.img).trim();
-  el.innerHTML='<div class="hero"><div class="tx"><div><div class="rot"><b>'+(f.publi?'Apoio · conteúdo patrocinado':'Em foco')+'</b>'+(f.auto&&!f.publi?' · destaque do dia':'')+(v?' · '+esc(v.name)+' · '+esc(v.b):'')+'</div>'+
-    '<h2>'+esc(f.t)+'</h2>'+(f.quem?'<div class="art">'+esc(f.quem)+'</div>':'')+'</div>'+
-    '<div class="meta">'+(f.ini?'<div class="dt">'+esc(dataFoco(f))+'</div>':'')+(f.txt?'<p>'+esc(f.txt.length>260?f.txt.slice(0,260).replace(/\s+\S*$/,'')+'…':f.txt)+'</p>':'')+
+  const n=(f.t||'').length, tam=n<=16?'xl':n<=30?'l':n<=52?'m':'s';
+  const desc=f.txt?corteDesc(f.txt,460):'';
+  el.innerHTML='<div class="hero"><div class="tx">'+
+    '<div class="rot"><b>'+(f.publi?'Apoio · conteúdo patrocinado':'Em foco')+'</b>'+(f.auto&&!f.publi?' · destaque do dia':'')+(v?' · '+esc(v.name)+' · '+esc(v.b):'')+'</div>'+
+    '<h2 class="t-'+tam+'">'+esc(f.t)+'</h2>'+(f.quem?'<div class="art">'+esc(f.quem)+'</div>':'')+
+    '<div class="qd">'+(f.ini?'<div class="quando"><div class="dt">'+datasFoco(f)+'</div><div class="sit">'+situacaoFoco(f)+'</div></div>':'')+(desc?'<p class="desc">'+esc(desc)+'</p>':'')+'</div>'+
     '<div class="botoes">'+(v?'<button type="button" class="bt cheio" data-act="veremapa" data-v="'+esc(v.name)+'">Ver no mapa</button>':'')+
     (f.k!=null?'<button type="button" class="bt" data-act="ficha" data-id="'+f.k+'">Ficha completa</button>':'')+
     (f.link?'<a class="bt" href="'+esc(f.link)+'" target="_blank" rel="noopener">Saiba mais</a>':'')+
-    (v&&v.site?'<a class="bt" href="'+esc(v.site)+'" target="_blank" rel="noopener">Site</a>':'')+'</div></div></div>'+
-    '<figure>'+(imgOk?'<img src="'+esc(f.img)+'" alt="'+esc(f.t)+'" loading="eager" data-n="'+esc(f.v||f.t)+'" onerror="capaErro(this)">':'<div class="capa">'+esc(f.v||f.t)+'</div>')+
-    (f.cred?'<figcaption>'+esc(f.cred)+'</figcaption>':'')+'</figure></div>';
-  if(imgOk)corDaObra(f.img);
+    (v&&v.site?'<a class="bt" href="'+esc(v.site)+'" target="_blank" rel="noopener">Site</a>':'')+'</div></div>'+
+    '<div class="fg"><figure>'+(imgOk?'<img src="'+esc(f.img)+'" alt="'+esc(f.t)+'" loading="eager" data-n="'+esc(f.v||f.t)+'" onerror="capaErro(this)">':'<div class="capa">'+esc(f.v||f.t)+'</div>')+'</figure>'+
+    (f.cred?'<figcaption>'+esc(f.cred)+'</figcaption>':'')+'</div></div>';
+  if(imgOk){corDaObra(f.img);medeImagem(f.img,el.querySelector('.hero'));}
+  carregaImgMarca(imgOk?f.img:null);
 }
 
 
@@ -685,6 +765,71 @@ function ajustaMarca(){
   h.style.fontSize='100px';
   const w100=sp.getBoundingClientRect().width;                 /* caixa já inclui o respiro à direita (.07em) */
   h.style.fontSize=(100*h.clientWidth/w100)+'px';
+  desenhaMarca();
+}
+
+/* ================= MARCA FEITA DA OBRA =================
+   O logo é a obra do dia redesenhada em código, em meio-tom: a imagem é dividida em células, cada
+   célula vira um ponto com a cor e o tamanho (mais claro, maior) daquele trecho, e o resultado é o
+   preenchimento das letras. Pega a fatia mais texturizada da obra, na proporção real, para o
+   logo ser reconhecível. O brilho dos pontos tem teto: as letras nunca ficam claras como o papel. */
+let IMG_MARCA=null;
+function carregaImgMarca(url){
+  IMG_MARCA=null;
+  const sp=document.getElementById('marcaTx');
+  if(!url){if(sp){sp.style.backgroundImage='';sp.style.backgroundColor='';}return;}
+  const im=new Image();
+  im.onload=()=>{IMG_MARCA=im;desenhaMarca();};
+  im.src=url;
+}
+function desenhaMarca(){
+  const sp=document.getElementById('marcaTx'),mh=document.getElementById('marca');
+  if(!IMG_MARCA||!sp||!mh)return;
+  try{
+    const r=sp.getBoundingClientRect(),cw=Math.round(r.width),ch=Math.round(r.height);
+    if(cw<60||ch<12)return;
+    const dpr=Math.min(1.5,window.devicePixelRatio||1);
+    const fs=parseFloat(mh.style.fontSize)||100;
+    const cel=Math.max(3.2,fs/40);
+    const cols=Math.ceil(cw/cel),rows=Math.ceil(ch/cel);
+    const im=IMG_MARCA,sh=Math.max(rows,Math.round(im.naturalHeight*(cols/im.naturalWidth)));
+    const o=document.createElement('canvas');o.width=cols;o.height=sh;
+    const ox=o.getContext('2d',{willReadFrequently:true});ox.imageSmoothingQuality='high';ox.drawImage(im,0,0,cols,sh);
+    const px=ox.getImageData(0,0,cols,sh).data;
+    const lum=i=>(.2126*px[i]+.7152*px[i+1]+.0722*px[i+2])/255;
+    /* fatia de altura 'rows' com mais variação de luminosidade */
+    let y0=0;
+    if(sh>rows){
+      const v=new Float32Array(sh);
+      for(let y=0;y<sh;y++){let a=0,b=0;for(let x=0;x<cols;x++){const l=lum((y*cols+x)*4);a+=l;b+=l*l;}const m=a/cols;v[y]=Math.sqrt(Math.max(0,b/cols-m*m));}
+      let win=0;for(let y=0;y<rows;y++)win+=v[y];
+      let best=win;for(let y=1;y+rows<=sh;y++){win+=v[y+rows-1]-v[y-1];if(win>best){best=win;y0=y;}}
+    }
+    /* cor média da fatia, escurecida, vira a base sob os pontos */
+    let ar=0,ag=0,ab=0,n=0;
+    for(let y=0;y<rows;y++)for(let x=0;x<cols;x++){const i=((y0+y)*cols+x)*4;ar+=px[i];ag+=px[i+1];ab+=px[i+2];n++;}
+    const base='rgb('+Math.round(ar/n*.16+10)+','+Math.round(ag/n*.16+10)+','+Math.round(ab/n*.16+10)+')';
+    const c=document.createElement('canvas');c.width=Math.round(cw*dpr);c.height=Math.round(ch*dpr);
+    const x=c.getContext('2d');x.scale(dpr,dpr);
+    x.fillStyle=base;x.fillRect(0,0,cw,ch);
+    const TETO=.52;
+    for(let j=0;j<rows;j++)for(let i=0;i<cols;i++){
+      const k=((y0+j)*cols+i)*4,Y=lum(k);
+      const rad=cel*.5*(.14+.92*Math.pow(Y,.85));
+      if(rad<.45)continue;
+      let R=px[k],G=px[k+1],B=px[k+2];
+      const mx=Math.max(R,G,B),mn=Math.min(R,G,B),sat=mx?(mx-mn)/mx:0;
+      if(sat>.3){const m=(R+G+B)/3,g=1+Math.min(.5,sat*.6);R=m+(R-m)*g;G=m+(G-m)*g;B=m+(B-m)*g;}   /* cor viva fica mais viva */
+      const teto=sat>.3?TETO+.14:TETO-.06;                       /* branco sem cor escurece; cor saturada aguenta mais brilho */
+      const Y2=(.2126*R+.7152*G+.0722*B)/255,f=Y2>teto?teto/Y2:1;
+      x.fillStyle='rgb('+Math.max(0,Math.min(255,Math.round(R*f)))+','+Math.max(0,Math.min(255,Math.round(G*f)))+','+Math.max(0,Math.min(255,Math.round(B*f)))+')';
+      x.beginPath();x.arc((i+.5)*cel,(j+.5)*cel,rad,0,6.2832);x.fill();
+    }
+    sp.style.backgroundImage='url('+c.toDataURL('image/jpeg',.88)+')';     /* opaca: JPEG pesa uma fração do PNG */
+    sp.style.backgroundSize='100% 100%';
+    sp.style.backgroundRepeat='no-repeat';
+    sp.style.backgroundColor=base;
+  }catch(_){sp.style.backgroundImage='';sp.style.backgroundColor='';}
 }
 
 /* ================= FILTROS ================= */
@@ -802,9 +947,17 @@ function iniciaMapa(){
     aplicaCorMapa();
     /* pulso nas aberturas */
     if(!matchMedia('(prefers-reduced-motion:reduce)').matches){
-      const t0=performance.now();
-      const anim=t=>{const k=((t-t0)%2400)/2400;try{mapa.setPaintProperty('pulso','circle-opacity',.38*(1-k));mapa.setPaintProperty('pulso','circle-radius',raio(1+k*2.6));}catch(_){return}requestAnimationFrame(anim);};
-      requestAnimationFrame(anim);
+      /* o pulso só anima enquanto o mapa está na tela e a aba visível, a ~24 quadros por segundo:
+         repintar o mapa WebGL inteiro 60 vezes por segundo fora da vista só gasta bateria */
+      const t0=performance.now();let rodando=false,visivel=false,ultimo=0;
+      const anim=t=>{
+        if(!visivel||document.hidden){rodando=false;return}
+        if(t-ultimo>=42){ultimo=t;const k=((t-t0)%2400)/2400;try{mapa.setPaintProperty('pulso','circle-opacity',.38*(1-k));mapa.setPaintProperty('pulso','circle-radius',raio(1+k*2.6));}catch(_){rodando=false;return}}
+        requestAnimationFrame(anim);
+      };
+      const liga=()=>{if(!rodando&&visivel&&!document.hidden){rodando=true;requestAnimationFrame(anim);}};
+      if('IntersectionObserver' in window)new IntersectionObserver(([en])=>{visivel=en.isIntersecting;liga();},{threshold:.05}).observe(document.getElementById('mapaCanvas'));
+      document.addEventListener('visibilitychange',liga);
     }
     atualizaMapa();
     if(window.ScrollTrigger)ScrollTrigger.refresh();
