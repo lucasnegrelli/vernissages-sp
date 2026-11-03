@@ -74,7 +74,9 @@ img{max-width:100%}
 @supports (height:100svh){.hero{--hv:max(520px,calc(100svh - var(--topo,200px)))}}
 .hero .tx{display:flex;flex-direction:column;gap:clamp(12px,1.5vw,24px);min-width:0}
 .rot{grid-area:rot;font-size:12px;letter-spacing:.14em;text-transform:uppercase}.rot b{color:var(--terra);font-weight:700}
-.hero h2{grid-area:tit;font-weight:800;text-transform:uppercase;line-height:.9;letter-spacing:-.04em;margin:0;overflow-wrap:anywhere}
+.hero h2{grid-area:tit;font-weight:800;text-transform:uppercase;line-height:.9;letter-spacing:-.04em;margin:0;overflow-wrap:anywhere;text-wrap:balance}
+.hero .art,.hero .desc,.item .art{text-wrap:pretty}
+.item h3,.cartao h3,.painel h3,#modal h3,.cta h2,.cab h2{text-wrap:balance}
 .hero h2.t-xl{font-size:clamp(54px,8.2vw,150px)}
 .hero h2.t-l{font-size:clamp(44px,6vw,110px)}
 .hero h2.t-m{font-size:clamp(36px,4.6vw,84px)}
