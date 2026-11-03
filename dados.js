@@ -349,11 +349,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Deslocar, Desalinhar, Interromper — Antonio Bokel",
-  v: "Galeria Luis Maluf",
-  quem: "Antonio Bokel",
-  txt: "Individual na unidade da Barra Funda com esculturas, instalações e pinturas que inserem galhos, rochas, espelhos e círculos em composições geométricas. Abertura em 8 de outubro, das 19h às 23h.",
-  link: "https://luismaluf.com",
+  t: "Jacqueline Humphries e JH Studio",
+  v: "Auroras",
+  quem: "Jacqueline Humphries, Peter Granados, Paul Kopkau, Ciccio",
+  txt: "Primeira exposição de Humphries no Brasil, com pinturas e seis livros de artista, e obras de três artistas do seu ateliê. Abertura em 17 de outubro, das 14h às 17h, com performance de Arto Lindsay às 16h. Em cartaz até 16 de janeiro de 2027.",
+  link: "https://auroras.art.br",
   publi: false
 };
 
@@ -368,6 +368,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-11-03", k:"Jacqueline Humphries e JH Studio|Auroras"},
   {d:"2026-11-02", k:"Deslocar, Desalinhar, Interromper — Antonio Bokel|Galeria Luis Maluf"},
   {d:"2026-11-01", k:"Atrás da superfície — Paulo Monteiro|Mendes Wood DM — Casa Iramaia"},
   {d:"2026-10-31", k:"Pull/Pulso — Marcia Grostein|Luciana Brito Galeria"},
@@ -467,5 +468,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "02/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "03/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
