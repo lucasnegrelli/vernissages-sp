@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vernissages SP — Galerias, Aberturas e Roteiros</title>
-<meta name="description" content="Mapa vivo da cena de arte de São Paulo: 70 galerias e museus, vernissages da semana, roteiros e agenda de exposições atualizada diariamente.">
+<meta name="description" content="Mapa vivo da cena de arte de São Paulo: mais de 130 galerias, museus e centros culturais, vernissages da semana, roteiros e agenda de exposições atualizada diariamente.">
 <meta property="og:title" content="Vernissages SP — Galerias e Aberturas">
-<meta property="og:description" content="Mapa vivo da cena de arte de São Paulo: vernissages da semana, 70 galerias e museus, roteiros e agenda atualizada diariamente.">
+<meta property="og:description" content="Mapa vivo da cena de arte de São Paulo: vernissages da semana, galerias e museus, roteiros e agenda atualizada diariamente.">
 <meta property="og:url" content="https://vernissagessp.com.br/">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://vernissagessp.com.br/og-image.png">
@@ -16,1237 +16,891 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://vernissagessp.com.br/og-image.png">
 <link rel="icon" type="image/png" href="icon-192.png">
-<meta name="theme-color" content="#100e0b">
+<meta name="theme-color" content="#F2EFE9">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="preload" href="fontes/Switzer-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
 <script src="dados.js"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Vernissages SP","alternateName":"Vernissages São Paulo","url":"https://vernissagessp.com.br/","inLanguage":"pt-BR","description":"Mapa vivo da cena de arte de São Paulo: galerias, museus e centros culturais, com a agenda das aberturas de exposição, roteiros de visita e páginas por artista.","publisher":{"@type":"Organization","name":"Vernissages SP","url":"https://vernissagessp.com.br/","logo":"https://vernissagessp.com.br/icon-512.png","sameAs":["https://instagram.com/vernissagessp"]}}</script>
 <style>
-  :root{
-    /* Neutros com viés quente — antes puxavam pro azul-violeta e brigavam com
-       o âmbar do acento. Agora o cinza "combina" com a cor da casa. */
-    --bg:#0c0b09; --ink:#f4f1ea; --muted:#968c7c; --text2:#ccc5b7;
-    --accent:#e8c15a; --accent2:#cd6a44; --violet:#b49be0;
-    --green:#7fd0a0; --red:#ef8a76; --blue:#8fb0f0;
-    --glass:rgba(255,255,255,.045); --glass2:rgba(255,255,255,.075);
-    --line:rgba(255,255,255,.10); --line2:rgba(255,255,255,.20);
-    --hair:rgba(255,255,255,.055);
-    --radius:16px; --radius-sm:10px; --bw:1px;
-    --blur:blur(16px) saturate(150%);
-    --shadow:0 1px 0 rgba(255,255,255,.06) inset, 0 12px 32px -18px rgba(0,0,0,.9);
-    --font:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',sans-serif;
-    --display:'Space Grotesk',Inter,ui-sans-serif,system-ui,sans-serif;
-    --onaccent:#0c0b09;
-    --panel:var(--glass); --panel2:var(--glass2); --border:var(--line); --text:var(--ink);
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.6;
-    -webkit-font-smoothing:antialiased;font-size:15px;overflow-x:hidden}
-  body::before{content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;
-    background:
-      radial-gradient(58vw 46vh at 10% -8%, rgba(232,193,90,.12), transparent 62%),
-      radial-gradient(48vw 42vh at 94% 4%, rgba(205,106,68,.10), transparent 62%),
-      radial-gradient(72vw 55vh at 48% 104%, rgba(180,155,224,.07), transparent 60%)}
-  body::after{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
-    background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),
-      linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);
-    background-size:72px 72px;
-    -webkit-mask-image:radial-gradient(ellipse 85% 55% at 50% 0%,#000 20%,transparent 78%);
-    mask-image:radial-gradient(ellipse 85% 55% at 50% 0%,#000 20%,transparent 78%)}
-  ::selection{background:var(--accent);color:var(--onaccent)}
+@font-face{font-family:Switzer;src:url(fontes/Switzer-Variable.woff2) format("woff2");font-weight:100 900;font-display:swap}
+:root{--paper:#F2EFE9;--ink:#0E0E0E;--terra:#C96F4A;--mute:#6f6a60;--mute2:#b7b1a4;--rule:#0E0E0E;--gut:clamp(14px,2vw,32px);--serif:"Instrument Serif",Georgia,serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+html,body{overflow-x:clip}
+body{background:var(--paper);color:var(--ink);font-family:Switzer,Helvetica,Arial,sans-serif;font-size:17px;line-height:1.35;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+img{max-width:100%}
+:focus-visible{outline:2px solid var(--terra);outline-offset:2px}
+.wrap{padding:0 var(--gut)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-  /* ---------- hero 3D (só outubro/2026, ver o script logo após <body>) ---------- */
-  #hero3d{position:relative;height:100svh;min-height:560px;overflow:hidden;background:#0A0A0A}
-  #hero3d-cena{position:absolute;inset:0;z-index:0}
-  .hero3d-txt{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;
-    justify-content:center;padding:0 32px;max-width:1320px;margin:0 auto;pointer-events:none}
-  .hero3d-kick{font-size:.85rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;
-    color:#FF3B1D;margin-bottom:18px}
-  .hero3d-h1{font-family:'Inter Tight',ui-sans-serif,system-ui,sans-serif;font-weight:800;
-    letter-spacing:-.04em;line-height:.92;text-transform:uppercase;color:#F2F0EA;
-    font-size:clamp(2.6rem,8vw,6rem);max-width:900px}
-  .hero3d-sub{margin-top:22px;font-size:1.15rem;color:#B9B6AE;max-width:480px;font-weight:400}
-  .hero3d-baixo{pointer-events:auto;position:absolute;left:32px;bottom:28px;width:40px;height:40px;
-    border:1px solid #3A3936;border-radius:50%;display:flex;align-items:center;justify-content:center;
-    color:#F2F0EA;text-decoration:none;font-size:1.1rem;transition:.2s}
-  .hero3d-baixo:hover{border-color:#FF3B1D;color:#FF3B1D}
-  @media(prefers-reduced-motion:reduce){#hero3d-cena{opacity:.9}}
+/* ---------- barra fixa (aparece depois da marca) ---------- */
+.barra-fixa{position:fixed;top:0;left:0;right:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--ink);display:flex;justify-content:space-between;align-items:center;padding:0 var(--gut);height:46px;transform:translateY(-101%);transition:transform .3s}
+.barra-fixa.on{transform:none}
+.barra-fixa b{font-weight:800;letter-spacing:-.03em;text-transform:uppercase;color:var(--terra);font-size:19px}
+.barra-fixa nav{display:flex;gap:22px;font-size:13px;letter-spacing:.04em}
+.barra-fixa a:hover{color:var(--terra)}
+.nbadge{display:inline-block;background:var(--terra);color:var(--ink);font-size:10px;font-weight:700;padding:1px 6px;margin-left:5px;vertical-align:1px}
 
-  /* ---------- header ---------- */
-  header{position:sticky;top:0;z-index:60;padding:16px 0 14px;
-    background:rgba(10,10,13,.62);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
-    border-bottom:1px solid var(--hair)}
-  .hwrap{max-width:1320px;margin:0 auto;padding:0 32px;width:100%;
-    display:flex;flex-wrap:wrap;gap:14px 24px;align-items:flex-end;justify-content:space-between}
-  .hacoes{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-  header h1{font-family:var(--display);font-size:1.42rem;font-weight:600;letter-spacing:4px;line-height:1.15}
-  header h1 span{color:var(--accent)}
-  header p{color:var(--muted);font-size:.8rem;margin-top:2px}
-  /* Editais deixou de morar num dropdown "Explorar" escondido: é a página que
-     mais interessa a quem faz arte, então virou item direto e marcado. */
-  .navedital{display:inline-flex;align-items:center;gap:9px;text-decoration:none;white-space:nowrap;
-    background:rgba(232,193,90,.10);border:1px solid rgba(232,193,90,.38);color:var(--accent);
-    border-radius:24px;padding:8px 15px;font-size:.8rem;font-weight:600;transition:.18s;
-    backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}
-  .navedital:hover{background:rgba(232,193,90,.17);border-color:var(--accent);
-    transform:translateY(-1px);box-shadow:0 6px 20px -8px rgba(232,193,90,.5)}
-  .navedital-n{font-variant-numeric:tabular-nums;background:var(--accent);color:var(--onaccent);
-    font-weight:700;min-width:19px;height:19px;padding:0 5px;border-radius:20px;
-    display:inline-flex;align-items:center;justify-content:center;font-size:.72rem}
-  .navedital-n:empty{display:none}
-  #search{background:var(--glass);border:1px solid var(--line);color:var(--ink);border-radius:24px;
-    padding:10px 18px;font-size:.88rem;width:320px;max-width:100%;
-    backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);transition:.2s}
-  #search::placeholder{color:var(--muted)}
-  #search:focus{outline:none;border-color:var(--accent);background:var(--glass2);
-    box-shadow:0 0 0 4px rgba(232,193,90,.10)}
-  .wrap{max-width:1320px;margin:0 auto;padding:0 32px 60px}
+/* ---------- topo ---------- */
+.marca{font-weight:800;font-size:10.6vw;line-height:.82;letter-spacing:-.055em;color:var(--terra);padding:2.2vw 0 1.2vw;white-space:nowrap;text-transform:uppercase;will-change:transform}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:20px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:12px 0;font-size:14px;letter-spacing:.02em}
+.nav nav{display:flex;gap:26px;flex-wrap:wrap}
+.nav nav a:hover{color:var(--terra)}
+.nav .sub{color:var(--mute);text-align:right}
 
-  /* ---------- KPIs: faixa fina ---------- */
-  .kpis{display:grid;grid-template-columns:repeat(6,1fr);
-    margin:16px 0 4px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
-  .kpi{display:flex;flex-direction:column;gap:1px;padding:13px 4px 12px 18px;
-    position:relative;font-size:.73rem;color:var(--muted);letter-spacing:.3px;min-width:0}
-  .kpi::before{content:'';position:absolute;left:0;top:11px;bottom:11px;width:1px;background:var(--hair)}
-  .kpi:first-child{padding-left:0}
-  .kpi:first-child::before{display:none}
-  .kpi b{font-family:var(--display);font-size:1.65rem;font-weight:700;color:var(--accent);
-    font-variant-numeric:tabular-nums;letter-spacing:-1px;line-height:1.05}
-  .kpiselo{flex-direction:row;align-items:center;gap:11px;cursor:pointer;transition:.18s}
-  .kpiselo:hover{background:rgba(255,255,255,.03)}
-  .kpiselo svg{flex:0 0 40px;border-radius:11px}
-  .kpiselo .st{display:flex;flex-direction:column;gap:1px;min-width:0}
-  .kpiselo .st b{font-size:.82rem;color:var(--text2);letter-spacing:0;line-height:1.25;
-    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600}
-  .kpiselo:hover .st b{color:var(--accent)}
+/* ---------- destaque ---------- */
+.hero{display:grid;grid-template-columns:5fr 7fr;gap:var(--gut);padding:clamp(18px,2.4vw,40px) 0;border-bottom:1px solid var(--ink)}
+.hero .tx{display:flex;flex-direction:column;justify-content:space-between;gap:20px;min-height:34vw}
+.rot{font-size:12px;letter-spacing:.14em;text-transform:uppercase}.rot b{color:var(--terra);font-weight:700}
+.hero h1,.hero h2{font-weight:800;text-transform:uppercase;font-size:clamp(34px,5.2vw,86px);line-height:.9;letter-spacing:-.04em;margin:14px 0}
+.hero .art{font-family:var(--serif);font-style:italic;font-size:clamp(22px,2.2vw,34px);line-height:1.1}
+.hero .meta{font-size:15px}.hero .meta .dt{font-weight:800;font-size:clamp(20px,2vw,30px);letter-spacing:-.02em;text-transform:uppercase}
+.hero .meta p{margin-top:10px;max-width:46ch}
+.botoes{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.bt{display:inline-block;border:1.5px solid currentColor;padding:8px 14px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;transition:background .15s,color .15s}
+.bt:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.bt.cheio{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.bt.cheio:hover{background:var(--terra);color:var(--ink);border-color:var(--terra)}
+.hero figure{overflow:hidden;height:44vw;max-height:640px;background:#d9d4c8;position:relative}
+.hero figure img{width:100%;height:122%;object-fit:cover;display:block;will-change:transform}
+.hero figure .capa{position:absolute;inset:0;background:var(--terra);color:var(--ink);display:flex;align-items:flex-end;padding:20px;font-weight:800;font-size:clamp(34px,6vw,100px);line-height:.88;letter-spacing:-.05em;text-transform:uppercase}
+.hero figcaption{font-size:11px;color:var(--mute);margin-top:6px}
 
-  /* ---------- titulos ---------- */
-  /* Titulo de secao primaria — Agenda, Diretorio, Aberturas da semana.
-     Antes era o mesmo sussurro cinza das secoes menores, e a pagina ficava
-     sem hierarquia: tudo parecia rodape. */
-  h2{font-family:var(--display);font-size:1.24rem;font-weight:600;margin:60px 0 18px;
-    letter-spacing:-.3px;color:var(--ink);padding-bottom:13px;border-bottom:1px solid var(--line2);
-    display:flex;align-items:center;gap:11px;flex-wrap:wrap}
-  h2 .wkhint,h2 .pn2{font-family:var(--font);font-size:.68rem;font-weight:600;letter-spacing:1.5px;
-    text-transform:uppercase;color:var(--muted)}
+/* ---------- mapa + filtros ---------- */
+.mapaSec{background:var(--ink);color:var(--paper);padding:clamp(40px,6vw,100px) 0 0}
+.cab{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:clamp(14px,2vw,30px)}
+.cab h2{font-weight:800;font-size:clamp(28px,4vw,64px);letter-spacing:-.04em;text-transform:uppercase;line-height:.92}
+.cab span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute2)}
+.mapaSec .cab{padding:0 var(--gut)}
+.filtros{padding:0 var(--gut) 18px;display:flex;flex-direction:column;gap:12px}
+.f-linha{display:flex;gap:10px 18px;flex-wrap:wrap;align-items:center}
+.seg{display:flex;gap:0;border:1.5px solid var(--paper)}
+.seg button{padding:8px 14px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--paper)}
+.seg button.on{background:var(--paper);color:var(--ink)}
+.seg button:not(.on):hover{background:rgba(242,239,233,.14)}
+.f-busca{flex:1 1 220px;min-width:180px;background:transparent;border:0;border-bottom:1.5px solid var(--paper);color:var(--paper);font:700 16px Switzer,sans-serif;letter-spacing:-.01em;padding:8px 0;outline:0;border-radius:0}
+.f-busca::placeholder{color:#7d786d;font-weight:500}
+.f-busca:focus{border-color:var(--terra)}
+select{background:transparent;color:var(--paper);border:0;border-bottom:1.5px solid var(--paper);font:700 12px Switzer,sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:8px 22px 8px 0;border-radius:0;appearance:none;-webkit-appearance:none;cursor:pointer;background-image:linear-gradient(45deg,transparent 50%,var(--paper) 50%),linear-gradient(135deg,var(--paper) 50%,transparent 50%);background-position:calc(100% - 9px) 55%,calc(100% - 4px) 55%;background-size:5px 5px;background-repeat:no-repeat}
+select option{background:var(--ink);color:var(--paper);text-transform:none}
+.tg{border:1.5px solid var(--paper);padding:7px 12px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--paper)}
+.tg.on{background:var(--terra);border-color:var(--terra);color:var(--ink)}
+.tg:not(.on):hover{background:rgba(242,239,233,.14)}
+.tg.lim{border-style:dashed;color:var(--mute2);border-color:var(--mute2)}
+.f-mais{display:none;border:1.5px solid var(--paper);padding:8px 14px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+.f-res{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute2)}
+.f-res b{color:var(--terra)}
+.mapaBox{position:relative;height:min(82vh,780px)}
+#mapaCanvas{background:var(--ink)}
+.maplibregl-ctrl-attrib{background:rgba(14,14,14,.6)!important;color:#8f897c!important;font-size:10px}
+.maplibregl-ctrl-attrib a{color:var(--mute2)!important}
+.maplibregl-ctrl-group{background:var(--paper)!important;border-radius:0!important;box-shadow:none!important}
+.maplibregl-ctrl-group button{border-radius:0!important}
+.painel{position:absolute;top:var(--gut);right:var(--gut);bottom:var(--gut);width:min(380px,calc(100% - 2*var(--gut)));background:var(--paper);color:var(--ink);padding:18px 18px 14px;overflow:auto;display:flex;flex-direction:column;gap:10px;z-index:3}
+.painel .k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.painel h3{font-weight:800;text-transform:uppercase;font-size:clamp(24px,2.4vw,36px);line-height:.92;letter-spacing:-.04em}
+.painel .bairro{font-family:var(--serif);font-style:italic;font-size:20px}
+.painel .ex{border-top:2px solid var(--ink);padding-top:8px;cursor:pointer}
+.painel .ex:hover b{color:var(--terra)}
+.painel .ex b{display:block;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:1}
+.painel .ex small{display:block;color:var(--mute);font-size:12px;margin-top:3px}
+.painel .ex i{font-style:normal;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra);font-weight:700}
+.painel .ac{display:flex;gap:8px;margin-top:auto;padding-top:10px;flex-wrap:wrap}
+.favbt{font-size:20px;line-height:1;color:var(--mute)}
+.favbt.on{color:var(--terra)}
+.leg{position:absolute;left:var(--gut);bottom:34px;z-index:3;display:flex;gap:16px;flex-wrap:wrap;font-size:11px;letter-spacing:.12em;text-transform:uppercase;background:rgba(14,14,14,.82);padding:8px 12px;color:var(--paper)}
+.leg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
 
-  /* Titulo de secao secundaria — sussurro cinza. No desktop a secao fica
-     sempre aberta; no mobile ela colapsa pra nao empurrar a agenda. */
-  .dobra>h2{font-family:var(--font);font-size:.7rem;font-weight:600;
-    text-transform:uppercase;letter-spacing:2.6px;color:var(--muted);
-    border-bottom-color:var(--hair)}
-  @media(max-width:950px){
-    .dobra>h2{position:relative;cursor:pointer;user-select:none;padding-right:30px}
-    .dobra>h2::after{content:'';position:absolute;right:6px;top:50%;width:9px;height:9px;
-      border-right:1.6px solid var(--muted);border-bottom:1.6px solid var(--muted);
-      transform:translateY(-70%) rotate(45deg);transition:transform .22s}
-    .dobra>h2:hover{color:var(--text2)}
-    .dobra.aberta>h2::after{transform:translateY(-25%) rotate(225deg)}
-    .dobra .dobrac{display:none}
-    .dobra.aberta .dobrac{display:block}
-  }
+/* ---------- abre esta semana ---------- */
+.noite{background:var(--ink);color:var(--paper);position:relative}
+.pino{height:100vh;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+.pino .cab{padding:0 var(--gut)}
+.acoes-sem{display:flex;gap:8px}
+.acoes-sem .bt{border-color:var(--paper);color:var(--paper);padding:6px 12px}
+.acoes-sem .bt:hover{background:var(--paper);color:var(--ink)}
+.trilho{display:flex;gap:clamp(14px,2vw,28px);padding:0 var(--gut);width:max-content;will-change:transform}
+.cartao{width:min(30vw,420px);min-width:270px;flex:none;display:block;text-align:left}
+.cartao .im{aspect-ratio:4/5;overflow:hidden;background:#222;position:relative}
+.cartao .im img{position:absolute;inset:0;width:130%;height:100%;object-fit:cover;left:-15%;will-change:transform}
+.cartao .im.sem{background:var(--terra);color:var(--ink)}
+.cartao .im.sem .nome{position:absolute;inset:14px 14px 0 14px;font-weight:800;font-size:clamp(20px,2.2vw,34px);line-height:.92;letter-spacing:-.04em;text-transform:uppercase}
+.cartao .im::after{content:"";position:absolute;inset:auto 0 0 0;height:55%;background:linear-gradient(to top,rgba(14,14,14,.78),rgba(14,14,14,0));z-index:1;pointer-events:none}
+.cartao .im.sem::after{display:none}
+.cartao .dia{position:absolute;left:12px;bottom:10px;font-weight:800;font-size:clamp(34px,4.4vw,72px);line-height:.85;letter-spacing:-.05em;color:var(--paper);text-transform:uppercase;z-index:2}
+.cartao .im.sem .dia{color:var(--ink)}
+.cartao .dia small{display:block;font-size:11px;letter-spacing:.14em;margin-bottom:.5em;color:var(--terra);background:var(--ink);padding:3px 6px;width:max-content;font-weight:700}
+.cartao h3{font-weight:700;font-size:clamp(17px,1.5vw,24px);line-height:1.02;letter-spacing:-.02em;text-transform:uppercase;margin-top:12px}
+.cartao p{font-size:13px;color:var(--mute2);margin-top:4px}
+.cartao:hover h3{color:var(--terra)}
 
-  /* ---------- controles ---------- */
-  .filters{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 16px;align-items:center}
-  #statusFilters{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-  .chip,.btn,select,.navedital{line-height:1.35}
-  .chip{background:var(--glass);border:1px solid var(--line);color:var(--text2);border-radius:20px;
-    padding:7px 15px;font-size:.81rem;cursor:pointer;transition:.18s;user-select:none;
-    backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);white-space:nowrap}
-  .chip:hover{border-color:var(--line2);color:var(--ink);transform:translateY(-1px)}
-  .chip.on{background:var(--accent);color:var(--onaccent);border-color:var(--accent);font-weight:650;
-    box-shadow:0 4px 16px -6px rgba(232,193,90,.6)}
-  select{background:var(--glass);color:var(--ink);border:1px solid var(--line);border-radius:var(--radius-sm);
-    padding:7px 11px;font-size:.83rem;cursor:pointer;font-family:var(--font);
-    backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);transition:.18s;max-width:100%}
-  select:hover{border-color:var(--line2)}
-  select:focus{outline:none;border-color:var(--accent)}
-  select option{background:#15151b;color:var(--ink)}
+/* ---------- agenda ---------- */
+.cartaz{padding:clamp(40px,6vw,110px) var(--gut) clamp(40px,6vw,100px)}
+.cartaz .cab{border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:clamp(24px,3vw,48px)}
+.cartaz .cab span{color:var(--mute)}
+.grade{display:grid;grid-template-columns:repeat(12,1fr);column-gap:var(--gut);row-gap:clamp(30px,5vw,90px)}
+.item{grid-column:span 4;display:block;text-align:left}
+.item:nth-child(5n+1){grid-column:1 / span 6}
+.item:nth-child(5n+2){grid-column:8 / span 5;margin-top:clamp(40px,9vw,160px)}
+.item:nth-child(5n+3){grid-column:2 / span 4}
+.item:nth-child(5n+4){grid-column:7 / span 4;margin-top:clamp(20px,5vw,90px)}
+.item:nth-child(5n+5){grid-column:5 / span 6}
+.item .im{overflow:hidden;aspect-ratio:4/5;background:#d9d4c8;clip-path:inset(0 0 100% 0);cursor:pointer}
+.item:nth-child(5n+1) .im,.item:nth-child(5n+5) .im{aspect-ratio:5/4}
+.item .im img{width:100%;height:120%;object-fit:cover;display:block;will-change:transform}
+.item .tx{opacity:0;transform:translateY(18px)}
+.item .st{display:flex;justify-content:space-between;gap:10px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-top:10px}
+.item .st b{color:var(--terra);white-space:nowrap}
+.item h3{font-weight:800;font-size:clamp(22px,2.6vw,40px);line-height:.95;letter-spacing:-.035em;text-transform:uppercase;margin-top:6px;cursor:pointer}
+.item h3:hover{color:var(--terra)}
+.item .art{font-family:var(--serif);font-style:italic;font-size:clamp(17px,1.5vw,23px);margin-top:4px}
+.item .art span{cursor:pointer}.item .art span:hover{color:var(--terra)}
+.item .ca{font-size:13px;color:var(--mute);margin-top:6px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.tagp{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;border:1px solid currentColor;padding:1px 6px}
+.tagp.g{color:var(--terra)}
+.item .lk{display:flex;gap:14px;margin-top:8px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;align-items:center}
+.item .lk a:hover,.item .lk button:hover{color:var(--terra)}
+.mais{display:block;margin:clamp(30px,4vw,60px) auto 0;border:1.5px solid var(--ink);padding:12px 22px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+.mais:hover{background:var(--ink);color:var(--paper)}
+.vazio{padding:50px 0;font-size:clamp(22px,3vw,40px);font-weight:800;letter-spacing:-.03em;text-transform:uppercase}
+.vazio button{display:block;margin-top:14px;font-size:12px;letter-spacing:.12em;border:1.5px solid var(--ink);padding:8px 14px}
+.tambem{margin-top:clamp(40px,6vw,90px);border-top:2px solid var(--ink);padding-top:14px}
+.tambem h4{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:10px;display:flex;justify-content:space-between}
+.tambem ul{list-style:none;columns:3 340px;column-gap:var(--gut)}
+.tambem li{break-inside:avoid;border-bottom:1px solid rgba(14,14,14,.18)}
+.tambem li button{width:100%;text-align:left;padding:8px 0;font-size:14px;display:flex;justify-content:space-between;gap:14px}
+.tambem li button:hover b{color:var(--terra)}
+.tambem li b{font-weight:700;text-transform:uppercase;letter-spacing:-.01em}
+.tambem li small{display:block;color:var(--mute);font-size:12px}
+.tambem li span{color:var(--mute);white-space:nowrap;font-size:13px}
 
-  .filtrobtn{display:none;font-weight:600}
+/* ---------- a cidade agora ---------- */
+.tempo{padding:clamp(40px,6vw,110px) var(--gut)}
+.tempo .cab span{color:var(--mute)}
+.numeros{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gut);margin:clamp(14px,2vw,28px) 0 clamp(26px,3vw,50px)}
+.numeros div{border-top:2px solid var(--ink);padding-top:8px}
+.numeros b{display:block;font-weight:800;font-size:clamp(46px,7vw,120px);line-height:.85;letter-spacing:-.06em;color:var(--terra)}
+.numeros span{font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.eixo{position:relative;height:44px;border-bottom:1px solid var(--ink);margin-bottom:8px}
+.eixo i{position:absolute;bottom:0;border-left:1px solid var(--ink);padding:0 0 3px 5px;font-style:normal;font-size:11px;letter-spacing:.14em;text-transform:uppercase;height:20px}
+.fio{position:relative}
+.hoje{position:absolute;top:-52px;bottom:0;width:2px;background:var(--terra);z-index:4;pointer-events:none}
+.hoje::before{content:"HOJE";position:absolute;top:0;left:6px;font-size:11px;letter-spacing:.14em;font-weight:800;color:var(--terra)}
+.lin{position:relative;height:17px;margin-bottom:3px}
+.barra{position:absolute;top:0;height:100%;color:var(--paper);text-align:left}
+.barra em{position:absolute;inset:0;background:var(--ink);clip-path:inset(0 100% 0 0)}
+.barra.i em{background:var(--terra)}
+.barra.i{color:var(--ink)}
+.barra span{z-index:2;position:absolute;left:6px;top:0;line-height:17px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;white-space:nowrap;max-width:calc(100% - 8px);overflow:hidden;text-overflow:ellipsis}
+.barra.fora span{left:calc(100% + 8px);color:var(--ink);max-width:none;overflow:visible}
+.barra:hover em{outline:2px solid var(--terra)}
+.legt{display:flex;gap:18px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin:14px 0 0}
+.legt i{display:inline-block;width:18px;height:8px;margin-right:6px;vertical-align:1px}
 
-  /* alternador mapa/lista (so mobile) */
-  .viewtoggle{display:none;gap:4px;padding:4px;margin:0 0 14px;
-    background:var(--glass);border:1px solid var(--line);border-radius:22px;
-    backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}
-  .viewtoggle button{flex:1;appearance:none;border:0;background:transparent;color:var(--muted);
-    font-family:var(--font);font-size:.83rem;font-weight:600;padding:8px 10px;border-radius:18px;
-    cursor:pointer;transition:.18s;letter-spacing:.3px}
-  .viewtoggle button.on{background:var(--accent);color:var(--onaccent)}
+/* ---------- espaços ---------- */
+.espacos{background:var(--ink);color:var(--paper);padding:clamp(40px,6vw,100px) var(--gut)}
+.busca{width:100%;background:transparent;border:0;border-bottom:2px solid var(--paper);color:var(--paper);font:800 clamp(26px,4vw,64px)/1 Switzer,sans-serif;letter-spacing:-.04em;text-transform:uppercase;padding:6px 0 10px;outline:0;margin:6px 0 26px;border-radius:0}
+.busca::placeholder{color:#5e5a52}
+.bairros{columns:4 240px;column-gap:var(--gut)}
+.bg{break-inside:avoid;margin-bottom:22px}
+.bg h5{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);font-weight:700;border-bottom:1px solid rgba(242,239,233,.4);padding-bottom:5px;margin-bottom:6px;display:flex;justify-content:space-between;cursor:pointer}
+.bg h5:hover{color:var(--paper)}
+.bg .row{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:3px 0}
+.bg .row button.nm{text-align:left;font-weight:600;font-size:16px;letter-spacing:-.01em}
+.bg .row button.nm:hover{color:var(--terra)}
+.bg .row small{color:#8f897c;font-weight:400;font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-left:6px}
+.bg .row .ic{display:flex;gap:10px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8f897c;flex:none}
+.bg .row .ic a:hover,.bg .row .ic button:hover{color:var(--terra)}
+.bg .row .ic .on{color:var(--terra)}
+.note{font-size:12px;color:var(--mute2);max-width:70ch;margin-top:20px;line-height:1.5}
 
-  /* botao de info + popover (substitui a legenda de cores) */
-  .infobtn{width:20px;height:20px;flex:0 0 20px;border-radius:50%;border:1px solid var(--line2);
-    background:var(--glass);color:var(--muted);font-size:.7rem;font-weight:700;cursor:pointer;
-    display:inline-flex;align-items:center;justify-content:center;transition:.18s;
-    font-family:var(--font);line-height:1;padding:0}
-  .infobtn:hover{color:var(--accent);border-color:var(--accent)}
-  .infowrap{position:relative;display:inline-flex}
-  .infopop{display:none;position:absolute;top:30px;left:0;z-index:70;width:min(430px,80vw);
-    background:rgba(20,20,26,.92);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
-    border:1px solid var(--line2);border-radius:var(--radius);padding:15px 17px;
-    box-shadow:0 24px 60px -20px rgba(0,0,0,.95);
-    font-size:.79rem;line-height:1.75;color:var(--text2);text-transform:none;letter-spacing:0;font-weight:400}
-  .infowrap.open .infopop{display:block}
-  .infopop b{color:var(--ink);font-weight:600}
-  .infopop .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:1px}
+/* ---------- imersivas ---------- */
+.imers{padding:clamp(30px,4vw,60px) var(--gut);border-top:1px solid var(--ink)}
+.imers h2{font-weight:800;font-size:clamp(20px,2.4vw,34px);letter-spacing:-.03em;text-transform:uppercase}
+.imers .row{display:flex;justify-content:space-between;gap:20px;padding:10px 0;border-bottom:1px solid rgba(14,14,14,.2);flex-wrap:wrap}
+.imers .row b{font-weight:700;text-transform:uppercase}.imers .row span{color:var(--mute);font-size:14px}
 
-  /* ---------- mapa + cards ---------- */
-  .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
-  #map{height:560px;border-radius:var(--radius);border:1px solid var(--line);
-    background:#101015;overflow:hidden;box-shadow:var(--shadow)}
-  .cards{max-height:560px;overflow-y:auto;display:flex;flex-direction:column;gap:11px;padding-right:6px}
-  .cards::-webkit-scrollbar,.dirbody::-webkit-scrollbar,.wkrow::-webkit-scrollbar{width:7px;height:7px}
-  .cards::-webkit-scrollbar-thumb,.dirbody::-webkit-scrollbar-thumb,.wkrow::-webkit-scrollbar-thumb{
-    background:var(--line2);border-radius:8px}
-  .card{background:var(--glass);border:1px solid var(--line);border-radius:var(--radius);
-    padding:19px 20px;transition:.2s;position:relative;overflow:hidden;flex:0 0 auto;
-    backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}
-  .card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--line2);opacity:.9}
-  .card:hover{background:var(--glass2);border-color:var(--line2);transform:translateY(-2px);
-    box-shadow:0 18px 40px -24px rgba(0,0,0,.95)}
-  .card.opening::before{background:var(--accent);box-shadow:0 0 18px rgba(232,193,90,.55)}
-  .card.current::before{background:var(--green)}
-  .card.closing::before{background:var(--red);box-shadow:0 0 18px rgba(240,138,122,.45)}
-  .card.fair::before{background:var(--accent2)}
-  .card .title{font-family:var(--display);font-size:1.28rem;font-weight:600;line-height:1.16;
-    letter-spacing:-.6px;margin-bottom:8px;color:var(--ink)}
-  .card .venue{color:var(--accent2);font-size:.72rem;font-weight:600;letter-spacing:1.3px;
-    text-transform:uppercase}
-  .card .addr{color:var(--muted);font-size:.79rem;margin-top:4px;line-height:1.55}
-  .card .meta{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-top:15px;font-size:.74rem;color:var(--muted)}
-  .artist{color:var(--accent2);font-size:.8rem;text-decoration:none;border-bottom:1px solid transparent;transition:.18s}
-  .artist:hover{color:var(--accent);border-bottom-color:var(--accent)}
-  .dist{color:var(--blue);font-size:.75rem}
+/* ---------- chamada ---------- */
+.cta{background:var(--terra);color:var(--ink);padding:clamp(40px,7vw,120px) var(--gut)}
+.cta h2{font-weight:800;font-size:clamp(40px,8vw,140px);line-height:.86;letter-spacing:-.06em;text-transform:uppercase;max-width:14ch}
+.cta p{max-width:52ch;margin-top:18px;font-size:clamp(16px,1.4vw,20px)}
+.cta .bt{border-color:var(--ink);margin-top:22px;font-size:13px;padding:12px 20px}
+.cta .bt:hover{background:var(--ink);color:var(--terra)}
 
-  /* foto da mostra no card: o botao "foto" cobre o card com a imagem.
-     Overlay em vez de faixa que empurra o layout — o card mora num container
-     que rola sozinho, e faixa que cresce aparecia fora da area visivel.
-     Clicar na imagem fecha. */
-  .cardshot{display:none;position:absolute;inset:0;z-index:6;cursor:pointer;
-    border-radius:var(--radius);overflow:hidden;animation:cardshotin .28s ease}
-  @keyframes cardshotin{from{opacity:0}to{opacity:1}}
-  .cardshot img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.04) contrast(1.02)}
-  .cardshot .cred{position:absolute;right:9px;bottom:9px;font-size:.6rem;letter-spacing:.3px;
-    color:var(--text2);background:rgba(10,10,13,.72);border:1px solid var(--line);padding:3px 9px;border-radius:20px}
-  .cardshot::after{content:'fechar ✕';position:absolute;left:9px;top:9px;font-size:.58rem;letter-spacing:.5px;
-    text-transform:uppercase;color:var(--text2);background:rgba(10,10,13,.72);border:1px solid var(--line);
-    padding:3px 9px;border-radius:20px}
-  .card.fotoaberta{overflow:hidden}
-  .card.fotoaberta .cardshot{display:block}
-  .fotobtn{background:var(--glass2);border:1px solid var(--line);color:var(--text2);border-radius:20px;
-    padding:5px 11px;font-size:.72rem;cursor:pointer;font-family:var(--font);letter-spacing:.3px;transition:.18s;
-    display:inline-flex;align-items:center;gap:5px}
-  .fotobtn::before{content:'';width:11px;height:9px;border-radius:2px;border:1.4px solid currentColor;
-    border-bottom-width:3px;opacity:.7}
-  .fotobtn:hover{border-color:var(--accent);color:var(--accent)}
-  .card.fotoaberta .fotobtn{border-color:var(--accent);color:var(--accent)}
-  .card.semfoto .cardshot,.card.semfoto .fotobtn{display:none}
+/* ---------- rodapé ---------- */
+footer{padding:28px var(--gut) 46px;font-size:13px;color:var(--mute);border-top:1px solid var(--ink);line-height:1.7}
+footer nav{display:flex;gap:10px 26px;flex-wrap:wrap;margin-bottom:14px;font-size:14px;color:var(--ink);font-weight:600}
+footer nav a:hover{color:var(--terra)}
+footer a:hover{color:var(--terra)}
+.visits{margin-top:8px;display:none}
 
-  /* etiquetas */
-  .tag{font-size:.63rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
-    padding:3px 9px;border-radius:20px;border:1px solid transparent;white-space:nowrap}
-  .tag.opening{background:rgba(232,193,90,.15);color:var(--accent);border-color:rgba(232,193,90,.35)}
-  .tag.current{background:rgba(127,216,160,.13);color:var(--green);border-color:rgba(127,216,160,.3)}
-  .tag.closing{background:rgba(240,138,122,.14);color:var(--red);border-color:rgba(240,138,122,.32)}
-  .tag.fair{background:rgba(201,111,74,.16);color:var(--accent2);border-color:rgba(201,111,74,.35)}
-  .tag.free{background:rgba(127,216,160,.12);color:var(--green);border-color:rgba(127,216,160,.28)}
-  .tag.paid{background:rgba(143,182,249,.12);color:var(--blue);border-color:rgba(143,182,249,.28)}
-  .tag.tbc{background:rgba(255,255,255,.05);color:var(--muted);border-color:var(--line)}
-  .freeday{color:var(--green);font-size:.73rem}
-  .fav{cursor:pointer;color:var(--muted);transition:.18s;user-select:none;font-size:.95rem;line-height:1}
-  .fav:hover{color:var(--red);transform:scale(1.15)}
-  .fav.on{color:var(--red)}
+/* ---------- modal ---------- */
+#modalBg{position:fixed;inset:0;background:rgba(14,14,14,.72);z-index:200;display:none;align-items:center;justify-content:center;padding:var(--gut)}
+#modal{background:var(--paper);color:var(--ink);width:min(760px,100%);max-height:calc(100vh - 2*var(--gut));overflow:auto;padding:clamp(18px,2.4vw,34px);position:relative}
+#modal .close{position:absolute;top:10px;right:14px;font-size:28px;line-height:1;cursor:pointer}
+#modal .close:hover{color:var(--terra)}
+#modal h3{font-weight:800;text-transform:uppercase;font-size:clamp(26px,3.6vw,48px);line-height:.92;letter-spacing:-.04em;padding-right:34px}
+#modal .sub{font-size:13px;color:var(--mute);margin-top:8px}
+#modal .foto{margin:14px 0 4px;max-height:50vh;overflow:hidden;background:#d9d4c8}
+#modal .foto img{width:100%;max-height:50vh;object-fit:cover;display:block}
+#modal .cred{font-size:11px;color:var(--mute)}
+#modal .art{font-family:var(--serif);font-style:italic;font-size:24px;margin-top:6px}
+#modal .art span{cursor:pointer}#modal .art span:hover{color:var(--terra)}
+#modal .links{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+#modal .exline{border-top:2px solid var(--ink);padding-top:8px;margin-top:14px;font-size:15px}
+#modal .exline b{text-transform:uppercase;font-weight:800;letter-spacing:-.02em}
+#modal .exline .w{display:block;color:var(--mute);font-size:13px;margin-top:2px}
+#modal .corpo{margin-top:12px;max-width:62ch}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px 14px;margin-top:16px}
+.fld{display:flex;flex-direction:column;gap:4px}.fld.full{grid-column:1 / -1}
+.fld label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
+.fld input,.fld select,.fld textarea{font:500 16px Switzer,sans-serif;background:transparent;color:var(--ink);border:0;border-bottom:1.5px solid var(--ink);padding:7px 0;outline:0;border-radius:0}
+.fld select{background-image:none;color:var(--ink);text-transform:none;letter-spacing:0;font-size:16px}
+.fld select option{background:var(--paper);color:var(--ink)}
+.fld textarea{min-height:80px;resize:vertical;border:1.5px solid var(--ink);padding:8px}
+.fld input:focus,.fld textarea:focus,.fld select:focus{border-color:var(--terra)}
+.fereq{color:var(--terra)}
+.fmsg{color:var(--terra);font-size:14px;margin-top:10px;min-height:1em}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--paper);padding:10px 18px;font-size:13px;letter-spacing:.06em;opacity:0;pointer-events:none;transition:.3s;z-index:300}
+#toast.on{opacity:1;transform:translateX(-50%)}
 
-  /* botoes */
-  .btn{display:inline-block;background:var(--glass2);border:1px solid var(--line);color:var(--text2);
-    border-radius:20px;padding:5px 13px;font-size:.74rem;cursor:pointer;text-decoration:none;transition:.18s;white-space:nowrap}
-  .btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(232,193,90,.09)}
-  .btn.ico{padding:5px 8px;line-height:0;display:inline-flex;align-items:center;justify-content:center}
-  .btn.ico svg{display:block}
-  .btn.add{border-color:rgba(167,139,250,.4);color:var(--violet)}
-  .btn.add:hover{background:rgba(167,139,250,.14);border-color:var(--violet);color:var(--violet)}
-  .share{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
-  .share .btn{padding:8px 17px;font-size:.8rem}
-
-  /* ---------- em foco ---------- */
-  .foco{position:relative;background:var(--glass);border:1px solid var(--line);border-radius:var(--radius);
-    padding:24px 26px;margin:18px 0 4px;overflow:hidden;box-shadow:var(--shadow);
-    backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}
-  .foco.comimg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.85fr);gap:0;padding:0;align-items:stretch}
-  .foco.comimg .focotxt{padding:28px 30px;min-width:0;min-height:286px;
-    display:flex;flex-direction:column;justify-content:center}
-  .focoimg{position:relative;order:2;overflow:hidden;min-height:100%}
-  .focoimg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
-    filter:saturate(1.05) contrast(1.02);transition:transform .6s ease}
-  .foco.comimg:hover .focoimg img{transform:scale(1.03)}
-  .focoimg::after{content:'';position:absolute;inset:0;pointer-events:none;
-    background:linear-gradient(90deg,var(--bg) 0%,rgba(10,10,13,.45) 22%,transparent 55%)}
-  .focoimg .cred{position:absolute;right:10px;bottom:9px;z-index:2;font-size:.6rem;letter-spacing:.4px;
-    color:var(--text2);background:rgba(10,10,13,.6);border:1px solid var(--line);
-    padding:3px 9px;border-radius:20px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-  .focolocal{color:var(--muted);font-size:.79rem;margin-top:4px}
-.focodata{color:var(--accent2);font-size:.75rem;font-weight:600;letter-spacing:.3px;margin-top:6px}
-.focoimg.gerada{background:#0a0a0d;display:block;overflow:hidden}
-.focoimg.gerada svg{width:100%;height:100%;display:block}
-.kpimapa{padding:8px 6px 8px 10px;gap:5px;justify-content:center;align-items:center;cursor:crosshair}
-.kpimapa svg{width:100%;height:66px;display:block;overflow:visible}
-.kpimapa .cpt{fill:var(--muted);opacity:.40;transition:fill .18s,opacity .18s}
-.kpimapa .cpt.on{fill:var(--text2);opacity:.72}
-.kpimapa .cpt.hoje{fill:var(--accent);opacity:1}
-.kpimapa .cpt.ativo{fill:var(--accent2);opacity:1}
-.kpimapa .halo{fill:none;stroke:var(--accent);stroke-width:.6;pointer-events:none}
-.kpimapa .hit{fill:transparent;cursor:pointer}
-.kpimapa .cptlabel{font-size:.68rem;color:var(--muted);opacity:.8;white-space:nowrap;
-    overflow:hidden;text-overflow:ellipsis;max-width:100%;text-align:center}
-.kpimapa .cptlabel.ativo{color:var(--accent2);opacity:1}
-@media (prefers-reduced-motion:reduce){.kpimapa .halo{display:none}}
-  .foco::before{content:'';position:absolute;inset:0;pointer-events:none;
-    background:radial-gradient(70% 130% at 0% 0%,rgba(232,193,90,.10),transparent 60%)}
-  .foco>*{position:relative}
-  .foco .kicker{font-size:.63rem;font-weight:700;letter-spacing:2.2px;text-transform:uppercase;
-    color:var(--accent);display:flex;align-items:center;gap:9px}
-  .foco .kicker .selo{background:rgba(255,255,255,.07);color:var(--muted);border:1px solid var(--line);
-    padding:2px 8px;border-radius:20px;letter-spacing:1px;font-size:.58rem}
-  .foco h3{font-family:var(--display);font-size:2.35rem;font-weight:700;line-height:1.04;
-    margin:13px 0 7px;letter-spacing:-1.4px}
-  .foco .quem{color:var(--accent2);font-size:.74rem;font-weight:600;letter-spacing:1.4px;text-transform:uppercase}
-  .foco .txt{color:var(--text2);font-size:.95rem;margin-top:15px;max-width:58ch;line-height:1.78}
-  .foco .btns{display:flex;gap:9px;flex-wrap:wrap;margin-top:17px}
-
-  /* ---------- aberturas da semana ---------- */
-  .wkwrap{background:var(--glass);border:1px solid var(--line);border-radius:var(--radius);
-    padding:24px 26px;margin-top:30px;box-shadow:var(--shadow);
-    backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}
-  .wkwrap h2{margin:0 0 14px;border:0;padding:0}
-  .wkscroll{position:relative}
-  .wkfade{position:absolute;right:0;top:0;bottom:12px;width:64px;pointer-events:none;
-    background:linear-gradient(to right,transparent,rgba(10,10,13,.94));opacity:0;transition:opacity .25s}
-  .wkfade.on{opacity:1}
-  .wkhint{font-size:.62rem;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;
-    color:var(--muted);border:1px solid var(--line);border-radius:20px;padding:3px 10px;
-    margin-left:10px;vertical-align:middle;display:none}
-  .wkrow{display:flex;gap:11px;overflow-x:auto;padding-bottom:10px;scroll-snap-type:x mandatory;
-    -webkit-overflow-scrolling:touch}
-  /* poucas aberturas: em vez de dois cards espremidos à esquerda com um vazião
-     à direita, os cards se abrem para ocupar a faixa. */
-  .wkrow.poucos{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));overflow:visible}
-  .wkrow.poucos .wk{flex:none}
-  .wk{flex:0 0 260px;scroll-snap-align:start;background:var(--glass2);border:1px solid var(--line);
-    border-radius:var(--radius-sm);padding:13px 15px;cursor:pointer;transition:.2s}
-  .wk:hover{border-color:var(--accent);transform:translateY(-2px);background:rgba(232,193,90,.07)}
-  .wk .d{font-size:.75rem;color:var(--accent);font-weight:700;letter-spacing:.5px;
-    display:flex;align-items:center;gap:7px;margin-bottom:6px}
-  .wk .nw{font-size:.57rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
-    background:rgba(255,255,255,.07);color:var(--muted);border:1px solid var(--line);padding:2px 7px;border-radius:20px}
-  .wk .nw.hj{background:rgba(232,193,90,.18);color:var(--accent);border-color:rgba(232,193,90,.4)}
-  .wk .t{font-family:var(--display);font-size:1.02rem;font-weight:600;line-height:1.2;
-    letter-spacing:-.4px;color:var(--ink)}
-  .wk .v{font-size:.75rem;color:var(--muted);margin-top:4px}
-
-  /* ---------- diretorio ---------- */
-  .dirwrap{background:var(--glass);border:1px solid var(--line);border-radius:var(--radius);
-    overflow:hidden;box-shadow:var(--shadow);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}
-  .dirbody{max-height:420px;overflow:auto}
-  table{width:100%;border-collapse:collapse;font-size:.83rem}
-  th{position:sticky;top:0;z-index:2;text-align:left;padding:12px 14px;font-size:.64rem;font-weight:600;
-    text-transform:uppercase;letter-spacing:1.4px;color:var(--muted);cursor:pointer;
-    background:rgba(18,18,24,.92);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
-    border-bottom:1px solid var(--line);white-space:nowrap;transition:.18s}
-  th:hover{color:var(--accent)}
-  td{padding:11px 14px;border-bottom:1px solid var(--hair);color:var(--text2);vertical-align:middle}
-  tr:last-child td{border-bottom:0}
-  tbody tr{transition:.15s}
-  tbody tr:hover{background:rgba(255,255,255,.035)}
-  td .gname{color:var(--ink);font-weight:600;cursor:pointer;transition:.18s}
-  td .gname:hover{color:var(--accent)}
-  td.actions{padding-right:16px}
-  td.actions>*{vertical-align:middle}
-  .dir-acts{display:inline-grid;grid-template-columns:repeat(4,1.55rem);gap:5px;align-items:center;justify-items:center}
-  td.actions .fav{font-size:.9rem}
-  td.actions .btn.ico{padding:4px;border-radius:7px}
-  .ico-gap{width:1.55rem;height:1px}
-  .zona{font-size:.72rem;color:var(--muted)}
-
-  /* distribuição por bairro — fundida no Diretório, chips clicáveis */
-  .dirconc{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 16px}
-  .bchip{position:relative;overflow:hidden;display:inline-flex;align-items:center;gap:7px;
-    white-space:nowrap;background:var(--glass);border:1px solid var(--line);color:var(--text2);
-    border-radius:20px;padding:5px 12px;font:inherit;font-size:.78rem;cursor:pointer;transition:.16s}
-  .bchip-bar{position:absolute;left:0;top:0;bottom:0;width:var(--w,0%);
-    background:rgba(232,193,90,.13);pointer-events:none}
-  .bchip>*{position:relative}
-  .bchip b{color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums;font-size:.74rem}
-  .bchip:hover{border-color:var(--line2);color:var(--ink);transform:translateY(-1px)}
-  .bchip.on{background:rgba(232,193,90,.14);border-color:var(--accent);color:var(--ink)}
-  .bchip.on b{color:var(--accent)}
-  .bchip.on::after{content:'✕';margin-left:2px;color:var(--accent);font-size:.66rem}
-  .bchip.on .bchip-bar{background:rgba(232,193,90,.22)}
-  .bchip.more{color:var(--muted);border-style:dashed}
-  .bchip.more:hover{color:var(--accent);border-color:var(--accent)}
-
-  /* ---------- "A cidade em números" ---------- */
-  .numsec{margin-top:46px}
-  .numsec .panel{max-width:640px}
-  .panel{position:relative;background:var(--glass);border:1px solid var(--line);
-    border-radius:var(--radius);padding:20px 22px;overflow:hidden;box-shadow:var(--shadow);
-    backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}
-  .panel::before{content:'';position:absolute;inset:0;pointer-events:none;
-    background:radial-gradient(75% 120% at 100% 0%,rgba(232,193,90,.07),transparent 62%)}
-  .panel>*{position:relative}
-
-  /* ---------- "O panorama" — timeline ao vivo das mostras em cartaz ---------- */
-  .panorama{margin-top:48px}
-  .pano{--viz-com:#d95926;--viz-inst:#3987e5;padding:22px 24px}
-  .pano-head{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;
-    flex-wrap:wrap;margin-bottom:14px}
-  .pano-lead{margin:0;font-size:.9rem;color:var(--text2);max-width:46ch;line-height:1.62}
-  .pano-lead b{color:var(--ink);font-family:var(--display);font-weight:700;
-    font-variant-numeric:tabular-nums}
-  .pano-leg{display:flex;gap:15px;flex-wrap:wrap;font-size:.71rem;color:var(--muted);
-    letter-spacing:.4px;padding-top:2px}
-  .pano-leg span{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
-  .pano-leg i{width:11px;height:11px;border-radius:3px;display:inline-block}
-  .pano-leg .lg-com{background:var(--viz-com)}
-  .pano-leg .lg-inst{background:var(--viz-inst)}
-  .pano-leg .lg-hoje{position:relative;padding-left:13px}
-  .pano-leg .lg-hoje::before{content:'';position:absolute;left:4px;top:-1px;bottom:-1px;
-    width:2px;background:var(--accent)}
-
-  .pano-chart{position:relative;width:100%}
-  .pano-chart svg{display:block;width:100%;height:auto;overflow:visible}
-  .pano-bar{rx:2;transition:opacity .12s}
-  .pano-chart.hov .pano-bar{opacity:.32}
-  .pano-chart.hov .pano-bar.on{opacity:1}
-  .pano-hit{fill:transparent;cursor:pointer}
-  .pano-axis{fill:var(--muted);font-family:var(--font);font-size:12px}
-  .pano-grid{stroke:var(--hair);stroke-width:1}
-  .pano-today{stroke:var(--accent);stroke-width:2}
-  .pano-todaylbl{fill:var(--accent);font-size:12px;font-weight:700;font-family:var(--font)}
-
-  .pano-tip{position:absolute;z-index:30;pointer-events:none;opacity:0;transform:translateY(3px);
-    transition:opacity .12s,transform .12s;background:rgba(20,17,12,.98);border:1px solid var(--line2);
-    border-radius:10px;padding:10px 12px;max-width:240px;font-size:.77rem;line-height:1.5;color:var(--text2);
-    box-shadow:0 20px 46px -18px rgba(0,0,0,.95)}
-  .pano-tip.show{opacity:1;transform:none;pointer-events:auto}
-  .pano-tip b{display:block;color:var(--ink);font-family:var(--display);font-weight:700;
-    font-size:.85rem;line-height:1.2;margin-bottom:3px}
-  .pano-tip .pt-v{color:var(--accent2);font-size:.7rem;text-transform:uppercase;letter-spacing:.6px}
-  .pano-tip .pt-d{color:var(--muted);font-size:.72rem;margin-top:4px}
-  .pano-go{margin-top:9px;display:inline-block;background:rgba(232,193,90,.12);border:1px solid rgba(232,193,90,.4);
-    color:var(--accent);border-radius:8px;padding:5px 10px;font:inherit;font-size:.72rem;font-weight:600;
-    cursor:pointer;transition:.15s}
-  .pano-go:hover{background:rgba(232,193,90,.2);border-color:var(--accent)}
-
-  .pano-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:1px;
-    margin-top:22px;background:var(--hair);border:1px solid var(--hair);border-radius:10px;overflow:hidden}
-  .pano-tile{background:#131109;padding:14px 15px}
-  .pano-tile b{display:block;font-family:var(--display);font-size:1.42rem;font-weight:700;
-    color:var(--accent);letter-spacing:-.5px;line-height:1.1;font-variant-numeric:tabular-nums}
-  .pano-tile span{display:block;color:var(--muted);font-size:.75rem;line-height:1.45;margin-top:5px}
-  @media(max-width:560px){
-    .pano{padding:18px 16px}
-    .pano-tiles{grid-template-columns:1fr 1fr}
-  }
-
-  /* faixa de CTA — Divulgue + Intel, tiradas do meio da coluna da enquete */
-  .ctaband{display:grid;grid-template-columns:1fr;gap:16px;margin-top:38px}
-  .cta{background:var(--glass);border:1px solid var(--line);border-radius:var(--radius);
-    padding:22px 24px;display:flex;flex-direction:column;gap:9px;align-items:flex-start;
-    box-shadow:var(--shadow)}
-  .cta-espaco{border-color:rgba(167,139,250,.28)}
-  .cta b{font-family:var(--display);font-size:1.05rem;color:var(--ink);font-weight:700}
-  .cta p{color:var(--muted);font-size:.85rem;line-height:1.6;margin:0;flex:1}
-  .cta .btn{margin-top:4px}
-  @media(max-width:720px){.ctaband{grid-template-columns:1fr}}
-
-  .paineltopo{display:flex;align-items:baseline;justify-content:space-between;gap:12px;
-    margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--hair)}
-  .paineltopo .pt{font-size:.8rem;color:var(--text2)}
-  .paineltopo .pn2{font-size:.68rem;color:var(--muted);text-transform:uppercase;
-    letter-spacing:1.4px;white-space:nowrap}
-  .cardsmore{display:none;width:100%;margin-top:14px;padding:12px;background:var(--glass2);
-    border:1px solid var(--line);border-radius:22px;color:var(--text2);font-family:var(--font);
-    font-size:.83rem;font-weight:600;cursor:pointer;transition:.18s;letter-spacing:.3px}
-  .cardsmore:hover{border-color:var(--accent);color:var(--accent)}
-
-  /* ---------- notas / footer ---------- */
-  .note{color:var(--muted);font-size:.76rem;margin-top:11px;line-height:1.7}
-  .prefoot .note{max-width:60ch}
-  footer{margin-top:52px;padding:26px 0 10px;border-top:1px solid var(--hair);
-    color:var(--muted);font-size:.76rem;line-height:1.8}
-  footer a{color:var(--text2);text-decoration:none;border-bottom:1px solid var(--line);transition:.18s}
-  footer a:hover{color:var(--accent);border-bottom-color:var(--accent)}
-  .footnav{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:18px;padding-bottom:16px;
-    border-bottom:1px solid var(--hair)}
-  .footnav a{font-family:var(--display);font-size:.9rem;font-weight:600;color:var(--text2);
-    border-bottom:0;letter-spacing:.2px}
-  .footnav a:hover{color:var(--accent)}
-  .visits{margin-top:9px;font-size:.72rem;color:var(--muted);opacity:.75}
-  .visits b{color:var(--text2);font-weight:600}
-
-  /* ---------- roteiro ---------- */
-  #routePanel{position:fixed;right:18px;bottom:18px;z-index:80;width:290px;max-width:calc(100vw - 36px);
-    background:rgba(18,18,24,.9);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
-    border:1px solid var(--line2);border-radius:var(--radius);padding:15px 17px;
-    box-shadow:0 24px 60px -20px rgba(0,0,0,.95);display:none}
-  #routePanel h3{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:1.6px;
-    color:var(--accent);margin-bottom:10px}
-  #routePanel ol{list-style:none;counter-reset:r}
-  #routePanel li{counter-increment:r;display:flex;justify-content:space-between;align-items:center;gap:8px;
-    font-size:.79rem;padding:6px 0;border-bottom:1px solid var(--hair);color:var(--text2)}
-  #routePanel li::before{content:counter(r);color:var(--accent);font-weight:700;font-size:.7rem;margin-right:2px}
-  #routePanel li span{cursor:pointer;color:var(--muted);transition:.18s;flex:0 0 auto}
-  #routePanel li span:hover{color:var(--red)}
-  #routePanel .go{display:block;text-align:center;margin-top:12px;background:var(--accent);color:var(--onaccent);
-    border-radius:20px;padding:8px;font-size:.78rem;font-weight:650;text-decoration:none;transition:.18s}
-  #routePanel .go:hover{filter:brightness(1.1)}
-  #routePanel .clear{display:block;text-align:center;margin-top:7px;color:var(--muted);
-    font-size:.73rem;cursor:pointer;transition:.18s}
-  #routePanel .clear:hover{color:var(--red)}
-
-  /* ---------- modal ---------- */
-  .panel.envio{margin-top:14px}
-  .panel.envio .note{max-width:46ch}
-  @media print{.panel.envio{display:none}}
-  .panel.intel{margin-top:14px}
-  .panel.intel .note{max-width:46ch}
-  @media print{.panel.intel{display:none}}
-  .btn.intel{border-color:rgba(232,193,90,.4);color:var(--accent)}
-  .btn.intel:hover{background:rgba(232,193,90,.14);border-color:var(--accent)}
-  #modalBg{position:fixed;inset:0;z-index:90;background:rgba(6,6,9,.72);
-    backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:none;
-    align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto;overscroll-behavior:contain}
-  #modal{background:rgba(20,20,26,.94);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);
-    border:1px solid var(--line2);border-radius:var(--radius);padding:22px 24px;
-    width:min(620px,100%);margin:auto;position:relative;
-    box-shadow:0 40px 90px -30px rgba(0,0,0,1)}
-  #modal h3{font-family:var(--display);font-size:1.75rem;font-weight:700;line-height:1.1;
-    padding-right:34px;letter-spacing:-1px}
-  #modal .sub{color:var(--accent2);font-size:.85rem;margin-top:5px}
-  #modal .links{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0 6px}
-  #modal .exline{padding:11px 0;border-bottom:1px solid var(--hair);font-size:.85rem;color:var(--text2)}
-  #modal .exline:last-child{border-bottom:0}
-  /* --- CTA: divulgue sua vernissage --- */
-  .cta{background:linear-gradient(135deg,rgba(232,193,90,.10),rgba(167,139,250,.07));
-    border:1px solid rgba(232,193,90,.34);display:flex;gap:16px;align-items:center;
-    justify-content:space-between;flex-wrap:wrap;padding:17px 19px;margin-top:14px}
-  .cta .ctatxt{min-width:190px;flex:1}
-  .cta h3{font-size:.98rem;font-weight:600;letter-spacing:-.2px}
-  .cta p{color:var(--text2);font-size:.81rem;margin-top:4px;line-height:1.45}
-  .ctabtn{background:var(--accent);color:#14140f;border:0;border-radius:999px;
-    padding:10px 22px;font-size:.85rem;font-weight:700;cursor:pointer;white-space:nowrap;
-    box-shadow:0 4px 14px rgba(232,193,90,.2);transition:.15s}
-  .ctabtn:hover{transform:translateY(-1px);box-shadow:0 7px 20px rgba(232,193,90,.3)}
-  /* --- formulario --- */
-  .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}
-  .fgrid .full{grid-column:1/-1}
-  .fld label{display:block;color:var(--muted);font-size:.72rem;text-transform:uppercase;
-    letter-spacing:.7px;margin-bottom:5px}
-  .fld input,.fld textarea,.fld select{width:100%;background:rgba(255,255,255,.045);
-    border:1px solid var(--line);border-radius:10px;color:var(--text);padding:10px 12px;
-    font-size:.84rem;font-family:inherit}
-  .fld input:focus,.fld textarea:focus,.fld select:focus{outline:none;border-color:var(--accent)}
-  .fld textarea{resize:vertical;min-height:52px}
-  .fereq{color:var(--accent2)}
-  .fmsg{font-size:.8rem;margin-top:10px;color:var(--accent2);min-height:18px}
-  @media(max-width:640px){.fgrid{grid-template-columns:1fr}.cta{padding:22px 20px}}
-  #modal .exline .w{color:var(--muted);font-size:.76rem;display:block;margin-top:2px}
-  #modal .close{position:absolute;top:16px;right:18px;width:30px;height:30px;border-radius:50%;
-    border:1px solid var(--line);background:var(--glass);color:var(--muted);cursor:pointer;
-    font-size:1rem;line-height:1;display:flex;align-items:center;justify-content:center;transition:.18s}
-  #modal .close:hover{color:var(--red);border-color:var(--red)}
-
-  /* ---------- leaflet ---------- */
-  .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:rgba(20,20,26,.95);color:var(--ink);
-    border:1px solid var(--line2);box-shadow:0 18px 44px -18px rgba(0,0,0,.95)}
-  .leaflet-popup-content-wrapper{border-radius:var(--radius-sm)}
-  .leaflet-popup-content{margin:12px 14px;font-family:var(--font);font-size:.82rem;line-height:1.6}
-  .leaflet-popup-content b{color:var(--ink);font-weight:600}
-  .leaflet-popup-content a{color:var(--accent);text-decoration:none}
-  .leaflet-container{background:#101015}
-  .leaflet-control-zoom a{background:rgba(20,20,26,.9)!important;color:var(--text2)!important;
-    border-color:var(--line)!important}
-  .leaflet-control-zoom a:hover{color:var(--accent)!important}
-  .leaflet-control-attribution{background:rgba(10,10,13,.7)!important;color:var(--muted)!important}
-  .leaflet-control-attribution a{color:var(--muted)!important}
-
-  /* ---------- responsivo ---------- */
-  @media(max-width:950px){
-    header{padding:13px 0 11px;position:static}
-    .hwrap{padding:0 18px;gap:10px}
-    .hacoes{width:100%;flex-wrap:nowrap}
-    .hacoes #search{flex:1;min-width:0;width:auto}
-    .navedital{flex:0 0 auto}
-    .navedital-lbl{display:none}
-    .navedital::before{content:'Editais';font-weight:600}
-    header h1{font-size:1.2rem;letter-spacing:3px}
-    #search{width:100%}
-    .wrap{padding:0 18px 44px}
-    .kpis{grid-template-columns:1fr 1fr;margin:12px 0 2px}
-    .kpi{padding:11px 4px 10px 14px;font-size:.7rem}
-    .kpi b{font-size:1.34rem}
-    .kpi:nth-child(odd){padding-left:0}
-    .kpi:nth-child(odd)::before{display:none}
-    .kpi:nth-child(n+3)::after{content:'';position:absolute;left:0;right:0;top:0;height:1px;background:var(--hair)}
-
-    h2{margin:42px 0 15px}
-    .foco{padding:19px 18px}
-    .foco h3{font-size:1.72rem;letter-spacing:-1px}
-    .wkwrap{padding:16px 16px}
-  .wk{flex:0 0 76vw;background:rgba(255,255,255,.105);border-color:rgba(255,255,255,.17)}
-  .wk .v{color:var(--text2)}
-  .wk .nw{background:rgba(255,255,255,.11);color:#a9a9ba}
-    .wkhint{display:inline-block}
-    .filtrobtn{display:inline-block}
-    .filters.fechado select,.filters.fechado #nearBtn,
-    .filters.fechado #freeBtn,.filters.fechado #favBtn{display:none}
-    .viewtoggle{display:flex}
-    .grid{grid-template-columns:1fr;gap:0}
-    .grid #map{display:none}
-    .grid.mapa #map{display:block;height:calc(100vh - 190px);min-height:340px}
-    .grid.mapa .cards{display:none}
-    .cards{max-height:none;overflow:visible;padding-right:0}
-    .cardsmore.on{display:block}
-    .grid.mapa+.cardsmore{display:none}
-    .prefoot{grid-template-columns:1fr;gap:10px}
-    .pollrow{grid-template-columns:118px 1fr 40px}
-    .barrow{grid-template-columns:104px 1fr 28px}
-    .paineltopo{flex-direction:column;gap:3px}
-    .foco.comimg{grid-template-columns:1fr}
-    .foco.comimg .focotxt{padding:19px 18px;min-height:0}
-    .focoimg{order:0;min-height:0;aspect-ratio:16/10}
-    .focoimg::after{background:linear-gradient(0deg,var(--bg) 0%,rgba(10,10,13,.4) 25%,transparent 60%)}
-    #routePanel{left:12px;right:12px;bottom:12px;width:auto}
-    .dirbody{max-height:340px}
-    table{font-size:.78rem}
-    td,th{padding:9px 10px}
-  }
-  @media(max-width:520px){
-    .foco h3{font-size:1.5rem}
-    .filters{gap:6px}
-    .chip{padding:6px 12px;font-size:.78rem}
-  }
-  @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
-
-  /* ============================================================
-     backdrop-filter (vidro fosco) é aceleração de GPU. Em muitos aparelhos
-     Android — sobretudo combinado com position:sticky/fixed, como no header —
-     ele quebra a composição da tela: a página fica preta, pisca ao toque e
-     trava. Em telas de toque trocamos por fundos sólidos: mesmo layout,
-     mesma leitura, sem depender da GPU.
-     ============================================================ */
-  @media (max-width:1024px), (hover:none), (pointer:coarse){
-    header,#search,.card,.chip,.foco,.panel,.wkwrap,.dirwrap,#modal,#modalBg,
-    #routePanel,.navedital,.infopop,.viewtoggle,select,th,.focoimg .cred,
-    .kpi,.wk,.btn{
-      backdrop-filter:none !important;
-      -webkit-backdrop-filter:none !important;
-    }
-    header{background:#0c0c10 !important}
-    .card,.panel,.foco,.wkwrap,.dirwrap,#modal,#routePanel,.navmenu,.infopop,.wk{
-      background:#131318 !important}
-    #modalBg{background:rgba(6,6,9,.94) !important}
-    #search,select,.chip,.navbtn,.viewtoggle,.btn{background:#17171d !important}
-    th{background:#131318 !important}
-    .focoimg .cred{background:rgba(10,10,13,.85) !important}
-    /* filtros/sombras pesadas também custam GPU */
-    *{box-shadow:none !important}
-    .card,.panel,.foco,.wkwrap,.dirwrap{border:1px solid rgba(255,255,255,.10) !important}
-  }
-/* capa gerada: campo silencioso */
-  .focoimg.gerada svg circle,.focoimg.gerada svg polygon,.focoimg.gerada svg line,
-  .focoimg.gerada svg path,.focoimg.gerada svg polyline,
-  .focoimg.gerada svg rect[stroke]:not([fill^="url"]){display:none!important}
-  .focoimg.gerada::after{content:'';position:absolute;inset:0;pointer-events:none;
-    background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.020) 0 2px,transparent 2px 9px)}
-  .focoimg.gerada{position:relative}
-
+/* ---------- responsivo ---------- */
+@media(max-width:980px){
+  .nav .sub{display:none}
+  .barra-fixa nav{gap:14px;font-size:12px}
+  .barra-fixa nav a.opc{display:none}
+}
+@media(max-width:820px){
+  body{font-size:16px}
+  .marca{font-size:11.6vw}
+  .nav nav{gap:8px 16px;font-size:13px}
+  .hero{grid-template-columns:1fr}.hero .tx{min-height:0}.hero figure{height:72vw;order:-1}
+  .filtros{gap:10px}
+  .f-mais{display:inline-block}
+  .f-extra{display:none}.f-extra.aberto{display:flex}
+  .seg{width:100%;overflow-x:auto}.seg button{white-space:nowrap;flex:1}
+  .mapaBox{height:auto}
+  #mapaCanvas{position:relative!important;height:68vh;min-height:360px}
+  .painel{position:relative;inset:auto;width:auto;margin:0;padding:16px var(--gut)}
+  .leg{bottom:auto;top:10px;left:10px;gap:8px 12px;font-size:10px;padding:6px 8px}
+  .pino{height:auto;padding:46px 0 30px}
+  .trilho{overflow-x:auto;width:auto;scroll-snap-type:x mandatory;padding-bottom:10px}
+  .cartao{width:72vw;scroll-snap-align:start}
+  .grade{grid-template-columns:1fr 1fr;row-gap:30px}
+  .item,.item:nth-child(n){grid-column:auto;margin-top:0}
+  .item:nth-child(5n+1){grid-column:1 / -1}
+  .item .im,.item:nth-child(5n+1) .im,.item:nth-child(5n+5) .im{aspect-ratio:4/5}
+  .item:nth-child(5n+1) .im{aspect-ratio:5/4}
+  .item h3{font-size:20px}
+  .numeros{grid-template-columns:1fr 1fr}
+  .barra span{font-size:9px}
+  .fgrid{grid-template-columns:1fr}
+  .tambem ul{columns:1}
+  .bg .row .ic{gap:12px}
+  .bg .row button.nm{font-size:15px}
+  .cta h2{max-width:none}
+}
+@media(max-width:480px){
+  .grade{grid-template-columns:1fr}
+  .item:nth-child(5n+1){grid-column:auto}
+  .item:nth-child(5n+1) .im{aspect-ratio:4/5}
+  .barra-fixa nav a.opc2{display:none}
+}
+.semmov .pino{height:auto;padding:46px 0 30px}
+.semmov .trilho{overflow-x:auto;width:auto;scroll-snap-type:x mandatory;padding-bottom:10px}
+.semmov .cartao{width:min(72vw,360px);scroll-snap-align:start}
+@media(max-width:820px){.barra.fora span{max-width:52vw;overflow:hidden;text-overflow:ellipsis}.busca{font-size:22px}}
+@media(prefers-reduced-motion:reduce){.item .im{clip-path:none}.item .tx{opacity:1;transform:none}.barra em{clip-path:none}}
 </style>
-<!-- a estética do mês (temporada.js → temporada.css). Vem por último para sobrepor os tokens. -->
-<link rel="stylesheet" href="temporada.css">
 <script data-goatcounter="https://vernissages.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
-<!-- Hero 3D — só na temporada Concreto (outubro/2026). Decide antes do
-     primeiro paint pra não piscar; fora de outubro isto não existe (nem o
-     Three.js é baixado) e o site abre direto no header de sempre. -->
-<script>
-(function(){
-  var mesHoje = new Date(Date.now() - 3 * 3600e3).toISOString().slice(0, 7);
-  if (mesHoje !== '2026-10') return;
-  document.write('<div id="hero3d"><div id="hero3d-cena"></div><div class="hero3d-txt">' +
-    '<div class="hero3d-kick">Temporada 01 · Concreto</div>' +
-    '<h1 class="hero3d-h1">VERNISSAGES<br>SÃO PAULO</h1>' +
-    '<p class="hero3d-sub">Galerias, aberturas de exposições e roteiros de arte em São Paulo</p>' +
-    '<a class="hero3d-baixo" href="#kpis" aria-label="Ver a agenda">↓</a>' +
-    '</div></div>');
-})();
-</script>
-<header>
-  <div class="hwrap">
-    <div class="hbrand">
-      <h1>VERNISSAGES <span>SP</span></h1>
-      <p>Galerias, aberturas de exposições e roteiros de arte em São Paulo</p>
-    </div>
-    <div class="hacoes">
-      <input id="search" type="text" placeholder="Buscar galeria, artista, endereço, bairro…">
-      <a class="navedital" href="editais.html">
-        <span class="navedital-lbl">Editais &amp; chamadas</span>
-        <span class="navedital-n" id="navEditalN"></span>
-      </a>
-    </div>
-  </div>
-</header>
+
+<div class="barra-fixa" id="barraFixa" aria-hidden="true">
+  <b>Vernissages SP</b>
+  <nav>
+    <a href="#mapa" data-go="mapa">Mapa</a>
+    <a href="#semana" data-go="semana" class="opc">Semana</a>
+    <a href="#agenda" data-go="agenda">Agenda</a>
+    <a href="#espacos" data-go="espacos" class="opc2">Espaços</a>
+    <a href="editais.html">Editais<span class="nbadge" id="navEditalN2" hidden></span></a>
+  </nav>
+</div>
 
 <div class="wrap">
-
-  <div class="kpis" id="kpis"></div>
-
-  <div class="foco" id="foco"></div>
-
-<div class="wkwrap" id="wkwrap" style="display:none">
-    <h2>Aberturas · esta semana <span class="wkhint" id="wkhint">deslize &rarr;</span></h2>
-    <div class="wkscroll"><div class="wkrow" id="wkrow"></div><div class="wkfade" id="wkfade"></div></div>
-    <div class="share">
-      <a class="btn add" id="waShare" target="_blank">Enviar no WhatsApp</a>
-      <span class="btn" onclick="copyWeek()">Copiar agenda</span>
-    </div>
-  </div>
-
-  <h2>Agenda · Aberturas e Exposições
-    <span class="infowrap" id="infoWrap"><button class="infobtn" type="button" id="infoBtn" aria-label="O que significam as cores" aria-expanded="false">i</button>
-    <div class="infopop"><b>Como ler o mapa</b><br>
-      <span class="dot" style="background:var(--accent)"></span>abertura próxima &nbsp;
-      <span class="dot" style="background:var(--green)"></span>em cartaz &nbsp;
-      <span class="dot" style="background:var(--red)"></span>últimos dias &nbsp;
-      <span class="dot" style="background:var(--accent2)"></span>feira &nbsp;
-      <span class="dot" style="background:var(--muted)"></span>sem mostra nesta janela<br>
-      Toque num ponto do mapa ou num card para ver a ficha do espaço.</div></span></h2>
-  <div class="filters">
-    <span id="statusFilters">
-      <span class="chip on" data-st="all">Tudo</span>
-      <span class="chip" data-st="opening">Próximas aberturas</span>
-      <span class="chip" data-st="current">Em cartaz</span>
-      <span class="chip" data-st="closing">Últimos dias</span>
-    </span>
-    <button class="chip filtrobtn" type="button" id="filtroBtn" aria-expanded="false">Mais filtros ▾</button>
-    <select id="zonaSel">
-      <option value="all">Todas as zonas</option>
-      <option>Oeste</option><option>Centro</option><option>Sul</option>
-    </select>
-    <select id="bairroSel"><option value="all">Todos os bairros</option></select>
-    <select id="tipoSel">
-      <option value="all">Todos os espaços</option>
-      <option value="galeria">Só galerias</option>
-      <option value="institucional">Só institucionais</option>
-      <option value="hibrido">Só híbridos</option>
-    </select>
-    <select id="venueSel"><option value="all">Todas as galerias/espaços</option></select>
-    <select id="artistSel"><option value="all">Todos os artistas</option></select>
-    <span class="chip" id="nearBtn">Perto de mim</span>
-    <span class="chip" id="freeBtn">Grátis</span>
-<span class="chip" id="favBtn">Favoritos</span>
-  </div>
-
-  <div class="viewtoggle" id="viewToggle"><button type="button" class="on" data-v="lista">Lista</button><button type="button" data-v="mapa">Mapa</button></div>
-  <div class="grid" id="agGrid">
-    <div id="map"></div>
-    <div class="cards" id="cards"></div>
-  </div>
-  <button class="cardsmore" type="button" id="cardsMore"></button>
-
-  <h2 id="dirtitle">Diretório de Galerias e Espaços</h2>
-  <div class="dirconc" id="dirConc" aria-label="Espaços por bairro — clique para filtrar"></div>
-  <div class="dirwrap">
-    <div class="dirbody">
-      <table id="dirTable">
-        <thead><tr>
-          <th data-k="name">Espaço ⇅</th><th data-k="addr">Endereço ⇅</th>
-          <th data-k="bairro">Bairro ⇅</th><th data-k="zona">Zona ⇅</th>
-          <th data-k="tipo">Tipo ⇅</th><th>Ações</th>
-        </tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  </div>
-  <p class="note">Diretório com as principais galerias ativas verificadas + espaços institucionais. O estudo FGV/ArteRef contabiliza 67 galerias do mercado primário na cidade, mas a lista nominal completa não foi publicada — endereços marcados com ~ são aproximados; confirme antes de visitar.</p>
-
-  <section class="dobra" id="imersivas" hidden>
-    <h2>Experiências imersivas · ingresso pago</h2>
-    <div class="dobrac">
-      <div class="panel">
-        <div class="paineltopo"><span class="pt">Fora da agenda curada</span><span class="pn2" id="imersivasN"></span></div>
-        <div id="imersivasLista"></div>
-      </div>
-      <p class="note">Projeção e realidade virtual em operação comercial, com bilheteria. Ficam aqui, e não na agenda, porque não são programa de galeria nem de instituição — quem procura acha, sem disputar espaço com o circuito.</p>
-    </div>
-  </section>
-
-  <section class="dobra panorama">
-    <h2>O panorama · a cidade agora</h2>
-    <div class="dobrac">
-      <div class="panel pano">
-        <div class="pano-head">
-          <p class="pano-lead" id="panoLead"></p>
-          <div class="pano-leg">
-            <span><i class="lg-com"></i>galeria</span>
-            <span><i class="lg-inst"></i>instituição</span>
-            <span class="lg-hoje">hoje</span>
-          </div>
-        </div>
-        <div class="pano-chart" id="panoChart"></div>
-        <div class="pano-tiles" id="panoTiles"></div>
-      </div>
-      <p class="note">Cada barra é uma mostra em cartaz agora — do dia que abriu ao dia que fecha. Ordenadas por encerramento: as que somem primeiro ficam no topo. Passe o mouse (ou toque) numa barra.</p>
-    </div>
-  </section>
-
-  <section class="ctaband">
-    <div class="cta cta-espaco">
-      <b>Você é de um espaço?</b>
-      <p>Mande a sua abertura pelo formulário. Entra na agenda depois de conferida — não publicamos sem checar. É a via para quem só divulga no Instagram.</p>
-      <span class="btn add" onclick="openForm()">Divulgue sua abertura</span>
-    </div>
-    <!-- Intel: oculto até o boletim estar funcionando
-    <div class="cta cta-intel">
-      <b>Vernissages SP: Intel</b>
-      <p>Boletim semanal pago sobre o circuito — agenda cronometrada, radar de movimentações, leitura de mercado. Não é pauta cultural.</p>
-      <a class="btn intel" href="https://intel.vernissagessp.com.br" target="_blank" rel="noopener">Conhecer o boletim</a>
-    </div>
-    -->
-  </section>
-
-  <footer>
-    <nav class="footnav">
-      <a href="fim-de-semana.html">Este fim de semana</a>
-      <a href="monta-meu-sabado.html">Monta seu sábado</a>
-      <a href="arquivo.html">Acervo de exposições</a>
+  <h1 class="marca" id="marca">Vernissages SP</h1>
+  <div class="nav">
+    <nav aria-label="Principal">
+      <a href="#mapa" data-go="mapa">Mapa</a>
+      <a href="#agenda" data-go="agenda">Agenda</a>
+      <a href="#espacos" data-go="espacos">Espaços</a>
       <a href="artistas.html">Artistas</a>
-      <a href="editais.html">Editais &amp; chamadas</a>
-      <a href="https://instagram.com/vernissagessp" target="_blank" rel="me noopener">Instagram</a>
+      <a href="arquivo.html">Acervo</a>
+      <a href="editais.html">Editais<span class="nbadge" id="navEditalN" hidden></span></a>
+      <a href="#divulgue" data-act="form">Divulgue</a>
     </nav>
-    <span class="updft">Agenda revista em <span id="upd"></span>.</span><br>
-    Posições e endereços com ~ são aproximados. Nem toda abertura tem vernissage pública — confirme nos canais de cada espaço.<br>
-    Fontes: <a href="https://www.sp-arte.com/exposicoes">SP–Arte Exposições</a> ·
-    <a href="https://www.mapadasartes.com.br/#!/saloes">Mapa das Artes</a> ·
-    <a href="https://dasartes.com.br/tag/edital/">Dasartes</a> ·
-    <a href="https://artequeacontece.com.br/eventos/categoria/sao-paulo/">Arte Que Acontece</a> ·
-    <a href="https://ocula.com/cities/brazil/sao-paulo-art-galleries/exhibitions/">Ocula São Paulo</a> ·
-    <a href="https://arteref.com/galerias/o-mapa-de-galerias-em-sao-paulo/">ArteRef/FGV</a> ·
-    <a href="https://saopaulosecreto.com/galerias-de-arte-em-sao-paulo/">São Paulo Secreto</a> ·
-    <a href="https://www.guiadasartes.com.br/sao-paulo/sao-paulo/galerias-de-arte">Guia das Artes</a> ·
-    <a href="https://abact.com.br">ABACT</a> ·
-    <a href="https://www.agab.com.br">AGAB</a> ·
-    <a href="https://latitudebrasil.org">Latitude/ApexBrasil</a> ·
-    <a href="https://www.sp-arte.com/about-the-event-rotas">SP-Arte Rotas</a> ·
-    <a href="https://www.cnnbrasil.com.br/viagemegastronomia/viagem/exposicoes-em-sao-paulo-mais-de-30-mostras-para-ver-nas-ferias-de-julho/">CNN V&G</a>
+    <span class="sub">Galerias, aberturas e roteiros de arte em São Paulo</span>
+  </div>
+</div>
+
+<div class="wrap" id="hero"></div>
+
+<section class="mapaSec" id="mapa-sec" aria-label="Mapa e filtros">
+  <div class="cab" id="mapa"><h2>No mapa</h2><span id="mapaNum"></span></div>
+  <div class="filtros" id="filtros">
+    <div class="f-linha">
+      <div class="seg" id="seg" role="group" aria-label="Situação">
+        <button type="button" data-st="all" class="on">Tudo</button>
+        <button type="button" data-st="opening">Abre em breve</button>
+        <button type="button" data-st="current">Em cartaz</button>
+        <button type="button" data-st="closing">Últimos dias</button>
+      </div>
+      <input id="q" class="f-busca" type="search" placeholder="Buscar galeria, artista, bairro" autocomplete="off" aria-label="Buscar">
+      <button type="button" class="f-mais" id="fMais" aria-expanded="false">Filtros</button>
+    </div>
+    <div class="f-linha f-extra" id="fExtra">
+      <select id="zonaSel" aria-label="Zona"><option value="all">Todas as zonas</option></select>
+      <select id="bairroSel" aria-label="Bairro"><option value="all">Todos os bairros</option></select>
+      <select id="tipoSel" aria-label="Tipo de espaço">
+        <option value="all">Todos os espaços</option>
+        <option value="galeria">Só galerias</option>
+        <option value="institucional">Só institucionais</option>
+        <option value="hibrido">Só híbridos</option>
+      </select>
+      <button type="button" class="tg" id="freeBtn" aria-pressed="false">Grátis</button>
+      <button type="button" class="tg" id="nearBtn" aria-pressed="false">Perto de mim</button>
+      <button type="button" class="tg" id="favBtn" aria-pressed="false">Favoritos &#9829;</button>
+      <button type="button" class="tg lim" id="limpaBtn" hidden>Limpar filtros</button>
+    </div>
+    <div class="f-res" id="fRes" aria-live="polite"></div>
+  </div>
+  <div class="mapaBox">
+    <div id="mapaCanvas" style="position:absolute;inset:0"><div id="mapaMl" style="position:absolute;inset:0"></div></div>
+    <aside class="painel" id="painel" data-lenis-prevent></aside>
+    <div class="leg"><span><i style="background:#C96F4A"></i>abre em breve</span><span><i style="background:#F2EFE9"></i>em cartaz</span><span><i style="background:#F2EFE9;box-shadow:0 0 0 2px #C96F4A"></i>últimos dias</span><span><i style="border:1px solid #8f897c"></i>sem mostra</span></div>
+  </div>
+</section>
+
+<section class="noite" id="semana" hidden><div class="pino" id="pino"></div></section>
+
+<section class="cartaz" id="agenda" aria-label="Agenda"></section>
+
+<section class="tempo" id="tempo" aria-label="A cidade agora">
+  <div class="cab"><h2>A cidade agora</h2><span>cada barra é uma mostra. toque numa barra para abrir</span></div>
+  <div class="numeros" id="numeros"></div>
+  <div class="eixo" id="eixo"></div>
+  <div class="fio" id="fio"></div>
+  <div class="legt"><span><i style="background:#0E0E0E"></i>galeria</span><span><i style="background:#C96F4A"></i>instituição</span></div>
+</section>
+
+<section class="espacos" id="espacos" aria-label="Espaços">
+  <div class="cab"><h2 id="espTitulo">Espaços</h2><span id="espNum"></span></div>
+  <input class="busca" id="busca" type="search" placeholder="Buscar espaço" autocomplete="off" aria-label="Buscar espaço">
+  <div class="bairros" id="bairros"></div>
+  <p class="note">Principais galerias ativas verificadas e espaços institucionais. O estudo FGV/ArteRef contabiliza 67 galerias do mercado primário na cidade, mas a lista nominal completa não foi publicada. Endereços marcados com ~ são aproximados; confirme antes de visitar.</p>
+</section>
+
+<section class="imers" id="imersivas" hidden>
+  <h2>Experiências imersivas · ingresso pago <span class="sr" id="imersivasN"></span></h2>
+  <div id="imersivasLista"></div>
+  <p class="note" style="color:var(--mute)">Projeção e realidade virtual em operação comercial, com bilheteria. Ficam aqui, e não na agenda, porque não são programa de galeria nem de instituição.</p>
+</section>
+
+<section class="cta" id="divulgue">
+  <h2>Você é de um espaço?</h2>
+  <p>Mande a sua abertura pelo formulário. Entra na agenda depois de conferida, não publicamos sem checar. É a via para quem só divulga no Instagram.</p>
+  <button type="button" class="bt" data-act="form">Divulgue sua abertura</button>
+</section>
+
+<footer>
+  <nav aria-label="Rodapé">
+    <a href="fim-de-semana.html">Este fim de semana</a>
+    <a href="monta-meu-sabado.html">Monta seu sábado</a>
+    <a href="arquivo.html">Acervo de exposições</a>
+    <a href="artistas.html">Artistas</a>
+    <a href="editais.html">Editais &amp; chamadas</a>
+    <a href="https://instagram.com/vernissagessp" target="_blank" rel="me noopener">Instagram</a>
+  </nav>
+  <span class="updft">Agenda revista em <span id="upd"></span>.</span><br>
+  Posições e endereços com ~ são aproximados. Nem toda abertura tem vernissage pública, confirme nos canais de cada espaço.<br>
+  Fontes: <a href="https://www.sp-arte.com/exposicoes">SP–Arte Exposições</a> ·
+  <a href="https://www.mapadasartes.com.br/#!/saloes">Mapa das Artes</a> ·
+  <a href="https://dasartes.com.br/tag/edital/">Dasartes</a> ·
+  <a href="https://artequeacontece.com.br/eventos/categoria/sao-paulo/">Arte Que Acontece</a> ·
+  <a href="https://ocula.com/cities/brazil/sao-paulo-art-galleries/exhibitions/">Ocula São Paulo</a> ·
+  <a href="https://arteref.com/galerias/o-mapa-de-galerias-em-sao-paulo/">ArteRef/FGV</a> ·
+  <a href="https://saopaulosecreto.com/galerias-de-arte-em-sao-paulo/">São Paulo Secreto</a> ·
+  <a href="https://www.guiadasartes.com.br/sao-paulo/sao-paulo/galerias-de-arte">Guia das Artes</a> ·
+  <a href="https://abact.com.br">ABACT</a> ·
+  <a href="https://www.agab.com.br">AGAB</a> ·
+  <a href="https://latitudebrasil.org">Latitude/ApexBrasil</a> ·
+  <a href="https://www.sp-arte.com/about-the-event-rotas">SP-Arte Rotas</a> ·
+  <a href="https://www.cnnbrasil.com.br/viagemegastronomia/viagem/exposicoes-em-sao-paulo-mais-de-30-mostras-para-ver-nas-ferias-de-julho/">CNN V&amp;G</a>
   <div class="visits" id="visits"><b id="vc">–</b> visitas · contagem anônima, uma por dispositivo</div>
 </footer>
-</div>
 
-<div id="modalBg" onclick="if(event.target.id==='modalBg')closeArtist()"><div id="modal"></div></div>
+<div id="modalBg"><div id="modal" role="dialog" aria-modal="true" data-lenis-prevent></div></div>
+<div id="toast" role="status"></div>
 
-<div id="routePanel">
-  <h3>Meu roteiro (<span id="rc">0</span>)</h3>
-  <ol id="routeList"></ol>
-  <button class="go" onclick="openRoute()">Abrir rota no Google Maps</button>
-  <button class="clear" onclick="clearRoute()">limpar roteiro</button>
-</div>
-
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script>
-/* rede de segurança: se qualquer coisa explodir, mostra o motivo na tela.
-   Uma tela preta e muda não dá pista nenhuma para consertar. */
+/* rede de segurança: se qualquer coisa explodir, mostra o motivo na tela. */
 window.addEventListener('error',function(ev){
   if(document.getElementById('erroFatal'))return;
   if(!ev||!ev.message)return;
   var d=document.createElement('div');
   d.id='erroFatal';
-  d.style.cssText='position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#2a1416;'+
-    'color:#f5d6d0;font:13px/1.5 system-ui,sans-serif;padding:14px 16px;border-top:1px solid #f08a7a';
-  d.textContent='Algo falhou ao carregar: '+ev.message+
-    (ev.filename?(' — '+String(ev.filename).split('/').pop()+':'+ev.lineno):'');
+  d.style.cssText='position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#2a1416;color:#f5d6d0;font:13px/1.5 system-ui,sans-serif;padding:14px 16px;border-top:1px solid #f08a7a';
+  d.textContent='Algo falhou ao carregar: '+ev.message+(ev.filename?(' — '+String(ev.filename).split('/').pop()+':'+ev.lineno):'');
   (document.body||document.documentElement).appendChild(d);
 });
 
-const TODAY = new Date();
-const HOJESTR = new Date(TODAY.getTime()-TODAY.getTimezoneOffset()*6e4).toISOString().slice(0,10);
-
-/* se dados.js não chegou (cache corrompido, rede caída), avisa em vez de
-   deixar a tela preta: o destructuring abaixo mataria o script inteiro. */
+/* se dados.js não chegou, avisa em vez de deixar a tela vazia */
 if(!window.DATA||!window.DATA.venues){
-  document.body.innerHTML='<div style="max-width:480px;margin:22vh auto;padding:0 24px;'+
-    'font-family:system-ui,sans-serif;color:#f3f3f7;text-align:center;line-height:1.6">'+
-    '<div style="font-size:1.15rem;font-weight:600;letter-spacing:2px">VERNISSAGES SP</div>'+
-    '<p style="color:#8b8b9a;margin:14px 0 22px">Não foi possível carregar os dados da agenda. '+
-    'Isso costuma ser um arquivo antigo guardado no aparelho.</p>'+
-    '<a href="/limpar.html" style="display:inline-block;background:#e8c15a;color:#0a0a0d;'+
-    'text-decoration:none;padding:13px 26px;border-radius:999px;font-weight:700">Limpar e recarregar</a></div>';
+  document.body.innerHTML='<div style="max-width:480px;margin:22vh auto;padding:0 24px;font-family:system-ui,sans-serif;color:#0E0E0E;text-align:center;line-height:1.6">'+
+    '<div style="font-size:1.15rem;font-weight:700;letter-spacing:2px">VERNISSAGES SP</div>'+
+    '<p style="color:#6f6a60;margin:14px 0 22px">Não foi possível carregar os dados da agenda. Isso costuma ser um arquivo antigo guardado no aparelho.</p>'+
+    '<a href="/limpar.html" style="display:inline-block;background:#C96F4A;color:#0E0E0E;text-decoration:none;padding:13px 26px;font-weight:700">Limpar e recarregar</a></div>';
   throw new Error('dados indisponiveis');
 }
-const {venues:VENUES, expos:EXPOS, bairros:BAIRRO_COUNTS} = window.DATA;
 
-/* O rodapé conta por bairro agrupado ("Jardins" é o circuito, não um bairro do
-   IBGE) e o filtro do diretório precisa falar a mesma língua — senão clicar na
-   barra some com três quartos das galerias. Uma função só, dos dois lados. */
-const GRUPO_BAIRRO = window.DATA.grupoBairro || {};
-const bairroLabel = v => GRUPO_BAIRRO[v.b] || v.b;
-
-/* localStorage pode lançar exceção (aba anônima, cookies bloqueados, cota cheia).
-   sem proteção, uma exceção aqui derruba o script inteiro. */
-const LS={
-  get(k){try{return localStorage.getItem(k);}catch(_){return null;}},
-  set(k,v){try{localStorage.setItem(k,v);}catch(_){}}
-};
-
-/* ================= LOGIC ================= */
+/* ================= DADOS E LÓGICA ================= */
+const D=window.DATA, VENUES=D.venues, EXPOS=D.expos;
+const GRUPO_BAIRRO=D.grupoBairro||{};
+const bairroLabel=v=>GRUPO_BAIRRO[v.b]||v.b;
+const LS={get(k){try{return localStorage.getItem(k)}catch(_){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(_){}}};
+const HOJE=new Date(Date.now()-3*3600e3).toISOString().slice(0,10);   /* data em São Paulo */
+const MES=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const dl=s=>{const[y,m,d]=s.split('-');return +d+' '+MES[+m-1]};
+const dm=s=>{const[y,m,d]=s.split('-');return d+'/'+m};
+const dias=(a,b)=>Math.round((Date.parse(b+'T12:00')-Date.parse(a+'T12:00'))/864e5);
 const vByName={}; VENUES.forEach(v=>vByName[v.name]=v);
+
 function status(e){
-  const ini=new Date(e.ini+'T12:00'), fim=e.fim?new Date(e.fim+'T12:00'):null;
-  if(ini>TODAY) return 'opening';
-  if(fim&&fim<TODAY) return 'past';
-  if(fim&&(fim-TODAY)/864e5<=7) return 'closing';
+  if(e.ini>HOJE) return 'opening';
+  if(e.fim&&e.fim<HOJE) return 'past';
+  if(e.fim&&dias(HOJE,e.fim)<=7) return 'closing';
   return 'current';
 }
-const expos=EXPOS.map(e=>({...e,st:status(e),ven:vByName[e.v]})).filter(e=>e.st!=='past'&&e.ven);
-const fmt=d=>{const[y,m,dd]=d.split('-');return dd+'/'+m};
-/* ---- ingresso ---- */
+const expos=EXPOS.map((e,k)=>({...e,k,st:status(e),ven:vByName[e.v]})).filter(e=>e.st!=='past'&&e.ven);
+const exById={}; expos.forEach(e=>exById[e.k]=e);
+
+/* ingresso */
 const brl=n=>'R$ '+Number(n).toFixed(2).replace('.',',').replace(',00','');
-function ingressoDe(v){
- if(v.ing) return v.ing;
- if(v.tipo==='galeria') return {g:true};      // galeria comercial: entrada franca
- return {conf:true};
-}
+const ingressoDe=v=>v.ing?v.ing:(v.tipo==='galeria'?{g:true}:{conf:true});
 function ingTag(v){
- if(v.tipo==='galeria') return '';           // galeria comercial: entrada franca, sem selo
- const g=ingressoDe(v);
- if(g.g) return '<span class="tag free">GRÁTIS</span>';
- if(g.conf) return '<span class="tag tbc">A CONFIRMAR</span>';
- return '<span class="tag paid">'+brl(g.i)+(g.m?' · meia '+brl(g.m):'')+'</span>';
+  if(v.tipo==='galeria')return '';
+  const g=ingressoDe(v);
+  if(g.g)return '<span class="tagp g">Grátis</span>';
+  if(g.conf)return '<span class="tagp">A confirmar</span>';
+  return '<span class="tagp">'+brl(g.i)+(g.m?' · meia '+brl(g.m):'')+'</span>';
 }
 function ingTxt(v){
- if(v.tipo==='galeria') return '';
- const g=ingressoDe(v); const p=[];
- if(g.g) p.push('Entrada gratuita.');
- else if(g.conf) p.push('Ingresso a confirmar'+(g.obs?': '+g.obs:'.'));
- else p.push('Inteira '+brl(g.i)+(g.m?', meia '+brl(g.m):'')+'.');
- if(g.free) p.push('Grátis '+g.free+'.');
- if(g.obs&&!g.conf) p.push(g.obs+'.');
- return p.join(' ');
+  if(v.tipo==='galeria')return '';
+  const g=ingressoDe(v),p=[];
+  if(g.g)p.push('Entrada gratuita.');
+  else if(g.conf)p.push('Ingresso a confirmar'+(g.obs?': '+g.obs:'.'));
+  else p.push('Inteira '+brl(g.i)+(g.m?', meia '+brl(g.m):'')+'.');
+  if(g.free)p.push('Grátis '+g.free+'.');
+  if(g.obs&&!g.conf)p.push(g.obs+'.');
+  return p.join(' ');
 }
-function ehGratis(v){ return !!ingressoDe(v).g; }
-const STLBL={opening:'ABERTURA',current:'EM CARTAZ',closing:'ÚLTIMOS DIAS'};
-const COLORS={opening:'#e8c15a',current:'#7fb98a',closing:'#d97b6c',feira:'#c96f4a',dir:'#66666e'};
+const ehGratis=v=>!!ingressoDe(v).g;
+const gsearch=q=>'https://www.google.com/search?q='+encodeURIComponent(q);
 const gmaps=v=>'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(v.name+', '+v.addr.replace(' ~','')+', São Paulo');
 
-/* selo generativo do espaco em foco */
-function selo(nome){
-  let s=2166136261>>>0;
-  for(let i=0;i<nome.length;i++){s^=nome.charCodeAt(i);s=Math.imul(s,16777619)>>>0;}
-  const rnd=n=>{s=(Math.imul(s,1664525)+1013904223)>>>0;return s%n;};
-  const cor=['#e8c15a','#c96f4a','#a78bfa','#7fd8a0','#8fb6f9'];
-  let a=rnd(5),b=rnd(5); if(b===a)b=(b+1+rnd(4))%5;
-  const c=[cor[a],cor[b]];
-  const N=48, q=[[13,13],[35,13],[13,35],[35,35]];
-  const forma=(k,x,y,r,col)=>{
-    if(k===0) return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="'+col+'"/>';
-    if(k===1) return '<rect x="'+(x-r)+'" y="'+(y-r)+'" width="'+(2*r)+'" height="'+(2*r)+'" rx="'+(r/3).toFixed(1)+'" fill="'+col+'"/>';
-    if(k===2) return '<path d="M'+(x-r)+' '+(y+r)+'L'+x+' '+(y-r)+'L'+(x+r)+' '+(y+r)+'Z" fill="'+col+'"/>';
-    if(k===3) return '<path d="M'+(x-r)+' '+(y+r*0.6)+'A'+r+' '+r+' 0 0 1 '+(x+r)+' '+(y+r*0.6)+'" fill="none" stroke="'+col+'" stroke-width="3.2" stroke-linecap="round"/>';
-    if(k===4) return '<path d="M'+(x-r)+' '+(y-r)+'L'+(x+r)+' '+(y+r)+'M'+(x+r)+' '+(y-r)+'L'+(x-r)+' '+(y+r)+'" stroke="'+col+'" stroke-width="3" stroke-linecap="round"/>';
-    return '<rect x="'+(x-r)+'" y="'+(y-1.6)+'" width="'+(2*r)+'" height="3.2" rx="1.6" fill="'+col+'"/>';
-  };
-  /* parede de galeria: obras penduradas, linha do chão e o visitante */
-  const obras=[[11,3],[19,2],[26,4]].map((o,i)=>{
-    const lg=7+rnd(5), al=8+rnd(7), x=o[0], y=26-al;
-    return '<rect x="'+x+'" y="'+y+'" width="'+lg+'" height="'+al+'" rx="1" fill="'+(i===rnd(3)?c[0]:'none')+
-           '" stroke="'+c[1]+'" stroke-width="1.5" opacity="'+(i===rnd(3)?'.9':'.55')+'"/>';
-  });
-  return '<svg viewBox="0 0 '+N+' '+N+'" width="40" height="40" aria-hidden="true">'+
-    '<rect width="'+N+'" height="'+N+'" rx="11" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.13)"/>'+
-    obras.join('')+
-    '<path d="M9 29h30" stroke="'+c[1]+'" stroke-width="1.4" opacity=".45" stroke-linecap="round"/>'+
-    '<circle cx="'+(15+rnd(18))+'" cy="34" r="2.4" fill="'+c[0]+'"/></svg>';
-}
-
-/* KPIs */
-document.getElementById('kpis').innerHTML=[
- [VENUES.filter(v=>v.tipo==='galeria').length,'Galerias mapeadas'],
- [VENUES.filter(v=>v.tipo==='institucional').length,'Espaços institucionais'],
- ...(VENUES.some(v=>v.tipo==='hibrido')?[[VENUES.filter(v=>v.tipo==='hibrido').length,'Espaços híbridos']]:[]),
- [expos.filter(e=>e.st==='opening').length,'Aberturas confirmadas'],
- [expos.filter(e=>e.st!=='opening').length,'Mostras em cartaz']
-].map(k=>`<div class="kpi"><b>${k[0]}</b>${k[1].toLowerCase()}</div>`).join('');
-
-/* selects */
-const bSel=document.getElementById('bairroSel'),vSel=document.getElementById('venueSel'),aSel=document.getElementById('artistSel');
-[...new Set(VENUES.map(bairroLabel))].sort((a,b)=>a.localeCompare(b,'pt-BR')).forEach(b=>bSel.add(new Option(b,b)));
-VENUES.map(v=>v.name).sort().forEach(n=>vSel.add(new Option(n,n)));
-[...new Set(expos.flatMap(e=>e.a?e.a.split(', '):[]))].sort((x,y)=>x.localeCompare(y,'pt')).forEach(n=>aSel.add(new Option(n,n)));
-
-/* map */
-/* o Leaflet vem de um CDN externo. Se ele não carregar (rede da operadora,
-   bloqueio, falha do CDN), TODO o script morria aqui e a tela ficava preta.
-   Agora o mapa é opcional: sem ele, a agenda, os filtros e o diretório seguem
-   funcionando normalmente. */
-const TEM_MAPA = (typeof L !== 'undefined' && L && typeof L.map === 'function');
-let map=null;
-if(TEM_MAPA){
-  try{
-    /* wheel só zoom depois de clicar no mapa: antes ele sequestrava a rolagem da página */
-    map=L.map('map',{scrollWheelZoom:false}).setView([-23.556,-46.668],12);
-    map.on('click',()=>map.scrollWheelZoom.enable());
-    map.getContainer().addEventListener('mouseleave',()=>map.scrollWheelZoom.disable());
-    /* tema claro (temporada Fachada) usa o canvas cinza claro da Esri; escuro segue o dark gray */
-    const rgb=(getComputedStyle(document.body).backgroundColor.match(/[0-9]+/g)||[0,0,0]).map(Number);
-    const claro=(0.299*rgb[0]+0.587*rgb[1]+0.114*rgb[2])>140;
-    /* Os tiles dark_gray da Esri trazem uma borda clara em cada tile (vira grade de linhas no mapa).
-       Usa sempre o canvas claro, que vem limpo, e escurece por CSS (filter) quando o tema é escuro. */
-    const base='World_Light_Gray_Base', ref='World_Light_Gray_Reference';
-    if(!claro)map.getPane('tilePane').style.filter='invert(1) hue-rotate(180deg) brightness(.78) contrast(.82) saturate(.4)';
-    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/'+base+'/MapServer/tile/{z}/{y}/{x}',
-      {attribution:'Esri, HERE, Garmin, © OpenStreetMap contributors',maxZoom:16,opacity:claro?.38:.55}).addTo(map);
-    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/'+ref+'/MapServer/tile/{z}/{y}/{x}',
-      {maxZoom:16,opacity:claro?1:.8}).addTo(map);
-  }catch(_){ map=null; }
-}
-if(!map){
-  const cx=document.getElementById('map');
-  if(cx){cx.style.display='none';}
-  const bt=document.querySelector('.viewtoggle'); if(bt)bt.style.display='none';
-}
-let markers={};
-
-/* o título costuma repetir o nome do artista, que já aparece no campo próprio.
-   remove a repetição só quando sobra um título com sentido. */
+/* título costuma repetir o artista; remove a repetição só quando sobra título com sentido */
 const GENERICO=/^(individual|coletiva|solo|mostra|exposição)$/i;
 function tituloLimpo(e){
   if(!e.a)return e.t;
-  const esc=x=>x.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  const rx=x=>x.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
   let t=e.t;
   e.a.split(',').forEach(nome=>{
     const n=nome.trim(); if(!n)return;
-    /* só vale se a regra realmente mudou o título e o que sobrou faz sentido */
-    const tenta=re=>{const r=t.replace(re,'').trim();
-      return (r!==t && r.length>=2 && !GENERICO.test(r)) ? r : null;};
-    const novoT = tenta(new RegExp('\\s*[—–\\-]\\s*'+esc(n)+'\\s*$'))      // "Título — Artista"
-              || tenta(new RegExp('^'+esc(n)+'\\s*:\\s*'))                   // "Artista: Título"
-              || tenta(new RegExp('^'+esc(n)+'\\s*[—–]\\s*'));               // "Artista — Título"
-    if(novoT)t=novoT;
+    const tenta=re=>{const r=t.replace(re,'').trim();return (r!==t&&r.length>=2&&!GENERICO.test(r))?r:null};
+    const novo=tenta(new RegExp('\\s*[—–\\-]\\s*'+rx(n)+'\\s*$'))||tenta(new RegExp('^'+rx(n)+'\\s*:\\s*'))||tenta(new RegExp('^'+rx(n)+'\\s*[—–]\\s*'));
+    if(novo)t=novo;
   });
   return t||e.t;
 }
-function popupHtml(v,ex){
-  let h=`<b>${v.name}</b><br>${v.addr} · ${v.b} (Zona ${v.z})<br><i>${v.info||''}</i>`;
-  if(ex&&ex.length)h+='<hr style="border-color:#333">'+ex.map(e=>`▸ <b>${e.t}</b><br>&nbsp;&nbsp;${e.st==='opening'?'abre '+fmt(e.ini):'até '+(e.fim?fmt(e.fim):'—')}`).join('<br>');
-  if(ingTxt(v))h+=`<br><i style="color:#9a9aa6">${ingTxt(v)}</i>`;
-h+=`<br>${v.site?`<a href="${v.site}" target="_blank">Site</a> · `:''}${v.ig?`<a href="https://instagram.com/${v.ig}" target="_blank">IG</a> · `:''}<a href="${gsearch(v.name+' galeria são paulo')}" target="_blank">Buscar</a> · <a href="${gmaps(v)}" target="_blank">Como chegar</a>`;
-  return h;
+const datasE=e=>e.st==='opening'?('abre '+dm(e.ini)+(e.fim?' · até '+dm(e.fim):'')):('até '+(e.fim?dm(e.fim):'—'));
+const tagE=e=>e.ven.tipo==='feira'?'Feira':e.st==='opening'?('Abre '+dm(e.ini)):e.st==='closing'?'Últimos dias':(e.fim?'Até '+dm(e.fim):'Em cartaz');
+
+/* favoritos */
+let favs=new Set((()=>{try{return JSON.parse(LS.get('vspFavs')||'[]')}catch(_){return []}})());
+function toggleFav(n){favs.has(n)?favs.delete(n):favs.add(n);LS.set('vspFavs',JSON.stringify([...favs]));aplicar();}
+
+/* toast */
+let _tt; function toast(m){const t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(_tt);_tt=setTimeout(()=>t.classList.remove('on'),2600);}
+
+/* ================= DESTAQUE (regras de rodízio preservadas) ================= */
+function escolherFoco(){
+  const man=D.foco;
+  if(man&&man.t&&man.publi) return Object.assign({},man,{t:tituloLimpo({t:man.t,a:man.quem||''})});
+  const hist=D.destaques||[];
+  const kOf=x=>x.t+'|'+x.v;
+  const fixo=hist.find(h=>h.d===HOJE);
+  const temImg=x=>!!(x&&x.img&&String(x.img).trim());
+  /* TRAVA 1: destaque sem imagem só existe se não houver nenhuma outra */
+  const comImg=expos.filter(temImg);
+  const pote=comImg.length?comImg:expos;
+  /* TRAVA 2: não repete a mostra (olha para trás e para frente) */
+  const quando={};
+  hist.forEach(h=>{if(h.d!==HOJE&&(!quando[h.k]||h.d>quando[h.k]))quando[h.k]=h.d});
+  const usados=new Set(Object.keys(quando));
+  /* TRAVA 3: não repete a casa em 7 dias (mesma regra E20 do check.js) */
+  const lim=new Date(HOJE+'T12:00:00Z'); lim.setUTCDate(lim.getUTCDate()-7);
+  const isoLim=lim.toISOString().slice(0,10);
+  const casaQuente=new Set(hist.filter(h=>h.d>=isoLim&&h.d<HOJE).map(h=>String(h.k).split('|').slice(1).join('|')));
+  let e=null;
+  if(fixo){const cand=expos.find(x=>kOf(x)===fixo.k); if(cand&&(temImg(cand)||!comImg.length)&&!usados.has(fixo.k))e=cand;}
+  if(!e){
+    const usado=x=>usados.has(kOf(x)), quente=x=>casaQuente.has(x.v), lru=x=>String(quando[kOf(x)]||'');
+    const rank=x=>x.ini===HOJE?0:(x.st==='opening'?1:2);
+    const livres=pote.slice().sort((a,b)=>{
+      const ua=usado(a)?1:0,ub=usado(b)?1:0; if(ua!==ub)return ua-ub;
+      const qa=quente(a)?1:0,qb=quente(b)?1:0; if(qa!==qb)return qa-qb;
+      if(ua){const la=lru(a),lb=lru(b); if(la!==lb)return la<lb?-1:1;}
+      const ra=rank(a),rb=rank(b); if(ra!==rb)return ra-rb;
+      if(ra<2&&a.ini!==b.ini)return a.ini<b.ini?-1:1;
+      if(ra===2&&a.ini!==b.ini)return a.ini<b.ini?1:-1;
+      return 0;
+    });
+    e=livres[0];
+  }
+  if(!e) return (man&&man.t)?Object.assign({},man,{t:tituloLimpo({t:man.t,a:man.quem||''})}):null;
+  return {t:tituloLimpo(e),v:e.v,quem:e.a||'',txt:e.d||'',img:e.img||'',cred:e.cred||'',ini:e.ini,fim:e.fim,auto:true,k:e.k};
 }
-const ICO={
- site:'<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3.2 9.5h17.6M3.2 14.5h17.6M12 3.2c2.4 2.4 3.6 5.4 3.6 8.8s-1.2 6.4-3.6 8.8c-2.4-2.4-3.6-5.4-3.6-8.8S9.6 5.6 12 3.2z"/></svg>',
- ig:'<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5.2"/><circle cx="12" cy="12" r="4"/><circle cx="17.1" cy="6.9" r="1.15" fill="currentColor" stroke="none"/></svg>',
- pin:'<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.3 7-11.5A7 7 0 0 0 5 9.5C5 14.7 12 21 12 21z"/><circle cx="12" cy="9.3" r="2.6"/></svg>',
- search:'<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.3"/><path d="M15.4 15.4 20 20"/></svg>'};
-const gsearch=q=>'https://www.google.com/search?q='+encodeURIComponent(q);
+function dataFoco(f){
+  if(!f.ini)return '';
+  if(f.ini===HOJE)return 'Abre hoje · '+dl(f.ini)+(f.fim?' a '+dl(f.fim):'');
+  if(f.ini>HOJE)return 'Abertura '+dl(f.ini)+(f.fim?' · até '+dl(f.fim):'');
+  return f.fim?dl(f.ini)+' a '+dl(f.fim):'Desde '+dl(f.ini);
+}
+let FOCO=null;
+function capaErro(img){const d=document.createElement('div');d.className='capa';d.textContent=img.dataset.n||'';img.replaceWith(d);}
+function renderHero(){
+  const el=document.getElementById('hero');
+  const f=FOCO=escolherFoco(); if(!f){el.style.display='none';return}
+  const v=vByName[f.v]||null;
+  const imgOk=f.img&&String(f.img).trim();
+  el.innerHTML='<div class="hero"><div class="tx"><div><div class="rot"><b>'+(f.publi?'Apoio · conteúdo patrocinado':'Em foco')+'</b>'+(f.auto&&!f.publi?' · destaque do dia':'')+(v?' · '+esc(v.name)+' · '+esc(v.b):'')+'</div>'+
+    '<h2>'+esc(f.t)+'</h2>'+(f.quem?'<div class="art">'+esc(f.quem)+'</div>':'')+'</div>'+
+    '<div class="meta">'+(f.ini?'<div class="dt">'+esc(dataFoco(f))+'</div>':'')+(f.txt?'<p>'+esc(f.txt.length>260?f.txt.slice(0,260).replace(/\s+\S*$/,'')+'…':f.txt)+'</p>':'')+
+    '<div class="botoes">'+(v?'<button type="button" class="bt cheio" data-act="veremapa" data-v="'+esc(v.name)+'">Ver no mapa</button>':'')+
+    (f.k!=null?'<button type="button" class="bt" data-act="ficha" data-id="'+f.k+'">Ficha completa</button>':'')+
+    (f.link?'<a class="bt" href="'+esc(f.link)+'" target="_blank" rel="noopener">Saiba mais</a>':'')+
+    (v&&v.site?'<a class="bt" href="'+esc(v.site)+'" target="_blank" rel="noopener">Site</a>':'')+'</div></div></div>'+
+    '<figure>'+(imgOk?'<img src="'+esc(f.img)+'" alt="'+esc(f.t)+'" loading="eager" data-n="'+esc(f.v||f.t)+'" onerror="capaErro(this)">':'<div class="capa">'+esc(f.v||f.t)+'</div>')+
+    (f.cred?'<figcaption>'+esc(f.cred)+'</figcaption>':'')+'</figure></div>';
+}
 
-function matches(v,q){return !q||[v.name,v.addr,v.b,v.z,v.info].join(' ').toLowerCase().includes(q)}
+/* ================= FILTROS ================= */
+const F={st:'all',zona:'all',bairro:'all',tipo:'all',gratis:false,fav:false,near:false,q:''};
+let userPos=null;
+const norm=x=>String(x||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+function distKm(v){const R=6371,dLa=(v.lat-userPos[0])*Math.PI/180,dLo=(v.lng-userPos[1])*Math.PI/180,
+  x=Math.sin(dLa/2)**2+Math.cos(userPos[0]*Math.PI/180)*Math.cos(v.lat*Math.PI/180)*Math.sin(dLo/2)**2;
+  return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));}
+const okV=v=>(F.zona==='all'||v.z===F.zona)&&(F.bairro==='all'||bairroLabel(v)===F.bairro)&&(F.tipo==='all'||v.tipo===F.tipo||v.tipo==='feira')&&(!F.fav||favs.has(v.name))&&(!F.gratis||ehGratis(v));
+const matchV=v=>!F.q||norm([v.name,v.addr,v.b,v.z,v.info].join(' ')).includes(norm(F.q));
+const matchE=e=>!F.q||norm([e.t,e.d,e.a,e.ven.name,e.ven.addr,e.ven.b].join(' ')).includes(norm(F.q));
+let LISTA=[];
+function filtrar(){
+  let l=expos.filter(e=>okV(e.ven)&&(F.st==='all'||e.st===F.st)&&matchE(e));
+  l.sort((a,c)=>a.st==='opening'&&c.st!=='opening'?-1:c.st==='opening'&&a.st!=='opening'?1:
+    (a.st==='opening'?a.ini:a.fim||'2099-01-01').localeCompare(c.st==='opening'?c.ini:c.fim||'2099-01-01'));
+  if(F.near&&userPos)l.sort((a,c)=>distKm(a.ven)-distKm(c.ven));
+  LISTA=l;
+}
+const ativo=()=>F.st!=='all'||F.zona!=='all'||F.bairro!=='all'||F.tipo!=='all'||F.gratis||F.fav||F.near||F.q;
+function limpar(){Object.assign(F,{st:'all',zona:'all',bairro:'all',tipo:'all',gratis:false,fav:false,near:false,q:''});sincUI();aplicar();}
 
-function draw(){
-  const st=document.querySelector('#statusFilters .chip.on').dataset.st;
-  const zona=document.getElementById('zonaSel').value,b=bSel.value,
-        tipo=document.getElementById('tipoSel').value,ven=vSel.value,art=aSel.value,
-        q=document.getElementById('search').value.trim().toLowerCase();
+function iniciaFiltrosUI(){
+  const bSel=document.getElementById('bairroSel'),zSel=document.getElementById('zonaSel');
+  [...new Set(VENUES.map(bairroLabel))].sort((a,b)=>a.localeCompare(b,'pt-BR')).forEach(b=>bSel.add(new Option(b,b)));
+  const ORD=['Centro','Oeste','Sul','Norte','Leste'];
+  [...new Set(VENUES.map(v=>v.z).filter(Boolean))].sort((a,b)=>ORD.indexOf(a)-ORD.indexOf(b)).forEach(z=>zSel.add(new Option('Zona '+z,z)));
+  document.getElementById('seg').addEventListener('click',e=>{const b=e.target.closest('button[data-st]');if(!b)return;F.st=b.dataset.st;sincUI();aplicar();});
+  zSel.onchange=()=>{F.zona=zSel.value;aplicar();};
+  bSel.onchange=()=>{F.bairro=bSel.value;aplicar();};
+  document.getElementById('tipoSel').onchange=e=>{F.tipo=e.target.value;aplicar();};
+  const ql=[document.getElementById('q'),document.getElementById('busca')];
+  ql.forEach(i=>i.addEventListener('input',()=>{F.q=i.value.trim();ql.forEach(o=>{if(o!==i)o.value=i.value});aplicar();}));
+  document.getElementById('freeBtn').onclick=()=>{F.gratis=!F.gratis;sincUI();aplicar();};
+  document.getElementById('favBtn').onclick=()=>{F.fav=!F.fav;sincUI();aplicar();};
+  document.getElementById('limpaBtn').onclick=limpar;
+  document.getElementById('nearBtn').onclick=()=>{
+    const btn=document.getElementById('nearBtn');
+    if(F.near){F.near=false;sincUI();aplicar();return;}
+    if(!navigator.geolocation){toast('Geolocalização não disponível neste navegador.');return;}
+    btn.textContent='Localizando…';
+    navigator.geolocation.getCurrentPosition(p=>{
+      userPos=[p.coords.latitude,p.coords.longitude];F.near=true;sincUI();aplicar();
+      if(mapa&&mapaPronto)mapa.easeTo({center:[userPos[1],userPos[0]],zoom:13,duration:800});
+    },()=>{sincUI();toast('Não consegui acessar sua localização. Verifique a permissão do navegador.');},{timeout:12000});
+  };
+  const mais=document.getElementById('fMais'),ex=document.getElementById('fExtra');
+  mais.onclick=()=>{const a=ex.classList.toggle('aberto');mais.setAttribute('aria-expanded',a);};
+}
+function sincUI(){
+  document.querySelectorAll('#seg button').forEach(b=>b.classList.toggle('on',b.dataset.st===F.st));
+  document.getElementById('zonaSel').value=F.zona;document.getElementById('bairroSel').value=F.bairro;document.getElementById('tipoSel').value=F.tipo;
+  [['freeBtn',F.gratis],['favBtn',F.fav],['nearBtn',F.near]].forEach(([id,on])=>{const b=document.getElementById(id);b.classList.toggle('on',on);b.setAttribute('aria-pressed',on);});
+  document.getElementById('nearBtn').textContent='Perto de mim';
+  document.getElementById('q').value=F.q;document.getElementById('busca').value=F.q;
+  document.getElementById('limpaBtn').hidden=!ativo();
+}
 
-  Object.values(markers).forEach(m=>map.removeLayer(m));markers={};
-
-  const okV=v=>(zona==='all'||v.z===zona)&&(b==='all'||bairroLabel(v)===b)&&(tipo==='all'||v.tipo===tipo||v.tipo==='feira')&&(ven==='all'||v.name===ven)&&(!favOnly||favs.has(v.name))&&(!freeOnly||ehGratis(v));
-
-  const okA=e=>art==='all'||(e.a||'').split(', ').includes(art);
-  let list=expos.filter(e=>okV(e.ven)&&okA(e)&&(st==='all'||e.st===st));
-  if(q)list=list.filter(e=>(e.t+' '+(e.d||'')+' '+(e.a||'')+' '+e.ven.name+' '+e.ven.addr+' '+e.ven.b).toLowerCase().includes(q));
-
-  list.sort((a,c)=>a.st==='opening'&&c.st!=='opening'?-1:c.st==='opening'&&a.st!=='opening'?1:
-    new Date(a.st==='opening'?a.ini:a.fim||'2099-01-01')-new Date(c.st==='opening'?c.ini:c.fim||'2099-01-01'));
-  if(nearOn&&userPos)list.sort((a,c)=>distKm(a.ven)-distKm(c.ven));
-
-  /* cards */
-  document.getElementById('cards').innerHTML=list.map((e,i)=>{
-    const cls=e.ven.tipo==='feira'?'fair':e.st;
-    const q=s=>String(s||'').replace(/"/g,'&quot;');
-    const tag=e.ven.tipo==='feira'?'<span class="tag fair">FEIRA</span>':`<span class="tag ${e.st}">${STLBL[e.st]}</span>`;
-    const dates=e.st==='opening'?`abre ${fmt(e.ini)}${e.fim?' · até '+fmt(e.fim):''}`:`até ${e.fim?fmt(e.fim):'—'}`;
-    const shot=e.img?`<div class="cardshot" onclick="this.closest('.card').classList.remove('fotoaberta')"><img src="${q(e.img)}" alt="" loading="lazy" onerror="this.closest('.card').classList.add('semfoto')">${e.cred?`<span class="cred">${q(e.cred)}</span>`:''}</div>`:'';
-    return `<div class="card ${cls}">
-      <div class="title" onclick="focusVenue('${e.ven.name.replace(/'/g,"\\'")}')">${tituloLimpo(e)}</div>
-      <div class="venue">${e.ven.name} · ${e.ven.b}</div>
-      <div class="addr">${e.ven.addr}</div>
-      ${e.a?`<div class="addr">${e.a.split(', ').map(n=>`<span class="artist" onclick="openArtist('${n.replace(/'/g,"\\'")}')">${n}</span>`).join(' · ')}</div>`:''}
-      ${e.d?`<div class="addr" style="color:#b6b6c2;margin-top:4px">${e.d}</div>`:''}
-${(()=>{const g=ingressoDe(e.ven);return (e.ven.tipo!=='galeria'&&g.free)?`<div class="freeday">Grátis ${g.free}</div>`:''})()}
-      <div class="meta">${tag}${ingTag(e.ven)}<span>${dates}</span>
-        ${nearOn&&userPos?`<span class="dist">${distKm(e.ven).toFixed(1)} km</span>`:''}
-        <span class="fav ${favs.has(e.ven.name)?'on':''}" onclick="toggleFav('${e.ven.name.replace(/'/g,"\\'")}')" title="Favoritar">&#9829;</span>
-        ${e.ven.site?`<a class="btn ico" href="${e.ven.site}" target="_blank" title="Site" aria-label="Site">${ICO.site}</a>`:''}
-        ${e.ven.ig?`<a class="btn ico" href="https://instagram.com/${e.ven.ig}" target="_blank" title="Instagram" aria-label="Instagram">${ICO.ig}</a>`:''}
-        ${e.img?`<button type="button" class="fotobtn" onclick="this.closest('.card').classList.toggle('fotoaberta')">foto</button>`:''}
-        <a class="btn" href="${gsearch(e.t+' '+e.ven.name)}" target="_blank">Info</a>
-        <a class="btn" href="${gmaps(e.ven)}" target="_blank">Rota</a></div>
-      ${shot}
-    </div>`;
-  }).join('')||'<p class="note">Nada encontrado com esses filtros.</p>';
-
-  /* markers: venues com expo filtrada */
-  const exByV={};list.forEach(e=>{(exByV[e.ven.name]=exByV[e.ven.name]||[]).push(e)});
+/* ================= MAPA ================= */
+let mapa=null,mapaPronto=false,painelV=null;
+const estDe=(v,l)=>{const ex=l.filter(e=>e.ven===v);if(!ex.length)return 0;return ex.some(x=>x.st==='opening')?3:ex.some(x=>x.st==='closing')?2:1;};
+function featuresMapa(){
+  const por={}; LISTA.forEach(e=>(por[e.v]=por[e.v]||[]).push(e));
+  const out=[];
   VENUES.forEach(v=>{
-    if(!okV(v))return;
-    const ex=exByV[v.name];
-    let c,r;
-    if(ex){
-      const pri=ex.some(x=>x.st==='opening')?'opening':ex.some(x=>x.st==='closing')?'closing':'current';
-      c=v.tipo==='feira'?COLORS.feira:COLORS[pri];r=8;
-    }else{
-      if(st!=='all'||!matches(v,q))return;
-      c=COLORS.dir;r=5;
-    }
-    if(!map)return;
-    const _r=ehMobile()?Math.max(r+5,12):r;
-    const _mk=L.circleMarker([v.lat,v.lng],{radius:_r,color:c,fillColor:c,fillOpacity:.85,weight:1}).addTo(map);
-    if(ehMobile())_mk.on('click',()=>openVenue(v.name)); else _mk.bindPopup(popupHtml(v,ex));
-    markers[v.name]=_mk;
+    if(typeof v.lat!=='number'||typeof v.lng!=='number'||!okV(v))return;
+    const ex=por[v.name]||[];
+    let est=0;
+    if(ex.length)est=ex.some(x=>x.st==='opening')?3:ex.some(x=>x.st==='closing')?2:1;
+    else{ if(F.st!=='all'||!matchV(v))return; }
+    out.push({type:'Feature',properties:{n:v.name,est,a:ex.length},geometry:{type:'Point',coordinates:[v.lng,v.lat]}});
   });
-  drawDir(q,zona,b,tipo,ven);
+  return {type:'FeatureCollection',features:out};
+}
+function iniciaMapa(){
+  const cx=document.getElementById('mapaMl');
+  const falha=()=>{document.getElementById('mapaCanvas').style.display='none';document.querySelector('.leg').style.display='none';document.querySelector('.mapaBox').style.minHeight='0';document.getElementById('painel').style.position='relative';document.getElementById('painel').style.inset='auto';document.getElementById('painel').style.width='auto';};
+  if(!window.maplibregl){falha();return;}
+  try{
+    mapa=new maplibregl.Map({container:cx,style:'https://tiles.openfreemap.org/styles/positron',center:[-46.645,-23.555],zoom:12.2,attributionControl:{compact:true},cooperativeGestures:true,
+      locale:{'CooperativeGesturesHandler.WindowsHelpText':'Use Ctrl + rolagem para dar zoom','CooperativeGesturesHandler.MacHelpText':'Use ⌘ + rolagem para dar zoom','CooperativeGesturesHandler.MobileHelpText':'Use dois dedos para mover o mapa'}});
+  }catch(_){falha();return;}
+  mapa.addControl(new maplibregl.NavigationControl({showCompass:false}),'top-left');
+  mapa.on('error',()=>{});
+  mapa.on('load',()=>{
+    mapa.getStyle().layers.forEach(l=>{
+      const id=l.id,t=l.type;
+      try{
+        if(t==='background')mapa.setPaintProperty(id,'background-color','#0E0E0E');
+        else if(t==='fill'){if(/water/.test(id))mapa.setPaintProperty(id,'fill-color','#1a1a19');else if(/park|wood/.test(id))mapa.setPaintProperty(id,'fill-color','#151514');else mapa.setLayoutProperty(id,'visibility','none');}
+        else if(t==='line'){
+          if(/subtle|casing|path|pier/.test(id))mapa.setLayoutProperty(id,'visibility','none');
+          else if(/motorway/.test(id)){mapa.setPaintProperty(id,'line-color','#F2EFE9');mapa.setPaintProperty(id,'line-opacity',.55);mapa.setPaintProperty(id,'line-width',1.2);}
+          else if(/major/.test(id)){mapa.setPaintProperty(id,'line-color','#F2EFE9');mapa.setPaintProperty(id,'line-opacity',.09);}
+          else if(/minor/.test(id)){mapa.setPaintProperty(id,'line-color','#F2EFE9');mapa.setPaintProperty(id,'line-opacity',.12);mapa.setLayerZoomRange(id,13.5,24);}
+          else mapa.setLayoutProperty(id,'visibility','none');}
+        else if(t==='symbol'){if(/label_(city|town|village|other)|water_name/.test(id)){mapa.setPaintProperty(id,'text-color','#8f897c');mapa.setPaintProperty(id,'text-halo-color','#0E0E0E');}else mapa.setLayoutProperty(id,'visibility','none');}
+      }catch(_){}
+    });
+    const raio=(m)=>['interpolate',['linear'],['zoom'],10,['*',['interpolate',['linear'],['get','a'],0,4,1,6.5,4,12],.85*m],15,['*',['interpolate',['linear'],['get','a'],0,4,1,6.5,4,12],1.5*m]];
+    const cor=['match',['get','est'],3,'#C96F4A',2,'#C96F4A',1,'#F2EFE9','rgba(0,0,0,0)'];
+    mapa.addSource('v',{type:'geojson',data:featuresMapa()});
+    mapa.addSource('u',{type:'geojson',data:{type:'FeatureCollection',features:[]}});
+    /* brilho: halo largo e desfocado sob cada ponto, para o ponto não se confundir com as ruas */
+    mapa.addLayer({id:'brilho',type:'circle',source:'v',filter:['>',['get','est'],0],paint:{'circle-radius':raio(2.8),'circle-color':cor,'circle-blur':1,'circle-opacity':.34}});
+    mapa.addLayer({id:'pulso',type:'circle',source:'v',filter:['==',['get','est'],3],paint:{'circle-radius':raio(2),'circle-color':'#C96F4A','circle-opacity':.35,'circle-blur':.4}});
+    mapa.addLayer({id:'pts',type:'circle',source:'v',paint:{'circle-radius':raio(1),'circle-color':cor,
+      'circle-stroke-color':['match',['get','est'],2,'#C96F4A',0,'#8f897c','#0E0E0E'],'circle-stroke-width':['match',['get','est'],2,3,0,1,2]}});
+    mapa.addLayer({id:'user',type:'circle',source:'u',paint:{'circle-radius':8,'circle-color':'#7da7d9','circle-stroke-color':'#F2EFE9','circle-stroke-width':3}});
+    mapa.on('click','pts',e=>{const n=e.features[0].properties.n;selecionar(n,true);});
+    mapa.on('mouseenter','pts',()=>mapa.getCanvas().style.cursor='pointer');
+    mapa.on('mouseleave','pts',()=>mapa.getCanvas().style.cursor='');
+    mapaPronto=true;
+    /* pulso nas aberturas */
+    if(!matchMedia('(prefers-reduced-motion:reduce)').matches){
+      const t0=performance.now();
+      const anim=t=>{const k=((t-t0)%2400)/2400;try{mapa.setPaintProperty('pulso','circle-opacity',.38*(1-k));mapa.setPaintProperty('pulso','circle-radius',raio(1+k*2.6));}catch(_){return}requestAnimationFrame(anim);};
+      requestAnimationFrame(anim);
+    }
+    atualizaMapa();
+    if(window.ScrollTrigger)ScrollTrigger.refresh();
+  });
+}
+function atualizaMapa(){
+  if(!mapaPronto)return;
+  try{
+    mapa.getSource('v').setData(featuresMapa());
+    mapa.getSource('u').setData({type:'FeatureCollection',features:(F.near&&userPos)?[{type:'Feature',properties:{},geometry:{type:'Point',coordinates:[userPos[1],userPos[0]]}}]:[]});
+  }catch(_){}
+}
+function selecionar(nome,voar){
+  const v=vByName[nome]; if(!v)return;
+  painelV=nome; renderPainel();
+  if(voar&&mapa&&mapaPronto&&typeof v.lat==='number')mapa.easeTo({center:[v.lng,v.lat],zoom:Math.max(mapa.getZoom(),13),duration:700});
+}
+function renderPainel(){
+  const el=document.getElementById('painel');
+  const v=vByName[painelV]; if(!v){el.innerHTML='<div class="k">Toque num ponto do mapa</div>';return;}
+  const L=expos.filter(e=>e.ven===v);
+  const it=ingTxt(v);
+  el.innerHTML='<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px"><div class="k">'+esc(v.tipo)+(v.z?' · Zona '+esc(v.z):'')+'</div><button type="button" class="favbt'+(favs.has(v.name)?' on':'')+'" data-act="fav" data-v="'+esc(v.name)+'" aria-label="Favoritar" title="Favoritar">&#9829;</button></div>'+
+    '<h3>'+esc(v.name)+'</h3><div class="bairro">'+esc(v.b||'')+'</div><div class="k">'+esc(v.addr||'')+'</div>'+
+    (F.near&&userPos?'<div class="k" style="color:var(--terra)">'+distKm(v).toFixed(1).replace('.',',')+' km de você</div>':'')+
+    (it?'<div class="k" style="text-transform:none;letter-spacing:0;font-size:13px">'+esc(it)+'</div>':'')+
+    (L.length?L.map(e=>'<div class="ex" data-act="ficha" data-id="'+e.k+'"><i>'+esc(tagE(e))+'</i><b>'+esc(tituloLimpo(e))+'</b>'+(e.a?'<small>'+esc(e.a)+'</small>':'')+'</div>').join(''):'<div class="ex" style="cursor:default"><small>Sem mostra na agenda agora.</small></div>')+
+    '<div class="ac">'+(v.site?'<a class="bt" href="'+esc(v.site)+'" target="_blank" rel="noopener">Site</a>':'')+(v.ig?'<a class="bt" href="https://instagram.com/'+esc(v.ig)+'" target="_blank" rel="noopener">Instagram</a>':'')+'<a class="bt cheio" href="'+esc(gmaps(v))+'" target="_blank" rel="noopener">Rota</a></div>';
 }
 
-function focusVenue(n){const v=vByName[n];if(!v)return;
-  /* no mobile o mapa fica oculto no modo lista: rolar até ele levaria a tela ao topo.
-     se não houver mapa visível, a ficha do espaço abre no modal. */
-  const _m=document.getElementById('map');
-  const _visivel=map&&_m&&_m.offsetParent!==null&&_m.offsetHeight>40;
-  if(ehMobile()||!_visivel){openVenue(n);return;}
-  map.setView([v.lat,v.lng],15);
-  if(markers[n]&&markers[n].getPopup())markers[n].openPopup();
-  else{markers[n]=L.circleMarker([v.lat,v.lng],{radius:7,color:COLORS.dir,fillColor:COLORS.dir,fillOpacity:.85,weight:1}).addTo(map).bindPopup(popupHtml(v,null));markers[n].openPopup();}
-  window.scrollTo({top:document.getElementById('map').offsetTop-20,behavior:'smooth'});}
-
-/* no celular o popup do Leaflet fica minúsculo e difícil de acertar:
-   o toque no marcador abre a ficha do espaço no modal */
-function ehMobile(){return window.matchMedia('(max-width:950px)').matches||('ontouchstart' in window);}
-function openVenue(n){
-  const v=vByName[n]; if(!v)return;
-  const shows=expos.filter(e=>e.ven&&e.ven.name===v.name);
-  const links=[v.site?['Site',v.site]:null, v.ig?['Instagram','https://instagram.com/'+v.ig]:null,
-    ['Como chegar',gmaps(v)], ['Buscar',gsearch(v.name+' galeria são paulo')]]
-    .filter(Boolean).map(l=>`<a class="btn" target="_blank" href="${l[1]}">${l[0]}</a>`).join('');
-  const ing=(typeof ingTxt==='function'&&ingTxt(v))?`<div class="sub" style="margin-top:6px">${ingTxt(v)}</div>`:'';
-  document.getElementById('modal').innerHTML=`<span class="close" onclick="closeArtist()">&times;</span>
-    <h3>${v.name}</h3>
-    <div class="sub">${v.addr} · ${v.b} · Zona ${v.z}</div>${ing}
-    ${v.info?`<div class="exline" style="border:0;padding-top:12px">${v.info}</div>`:''}
-    <div class="links">${links}</div>
-    ${shows.length?shows.map(e=>`<div class="exline"><b>${e.t}</b>${e.a?` — ${e.a}`:''}
-       <span class="w">${e.st==='opening'?'abre '+fmt(e.ini):'até '+(e.fim?fmt(e.fim):'—')}</span>
-       ${e.d?`<span class="w">${e.d}</span>`:''}</div>`).join('')
-      :'<div class="exline"><span class="w">Sem mostra na agenda desta janela.</span></div>'}`;
-  document.getElementById('modalBg').style.display='flex';
+/* ================= SEMANA (trilho fixado) ================= */
+let wkTxt='';
+function renderSemana(){
+  const fimISO=new Date(Date.parse(HOJE+'T12:00')+7*864e5).toISOString().slice(0,10);
+  const wk=expos.filter(e=>e.ini>=HOJE&&e.ini<=fimISO).sort((a,c)=>a.ini.localeCompare(c.ini));
+  const sec=document.getElementById('semana');
+  if(!wk.length){sec.hidden=true;return;}
+  sec.hidden=false;
+  wkTxt='Vernissages SP — aberturas da semana:\n'+wk.map(e=>'• '+dm(e.ini)+(e.ini===HOJE?' (hoje!)':'')+' — '+e.t+' @ '+e.ven.name+' ('+e.ven.b+')').join('\n')+'\n\nAgenda completa, mapa e roteiros: https://vernissagessp.com.br/';
+  document.getElementById('pino').innerHTML='<div class="cab"><h2>Abre esta semana</h2><div class="acoes-sem"><a class="bt" target="_blank" rel="noopener" href="https://wa.me/?text='+encodeURIComponent(wkTxt)+'">WhatsApp</a><button type="button" class="bt" data-act="copyweek">Copiar agenda</button></div></div>'+
+    '<div class="trilho" id="trilho">'+wk.map(e=>{
+      const d='<div class="dia"><small>'+(e.ini===HOJE?'HOJE':'ABRE')+'</small>'+dl(e.ini)+'</div>';
+      const im=e.img?'<div class="im"><img src="'+esc(e.img)+'" alt="" loading="lazy" onerror="this.parentNode.classList.add(\'sem\');this.remove()">'+d+'</div>'
+                    :'<div class="im sem"><div class="nome">'+esc(tituloLimpo(e))+'</div>'+d+'</div>';
+      return '<button type="button" class="cartao" data-act="ficha" data-id="'+e.k+'">'+im+'<h3>'+esc(tituloLimpo(e))+'</h3><p>'+esc(e.ven.name)+' · '+esc(e.ven.b)+'</p></button>';
+    }).join('')+'</div>';
 }
 
-/* diretório */
-let sortK='b',sortAsc=true;
-function drawDir(q,zona,b,tipo,ven){
-  let rows=VENUES.filter(v=>v.tipo!=='feira'&&(zona==='all'||v.z===zona)&&(b==='all'||bairroLabel(v)===b)&&(tipo==='all'||v.tipo===tipo)&&(ven==='all'||v.name===ven)&&matches(v,q));
-  const kmap={name:'name',addr:'addr',bairro:'b',zona:'z',tipo:'tipo'};
-  rows.sort((a,c)=>(''+a[sortK]).localeCompare(''+c[sortK],'pt')* (sortAsc?1:-1));
-  document.querySelector('#dirTable tbody').innerHTML=rows.map(v=>`<tr>
-    <td><span class="gname" onclick="focusVenue('${v.name.replace(/'/g,"\\'")}')">${v.name}</span></td>
-    <td>${v.addr}</td><td>${v.b}</td><td class="zona">${v.z}</td><td class="zona">${v.tipo}</td>
-    <td class="actions"><div class="dir-acts"><span class="fav ${favs.has(v.name)?'on':''}" onclick="toggleFav('${v.name.replace(/'/g,"\\'")}')" title="Favoritar" aria-label="Favoritar">&#9829;</span>
-      ${v.site
-        ?`<a class="btn ico" href="${v.site}" target="_blank" title="Site oficial" aria-label="Site oficial">${ICO.site}</a>`
-        :`<a class="btn ico" href="${gsearch(v.name+' galeria são paulo')}" target="_blank" title="Buscar no Google" aria-label="Buscar no Google">${ICO.search}</a>`}
-      ${v.ig?`<a class="btn ico" href="https://instagram.com/${v.ig}" target="_blank" title="Instagram" aria-label="Instagram">${ICO.ig}</a>`:'<span class="ico-gap" aria-hidden="true"></span>'}
-      <a class="btn ico" href="${gmaps(v)}" target="_blank" title="Traçar rota" aria-label="Traçar rota">${ICO.pin}</a></div></td></tr>`).join('');
-  document.getElementById('dirtitle').textContent=`Diretório de Galerias e Espaços (${rows.length})`;
-}
-document.querySelectorAll('#dirTable th[data-k]').forEach(th=>th.onclick=()=>{
-  const kmap={name:'name',addr:'addr',bairro:'b',zona:'z',tipo:'tipo'};
-  const k=kmap[th.dataset.k];sortAsc=(sortK===k)?!sortAsc:true;sortK=k;draw();});
-
-/* roteiro multi-paradas */
-let route=[];
-function addStop(n){if(!route.includes(n)){route.push(n);renderRoute();}}
-function delStop(i){route.splice(i,1);renderRoute();}
-function clearRoute(){route=[];renderRoute();}
-function renderRoute(){
-  const p=document.getElementById('routePanel');
-  document.getElementById('rc').textContent=route.length;
-  document.getElementById('routeList').innerHTML=route.map((n,i)=>`<li>${n}<span onclick="delStop(${i})">✕</span></li>`).join('');
-  p.style.display=route.length?'block':'none';
-}
-function openRoute(){
-  if(!route.length)return;
-  const addr=n=>encodeURIComponent(vByName[n].name+', '+vByName[n].addr.replace(' ~','')+', São Paulo');
-  let url='https://www.google.com/maps/dir/?api=1&destination='+addr(route[route.length-1]);
-  if(route.length>1)url+='&waypoints='+route.slice(0,-1).map(addr).join('%7C');
-  url+='&travelmode=driving';
-  window.open(url,'_blank');
+/* ================= AGENDA ================= */
+let nGrade=12,nTexto=12;
+function renderAgenda(){
+  const sec=document.getElementById('agenda');
+  const com=LISTA.filter(e=>e.img&&String(e.img).trim()), sem=LISTA.filter(e=>!(e.img&&String(e.img).trim()));
+  const tot=LISTA.length;
+  let h='<div class="cab"><h2>Agenda</h2><span>'+tot+' mostra'+(tot===1?'':'s')+(ativo()?' com esses filtros':' em cartaz e por vir')+'</span></div>';
+  if(!tot){
+    h+='<div class="vazio">Nada encontrado com esses filtros.'+(ativo()?'<button type="button" data-act="limpar">Limpar filtros</button>':'')+'</div>';
+    sec.innerHTML=h;return;
+  }
+  if(com.length){
+    h+='<div class="grade" id="grade">'+com.slice(0,nGrade).map(e=>{
+      const v=e.ven;
+      return '<article class="item"><div class="im" data-act="ficha" data-id="'+e.k+'"><img src="'+esc(e.img)+'" alt="" loading="lazy" onerror="this.closest(\'.item\').remove()"></div>'+
+        '<div class="tx"><div class="st"><span>'+esc(v.name)+'</span><b>'+esc(tagE(e))+'</b></div>'+
+        '<h3 data-act="ficha" data-id="'+e.k+'">'+esc(tituloLimpo(e))+'</h3>'+
+        (e.a?'<div class="art">'+e.a.split(', ').map(n=>'<span data-act="artista" data-n="'+esc(n)+'">'+esc(n)+'</span>').join(' · ')+'</div>':'')+
+        '<div class="ca"><span>'+esc(v.b||'')+'</span>'+ingTag(v)+(F.near&&userPos?'<span>'+distKm(v).toFixed(1).replace('.',',')+' km</span>':'')+'</div>'+
+        '<div class="lk"><button type="button" data-act="veremapa" data-v="'+esc(v.name)+'">Mapa</button>'+
+        (v.site?'<a href="'+esc(v.site)+'" target="_blank" rel="noopener">Site</a>':'')+
+        (v.ig?'<a href="https://instagram.com/'+esc(v.ig)+'" target="_blank" rel="noopener">Instagram</a>':'')+
+        '<a href="'+esc(gmaps(v))+'" target="_blank" rel="noopener">Rota</a>'+
+        '<button type="button" class="favbt'+(favs.has(v.name)?' on':'')+'" data-act="fav" data-v="'+esc(v.name)+'" aria-label="Favoritar">&#9829;</button></div></div></article>';
+    }).join('')+'</div>';
+    if(com.length>nGrade)h+='<button type="button" class="mais" data-act="maisgrade">Ver mais ('+(com.length-nGrade)+')</button>';
+  }
+  if(sem.length){
+    h+='<div class="tambem"><h4><span>'+(com.length?'Mais em cartaz':'Em cartaz')+'</span><span>'+sem.length+'</span></h4><ul>'+
+      sem.slice(0,nTexto).map(e=>'<li><button type="button" data-act="ficha" data-id="'+e.k+'"><div><b>'+esc(tituloLimpo(e))+'</b><small>'+esc(e.ven.name)+' · '+esc(e.ven.b)+(e.a?' · '+esc(e.a):'')+'</small></div><span>'+esc(tagE(e))+'</span></button></li>').join('')+'</ul>'+
+      (sem.length>nTexto?'<button type="button" class="mais" data-act="maistexto">Ver mais ('+(sem.length-nTexto)+')</button>':'')+'</div>';
+  }
+  sec.innerHTML=h;
+  animaGrade();
 }
 
-/* artista: modal de detalhe */
-function openArtist(name){
+/* ================= LINHA DO TEMPO ================= */
+function renderTempo(){
+  const emc=EXPOS.filter(e=>e.ini&&e.ini<=HOJE&&(!e.fim||e.fim>=HOJE)&&vByName[e.v]);
+  const lista=emc.slice().sort((a,b)=>(a.fim||'9').localeCompare(b.fim||'9'));
+  const toque=matchMedia('(hover:none),(pointer:coarse)').matches;
+  const rows=lista.slice(0,toque?36:60);
+  const f7=lista.filter(e=>e.fim&&dias(HOJE,e.fim)<=7).length;
+  const ab=EXPOS.filter(e=>e.ini>HOJE&&dias(HOJE,e.ini)<=14&&vByName[e.v]).length;
+  const tot=VENUES.filter(v=>v.tipo!=='feira').length, gr=VENUES.filter(v=>v.tipo!=='feira'&&ehGratis(v)).length;
+  document.getElementById('numeros').innerHTML='<div><b>'+lista.length+'</b><span>mostras em cartaz</span></div><div><b>'+f7+'</b><span>fecham em 7 dias</span></div><div><b>'+ab+'</b><span>abrem em 2 semanas</span></div><div><b>'+gr+'</b><span>de '+tot+' espaços com entrada gratuita</span></div>';
+  if(!rows.length){document.getElementById('fio').innerHTML='';document.getElementById('eixo').innerHTML='';return;}
+  const t0d=new Date(HOJE+'T12:00');t0d.setDate(t0d.getDate()-20);const t0=t0d.toISOString().slice(0,10);
+  const fims=lista.map(e=>e.fim).filter(Boolean).sort();
+  const tmx=new Date(HOJE+'T12:00');tmx.setDate(tmx.getDate()+Math.min(140,dias(HOJE,fims[fims.length-1]||HOJE)+8));
+  const t1=tmx.toISOString().slice(0,10),span=dias(t0,t1);
+  const pc=d=>Math.max(0,Math.min(100,dias(t0,d)/span*100));
+  let ex='';const c=new Date(t0+'T12:00');c.setDate(1);c.setMonth(c.getMonth()+1);
+  while(c.toISOString().slice(0,10)<t1){ex+='<i style="left:'+pc(c.toISOString().slice(0,10))+'%">'+MES[c.getMonth()]+'</i>';c.setMonth(c.getMonth()+1);}
+  document.getElementById('eixo').innerHTML=ex;
+  document.getElementById('fio').innerHTML='<div class="hoje" style="left:'+pc(HOJE)+'%"></div>'+rows.map(e=>{
+    const a=pc(e.ini<t0?t0:e.ini),b=e.fim?pc(e.fim):100,w=Math.max(.6,b-a),inst=vByName[e.v].tipo==='institucional';
+    const ref=exById[EXPOS.indexOf(e)];
+    return '<div class="lin"><button type="button" class="barra'+(inst?' i':'')+(w<26?' fora':'')+'" style="left:'+a+'%;width:'+w+'%" title="'+esc(e.t+' — '+e.v)+'"'+(ref?' data-act="ficha" data-id="'+ref.k+'"':' data-act="veremapa" data-v="'+esc(e.v)+'"')+'><em></em><span>'+esc(e.t)+'</span></button></div>';
+  }).join('');
+}
+
+/* ================= ESPAÇOS ================= */
+function renderEspacos(){
+  const rows=VENUES.filter(v=>v.tipo!=='feira'&&okV(v)&&matchV(v));
+  const g={}; rows.forEach(v=>(g[bairroLabel(v)||'—']=g[bairroLabel(v)||'—']||[]).push(v));
+  document.getElementById('espNum').textContent=rows.length+' de '+VENUES.filter(v=>v.tipo!=='feira').length;
+  const rot={galeria:'galeria',institucional:'inst.',hibrido:'híbrido'};
+  document.getElementById('bairros').innerHTML=Object.keys(g).sort((a,b)=>g[b].length-g[a].length||a.localeCompare(b,'pt-BR')).map(b=>
+    '<div class="bg"><h5 data-act="bairro" data-b="'+esc(b)+'" title="Filtrar por este bairro"><span>'+esc(b)+'</span><span>'+g[b].length+'</span></h5>'+
+    g[b].sort((x,y)=>x.name.localeCompare(y.name,'pt-BR')).map(v=>
+      '<div class="row"><span><button type="button" class="nm" data-act="veremapa" data-v="'+esc(v.name)+'">'+esc(v.name)+'</button><small>'+esc(rot[v.tipo]||v.tipo)+'</small></span>'+
+      '<span class="ic"><button type="button" class="'+(favs.has(v.name)?'on':'')+'" data-act="fav" data-v="'+esc(v.name)+'" aria-label="Favoritar">&#9829;</button>'+
+      (v.site?'<a href="'+esc(v.site)+'" target="_blank" rel="noopener">Site</a>':'<a href="'+esc(gsearch(v.name+' galeria são paulo'))+'" target="_blank" rel="noopener">Buscar</a>')+
+      (v.ig?'<a href="https://instagram.com/'+esc(v.ig)+'" target="_blank" rel="noopener">IG</a>':'')+
+      '<a href="'+esc(gmaps(v))+'" target="_blank" rel="noopener">Rota</a></span></div>').join('')+'</div>').join('')||'<p class="note">Nenhum espaço com esses filtros.</p>';
+}
+
+/* ================= IMERSIVAS ================= */
+function renderImersivas(){
+  const IM=(D.imersivas||[]).filter(x=>!x.fim||x.fim>=HOJE);
+  const sec=document.getElementById('imersivas'); if(!IM.length)return;
+  sec.hidden=false;
+  document.getElementById('imersivasN').textContent=IM.length+' em cartaz';
+  document.getElementById('imersivasLista').innerHTML=IM.map(x=>'<div class="row"><b>'+esc(x.t)+'</b><span>'+esc(x.v)+(x.b?' · '+esc(x.b):'')+(x.fim?' · até '+dm(x.fim):'')+' · '+esc(x.valor||'ingresso a confirmar')+'</span></div>').join('');
+}
+
+/* ================= MODAIS ================= */
+const modal=document.getElementById('modal'),modalBg=document.getElementById('modalBg');
+function abreModal(html){modal.innerHTML='<button type="button" class="close" data-act="fechar" aria-label="Fechar">&times;</button>'+html;modalBg.style.display='flex';if(lenis)lenis.stop();modal.scrollTop=0;}
+function fechaModal(){modalBg.style.display='none';if(lenis)lenis.start();}
+modalBg.addEventListener('click',e=>{if(e.target===modalBg)fechaModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modalBg.style.display==='flex')fechaModal();});
+function fichaMostra(id){
+  const e=exById[id]; if(!e)return; const v=e.ven;
+  const links=[v.site?['Site',v.site]:null,v.ig?['Instagram','https://instagram.com/'+v.ig]:null,['Buscar',gsearch(e.t+' '+v.name)],['Rota',gmaps(v)]].filter(Boolean)
+    .map((l,i,a)=>'<a class="bt'+(l[0]==='Rota'?' cheio':'')+'" target="_blank" rel="noopener" href="'+esc(l[1])+'">'+l[0]+'</a>').join('');
+  const it=ingTxt(v);
+  abreModal((e.img?'<div class="foto"><img src="'+esc(e.img)+'" alt="'+esc(e.t)+'" onerror="this.closest(\'.foto\').remove()"></div>'+(e.cred?'<div class="cred">'+esc(e.cred)+'</div>':''):'')+
+    '<div class="sub" style="margin-top:'+(e.img?'10':'0')+'px">'+(e.st==='closing'?'Últimos dias · ':'')+esc(datasE(e).replace(/^./,c=>c.toUpperCase()))+'</div>'+
+    '<h3>'+esc(tituloLimpo(e))+'</h3>'+
+    (e.a?'<div class="art">'+e.a.split(', ').map(n=>'<span data-act="artista" data-n="'+esc(n)+'">'+esc(n)+'</span>').join(' · ')+'</div>':'')+
+    '<div class="sub">'+esc(v.name)+' · '+esc(v.addr)+' · '+esc(v.b)+'</div>'+
+    (e.d?'<div class="corpo">'+esc(e.d)+'</div>':'')+(it?'<div class="sub">'+esc(it)+'</div>':'')+
+    '<div class="links">'+links+'<button type="button" class="bt" data-act="veremapa" data-v="'+esc(v.name)+'">Ver no mapa</button></div>');
+}
+function fichaArtista(name){
   const shows=expos.filter(e=>(e.a||'').split(', ').includes(name));
-  const links=[
-    ['Google',gsearch(name+' artista')],
-    ['Obras',('https://www.google.com/search?tbm=isch&q='+encodeURIComponent(name+' artista obras'))],
-    ['Instagram',gsearch(name+' artista instagram')],
-    ['Wikipédia','https://pt.wikipedia.org/w/index.php?search='+encodeURIComponent(name)]
-  ].map(l=>`<a class="btn" target="_blank" href="${l[1]}">${l[0]}</a>`).join('');
-  document.getElementById('modal').innerHTML=`<span class="close" onclick="closeArtist()">✕</span>
-    <h3>${name}</h3><div class="sub">${shows.length} mostra(s) na agenda atual</div>
-    <div class="links">${links}</div>`+
-    shows.map(e=>`<div class="exline"><b>${e.t}</b><br><span class="w">${e.ven.name}</span> · ${e.ven.b} · ${e.st==='opening'?'abre '+fmt(e.ini):'até '+(e.fim?fmt(e.fim):'—')}${e.d?`<br><span style="color:#9a9aa6">${e.d}</span>`:''}
-      <div style="margin-top:5px"><a class="btn" target="_blank" href="${gmaps(e.ven)}">Rota</a> ${e.ven.site?`<a class="btn" target="_blank" href="${e.ven.site}">Site</a>`:''}</div></div>`).join('');
-  document.getElementById('modalBg').style.display='flex';
+  const links=[['Google',gsearch(name+' artista')],['Obras','https://www.google.com/search?tbm=isch&q='+encodeURIComponent(name+' artista obras')],['Instagram',gsearch(name+' artista instagram')],['Wikipédia','https://pt.wikipedia.org/w/index.php?search='+encodeURIComponent(name)]]
+    .map(l=>'<a class="bt" target="_blank" rel="noopener" href="'+esc(l[1])+'">'+l[0]+'</a>').join('');
+  abreModal('<h3>'+esc(name)+'</h3><div class="sub">'+shows.length+' mostra'+(shows.length===1?'':'s')+' na agenda atual</div><div class="links">'+links+'</div>'+
+    shows.map(e=>'<div class="exline" style="cursor:pointer" data-act="ficha" data-id="'+e.k+'"><b>'+esc(tituloLimpo(e))+'</b><span class="w">'+esc(e.ven.name)+' · '+esc(e.ven.b)+' · '+esc(datasE(e))+'</span></div>').join(''));
 }
-function closeArtist(){document.getElementById('modalBg').style.display='none'}
-
-/* o header usa backdrop-filter, que vira containing block e quebra position:fixed
-   dos descendentes — por isso o overlay precisa morar direto no body */
-(function(){const bg=document.getElementById('modalBg');
- if(bg&&bg.parentElement!==document.body)document.body.appendChild(bg);})();
-
-/* ================= FORMULARIO: divulgue sua vernissage ================= */
-function openForm(){
-  const C=(window.DATA.contato)||{};
-  document.getElementById('modal').innerHTML=`<span class="close" onclick="closeArtist()">&times;</span>
-    <h3>Divulgue sua vernissage</h3>
-    <div class="sub">Preencha e escolha como enviar. Nada é publicado sem checagem.</div>
-    <div class="fgrid">
-      <div class="fld full"><label>Espaço / galeria <span class="fereq">*</span></label><input id="f_v" placeholder="Nome do espaço"></div>
-      <div class="fld full"><label>Título da exposição <span class="fereq">*</span></label><input id="f_t" placeholder="Nome da mostra"></div>
-      <div class="fld"><label>Artista(s)</label><input id="f_a" placeholder="Separe por vírgula"></div>
-      <div class="fld"><label>Abertura <span class="fereq">*</span></label><input id="f_ini" type="date"></div>
-      <div class="fld"><label>Encerramento</label><input id="f_fim" type="date"></div>
-      <div class="fld full"><label>Endereço <span class="fereq">*</span></label><input id="f_end" placeholder="Rua, número, bairro"></div>
-      <div class="fld"><label>Instagram</label><input id="f_ig" placeholder="@perfil"></div>
-      <div class="fld"><label>Entrada</label><select id="f_ing"><option>Gratuita</option><option>Paga</option><option>A confirmar</option></select></div>
-      <div class="fld full"><label>Sobre a mostra / curadoria</label><textarea id="f_d" placeholder="Duas ou três linhas sobre o trabalho, curadoria, horário da abertura…"></textarea></div>
-      <div class="fld full"><label>Seu contato (e-mail ou WhatsApp) <span class="fereq">*</span></label><input id="f_c" placeholder="Para retornarmos se faltar alguma info"></div>
-    </div>
-    <div class="fmsg" id="f_msg"></div>
-    <div class="links">
-      ${C.wa?`<span class="btn add" onclick="sendForm('wa')">Enviar por WhatsApp</span>`:''}
-      <span class="btn add" onclick="sendForm('mail')">Enviar por e-mail</span>
-      <span class="btn" onclick="sendForm('copy')">Copiar texto</span>
-    </div>
-    <p class="note" style="margin-top:12px">Quer aparecer como <b>Destaque da semana</b> (topo do site e post exclusivo)?
-       Escreva "quero destaque" no campo acima — todo conteúdo pago entra sempre marcado como patrocinado.</p>`;
-  document.getElementById('modalBg').style.display='flex';
+function abreForm(){
+  const C=D.contato||{};
+  abreModal('<h3>Divulgue sua vernissage</h3><div class="sub">Preencha e escolha como enviar. Nada é publicado sem checagem.</div>'+
+    '<div class="fgrid">'+
+    '<div class="fld full"><label>Espaço / galeria <span class="fereq">*</span></label><input id="f_v" placeholder="Nome do espaço"></div>'+
+    '<div class="fld full"><label>Título da exposição <span class="fereq">*</span></label><input id="f_t" placeholder="Nome da mostra"></div>'+
+    '<div class="fld"><label>Artista(s)</label><input id="f_a" placeholder="Separe por vírgula"></div>'+
+    '<div class="fld"><label>Abertura <span class="fereq">*</span></label><input id="f_ini" type="date"></div>'+
+    '<div class="fld"><label>Encerramento</label><input id="f_fim" type="date"></div>'+
+    '<div class="fld full"><label>Endereço <span class="fereq">*</span></label><input id="f_end" placeholder="Rua, número, bairro"></div>'+
+    '<div class="fld"><label>Instagram</label><input id="f_ig" placeholder="@perfil"></div>'+
+    '<div class="fld"><label>Entrada</label><select id="f_ing"><option>Gratuita</option><option>Paga</option><option>A confirmar</option></select></div>'+
+    '<div class="fld full"><label>Sobre a mostra / curadoria</label><textarea id="f_d" placeholder="Duas ou três linhas sobre o trabalho, curadoria, horário da abertura"></textarea></div>'+
+    '<div class="fld full"><label>Seu contato (e-mail ou WhatsApp) <span class="fereq">*</span></label><input id="f_c" placeholder="Para retornarmos se faltar alguma informação"></div></div>'+
+    '<div class="fmsg" id="f_msg"></div><div class="links">'+(C.wa?'<button type="button" class="bt cheio" data-act="enviar" data-via="wa">Enviar por WhatsApp</button>':'')+
+    '<button type="button" class="bt cheio" data-act="enviar" data-via="mail">Enviar por e-mail</button><button type="button" class="bt" data-act="enviar" data-via="copy">Copiar texto</button></div>'+
+    '<div class="sub" style="margin-top:14px">Quer aparecer como Destaque da semana? Escreva "quero destaque" no campo acima. Todo conteúdo pago entra sempre marcado como patrocinado.</div>');
 }
 function formTexto(){
   const g=id=>(document.getElementById(id).value||'').trim();
@@ -1255,689 +909,115 @@ function formTexto(){
   if(falta.length){document.getElementById('f_msg').textContent='Falta preencher: '+falta.join(', ')+'.';return null;}
   document.getElementById('f_msg').textContent='';
   const br=d=>d?d.split('-').reverse().join('/'):'';
-  return ['NOVA VERNISSAGE — Vernissages SP','',
-    'Espaço: '+g('f_v'),'Exposição: '+g('f_t'),
-    g('f_a')?'Artista(s): '+g('f_a'):'',
-    'Abertura: '+br(g('f_ini'))+(g('f_fim')?'  |  Até: '+br(g('f_fim')):''),
-    'Endereço: '+g('f_end'),
-    g('f_ig')?'Instagram: '+g('f_ig'):'',
-    'Entrada: '+g('f_ing'),
-    g('f_d')?'Sobre: '+g('f_d'):'',
-    '','Contato: '+g('f_c')].filter(Boolean).join('\n');
+  return ['NOVA VERNISSAGE — Vernissages SP','','Espaço: '+g('f_v'),'Exposição: '+g('f_t'),g('f_a')?'Artista(s): '+g('f_a'):'',
+    'Abertura: '+br(g('f_ini'))+(g('f_fim')?'  |  Até: '+br(g('f_fim')):''),'Endereço: '+g('f_end'),g('f_ig')?'Instagram: '+g('f_ig'):'','Entrada: '+g('f_ing'),g('f_d')?'Sobre: '+g('f_d'):'','','Contato: '+g('f_c')].filter(Boolean).join('\n');
 }
-function sendForm(via){
-  const txt=formTexto(); if(!txt)return;
-  const C=(window.DATA.contato)||{};
-  if(via==='wa'&&C.wa) window.open('https://wa.me/'+C.wa+'?text='+encodeURIComponent(txt),'_blank');
-  else if(via==='mail') window.open('mailto:'+(C.email||'')+'?subject='+encodeURIComponent('Vernissage: '+document.getElementById('f_t').value)+'&body='+encodeURIComponent(txt),'_blank');
-  else navigator.clipboard.writeText(txt).then(()=>{document.getElementById('f_msg').textContent='Copiado! Cole no WhatsApp, e-mail ou DM do Instagram.';});
+function enviarForm(via){
+  const txt=formTexto(); if(!txt)return; const C=D.contato||{};
+  if(via==='wa'&&C.wa)window.open('https://wa.me/'+C.wa+'?text='+encodeURIComponent(txt),'_blank');
+  else if(via==='mail')window.open('mailto:'+(C.email||'')+'?subject='+encodeURIComponent('Vernissage: '+document.getElementById('f_t').value)+'&body='+encodeURIComponent(txt),'_blank');
+  else navigator.clipboard.writeText(txt).then(()=>{document.getElementById('f_msg').textContent='Copiado! Cole no WhatsApp, e-mail ou DM do Instagram.';}).catch(()=>{document.getElementById('f_msg').textContent='Não consegui copiar. Selecione o texto e copie manualmente.';});
 }
 
-/* em foco: bloco editorial destacado (vira espaço patrocinado com f.publi=true) */
-const HOJE_ISO=new Date(Date.now()-3*3600e3).toISOString().slice(0,10);
-  function dataFoco(f){
-    if(!f.ini) return '';
-    const ate=f.fim?' → '+fmt(f.fim):'';
-    if(f.ini===HOJE_ISO) return 'Abre hoje · '+fmt(f.ini)+ate;
-    if(f.ini>HOJE_ISO)   return 'Abertura '+fmt(f.ini)+(f.fim?' · até '+fmt(f.fim):'');
-    return 'Em cartaz · '+fmt(f.ini)+(f.fim?ate:' · encerramento não divulgado');
-  }
-  /* Capa gerada: garante que o bloco Em foco nunca fique sem imagem.
-     E so a rede de seguranca — a imagem de divulgacao real entra no campo img do expo. */
-  function capaFoco(f){
-    const nome=(f.t||'')+'·'+(f.v||'');
-    let s=2166136261>>>0;
-    for(let i=0;i<nome.length;i++){s^=nome.charCodeAt(i);s=Math.imul(s,16777619)>>>0;}
-    const rnd=n=>{s=(Math.imul(s,1664525)+1013904223)>>>0;return s%n;};
-    const cor=['#e8c15a','#c96f4a','#a78bfa','#7fd8a0','#8fb6f9'];
-    let a=rnd(5),b=rnd(5); if(b===a)b=(b+1+rnd(4))%5;
-    const g='capa'+(s%99999);
-    let marcas='';
-    for(let i=0;i<5;i++){
-      const x=70+rnd(460), y=50+rnd(260), r=26+rnd(66), k=rnd(3), col=(i%2)?cor[b]:cor[a];
-      if(k===0) marcas+='<circle cx="'+x+'" cy="'+y+'" r="'+r+'" fill="none" stroke="'+col+'" stroke-width="1.2" opacity=".5"/>';
-      else if(k===1) marcas+='<rect x="'+(x-r)+'" y="'+(y-r)+'" width="'+(2*r)+'" height="'+(2*r)+'" fill="none" stroke="'+col+'" stroke-width="1.2" opacity=".4"/>';
-      else marcas+='<path d="M'+(x-r)+' '+(y+r)+'L'+x+' '+(y-r)+'L'+(x+r)+' '+(y+r)+'" fill="none" stroke="'+col+'" stroke-width="1.2" opacity=".45"/>';
-    }
-    return '<svg viewBox="0 0 600 360" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Capa gerada">'+
-      '<defs><linearGradient id="'+g+'" x1="0" y1="0" x2="1" y2="1">'+
-      '<stop offset="0" stop-color="'+cor[a]+'" stop-opacity=".22"/>'+
-      '<stop offset="1" stop-color="'+cor[b]+'" stop-opacity=".10"/></linearGradient></defs>'+
-      '<rect width="600" height="360" fill="#0a0a0d"/>'+
-      '<rect width="600" height="360" fill="url(#'+g+')"/>'+marcas+'</svg>';
-  }
-  function renderFoco(){
-    const el=document.getElementById('foco'); if(!el) return;
-    const man=window.DATA.foco;
-    /* patrocinio continua mandando: se publi:true, o bloco manual vence */
-    let f=null, auto=false;
-    if(man&&man.t&&man.publi){ f=Object.assign({},man,{t:tituloLimpo({t:man.t,a:man.quem||''})}); }
-    else{
-      /* Escolha do destaque. expos ja exclui mostras encerradas.
-         1) se DATA.destaques traz uma entrada com a data de hoje, ela manda;
-         2) senao escolhe sozinho, ignorando tudo que ja foi destaque em outro dia,
-            com prioridade para quem abre hoje, depois a abertura mais proxima. */
-      const hist=window.DATA.destaques||[];
-      const kOf=x=>x.t+'|'+x.v;
-      const fixo=hist.find(h=>h.d===HOJE_ISO);
-      const temImg=x=>!!(x&&x.img&&String(x.img).trim());
-
-      /* TRAVA 1 — destaque sem imagem nao existe.
-         Ate 25/08/2026 o rank punha "abre hoje" na frente de tudo e a imagem so
-         desempatava entre mostras da MESMA data. Naquele dia a home saiu com a
-         capa gerada em SVG porque a unica que abria era "Uma lingua nova", da
-         Galeria Estacao, sem campo img — e havia 41 mostras com reproducao em
-         cartaz. A capa gerada e rede de seguranca para imagem que falha em
-         carregar, nunca criterio de escolha: mostra sem reproducao so vira
-         destaque se nao existir nenhuma outra. */
-      const comImg=expos.filter(temImg);
-      const pote=comImg.length?comImg:expos;
-
-      /* TRAVA 2 — nao repete a mostra.
-         O mapa abaixo guarda a ultima vez que cada mostra foi destaque, em
-         QUALQUER outro dia: entrada agendada para amanha tambem queima a mostra
-         hoje. Antes o filtro so olhava para tras. */
-      const quando={};
-      hist.forEach(h=>{ if(h.d!==HOJE_ISO && (!quando[h.k]||h.d>quando[h.k])) quando[h.k]=h.d; });
-      const usados=new Set(Object.keys(quando));
-
-      /* TRAVA 3 — nao repete a casa em 7 dias. Mesma regra do E20 do check.js,
-         que ate agora existia so na validacao e nao na escolha. */
-      const lim=new Date(HOJE_ISO+'T12:00:00Z'); lim.setUTCDate(lim.getUTCDate()-7);
-      const isoLim=lim.toISOString().slice(0,10);
-      const casaQuente=new Set(hist.filter(h=>h.d>=isoLim&&h.d<HOJE_ISO)
-        .map(h=>String(h.k).split('|').slice(1).join('|')));
-
-      let e=null;
-      /* Destaque agendado manda, mas passa pelas travas 1 e 2: agenda nao cria
-         imagem, e agenda tambem nao autoriza repetir. Em 25/08 a tarefa diaria
-         agendou "Flores e Vasos" sem saber que ela ja tinha sido o destaque em
-         21 e 22/08 — dias em que a tarefa nao rodou e o site escolheu sozinho,
-         sem deixar registro. A entrada agendada passava direto por aqui. */
-      if(fixo){
-        const cand=expos.find(x=>kOf(x)===fixo.k);
-        if(cand&&(temImg(cand)||!comImg.length)&&!usados.has(fixo.k)) e=cand;
-      }
-      if(!e){
-        /* Uma ordenacao so, em vez de tres filtros encadeados com fallback.
-           A versao com filtros tinha um buraco: quando o acervo esgotava, o
-           ultimo fallback era `pote.slice()` e a ordem voltava a mandar — a
-           mesma mostra em cartaz mais recente ganhava todo dia, para sempre.
-           Simulado em 30/08/2026: a partir do 23o dia a home repetia "Pequeno
-           mapa do tempo" indefinidamente.
-
-           Como criterio ordenado, o rodizio nunca perde a vez: cada regra so
-           desempata a anterior, e a degradacao e suave em vez de cair num
-           fallback cego. */
-        const usado=x=>usados.has(kOf(x));
-        const quente=x=>casaQuente.has(x.v);
-        const lru=x=>String(quando[kOf(x)]||'');
-        const rank=x=>x.ini===HOJE_ISO?0:(x.st==='opening'?1:2);
-        const livres=pote.slice().sort((a,b)=>{
-          /* 1) quem nunca foi destaque vem antes de quem ja foi */
-          const ua=usado(a)?1:0, ub=usado(b)?1:0; if(ua!==ub) return ua-ub;
-          /* 2) casa fria antes de casa quente — a trava E20 aplicada na escolha */
-          const qa=quente(a)?1:0, qb=quente(b)?1:0; if(qa!==qb) return qa-qb;
-          /* 3) entre as que ja foram, manda o rodizio: a mais antiga primeiro */
-          if(ua){ const la=lru(a), lb=lru(b); if(la!==lb) return la<lb?-1:1; }
-          /* 4) so entao a agenda: abre hoje, abertura mais proxima, em cartaz mais recente */
-          const ra=rank(a), rb=rank(b); if(ra!==rb) return ra-rb;
-          if(ra<2 && a.ini!==b.ini) return a.ini<b.ini?-1:1;
-          if(ra===2 && a.ini!==b.ini) return a.ini<b.ini?1:-1;
-          return 0;
-        });
-        e=livres[0];
-      }
-      if(!e){ if(man&&man.t){f=Object.assign({},man,{t:tituloLimpo({t:man.t,a:man.quem||''})});} else {el.style.display='none';return;} }
-      else{
-        f={t:tituloLimpo(e),v:e.v,quem:e.a||'',txt:e.d||'',img:e.img||'',cred:e.cred||'',ini:e.ini,fim:e.fim};
-        auto=true;
-      }
-    }
-    const v=vByName[f.v]||null;
-    window.FOCOV=v;
-    const esc=s=>String(s||'').replace(/"/g,'&quot;');
-    window.CAPAFOCO=capaFoco(f);
-    el.className='foco comimg';
-    el.innerHTML=
-      (f.img?'<div class="focoimg"><img src="'+esc(f.img)+'" alt="'+esc(f.t)+'" loading="eager" onerror="const b=this.closest(\'.focoimg\');b.classList.add(\'gerada\');b.innerHTML=window.CAPAFOCO">'+
-        (f.cred?'<span class="cred">'+f.cred+'</span>':'')+'</div>'
-           :'<div class="focoimg gerada">'+window.CAPAFOCO+'</div>')+
-      '<div class="focotxt">'+
-      '<div class="kicker">'+(f.publi?'Apoio<span class="selo">CONTEÚDO PATROCINADO</span>':'Em foco'+(auto?'<span class="selo">DESTAQUE DO DIA</span>':''))+'</div>'+
-      '<h3>'+f.t+'</h3>'+
-      (f.quem?'<div class="quem">'+f.quem+'</div>':'')+
-      (v?'<div class="focolocal">'+v.name+' · '+v.b+'</div>':'')+
-      (f.ini?'<div class="focodata">'+dataFoco(f)+'</div>':'')+
-      (f.txt?'<div class="txt">'+f.txt+'</div>':'')+
-      '<div class="btns">'+
-      (v?'<span class="btn add" onclick="focusVenue(\''+v.name.replace(/'/g,"\\'")+'\')">Ver no mapa</span>':'')+
-      (f.link?'<a class="btn" href="'+f.link+'" target="_blank" rel="noopener">Saiba mais</a>':'')+
-      (v&&v.site?'<a class="btn" href="'+v.site+'" target="_blank" rel="noopener">Site</a>':'')+
-      '</div></div>';
-    el.style.display='';
-  }
-renderFoco();
-  /* o selo "espaco do dia" saiu da faixa de KPIs: a informacao ja aparece no bloco Em foco */
-
-/* vernissages da semana + compartilhar */
-function weekBanner(){
-  // Só aberturas de hoje pra frente — "esta semana" virou vitrine de mostra
-  // que já tinha aberto há dias, com selo JÁ ABRIU disfarçando que não tinha
-  // novidade nenhuma. Sem abertura nova, a seção some (já tratado abaixo).
-  const end=new Date(TODAY.getTime()+7*864e5), start=TODAY;
-const wk=expos.filter(e=>{const d=new Date(e.ini+'T12:00');return d<=end&&d>=start;}).sort((a,c)=>a.ini.localeCompare(c.ini));
-  const w=document.getElementById('wkwrap');
-  if(!wk.length){w.style.display='none';return}
-  w.style.display='block';
-  const wr=document.getElementById('wkrow');
-  wr.classList.toggle('poucos',wk.length<=3);
-  wr.innerHTML=wk.map(e=>`<div class="wk" onclick="focusVenue('${e.ven.name.replace(/'/g,"\\'")}')">
-    <div class="d">${fmt(e.ini)}${e.ini===HOJESTR?'<span class="nw hj">HOJE</span>':''}</div><div class="t">${tituloLimpo(e)}</div><div class="v">${e.ven.name} · ${e.ven.b}</div></div>`).join('');
-  const txt='Vernissages SP — aberturas da semana:\n'+wk.map(e=>`• ${fmt(e.ini)}${e.ini===HOJESTR?' (hoje!)':''} — ${e.t} @ ${e.ven.name} (${e.ven.b})`).join('\n')+'\n\nAgenda completa, mapa e roteiros: https://vernissagessp.com.br/';
-  window._wkTxt=txt;
-  document.getElementById('waShare').href='https://wa.me/?text='+encodeURIComponent(txt);
-  setTimeout(wkFade,60);
+/* ================= NAVEGAÇÃO E CLIQUES ================= */
+let lenis=null;
+function irPara(id){
+  const el=document.getElementById(id); if(!el)return;
+  if(lenis)lenis.scrollTo(el,{offset:-46,duration:1.1}); else el.scrollIntoView({behavior:'smooth',block:'start'});
 }
-/* No mobile os painéis de análise abrem sob demanda, pra não empurrar a
-   agenda. No desktop ficam sempre visíveis. */
-document.addEventListener('DOMContentLoaded',()=>{
-  document.querySelectorAll('.dobra>h2').forEach(h=>{
-    h.addEventListener('click',()=>{
-      if(!window.matchMedia('(max-width:950px)').matches)return;
-      h.parentElement.classList.toggle('aberta');
-    });
-  });
+document.addEventListener('click',ev=>{
+  const goL=ev.target.closest('[data-go]');
+  if(goL){ev.preventDefault();irPara(goL.dataset.go==='mapa'?'mapa':goL.dataset.go);return;}
+  const t=ev.target.closest('[data-act]'); if(!t)return;
+  const a=t.dataset.act;
+  if(a==='fechar')fechaModal();
+  else if(a==='ficha'){ev.preventDefault();fichaMostra(+t.dataset.id);}
+  else if(a==='artista'){ev.stopPropagation();fichaArtista(t.dataset.n);}
+  else if(a==='fav'){ev.stopPropagation();toggleFav(t.dataset.v);}
+  else if(a==='veremapa'){fechaModal();selecionar(t.dataset.v,true);irPara('mapa');}
+  else if(a==='form'){ev.preventDefault();abreForm();}
+  else if(a==='enviar')enviarForm(t.dataset.via);
+  else if(a==='copyweek')navigator.clipboard.writeText(wkTxt).then(()=>toast('Agenda da semana copiada')).catch(()=>toast('Não consegui copiar'));
+  else if(a==='limpar')limpar();
+  else if(a==='maisgrade'){nGrade+=12;renderAgenda();if(window.ScrollTrigger)ScrollTrigger.refresh();}
+  else if(a==='maistexto'){nTexto+=24;renderAgenda();if(window.ScrollTrigger)ScrollTrigger.refresh();}
+  else if(a==='bairro'){F.bairro=(F.bairro===t.dataset.b)?'all':t.dataset.b;sincUI();aplicar();}
 });
-function wkFade(){
-  const r=document.getElementById('wkrow'),f=document.getElementById('wkfade');
-  if(!r||!f)return;
-  const temMais=r.scrollWidth-r.clientWidth>8, noFim=r.scrollLeft+r.clientWidth>=r.scrollWidth-12;
-  f.classList.toggle('on',temMais&&!noFim);
-  const h=document.getElementById('wkhint'); if(h)h.style.visibility=temMais?'visible':'hidden';
-}
-document.addEventListener('DOMContentLoaded',()=>{
-  const r=document.getElementById('wkrow'); if(r)r.addEventListener('scroll',wkFade,{passive:true});
-  window.addEventListener('resize',wkFade); setTimeout(wkFade,400);
-});
-function copyWeek(){navigator.clipboard.writeText(window._wkTxt||'').then(()=>alert('Agenda da semana copiada! Cole onde quiser.'))}
 
-/* favoritos + perto de mim */
-let favs=new Set((()=>{try{return JSON.parse(LS.get('vspFavs')||'[]');}catch(_){return [];}})()),favOnly=false,freeOnly=false,userPos=null,nearOn=false,userMarker=null;
-function toggleFav(n){favs.has(n)?favs.delete(n):favs.add(n);LS.set('vspFavs',JSON.stringify([...favs]));draw();}
-
-/* ---- constelacao SP: sexto item da faixa de numeros ----
-   Os enderecos plotados em escala real, sem contorno de cidade e sem ruas:
-   a nuvem de pontos desenha sozinha o circuito. Dourado pulsante abre hoje,
-   claro tem mostra em cartaz, apagado sem mostra no momento.
-   O mouse mostra o nome do espaco; o clique filtra a agenda por ele. */
-function renderConstelacao(){
-  const box=document.getElementById('kpis'); if(!box) return;
-  const pts=VENUES.filter(v=>typeof v.lat==='number'&&typeof v.lng==='number');
-  if(!pts.length) return;
-  const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-  const lats=pts.map(v=>v.lat), lngs=pts.map(v=>v.lng);
-  const laMin=Math.min(...lats), laMax=Math.max(...lats);
-  const lnMin=Math.min(...lngs), lnMax=Math.max(...lngs);
-  const kx=Math.cos((laMin+laMax)/2*Math.PI/180);
-  const W=(lnMax-lnMin)*kx||1, H=(laMax-laMin)||1, PAD=4, VBW=100;
-  const VBH=Math.max(34,Math.round(100*H/W));
-  const X=v=>PAD+((v.lng-lnMin)*kx/W)*(VBW-PAD*2), Y=v=>PAD+((laMax-v.lat)/H)*(VBH-PAD*2);
-  const abre={}, cartaz={};
-  expos.forEach(e=>{
-    if(e.ini===HOJE_ISO) abre[e.v]=1;
-    if(e.ini&&e.ini<=HOJE_ISO&&(!e.fim||e.fim>=HOJE_ISO)) cartaz[e.v]=1;
-  });
-  let nHoje=0, pontos='', alvos='';
-  pts.forEach((v,i)=>{
-    const h=!!abre[v.name], on=!!cartaz[v.name]; if(h) nHoje++;
-    const cx=X(v).toFixed(2), cy=Y(v).toFixed(2), nome=esc(v.name);
-    if(h) pontos+='<circle class="halo" cx="'+cx+'" cy="'+cy+'" r="2.5">'+
-      '<animate attributeName="r" values="2.5;8" dur="2.8s" repeatCount="indefinite"/>'+
-      '<animate attributeName="opacity" values=".55;0" dur="2.8s" repeatCount="indefinite"/></circle>';
-    pontos+='<circle class="cpt'+(h?' hoje':(on?' on':''))+'" data-p="'+i+'" cx="'+cx+'" cy="'+cy+
-      '" r="'+(h?2.5:(on?1.55:1.15))+'"/>';
-    alvos+='<circle class="hit" data-i="'+i+'" data-v="'+nome+'" cx="'+cx+'" cy="'+cy+'" r="2.6">'+
-      '<title>'+nome+(v.b?' \u00b7 '+esc(v.b):'')+'</title></circle>';
-  });
-  const padrao=nHoje?(nHoje===1?'1 abre hoje':nHoje+' abrem hoje'):pts.length+' endere\u00e7os';
-  let el=document.getElementById('kpiMapa');
-  if(!el){ el=document.createElement('div'); el.className='kpi kpimapa'; el.id='kpiMapa'; box.appendChild(el); }
-  el.innerHTML='<svg viewBox="0 0 '+VBW+' '+VBH+'" preserveAspectRatio="xMidYMid meet" role="img" '+
-    'aria-label="Mapa dos espa\u00e7os de arte em S\u00e3o Paulo">'+pontos+alvos+'</svg>'+
-    '<span class="cptlabel" id="cptLabel">'+padrao+'</span>';
-  const lab=el.querySelector('#cptLabel');
-  let aceso=null;
-  el.onmouseover=ev=>{
-    const c=ev.target.closest('circle[data-v]'); if(!c) return;
-    lab.textContent=c.getAttribute('data-v'); lab.classList.add('ativo');
-    if(aceso) aceso.classList.remove('ativo');
-    aceso=el.querySelector('circle.cpt[data-p="'+c.getAttribute('data-i')+'"]');
-    if(aceso) aceso.classList.add('ativo');
-  };
-  el.onmouseleave=()=>{
-    lab.textContent=padrao; lab.classList.remove('ativo');
-    if(aceso){ aceso.classList.remove('ativo'); aceso=null; }
-  };
-  el.onclick=ev=>{
-    const c=ev.target.closest('circle[data-v]'); if(!c) return;
-    const s=document.getElementById('venueSel'); if(!s) return;
-    s.value=c.getAttribute('data-v'); draw();
-    s.scrollIntoView({behavior:'smooth',block:'center'});
-  };
-}
-renderConstelacao();
-function distKm(v){const R=6371,dLa=(v.lat-userPos[0])*Math.PI/180,dLo=(v.lng-userPos[1])*Math.PI/180,
-  x=Math.sin(dLa/2)**2+Math.cos(userPos[0]*Math.PI/180)*Math.cos(v.lat*Math.PI/180)*Math.sin(dLo/2)**2;
-  return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x));}
-document.getElementById('favBtn').onclick=function(){favOnly=!favOnly;this.classList.toggle('on',favOnly);draw();};
-document.getElementById('freeBtn').onclick=function(){freeOnly=!freeOnly;this.classList.toggle('on',freeOnly);draw();};
-document.getElementById('nearBtn').onclick=function(){
-  const btn=this;
-  if(nearOn){nearOn=false;btn.classList.remove('on');if(userMarker){map.removeLayer(userMarker);userMarker=null;}draw();return;}
-  if(!navigator.geolocation){alert('Geolocalização não disponível neste navegador.');return;}
-  btn.textContent='localizando…';
-  navigator.geolocation.getCurrentPosition(p=>{
-    userPos=[p.coords.latitude,p.coords.longitude];nearOn=true;
-    btn.textContent='Perto de mim';btn.classList.add('on');
-    if(!map)return;
-    userMarker=L.circleMarker(userPos,{radius:9,color:'#fff',fillColor:'#7da7d9',fillOpacity:.95,weight:2})
-      .addTo(map).bindPopup('<b>Você está aqui</b>');
-    map.setView(userPos,13);draw();
-  },()=>{btn.textContent='Perto de mim';alert('Não consegui acessar sua localização — verifique a permissão do navegador.');});
-};
-
-/* contador de visitas + enquete (Abacus — anônimo, sem cookies de rastreamento) */
-const ABC='https://abacus.jasoncameron.dev',NS='vernissages-sp-lucas';
-const jaVeio=LS.get('vspSeen');
-if(!jaVeio)LS.set('vspSeen','1');
-fetch(ABC+(jaVeio?'/get/':'/hit/')+NS+'/visitas').then(r=>r.json()).then(j=>{
-  document.getElementById('vc').textContent=Number(j.value).toLocaleString('pt-BR');
-  document.getElementById('visits').style.display='block';
-}).catch(()=>{});
-/* "O panorama" — substituiu a enquete e depois a lista seca de números.
-   Uma timeline ao vivo: cada mostra em cartaz vira uma barra do dia que abriu
-   ao dia que fecha, ordenada por encerramento. Herdou o diagrama que era do
-   social (o antigo formato "duração"), agora interativo, na home, calculado da
-   base na hora. Mostra de um golpe as
-   "duas velocidades" da cidade — galeria curta e clara, instituição longa e
-   apagada — e o que some primeiro. */
-function renderPanorama(){
-  const chart=document.getElementById('panoChart');
-  const tilesBox=document.getElementById('panoTiles');
-  const lead=document.getElementById('panoLead');
-  if(!chart||!lead) return;
-  const V={}; VENUES.forEach(v=>V[v.name]=v);
-  const hoje=HOJESTR, DAY=864e5, T0=Date.parse(hoje+'T12:00');
-  const dd=(a,b)=>Math.round((Date.parse(b+'T12:00')-Date.parse(a+'T12:00'))/DAY);
-  const med=a=>{const s=a.slice().sort((x,y)=>x-y);return s.length?s[Math.floor(s.length/2)]:0;};
-  const fmtMes=iso=>iso.slice(8,10)+'/'+iso.slice(5,7);
-  const MES=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
-  const eInst=e=>V[e.v]&&V[e.v].tipo==='institucional';
-  const toque=window.matchMedia('(hover:none),(pointer:coarse)').matches;
-
-  const emCartaz=EXPOS.filter(e=>e.ini&&e.ini<=hoje&&e.fim&&e.fim>=hoje&&V[e.v]);
-  let rows=emCartaz.slice().sort((a,b)=>a.fim.localeCompare(b.fim)||dd(a.ini,a.fim)-dd(b.ini,b.fim));
-  const LIM=toque?32:50;
-  const cortou=rows.length>LIM; if(cortou) rows=rows.slice(0,LIM);
-
-  /* tiles */
-  const durGal=emCartaz.filter(e=>V[e.v].tipo==='galeria').map(e=>dd(e.ini,e.fim));
-  const durIns=emCartaz.filter(e=>V[e.v].tipo==='institucional').map(e=>dd(e.ini,e.fim));
-  const gratis=VENUES.filter(v=>v.tipo!=='feira'&&ehGratis(v)).length;
-  const totV=VENUES.filter(v=>v.tipo!=='feira').length;
-  const fecha7=emCartaz.filter(e=>dd(hoje,e.fim)<=7).length;
-  const abre14=EXPOS.filter(e=>e.ini&&dd(hoje,e.ini)>0&&dd(hoje,e.ini)<=14).length;
-  const tiles=[];
-  if(durGal.length>=5&&durIns.length>=3) tiles.push([med(durGal)+' / '+med(durIns),'dias que uma mostra dura, na galeria e na instituição']);
-  tiles.push([gratis+' / '+totV,'espaços com entrada gratuita']);
-  if(fecha7) tiles.push([fecha7,'mostra'+(fecha7>1?'s':'')+' fecha'+(fecha7>1?'m':'')+' em 7 dias']);
-  if(abre14) tiles.push([abre14,'abre'+(abre14>1?'m':'')+' nas próximas 2 semanas']);
-  if(tilesBox) tilesBox.innerHTML=tiles.map(([b,s])=>`<div class="pano-tile"><b>${b}</b><span>${s}</span></div>`).join('');
-
-  lead.innerHTML=`<b>${emCartaz.length}</b> mostras em cartaz agora${cortou?` (as ${LIM} que fecham antes)`:''}. `+
-    `As barras curtas e claras são galerias; as longas e apagadas, instituições.`;
-
-  if(!rows.length){ chart.innerHTML='<p class="note" style="margin:0">Nada com data de encerramento pra desenhar agora.</p>'; return; }
-
-  /* Escala em px de verdade: viewBox proporcional, mas dimensionado a partir da
-     largura renderizada pra que cada linha caia num alvo tocável no celular. */
-  const cw=Math.max(280,chart.clientWidth||900);
-  const W=1000, kx=W/cw;
-  const rowPx=toque?16:8, barPx=Math.max(4,rowPx-4), padTop=18*kx, axis=22*kx, font=(toque?9:9)*kx;
-  const rowH=rowPx*kx, barH=barPx*kx, PADL=6, PADR=6;
-  const ATRAS=45,FRENTE=175;
-  const x0=T0-ATRAS*DAY, x1=T0+FRENTE*DAY;
-  const sx=t=>PADL+((Math.max(x0,Math.min(x1,t))-x0)/(x1-x0))*(W-PADL-PADR);
-  const chartBot=padTop+rows.length*rowH, H=chartBot+axis;
-
-  let grid='';
-  const gd=new Date(x0); gd.setDate(1); gd.setMonth(gd.getMonth()+1);
-  while(gd.getTime()<x1){
-    const gx=sx(gd.getTime()).toFixed(1);
-    grid+=`<line class="pano-grid" x1="${gx}" y1="${padTop.toFixed(1)}" x2="${gx}" y2="${chartBot.toFixed(1)}" vector-effect="non-scaling-stroke"/>`
-        +`<text class="pano-axis" x="${gx}" y="${(H-6*kx).toFixed(1)}" text-anchor="middle" font-size="${font.toFixed(1)}">${MES[gd.getMonth()]}</text>`;
-    gd.setMonth(gd.getMonth()+1);
-  }
-  const tx=sx(T0).toFixed(1);
-  const today=`<line class="pano-today" x1="${tx}" y1="${(padTop-4*kx).toFixed(1)}" x2="${tx}" y2="${(chartBot+4*kx).toFixed(1)}" vector-effect="non-scaling-stroke"/>`
-    +`<text class="pano-todaylbl" x="${tx}" y="${(padTop-6*kx).toFixed(1)}" text-anchor="middle" font-size="${font.toFixed(1)}">hoje</text>`;
-
-  const bars=rows.map((e,i)=>{
-    const y=padTop+i*rowH;
-    const bx=sx(Date.parse(e.ini+'T12:00')), bw=Math.max(2,sx(Date.parse(e.fim+'T12:00'))-bx);
-    const fill=eInst(e)?'var(--viz-inst)':'var(--viz-com)';
-    return `<rect class="pano-bar" data-i="${i}" x="${bx.toFixed(1)}" y="${(y+(rowH-barH)/2).toFixed(1)}" width="${bw.toFixed(1)}" height="${barH.toFixed(1)}" fill="${fill}" fill-opacity="${eInst(e)?.6:.92}"/>`
-      +`<rect class="pano-hit" data-i="${i}" x="${PADL}" y="${y.toFixed(1)}" width="${W-PADL-PADR}" height="${rowH.toFixed(1)}"/>`;
-  }).join('');
-
-  chart.innerHTML=`<svg viewBox="0 0 ${W} ${H.toFixed(0)}" role="img" aria-label="Timeline de ${rows.length} mostras em cartaz, ordenadas por data de encerramento">`
-    +grid+bars+today+`</svg><div class="pano-tip" id="panoTip"></div>`;
-
-  const svg=chart.querySelector('svg'), tip=document.getElementById('panoTip');
-  let sel=-1;
-  const posiciona=i=>{
-    const hit=svg.querySelector(`.pano-hit[data-i="${i}"]`);
-    const bar=svg.querySelector(`.pano-bar[data-i="${i}"]`);
-    const cr=chart.getBoundingClientRect(), br=bar.getBoundingClientRect();
-    tip.style.maxWidth=Math.min(240,cr.width-16)+'px';
-    let x=br.right-cr.left+12;
-    if(x+tip.offsetWidth>cr.width-4) x=br.left-cr.left-tip.offsetWidth-12;
-    if(x<4) x=Math.max(4,(cr.width-tip.offsetWidth)/2);
-    let y=br.top-cr.top-6;
-    if(y+tip.offsetHeight>cr.height) y=cr.height-tip.offsetHeight-4;
-    tip.style.left=x+'px'; tip.style.top=Math.max(2,y)+'px';
-  };
-  const mostra=i=>{
-    if(i===sel) return; sel=i;
-    const e=rows[i], resta=dd(hoje,e.fim);
-    chart.classList.add('hov');
-    svg.querySelectorAll('.pano-bar').forEach(b=>b.classList.toggle('on',+b.dataset.i===i));
-    tip.innerHTML=`<b>${tituloLimpo(e)}</b><span class="pt-v">${e.v}</span>`
-      +`<div class="pt-d">${fmtMes(e.ini)} → ${fmtMes(e.fim)} · ${resta<=0?'último dia':resta+' dia'+(resta>1?'s':'')+' restantes'}</div>`
-      +`<button type="button" class="pano-go">ver o espaço no mapa ›</button>`;
-    tip.querySelector('.pano-go').onclick=ev=>{ev.stopPropagation();focusVenue(e.v);};
-    tip.classList.add('show');
-    posiciona(i);
-  };
-  const esconde=()=>{ sel=-1; chart.classList.remove('hov'); tip.classList.remove('show');
-    svg.querySelectorAll('.pano-bar.on').forEach(b=>b.classList.remove('on')); };
-
-  if(toque){
-    svg.addEventListener('click',ev=>{const h=ev.target.closest('.pano-hit');if(h)mostra(+h.dataset.i);});
-    document.addEventListener('click',ev=>{ if(sel>=0 && !chart.contains(ev.target)) esconde(); });
-  }else{
-    svg.addEventListener('pointerover',ev=>{const h=ev.target.closest('.pano-hit');if(h)mostra(+h.dataset.i);});
-    chart.addEventListener('pointerleave',esconde);
-    svg.addEventListener('click',ev=>{const h=ev.target.closest('.pano-hit');if(h)focusVenue(rows[+h.dataset.i].v);});
-  }
-}
-renderPanorama();
-let _panoT; addEventListener('resize',()=>{clearTimeout(_panoT);_panoT=setTimeout(renderPanorama,250);});
-/* filtros */
-document.querySelectorAll('#statusFilters .chip').forEach(ch=>ch.onclick=()=>{
-  document.querySelectorAll('#statusFilters .chip').forEach(c=>c.classList.remove('on'));
-  ch.classList.add('on');draw();});
-['zonaSel','bairroSel','tipoSel','venueSel','artistSel'].forEach(id=>document.getElementById(id).onchange=()=>{draw();if(id==='bairroSel')bchips.sync();});
-document.getElementById('search').oninput=()=>draw();
-weekBanner();
-
-/* Distribuição por bairro — fundida no Diretório. Chips clicáveis que
-   refletem o filtro atual: clicar num bairro filtra; clicar no que já está
-   ativo, limpa. */
-const bchips=(function(){
-  const el=document.getElementById('dirConc'); if(!el) return {sync:()=>{}};
-  const TOPO=8, mx=BAIRRO_COUNTS[0][1];
-  let full=false;
-  const chip=([b,n])=>`<button type="button" class="bchip" data-b="${b.replace(/"/g,'&quot;')}">`+
-    `<span class="bchip-bar" style="--w:${Math.max(8,n/mx*100)}%"></span>${b}<b>${n}</b></button>`;
-  const render=()=>{
-    const ativo=bSel.value;
-    let lista=full?BAIRRO_COUNTS:BAIRRO_COUNTS.slice(0,TOPO);
-    // se o bairro ativo está fora da lista visível, traz ele pra aparecer
-    if(ativo!=='all' && !lista.some(([b])=>b===ativo)){
-      const extra=BAIRRO_COUNTS.find(([b])=>b===ativo);
-      if(extra) lista=[extra,...lista];
-    }
-    el.innerHTML=lista.map(chip).join('')+
-      (BAIRRO_COUNTS.length>TOPO
-        ? `<button type="button" class="bchip more" data-more="1">${full?'menos':'+ '+(BAIRRO_COUNTS.length-TOPO)+' bairros'}</button>`
-        : '');
-    el.querySelectorAll('.bchip[data-b]').forEach(c=>c.classList.toggle('on',c.dataset.b===ativo));
-  };
-  el.addEventListener('click',ev=>{
-    const c=ev.target.closest('.bchip'); if(!c) return;
-    if(c.dataset.more){ full=!full; render(); return; }
-    barFilter(c.dataset.b);
-  });
-  render();
-  return { sync:render };
-})();
-/* ---------- experiências imersivas ----------
-   A categoria estava no dados.js e exposta no return desde 11/08 sem ninguém
-   consumir: dado morto. Entra aqui, e não na agenda, de propósito — é operação
-   comercial com bilheteria, não programa curado, e misturar as duas coisas é
-   exatamente o que a linha editorial do projeto não quer. Some sozinha quando
-   o array esvazia ou tudo encerra. */
-(function(){
-  const sec = document.getElementById('imersivas');
-  if (!sec) return;
-  const hoje = new Date(TODAY.getTime() - TODAY.getTimezoneOffset()*60000).toISOString().slice(0,10);
-  const IM = (window.DATA.imersivas || []).filter(x => !x.fim || x.fim >= hoje);
-  if (!IM.length) return;
-  const es = s => String(s==null?'':s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-  const dt = s => s ? s.split('-').reverse().join('/') : '';
-  sec.hidden = false;
-  document.getElementById('imersivasN').textContent = IM.length + ' em cartaz';
-  document.getElementById('imersivasLista').innerHTML = IM.map((x, i) => `
-    <div style="padding:12px 0;${i ? 'border-top:1px solid var(--hair)' : ''}">
-      <div style="font-weight:600">${es(x.t)}</div>
-      <div class="zona">${es(x.v)}${x.b ? ' · ' + es(x.b) : ''}${x.fim ? ' · até ' + dt(x.fim) : ''}</div>
-      <div class="zona">${es(x.valor || 'ingresso a confirmar')}</div>
-    </div>`).join('');
-})();
-
-  function barFilter(b){
-  /* Toggle: clicar no bairro já ativo limpa o filtro. */
-  const jaAtivo=bSel.value===b;
-  const opt=[...bSel.options].find(o=>o.value===b);
-  bSel.value=(jaAtivo||!opt)?'all':opt.value;
-  draw();
-  bchips.sync();
-  const ag=document.getElementById('agGrid');
-  if(ag&&!jaAtivo) ag.scrollIntoView({behavior:'smooth',block:'start'});
-}
-
-/* ritmo das aberturas */
-  (function(){
-    const box=document.getElementById('ritmo'); if(!box) return;
-    const SEM=6, base=new Date(TODAY);
-    const semanas=[];
-    for(let i=0;i<SEM;i++){
-      const ini=new Date(base); ini.setDate(base.getDate()+i*7);
-      const fim=new Date(ini); fim.setDate(ini.getDate()+6);
-      const a=ini.toISOString().slice(0,10), b=fim.toISOString().slice(0,10);
-      semanas.push({a:a,b:b,n:expos.filter(e=>e.ini>=a&&e.ini<=b).length,
-        rot:('0'+ini.getDate()).slice(-2)+'/'+('0'+(ini.getMonth()+1)).slice(-2)});
-    }
-    const mx=Math.max(1,...semanas.map(s=>s.n));
-    const tot=semanas.reduce((x,s)=>x+s.n,0);
-    box.innerHTML='<div class="paineltopo"><span class="pt">Ritmo das aberturas</span>'+
-      '<span class="pn2">'+tot+' nas próximas 6 semanas</span></div>'+
-      '<div class="rbarras">'+semanas.map(function(s,i){ return '<div class="rsem'+(i===0?' agora':'')+'" title="'+s.n+' abertura(s) a partir de '+s.rot+'">'+
-        '<span class="rn">'+s.n+'</span>'+
-        '<span class="rb" data-h="'+Math.round(s.n/mx*100)+'"></span>'+
-        '<span class="rl">'+s.rot+'</span></div>';}).join('')+'</div>';
-    requestAnimationFrame(function(){box.querySelectorAll('.rb').forEach(function(b){b.style.height=Math.max(3,+b.dataset.h)+'%';});});
-  })();
-
-/* alternador mapa/lista (mobile) */
-  (function(){
-    const vt=document.getElementById('viewToggle'), gr=document.getElementById('agGrid');
-    if(!vt||!gr) return;
-    vt.addEventListener('click',e=>{
-      const b=e.target.closest('button'); if(!b) return;
-      const v=b.dataset.v;
-      vt.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));
-      gr.classList.toggle('mapa',v==='mapa');
-      if(v==='mapa') setTimeout(()=>{map.invalidateSize();},60);
+/* ================= MOVIMENTO ================= */
+const calmo=matchMedia('(prefers-reduced-motion:reduce)').matches;
+let ctxGrade=null;
+function animaGrade(){
+  if(ctxGrade){ctxGrade.revert();ctxGrade=null;}
+  const itens=document.querySelectorAll('.item');
+  if(calmo||!window.gsap||!window.ScrollTrigger){itens.forEach(i=>{i.querySelector('.im').style.clipPath='none';i.querySelector('.tx').style.opacity=1;i.querySelector('.tx').style.transform='none';});return;}
+  const desktop=matchMedia('(min-width:821px)').matches;
+  ctxGrade=gsap.context(()=>{
+    itens.forEach((it,i)=>{
+      const im=it.querySelector('.im'),img=im.querySelector('img'),tx=it.querySelector('.tx');
+      gsap.to(im,{clipPath:'inset(0 0 0% 0)',duration:1.1,ease:'power3.out',scrollTrigger:{trigger:it,start:'top 90%'}});
+      gsap.to(tx,{opacity:1,y:0,duration:.8,delay:.15,ease:'power2.out',scrollTrigger:{trigger:it,start:'top 88%'}});
+      if(desktop){const v=[10,16,8,18,12][i%5];gsap.fromTo(img,{yPercent:-v},{yPercent:v*.2,ease:'none',scrollTrigger:{trigger:it,start:'top bottom',end:'bottom top',scrub:true}});}
     });
-  })();
-
-  /* paginacao dos cards no mobile */
-  (function(){
-    const box=document.getElementById('cards'), bm=document.getElementById('cardsMore');
-    if(!box||!bm) return;
-    const PASSO=12; let mostra=PASSO, ultimo=-1;
-    const mobile=()=>window.matchMedia('(max-width:950px)').matches;
-    function aplica(){
-      const cs=box.querySelectorAll('.card'), n=cs.length;
-      if(n!==ultimo){ultimo=n;mostra=PASSO;}
-      if(!mobile()||n<=PASSO){cs.forEach(c=>c.style.display='');bm.classList.remove('on');return;}
-      cs.forEach((c,i)=>c.style.display=i<mostra?'':'none');
-      bm.classList.add('on');
-      bm.textContent='+ mostrar mais ('+(n-mostra)+' restantes)';
-    }
-    bm.onclick=()=>{const n=box.querySelectorAll('.card').length;mostra=Math.min(mostra+PASSO,n);ultimo=n;aplica();};
-    new MutationObserver(aplica).observe(box,{childList:true});
-    window.addEventListener('resize',()=>{ultimo=-1;aplica();});
-    aplica();
-  })();
-
-  /* contador de editais abertos no header + na faixa */
-  (function(){
-    const n=(window.DATA.editais||[]).length;
-    const badge=document.getElementById('navEditalN');
-    if(badge) badge.textContent=n?n:'';
-  })();
-
-  /* filtros colapsaveis no mobile */
-  (function(){
-    const b=document.getElementById('filtroBtn'), f=document.querySelector('.filters');
-    if(!b||!f) return;
-    const mobile=()=>window.matchMedia('(max-width:950px)').matches;
-    const sync=()=>{if(mobile())f.classList.add('fechado');else f.classList.remove('fechado');
-      b.textContent='Mais filtros ▾';b.setAttribute('aria-expanded','false');};
-    b.onclick=()=>{const fechado=f.classList.toggle('fechado');
-      b.textContent=fechado?'Mais filtros ▾':'Menos filtros ▴';
-      b.setAttribute('aria-expanded',fechado?'false':'true');};
-    window.addEventListener('resize',sync); sync();
-  })();
-
-  /* popover de info das cores */
-  (function(){
-    const w=document.getElementById('infoWrap'); if(!w) return;
-    const b=document.getElementById('infoBtn');
-    b.addEventListener('click',e=>{e.stopPropagation();
-      const on=w.classList.toggle('open'); b.setAttribute('aria-expanded',on?'true':'false');});
-    document.addEventListener('click',e=>{if(!w.contains(e.target)){w.classList.remove('open');b.setAttribute('aria-expanded','false');}});
-    document.addEventListener('keydown',e=>{if(e.key==='Escape'){w.classList.remove('open');b.setAttribute('aria-expanded','false');}});
-  })();
-
-  document.getElementById('upd').textContent=window.DATA.atualizado;
-/* PWA REMOVIDO.
-   O service worker era a origem de uma sequência de falhas graves no celular
-   (tela preta, laço de recarga, página trocada). O ganho — instalar na tela
-   inicial e funcionar offline — não compensa o risco de derrubar o site.
-   Este bloco desinstala qualquer service worker antigo e apaga os caches,
-   sem recarregar a página (recarregar aqui foi o que causou o laço). */
-if('serviceWorker' in navigator){
-  try{
-    navigator.serviceWorker.getRegistrations()
-      .then(rs=>rs.forEach(r=>r.unregister().catch(()=>{})))
-      .catch(()=>{});
-  }catch(_){}
+  },document.getElementById('agenda'));
 }
-if(window.caches){
-  try{ caches.keys().then(ks=>ks.forEach(k=>caches.delete(k).catch(()=>{}))).catch(()=>{}); }catch(_){}
+function iniciaMovimento(){
+  /* barra fixa depois da marca */
+  const bf=document.getElementById('barraFixa');
+  if('IntersectionObserver' in window){new IntersectionObserver(([en])=>{bf.classList.toggle('on',!en.isIntersecting);bf.setAttribute('aria-hidden',en.isIntersecting);},{threshold:0}).observe(document.getElementById('marca'));}
+  /* barras da linha do tempo aparecem ao rolar (com ou sem biblioteca) */
+  const barras=[...document.querySelectorAll('.barra em')];
+  if(calmo||!window.gsap||!window.ScrollTrigger||typeof Lenis!=='function'){document.documentElement.classList.add('semmov');barras.forEach(b=>b.style.clipPath='none');return;}
+  gsap.registerPlugin(ScrollTrigger);
+  lenis=new Lenis({lerp:.09,smoothWheel:true});
+  lenis.on('scroll',ScrollTrigger.update);
+  gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0);
+  gsap.to('#marca',{yPercent:-18,ease:'none',scrollTrigger:{trigger:'#hero',start:'top bottom',end:'top top',scrub:true}});
+  if(matchMedia('(min-width:821px)').matches)gsap.fromTo('.hero figure img',{yPercent:-8},{yPercent:8,ease:'none',scrollTrigger:{trigger:'.hero',start:'top bottom',end:'bottom top',scrub:true}});
+  const mm=gsap.matchMedia();
+  mm.add('(min-width:821px)',()=>{
+    const tr=document.getElementById('trilho'); if(!tr)return;
+    const dist=()=>Math.max(0,tr.scrollWidth-innerWidth+parseFloat(getComputedStyle(tr).paddingLeft)*2);
+    const anda=gsap.to(tr,{x:()=>-dist(),ease:'none',scrollTrigger:{trigger:'#semana',start:'top top',end:()=>'+='+dist(),pin:true,scrub:.6,invalidateOnRefresh:true,anticipatePin:1}});
+    gsap.utils.toArray('.cartao .im img').forEach(img=>{gsap.fromTo(img,{xPercent:-6},{xPercent:6,ease:'none',scrollTrigger:{trigger:img.parentElement,containerAnimation:anda,start:'left right',end:'right left',scrub:true}});});
+  });
+  barras.forEach((b,i)=>gsap.to(b,{clipPath:'inset(0 0% 0 0)',duration:.9,ease:'power3.out',scrollTrigger:{trigger:b.parentElement,start:'top 94%'},delay:(i%6)*.03}));
+  gsap.from('.numeros div',{y:30,opacity:0,duration:.8,stagger:.1,ease:'power2.out',scrollTrigger:{trigger:'#numeros',start:'top 88%'}});
+  addEventListener('load',()=>ScrollTrigger.refresh());
 }
 
-draw();
-</script>
-<script>
-/* Hero 3D — cena da temporada Concreto. Só roda se #hero3d existir (o
-   script logo após <body> já decidiu isso por mês); fora de outubro/2026
-   esta tag nem baixa o Three.js. Paralaxe de mouse (rotação do grupo +
-   deslocamento da câmera) e de scroll (câmera avança em Z). Formas com
-   MeshBasicMaterial — chapadas, sem sombra nem brilho, pela mesma regra do
-   resto do site nesta temporada. */
-(function(){
-  var el = document.getElementById('hero3d-cena');
-  if (!el) return;
+/* ================= ORQUESTRA ================= */
+function aplicar(){
+  filtrar();
+  const nm=new Set(LISTA.map(e=>e.v)).size;
+  document.getElementById('fRes').innerHTML='<b>'+LISTA.length+'</b> mostra'+(LISTA.length===1?'':'s')+' em <b>'+nm+'</b> espaço'+(nm===1?'':'s')+(ativo()?' com esses filtros':'');
+  document.getElementById('mapaNum').textContent=expos.filter(e=>e.st!=='opening').length+' mostras em cartaz · '+expos.filter(e=>e.st==='opening').length+' por abrir';
+  document.getElementById('limpaBtn').hidden=!ativo();
+  nGrade=12;nTexto=12;
+  atualizaMapa();renderPainel();renderAgenda();renderEspacos();
+  if(window.ScrollTrigger)ScrollTrigger.refresh();
+}
 
-  var s = document.createElement('script');
-  s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
-  s.onload = iniciar;
-  document.head.appendChild(s);
+iniciaFiltrosUI();
+renderHero();
+renderSemana();
+renderTempo();
+renderImersivas();
+document.getElementById('upd').textContent=D.atualizado;
+{const n=(D.editais||[]).length;['navEditalN','navEditalN2'].forEach(id=>{const b=document.getElementById(id);if(b&&n){b.textContent=n;b.hidden=false;}});}
+painelV=(FOCO&&FOCO.v)||null;
+aplicar();
+iniciaMapa();
+iniciaMovimento();
 
-  function iniciar(){
-    var reduzido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var mobile = window.innerWidth < 700;
-    var N_FORMAS = mobile ? 12 : 22;
+/* contador de visitas (Abacus, anônimo) */
+{const ABC='https://abacus.jasoncameron.dev',NS='vernissages-sp-lucas',jaVeio=LS.get('vspSeen');
+ if(!jaVeio)LS.set('vspSeen','1');
+ fetch(ABC+(jaVeio?'/get/':'/hit/')+NS+'/visitas').then(r=>r.json()).then(j=>{document.getElementById('vc').textContent=Number(j.value).toLocaleString('pt-BR');document.getElementById('visits').style.display='block';}).catch(()=>{});}
 
-    var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera(50, el.clientWidth / el.clientHeight, 1, 2000);
-    camera.position.z = 700;
-
-    var renderer = new THREE.WebGLRenderer({antialias: true, alpha: false});
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    renderer.setSize(el.clientWidth, el.clientHeight);
-    renderer.setClearColor(0x0A0A0A, 1);
-    el.appendChild(renderer.domElement);
-
-    var CORES = [0xF2F0EA, 0xB9B6AE, 0x8C8A84, 0x3A3936];
-    var ACENTO = 0xFF3B1D;
-    var grupo = new THREE.Group();
-    scene.add(grupo);
-
-    function circulo(raio, cor){ return new THREE.Mesh(new THREE.CircleGeometry(raio, 48), new THREE.MeshBasicMaterial({color: cor, side: THREE.DoubleSide})); }
-    function anelForma(raio, esp, cor){ return new THREE.Mesh(new THREE.RingGeometry(raio - esp, raio, 48), new THREE.MeshBasicMaterial({color: cor, side: THREE.DoubleSide})); }
-    function retangulo(w, h, cor){ return new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({color: cor, side: THREE.DoubleSide})); }
-
-    for (var i = 0; i < N_FORMAS; i++){
-      var tipo = Math.random();
-      var cor = Math.random() < 0.14 ? ACENTO : CORES[Math.floor(Math.random() * CORES.length)];
-      var mesh;
-      if (tipo < 0.35) mesh = Math.random() < 0.5 ? circulo(30 + Math.random() * 70, cor) : anelForma(30 + Math.random() * 70, 6 + Math.random() * 8, cor);
-      else if (tipo < 0.65) { var sd = 30 + Math.random() * 90; mesh = retangulo(sd, sd, cor); }
-      else if (tipo < 0.85) mesh = retangulo(40 + Math.random() * 120, 40 + Math.random() * 160, cor);
-      else { mesh = retangulo(120 + Math.random() * 260, 4 + Math.random() * 5, cor); mesh.rotation.z = Math.random() < 0.5 ? 0 : Math.PI / 2; }
-      var z = -600 + Math.random() * 1200;
-      mesh.position.set((Math.random() - 0.5) * 1600, (Math.random() - 0.5) * 1000, z);
-      mesh.rotation.z += (Math.random() - 0.5) * 0.3;
-      grupo.add(mesh);
-    }
-
-    var mouseX = 0, mouseY = 0, alvoX = 0, alvoY = 0, scrollY = 0;
-    window.addEventListener('mousemove', function(e){
-      alvoX = (e.clientX / window.innerWidth - 0.5) * 2;
-      alvoY = (e.clientY / window.innerHeight - 0.5) * 2;
-    });
-    window.addEventListener('scroll', function(){ scrollY = window.scrollY; }, {passive: true});
-    window.addEventListener('resize', function(){
-      camera.aspect = el.clientWidth / el.clientHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(el.clientWidth, el.clientHeight);
-    });
-
-    if (reduzido) {
-      renderer.render(scene, camera);
-    } else {
-      (function animar(){
-        requestAnimationFrame(animar);
-        mouseX += (alvoX - mouseX) * 0.04;
-        mouseY += (alvoY - mouseY) * 0.04;
-        grupo.rotation.y = mouseX * 0.5;
-        grupo.rotation.x = -mouseY * 0.35;
-        camera.position.x += (mouseX * 260 - camera.position.x) * 0.06;
-        camera.position.y += (-mouseY * 180 - camera.position.y) * 0.06;
-        camera.position.z = 700 - Math.min(scrollY, 500) * 0.5;
-        camera.lookAt(0, 0, 0);
-        renderer.render(scene, camera);
-      })();
-    }
-  }
-})();
+/* PWA REMOVIDO: desinstala qualquer service worker antigo e apaga os caches, sem recarregar a página. */
+if('serviceWorker' in navigator){try{navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.unregister().catch(()=>{}))).catch(()=>{});}catch(_){}}
+if(window.caches){try{caches.keys().then(ks=>ks.forEach(k=>caches.delete(k).catch(()=>{}))).catch(()=>{});}catch(_){}}
 </script>
 </body>
 </html>
