@@ -43,12 +43,31 @@ PASSOS:
      Cortesia <casa>"`). Nunca chute autoria.
 5. Na seção "Perfis que não abriram", NÃO mexa no dados.js: só liste no
    resumo (handle pode ter mudado; é o Lucas quem confere).
-6. Rode `node check.js`. Tem que terminar em "OK. Pode commitar.".
+6. EDITAIS, CHAMADAS, RESIDÊNCIAS E VAGAS (separado das mostras). Em QUALQUER
+   post do relatório, de qualquer perfil, procure oportunidade aberta para
+   artistas visuais, curadores ou coletivos: edital, chamada, convocatória,
+   residência artística, prêmio com inscrição, bolsa, vaga de ateliê ou de
+   programa de acompanhamento. Cada uma vira UM objeto no array `itens` de
+   `radar/editais-ig.json` (crie o arquivo se não existir, com a forma
+   `{"gerado":"AAAA-MM-DD","itens":[...]}`; mantenha o que já está lá e
+   ainda vale). NUNCA escreva isso no `const EDITAIS` do dados.js: o radar
+   é a camada "detectado, confira na fonte", e o site a mostra separada.
+   Formato do objeto: `{"t":"título curto","fonte":"Instagram @handle",
+   "link":"URL do post","pub":"AAAA-MM-DD","prazo":"AAAA-MM-DD ou null",
+   "cat":"residencia|premio|bolsa|fomento|chamada","onde":"sp|brasil|exterior",
+   "resumo":"uma frase com fato da legenda, até 240 caracteres","visto":"AAAA-MM-DD"}`.
+   Regras: `prazo` só se a legenda disser a data (ano ausente = ano
+   corrente, salvo data já passada há mais de 2 meses); sem data, `null`.
+   Oportunidade com prazo já vencido não entra. Curso, oficina paga, festa e
+   venda de obra não são oportunidade. Na dúvida, deixe de fora e diga no
+   resumo.
+7. Rode `node check.js`. Tem que terminar em "OK. Pode commitar.".
    Reprovou por algo seu: corrija. Não consegue: desfaça sua entrada.
 
 TRAVAS: nunca invente data, título, artista, curadoria ou crédito — na
 dúvida deixe de fora e diga no resumo. Nunca mexa em venues, `foco`,
-`destaques` ou editais. Nunca poste nada em lugar nenhum.
+`destaques` ou no `const EDITAIS` do dados.js (o radar de editais vai
+só em `radar/editais-ig.json`). Nunca poste nada em lugar nenhum.
 
 RESUMO FINAL (português, até 10 linhas, escreva também em
 `$GITHUB_STEP_SUMMARY`): o que entrou (casa — título), o que foi

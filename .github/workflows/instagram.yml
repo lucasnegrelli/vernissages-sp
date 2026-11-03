@@ -78,7 +78,7 @@ jobs:
           node instagram.js --marcar
           git config user.name "vernissages-bot"
           git config user.email "actions@github.com"
-          git add dados.js img INSTAGRAM-VISTOS.json
+          git add dados.js img INSTAGRAM-VISTOS.json radar/editais-ig.json
           if git diff --staged --quiet; then
             echo "Nada mudou."
             exit 0

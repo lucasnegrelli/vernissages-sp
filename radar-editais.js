@@ -23,8 +23,22 @@
  *     `premio`. Feed rico, cobre Brasil inteiro.
  *   - Prêmio PIPA: feed próprio, cobre o circuito de arte contemporânea.
  *
+ * BUSCA FUNDA (03/11/2026)
+ *   O feed RSS só traz os ~10 itens mais recentes, e por isso o radar achava 2 oportunidades por
+ *   rodada. Seis dos sites têm a API de busca do WordPress aberta (/wp-json/wp/v2/posts?search=):
+ *   perguntamos por "edital", "chamada", "residência", "prêmio", "bolsa", "inscrições",
+ *   "convocatória", "salão" e "seleção" e pegamos até 40 posts de cada, só dos últimos dias.
+ *   Prosas e Funarte não entregam lista legível por script; Instagram exige Apify (ver
+ *   instagram.js) e uma lista de perfis que só o Lucas pode escolher.
+ *
+ * SAÍDA PARA O SITE
+ *   --json radar/editais.json grava as oportunidades ainda vivas (prazo futuro, ou sem prazo e
+ *   recentes) com categoria e escopo. O gerar.js mostra isso na seção "Radar" de editais.html,
+ *   separada dos editais confirmados e com o aviso de que o prazo vem do texto da matéria.
+ *
  * USO
  *   node radar-editais.js                      (feeds padrão)
+ *   node radar-editais.js --json radar/editais.json
  *   node radar-editais.js --dias 120           (quão recente conta como "novo")
  *   node radar-editais.js --saida PENDENTE/EDITAIS.md
  */
@@ -53,6 +67,17 @@ const FONTES = [
   { nome: 'seLecT',         url: 'https://www.select.art.br/feed/' },
   { nome: 'ArteBrasileiros', url: 'https://artebrasileiros.com.br/feed/' }
 ];
+
+/* Sites WordPress com a API de busca aberta. Para acrescentar um, é uma linha aqui. */
+const FONTES_WP = [
+  { nome: 'Dasartes',        base: 'https://dasartes.com.br' },
+  { nome: 'Prêmio PIPA',     base: 'https://www.premiopipa.com' },
+  { nome: 'seLecT',          base: 'https://www.select.art.br' },
+  { nome: 'ArteBrasileiros', base: 'https://artebrasileiros.com.br' },
+  { nome: 'Arte Que Acontece', base: 'https://artequeacontece.com.br' },
+  { nome: 'Sesc SP',         base: 'https://www.sescsp.org.br' }
+];
+const CONSULTAS = ['edital', 'chamada', 'residência artística', 'prêmio', 'bolsa', 'inscrições abertas', 'convocatória', 'salão', 'seleção artistas'];
 
 /* ---------- dados.js ---------- */
 function carregarDados() {
@@ -113,6 +138,22 @@ function acharPrazo(txt) {
   return pool[0].iso;
 }
 
+/* "encerra nesta segunda", "inscrições até amanhã", "termina hoje": a data da matéria ancora o dia */
+const DIAS_SEM = { domingo: 0, segunda: 1, terca: 2, quarta: 3, quinta: 4, sexta: 5, sabado: 6 };
+function prazoRelativo(txt, pubISO) {
+  if (!pubISO) return null;
+  const t = norm(txt);
+  const soma = n => { const d = new Date(pubISO + 'T12:00:00Z'); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
+  if (/(encerra|termina|ultimo dia|inscricoes ate|vai ate|prazo).{0,25}\bhoje\b/.test(t) || /\bencerra hoje\b/.test(t)) return pubISO;
+  if (/(encerra|termina|inscricoes ate|prazo).{0,25}amanha/.test(t)) return soma(1);
+  const m = t.match(/(encerra|encerram|termina|terminam|inscricoes ate|prazo).{0,30}\b(?:nesta|nessa|neste|na|no|ate)\s+(segunda|terca|quarta|quinta|sexta|sabado|domingo)/);
+  if (m) {
+    const alvo = DIAS_SEM[m[2]], dow0 = new Date(pubISO + 'T12:00:00Z').getUTCDay();
+    return soma((alvo - dow0 + 7) % 7);
+  }
+  return null;
+}
+
 /* ---------- HTTP ---------- */
 async function pegar(url) {
   const ctrl = new AbortController();
@@ -124,6 +165,41 @@ async function pegar(url) {
   } catch (e) {
     return { erro: (e.name === 'AbortError' ? 'timeout' : String(e.message || e)).slice(0, 70) };
   } finally { clearTimeout(t); }
+}
+
+/* ---------- busca na API do WordPress ---------- */
+async function pegarJSON(url) {
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), 25000);
+  try {
+    const r = await fetch(url, { signal: ctrl.signal, redirect: 'follow', headers: { 'user-agent': UA, accept: 'application/json' } });
+    if (!r.ok) return { erro: 'HTTP ' + r.status };
+    return { json: await r.json() };
+  } catch (e) {
+    return { erro: (e.name === 'AbortError' ? 'timeout' : String(e.message || e)).slice(0, 70) };
+  } finally { clearTimeout(t); }
+}
+async function buscarWP(f, apos) {
+  const out = [], erros = [];
+  for (const q of CONSULTAS) {
+    const url = f.base + '/wp-json/wp/v2/posts?search=' + encodeURIComponent(q) + '&per_page=40&orderby=date&order=desc&after=' + apos + 'T00:00:00&_fields=link,title,date,excerpt';
+    const r = await pegarJSON(url);
+    if (r.erro) { erros.push(f.nome + ' [' + q + ']: ' + r.erro); continue; }
+    if (!Array.isArray(r.json)) continue;
+    for (const p of r.json) {
+      const titulo = decodeHTML(p.title && p.title.rendered);
+      const desc = decodeHTML(p.excerpt && p.excerpt.rendered);
+      if (!titulo) continue;
+      out.push({
+        fonte: f.nome, titulo,
+        link: String(p.link || '').replace(/[?&]utm_[^"'\s]+/g, '').trim(),
+        pub: (p.date || '').slice(0, 10),
+        resumo: desc.slice(0, 400),
+        prazo: acharPrazo(titulo + ' . ' + desc) || prazoRelativo(titulo + ' . ' + desc, (p.date || '').slice(0, 10))
+      });
+    }
+  }
+  return { out, erros };
 }
 
 /* ---------- parse de feed RSS ---------- */
@@ -143,7 +219,7 @@ function itensDoFeed(xml, nomeFonte) {
       link: (link || '').replace(/[?&]utm_[^"'\s]+/g, '').trim(),
       pub: pubISO,
       resumo: desc.slice(0, 400),
-      prazo: acharPrazo(titulo + ' . ' + desc)
+      prazo: acharPrazo(titulo + ' . ' + desc) || prazoRelativo(titulo + ' . ' + desc, pubISO)
     });
   }
   return out;
@@ -151,13 +227,37 @@ function itensDoFeed(xml, nomeFonte) {
 
 /* Filtra o que claramente não é chamada aberta: notícia de resultado, cobertura
    de prêmio já entregue, resenha, entrevista, obituário. */
-const RUIDO = /(resultad|selecionad|vencedor|contemplad|prorrog|retifica|inaugura|ganha (o |um )?premio|ganhou|recebe (o )?premio|recebeu|finalist|conheca os |vence(u|dora)|leva o premio|morre|falece|resenha|entrevista|lanca livro|livro de |critica de|é o vencedor)/i;
+const RUIDO = /(conquista|recebem|entrega d[eo]|homenage|concedid|resultad|selecionad|vencedor|contemplad|prorrog|retifica|inaugura|ganha (o |um )?premio|ganhou|recebe (o )?premio|recebeu|finalist|conheca os |vence(u|dora)|leva o premio|morre|falece|resenha|entrevista|lanca livro|livro de |critica de|é o vencedor)/i;
 function pareceOportunidade(it) {
   const cabeca = norm(it.titulo);
   if (RUIDO.test(it.titulo)) return false;
+  /* consumo, moda, programação e notícia de cidade não são oportunidade para artista */
+  if (/(louis vuitton|colecao de|colecao inspirada|moda|desfile|bolsa de valores|bolsas? de couro|prefeito|prefeitura de nova york|ingresso|oficina|oficinas|curso de|cursos|aula|workshop|show de|espetaculo|peca de teatro)/.test(cabeca)
+      && !/(edital|chamada|residencia|convocatoria|open call)/.test(cabeca)) return false;
   /* o gatilho tem de estar no TÍTULO — no resumo, quase todo texto de arte cita
      "edital" ou "residência" de passagem. */
-  return /(edital|chamada|inscri|residencia|bolsa|convoca|selecao|open call|convocatoria|premio (de |para |nacional|internacional)|salao (de |nacional)|concurso)/.test(cabeca);
+  const forte = /(edital|chamada|residencia|convocatoria|open call|premio (de |para |nacional|internacional)|salao (de |nacional)|concurso)/.test(cabeca);
+  if (forte) return true;
+  /* gatilho fraco (inscrição, bolsa, seleção, convoca): só com contexto de arte no título ou no começo do resumo */
+  const fraco = /(inscri|bolsa|selecao|convoca)/.test(cabeca);
+  const arte = /(artista|arte |artes|curador|exposicao|projeto|visuais|galeria|museu|coletivo|pesquisa|residen|criadores|fotograf)/.test(cabeca + ' ' + norm((it.resumo || '').slice(0, 200)));
+  return fraco && arte;
+}
+
+/* ---------- categoria e escopo (palpite por palavra-chave; o site avisa que é palpite) ---------- */
+function categoriaDe(it) {
+  const t = norm(it.titulo + ' ' + (it.resumo || '').slice(0, 140));
+  if (/(residencia|residency|residente)/.test(t)) return 'residencia';
+  if (/(premio|salao|concurso)/.test(norm(it.titulo))) return 'premio';
+  if (/\bbolsa/.test(t)) return 'bolsa';
+  if (/(edital|fomento|proac|aldir|rouanet|funarte|incentivo|lei )/.test(t)) return 'fomento';
+  return 'chamada';
+}
+function escopoDe(it) {
+  const t = norm(it.titulo + ' ' + (it.resumo || ''));
+  if (/(sao paulo|\bsp\b|paulista|sesc sp|pinacoteca|masp|ibirapuera|itau cultural|bom retiro|pinheiros|vila madalena)/.test(t)) return 'sp';
+  if (/(londres|london|nova york|new york|paris|berlim|berlin|lisboa|portugal|europa|franca|italia|espanha|alemanha|reino unido|estados unidos|eua|mexico|argentina|chile|colombia|japao|coreia|china|india|africa|internacional|exterior|gasworks)/.test(t)) return 'exterior';
+  return 'brasil';
 }
 
 /* ---------- classificação ---------- */
@@ -233,6 +333,25 @@ function relatorio(r, DATA, erros) {
   return L.join('\n');
 }
 
+/* ---------- saída para o site ---------- */
+function escreverJSON(r, caminho) {
+  const alvo = path.resolve(RAIZ, caminho);
+  /* o que já estava no arquivo e ainda está vivo continua (a busca só olha a janela recente) */
+  let antigos = [];
+  try { antigos = (JSON.parse(fs.readFileSync(alvo, 'utf8')).itens) || []; } catch (_) {}
+  const vivo = x => x.prazo ? x.prazo >= HOJE : (x.pub && (Date.parse(HOJE) - Date.parse(x.pub)) / 864e5 <= 45);
+  const novos = r.novos.map(it => ({
+    t: it.titulo, fonte: it.fonte, link: it.link, pub: it.pub || '', prazo: it.prazo || null,
+    cat: categoriaDe(it), onde: escopoDe(it), resumo: (it.resumo || '').replace(/\s+/g, ' ').trim().slice(0, 240), visto: HOJE
+  }));
+  const porLink = new Map();
+  [...antigos, ...novos].forEach(x => { if (x.link && vivo(x)) porLink.set(x.link, Object.assign({}, porLink.get(x.link) || {}, x)); });
+  const itens = [...porLink.values()].sort((a, b) => (a.prazo || '9999').localeCompare(b.prazo || '9999') || (b.pub || '').localeCompare(a.pub || ''));
+  fs.mkdirSync(path.dirname(alvo), { recursive: true });
+  fs.writeFileSync(alvo, JSON.stringify({ gerado: HOJE, aviso: 'Detectado automaticamente em feeds e buscas. O prazo vem do texto da matéria: confirme na fonte oficial.', itens }, null, 1), 'utf8');
+  console.log('  json do site: ' + itens.length + ' oportunidade(s) viva(s) em ' + caminho);
+}
+
 /* ---------- main ---------- */
 (async () => {
   const DATA = carregarDados();
@@ -247,9 +366,19 @@ function relatorio(r, DATA, erros) {
     itens.push(...its);
   }
 
+  const apos = new Date(Date.now() - 3 * 3600e3 - JANELA * 864e5).toISOString().slice(0, 10);
+  for (const f of FONTES_WP) {
+    const r = await buscarWP(f, apos);
+    console.log(`  ${f.nome} (busca): ${r.out.length} post(s)`);
+    itens.push(...r.out); erros.push(...r.erros);
+  }
+
   const r = classificar(itens, DATA);
   console.log(`  novos ${r.novos.length} · já na base ${r.conhecidos.length} · fora de prazo/antigos ${r.velhos.length}`);
   if (erros.length) erros.forEach(e => console.log('  ! ' + e));
+
+  const jsonSaida = flag('json', null);
+  if (jsonSaida) escreverJSON(r, jsonSaida);
 
   const md = relatorio(r, DATA, erros);
   const saida = flag('saida', null);

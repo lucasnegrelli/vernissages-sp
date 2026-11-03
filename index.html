@@ -850,12 +850,12 @@ function paletaDaImagem(url,cb){
 }
 function aplicaPaleta(p){
   const root=document.documentElement.style;
-  if(p===null||p===undefined){root.removeProperty('--terra');root.removeProperty('--marca-bg');ACENTO='#C96F4A';setMapaCor('#C96F4A');aplicaCorMapa();return;}
-  if(!p.length){ACENTO='#8a857b';root.setProperty('--terra',ACENTO);root.removeProperty('--marca-bg');setMapaCor('#C96F4A');aplicaCorMapa();return;}
+  if(p===null||p===undefined){root.removeProperty('--terra');root.removeProperty('--marca-bg');ACENTO='#C96F4A';setMapaCor('#C96F4A');LS.set('vspAcento','');aplicaCorMapa();return;}
+  if(!p.length){ACENTO='#8a857b';root.setProperty('--terra',ACENTO);root.removeProperty('--marca-bg');setMapaCor('#C96F4A');LS.set('vspAcento',ACENTO);aplicaCorMapa();return;}
   const sat=x=>Math.max(.55,Math.min(.92,x*1.1));
   /* acento: precisa ler bem sobre o papel (texto pequeno) e sobre o preto, e aguentar texto preto por cima */
   const ac=ajustaLum(p[0].h,sat(p[0].s),.17,.25);
-  ACENTO=hex(ac);root.setProperty('--terra',ACENTO);setMapaCor(ACENTO);
+  ACENTO=hex(ac);root.setProperty('--terra',ACENTO);setMapaCor(ACENTO);LS.set('vspAcento',ACENTO);   /* as páginas internas leem esta chave */
   /* marca: as cores da obra, mais livres, só não podem sumir no papel */
   const cores=p.slice().sort((a,b)=>a.h-b.h).map(c=>hex(ajustaLum(c.h,sat(c.s),.08,.34)));
   root.setProperty('--marca-bg',cores.length>1?'linear-gradient(90deg,'+cores.join(',')+')':cores[0]);

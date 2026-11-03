@@ -64,6 +64,7 @@ function mesclarAcervo(acervo, DATA) {
     const id = slug(e.t) + '--' + slug(e.v);
     const reg = {
       id, t: e.t, a: e.a || '', v: e.v, ini: e.ini, fim: e.fim || null, d: e.d || '',
+      img: e.img || (idx.get(id) && idx.get(id).img) || '', cred: e.cred || (idx.get(id) && idx.get(id).cred) || '',
       bairro: v.b, zona: v.z, addr: v.addr, tipo: v.tipo,
       site: v.site || '', ig: v.ig || '',
       visto: HOJE
@@ -71,7 +72,7 @@ function mesclarAcervo(acervo, DATA) {
     const antigo = idx.get(id);
     if (!antigo) { acervo.expos.push(reg); idx.set(id, reg); novas++; }
     else {
-      const mudou = ['t','a','ini','fim','d','bairro','zona','addr','site','ig']
+      const mudou = ['t','a','ini','fim','d','img','bairro','zona','addr','site','ig']
         .some(k => antigo[k] !== reg[k] && reg[k]);
       if (mudou) atualizadas++;
       Object.assign(antigo, reg, { primeiroRegistro: antigo.primeiroRegistro || antigo.visto });
@@ -97,118 +98,43 @@ function mesclarAcervo(acervo, DATA) {
 }
 
 /* ---------- template base ---------- */
-const CSS = `
-:root{--bg:#0a0a0d;--ink:#f3f3f7;--text:#f3f3f7;--muted:#8b8b9a;--text2:#c2c2d0;--accent:#e8c15a;--accent2:#c96f4a;--violet:#a78bfa;--green:#7fd8a0;--red:#f08a7a;--blue:#8fb6f9;--glass:rgba(255,255,255,.045);--glass2:rgba(255,255,255,.075);--line:rgba(255,255,255,.10);--line2:rgba(255,255,255,.20);--hair:rgba(255,255,255,.055);--panel:rgba(255,255,255,.045);--panel2:rgba(255,255,255,.075);--border:rgba(255,255,255,.10);--blur:blur(16px) saturate(150%)}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:ui-sans-serif,system-ui,'Segoe UI',Inter,sans-serif;line-height:1.65;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-body::before{content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;background:radial-gradient(58vw 46vh at 10% -8%,rgba(232,193,90,.13),transparent 62%),radial-gradient(48vw 42vh at 94% 4%,rgba(167,139,250,.12),transparent 62%),radial-gradient(72vw 55vh at 48% 104%,rgba(201,111,74,.09),transparent 60%)}
-body::after{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);background-size:72px 72px;-webkit-mask-image:radial-gradient(ellipse 85% 55% at 50% 0%,#000 20%,transparent 78%);mask-image:radial-gradient(ellipse 85% 55% at 50% 0%,#000 20%,transparent 78%)}
-::selection{background:var(--accent);color:#0a0a0d}
-a{color:var(--blue)}
-.top{border-bottom:1px solid var(--border);padding:20px 24px}
-.top a{color:var(--text);text-decoration:none;font-weight:600;letter-spacing:2.5px;font-size:1rem}
-.top a span{color:var(--accent)}
-.nav{margin-top:6px;font-size:.8rem;color:var(--muted)}
-.nav a{color:var(--muted);text-decoration:none;margin-right:14px}
-.nav a:hover{color:var(--accent)}
-.wrap{max-width:780px;margin:0 auto;padding:36px 24px 70px}
-.wide{max-width:1080px}
-h1{font-size:1.9rem;line-height:1.25;font-weight:600;letter-spacing:-.4px;margin-bottom:10px}
-h2{font-size:.78rem;text-transform:uppercase;letter-spacing:1.8px;color:var(--muted);margin:40px 0 14px;padding-bottom:9px;border-bottom:1px solid var(--border)}
-.sub{color:var(--accent2);font-size:1rem;margin-bottom:4px}
-.meta{color:var(--muted);font-size:.88rem;margin-bottom:20px}
-.tag{display:inline-block;padding:2px 10px;border-radius:11px;font-size:.68rem;font-weight:700;letter-spacing:.5px;margin-left:8px;vertical-align:2px}
-.tag.on{background:rgba(127,185,138,.15);color:var(--green)}
-.tag.off{background:rgba(154,154,166,.15);color:var(--muted)}
-.tag.soon{background:rgba(232,193,90,.16);color:var(--accent)}
-p.txt{margin:14px 0;font-size:1.02rem}
-.box{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin:18px 0}
-.box dl{display:grid;grid-template-columns:130px 1fr;gap:8px 14px;font-size:.92rem}
-.box dt{color:var(--muted)}
-.btns{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
-.btn{background:var(--panel2);border:1px solid var(--border);color:var(--blue);border-radius:14px;padding:6px 14px;font-size:.83rem;text-decoration:none}
-.btn:hover{border-color:var(--blue)}
-ul.lista{list-style:none;display:flex;flex-direction:column;gap:12px}
-ul.lista li{background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--border);border-radius:11px;padding:14px 16px}
-ul.lista li.on{border-left-color:var(--green)}
-ul.lista li.soon{border-left-color:var(--accent)}
-ul.lista li a.t{color:var(--text);font-weight:600;font-size:1.02rem;text-decoration:none}
-ul.lista li a.t:hover{color:var(--accent)}
-ul.lista li .l2{color:var(--accent2);font-size:.86rem;margin-top:3px}
-ul.lista li .l3{color:var(--muted);font-size:.8rem;margin-top:3px}
-.grid2{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
-.grid2 a{display:block;background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:13px 15px;text-decoration:none;color:var(--text)}
-.grid2 a:hover{border-color:var(--accent)}
-.grid2 a small{display:block;color:var(--muted);font-size:.76rem;margin-top:3px}
-.busca{width:100%;background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:22px;padding:10px 18px;font-size:.95rem;margin-bottom:18px}
-.busca:focus{outline:none;border-color:var(--accent)}
-footer{border-top:1px solid var(--border);margin-top:50px;padding-top:20px;color:var(--muted);font-size:.78rem;line-height:1.7}
-footer a{color:var(--accent2)}
-@media(max-width:600px){.wrap{padding:26px 18px 60px}h1{font-size:1.5rem}.box dl{grid-template-columns:1fr;gap:2px 0}.box dt{margin-top:8px}}
-/* ===== TOKENS ===== */
-:root{--font:ui-sans-serif,system-ui,-apple-system,'Segoe UI',Inter,sans-serif;--radius:16px;--radius-sm:10px;--bw:1px;--ls:0px;--onaccent:#0a0a0d}
-body,button,input,select,textarea,.btn{font-family:var(--font);letter-spacing:var(--ls)}
-.box,ul.lista li,.grid2 a{border-radius:var(--radius)}
-.box,.grid2 a{border-width:var(--bw)}
-.btn,.busca{border-radius:calc(var(--radius) + 6px);border-width:var(--bw)}
-.tag{border-radius:var(--radius-sm)}
-/* ===== VIDRO ===== */
-.box,ul.lista li,.grid2 a{background:var(--glass);border:1px solid var(--line);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);box-shadow:0 1px 0 rgba(255,255,255,.06) inset,0 12px 32px -18px rgba(0,0,0,.9)}
-ul.lista li:hover,.grid2 a:hover{background:var(--glass2);border-color:var(--line2);transform:translateY(-2px)}
-ul.lista li,.grid2 a{transition:.2s}
-.top{background:rgba(10,10,13,.62);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border-bottom:1px solid var(--hair);position:sticky;top:0;z-index:60}
-.btn,.busca{background:var(--glass2);border:1px solid var(--line);color:var(--text2);transition:.18s}
-.btn:hover{border-color:var(--accent);color:var(--accent);background:rgba(232,193,90,.09)}
-.busca:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(232,193,90,.10)}
-@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+/* A casca das páginas (CSS, cabeçalho, rodapé, recorte de margem das imagens) mora no site.js. */
+const { pagina, rc } = require('./site.js')(SITE, esc);
 
-`;
+/* ---------- datas e estado ---------- */
+const MESC = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+const dCurta = d => d ? `${+d.slice(8, 10)} ${MESC[+d.slice(5, 7) - 1]}${d.slice(0, 4) !== HOJE.slice(0, 4) ? ' ' + d.slice(0, 4) : ''}` : '';
+const difDias = (a, b) => Math.round((new Date(b + 'T12:00:00Z') - new Date(a + 'T12:00:00Z')) / 864e5);
 
-function pagina({ titulo, desc, canonical, corpo, jsonld, wide }) {
-  return `<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${esc(titulo)}</title>
-<meta name="description" content="${esc(desc)}">
-<link rel="canonical" href="${canonical}">
-<meta property="og:title" content="${esc(titulo)}">
-<meta property="og:description" content="${esc(desc)}">
-<meta property="og:url" content="${canonical}">
-<meta property="og:type" content="article">
-<meta property="og:image" content="${SITE}/og-image.png">
-<meta property="og:locale" content="pt_BR">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/png" href="${SITE}/icon-192.png">
-<style>${CSS}</style>
-<link rel="stylesheet" href="${SITE}/temporada.css">
-<script data-goatcounter="https://vernissages.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-${jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld)}</scr`+`ipt>` : ''}
-</head>
-<body>
-<div class="top">
-<a href="${SITE}/">VERNISSAGES <span>SP</span></a>
-<div class="nav">
-<a href="${SITE}/">Agenda</a><a href="${SITE}/fim-de-semana.html">Fim de semana</a><a href="${SITE}/monta-meu-sabado.html">Monta seu sábado</a><a href="${SITE}/arquivo.html">Acervo</a><a href="${SITE}/artistas.html">Artistas</a><a href="${SITE}/editais.html">Editais</a>
-</div>
-</div>
-<div class="wrap${wide ? ' wide' : ''}">
-${corpo}
-<footer>
-Vernissages SP — mapa vivo das galerias e aberturas de São Paulo, atualizado diariamente.<br>
-Datas conforme divulgação dos espaços; confirme antes de visitar. <a href="${SITE}/">Voltar à agenda</a> · <a href="https://instagram.com/vernissagessp" target="_blank" rel="noopener">Instagram</a>
-</footer>
-</div>
-</body>
-</html>`;
-}
-
-/* ---------- estado da mostra ---------- */
 function estado(e) {
   if (e.ini > HOJE) return { k: 'soon', txt: 'ABRE EM BREVE' };
   if (e.fim && e.fim < HOJE) return { k: 'off', txt: 'ENCERRADA' };
   return { k: 'on', txt: 'EM CARTAZ' };
+}
+/* "fecha em 12 dias", "abre amanhã", "encerrada" */
+function situacao(e) {
+  if (e.ini > HOJE) { const n = difDias(HOJE, e.ini); return n === 1 ? 'abre amanhã' : `abre em ${n} dias`; }
+  if (e.fim && e.fim < HOJE) return 'encerrada';
+  if (!e.fim) return 'em cartaz · encerramento não divulgado';
+  const n = difDias(HOJE, e.fim);
+  return n <= 0 ? 'último dia' : n === 1 ? 'fecha amanhã' : n <= 7 ? `últimos dias · fecha em ${n} dias` : `em cartaz · fecha em ${n} dias`;
+}
+const imgUrl = e => e && e.img ? `${SITE}/${String(e.img).replace(/^\//, '')}` : '';
+
+/* uma linha de mostra (acervo, páginas de artista e de espaço) */
+function itemMostra(m, extra) {
+  const st = estado(m);
+  const arts = artistasDe(m);
+  const periodo = m.fim ? `${dCurta(m.ini)} → ${dCurta(m.fim)}` : `desde ${dCurta(m.ini)}`;
+  return `<li class="${st.k}" data-s="${st.k}" data-y="${(m.ini || '').slice(0, 4)}" data-v="${esc(slug(m.v))}" data-b="${esc((m.t + ' ' + (m.a || '') + ' ' + m.v + ' ' + (m.bairro || '')).toLowerCase())}">
+${m.img ? `<a class="thl" href="${SITE}/m/${m.id}.html">${rc(imgUrl(m), 'th')}</a>` : ''}
+<div class="tx">
+<div class="qdt"><span>${periodo}</span><span class="tag ${st.k}">${st.txt}</span></div>
+<a class="t" href="${SITE}/m/${m.id}.html">${esc(m.t)}</a>
+${arts.length ? `<div class="l2">${esc(arts.join(', '))}</div>` : ''}
+<div class="l3">${esc(m.v)}${m.bairro ? ' · ' + esc(m.bairro) : ''}${extra || ''}</div>
+</div>
+</li>`;
 }
 
 /* ---------- páginas de exposição ---------- */
@@ -218,27 +144,40 @@ function paginaExpo(e, acervo) {
   const periodo = e.fim
     ? `${dataLonga(e.ini)} a ${dataLonga(e.fim)}`
     : `a partir de ${dataLonga(e.ini)}`;
-  const desc = corta(`${e.t}${arts.length ? ' — ' + arts.join(', ') : ''} na ${e.v} (${e.bairro}, São Paulo). ${periodo}.${e.d ? ' ' + e.d : ''}`, 165);
+  const desc = corta(`${e.t}${arts.length ? ', ' + arts.join(', ') : ''} na ${e.v} (${e.bairro}, São Paulo). ${periodo}.${e.d ? ' ' + e.d : ''}`, 165);
+  const img = imgUrl(e);
+  const outras = acervo.expos.filter(x => x.v === e.v && x.id !== e.id)
+    .sort((a, b) => (b.ini || '').localeCompare(a.ini || '')).slice(0, 6);
+  const duasLinhas = String(e.t);
 
   const corpo = `
-<h1>${esc(e.t)}<span class="tag ${st.k}">${st.txt}</span></h1>
-${arts.length ? `<div class="sub">${arts.map(n => `<a href="${SITE}/a/${slug(n)}.html">${esc(n)}</a>`).join(' · ')}</div>` : ''}
-<div class="meta">${esc(e.v)} · ${esc(e.bairro)} · Zona ${esc(e.zona)}</div>
+<article class="expo${img ? ' com' : ''}">
+<div class="ex-tx">
+<p class="kick">${st.txt} <span>· ${esc(e.v)} · ${esc(e.bairro)}</span></p>
+<h1>${esc(duasLinhas)}</h1>
+${arts.length ? `<div class="sub">${arts.map(n => `<a href="${SITE}/a/${slug(n)}.html">${esc(n)}</a>`).join(', ')}</div>` : ''}
+<div class="quando"><div class="dt">${e.fim ? `${esc(dCurta(e.ini))}<i>→</i>${esc(dCurta(e.fim))}` : `desde ${esc(dCurta(e.ini))}`}</div><div class="sit">${esc(situacao(e))}</div></div>
 ${e.d ? `<p class="txt">${esc(e.d)}</p>` : ''}
 <div class="box">
 <dl>
 <dt>Período</dt><dd>${periodo}</dd>
-<dt>Espaço</dt><dd>${esc(e.v)}${e.tipo ? ` <span style="color:var(--muted)">(${esc(e.tipo)})</span>` : ''}</dd>
-<dt>Endereço</dt><dd>${esc(e.addr)} — ${esc(e.bairro)}, São Paulo</dd>
-${arts.length ? `<dt>Artista${arts.length > 1 ? 's' : ''}</dt><dd>${arts.map(n => `<a href="${SITE}/a/${slug(n)}.html">${esc(n)}</a>`).join(', ')}</dd>` : ''}
+<dt>Espaço</dt><dd>${esc(e.v)}${e.tipo ? ` <span style="color:var(--mute)">(${esc(e.tipo)})</span>` : ''}</dd>
+<dt>Endereço</dt><dd>${esc(e.addr)}, ${esc(e.bairro)}, São Paulo</dd>
 </dl>
 </div>
 <div class="btns">
+<a class="btn cheio" href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(e.v + ', ' + String(e.addr).replace(' ~', '') + ', São Paulo')}" target="_blank" rel="noopener">Como chegar</a>
 ${e.site ? `<a class="btn" href="${esc(e.site)}" target="_blank" rel="noopener">Site do espaço</a>` : ''}
 ${e.ig ? `<a class="btn" href="https://instagram.com/${esc(e.ig)}" target="_blank" rel="noopener">Instagram</a>` : ''}
-<a class="btn" href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(e.v + ', ' + String(e.addr).replace(' ~', '') + ', São Paulo')}" target="_blank" rel="noopener">Como chegar</a>
 <a class="btn" href="${SITE}/">Ver agenda atual</a>
-</div>`;
+</div>
+</div>
+${img ? `<figure class="ex-fig">${rc(imgUrl(e))}${e.cred ? `<figcaption>${esc(e.cred)}</figcaption>` : ''}</figure>` : ''}
+</article>
+${outras.length ? `<h2>Mais em ${esc(e.v)}<small>${outras.length}</small></h2>
+<ul class="lista">
+${outras.map(m => itemMostra(m)).join('\n')}
+</ul>` : ''}`;
 
   const jsonld = {
     '@context': 'https://schema.org',
@@ -250,6 +189,7 @@ ${e.ig ? `<a class="btn" href="https://instagram.com/${esc(e.ig)}" target="_blan
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
     description: e.d || desc,
     url: `${SITE}/m/${e.id}.html`,
+    ...(img ? { image: img } : {}),
     location: {
       '@type': 'Place', name: e.v,
       address: { '@type': 'PostalAddress', streetAddress: String(e.addr).replace(' ~', ''), addressLocality: 'São Paulo', addressRegion: 'SP', addressCountry: 'BR' }
@@ -259,7 +199,7 @@ ${e.ig ? `<a class="btn" href="https://instagram.com/${esc(e.ig)}" target="_blan
 
   return pagina({
     titulo: `${corta(e.t, 58)} — ${e.v} | Vernissages SP`,
-    desc, canonical: `${SITE}/m/${e.id}.html`, corpo, jsonld
+    desc, canonical: `${SITE}/m/${e.id}.html`, corpo, jsonld, wide: !!img
   });
 }
 
@@ -269,21 +209,21 @@ function paginaArtista(k, at, porId) {
     .sort((a, b) => (b.ini || '').localeCompare(a.ini || ''));
   const espacos = [...new Set(ms.map(m => m.v))];
   const desc = corta(`${at.nome} em São Paulo: ${ms.length} exposição(ões) registrada(s)${espacos.length ? ' em ' + espacos.slice(0, 3).join(', ') : ''}. Histórico de mostras, datas e galerias.`, 165);
+  const agora = ms.filter(m => estado(m).k !== 'off');
 
   const corpo = `
+<p class="kick">Artista${agora.length ? ` <span>· ${agora.length} em cartaz ou por abrir</span>` : ''}</p>
 <h1>${esc(at.nome)}</h1>
 <div class="meta">${ms.length} mostra${ms.length > 1 ? 's' : ''} no acervo${espacos.length ? ` · ${espacos.length} espaço${espacos.length > 1 ? 's' : ''}` : ''}</div>
-<h2>Exposições registradas</h2>
+<h2>Exposições<small>${ms.length}</small></h2>
 <ul class="lista">
-${ms.map(m => { const st = estado(m); return `<li class="${st.k}">
-<a class="t" href="${SITE}/m/${m.id}.html">${esc(m.t)}</a>
-<div class="l2">${esc(m.v)} · ${esc(m.bairro)}</div>
-<div class="l3">${dataBR(m.ini)}${m.fim ? ' — ' + dataBR(m.fim) : ''} · ${st.txt.toLowerCase()}</div>
-</li>`; }).join('\n')}
+${ms.map(m => itemMostra(m)).join('\n')}
 </ul>
+${espacos.length > 1 ? `<h2>Espaços<small>${espacos.length}</small></h2>
+<div class="chips">${espacos.map(v => `<span class="chip">${esc(v)}</span>`).join('')}</div>` : ''}
 <div class="btns">
+<a class="btn cheio" href="${SITE}/artistas.html">Todos os artistas</a>
 <a class="btn" href="https://www.google.com/search?q=${encodeURIComponent(at.nome + ' artista')}" target="_blank" rel="noopener">Buscar no Google</a>
-<a class="btn" href="${SITE}/artistas.html">Todos os artistas</a>
 </div>`;
 
   const jsonld = {
@@ -295,117 +235,237 @@ ${ms.map(m => { const st = estado(m); return `<li class="${st.k}">
   return pagina({ titulo: `${at.nome} — exposições em São Paulo | Vernissages SP`, desc, canonical: `${SITE}/a/${k}.html`, corpo, jsonld });
 }
 
-/* ---------- índices ---------- */
+/* ---------- acervo: filtros por situação, ano e espaço ---------- */
 function paginaArquivo(expos) {
   const ord = [...expos].sort((a, b) => (b.ini || '').localeCompare(a.ini || ''));
   const porAno = {};
   ord.forEach(e => { const y = (e.ini || '').slice(0, 4) || 's/data'; (porAno[y] = porAno[y] || []).push(e); });
   const anos = Object.keys(porAno).sort().reverse();
+  const espacos = [...new Set(ord.map(e => e.v))].sort((a, b) => a.localeCompare(b, 'pt'));
+  const nAgora = ord.filter(e => estado(e).k !== 'off').length;
 
   const corpo = `
-<h1>Acervo de exposições</h1>
-<p class="txt">Todas as mostras que passaram pela agenda do Vernissages SP — em cartaz e encerradas. ${expos.length} registros.</p>
-<input class="busca" id="q" type="text" placeholder="Filtrar por título, artista, galeria ou bairro…">
-${anos.map(y => `<h2 id="ano-${y}">${y} · ${porAno[y].length} mostras</h2>
+<p class="kick">Acervo <span>· desde ${anos.length ? anos[anos.length - 1] : ''}</span></p>
+<h1 class="g">Acervo</h1>
+<p class="lede">Todas as mostras que passaram pela agenda do Vernissages SP, em cartaz e encerradas. <b>${expos.length}</b> registros, ${nAgora} em cartaz ou por abrir.</p>
+<input class="busca" id="q" type="search" placeholder="Buscar título, artista, espaço ou bairro" autocomplete="off">
+<div class="chips" id="fs"><span class="rot">Situação</span>
+<button type="button" class="chip on" data-s="all">Todas</button><button type="button" class="chip" data-s="on">Em cartaz</button><button type="button" class="chip" data-s="soon">Por abrir</button><button type="button" class="chip" data-s="off">Encerradas</button></div>
+<div class="chips" id="fy"><span class="rot">Ano</span>
+<button type="button" class="chip on" data-y="all">Todos</button>${anos.map(y => `<button type="button" class="chip" data-y="${y}">${y}</button>`).join('')}</div>
+<div class="chips"><span class="rot">Espaço</span><select class="sel" id="fv" aria-label="Espaço"><option value="all">Todos os espaços</option>${espacos.map(v => `<option value="${esc(slug(v))}">${esc(v)}</option>`).join('')}</select></div>
+<div class="cont" id="cont" aria-live="polite"></div>
+${anos.map(y => `<section class="ano" data-y="${y}"><h2>${y}<small>${porAno[y].length} mostras</small></h2>
 <ul class="lista">
-${porAno[y].map(e => { const st = estado(e); return `<li class="${st.k}" data-b="${esc((e.t + ' ' + e.a + ' ' + e.v + ' ' + e.bairro).toLowerCase())}">
-<a class="t" href="${SITE}/m/${e.id}.html">${esc(e.t)}</a>
-<div class="l2">${esc(e.v)} · ${esc(e.bairro)}</div>
-<div class="l3">${dataBR(e.ini)}${e.fim ? ' — ' + dataBR(e.fim) : ''} · ${st.txt.toLowerCase()}</div>
-</li>`; }).join('\n')}
-</ul>`).join('\n')}
-<scr`+`ipt>
-document.getElementById('q').addEventListener('input',function(){
-var q=this.value.toLowerCase().trim();
-document.querySelectorAll('ul.lista li').forEach(function(li){
-li.style.display=!q||li.dataset.b.indexOf(q)>-1?'':'none';});
-document.querySelectorAll('h2[id^=ano-]').forEach(function(h){
-var ul=h.nextElementSibling,vis=[].slice.call(ul.children).some(function(li){return li.style.display!=='none'});
-h.style.display=vis?'':'none';ul.style.display=vis?'':'none';});
-});
-</scr`+`ipt>`;
+${porAno[y].map(e => itemMostra(e)).join('\n')}
+</ul></section>`).join('\n')}`;
+
+  const scripts = `<script>
+(function(){
+var st={s:'all',y:'all',v:'all',q:''},lis=[].slice.call(document.querySelectorAll('ul.lista li')),secs=[].slice.call(document.querySelectorAll('section.ano'));
+function ap(){
+  var n=0;
+  lis.forEach(function(li){
+    var ok=(st.s==='all'||li.dataset.s===st.s)&&(st.y==='all'||li.dataset.y===st.y)&&(st.v==='all'||li.dataset.v===st.v)&&(!st.q||li.dataset.b.indexOf(st.q)>-1);
+    li.style.display=ok?'':'none';if(ok)n++;
+  });
+  secs.forEach(function(s){var v=[].some.call(s.querySelectorAll('li'),function(li){return li.style.display!=='none'});s.style.display=v?'':'none';});
+  document.getElementById('cont').innerHTML='<b>'+n+'</b> mostra'+(n===1?'':'s');
+}
+function chips(id,chave){document.getElementById(id).addEventListener('click',function(e){var b=e.target.closest('.chip');if(!b)return;[].forEach.call(this.querySelectorAll('.chip'),function(c){c.classList.toggle('on',c===b)});st[chave]=b.dataset[chave];ap();});}
+chips('fs','s');chips('fy','y');
+document.getElementById('fv').addEventListener('change',function(){st.v=this.value;ap();});
+document.getElementById('q').addEventListener('input',function(){st.q=this.value.toLowerCase().trim();ap();});
+ap();
+})();
+</script>`;
+
   return pagina({
     titulo: 'Acervo de exposições em São Paulo | Vernissages SP',
     desc: `Arquivo histórico com ${expos.length} exposições de galerias e museus de São Paulo: título, artistas, espaço, bairro e período.`,
-    canonical: `${SITE}/arquivo.html`, corpo, wide: true
+    canonical: `${SITE}/arquivo.html`, corpo, wide: true, scripts, ogTipo: 'website'
   });
 }
 
+/* ---------- artistas: busca, índice A-Z e ordem por número de mostras ---------- */
 function paginaArtistas(artistas) {
   const ks = Object.keys(artistas).sort((a, b) => artistas[a].nome.localeCompare(artistas[b].nome, 'pt'));
+  const letra = k => { const c = artistas[k].nome.normalize('NFD').replace(/[̀-ͯ]/g, '').charAt(0).toUpperCase(); return /[A-Z]/.test(c) ? c : '#'; };
+  const grupos = {};
+  ks.forEach(k => (grupos[letra(k)] = grupos[letra(k)] || []).push(k));
+  const letras = Object.keys(grupos).sort((a, b) => a === '#' ? 1 : b === '#' ? -1 : a.localeCompare(b));
+  const link = k => `<a href="${SITE}/a/${k}.html" data-b="${esc(artistas[k].nome.toLowerCase())}">${esc(artistas[k].nome)}<small>${artistas[k].mostras.length}</small></a>`;
+  const porQtd = [...ks].sort((a, b) => artistas[b].mostras.length - artistas[a].mostras.length || artistas[a].nome.localeCompare(artistas[b].nome, 'pt'));
+
   const corpo = `
-<h1>Artistas no acervo</h1>
-<p class="txt">${ks.length} artistas com exposições registradas em São Paulo.</p>
-<input class="busca" id="q" type="text" placeholder="Buscar artista…">
-<div class="grid2" id="g">
-${ks.map(k => `<a href="${SITE}/a/${k}.html" data-b="${esc(artistas[k].nome.toLowerCase())}">${esc(artistas[k].nome)}<small>${artistas[k].mostras.length} mostra${artistas[k].mostras.length > 1 ? 's' : ''}</small></a>`).join('\n')}
+<p class="kick">Índice</p>
+<h1 class="g">Artistas</h1>
+<p class="lede"><b>${ks.length}</b> artistas com exposições registradas em São Paulo. O número ao lado do nome é a quantidade de mostras no acervo.</p>
+<input class="busca" id="q" type="search" placeholder="Buscar artista" autocomplete="off">
+<div class="chips" id="ord"><span class="rot">Ordem</span><button type="button" class="chip on" data-o="az">A–Z</button><button type="button" class="chip" data-o="qtd">Mais mostras</button></div>
+<div class="chips" id="az"><span class="rot">Ir para</span>${letras.map(l => `<a class="chip" href="#l-${l === '#' ? 'num' : l}">${l}</a>`).join('')}</div>
+<div class="cont" id="cont" aria-live="polite"></div>
+<div id="porletra">
+${letras.map(l => `<section class="let" id="l-${l === '#' ? 'num' : l}"><h2>${l}<small>${grupos[l].length}</small></h2><div class="grid2">
+${grupos[l].map(link).join('\n')}
+</div></section>`).join('\n')}
 </div>
-<scr`+`ipt>
-document.getElementById('q').addEventListener('input',function(){
-var q=this.value.toLowerCase().trim();
-document.querySelectorAll('#g a').forEach(function(a){a.style.display=!q||a.dataset.b.indexOf(q)>-1?'':'none';});
-});
-</scr`+`ipt>`;
+<div id="porqtd" style="display:none"><div class="grid2">
+${porQtd.map(link).join('\n')}
+</div></div>`;
+
+  const scripts = `<script>
+(function(){
+var q='',modo='az';
+function ap(){
+  var alvo=document.getElementById(modo==='az'?'porletra':'porqtd'),n=0;
+  [].forEach.call(alvo.querySelectorAll('.grid2 a'),function(a){var ok=!q||a.dataset.b.indexOf(q)>-1;a.style.display=ok?'':'none';if(ok)n++;});
+  [].forEach.call(alvo.querySelectorAll('section.let'),function(s){var v=[].some.call(s.querySelectorAll('a'),function(a){return a.style.display!=='none'});s.style.display=v?'':'none';});
+  document.getElementById('cont').innerHTML='<b>'+n+'</b> artista'+(n===1?'':'s');
+}
+document.getElementById('q').addEventListener('input',function(){q=this.value.toLowerCase().trim();ap();});
+document.getElementById('ord').addEventListener('click',function(e){var b=e.target.closest('.chip');if(!b)return;[].forEach.call(this.querySelectorAll('.chip'),function(c){c.classList.toggle('on',c===b)});modo=b.dataset.o;
+  document.getElementById('porletra').style.display=modo==='az'?'':'none';document.getElementById('porqtd').style.display=modo==='qtd'?'':'none';document.getElementById('az').style.display=modo==='az'?'':'none';ap();});
+ap();
+})();
+</script>`;
+
   return pagina({
     titulo: 'Artistas com exposições em São Paulo | Vernissages SP',
     desc: `Índice de ${ks.length} artistas com mostras em galerias e museus de São Paulo, com histórico de exposições.`,
-    canonical: `${SITE}/artistas.html`, corpo, wide: true
+    canonical: `${SITE}/artistas.html`, corpo, wide: true, scripts, ogTipo: 'website'
   });
 }
 
-/* ---------- editais e chamadas ---------- */
-const CAT_EDITAL = { fomento: 'Fomento público', residencia: 'Residência', premio: 'Prêmio', chamada: 'Chamada aberta' };
+/* ---------- editais, chamadas, residências e prêmios ---------- */
+const CAT_EDITAL = { fomento: 'Edital', residencia: 'Residência', premio: 'Prêmio', chamada: 'Chamada', bolsa: 'Bolsa' };
+const ONDE_EDITAL = { sp: 'São Paulo', brasil: 'Brasil', exterior: 'Exterior' };
 
 function estadoEdital(ed) {
-  if (!ed.prazo) return { k: 'soon', txt: 'FLUXO CONTÍNUO' };
-  if (ed.prazo < HOJE) return { k: 'off', txt: 'ENCERRADO' };
-  const dias = Math.round((new Date(ed.prazo) - new Date(HOJE)) / 864e5);
-  if (dias === 0) return { k: 'soon', txt: 'ÚLTIMO DIA' };
-  if (dias <= 7) return { k: 'soon', txt: 'FALTAM ' + dias + ' DIA' + (dias > 1 ? 'S' : '') };
-  return { k: 'on', txt: 'ABERTO' };
+  if (!ed.prazo) return { k: 'soon', txt: 'FLUXO CONTÍNUO', curto: 'contínuo', n: 9999 };
+  if (ed.prazo < HOJE) return { k: 'off', txt: 'ENCERRADO', curto: dCurta(ed.prazo), n: -1 };
+  const dias = difDias(HOJE, ed.prazo);
+  if (dias === 0) return { k: 'soon', txt: 'ÚLTIMO DIA', curto: 'hoje', n: 0 };
+  if (dias <= 7) return { k: 'soon', txt: `FALTAM ${dias} DIA${dias > 1 ? 'S' : ''}`, curto: dCurta(ed.prazo), n: dias };
+  return { k: 'on', txt: 'ABERTO', curto: dCurta(ed.prazo), n: dias };
+}
+
+/* radar: o que a busca automática achou (sites de arte e Instagram). Fora do prazo some sozinho. */
+function carregarRadar() {
+  const out = [];
+  for (const [arq, via] of [['radar/editais.json', 'sites'], ['radar/editais-ig.json', 'instagram']]) {
+    try {
+      const j = JSON.parse(fs.readFileSync(path.join(RAIZ, arq), 'utf8'));
+      (j.itens || []).forEach(x => {
+        if (!x || !x.t || !x.link) return;
+        const vivo = x.prazo ? x.prazo >= HOJE : (x.pub && difDias(x.pub, HOJE) <= 45);
+        if (vivo) out.push({ ...x, via });
+      });
+    } catch (_) { /* arquivo ainda não existe */ }
+  }
+  const vistos = new Set();
+  return out.filter(x => !vistos.has(x.link) && vistos.add(x.link))
+    .sort((a, b) => (a.prazo || '9999').localeCompare(b.prazo || '9999') || (b.pub || '').localeCompare(a.pub || ''));
 }
 
 function paginaEditais(editais) {
   const peso = e => (!e.prazo ? 1 : (e.prazo >= HOJE ? 0 : 2));
   const ord = [...editais].sort((a, b) => peso(a) - peso(b) || (a.prazo || '9999').localeCompare(b.prazo || '9999'));
   const abertos = ord.filter(e => peso(e) < 2);
+  const radar = carregarRadar();
+
+  const prz = st => `<div class="prz ${st.k}"><b>${esc(st.curto)}</b><span>${st.n === 9999 ? 'sem data de fim' : st.n === 0 ? 'último dia' : st.n > 0 ? 'falta' + (st.n > 1 ? 'm ' : ' ') + st.n + ' dia' + (st.n > 1 ? 's' : '') : 'encerrado'}</span></div>`;
 
   const item = ed => {
     const st = estadoEdital(ed);
-    const busca = [ed.t, ed.org, CAT_EDITAL[ed.cat] || ed.cat, ed.quem, ed.onde, ed.d].join(' ').toLowerCase();
-    return `<li class="${st.k}" data-b="${esc(busca)}">
-<a class="t" href="${esc(ed.link || '#')}" target="_blank" rel="noopener">${esc(ed.t)}</a><span class="tag ${st.k}">${st.txt}</span>
-<div class="l2">${esc(ed.org || '')}${ed.cat ? ' · ' + esc(CAT_EDITAL[ed.cat] || ed.cat) : ''}</div>
-<div class="l3">${ed.prazo ? 'Inscrições até ' + dataLonga(ed.prazo) : 'Fluxo contínuo — sem data de encerramento divulgada'}${ed.valor ? ' · ' + esc(ed.valor) : ''}${ed.taxa ? ' · inscrição ' + esc(ed.taxa) : ''}</div>
+    const cat = ed.cat in CAT_EDITAL ? ed.cat : 'chamada';
+    const onde = /são paulo|sp/i.test(ed.onde || '') ? 'sp' : /exterior|internacional|londres|lisboa|paris|berlim/i.test(ed.onde || '') ? 'exterior' : 'brasil';
+    const busca = [ed.t, ed.org, CAT_EDITAL[cat], ed.quem, ed.onde, ed.d].join(' ').toLowerCase();
+    return `<li class="${st.k}" data-c="${cat}" data-o="${onde}" data-e="${st.k === 'off' ? 'off' : 'on'}" data-b="${esc(busca)}">
+<div class="tx">
+<div class="qdt"><span class="tag">${CAT_EDITAL[cat]}</span><span class="tag ${st.k}">${st.txt}</span></div>
+<a class="t" href="${esc(ed.link || '#')}" target="_blank" rel="noopener">${esc(ed.t)}</a>
+<div class="l2">${esc(ed.org || '')}</div>
 ${ed.d ? `<div class="l3">${esc(ed.d)}</div>` : ''}
-<div class="l3" style="opacity:.7">${ed.quem ? 'Quem pode se inscrever: ' + esc(ed.quem) + ' · ' : ''}${ed.onde ? 'Abrangência: ' + esc(ed.onde) + ' · ' : ''}${ed.fonte ? 'Fonte: ' + esc(ed.fonte) : ''}</div>
+<div class="l3">${[ed.quem ? 'Quem pode: ' + esc(ed.quem) : '', ed.onde ? 'Abrangência: ' + esc(ed.onde) : '', ed.valor ? esc(ed.valor) : '', ed.taxa ? 'Inscrição ' + esc(ed.taxa) : '', ed.fonte ? 'Fonte: ' + esc(ed.fonte) : ''].filter(Boolean).join(' · ')}</div>
+<div class="btns"><a class="btn cheio" href="${esc(ed.link || '#')}" target="_blank" rel="noopener">Abrir edital</a></div>
+</div>
+${prz(st)}
+</li>`;
+  };
+
+  const itemRadar = r => {
+    const st = estadoEdital({ prazo: r.prazo });
+    const cat = r.cat in CAT_EDITAL ? r.cat : 'chamada';
+    const onde = r.onde in ONDE_EDITAL ? r.onde : 'brasil';
+    const busca = [r.t, r.fonte, CAT_EDITAL[cat], ONDE_EDITAL[onde], r.resumo].join(' ').toLowerCase();
+    return `<li class="${st.k}" data-c="${cat}" data-o="${onde}" data-e="on" data-b="${esc(busca)}">
+<div class="tx">
+<div class="qdt"><span class="tag">${CAT_EDITAL[cat]}</span><span class="tag">${ONDE_EDITAL[onde]}</span>${r.prazo ? `<span class="tag ${st.k}">${st.txt}</span>` : '<span class="tag off">PRAZO NÃO LIDO</span>'}</div>
+<a class="t" href="${esc(r.link)}" target="_blank" rel="noopener">${esc(r.t)}</a>
+<div class="l2">${esc(r.fonte)}${r.pub ? ' · ' + esc(dCurta(r.pub)) : ''}</div>
+${r.resumo ? `<div class="l3">${esc(r.resumo)}</div>` : ''}
+<div class="l3">Detectado automaticamente${r.via === 'instagram' ? ' no Instagram' : ''}. ${r.prazo ? 'Prazo lido no texto' : 'A matéria não traz data'}: confirme na fonte antes de se inscrever.</div>
+<div class="btns"><a class="btn" href="${esc(r.link)}" target="_blank" rel="noopener">Abrir fonte</a></div>
+</div>
+${r.prazo ? prz(st) : '<div class="prz off"><b>?</b><span>conferir</span></div>'}
 </li>`;
   };
 
   const corpo = `
-<h1>Editais e chamadas abertas</h1>
-<p class="txt">Oportunidades para artistas visuais, curadores e coletivos com atuação em São Paulo: chamadas de galerias e museus, residências, prêmios e editais públicos de fomento. ${abertos.length} com inscrição aberta hoje.</p>
-<p class="txt" style="color:var(--muted);font-size:.92rem">Só entra aqui edital com prazo confirmado na fonte oficial. Ainda assim, leia o regulamento no site do organizador antes de se inscrever — prorrogações e mudanças de prazo são comuns.</p>
-<input class="busca" id="q" type="text" placeholder="Filtrar por título, organizador, tipo ou público…">
-${ord.length ? `<ul class="lista">
+<p class="kick">Oportunidades <span>· para artistas, curadores e coletivos</span></p>
+<h1 class="g">Editais</h1>
+<p class="lede">Chamadas de galerias e museus, residências, prêmios, bolsas e editais de fomento. <b>${abertos.length}</b> confirmados com inscrição aberta${radar.length ? ` e <b>${radar.length}</b> detectados no radar` : ''}.</p>
+<input class="busca" id="q" type="search" placeholder="Buscar edital, organizador ou tipo" autocomplete="off">
+<div class="chips" id="fc"><span class="rot">Tipo</span>
+<button type="button" class="chip on" data-c="all">Todos</button>${Object.keys(CAT_EDITAL).map(c => `<button type="button" class="chip" data-c="${c}">${CAT_EDITAL[c]}${c === 'residencia' || c === 'chamada' ? 's' : c === 'fomento' ? 's' : 's'}</button>`).join('')}</div>
+<div class="chips" id="fo"><span class="rot">Onde</span>
+<button type="button" class="chip on" data-o="all">Qualquer lugar</button><button type="button" class="chip" data-o="sp">São Paulo</button><button type="button" class="chip" data-o="brasil">Brasil</button><button type="button" class="chip" data-o="exterior">Exterior</button></div>
+<div class="chips"><button type="button" class="chip" id="fe">Mostrar encerrados</button></div>
+<div class="cont" id="cont" aria-live="polite"></div>
+
+<section class="bloco" id="conf"><h2>Confirmados<small>${ord.length}</small></h2>
+<p class="nota">Prazo conferido na fonte oficial. Ainda assim, leia o regulamento no site do organizador: prorrogação e mudança de data são comuns.</p>
+${ord.length ? `<ul class="lista ed">
 ${ord.map(item).join('\n')}
-</ul>` : '<p class="txt">Nenhum edital cadastrado no momento.</p>'}
+</ul>` : '<p class="txt">Nenhum edital confirmado no momento.</p>'}
+</section>
+
+<section class="bloco" id="radar"><h2>Radar<small>${radar.length} detectados</small></h2>
+<p class="nota">Achados por busca automática em sites de arte (Dasartes, Prêmio PIPA, seLecT, ArteBrasileiros, Arte Que Acontece, Sesc SP) e nos Instagrams dos espaços do mapa. O prazo é o que está no texto da matéria, e a categoria é um palpite por palavra-chave: <b>confirme tudo na fonte oficial</b>. Quando o prazo passa, o item some sozinho.</p>
+${radar.length ? `<ul class="lista ed radar">
+${radar.map(itemRadar).join('\n')}
+</ul>` : '<p class="txt">Nada novo no radar hoje.</p>'}
+</section>
 <div class="btns">
-<a class="btn" href="${SITE}/">Ver agenda de aberturas</a>
+<a class="btn cheio" href="${SITE}/">Ver agenda de aberturas</a>
 <a class="btn" href="${SITE}/arquivo.html">Acervo de exposições</a>
-</div>
-<scr`+`ipt>
-document.getElementById('q').addEventListener('input',function(){
-var q=this.value.toLowerCase().trim();
-document.querySelectorAll('ul.lista li').forEach(function(li){
-li.style.display=!q||li.dataset.b.indexOf(q)>-1?'':'none';});
-});
-</scr`+`ipt>`;
+</div>`;
+
+  const scripts = `<script>
+(function(){
+var st={c:'all',o:'all',q:'',enc:false},lis=[].slice.call(document.querySelectorAll('ul.ed li'));
+function ap(){
+  var n=0;
+  lis.forEach(function(li){
+    var ok=(st.c==='all'||li.dataset.c===st.c)&&(st.o==='all'||li.dataset.o===st.o)&&(!st.q||li.dataset.b.indexOf(st.q)>-1)&&(st.enc||li.dataset.e!=='off');
+    li.style.display=ok?'':'none';if(ok)n++;
+  });
+  [].forEach.call(document.querySelectorAll('section.bloco'),function(s){var v=[].some.call(s.querySelectorAll('li'),function(li){return li.style.display!=='none'});s.style.display=v?'':'none';});
+  document.getElementById('cont').innerHTML='<b>'+n+'</b> oportunidade'+(n===1?'':'s');
+}
+function chips(id,chave){document.getElementById(id).addEventListener('click',function(e){var b=e.target.closest('.chip');if(!b)return;[].forEach.call(this.querySelectorAll('.chip'),function(c){c.classList.toggle('on',c===b)});st[chave]=b.dataset[chave];ap();});}
+chips('fc','c');chips('fo','o');
+document.getElementById('fe').addEventListener('click',function(){st.enc=!st.enc;this.classList.toggle('on',st.enc);ap();});
+document.getElementById('q').addEventListener('input',function(){st.q=this.value.toLowerCase().trim();ap();});
+ap();
+})();
+</script>`;
 
   return pagina({
-    titulo: 'Editais e chamadas abertas para artistas em São Paulo | Vernissages SP',
-    desc: `${abertos.length} editais, residências, prêmios e chamadas com inscrição aberta para artistas visuais, curadores e coletivos em São Paulo. Prazos, quem pode se inscrever e link oficial.`,
-    canonical: `${SITE}/editais.html`, corpo, wide: true
+    titulo: 'Editais, residências e chamadas para artistas em São Paulo | Vernissages SP',
+    desc: `${abertos.length} editais confirmados e ${radar.length} oportunidades no radar: residências, prêmios, bolsas e chamadas para artistas visuais, curadores e coletivos. Prazos, quem pode se inscrever e link oficial.`,
+    canonical: `${SITE}/editais.html`, corpo, wide: true, scripts, ogTipo: 'website'
   });
 }
 

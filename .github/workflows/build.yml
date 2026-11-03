@@ -5,6 +5,8 @@ on:
     paths:
       - 'dados.js'
       - 'gerar.js'
+      - 'site.js'
+      - 'radar/editais-ig.json'
       - 'temporada.js'
       - 'temporadas/**'
       - '.github/workflows/build.yml'
@@ -32,6 +34,12 @@ jobs:
       - name: Temporada do mes (temporada.css)
         run: node temporada.js --css
 
+      # Busca funda de editais nos sites de arte (feeds + API de busca do WordPress).
+      # So detecta e grava radar/editais.json; o gerar.js mostra na secao "Radar" de
+      # editais.html, separada dos confirmados. Fonte fora do ar nao derruba o build.
+      - name: Radar de editais
+        run: node radar-editais.js --dias 90 --json radar/editais.json || echo "radar de editais falhou, segue com o arquivo anterior"
+
       - name: Gerar acervo, paginas e sitemap
         run: node gerar.js
 
@@ -39,7 +47,7 @@ jobs:
         run: |
           git config user.name "vernissages-bot"
           git config user.email "actions@github.com"
-          git add -A acervo.json arquivo.html artistas.html editais.html fim-de-semana.html monta-meu-sabado.html temporada.css sitemap.xml robots.txt m a
+          git add -A acervo.json arquivo.html artistas.html editais.html fim-de-semana.html monta-meu-sabado.html temporada.css sitemap.xml robots.txt m a radar/editais.json
           if git diff --staged --quiet; then
             echo "Nada mudou no acervo."
             exit 0
