@@ -24,7 +24,6 @@ const VENUES = [
 {name:"Almeida & Dale",ig:"almeidaedale",site:"https://www.almeidaedale.com.br",addr:"R. Caconde, 152",b:"Jardim Paulista",z:"Oeste",tipo:"galeria",lat:-23.5712,lng:-46.6650,info:"Uma das maiores do país; incorporou a Galeria Millan em 2025. Mercado primário e secundário."},
 /* site tirado em 23/09/2026: koganamaro.com nao resolve (DNS morto,
    confirmado no navegador e por fetch direto — ENOTFOUND). */
-{name:"Kogan Amaro",site:"",addr:"Al. Franca, 1054 ~",b:"Jardim Paulista",z:"Oeste",tipo:"galeria",lat:-23.5637,lng:-46.6602,info:"SP e Zurique. Contemporâneo brasileiro e internacional."},
 {name:"Verve Galeria",ig:"vervegaleria",site:"https://www.vervegaleria.com",addr:"Av. São Luís, 192 — Ed. Louvre, sobreloja 06",b:"República",z:"Centro",tipo:"galeria",lat:-23.5452,lng:-46.6425,info:"Contemporâneo; forte presença em feiras nacionais. Fica no Edifício Louvre, no centro — não nos Jardins."},
 /* site tirado em 23/09/2026: galeriaberenicearvani.com redireciona pro
    dominio da Pinacoteca de Sao Paulo — dominio expirado ou repassado,
@@ -38,7 +37,6 @@ const VENUES = [
 {name:"Galeria Superfície",ig:"galeriasuperficie",soIG:true,site:"",addr:"R. Oscar Freire, 240 ~",b:"Cerqueira César",z:"Oeste",tipo:"galeria",lat:-23.5614,lng:-46.6642,info:"Arte conceitual brasileira dos anos 1970 em diante."},
 {name:"Paulo Kuczynski Escritório de Arte",ig:"pkgaleria",site:"https://www.pkgaleria.com",addr:"Al. Lorena, 1661",b:"Jardim Paulista",z:"Oeste",tipo:"galeria",lat:-23.5657,lng:-46.6661,info:"Mercado secundário de alto nível; mostras curadas."},
 {name:"Ricardo Camargo Galeria",ig:"ricardocamargogaleria",soIG:true,addr:"R. Bento de Andrade ~",b:"Jardim Paulista",z:"Oeste",tipo:"galeria",lat:-23.5768,lng:-46.6662,info:"Arte brasileira moderna."},
-{name:"Mônica Filgueiras Galeria",addr:"R. Bela Cintra, 1533 ~",b:"Cerqueira César",z:"Oeste",tipo:"galeria",lat:-23.5601,lng:-46.6650,info:"Contemporâneo brasileiro desde os anos 1980."},
 {name:"Danielian São Paulo",ig:"danielian_galeria",site:"https://www.danielian.com.br",addr:"R. Estados Unidos, 2114 e 2157",b:"Jardim Paulista",z:"Oeste",tipo:"galeria",lat:-23.5695,lng:-46.6760,info:"Galeria carioca com espaço recente em SP."},
 // --- Jardim Europa / Paulista ---
 {name:"Galeria Nara Roesler",ig:"galerianararoesler",site:"https://nararoesler.art",addr:"Av. Europa, 655",b:"Jardim Europa",z:"Oeste",tipo:"galeria",lat:-23.5719,lng:-46.6739,info:"SP, Rio e NY. Abraham Palatnik, Vik Muniz, Tomie Ohtake."},
@@ -64,7 +62,6 @@ const VENUES = [
 {name:"A Gentil Carioca SP",ig:"agentilcarioca",site:"https://agentilcarioca.com.br",addr:"R. Barão de Itapetininga ~",b:"República",z:"Centro",tipo:"galeria",lat:-23.5445,lng:-46.6422,info:"Filial paulistana da galeria carioca fundada por Ernesto Neto, Márcio Botner e Laura Lima."},
 /* site tirado em 23/09/2026: segaleria.com.br redireciona pro site do
    Memorial da America Latina — nao e mais o site desta galeria. */
-{name:"Sé Galeria",site:"",addr:"Al. Lorena, 1257 (Vila Modernista, casa 2)",b:"Jardim Paulista",z:"Oeste",tipo:"galeria",lat:-23.5670,lng:-46.6631,info:"Nasceu no centro histórico e mudou para os Jardins em 2019; o nome ficou."},
 // --- Adições via Guia das Artes ---
 {name:"Baró Galeria",ig:"barogaleria",site:"https://barogaleria.com",addr:"R. Amauri, 62 (pop-up Taller Zaragoza)",b:"Jardim Europa",z:"Oeste",tipo:"galeria",lat:-23.5800,lng:-46.6815,info:"Dirigida por Maria Baró. Sede transferida para a Espanha; retomou presença em São Paulo em 2026 com pop-up no Taller Zaragoza, em Jardim Europa. Diálogo Brasil–Espanha–América Latina."},
 {name:"A7MA Galeria",addr:"R. Medeiros de Albuquerque, 250",b:"Vila Madalena",z:"Oeste",tipo:"galeria",lat:-23.5545,lng:-46.6858,site:"https://a7ma.com.br",ig:"a7magaleria",soIG:true,info:"Arte urbana e cultura de rua na Vila Madalena. Divulga majoritariamente pelo Instagram."},
@@ -77,7 +74,7 @@ const VENUES = [
 /* site tirado em 23/09/2026: a extensao de seguranca do navegador
    bloqueou yehudihollanderpappi.com por classificacao de risco. Pode ser
    falso positivo, mas nao investigado a fundo — reconferir antes de usar. */
-{name:"Yehudi Hollander-Pappi",site:"",addr:"Al. Lorena, 1295",b:"Jardim Paulista",z:"Oeste",tipo:"galeria",lat:-23.5628,lng:-46.6641,info:"Galeria de jovens artistas; linguagens experimentais e temporalidade expandida."},
+{name:"Yehudi Hollander-Pappi",site:"https://yehudihollanderpappi.com",addr:"Al. Lorena, 1295",b:"Jardim Paulista",z:"Oeste",tipo:"galeria",lat:-23.5628,lng:-46.6641,info:"Galeria de jovens artistas; linguagens experimentais e temporalidade expandida."},
 /* site tirado em 23/09/2026: adelina.org.br tentou dois golpes na mesma
    sessao — popup falso pedindo pra abrir o PowerShell e colar comando
    ("ClickFix", tecnica de malware) numa tentativa, reCAPTCHA bloqueando
@@ -85,9 +82,7 @@ const VENUES = [
    nem ninguem — enquanto isso nao for investigado (site comprometido ou
    dominio expirado/repassado). */
 {name:"Adelina Galeria",ig:"adelinainstituto",soIG:true,site:"",addr:"Pinheiros (endereço a confirmar)",b:"Pinheiros",z:"Oeste",tipo:"galeria",lat:-23.5648,lng:-46.6920,info:"Arte contemporânea com foco em novos diálogos e pertencimento."},
-{name:"Arte Infinita",addr:"Jardim Europa (endereço a confirmar)",b:"Jardim Europa",z:"Oeste",tipo:"galeria",lat:-23.5740,lng:-46.6760,info:"Fundada por Viviane Teperman em 2001; ênfase em escultura."},
 {name:"Arteedições Galeria",ig:"arteedicoes_galeria",soIG:true,addr:"Jardins (endereço a confirmar)",b:"Jardim Paulista",z:"Oeste",tipo:"galeria",lat:-23.5655,lng:-46.6638,info:"Gravuras e edições: Hirst, Kapoor, Opie, Sonia Gomes, Leda Catunda."},
-{name:"A Casa das Artes",addr:"Itaim Bibi (endereço a confirmar)",b:"Itaim Bibi",z:"Sul",tipo:"galeria",lat:-23.5820,lng:-46.6780,info:"Direção de Marta Veloso de Souza; modernos e contemporâneos."},
 // --- Itaim / Moema / Vila Mariana (Sul) ---
 {name:"Galeria Marília Razuk",ig:"galeriamariliarazuk",site:"https://www.galeriamariliarazuk.com.br",addr:"R. Jerônimo da Veiga, 131",b:"Itaim Bibi",z:"Sul",tipo:"galeria",lat:-23.5842,lng:-46.6752,info:"Desde 1992. Contemporâneo brasileiro."},
 {name:"Galeria Mario Cohen",site:"https://galeriamariocohen.com.br",addr:"R. Pedroso Alvarenga ~",b:"Itaim Bibi",z:"Sul",tipo:"galeria",lat:-23.5851,lng:-46.6772,info:"Pop e contemporâneo internacional."},
@@ -143,22 +138,19 @@ const VENUES = [
 {name:"AM Galeria",ig:"amgaleriadearte",site:"https://amgaleria.com.br",addr:"Av. Nove de Julho, 4865",b:"Itaim Bibi",z:"Oeste",tipo:"galeria",lat:-23.5774,lng:-46.6727,info:"Investigações escultóricas em mármore e fios metálicos, entre outras linguagens."},
 {name:"Casa Seva",site:"https://casaseva.com",addr:"Al. Lorena, 1257, Casa 1",b:"Jardins",z:"Oeste",tipo:"galeria",lat:-23.5724,lng:-46.6569,info:"Espaço dedicado a arte e sustentabilidade, entrada gratuita. Terça a sexta, 11h–18h."},
 {name:"Casa Museu Ema Klabin",site:"https://emaklabin.org.br",addr:"R. Portugal, 43",b:"Jardim Europa",z:"Oeste",tipo:"institucional",lat:-23.5735,lng:-46.6757,info:"Casa-museu da Fundação Ema Gordon Klabin, com acervo de arte e objetos. Quarta a domingo, 11h–17h."},
-{name:"Fibra Galeria",addr:"R. Tinhorão, 69",b:"Higienópolis",z:"Centro",tipo:"galeria",lat:-23.5444,lng:-46.6618,info:"Galeria e leiloeira desde 2012, com exposições individuais e coletivas além de leilões mensais."},
 {name:"Fólio Galeria",ig:"foliogaleria",site:"https://www.foliolivraria.com.br",addr:"R. Pedroso Alvarenga, 1046",b:"Itaim Bibi",z:"Sul",tipo:"galeria",lat:-23.5824,lng:-46.6804,info:"Especializada em livros de artista, edições limitadas e obras em papel desde 2000. Atendimento com hora marcada. Site e catálogo, sem mostra rotativa."},
 {name:"Galeria Frente",ig:"galeriafrente",site:"https://galeriafrente.com.br",addr:"R. Dr. Melo Alves, 400",b:"Cerqueira César",z:"Oeste",tipo:"galeria",lat:-23.5609,lng:-46.6705,info:"Já expôs Portinari, Tarsila do Amaral e Tomie Ohtake."},
 {name:"Fundação Maria Luisa e Oscar Americano",site:"https://fundacaooscaramericano.org.br",addr:"Av. Morumbi, 4077",b:"Morumbi",z:"Oeste",tipo:"institucional",lat:-23.6013,lng:-46.7096,info:"Casa-museu com 75 mil m² de área verde. Terça a domingo, 10h–17h30."},
 /* site tirado em 23/09/2026: bergamingomide.com.br nao resolve (DNS
    morto, confirmado no navegador e por fetch direto — ENOTFOUND). */
-{name:"Bergamin & Gomide",site:"",addr:"R. Oscar Freire, 379, Lj 1",b:"Jardins",z:"Oeste",tipo:"galeria",lat:-23.5666,lng:-46.6656,info:"Desde 2000, já expôs Iberê Camargo, Mira Schendel, Lygia Pape e Tunga."},
 {name:"Galeria Carbono",site:"https://carbonogaleria.com.br",addr:"R. Joaquim Antunes, 59",b:"Jardim Paulistano",z:"Oeste",tipo:"galeria",lat:-23.5674,lng:-46.6790,info:"Edições de arte contemporânea (múltiplos, gravuras, livros de artista) desde 2013, membro da ABACT. Entrada gratuita."},
-{name:"Espaço Arte M. Mizrahi",addr:"Al. Ministro Rocha Azevedo, 1082",b:"Cerqueira César",z:"Oeste",tipo:"galeria",lat:-23.5661,lng:-46.6642,info:"Galeria desde 2001, presente na Artsy e na SP-Arte. Nova sede em Jardins desde agosto de 2025."},
 {name:"Estação Pinacoteca",site:"https://pinacoteca.org.br",addr:"Largo General Osório, 66",b:"Santa Ifigênia",z:"Centro",tipo:"institucional",lat:-23.5348,lng:-46.6388,info:"Prédio \"Pina Estação\" da Pinacoteca de São Paulo — mesma instituição, endereço e programação próprios."},
-{name:"Galeria Olido",addr:"Av. São João, 473",b:"Centro",z:"Centro",tipo:"institucional",lat:-23.5433,lng:-46.6389,info:"Centro cultural municipal com salas de exposição e Centro de Fotografia, reformado em 2004."},
+{name:"Galeria Olido",site:"https://prefeitura.sp.gov.br/web/cultura/galeria_olido",addr:"Av. São João, 473",b:"Centro",z:"Centro",tipo:"institucional",lat:-23.5433,lng:-46.6389,info:"Centro cultural municipal com salas de exposição e Centro de Fotografia, reformado em 2004."},
 {name:"Galeria Pilar",site:"https://galeriapilar.com",addr:"R. Barra Funda, 1030",b:"Santa Cecília",z:"Centro",tipo:"galeria",lat:-23.5267,lng:-46.6597,info:"Desde 2011, 400 m² de espaço expositivo."},
 {name:"Galeria Tato",ig:"galeriatato",site:"https://www.galeriatato.com",addr:"R. Barra Funda, 893",b:"Barra Funda",z:"Centro",tipo:"galeria",lat:-23.5275,lng:-46.6587,info:"Fundada em 2010 por Tato DiLascio."},
 /* site tirado em 23/09/2026: cantogravura.com.br mostra pagina padrao
    da Locaweb "Dominio nao encontrado" — hospedagem sem site ativo. */
-{name:"Gravura Brasileira",site:"",addr:"R. Ásia, 219",b:"Cerqueira César",z:"Oeste",tipo:"galeria",lat:-23.5549,lng:-46.6840,info:"Fundada em 1998, único espaço do país dedicado exclusivamente à gravura. Acervo de cerca de 3 mil gravuras originais."},
+{name:"Gravura Brasileira",ig:"gravurabrasileira",site:"https://www.gravurabrasileira.com",addr:"R. Ásia, 219",b:"Cerqueira César",z:"Oeste",tipo:"galeria",lat:-23.5549,lng:-46.6840,info:"Fundada em 1998, único espaço do país dedicado exclusivamente à gravura. Acervo de cerca de 3 mil gravuras originais."},
 {name:"Instituto Çarê",ig:"institutoculturalcare",site:"https://institutocare.org.br",addr:"R. Dr. Avelino Chaves, 138",b:"Vila Leopoldina",z:"Oeste",tipo:"institucional",lat:-23.5364,lng:-46.7290,info:"Organização sem fins lucrativos criada em 2019, com núcleos de Acervos, Artes Visuais, Educação, Música e Pesquisa."},
 {name:"Lombardi Galeria",ig:"lombardigaleria",soIG:true,addr:"R. Joaquim Antunes, 187",b:"Jardim Paulistano",z:"Oeste",tipo:"galeria",lat:-23.5666,lng:-46.6797,info:"Projeto focado em fotografia autoral como linguagem artística."},
 {name:"Martins&Montero",ig:"martinsemontero",site:"https://martinsemontero.com",addr:"R. Jamaica, 50 ~",b:"Jardim América",z:"Oeste",tipo:"galeria",lat:-23.5680,lng:-46.6680,info:"Unidades em São Paulo e Bruxelas."},
@@ -170,23 +162,18 @@ const VENUES = [
 {name:"MITS Galeria",ig:"mits.galeria",site:"https://www.mitsgaleria.art",addr:"Al. Tietê, 618, Casa 7",b:"Jardim Paulista",z:"Oeste",tipo:"galeria",lat:-23.5638,lng:-46.6644,info:"Galeria contemporânea criada em 2023."},
 /* site tirado em 23/09/2026: certificado SSL de mube.art.br esta
    expirado — navegador bloqueia. Reconferir quando renovarem. */
-{name:"MuBE",site:"",addr:"R. Alemanha, 221",b:"Jardim Europa",z:"Oeste",tipo:"institucional",lat:-23.5763,lng:-46.6764,info:"Museu Brasileiro de Escultura e Ecologia. Acervo arqueológico da FUMDHAM (Piauí) ao lado de escultura, desenho, pintura, gravura, fotografia e vídeo contemporâneos."},
+{name:"MuBE",ig:"mube_sp",site:"",addr:"R. Alemanha, 221",b:"Jardim Europa",z:"Oeste",tipo:"institucional",lat:-23.5763,lng:-46.6764,info:"Museu Brasileiro de Escultura e Ecologia. Acervo arqueológico da FUMDHAM (Piauí) ao lado de escultura, desenho, pintura, gravura, fotografia e vídeo contemporâneos."},
 {name:"Museu de Arte Sacra de São Paulo",site:"https://museuartesacra.org.br",addr:"Av. Tiradentes, 676",b:"Luz",z:"Centro",tipo:"institucional",lat:-23.5304,lng:-46.6314,info:"Na ala esquerda do Mosteiro da Luz. Via-Sacra de Victor Brecheret em terracota (1942–1946); obras de Anita Malfatti e Aldo Bonadei."},
 {name:"Museu Lasar Segall",site:"https://museulasarsegall.org.br",addr:"R. Berta, 111",b:"Vila Mariana",z:"Sul",tipo:"institucional",lat:-23.5947,lng:-46.6353,info:"Museu federal (Ibram) dedicado ao pintor e gravador Lasar Segall."},
 /* site tirado em 23/09/2026: oficinasculturais.org.br nao resolve (DNS
    morto, confirmado no navegador e por fetch direto — ENOTFOUND). */
-{name:"Oficina Cultural Oswald de Andrade",site:"",addr:"R. Três Rios, 363",b:"Bom Retiro",z:"Centro",tipo:"institucional",lat:-23.5295,lng:-46.6378,info:"Prédio histórico inaugurado em 1905."},
-{name:"Olhão",addr:"R. Barra Funda, 288",b:"Barra Funda",z:"Centro",tipo:"hibrido",lat:-23.5313,lng:-46.6544,info:"Espaço experimental — jardim, cozinha, banheiro e telhado ocupados com objetos, esculturas, pinturas, performances e instalações. Visitas por agendamento."},
 {name:"Paço das Artes",site:"https://pacodasartes.org.br",addr:"R. Dr. Albuquerque Lins, 1345",b:"Higienópolis",z:"Centro",tipo:"institucional",lat:-23.5420,lng:-46.6589,info:"Instituição da Secretaria de Cultura do Estado de SP."},
 {name:"Pinacoteca Contemporânea",site:"https://pinacoteca.org.br",addr:"Av. Tiradentes, 273",b:"Luz",z:"Centro",tipo:"institucional",lat:-23.5332,lng:-46.6333,info:"Terceiro prédio da Pinacoteca de São Paulo, inaugurado em 2023, integrado aos prédios Pina Luz e Pina Estação — ingresso único."},
 {name:"Quadra Galeria",ig:"quadragaleria",soIG:true,addr:"R. Barão de Tatuí, 521",b:"Vila Buarque",z:"Centro",tipo:"galeria",lat:-23.5405,lng:-46.6547,info:"Unidades em São Paulo e Rio de Janeiro."},
 /* site tirado em 23/09/2026: redbullstation.com.br nao resolve (DNS
    morto, confirmado por fetch direto — ENOTFOUND). */
-{name:"Red Bull Station",site:"",addr:"R. Frei Caneca, 569",b:"Consolação",z:"Centro",tipo:"institucional",lat:-23.5542,lng:-46.6524,info:"Antiga subestação de energia desativada desde 2004, reformada para arte. Programa de residência artística regular."},
 /* site tirado em 23/09/2026: galeriasancovsky.com nao resolve (DNS
    morto, confirmado por fetch direto — ENOTFOUND). */
-{name:"Sancovsky",site:"",addr:"Pça. Benedito Calixto, 103",b:"Pinheiros",z:"Oeste",tipo:"galeria",lat:-23.5585,lng:-46.6809,info:"Dirigida por Marcos Sancovsky, expõe pintura, vídeo, escultura e performance."},
-{name:"Tendal da Lapa",addr:"R. Guaicurus, 1100",b:"Lapa",z:"Oeste",tipo:"institucional",lat:-23.5223,lng:-46.6963,info:"Complexo cultural apelidado \"A Fábrica dos Sonhos\", originalmente centro de distribuição de carnes construído a partir de 1936."},
 {name:"Vila Itororó",site:"https://vilaitororo.prefeitura.sp.gov.br",addr:"R. Maestro Cardim, 60",b:"Bela Vista",z:"Centro",tipo:"institucional",lat:-23.5614,lng:-46.6406,info:"Construída entre 1922 e 1929, virou centro cultural municipal em 2021, ruínas arquitetônicas preservadas."},
 /* site tirado em 23/09/2026: o dominio galeriavirgilio.com.br foi
    sequestrado e agora serve spam de apostas/cassino. NAO visitar —
@@ -195,7 +182,27 @@ const VENUES = [
    de repor este campo. */
 {name:"Galeria Virgilio",ig:"galeria.virgilio",soIG:true,site:"",addr:"R. Dr. Virgilio de Carvalho Pinto, 426",b:"Pinheiros",z:"Oeste",tipo:"galeria",lat:-23.5620,lng:-46.6845,info:"Aberta em 2002 por Izabel Pinheiro, representa artistas contemporâneos emergentes."},
 {name:"Memorial da América Latina",site:"https://memorial.org.br",addr:"Av. Auro Soares de Moura Andrade, 664",b:"Barra Funda",z:"Oeste",tipo:"institucional",lat:-23.5275,lng:-46.6654,info:"Galeria Marta Traba: único espaço museológico do Brasil inteiramente dedicado à arte latino-americana, 1.000 m² circulares."},
-{name:"Pavilhão das Culturas Brasileiras",addr:"Parque Ibirapuera, portão 2 ~",b:"Ibirapuera",z:"Sul",tipo:"institucional",lat:-23.5890,lng:-46.6600,info:"Edifício de 11 mil m² projetado por Oscar Niemeyer nos anos 1950, tombado nas três esferas de patrimônio."}
+// --- Mapeamento de 02/11/2026 (diretórios AQA + Guia das Artes, cruzados com a base; endereço e Instagram conferidos no site oficial) ---
+{name:"Sesc Belenzinho",ig:"sescbelenzinho",site:"https://www.sescsp.org.br/unidades/belenzinho/",addr:"R. Padre Adelino, 1000",b:"Belenzinho",z:"Leste",tipo:"institucional",lat:-23.5441,lng:-46.5845,info:"Unidade do Sesc São Paulo na zona leste, com exposições e programação cultural gratuita."},
+{name:"Sesc Bom Retiro",ig:"sescbomretiro",site:"https://www.sescsp.org.br/unidades/bom-retiro/",addr:"Alameda Nothmann, 185",b:"Bom Retiro",z:"Centro",tipo:"institucional",lat:-23.5311,lng:-46.6433,info:"Unidade do Sesc São Paulo com exposições e programação cultural."},
+{name:"Sesc Consolação",ig:"sescconsolacao",site:"https://www.sescsp.org.br/unidades/consolacao/",addr:"R. Dr. Vila Nova, 245",b:"Higienópolis",z:"Centro",tipo:"institucional",lat:-23.5461,lng:-46.6503,info:"Unidade do Sesc São Paulo entre Higienópolis e a Consolação, com exposições e programação cultural."},
+{name:"Sesc Santana",ig:"sescsantana",site:"https://www.sescsp.org.br/unidades/santana/",addr:"Av. Luiz Dumont Villares, 579",b:"Santana",z:"Norte",tipo:"institucional",lat:-23.4980,lng:-46.6130,info:"Unidade do Sesc São Paulo na zona norte, com exposições e programação cultural."},
+{name:"Sesc Itaquera",ig:"sescitaquera",site:"https://www.sescsp.org.br/unidades/itaquera/",addr:"Av. Fernando do Espírito Santo Alves de Mattos, 1000",b:"Itaquera",z:"Leste",tipo:"institucional",lat:-23.5816,lng:-46.4619,info:"Unidade do Sesc São Paulo ao lado do Parque do Carmo, com exposições e programação cultural."},
+{name:"Sesc 24 de Maio",ig:"sesc24demaio",site:"https://www.sescsp.org.br/unidades/24-de-maio/",addr:"R. 24 de Maio, 109",b:"República",z:"Centro",tipo:"institucional",lat:-23.5441,lng:-46.6400,info:"Unidade do Sesc São Paulo no centro, com exposições e programação cultural."},
+{name:"Sesc Vila Mariana",ig:"sescvilamariana",site:"https://www.sescsp.org.br/unidades/vila-mariana/",addr:"R. Pelotas, 141",b:"Vila Mariana",z:"Sul",tipo:"institucional",lat:-23.5820,lng:-46.6453,info:"Unidade do Sesc São Paulo com exposições e programação cultural."},
+{name:"Sesc Avenida Paulista",ig:"sescavpaulista",site:"https://www.sescsp.org.br/unidades/avenida-paulista/",addr:"Av. Paulista, 119",b:"Paraíso",z:"Centro",tipo:"institucional",lat:-23.5707,lng:-46.6457,info:"Unidade do Sesc São Paulo na Avenida Paulista, com exposições e programação cultural."},
+{name:"Sesc Ipiranga",ig:"sescipiranga",site:"https://www.sescsp.org.br/unidades/ipiranga/",addr:"R. Bom Pastor, 822",b:"Ipiranga",z:"Sul",tipo:"institucional",lat:-23.5841,lng:-46.6080,info:"Unidade do Sesc São Paulo com exposições e programação cultural."},
+{name:"Galleria Continua São Paulo",ig:"galleriacontinua",site:"https://www.galleriacontinua.com",addr:"R. Des. Paulo Passaláqua, s/n, Portão 14 ~",b:"Pacaembu",z:"Centro",tipo:"galeria",lat:-23.5501,lng:-46.6659,info:"Unidade brasileira da galeria italiana Galleria Continua, junto ao Estádio do Pacaembu."},
+{name:"Casa das Rosas",ig:"casadasrosas",site:"https://www.casadasrosas.org.br",addr:"Av. Paulista, 37",b:"Bela Vista",z:"Centro",tipo:"institucional",lat:-23.5711,lng:-46.6452,info:"Espaço de literatura e poesia no casarão da Avenida Paulista, com exposições e programação gratuita."},
+{name:"Casa Guilherme de Almeida",ig:"casaguilhermedealmeida",site:"https://www.casaguilhermedealmeida.org.br",addr:"R. Macapá, 187",b:"Sumaré",z:"Oeste",tipo:"institucional",lat:-23.5469,lng:-46.6739,info:"Casa-museu do poeta Guilherme de Almeida, com exposições temporárias e programação literária."},
+{name:"Instituto Bardi Casa de Vidro",ig:"institutobardi",site:"https://institutobardi.com.br",addr:"R. Gen. Almério de Moura, 200",b:"Morumbi",z:"Sul",tipo:"institucional",lat:-23.6137,lng:-46.7088,info:"Casa projetada por Lina Bo Bardi em 1951, onde viveu com Pietro Maria Bardi. Visitas e exposições com agendamento."},
+{name:"Complexo Cultural Funarte",site:"https://www.gov.br/funarte",addr:"Alameda Nothmann, 1058",b:"Campos Elíseos",z:"Centro",tipo:"institucional",lat:-23.5353,lng:-46.6509,info:"Complexo da Funarte em São Paulo, com galerias, teatro e salas de ensaio. Exposições gratuitas."},
+{name:"Museu da Casa Brasileira",site:"https://www.mcb.org.br",addr:"Av. Brigadeiro Faria Lima, 2705",b:"Jardim Europa",z:"Oeste",tipo:"institucional",lat:-23.5800,lng:-46.6844,info:"Museu de arquitetura e design, em casarão dos anos 1940 na Faria Lima, com exposições temporárias."},
+{name:"Memorial da Resistência",ig:"memorialdaresistenciasp",site:"https://memorialdaresistenciasp.org.br",addr:"Largo General Osório, 66",b:"Luz",z:"Centro",tipo:"institucional",lat:-23.5348,lng:-46.6388,info:"Museu no antigo prédio do Deops, ao lado da Estação Pinacoteca, com exposição de longa duração e mostras temporárias."},
+{name:"Museu da Língua Portuguesa",ig:"museudalinguaportuguesa",site:"https://www.museudalinguaportuguesa.org.br",addr:"Praça da Luz, s/n",b:"Luz",z:"Centro",tipo:"institucional",lat:-23.5343,lng:-46.6361,info:"Museu instalado na Estação da Luz, com mostras temporárias além da exposição principal."},
+{name:"Museu Belas Artes de São Paulo",ig:"belasartes",site:"https://www.belasartes.br",addr:"Praça da Liberdade, 71",b:"Liberdade",z:"Centro",tipo:"institucional",lat:-23.5545,lng:-46.6353,info:"Museu privado na Liberdade, com exposições temporárias de arte."},
+{name:"Museu Casa Modernista",ig:"museudacidade",site:"https://www.museudacidade.prefeitura.sp.gov.br",addr:"R. Santa Cruz, 325",b:"Vila Mariana",z:"Sul",tipo:"institucional",lat:-23.5964,lng:-46.6335,info:"Casa projetada por Gregori Warchavchik em 1930, marco da arquitetura modernista brasileira. Abriga exposições."},
+{name:"Casa da Imagem",ig:"museudacidade",site:"https://www.museudacidade.prefeitura.sp.gov.br",addr:"R. Roberto Simonsen, 136",b:"Sé",z:"Centro",tipo:"institucional",lat:-23.5486,lng:-46.6323,info:"Casa do século XVIII no centro histórico, dedicada à memória visual da cidade, com exposições de fotografia e artes."}
 ];
 
 /* ================= EXPOS ================= */
