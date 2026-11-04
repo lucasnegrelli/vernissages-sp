@@ -247,7 +247,6 @@ const EXPOS = [
    Uma delas (Paço das Artes) ainda não abriu — fica registrada certa e o
    `check.js`/`destaque.js` já sabem lidar com `ini` no futuro. */
 {t:"Paisagem temática para um novo normal",a:"Daniel Acosta",v:"Verve Galeria",ini:"2026-08-29",fim:"2026-10-31",d:"Instalação que ocupa a nova sala da galeria e a sobreloja do Edifício Louvre, com texto crítico de Agnaldo Farias; usa materiais de design e arquitetura — flores e arbustos de plástico, fórmica — em tom irônico sobre o \"novo normal\".",img:"img/paisagem-tematica-para-um-novo-normal-verve-galeria.jpg",cred:"Cortesia Verve Galeria"},
-{t:"Espaço tempo",a:"Wojtek Kostrzewa",v:"Danielian São Paulo",ini:"2026-08-17",fim:"2026-10-27",d:"Primeira individual no Brasil do artista polonês radicado em São Paulo, com curadoria de Ginevra Bria; transita entre fotografia, escultura e pintura a partir de códigos visuais e objetos da paisagem urbana.",img:"img/espaco-tempo-danielian-sao-paulo.jpg",cred:"Cortesia Danielian São Paulo"},
 {t:"Irracional",a:"Frederico Filippi",v:"Marli Matsumoto Arte Contemporânea",ini:"2026-08-01",fim:"2026-10-31",d:"Reúne diferentes grupos de trabalhos em que o acaso, o descontrole e o gesto errático operam como motores de criação, com curadoria de Germano Dushá.",img:"img/irracional-marli-matsumoto-arte-contemporanea.jpg",cred:"Cortesia Marli Matsumoto Arte Contemporânea"},
 {t:"Controle | Corrosão | Dispersão",a:"Beto Shwafaty",v:"Galeria Leme",ini:"2026-09-03",fim:"2026-11-13",d:"Individual com cerca de 15 trabalhos que pensam a sociedade contemporânea a partir de objetos e materiais do cotidiano, incluindo a obra inédita \"O sonho da terra, é o sonho americano\".",img:"img/controle-corrosao-dispersao-galeria-leme.jpg",cred:"Cortesia Galeria Leme"},
 {t:"Marlene Barros: tecitura do feminino",a:"Marlene Barros",v:"CCBB São Paulo",ini:"2026-08-26",fim:"2027-01-25",d:"Reúne 15 obras entre esculturas, bordados, crochês, instalações e objetos que discutem a feminilidade como construção histórica, social e cultural; curadoria de Betânia Pinheiro.",img:"img/marlene-barros-tecitura-do-feminino-ccbb-sao-paulo.jpg",cred:"Cortesia CCBB São Paulo",foco:35},
@@ -356,11 +355,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Jacqueline Humphries e JH Studio",
-  v: "Auroras",
-  quem: "Jacqueline Humphries, Peter Granados, Paul Kopkau, Ciccio",
-  txt: "Primeira exposição de Humphries no Brasil, com pinturas e seis livros de artista, e obras de três artistas do seu ateliê. Abertura em 17 de outubro, das 14h às 17h, com performance de Arto Lindsay às 16h. Em cartaz até 16 de janeiro de 2027.",
-  link: "https://auroras.art.br",
+  t: "Pablo Delano: Museu da Antiga Colônia",
+  v: "MASP",
+  quem: "Pablo Delano",
+  txt: "Individual no Edifício Lina Bo Bardi, com curadoria de Adriano Pedrosa e Fernando Oliva. Abertura em 30 de outubro, até 31 de janeiro.",
+  link: "https://masp.org.br",
   publi: false
 };
 
@@ -375,6 +374,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-11-04", k:"Pablo Delano: Museu da Antiga Colônia|MASP"},
   {d:"2026-11-03", k:"Jacqueline Humphries e JH Studio|Auroras"},
   {d:"2026-11-02", k:"Deslocar, Desalinhar, Interromper — Antonio Bokel|Galeria Luis Maluf"},
   {d:"2026-11-01", k:"Atrás da superfície — Paulo Monteiro|Mendes Wood DM — Casa Iramaia"},
@@ -475,5 +475,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "03/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "04/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
