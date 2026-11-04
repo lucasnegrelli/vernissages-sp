@@ -1,0 +1,43 @@
+{
+ "_doc": "Páginas oficiais varridas por radar-sites.js. escopo: sp | brasil | exterior. hrefOk/hrefNao/textoNao são expressões regulares que filtram os links da página-índice (ruído de concurso interno, retificação, licitação). Para acrescentar uma fonte, é uma linha aqui; o resumo da rodada mostra quantos links e chamadas cada uma rendeu. exigeTexto: a página precisa falar de artes visuais (fontes que misturam música, teatro e dança). MAC USP saiu: só tem seleção de docente. Testadas em 03/11/2026: Sesc SP, Itaú Cultural, Bienal, MASP, Pinacoteca e SP-Arte não expõem lista estática de chamadas e ficaram de fora.",
+ "fontes": [
+  {
+   "nome": "Pivô",
+   "url": "https://pivo.org.br/",
+   "escopo": "sp"
+  },
+  {
+   "nome": "CAPACETE",
+   "url": "https://capacete.org/",
+   "escopo": "brasil"
+  },
+  {
+   "nome": "Instituto Tomie Ohtake",
+   "url": "https://www.institutotomieohtake.org.br/",
+   "escopo": "sp"
+  },
+  {
+   "nome": "FAAP MAB",
+   "url": "https://www.faap.br/mab/",
+   "escopo": "sp",
+   "textoNao": "visita|educativa"
+  },
+  {
+   "nome": "Secretaria Municipal de Cultura SP",
+   "url": "https://prefeitura.sp.gov.br/web/cultura/editais",
+   "escopo": "sp",
+   "textoNao": "credenciamento de|licitac|retificacao|libras|atendimento",
+   "hrefNao": "call\\.icom|libras",
+   "exigeTexto": "artes visuais|artista visual|artistas visuais|fotograf|arte contemporanea|artes plasticas"
+  },
+  {
+   "nome": "Funarte",
+   "url": "https://www.gov.br/funarte/pt-br/assuntos/editais",
+   "escopo": "brasil",
+   "hrefOk": "/editais/20(25|26)|fomento|premio|residenc",
+   "hrefNao": "forca-de-trabalho|notificacao|licitac|acesso-a-informacao",
+   "textoNao": "plataforma|linktr",
+   "exigeTexto": "artes visuais|artista visual|artistas visuais|fotograf|arte contemporanea|artes plasticas"
+  }
+ ]
+}

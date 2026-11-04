@@ -1,0 +1,83 @@
+{
+ "_doc": "Perfis de Instagram varridos por radar-ig.js (Apify). tipo: agregador = posta vários editais (gatilho amplo); org = instituição (gatilho estrito); escopo: sp | brasil | exterior (vazio = o texto decide). Para tirar um perfil, apague a linha; para ver o rendimento de cada um, leia o resumo da rodada. Handles conferidos por busca em 03/11/2026; o radar-ig informa os que não responderem.",
+ "perfis": [
+  {
+   "ig": "editais_culturais",
+   "nome": "Editais Abertos",
+   "tipo": "agregador",
+   "escopo": "brasil"
+  },
+  {
+   "ig": "editais_brasil",
+   "nome": "Editais Brasil",
+   "tipo": "agregador",
+   "escopo": "brasil"
+  },
+  {
+   "ig": "premiopipa",
+   "nome": "Prêmio PIPA",
+   "tipo": "org",
+   "escopo": "brasil"
+  },
+  {
+   "ig": "iacbrasil",
+   "nome": "IAC Instituto de Arte Contemporânea",
+   "tipo": "org",
+   "escopo": "brasil"
+  },
+  {
+   "ig": "openairbrasil",
+   "nome": "Open Air Brasil",
+   "tipo": "org",
+   "escopo": "brasil"
+  },
+  {
+   "ig": "mudas.museudeartecontemporanea",
+   "nome": "MUDAS Museu",
+   "tipo": "org",
+   "escopo": "brasil"
+  },
+  {
+   "ig": "caixaculturalsp",
+   "nome": "CAIXA Cultural São Paulo",
+   "tipo": "org",
+   "escopo": "sp"
+  },
+  {
+   "ig": "caixaculturalbrasilia",
+   "nome": "CAIXA Cultural Brasília",
+   "tipo": "org",
+   "escopo": "brasil"
+  },
+  {
+   "ig": "maau_sp",
+   "nome": "Museu Aberto de Arte Urbana",
+   "tipo": "org",
+   "escopo": "sp"
+  },
+  {
+   "ig": "opencallforartists_",
+   "nome": "Open Call for Artists",
+   "tipo": "agregador",
+   "escopo": "exterior"
+  },
+  {
+   "ig": "opencallpalette",
+   "nome": "Open Call Palette",
+   "tipo": "agregador",
+   "escopo": "exterior"
+  },
+  {
+   "ig": "res_artis",
+   "nome": "Res Artis (rede mundial de residências)",
+   "tipo": "agregador",
+   "escopo": "exterior"
+  },
+  {
+   "ig": "residencyunlimited",
+   "nome": "Residency Unlimited",
+   "tipo": "org",
+   "escopo": "exterior"
+  }
+ ]
+}

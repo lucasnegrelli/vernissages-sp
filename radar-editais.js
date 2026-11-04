@@ -108,27 +108,37 @@ const toks = s => norm(s).split(' ').filter(t => t.length > 2 && !STOP.has(t));
 
 /* ---------- prazo no texto ---------- */
 const MESES = { janeiro: 1, fevereiro: 2, marco: 3, abril: 4, maio: 5, junho: 6, julho: 7,
-  agosto: 8, setembro: 9, outubro: 10, novembro: 11, dezembro: 12 };
+  agosto: 8, setembro: 9, outubro: 10, novembro: 11, dezembro: 12,
+  january: 1, february: 2, march: 3, april: 4, may: 5, june: 6, july: 7, august: 8,
+  september: 9, october: 10, november: 11, december: 12,
+  jan: 1, fev: 2, feb: 2, mar: 3, abr: 4, apr: 4, mai: 5, jun: 6, jul: 7, ago: 8, aug: 8, set: 9, sep: 9, out: 10, oct: 10, nov: 11, dez: 12, dec: 12 };
 const pad = n => String(n).padStart(2, '0');
 
 /* Acha a data de encerramento mais provável no título + descrição. Devolve ISO
    ou null. Prefere trechos com "até / prazo / inscrições / encerra" por perto. */
 function acharPrazo(txt) {
   const t = norm(txt);
+  /* versão que preserva a barra, só para DD/MM[/AAAA] */
+  const tb = String(txt || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9\s\/]/g, ' ').replace(/\s+/g, ' ');
   const achados = [];
   const push = (iso, ctx) => { if (iso) achados.push({ iso, forte: /(ate|prazo|inscri|encerr|termin|deadline)/.test(ctx) }); };
 
   // DD/MM/AAAA ou DD/MM
-  for (const m of t.matchAll(/(\d{1,2})\/(\d{1,2})(?:\/(\d{2,4}))?/g)) {
+  for (const m of tb.matchAll(/(\d{1,2})\/(\d{1,2})(?:\/(\d{2,4}))?/g)) {
     const d = +m[1], mo = +m[2]; let y = m[3] ? +m[3] : +HOJE.slice(0, 4);
     if (y < 100) y += 2000;
-    if (d >= 1 && d <= 31 && mo >= 1 && mo <= 12) push(`${y}-${pad(mo)}-${pad(d)}`, t.slice(Math.max(0, m.index - 30), m.index));
+    if (d >= 1 && d <= 31 && mo >= 1 && mo <= 12) push(`${y}-${pad(mo)}-${pad(d)}`, tb.slice(Math.max(0, m.index - 30), m.index));
   }
   // "DD de mês [de AAAA]"
-  for (const m of t.matchAll(/(\d{1,2})\s+de\s+([a-z]+)(?:\s+de\s+(\d{4}))?/g)) {
-    const mo = MESES[m[2]]; if (!mo) continue;
+  for (const m of t.matchAll(/\b(\d{1,2})\s+(?:de\s+)?([a-z]{3,9})(?:\s+(?:de\s+)?(\d{4}))?/g)) {
+    const mo = MESES[m[2]]; if (!mo || +m[1] < 1 || +m[1] > 31) continue;
     const y = m[3] ? +m[3] : +HOJE.slice(0, 4);
     push(`${y}-${pad(mo)}-${pad(+m[1])}`, t.slice(Math.max(0, m.index - 30), m.index));
+  }
+  for (const m of t.matchAll(/\b([a-z]{3,9})\s+(\d{1,2})(?:\s+(\d{4}))?\b/g)) {
+    const mo = MESES[m[1]]; if (!mo || +m[2] < 1 || +m[2] > 31) continue;
+    const y = m[3] ? +m[3] : +HOJE.slice(0, 4);
+    push(`${y}-${pad(mo)}-${pad(+m[2])}`, t.slice(Math.max(0, m.index - 30), m.index));
   }
   if (!achados.length) return null;
   // futura e "forte" primeiro; senão a futura mais próxima; senão a mais tardia
@@ -353,7 +363,7 @@ function escreverJSON(r, caminho) {
 }
 
 /* ---------- main ---------- */
-(async () => {
+async function principal() {
   const DATA = carregarDados();
   console.log(`radar-editais · ${HOJE} · ${FONTES.length} feed(s) · janela ${JANELA} dias`);
 
@@ -389,4 +399,7 @@ function escreverJSON(r, caminho) {
   } else {
     console.log('\n' + md);
   }
-})().catch(e => { console.error(e); process.exit(1); });
+}
+/* roda como script; importado por radar-ig.js, só expõe as funções de leitura */
+if (require.main === module) principal().catch(e => { console.error(e); process.exit(1); });
+module.exports = { acharPrazo, prazoRelativo, categoriaDe, escopoDe, norm, decodeHTML, HOJE };

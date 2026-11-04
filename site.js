@@ -16,7 +16,7 @@
    ============================================================ */
 'use strict';
 
-module.exports = function (SITE, esc) {
+module.exports = function (SITE, esc, fontesRodape) {
 
 const CSS = `
 @font-face{font-family:Switzer;src:url(${SITE}/fontes/Switzer-Variable.woff2) format("woff2");font-weight:100 900;font-display:swap}
@@ -118,6 +118,8 @@ footer a{border-bottom:1.5px solid var(--terra);color:var(--ink)}
 footer a:hover{color:var(--terra)}
 footer nav{display:flex;gap:10px 24px;flex-wrap:wrap;margin-bottom:12px;font-weight:700;font-size:14px}
 footer nav a{border:0}
+.fontes{margin:0 0 14px;font-size:12px;line-height:1.8;max-width:110ch}
+.fontes b{color:var(--ink);letter-spacing:.04em}
 
 /* ---------- página de mostra ---------- */
 .expo{display:block}
@@ -287,6 +289,7 @@ ${NAV.map(([h, t]) => `<a href="${SITE}${h}"${ativo(h) ? ' aria-current="page"' 
 ${corpo}
 <footer>
 <nav aria-label="Rodapé"><a href="${SITE}/">Agenda</a><a href="${SITE}/fim-de-semana.html">Este fim de semana</a><a href="${SITE}/monta-meu-sabado.html">Monta seu sábado</a><a href="${SITE}/arquivo.html">Acervo</a><a href="${SITE}/artistas.html">Artistas</a><a href="${SITE}/editais.html">Editais</a><a href="https://instagram.com/vernissagessp" target="_blank" rel="noopener">Instagram</a></nav>
+${fontesRodape || ''}
 Vernissages SP, mapa vivo das galerias e aberturas de São Paulo, atualizado diariamente. Datas conforme divulgação dos espaços; confirme antes de visitar.
 </footer>
 </main>

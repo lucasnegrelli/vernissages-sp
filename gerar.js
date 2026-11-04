@@ -99,7 +99,16 @@ function mesclarAcervo(acervo, DATA) {
 
 /* ---------- template base ---------- */
 /* A casca das páginas (CSS, cabeçalho, rodapé, recorte de margem das imagens) mora no site.js. */
-const { pagina, rc } = require('./site.js')(SITE, esc);
+/* Fontes dos editais, fixas no rodapé: saem das mesmas listas que o radar varre, então não divergem. */
+const FONTES_RODAPE = (() => {
+  const lj = (f, d) => { try { return JSON.parse(fs.readFileSync(path.join(RAIZ, f), 'utf8')); } catch (_) { return d; } };
+  const sites = (lj('radar/fontes-sites.json', { fontes: [] }).fontes || []).map(f => [f.nome, f.url]);
+  const noticias = [['Dasartes', 'https://dasartes.com.br'], ['Prêmio PIPA', 'https://www.premiopipa.com'], ['seLecT', 'https://www.select.art.br'], ['ArteBrasileiros', 'https://artebrasileiros.com.br'], ['Arte Que Acontece', 'https://artequeacontece.com.br'], ['Sesc SP', 'https://www.sescsp.org.br']];
+  const ig = (lj('radar/perfis-ig.json', { perfis: [] }).perfis || []).map(p => ['@' + p.ig, 'https://instagram.com/' + p.ig]);
+  const a = l => l.map(([n, u]) => '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(n) + '</a>').join(' · ');
+  return '<div class="fontes"><b>Editais e chamadas, fontes monitoradas:</b> ' + a(sites) + ' · ' + a(noticias) + (ig.length ? '<br>Instagram: ' + a(ig) : '') + '</div>';
+})();
+const { pagina, rc } = require('./site.js')(SITE, esc, FONTES_RODAPE);
 
 /* ---------- datas e estado ---------- */
 const MESC = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
@@ -353,13 +362,13 @@ function estadoEdital(ed) {
 /* radar: o que a busca automática achou (sites de arte e Instagram). Fora do prazo some sozinho. */
 function carregarRadar() {
   const out = [];
-  for (const [arq, via] of [['radar/editais.json', 'sites'], ['radar/editais-ig.json', 'instagram']]) {
+  for (const [arq, via] of [['radar/editais.json', 'sites'], ['radar/editais-ig.json', 'instagram'], ['radar/editais-perfis.json', 'instagram'], ['radar/editais-sites.json', 'site']]) {
     try {
       const j = JSON.parse(fs.readFileSync(path.join(RAIZ, arq), 'utf8'));
       (j.itens || []).forEach(x => {
         if (!x || !x.t || !x.link) return;
-        const vivo = x.prazo ? x.prazo >= HOJE : (x.pub && difDias(x.pub, HOJE) <= 45);
-        if (vivo) out.push({ ...x, via });
+        const vivo = x.prazo ? x.prazo >= HOJE : (x.pub ? difDias(x.pub, HOJE) <= 45 : (x.visto && difDias(x.visto, HOJE) <= 10));
+        if (vivo) out.push({ ...x, via: x.via || via });
       });
     } catch (_) { /* arquivo ainda não existe */ }
   }
@@ -405,7 +414,7 @@ ${prz(st)}
 <a class="t" href="${esc(r.link)}" target="_blank" rel="noopener">${esc(r.t)}</a>
 <div class="l2">${esc(r.fonte)}${r.pub ? ' · ' + esc(dCurta(r.pub)) : ''}</div>
 ${r.resumo ? `<div class="l3">${esc(r.resumo)}</div>` : ''}
-<div class="l3">Detectado automaticamente${r.via === 'instagram' ? ' no Instagram' : ''}. ${r.prazo ? 'Prazo lido no texto' : 'A matéria não traz data'}: confirme na fonte antes de se inscrever.</div>
+<div class="l3">${r.via === 'site' ? 'Lido na página oficial de quem abriu a chamada' : 'Detectado automaticamente' + (r.via === 'instagram' ? ' no Instagram' : '')}. ${r.prazo ? 'Prazo lido no texto' : 'Sem data de encerramento lida'}: confirme antes de se inscrever.</div>
 <div class="btns"><a class="btn" href="${esc(r.link)}" target="_blank" rel="noopener">Abrir fonte</a></div>
 </div>
 ${r.prazo ? prz(st) : '<div class="prz off"><b>?</b><span>conferir</span></div>'}
@@ -432,7 +441,7 @@ ${ord.map(item).join('\n')}
 </section>
 
 <section class="bloco" id="radar"><h2>Radar<small>${radar.length} detectados</small></h2>
-<p class="nota">Achados por busca automática em sites de arte (Dasartes, Prêmio PIPA, seLecT, ArteBrasileiros, Arte Que Acontece, Sesc SP) e nos Instagrams dos espaços do mapa. O prazo é o que está no texto da matéria, e a categoria é um palpite por palavra-chave: <b>confirme tudo na fonte oficial</b>. Quando o prazo passa, o item some sozinho.</p>
+<p class="nota">Achados sozinhos, todo dia, nas páginas oficiais de quem abre a chamada (Pivô, Tomie Ohtake, FAAP, Funarte...), em sites de arte (Dasartes, Prêmio PIPA, seLecT, ArteBrasileiros, Arte Que Acontece, Sesc SP) e em perfis do Instagram que divulgam oportunidades. As fontes estão listadas no rodapé. O prazo é o que está no texto da matéria, e a categoria é um palpite por palavra-chave: <b>confirme tudo na fonte oficial</b>. Quando o prazo passa, o item some sozinho.</p>
 ${radar.length ? `<ul class="lista ed radar">
 ${radar.map(itemRadar).join('\n')}
 </ul>` : '<p class="txt">Nada novo no radar hoje.</p>'}

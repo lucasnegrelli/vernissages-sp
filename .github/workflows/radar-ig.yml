@@ -1,0 +1,69 @@
+name: Radar de editais no Instagram
+
+# Terça e sexta, de manhã: varre os perfis que postam edital, chamada, residência e prêmio
+# (radar/perfis-ig.json) pelo Apify, lê prazo e categoria nas legendas, grava
+# radar/editais-perfis.json e dispara o build para as páginas saírem atualizadas.
+# Custo: ~130 posts por rodada (~US$ 0,35); duas por semana, ~US$ 3 por mês.
+# Usa o mesmo segredo do instagram.yml (APIFY_TOKEN). Sem o segredo, o job falha e o resto do
+# site segue com o arquivo anterior.
+
+on:
+  schedule:
+    - cron: '17 11 * * 2,5'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: radar-ig
+  cancel-in-progress: false
+
+jobs:
+  radar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Varrer os perfis
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+        run: node radar-ig.js --dias 6 --por-perfil 10 | tee /tmp/radar-ig.log
+
+      - name: Commitar e pedir o build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "vernissages-bot"
+          git config user.email "actions@github.com"
+          git add radar/editais-perfis.json
+          if git diff --staged --quiet; then
+            echo "Nada mudou no radar do Instagram."
+            exit 0
+          fi
+          git commit -m "Radar de editais no Instagram: rodada $(date -u +%F)"
+          for i in 1 2 3 4 5; do
+            if git push; then break; fi
+            echo "push rejeitado, tentativa $i - rebaseando"
+            git fetch origin main
+            git rebase origin/main || exit 1
+            sleep 3
+          done
+          gh workflow run build.yml
+
+      - name: Resumo
+        if: always()
+        run: |
+          {
+            echo "## Radar de editais no Instagram"
+            echo ""
+            echo '```'
+            [ -f /tmp/radar-ig.log ] && cat /tmp/radar-ig.log || echo "A varredura nao rodou (veja o passo anterior)."
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
