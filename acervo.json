@@ -2660,8 +2660,8 @@
    "ig": "mits.galeria",
    "visto": "2026-11-04",
    "primeiroRegistro": "2026-09-23",
-   "img": "",
-   "cred": ""
+   "img": "img/coordenadas-improvaveis-mits-galeria.jpg",
+   "cred": "Cortesia MITS Galeria"
   },
   {
    "id": "passeio-noturno-andre-crespo--a7ma-galeria",
@@ -3653,6 +3653,132 @@
    "primeiroRegistro": "2026-10-28",
    "img": "img/zanine-caldas-criacao-de-mundos-instituto-tomie-ohtake.jpg",
    "cred": "Cortesia Instituto Tomie Ohtake"
+  },
+  {
+   "id": "hino-as-galaxias-ivan-campos--almeida-e-dale",
+   "t": "Hino às galáxias — Ivan Campos",
+   "a": "Ivan Campos",
+   "v": "Almeida & Dale",
+   "ini": "2026-11-07",
+   "fim": "2027-01-09",
+   "d": "Primeira mostra panorâmica do artista em São Paulo, com curadoria de Lisette Lagnado. Reúne obras inéditas e pinturas feitas desde os anos 1990. Abertura em 7 de novembro, das 11h às 15h, na Rua Fradique Coutinho, 1430.",
+   "img": "img/hino-as-galaxias-almeida-dale.jpg",
+   "cred": "Cortesia Almeida & Dale",
+   "bairro": "Jardim Paulista",
+   "zona": "Oeste",
+   "addr": "R. Caconde, 152",
+   "tipo": "galeria",
+   "site": "https://www.almeidaedale.com.br",
+   "ig": "almeidaedale",
+   "visto": "2026-11-04"
+  },
+  {
+   "id": "amarelinha-alice-shintani--almeida-e-dale",
+   "t": "Amarelinha — Alice Shintani",
+   "a": "Alice Shintani",
+   "v": "Almeida & Dale",
+   "ini": "2026-11-07",
+   "fim": "2027-01-09",
+   "d": "Primeira individual da artista na galeria, com texto crítico de José Augusto Ribeiro. Pinturas novas em grande formato e fitas amarelas de demarcação que traçam uma amarelinha no piso. Abertura em 7 de novembro, das 11h às 15h, na Rua Fradique Coutinho, 1360.",
+   "img": "img/amarelinha-almeida-dale.jpg",
+   "cred": "Cortesia Almeida & Dale",
+   "bairro": "Jardim Paulista",
+   "zona": "Oeste",
+   "addr": "R. Caconde, 152",
+   "tipo": "galeria",
+   "site": "https://www.almeidaedale.com.br",
+   "ig": "almeidaedale",
+   "visto": "2026-11-04"
+  },
+  {
+   "id": "glauco-rodrigues-devorador-de-imagens--galatea",
+   "t": "Glauco Rodrigues: devorador de imagens",
+   "a": "Glauco Rodrigues",
+   "v": "Galatea",
+   "ini": "2026-11-05",
+   "fim": null,
+   "d": "Individual em homenagem ao artista, com texto crítico de Ademar Britto Jr. Destaque para a série A Lenda do Coati-Puru, de 1977, com dez pinturas. Abertura em 5 de novembro, das 18h às 21h, na unidade Padre João Manuel; encerramento não divulgado.",
+   "img": "img/glauco-rodrigues-devorador-de-imagens-galatea.jpg",
+   "cred": "Cortesia Galatea",
+   "bairro": "Cerqueira César",
+   "zona": "Oeste",
+   "addr": "R. Oscar Freire, 379",
+   "tipo": "galeria",
+   "site": "https://galatea.art",
+   "ig": "galatea.art_",
+   "visto": "2026-11-04"
+  },
+  {
+   "id": "voice-leading-peter-shear--mendes-wood-dm-casa-iramaia",
+   "t": "Voice Leading — Peter Shear",
+   "a": "Peter Shear",
+   "v": "Mendes Wood DM — Casa Iramaia",
+   "ini": "2026-11-07",
+   "fim": null,
+   "d": "Pinturas reunidas em pares, a partir da percepção do artista de que havia duplas entre seus trabalhos, com motivos que reaparecem de forma levemente diferente. Abertura em 7 de novembro; encerramento não divulgado.",
+   "img": "img/voice-leading-mendes-wood-dm-casa-iramaia.jpg",
+   "cred": "Cortesia Mendes Wood DM",
+   "bairro": "Jardim Europa",
+   "zona": "Oeste",
+   "addr": "R. Iramaia, 105",
+   "tipo": "galeria",
+   "site": "https://mendeswooddm.com",
+   "ig": "mendeswooddm",
+   "visto": "2026-11-04"
+  },
+  {
+   "id": "kansai-noguchi-e-syotatsu--mendes-wood-dm",
+   "t": "Kansai Noguchi e Syotatsu",
+   "a": "Kansai Noguchi, Syotatsu",
+   "v": "Mendes Wood DM",
+   "ini": "2026-11-28",
+   "fim": null,
+   "d": "Mostra de dois artistas que reúne as cerâmicas de Noguchi, de tradição oleira japonesa antiga, e as obras de Syotatsu com sol, lua e estrelas. Abertura em 28 de novembro, na sede da Barra Funda; encerramento não divulgado.",
+   "img": "",
+   "cred": "",
+   "bairro": "Barra Funda",
+   "zona": "Centro",
+   "addr": "R. Barra Funda, 216",
+   "tipo": "galeria",
+   "site": "https://mendeswooddm.com",
+   "ig": "mendeswooddm",
+   "visto": "2026-11-04"
+  },
+  {
+   "id": "a-ressaca-da-democracia-alexander-apostol--galeria-raquel-arnaud",
+   "t": "A Ressaca da democracia — Alexander Apóstol",
+   "a": "Alexander Apóstol",
+   "v": "Galeria Raquel Arnaud",
+   "ini": "2026-11-12",
+   "fim": null,
+   "d": "Primeira individual do artista venezuelano no Brasil, com texto crítico de Ana Maria Maia. Dois trabalhos partem do abstracionismo geométrico para tratar da fragilidade política da Venezuela. Abertura em 12 de novembro, das 18h às 21h; encerramento não divulgado.",
+   "img": "",
+   "cred": "",
+   "bairro": "Vila Madalena",
+   "zona": "Oeste",
+   "addr": "R. Fidalga, 125",
+   "tipo": "galeria",
+   "site": "https://www.raquelarnaud.com",
+   "ig": "galeriaraquelarnaud",
+   "visto": "2026-11-04"
+  },
+  {
+   "id": "residencia-fause-hauten-um-artista-em-processo--ccbb-sao-paulo",
+   "t": "Residência Fause Hauten: Um artista em processo",
+   "a": "Fause Hauten",
+   "v": "CCBB São Paulo",
+   "ini": "2026-11-25",
+   "fim": "2027-01-25",
+   "d": "Estreia no Espaço Anexo do CCBB em 25 de novembro e fica em cartaz junto com a mostra de Marlene Barros. O centro abre todos os dias, exceto terças, das 9h às 20h.",
+   "img": "",
+   "cred": "",
+   "bairro": "Sé",
+   "zona": "Centro",
+   "addr": "R. Álvares Penteado, 112",
+   "tipo": "institucional",
+   "site": "https://ccbb.com.br",
+   "ig": "ccbbsp",
+   "visto": "2026-11-04"
   }
  ],
  "artistas": {
@@ -5420,6 +5546,54 @@
    "nome": "Zanine Caldas",
    "mostras": [
     "zanine-caldas-criacao-de-mundos--instituto-tomie-ohtake"
+   ]
+  },
+  "ivan-campos": {
+   "nome": "Ivan Campos",
+   "mostras": [
+    "hino-as-galaxias-ivan-campos--almeida-e-dale"
+   ]
+  },
+  "alice-shintani": {
+   "nome": "Alice Shintani",
+   "mostras": [
+    "amarelinha-alice-shintani--almeida-e-dale"
+   ]
+  },
+  "glauco-rodrigues": {
+   "nome": "Glauco Rodrigues",
+   "mostras": [
+    "glauco-rodrigues-devorador-de-imagens--galatea"
+   ]
+  },
+  "peter-shear": {
+   "nome": "Peter Shear",
+   "mostras": [
+    "voice-leading-peter-shear--mendes-wood-dm-casa-iramaia"
+   ]
+  },
+  "kansai-noguchi": {
+   "nome": "Kansai Noguchi",
+   "mostras": [
+    "kansai-noguchi-e-syotatsu--mendes-wood-dm"
+   ]
+  },
+  "syotatsu": {
+   "nome": "Syotatsu",
+   "mostras": [
+    "kansai-noguchi-e-syotatsu--mendes-wood-dm"
+   ]
+  },
+  "alexander-apostol": {
+   "nome": "Alexander Apóstol",
+   "mostras": [
+    "a-ressaca-da-democracia-alexander-apostol--galeria-raquel-arnaud"
+   ]
+  },
+  "fause-hauten": {
+   "nome": "Fause Hauten",
+   "mostras": [
+    "residencia-fause-hauten-um-artista-em-processo--ccbb-sao-paulo"
    ]
   }
  },
