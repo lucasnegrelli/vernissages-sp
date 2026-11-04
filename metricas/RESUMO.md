@@ -1,8 +1,8 @@
-# Métricas (gerado em 2026-11-03)
+# Métricas (gerado em 2026-11-04)
 
 ## @vernissagessp
 
-- Seguidores hoje: **104** (73 posts)
+- Seguidores hoje: **104** (74 posts)
 - Últimos 7 dias: +4
 - Últimos 30 dias: sem histórico ainda
 - No ritmo da última semana (0.6/dia), 200 seguidores em ~168 dias
@@ -13,6 +13,6 @@
 
 - obra: 3.0 (2 posts)
 - agenda: 2.5 (2 posts)
-- reel: 2.5 (2 posts)
+- reel: 2.0 (3 posts)
 - encerra: 2.0 (1 post)
 
