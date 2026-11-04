@@ -11,6 +11,15 @@ on:
   schedule:
     - cron: '17 11 * * 2,5'
   workflow_dispatch:
+    inputs:
+      dias:
+        description: 'Janela em dias (padrao 6; use 30 para testar perfil que veio vazio)'
+        required: false
+        default: '6'
+      por_perfil:
+        description: 'Posts por perfil (padrao 10)'
+        required: false
+        default: '10'
 
 permissions:
   contents: write
@@ -34,7 +43,7 @@ jobs:
       - name: Varrer os perfis
         env:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
-        run: node radar-ig.js --dias 6 --por-perfil 10 | tee /tmp/radar-ig.log
+        run: node radar-ig.js --dias ${{ inputs.dias || 6 }} --por-perfil ${{ inputs.por_perfil || 10 }} | tee /tmp/radar-ig.log
 
       - name: Commitar e pedir o build
         env:
