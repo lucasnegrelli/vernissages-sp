@@ -1,18 +1,7 @@
 {
- "gerado": "2026-11-03",
+ "gerado": "2026-11-04",
  "aviso": "Detectado automaticamente em feeds e buscas. O prazo vem do texto da matéria: confirme na fonte oficial.",
  "itens": [
-  {
-   "t": "Inscrições Fechadas (03/11): Residência Artística The PIPA Foundation na Gasworks",
-   "fonte": "Prêmio PIPA",
-   "link": "https://www.premiopipa.com/2026/10/residencia-artistica-the-pipa-foundation-na-gasworks-abertura-das-inscricoes-em-1309/",
-   "pub": "2026-10-26",
-   "prazo": "2026-11-03",
-   "cat": "residencia",
-   "onde": "exterior",
-   "resumo": "Dia 03 de novembro, encerram as inscrições para a segunda edição da The PIPA Foundation Artist Residency at Gasworks, que será realizada em 2027, em Londres. Leia mais sobre a oportunidade e inscreva-se! As inscrições foram encerradas em 3 ",
-   "visto": "2026-11-03"
-  },
   {
    "t": "Residência artística em casa projetada por Zanine Caldas abre inscrições",
    "fonte": "Dasartes",
@@ -22,7 +11,18 @@
    "cat": "residencia",
    "onde": "brasil",
    "resumo": "Programa selecionará quatro artistas brasileiros e estrangeiros para uma imersão de um mês à beira-mar, com curadoria de Felipe Scovino e foco na relação entre arte, arquitetura e natureza Estão abertas, até 5 de novembro, as inscrições par",
-   "visto": "2026-11-03"
+   "visto": "2026-11-04"
+  },
+  {
+   "t": "Inscrições Fechadas (03/11): Residência Artística The PIPA Foundation na Gasworks",
+   "fonte": "Prêmio PIPA",
+   "link": "https://www.premiopipa.com/2026/10/residencia-artistica-the-pipa-foundation-na-gasworks-abertura-das-inscricoes-em-1309/",
+   "pub": "2026-10-26",
+   "prazo": "2026-11-23",
+   "cat": "residencia",
+   "onde": "exterior",
+   "resumo": "Dia 03 de novembro, encerram as inscrições para a segunda edição da The PIPA Foundation Artist Residency at Gasworks, que será realizada em 2027, em Londres. Leia mais sobre a oportunidade e inscreva-se! As inscrições foram encerradas em 3 ",
+   "visto": "2026-11-04"
   },
   {
    "t": "Festival Ubuntu abre inscrições para sua sexta edição em São Paulo",
@@ -33,7 +33,7 @@
    "cat": "chamada",
    "onde": "sp",
    "resumo": "Com o tema Ancestralidade e Território, evento selecionará 21 artistas e projetos para uma semana de programação na Ocupação 9 de Julho, com cachê de R$ 5 mil O Festival Ubuntu chega à sexta edição ampliando seu espaço para a produção cultu",
-   "visto": "2026-11-03"
+   "visto": "2026-11-04"
   },
   {
    "t": "Saiba como se inscrever na residência artística da Galeria Luis Maluf para 2027",
@@ -44,7 +44,7 @@
    "cat": "residencia",
    "onde": "brasil",
    "resumo": "Programa chega à 6ª edição com coordenação de Jacopo Crivelli e Gabriela Gotoda e parceria de intercâmbio com o Sertão Negro Ateliê e Escola de Artes A Galeria Luis Maluf abriu inscrições para a 6ª edição de seu Programa de Residência Artís",
-   "visto": "2026-11-03"
+   "visto": "2026-11-04"
   },
   {
    "t": "CULTSP PRO abre edital para grafite de 130 m² no Bom Retiro",
@@ -55,7 +55,7 @@
    "cat": "fomento",
    "onde": "sp",
    "resumo": "Artista ou coletivo selecionado receberá R$ 20.150 para criar obra no Complexo Cultural Oswald de Andrade; outros cinco projetos poderão ser remunerados durante feira de arte urbana O Bom Retiro, bairro paulistano marcado pela presença de d",
-   "visto": "2026-11-03"
+   "visto": "2026-11-04"
   }
  ]
 }
