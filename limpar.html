@@ -5,22 +5,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Limpar cache — Vernissages SP</title>
 <meta name="robots" content="noindex">
+<meta name="theme-color" content="#F2EFE9">
 <style>
-  body{background:#0a0a0d;color:#f3f3f7;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;
-    display:flex;align-items:center;justify-content:center;min-height:100vh;margin:0;padding:24px;text-align:center}
-  .c{max-width:420px}
-  h1{font-size:1.1rem;font-weight:600;letter-spacing:3px;margin:0 0 18px}
-  p{color:#8b8b9a;line-height:1.65;font-size:.92rem;margin:0 0 8px}
-  .ok{color:#7fd8a0}.err{color:#f08a7a}
-  a{display:inline-block;margin-top:22px;background:#e8c15a;color:#0a0a0d;text-decoration:none;
-    padding:13px 26px;border-radius:999px;font-weight:700;font-size:.9rem}
+  @font-face{font-family:Switzer;src:url(fontes/Switzer-Variable.woff2) format("woff2");font-weight:100 900;font-display:swap}
+  :root{--paper:#F2EFE9;--ink:#0E0E0E;--terra:#C96F4A;--mute:#6f6a60}
+  *{box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font-family:Switzer,system-ui,-apple-system,'Segoe UI',sans-serif;
+    min-height:100vh;margin:0;padding:clamp(18px,4vw,48px);display:flex;flex-direction:column;justify-content:space-between}
+  .marca{font-weight:800;font-size:clamp(34px,11vw,120px);line-height:.82;letter-spacing:-.055em;text-transform:uppercase;margin:0}
+  .c{max-width:520px;border-top:2px solid var(--ink);padding-top:18px;margin:40px 0}
+  .k{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--terra);margin:0 0 10px}
+  #s{font-size:clamp(18px,2.2vw,24px);line-height:1.4;margin:0}
+  #s small{display:block;margin-top:10px;font-size:13px;color:var(--mute);word-break:break-word}
+  .ok{font-weight:800;text-transform:uppercase;letter-spacing:-.02em;font-size:1.4em}
+  .err{font-weight:800;color:var(--terra)}
+  .passos{display:block;margin-top:10px;color:var(--mute);font-size:15px}
+  a.bt{display:inline-block;margin-top:24px;background:var(--ink);color:var(--paper);text-decoration:none;
+    padding:14px 22px;font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+  a.bt:hover{background:var(--terra);color:var(--ink)}
 </style>
 </head>
 <body>
+<h1 class="marca">Vernissages SP</h1>
 <div class="c">
-  <h1>VERNISSAGES SP</h1>
+  <p class="k">Limpar cache</p>
   <p id="s">Limpando os arquivos guardados no aparelho…</p>
-  <a id="ir" href="/" style="display:none">Abrir o site</a>
+  <a class="bt" id="ir" href="/" style="display:none">Abrir o site</a>
 </div>
 <script>
 /* página independente: não usa service worker nem dados.js.
@@ -38,12 +48,16 @@
       for(var j=0;j<ks.length;j++){ await caches.delete(ks[j]); }
       passos.push(ks.length+' cache(s) apagado(s)');
     }
-    try{ localStorage.removeItem('vspSeen'); }catch(e){}
-    s.innerHTML='<span class="ok">Pronto.</span><br>'+passos.join('<br>')+'<br><br>Abrindo o site…';
+    /* chaves de cache do próprio site: a obra do dia, a cor e a textura do logo */
+    try{
+      localStorage.removeItem('vspSeen');
+      Object.keys(localStorage).forEach(function(k){ if(/^(vspCor|vspMarca|vspAcento)/.test(k)) localStorage.removeItem(k); });
+    }catch(e){}
+    s.innerHTML='<span class="ok">Pronto.</span><span class="passos">'+passos.join('<br>')+'</span><span class="passos">Abrindo o site…</span>';
     setTimeout(function(){ location.replace('/?limpo='+Date.now()); }, 1600);
   }catch(e){
     s.innerHTML='<span class="err">Não consegui limpar automaticamente.</span><br>'+
-      'No navegador, abra as configurações do site e use "Limpar dados".<br><small>'+e.message+'</small>';
+      'No navegador, abra as configurações do site e use "Limpar dados".<small>'+e.message+'</small>';
     ir.style.display='inline-block';
   }
 })();

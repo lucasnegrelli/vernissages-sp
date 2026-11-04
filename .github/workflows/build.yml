@@ -10,6 +10,7 @@ on:
       - 'radar/editais-perfis.json'
       - 'radar/editais-sites.json'
       - 'radar/editais-apoio.json'
+      - 'radar/editais-resartis.json'
       - 'radar/fontes-sites.json'
       - 'radar/perfis-ig.json'
       - 'temporada.js'
@@ -55,6 +56,10 @@ jobs:
       - name: Radar do apoio.art
         run: node radar-apoio.js || echo "radar do apoio.art falhou, segue com o arquivo anterior"
 
+      # Res Artis: lista publica de residencias (robots.txt permite). Falha nao derruba o build.
+      - name: Radar do Res Artis
+        run: node radar-resartis.js || echo "radar do Res Artis falhou, segue com o arquivo anterior"
+
       - name: Gerar acervo, paginas e sitemap
         run: node gerar.js
 
@@ -62,7 +67,7 @@ jobs:
         run: |
           git config user.name "vernissages-bot"
           git config user.email "actions@github.com"
-          git add -A acervo.json arquivo.html artistas.html editais.html fim-de-semana.html monta-meu-sabado.html temporada.css sitemap.xml robots.txt m a radar/editais.json radar/editais-sites.json radar/editais-apoio.json radar/resumo.json
+          git add -A acervo.json arquivo.html artistas.html editais.html fim-de-semana.html monta-meu-sabado.html temporada.css sitemap.xml robots.txt m a radar/editais.json radar/editais-sites.json radar/editais-apoio.json radar/editais-resartis.json radar/resumo.json
           if git diff --staged --quiet; then
             echo "Nada mudou no acervo."
             exit 0

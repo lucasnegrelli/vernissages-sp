@@ -7,7 +7,6 @@
      a/<slug>.html    uma página por artista
      arquivo.html     índice de todas as mostras (em cartaz + encerradas)
      artistas.html    índice de artistas
-     fim-de-semana.html  o que abre, fecha e segue em cartaz no sábado/domingo
      sitemap.xml, robots.txt
    Não depende de nada além do Node.
    ============================================================ */
@@ -105,10 +104,9 @@ const FONTES_RODAPE = (() => {
   const sites = (lj('radar/fontes-sites.json', { fontes: [] }).fontes || []).map(f => [f.nome, f.url]);
   const noticias = [['Dasartes', 'https://dasartes.com.br'], ['Prêmio PIPA', 'https://www.premiopipa.com'], ['seLecT', 'https://www.select.art.br'], ['ArteBrasileiros', 'https://artebrasileiros.com.br'], ['Arte Que Acontece', 'https://artequeacontece.com.br'], ['Sesc SP', 'https://www.sescsp.org.br']];
   const ig = (lj('radar/perfis-ig.json', { perfis: [] }).perfis || []).map(p => ['@' + p.ig, 'https://instagram.com/' + p.ig]);
-  const plataformas = [['apoio.art', 'https://apoio.art/']];
-  const consultar = [['Zealous', 'https://zealous.co/explore/opportunities?status=SUBMISSIONS_OPEN'], ['Artenda', 'https://artenda.net/'], ['Res Artis', 'https://www.resartis.org/'], ['Prosas', 'https://www.prosas.com.br/editais']];
+  const plataformas = [['apoio.art', 'https://apoio.art/'], ['Res Artis', 'https://www.resartis.org/open-calls/']];
   const a = l => l.map(([n, u]) => '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(n) + '</a>').join(' · ');
-  return '<div class="fontes"><b>Editais e chamadas, fontes monitoradas:</b> ' + a(sites) + ' · ' + a(noticias) + ' · ' + a(plataformas) + (ig.length ? '<br>Instagram: ' + a(ig) : '') + '<br>Para consultar por conta própria (pedem cadastro ou não permitem leitura automática): ' + a(consultar) + '</div>';
+  return '<div class="fontes"><b>Editais e chamadas, fontes monitoradas:</b> ' + a(sites) + ' · ' + a(noticias) + ' · ' + a(plataformas) + (ig.length ? '<br>Instagram: ' + a(ig) : '') + '</div>';
 })();
 const { pagina, rc } = require('./site.js')(SITE, esc, FONTES_RODAPE);
 
@@ -364,7 +362,7 @@ function estadoEdital(ed) {
 /* radar: o que a busca automática achou (sites de arte e Instagram). Fora do prazo some sozinho. */
 function carregarRadar() {
   const out = [];
-  for (const [arq, via] of [['radar/editais.json', 'sites'], ['radar/editais-ig.json', 'instagram'], ['radar/editais-perfis.json', 'instagram'], ['radar/editais-sites.json', 'site'], ['radar/editais-apoio.json', 'plataforma']]) {
+  for (const [arq, via] of [['radar/editais.json', 'sites'], ['radar/editais-ig.json', 'instagram'], ['radar/editais-perfis.json', 'instagram'], ['radar/editais-sites.json', 'site'], ['radar/editais-apoio.json', 'plataforma'], ['radar/editais-resartis.json', 'plataforma']]) {
     try {
       const j = JSON.parse(fs.readFileSync(path.join(RAIZ, arq), 'utf8'));
       (j.itens || []).forEach(x => {
@@ -396,7 +394,7 @@ function paginaEditais(editais) {
     ...radar.map(r => {
       const cat = r.cat in CAT_EDITAL ? r.cat : 'chamada';
       return { conf: false, t: r.t, org: r.fonte || '', cat, onde: r.onde in ONDE_EDITAL ? r.onde : 'brasil', prazo: r.prazo || '', link: r.link, d: r.resumo || '', pub: r.pub,
-        meta: r.via === 'site' ? 'Lido na página oficial de quem abriu a chamada' : r.via === 'plataforma' ? 'Listado pelo apoio.art; o link leva à página oficial do programa' : 'Achado automaticamente' + (r.via === 'instagram' ? ' no Instagram' : '') };
+        meta: r.via === 'site' ? 'Lido na página oficial de quem abriu a chamada' : r.via === 'plataforma' ? 'Listado por ' + String(r.fonte || '').split(' · ')[0] + '; o link leva à página do programa' : 'Achado automaticamente' + (r.via === 'instagram' ? ' no Instagram' : '') };
     })
   ].map(x => ({ ...x, st: estadoEdital({ prazo: x.prazo }) }));
 
@@ -492,14 +490,11 @@ ul.e2 li{display:grid;grid-template-columns:clamp(84px,9vw,128px) minmax(0,1fr) 
 <div class="cont" id="cont" aria-live="polite"></div>
 ${todos.length ? corpoLista : '<p class="txt">Nenhuma oportunidade aberta no momento.</p>'}
 
-<section class="e2n" id="outras"><h2 style="margin-top:0">Fontes e outras plataformas</h2>
-<p class="nota">O radar lê todo dia as páginas oficiais de quem abre a chamada (Pivô, Tomie Ohtake, FAAP, Funarte...), sites de arte (Dasartes, Prêmio PIPA, seLecT, ArteBrasileiros, Arte Que Acontece, Sesc SP), o apoio.art e perfis do Instagram que divulgam oportunidades. A categoria é um palpite por palavra-chave. Passou o prazo, o item sai sozinho. As plataformas abaixo reúnem muito mais chamadas, mas pedem cadastro ou não permitem leitura automática; vale deixar nos favoritos.</p>
+<section class="e2n" id="outras"><h2 style="margin-top:0">De onde vem</h2>
+<p class="nota">O radar lê todo dia as páginas oficiais de quem abre a chamada (Pivô, Tomie Ohtake, FAAP, Funarte...), sites de arte (Dasartes, Prêmio PIPA, seLecT, ArteBrasileiros, Arte Que Acontece, Sesc SP), perfis do Instagram que divulgam oportunidades e duas listas abertas de residências e fomento: apoio.art e Res Artis. A categoria é um palpite por palavra-chave. Passou o prazo, o item sai sozinho.</p>
 <div class="chips">
-<a class="chip" href="https://zealous.co/explore/opportunities?status=SUBMISSIONS_OPEN" target="_blank" rel="noopener">Zealous · chamadas, prêmios e bolsas</a>
-<a class="chip" href="https://artenda.net/" target="_blank" rel="noopener">Artenda · bolsas, prêmios e residências</a>
-<a class="chip" href="https://www.resartis.org/" target="_blank" rel="noopener">Res Artis · rede mundial de residências</a>
-<a class="chip" href="https://www.prosas.com.br/editais" target="_blank" rel="noopener">Prosas · central de editais do Brasil</a>
 <a class="chip" href="https://apoio.art/" target="_blank" rel="noopener">apoio.art · fomento alemão e francês</a>
+<a class="chip" href="https://www.resartis.org/open-calls/" target="_blank" rel="noopener">Res Artis · rede mundial de residências</a>
 </div>
 </section>
 <div class="btns">
@@ -535,385 +530,11 @@ ap();
   });
 }
 
-/* ---------- o fim de semana ----------
-   A agenda do carrossel de quinta (agenda.js), só que viva e com mapa: o que
-   abre, o que está nos últimos dias e o resto em cartaz, para o sábado e o
-   domingo que vêm. É o link da bio e mira a busca "exposições em SP este fim
-   de semana". Regenera todo dia com o build (14:00 UTC), então a janela anda
-   sozinha. */
-const DSEM = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'];
-const somaDias = (iso, n) => { const d = new Date(iso + 'T12:00:00Z'); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); };
-const dow = iso => new Date(iso + 'T12:00:00Z').getUTCDay();
-const diaCurto = iso => `${DSEM[dow(iso)]} ${iso.slice(8, 10)}/${iso.slice(5, 7)}`;
-
-function janelaFds(hoje) {
-  const domingo = somaDias(hoje, (7 - dow(hoje)) % 7);
-  return { de: hoje, sabado: somaDias(domingo, -1), domingo };
-}
-
-/* Horário de sábado e domingo, quando a base diz ("sábado, 10h–17h",
-   "Quarta a domingo, 11h–18h"). Procura na mostra e depois na casa; se não
-   achar, não inventa. */
-function horaFds(e, v) {
-  const H = '(\\d{1,2}h(?:\\d{2})?\\s*[–-]\\s*\\d{1,2}h(?:\\d{2})?)';
-  const out = [];
-  [['sáb', 's[áa]bados?'], ['dom', 'domingos?']].forEach(([lab, pal]) => {
-    const rx = new RegExp(pal + ',?\\s*(?:das\\s*)?' + H, 'i');
-    const m = String(e.d || '').match(rx) || String(v.info || '').match(rx);
-    if (m) out.push(lab + ' ' + m[1].replace(/\s/g, ''));
-  });
-  return out.join(' · ');
-}
-
-function paginaFimDeSemana(DATA) {
-  const V = {}; DATA.venues.forEach(v => V[v.name] = v);
-  const J = janelaFds(HOJE);
-  const semanaAtras = somaDias(HOJE, -6), fechaAte = somaDias(J.domingo, 2);
-  const abre = [], fecha = [], cartaz = [];
-  (DATA.expos || []).forEach(e => {
-    const v = V[e.v];
-    if (!v || !e.ini || e.ini > J.domingo) return;
-    if (e.fim && e.fim < HOJE) return;
-    /* Mesma régua do rodapé do site (ingressoDe/ingTag no index.html): `ing`
-       explícito manda; sem ele, galeria comercial é sempre entrada franca. */
-    const gratis = v.ing ? !!v.ing.g : v.tipo === 'galeria';
-    const x = { e, v, id: slug(e.t) + '--' + slug(e.v), gratis, hora: horaFds(e, v) };
-    if (e.ini >= semanaAtras) abre.push(x);
-    else if (e.fim && e.fim <= fechaAte) fecha.push(x);
-    else if (!e.fim || e.fim >= J.sabado) cartaz.push(x);
-  });
-  abre.sort((a, b) => a.e.ini.localeCompare(b.e.ini));
-  fecha.sort((a, b) => a.e.fim.localeCompare(b.e.fim));
-  const ZONAS = ['Centro', 'Oeste', 'Sul', 'Norte', 'Leste'];
-  cartaz.sort((a, b) => (ZONAS.indexOf(a.v.z) - ZONAS.indexOf(b.v.z)) || a.v.b.localeCompare(b.v.b, 'pt') || a.v.name.localeCompare(b.v.name, 'pt'));
-
-  const quando = x => x.e.ini >= HOJE ? `abre ${diaCurto(x.e.ini)}`
-    : x.e.ini >= semanaAtras ? `abriu ${diaCurto(x.e.ini)}`
-    : x.e.fim ? `até ${diaCurto(x.e.fim)}` : 'sem data de fim';
-  const card = (x, k) => `<li class="${k}" data-lat="${x.v.lat || ''}">
-${x.e.img ? `<a class="th" href="${SITE}/m/${x.id}.html"><img src="${SITE}/${esc(x.e.img)}" alt="${esc(x.e.t)}" loading="lazy"></a>` : ''}
-<div class="tx">
-<div class="qd">${k === 'fecha' ? `último dia ${diaCurto(x.e.fim)}` : quando(x)}${x.gratis ? '<span class="tag on">GRÁTIS</span>' : ''}</div>
-<a class="t" href="${SITE}/m/${x.id}.html">${esc(x.e.t)}</a>
-<div class="l2">${esc(x.v.name)} · ${esc(x.v.b)}</div>
-${x.hora ? `<div class="l3">${esc(x.hora)}</div>` : ''}
-</div>
-</li>`;
-  const linha = x => `<li><a href="${SITE}/m/${x.id}.html">${esc(x.e.t)}</a> <span>${esc(x.v.name)} · ${esc(x.v.b)}${x.gratis ? ' · grátis' : ''}${x.e.fim ? ' · até ' + dataBR(x.e.fim).slice(0, 5) : ''}</span></li>`;
-  const porZona = {}; cartaz.forEach(x => (porZona[x.v.z] = porZona[x.v.z] || []).push(x));
-
-  const pinos = [...abre.map(x => [x, 'abre']), ...fecha.map(x => [x, 'fecha']), ...cartaz.map(x => [x, 'cartaz'])]
-    .filter(([x]) => x.v.lat && x.v.lng)
-    .map(([x, k]) => ({ la: x.v.lat, ln: x.v.lng, k, t: x.e.t, v: x.v.name, u: `${SITE}/m/${x.id}.html` }));
-  const nGratis = [...abre, ...fecha, ...cartaz].filter(x => x.gratis).length;
-  const fds = `${J.sabado.slice(8, 10)} e ${J.domingo.slice(8, 10)}/${J.domingo.slice(5, 7)}`;
-
-  const corpo = `
-<style>
-.fds-conta{display:flex;gap:34px;flex-wrap:wrap;margin:22px 0 6px}
-.fds-conta b{display:block;font-size:2.3rem;font-weight:800;line-height:1;letter-spacing:-1px}
-.fds-conta span{font-size:.72rem;text-transform:uppercase;letter-spacing:1.6px;color:var(--muted)}
-.fds-conta .ab b{color:var(--accent2)}
-#mapa{height:360px;border-radius:var(--radius);border:1px solid var(--line);margin:22px 0 4px;background:#101015}
-.leg{font-size:.76rem;color:var(--muted);display:flex;gap:16px;flex-wrap:wrap}
-.leg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
-ul.lista li{display:flex;gap:14px;align-items:flex-start}
-ul.lista li.abre{border-left-color:var(--accent2)}
-ul.lista li.fecha{border-left-color:var(--ink)}
-ul.lista .th{flex:none;width:92px;height:92px;border-radius:var(--radius-sm);overflow:hidden;background:#111}
-ul.lista .th img{width:100%;height:100%;object-fit:cover;display:block}
-ul.lista .tx{flex:1;min-width:0}
-.qd{font-size:.72rem;text-transform:uppercase;letter-spacing:1.4px;color:var(--accent2);font-weight:700;margin-bottom:3px}
-li.fecha .qd{color:var(--ink)}
-.qd .tag{margin-left:8px}
-ul.mini{list-style:none;font-size:.9rem}
-ul.mini li{padding:8px 0;border-bottom:1px solid var(--hair)}
-ul.mini a{color:var(--text);text-decoration:none;font-weight:500}
-ul.mini a:hover{color:var(--accent)}
-ul.mini span{color:var(--muted);font-size:.8rem}
-h3.zona{font-size:.8rem;color:var(--accent2);letter-spacing:1.4px;text-transform:uppercase;margin:22px 0 4px}
-.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:rgba(20,20,26,.95);color:var(--ink)}
-.leaflet-popup-content{font-size:.82rem;line-height:1.5}
-.leaflet-popup-content a{color:var(--accent);text-decoration:none}
-</style>
-<h1>Exposições em São Paulo neste fim de semana</h1>
-<div class="sub">sábado e domingo, ${fds}</div>
-<p class="txt">O que abre, o que está nos últimos dias e o que segue em cartaz nas galerias e museus de São Paulo — num lugar só, para montar o sábado e mandar para quem vai com você.</p>
-<div class="fds-conta">
-<div class="ab"><b>${abre.length}</b><span>${abre.length === 1 ? 'abertura na semana' : 'aberturas na semana'}</span></div>
-<div><b>${fecha.length}</b><span>${fecha.length === 1 ? 'última chance' : 'últimas chances'}</span></div>
-<div><b>${abre.length + fecha.length + cartaz.length}</b><span>em cartaz</span></div>
-${nGratis ? `<div><b>${nGratis}</b><span>de graça</span></div>` : ''}
-</div>
-<div id="mapa"></div>
-<div class="leg"><span><i style="background:#c96f4a"></i>abre</span><span><i style="background:#f3f3f7"></i>últimos dias</span><span><i style="background:#6b6b78"></i>em cartaz</span></div>
-${abre.length ? `<h2>Abre · aberturas da semana</h2>
-<ul class="lista">
-${abre.map(x => card(x, 'abre')).join('\n')}
-</ul>` : ''}
-${fecha.length ? `<h2>Últimos dias · fecha até ${diaCurto(fechaAte)}</h2>
-<ul class="lista">
-${fecha.map(x => card(x, 'fecha')).join('\n')}
-</ul>` : ''}
-${cartaz.length ? `<h2>Também em cartaz · ${cartaz.length} mostras</h2>
-${ZONAS.filter(z => porZona[z]).map(z => `<h3 class="zona">Zona ${esc(z)}</h3>
-<ul class="mini">
-${porZona[z].map(linha).join('\n')}
-</ul>`).join('\n')}` : ''}
-<p class="txt" style="color:var(--muted);font-size:.86rem">Horários conforme divulgação de cada espaço — muita galeria fecha no domingo; confirme antes de sair. Atualizado em ${dataBR(HOJE)}.</p>
-<div class="btns">
-<a class="btn" href="${SITE}/">Agenda completa e mapa</a>
-<a class="btn" href="https://instagram.com/vernissagessp" target="_blank" rel="noopener">@vernissagessp</a>
-</div>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-<scr`+`ipt src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></scr`+`ipt>
-<scr`+`ipt>
-(function(){
-var P=${JSON.stringify(pinos).replace(/</g, '\\u003c')};
-var el=document.getElementById('mapa');
-if(typeof L==='undefined'||!P.length){el.style.display='none';el.nextElementSibling.style.display='none';return;}
-var m=L.map(el,{scrollWheelZoom:false});
-L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',{attribution:'Esri, HERE, Garmin, © OpenStreetMap contributors',maxZoom:16}).addTo(m);
-L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}',{maxZoom:16}).addTo(m);
-var C={abre:['#c96f4a',8],fecha:['#f3f3f7',7],cartaz:['#6b6b78',5]},b=[];
-function e(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
-['cartaz','fecha','abre'].forEach(function(k){P.filter(function(p){return p.k===k}).forEach(function(p){
-L.circleMarker([p.la,p.ln],{radius:C[k][1],color:'#0a0a0d',weight:1.5,fillColor:C[k][0],fillOpacity:.95})
-.bindPopup('<b>'+e(p.t)+'</b><br>'+e(p.v)+'<br><a href="'+e(p.u)+'">ver a mostra →</a>').addTo(m);
-if(k!=='cartaz')b.push([p.la,p.ln]);});});
-if(b.length<2)b=P.map(function(p){return[p.la,p.ln]});
-m.fitBounds(b,{padding:[30,30],maxZoom:14});
-})();
-</scr`+`ipt>`;
-
-  const lista = [...abre, ...fecha];
-  const jsonld = {
-    '@context': 'https://schema.org', '@type': 'ItemList',
-    name: `Exposições em São Paulo no fim de semana de ${fds}`,
-    itemListElement: lista.map((x, i) => ({
-      '@type': 'ListItem', position: i + 1,
-      item: {
-        '@type': 'ExhibitionEvent', name: x.e.t, startDate: x.e.ini, ...(x.e.fim ? { endDate: x.e.fim } : {}),
-        url: `${SITE}/m/${x.id}.html`,
-        eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-        location: { '@type': 'Place', name: x.v.name, address: { '@type': 'PostalAddress', streetAddress: String(x.v.addr).replace(' ~', ''), addressLocality: 'São Paulo', addressRegion: 'SP', addressCountry: 'BR' } }
-      }
-    }))
-  };
-
-  return pagina({
-    titulo: `Exposições em SP neste fim de semana (${fds}) | Vernissages SP`,
-    desc: `Arte em São Paulo no fim de semana de ${fds}: ${abre.length} aberturas, ${fecha.length} mostras nos últimos dias e ${abre.length + fecha.length + cartaz.length} em cartaz${nGratis ? `, ${nGratis} de graça` : ''}. Com mapa, horários e endereços.`,
-    canonical: `${SITE}/fim-de-semana.html`, corpo, jsonld
-  });
-}
-
-/* ---------- monta meu sábado ----------
-   A pessoa escolhe um bairro (agrupado como no rodapé — "Jardins" é o
-   circuito, não o bairro do IBGE) e quanto tempo tem, e a página monta um
-   roteiro a pé: o motor da deriva.js (haversine + a melhor ordem por força
-   bruta, até 6 paradas) virando ferramenta em vez de peça de Instagram. Tudo
-   roda no navegador da pessoa a partir do dados.js já carregado — sem
-   depender de mais nenhum arquivo gerado, então nunca fica velho. */
-function paginaMontaMeuSabado() {
-  const corpo = `
-<style>
-.mms-form{display:grid;gap:16px;margin:22px 0 8px;max-width:420px}
-.mms-campo label{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:1.4px;color:var(--muted);margin-bottom:6px}
-.mms-campo select{width:100%;background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:12px;padding:10px 14px;font-size:.95rem}
-.mms-campo select:focus{outline:none;border-color:var(--accent)}
-.mms-campo select option{background:#15151a;color:#f3f3f7}
-#mms-ir{background:var(--accent);color:var(--onaccent);border:none;border-radius:22px;padding:11px 22px;font-size:.92rem;font-weight:700;cursor:pointer;justify-self:start}
-#mms-ir:hover{opacity:.9}
-#mms-aviso{display:none;color:var(--accent2);font-size:.9rem;margin:14px 0}
-#mms-resultado{display:none;margin-top:32px}
-#mms-mapa{height:340px;border-radius:var(--radius);border:1px solid var(--line);margin:16px 0;background:#101015}
-.mms-conta{display:flex;gap:30px;flex-wrap:wrap;margin:18px 0 4px}
-.mms-conta b{display:block;font-size:1.9rem;font-weight:800;letter-spacing:-1px;color:var(--accent2)}
-.mms-conta span{font-size:.7rem;text-transform:uppercase;letter-spacing:1.4px;color:var(--muted)}
-ul.mms-lista{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:14px}
-ul.mms-lista li{display:flex;gap:14px;align-items:flex-start;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:13px 15px}
-ul.mms-lista .k{flex:none;width:28px;height:28px;border-radius:50%;background:var(--accent);color:var(--onaccent);font-weight:800;font-size:.85rem;display:flex;align-items:center;justify-content:center}
-ul.mms-lista .tx a{color:var(--text);font-weight:600;text-decoration:none}
-ul.mms-lista .tx a:hover{color:var(--accent)}
-ul.mms-lista .l2{color:var(--accent2);font-size:.84rem;margin-top:2px}
-ul.mms-lista .l3{color:var(--muted);font-size:.78rem;margin-top:2px}
-#mms-zap{margin-top:18px}
-</style>
-<h1>Monta seu sábado</h1>
-<p class="txt">Escolhe um bairro e quanto tempo você tem — a página monta um roteiro a pé entre as mostras em cartaz, na ordem mais curta possível, com mapa e distância.</p>
-<form class="mms-form" id="mms-form">
-<div class="mms-campo"><label for="mms-bairro">Bairro</label><select id="mms-bairro" required><option value="">Escolha…</option></select></div>
-<div class="mms-campo"><label for="mms-tempo">Tempo disponível</label>
-<select id="mms-tempo">
-<option value="2">Só de passagem (2 paradas)</option>
-<option value="4" selected>Uma tarde (4 paradas)</option>
-<option value="6">O sábado inteiro (6 paradas)</option>
-</select></div>
-<button id="mms-ir" type="submit">Montar roteiro</button>
-</form>
-<p id="mms-aviso"></p>
-<div id="mms-resultado">
-<div class="mms-conta">
-<div><b id="mms-n"></b><span>paradas</span></div>
-<div><b id="mms-km"></b><span>km a pé</span></div>
-<div><b id="mms-min"></b><span>min andando</span></div>
-</div>
-<div id="mms-mapa"></div>
-<ul class="mms-lista" id="mms-listaparadas"></ul>
-<a class="btn" id="mms-zap" href="#" target="_blank" rel="noopener">Mandar no WhatsApp</a>
-<p class="txt" style="color:var(--muted);font-size:.86rem;margin-top:18px">Distância em linha reta entre as casas — a calçada é um pouco mais longa. Confira o horário de cada espaço antes de sair.</p>
-</div>
-<noscript><p class="txt">Esta ferramenta precisa de JavaScript pra montar o roteiro.</p></noscript>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-<scr`+`ipt src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></scr`+`ipt>
-<scr`+`ipt src="dados.js"></scr`+`ipt>
-<scr`+`ipt>
-(function(){
-if(!window.DATA||!window.DATA.venues){return;}
-var TODAY=new Date();
-var HOJESTR=new Date(TODAY.getTime()-TODAY.getTimezoneOffset()*6e4).toISOString().slice(0,10);
-var VENUES=window.DATA.venues, EXPOS=window.DATA.expos;
-var GRUPO_BAIRRO=window.DATA.grupoBairro||{};
-function bairroLabel(v){return GRUPO_BAIRRO[v.b]||v.b;}
-var vByName={}; VENUES.forEach(function(v){vByName[v.name]=v;});
-function slug(s){return String(s||'').normalize('NFD').replace(/[\\u0300-\\u036f]/g,'')
-  .toLowerCase().replace(/&/g,' e ').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+\$/g,'').slice(0,80);}
-
-var porVenue={};
-EXPOS.forEach(function(e){
-  var v=vByName[e.v];
-  if(!v||typeof v.lat!=='number')return;
-  if(!e.ini||e.ini>HOJESTR)return;
-  if(e.fim&&e.fim<HOJESTR)return;
-  var atual=porVenue[e.v];
-  if(!atual||(e.d||'').length>(atual.e.d||'').length) porVenue[e.v]={e:e,v:v};
-});
-var candidatos=Object.keys(porVenue).map(function(k){return porVenue[k];});
-
-var porGrupo={};
-candidatos.forEach(function(c){var g=bairroLabel(c.v);(porGrupo[g]=porGrupo[g]||[]).push(c);});
-var grupos=Object.keys(porGrupo).filter(function(g){return porGrupo[g].length>=2;})
-  .sort(function(a,b){return porGrupo[b].length-porGrupo[a].length||a.localeCompare(b,'pt');});
-
-var selBairro=document.getElementById('mms-bairro');
-var aviso=document.getElementById('mms-aviso');
-if(!grupos.length){
-  aviso.textContent='Nenhum bairro com mostras suficientes em cartaz agora pra montar um roteiro.';
-  aviso.style.display='block';
-  document.getElementById('mms-form').style.display='none';
-} else {
-  grupos.forEach(function(g){
-    var op=document.createElement('option'); op.value=g; op.textContent=g+' ('+porGrupo[g].length+')';
-    selBairro.appendChild(op);
-  });
-}
-
-/* geografia e rota — mesmo motor do deriva.js (SOCIAL) */
-function rad(g){return g*Math.PI/180;}
-function metros(a,b){
-  var R=6371000, dLat=rad(b.lat-a.lat), dLng=rad(b.lng-a.lng);
-  var h=Math.pow(Math.sin(dLat/2),2)+Math.cos(rad(a.lat))*Math.cos(rad(b.lat))*Math.pow(Math.sin(dLng/2),2);
-  return 2*R*Math.asin(Math.sqrt(h));
-}
-function melhorRota(pontos){
-  var n=pontos.length, idx=[]; for(var i=0;i<n;i++)idx.push(i);
-  var melhor=null, menor=Infinity;
-  (function permutar(atual,resto){
-    if(!resto.length){
-      var d=0; for(var i=1;i<atual.length;i++) d+=metros(pontos[atual[i-1]],pontos[atual[i]]);
-      if(d<menor){menor=d;melhor=atual.slice();}
-      return;
-    }
-    for(var i=0;i<resto.length;i++) permutar(atual.concat(resto[i]), resto.slice(0,i).concat(resto.slice(i+1)));
-  })([],idx);
-  return {ordem:melhor,total:menor};
-}
-function apertar(membros,teto){
-  var m=membros.slice();
-  while(m.length>teto){
-    var cx=0,cy=0; m.forEach(function(x){cx+=x.v.lat;cy+=x.v.lng;}); cx/=m.length; cy/=m.length;
-    var pior=0,dPior=-1;
-    m.forEach(function(x,i){var d=metros(x.v,{lat:cx,lng:cy}); if(d>dPior){dPior=d;pior=i;}});
-    m.splice(pior,1);
-  }
-  return m;
-}
-
-var mapaObj=null;
-document.getElementById('mms-form').addEventListener('submit',function(ev){
-  ev.preventDefault();
-  var grupo=selBairro.value, teto=+document.getElementById('mms-tempo').value;
-  aviso.style.display='none';
-  if(!grupo)return;
-  var sel=(porGrupo[grupo]||[]).slice();
-  if(sel.length<2){
-    aviso.textContent='Poucas mostras por aqui agora — tenta outro bairro.';
-    aviso.style.display='block';
-    document.getElementById('mms-resultado').style.display='none';
-    return;
-  }
-  if(sel.length>teto) sel=apertar(sel,teto);
-  var r=melhorRota(sel.map(function(c){return c.v;}));
-  var paradas=r.ordem.map(function(i){return sel[i];});
-  desenhar(paradas,r.total);
-});
-
-function desenhar(paradas,totalMetros){
-  var km=(totalMetros/1000).toFixed(1).replace('.',',');
-  var min=Math.round(totalMetros/1.25/60);
-  document.getElementById('mms-n').textContent=paradas.length;
-  document.getElementById('mms-km').textContent=km;
-  document.getElementById('mms-min').textContent=min;
-
-  var ul=document.getElementById('mms-listaparadas'); ul.innerHTML='';
-  var zapLinhas=['Meu roteiro em São Paulo:'];
-  paradas.forEach(function(p,i){
-    var id=slug(p.e.t)+'--'+slug(p.v.name);
-    var li=document.createElement('li');
-    li.innerHTML='<div class="k">'+(i+1)+'</div><div class="tx">'+
-      '<a href="${SITE}/m/'+id+'.html">'+p.e.t.replace(/</g,'&lt;')+'</a>'+
-      '<div class="l2">'+p.v.name.replace(/</g,'&lt;')+' · '+p.v.b.replace(/</g,'&lt;')+'</div>'+
-      '<div class="l3">'+p.v.addr.replace(/</g,'&lt;').replace(' ~','')+'</div></div>';
-    ul.appendChild(li);
-    zapLinhas.push((i+1)+'. '+p.v.name+' — '+p.e.t);
-  });
-  zapLinhas.push('Montado em ${SITE}/monta-meu-sabado.html');
-  document.getElementById('mms-zap').href='https://wa.me/?text='+encodeURIComponent(zapLinhas.join('\\n'));
-
-  /* O mapa entra visível ANTES do L.map() inicializar — se o container
-     nasce dentro de um ancestral com display:none, o Leaflet mede 0x0 no
-     instante da criação e nunca mais acerta o tamanho sozinho (achado
-     28/09/2026: mapa em branco na primeira vez que a pessoa monta um
-     roteiro, funcionando só a partir da segunda). */
-  document.getElementById('mms-resultado').style.display='block';
-
-  var el=document.getElementById('mms-mapa');
-  el.style.display='';
-  if(typeof L==='undefined'){el.style.display='none';}
-  else{
-    if(mapaObj){mapaObj.remove();}
-    mapaObj=L.map(el,{scrollWheelZoom:false});
-    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',{attribution:'Esri, HERE, Garmin, © OpenStreetMap contributors',maxZoom:16}).addTo(mapaObj);
-    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}',{maxZoom:16}).addTo(mapaObj);
-    var latlngs=paradas.map(function(p){return [p.v.lat,p.v.lng];});
-    L.polyline(latlngs,{color:'#c96f4a',weight:4}).addTo(mapaObj);
-    paradas.forEach(function(p,i){
-      L.circleMarker([p.v.lat,p.v.lng],{radius:9,color:'#0a0a0d',weight:1.5,fillColor:'#c96f4a',fillOpacity:.95})
-        .bindPopup('<b>'+(i+1)+'. '+p.v.name.replace(/</g,'&lt;')+'</b><br>'+p.e.t.replace(/</g,'&lt;'))
-        .addTo(mapaObj);
-    });
-    setTimeout(function(){ mapaObj.invalidateSize(); mapaObj.fitBounds(latlngs,{padding:[36,36],maxZoom:16}); }, 0);
-  }
-}
-})();
-</scr`+`ipt>`;
-
-  return pagina({
-    titulo: 'Monta seu sábado — roteiro de galerias em São Paulo | Vernissages SP',
-    desc: 'Escolha um bairro e o tempo que você tem: a ferramenta monta um roteiro a pé entre as galerias e museus em cartaz em São Paulo, na ordem mais curta, com mapa e distância.',
-    canonical: `${SITE}/monta-meu-sabado.html`, corpo
-  });
+/* ---------- páginas aposentadas ----------
+   "Este fim de semana" e "Monta seu sábado" saíram do site. Os endereços continuam existindo (link da
+   bio, WhatsApp, buscadores) e levam para a home, sem entrar no sitemap. */
+function paginaRedireciona() {
+  return `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Vernissages SP</title><meta name="robots" content="noindex"><link rel="canonical" href="${SITE}/"><meta http-equiv="refresh" content="0;url=/"><script>location.replace('/')</script></head><body><p><a href="/">Ir para a agenda do Vernissages SP</a></p></body></html>\n`;
 }
 
 /* ---------- execução ---------- */
@@ -934,11 +555,11 @@ function main() {
   fs.writeFileSync(path.join(RAIZ, 'arquivo.html'), paginaArquivo(acervo.expos));
   fs.writeFileSync(path.join(RAIZ, 'artistas.html'), paginaArtistas(acervo.artistas));
   fs.writeFileSync(path.join(RAIZ, 'editais.html'), paginaEditais(DATA.editais || []));
-  fs.writeFileSync(path.join(RAIZ, 'fim-de-semana.html'), paginaFimDeSemana(DATA));
-  fs.writeFileSync(path.join(RAIZ, 'monta-meu-sabado.html'), paginaMontaMeuSabado());
+  fs.writeFileSync(path.join(RAIZ, 'fim-de-semana.html'), paginaRedireciona());
+  fs.writeFileSync(path.join(RAIZ, 'monta-meu-sabado.html'), paginaRedireciona());
   fs.writeFileSync(path.join(RAIZ, 'acervo.json'), JSON.stringify(acervo, null, 1));
 
-  const urls = [`${SITE}/`, `${SITE}/fim-de-semana.html`, `${SITE}/monta-meu-sabado.html`, `${SITE}/arquivo.html`, `${SITE}/artistas.html`, `${SITE}/editais.html`]
+  const urls = [`${SITE}/`, `${SITE}/arquivo.html`, `${SITE}/artistas.html`, `${SITE}/editais.html`]
     .concat(acervo.expos.map(e => `${SITE}/m/${e.id}.html`))
     .concat(Object.keys(acervo.artistas).map(k => `${SITE}/a/${k}.html`));
   fs.writeFileSync(path.join(RAIZ, 'sitemap.xml'),

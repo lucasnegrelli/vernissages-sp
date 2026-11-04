@@ -150,9 +150,7 @@ ul.ed li.off{opacity:.55}
 @media(max-width:700px){ul.ed li{flex-direction:column-reverse;gap:8px}.prz{text-align:left;width:auto;display:flex;gap:10px;align-items:baseline}.prz b{font-size:34px}}
 
 /* ---------- compatibilidade: fim de semana e monta seu sábado ---------- */
-.fds-conta b,.mms-conta b{font-weight:800;color:var(--ink);letter-spacing:-.05em}
-.fds-conta .ab b{color:var(--terra)}.mms-conta b{color:var(--terra)}
-#mapa,#mms-mapa{border:2px solid var(--ink)!important;border-radius:0!important;background:var(--paper)!important}
+#mapa{border:2px solid var(--ink)!important;border-radius:0!important;background:var(--paper)!important}
 ul.lista li{display:flex;gap:16px;align-items:flex-start}
 ul.lista li > .tx,ul.lista li > div:not(.th):not(.rc){flex:1;min-width:0}
 ul.lista .th{width:auto;height:112px;border-radius:0;background:transparent}
@@ -164,13 +162,6 @@ ul.mini li{display:block;padding:9px 0;border-top:1.5px solid rgba(14,14,14,.2)}
 ul.mini a{font-weight:700}ul.mini a:hover{color:var(--terra)}
 ul.mini span{color:var(--mute);font-size:13px}
 h3.zona{font-size:12px;color:var(--terra);letter-spacing:.14em;text-transform:uppercase;margin:26px 0 4px;font-weight:800}
-.mms-campo label{color:var(--mute)}
-.mms-campo select{background:transparent!important;border:0!important;border-bottom:2px solid var(--ink)!important;border-radius:0!important;color:var(--ink)!important;font-weight:700}
-.mms-campo select option{background:var(--paper)!important;color:var(--ink)!important}
-#mms-ir{background:var(--ink)!important;color:var(--paper)!important;border-radius:0!important;letter-spacing:.1em;text-transform:uppercase;font-size:12px!important}
-#mms-ir:hover{background:var(--terra)!important;color:var(--ink)!important;opacity:1!important}
-ul.mms-lista li{background:transparent!important;border:0!important;border-top:2px solid var(--ink)!important;border-radius:0!important;padding:14px 0!important}
-ul.mms-lista .k{border-radius:0!important;background:var(--ink)!important;color:var(--paper)!important}
 .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--paper)!important;color:var(--ink)!important;border-radius:0!important}
 .leaflet-popup-content a{color:var(--terra)!important}
 
@@ -244,8 +235,7 @@ VSPrc();
 const rc = (url, extra) => `<div class="rc${extra ? ' ' + extra : ''}" data-u="${esc(url)}"><img src="${esc(url)}" alt="" loading="lazy" onerror="this.closest('.rc').remove()"></div>`;
 
 const NAV = [
-  ['/', 'Agenda'], ['/fim-de-semana.html', 'Fim de semana'], ['/monta-meu-sabado.html', 'Monta seu sábado'],
-  ['/arquivo.html', 'Acervo'], ['/artistas.html', 'Artistas'], ['/editais.html', 'Editais']
+  ['/', 'Agenda'], ['/arquivo.html', 'Acervo'], ['/artistas.html', 'Artistas'], ['/editais.html', 'Editais']
 ];
 
 function pagina({ titulo, desc, canonical, corpo, jsonld, wide, scripts, ogTipo }) {
@@ -288,7 +278,7 @@ ${NAV.map(([h, t]) => `<a href="${SITE}${h}"${ativo(h) ? ' aria-current="page"' 
 <main class="wrap${wide ? ' wide' : ''}">
 ${corpo}
 <footer>
-<nav aria-label="Rodapé"><a href="${SITE}/">Agenda</a><a href="${SITE}/fim-de-semana.html">Este fim de semana</a><a href="${SITE}/monta-meu-sabado.html">Monta seu sábado</a><a href="${SITE}/arquivo.html">Acervo</a><a href="${SITE}/artistas.html">Artistas</a><a href="${SITE}/editais.html">Editais</a><a href="https://instagram.com/vernissagessp" target="_blank" rel="noopener">Instagram</a></nav>
+<nav aria-label="Rodapé"><a href="${SITE}/">Agenda</a><a href="${SITE}/arquivo.html">Acervo</a><a href="${SITE}/artistas.html">Artistas</a><a href="${SITE}/editais.html">Editais</a><a href="https://instagram.com/vernissagessp" target="_blank" rel="noopener">Instagram</a></nav>
 ${fontesRodape || ''}
 Vernissages SP, mapa vivo das galerias e aberturas de São Paulo, atualizado diariamente. Datas conforme divulgação dos espaços; confirme antes de visitar.
 </footer>
