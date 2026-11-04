@@ -901,9 +901,8 @@ function ajustaMarca(){
 }
 
 /* ================= MARCA FEITA DA OBRA =================
-   O logo é a obra do dia redesenhada em código, em meio-tom: a imagem é dividida em células, cada
-   célula vira um ponto com a cor e o tamanho (mais claro, maior) daquele trecho, e o resultado é o
-   preenchimento das letras. Pega a fatia mais texturizada da obra, na proporção real, para o
+   O logo é um trecho da obra do dia, com a textura real da imagem (grão, pincelada, tecido),
+   como preenchimento das letras. Pega a fatia mais texturizada da obra, na proporção real, para o
    logo ser reconhecível. O brilho dos pontos tem teto: as letras nunca ficam claras como o papel. */
 let IMG_MARCA=null;
 let IMG_BOX=null;
@@ -921,7 +920,7 @@ function desenhaMarca(){
     if(cw<60||ch<12)return;
     const dpr=Math.min(1.5,window.devicePixelRatio||1);
     const fs=parseFloat(mh.style.fontSize)||100;
-    const cel=Math.max(3.2,fs/40);
+    const cel=Math.max(3.2,fs/40);   /* só mede a fatia; nada de ponto */
     const cols=Math.ceil(cw/cel),rows=Math.ceil(ch/cel);
     const im=IMG_MARCA,bx=IMG_BOX||{x:0,y:0,w:im.naturalWidth,h:im.naturalHeight},sh=Math.max(rows,Math.round(bx.h*(cols/bx.w)));
     const o=document.createElement('canvas');o.width=cols;o.height=sh;
@@ -936,26 +935,24 @@ function desenhaMarca(){
       let win=0;for(let y=0;y<rows;y++)win+=v[y];
       let best=win;for(let y=1;y+rows<=sh;y++){win+=v[y+rows-1]-v[y-1];if(win>best){best=win;y0=y;}}
     }
-    /* cor média da fatia, escurecida, vira a base sob os pontos */
-    let ar=0,ag=0,ab=0,n=0;
-    for(let y=0;y<rows;y++)for(let x=0;x<cols;x++){const i=((y0+y)*cols+x)*4;ar+=px[i];ag+=px[i+1];ab+=px[i+2];n++;}
-    const base='rgb('+Math.round(ar/n*.16+10)+','+Math.round(ag/n*.16+10)+','+Math.round(ab/n*.16+10)+')';
-    const c=document.createElement('canvas');c.width=Math.round(cw*dpr);c.height=Math.round(ch*dpr);
-    const x=c.getContext('2d');x.scale(dpr,dpr);
-    x.fillStyle=base;x.fillRect(0,0,cw,ch);
-    const TETO=.52;
-    for(let j=0;j<rows;j++)for(let i=0;i<cols;i++){
-      const k=((y0+j)*cols+i)*4,Y=lum(k);
-      const rad=cel*.5*(.14+.92*Math.pow(Y,.85));
-      if(rad<.45)continue;
-      let R=px[k],G=px[k+1],B=px[k+2];
+    /* a fatia escolhida é pintada direto nas letras, na resolução real da obra: o grão, a pincelada e a
+       textura da foto aparecem como são, sem trama de pontos por cima */
+    const kx=bx.h/sh,sy=bx.y+y0*kx,shh=Math.min(bx.y+bx.h-sy,rows*kx);
+    const W=Math.round(cw*dpr),H=Math.round(ch*dpr);
+    const c=document.createElement('canvas');c.width=W;c.height=H;
+    const x=c.getContext('2d',{willReadFrequently:true});x.imageSmoothingQuality='high';
+    x.drawImage(im,bx.x,sy,bx.w,shh,0,0,W,H);
+    const d=x.getImageData(0,0,W,H),q=d.data,TETO=.56;
+    let ar=0,ag=0,ab=0;
+    for(let i=0;i<q.length;i+=4){
+      let R=q[i],G=q[i+1],B=q[i+2];ar+=R;ag+=G;ab+=B;
       const mx=Math.max(R,G,B),mn=Math.min(R,G,B),sat=mx?(mx-mn)/mx:0;
-      if(sat>.3){const m=(R+G+B)/3,g=1+Math.min(.5,sat*.6);R=m+(R-m)*g;G=m+(G-m)*g;B=m+(B-m)*g;}   /* cor viva fica mais viva */
-      const teto=sat>.3?TETO+.14:TETO-.06;                       /* branco sem cor escurece; cor saturada aguenta mais brilho */
-      const Y2=(.2126*R+.7152*G+.0722*B)/255,f=Y2>teto?teto/Y2:1;
-      x.fillStyle='rgb('+Math.max(0,Math.min(255,Math.round(R*f)))+','+Math.max(0,Math.min(255,Math.round(G*f)))+','+Math.max(0,Math.min(255,Math.round(B*f)))+')';
-      x.beginPath();x.arc((i+.5)*cel,(j+.5)*cel,rad,0,6.2832);x.fill();
+      if(sat>.3){const m=(R+G+B)/3,g=1+Math.min(.45,sat*.55);R=m+(R-m)*g;G=m+(G-m)*g;B=m+(B-m)*g;}
+      const teto=sat>.3?TETO+.12:TETO-.06,Y2=(.2126*R+.7152*G+.0722*B)/255,f=Y2>teto?teto/Y2:1;   /* letra nunca clareia até o papel */
+      q[i]=Math.max(0,Math.min(255,R*f));q[i+1]=Math.max(0,Math.min(255,G*f));q[i+2]=Math.max(0,Math.min(255,B*f));
     }
+    x.putImageData(d,0,0);
+    const n=q.length/4,base='rgb('+Math.round(ar/n*.2)+','+Math.round(ag/n*.2)+','+Math.round(ab/n*.2)+')';
     sp.style.backgroundImage='url('+c.toDataURL('image/jpeg',.88)+')';     /* opaca: JPEG pesa uma fração do PNG */
     sp.style.backgroundSize='100% 100%';
     sp.style.backgroundRepeat='no-repeat';
@@ -1379,7 +1376,8 @@ renderSemana();
 renderTempo();
 renderImersivas();
 document.getElementById('upd').textContent=D.atualizado;
-{const n=(D.editais||[]).length;['navEditalN','navEditalN2'].forEach(id=>{const b=document.getElementById(id);if(b&&n){b.textContent=n;b.hidden=false;}});}
+{const poe=n=>['navEditalN','navEditalN2'].forEach(id=>{const b=document.getElementById(id);if(b&&n){b.textContent=n;b.hidden=false;}});
+ poe((D.editais||[]).length);fetch('radar/resumo.json',{cache:'no-cache'}).then(r=>r.json()).then(j=>{if(j&&j.abertos)poe(j.abertos);}).catch(()=>{});}
 painelV=(FOCO&&FOCO.v)||null;
 aplicar();
 iniciaMapa();

@@ -382,77 +382,118 @@ function carregarRadar() {
 }
 
 function paginaEditais(editais) {
-  const peso = e => (!e.prazo ? 1 : (e.prazo >= HOJE ? 0 : 2));
-  const ord = [...editais].sort((a, b) => peso(a) - peso(b) || (a.prazo || '9999').localeCompare(b.prazo || '9999'));
-  const abertos = ord.filter(e => peso(e) < 2);
   const radar = carregarRadar();
+  const MES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+  const ondeDe = txt => /são paulo|sp\b/i.test(txt || '') ? 'sp' : /exterior|internacional|londres|lisboa|paris|berlim/i.test(txt || '') ? 'exterior' : 'brasil';
 
-  const prz = st => `<div class="prz ${st.k}"><b>${esc(st.curto)}</b><span>${st.n === 9999 ? 'sem data de fim' : st.n === 0 ? 'último dia' : st.n > 0 ? 'falta' + (st.n > 1 ? 'm ' : ' ') + st.n + ' dia' + (st.n > 1 ? 's' : '') : 'encerrado'}</span></div>`;
+  /* uma lista só: os editais conferidos à mão e os achados do radar, ordenados pelo prazo */
+  const todos = [
+    ...editais.map(e => {
+      const cat = e.cat in CAT_EDITAL ? e.cat : 'chamada';
+      return { conf: true, t: e.t, org: e.org || '', cat, onde: ondeDe(e.onde), prazo: e.prazo || '', link: e.link || '#', d: e.d || '',
+        meta: [e.quem ? 'Quem pode: ' + e.quem : '', e.onde ? 'Abrangência: ' + e.onde : '', e.valor || '', e.taxa ? 'Inscrição ' + e.taxa : '', e.fonte ? 'Fonte: ' + e.fonte : ''].filter(Boolean).join(' · ') };
+    }),
+    ...radar.map(r => {
+      const cat = r.cat in CAT_EDITAL ? r.cat : 'chamada';
+      return { conf: false, t: r.t, org: r.fonte || '', cat, onde: r.onde in ONDE_EDITAL ? r.onde : 'brasil', prazo: r.prazo || '', link: r.link, d: r.resumo || '', pub: r.pub,
+        meta: r.via === 'site' ? 'Lido na página oficial de quem abriu a chamada' : r.via === 'plataforma' ? 'Listado pelo apoio.art; o link leva à página oficial do programa' : 'Achado automaticamente' + (r.via === 'instagram' ? ' no Instagram' : '') };
+    })
+  ].map(x => ({ ...x, st: estadoEdital({ prazo: x.prazo }) }));
 
-  const item = ed => {
-    const st = estadoEdital(ed);
-    const cat = ed.cat in CAT_EDITAL ? ed.cat : 'chamada';
-    const onde = /são paulo|sp/i.test(ed.onde || '') ? 'sp' : /exterior|internacional|londres|lisboa|paris|berlim/i.test(ed.onde || '') ? 'exterior' : 'brasil';
-    const busca = [ed.t, ed.org, CAT_EDITAL[cat], ed.quem, ed.onde, ed.d].join(' ').toLowerCase();
-    return `<li class="${st.k}" data-c="${cat}" data-o="${onde}" data-e="${st.k === 'off' ? 'off' : 'on'}" data-b="${esc(busca)}">
-<div class="tx">
-<div class="qdt"><span class="tag">${CAT_EDITAL[cat]}</span><span class="tag ${st.k}">${st.txt}</span></div>
-<a class="t" href="${esc(ed.link || '#')}" target="_blank" rel="noopener">${esc(ed.t)}</a>
-<div class="l2">${esc(ed.org || '')}</div>
-${ed.d ? `<div class="l3">${esc(ed.d)}</div>` : ''}
-<div class="l3">${[ed.quem ? 'Quem pode: ' + esc(ed.quem) : '', ed.onde ? 'Abrangência: ' + esc(ed.onde) : '', ed.valor ? esc(ed.valor) : '', ed.taxa ? 'Inscrição ' + esc(ed.taxa) : '', ed.fonte ? 'Fonte: ' + esc(ed.fonte) : ''].filter(Boolean).join(' · ')}</div>
-<div class="btns"><a class="btn cheio" href="${esc(ed.link || '#')}" target="_blank" rel="noopener">Abrir edital</a></div>
+  const abertos = todos.filter(x => x.st.n >= 0);
+  const fecham7 = abertos.filter(x => x.prazo && x.st.n <= 7).length;
+  const confirmados = abertos.filter(x => x.conf).length;
+  const semData = abertos.filter(x => !x.prazo).length;
+  try { fs.writeFileSync(path.join(RAIZ, 'radar', 'resumo.json'), JSON.stringify({ abertos: abertos.length, fecham7, atualizado: HOJE })); } catch (_) {}
+
+  const grupo = x => !x.prazo ? 4 : x.st.n < 0 ? 5 : x.st.n <= 7 ? 1 : x.st.n <= 30 ? 2 : 3;
+  const TITULO = { 1: ['Fecham nos próximos 7 dias', 'corra'], 2: ['Fecham neste mês', 'até 30 dias'], 3: ['Mais adiante', 'com folga'], 4: ['Sem data de fim lida', 'fluxo contínuo ou prazo não encontrado'], 5: ['Encerrados', 'ficam aqui só para consulta'] };
+  todos.sort((a, b) => grupo(a) - grupo(b) || (a.prazo || '9999').localeCompare(b.prazo || '9999') || (b.conf - a.conf));
+
+  const data = x => x.prazo
+    ? `<div class="e2d ${x.st.k}"><b>${+x.prazo.slice(8)}</b><i>${MES[+x.prazo.slice(5, 7) - 1]}${x.prazo.slice(0, 4) !== HOJE.slice(0, 4) ? ' ' + x.prazo.slice(2, 4) : ''}</i><span>${x.st.n === 0 ? 'último dia' : x.st.n > 0 ? 'faltam ' + x.st.n + (x.st.n > 1 ? ' dias' : ' dia') : 'encerrado'}</span></div>`
+    : `<div class="e2d off"><b>?</b><span>conferir no site</span></div>`;
+
+  const item = x => {
+    const busca = [x.t, x.org, CAT_EDITAL[x.cat], ONDE_EDITAL[x.onde], x.d].join(' ').toLowerCase();
+    const g = grupo(x);
+    return `<li data-c="${x.cat}" data-o="${x.onde}" data-g="${g}" data-p="${x.prazo ? 1 : 0}" data-v="${x.conf ? 1 : 0}" data-b="${esc(busca)}">
+${data(x)}
+<div class="e2t">
+<div class="qdt"><span class="tag">${CAT_EDITAL[x.cat]}</span><span class="tag">${ONDE_EDITAL[x.onde]}</span>${x.conf ? '<span class="tag on">Prazo conferido</span>' : ''}</div>
+<a class="t" href="${esc(x.link)}" target="_blank" rel="noopener">${esc(x.t)}</a>
+${x.org ? `<div class="l2">${esc(x.org)}${x.pub ? ' · ' + esc(dCurta(x.pub)) : ''}</div>` : ''}
+${x.d ? `<div class="l3 cl">${esc(x.d)}</div>` : ''}
+${x.meta ? `<div class="l3">${esc(x.meta)}</div>` : ''}
 </div>
-${prz(st)}
+<a class="btn e2b" href="${esc(x.link)}" target="_blank" rel="noopener">Abrir</a>
 </li>`;
   };
 
-  const itemRadar = (r, i) => {
-    const st = estadoEdital({ prazo: r.prazo });
-    const cat = r.cat in CAT_EDITAL ? r.cat : 'chamada';
-    const onde = r.onde in ONDE_EDITAL ? r.onde : 'brasil';
-    const busca = [r.t, r.fonte, CAT_EDITAL[cat], ONDE_EDITAL[onde], r.resumo].join(' ').toLowerCase();
-    return `<li class="${st.k}${i >= 24 ? ' mais' : ''}" data-c="${cat}" data-o="${onde}" data-e="on" data-b="${esc(busca)}">
-<div class="tx">
-<div class="qdt"><span class="tag">${CAT_EDITAL[cat]}</span><span class="tag">${ONDE_EDITAL[onde]}</span>${r.prazo ? `<span class="tag ${st.k}">${st.txt}</span>` : '<span class="tag off">PRAZO NÃO LIDO</span>'}</div>
-<a class="t" href="${esc(r.link)}" target="_blank" rel="noopener">${esc(r.t)}</a>
-<div class="l2">${esc(r.fonte)}${r.pub ? ' · ' + esc(dCurta(r.pub)) : ''}</div>
-${r.resumo ? `<div class="l3">${esc(r.resumo)}</div>` : ''}
-<div class="l3">${r.via === 'site' ? 'Lido na página oficial de quem abriu a chamada' : r.via === 'plataforma' ? 'Listado pelo apoio.art (programas de fomento alemães e franceses, abertos a artistas de vários países); o link leva à página oficial do programa' : 'Detectado automaticamente' + (r.via === 'instagram' ? ' no Instagram' : '')}. ${r.prazo ? 'Prazo lido no texto' : 'Sem data de encerramento lida'}: confirme antes de se inscrever.</div>
-<div class="btns"><a class="btn" href="${esc(r.link)}" target="_blank" rel="noopener">Abrir fonte</a></div>
-</div>
-${r.prazo ? prz(st) : '<div class="prz off"><b>?</b><span>conferir</span></div>'}
-</li>`;
-  };
+  let corpoLista = '', gAtual = 0;
+  todos.forEach(x => {
+    const g = grupo(x);
+    if (g !== gAtual) {
+      if (gAtual) corpoLista += '</ul></section>\n';
+      gAtual = g;
+      corpoLista += `<section class="bloco e2g" data-g="${g}"><h2>${TITULO[g][0]}<small>${TITULO[g][1]}</small></h2><ul class="e2">\n`;
+    }
+    corpoLista += item(x) + '\n';
+  });
+  if (gAtual) corpoLista += '</ul></section>\n';
 
-  const corpo = `
+  const css = `<style>
+.e2s{display:flex;gap:clamp(18px,4vw,56px);flex-wrap:wrap;margin:6px 0 26px}
+.e2s div{min-width:0}.e2s b{display:block;font-weight:800;font-size:clamp(40px,6vw,92px);line-height:.85;letter-spacing:-.06em}
+.e2s div:first-child b{color:var(--terra)}
+.e2s span{display:block;margin-top:8px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--mute)}
+.e2f{position:sticky;top:0;z-index:5;background:var(--paper);padding:10px 0 4px;margin-bottom:6px;border-bottom:1.5px solid rgba(14,14,14,.18)}
+.e2f .busca{font-size:clamp(18px,2.2vw,30px);margin:0 0 12px;padding-bottom:8px}
+.e2f .chips{margin-bottom:8px}
+ul.e2{list-style:none;display:block}
+ul.e2 li{display:grid;grid-template-columns:clamp(84px,9vw,128px) minmax(0,1fr) auto;gap:clamp(14px,2.6vw,36px);align-items:start;border-top:1.5px solid var(--ink);padding:20px 0 24px}
+.e2d b{display:block;font-weight:800;font-size:clamp(40px,5vw,72px);line-height:.82;letter-spacing:-.06em}
+.e2d i{display:block;font-style:normal;font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin-top:5px}
+.e2d span{display:block;margin-top:5px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--mute)}
+.e2d.soon b,.e2d.soon span{color:var(--terra)}.e2d.off b{color:var(--mute)}
+.e2t .t{font-weight:800;font-size:clamp(20px,2vw,30px);line-height:1;letter-spacing:-.03em;text-transform:uppercase;display:block;text-wrap:balance}
+.e2t .t:hover{color:var(--terra)}
+.e2t .qdt{margin-bottom:9px}
+.cl{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--ink)!important;font-size:14px!important;max-width:72ch}
+.e2b{white-space:nowrap}
+.e2g h2 small{margin-left:12px}
+.e2g[data-g="1"] h2{color:var(--terra)}
+.e2n{margin:34px 0 8px;border-top:2px solid var(--ink);padding-top:14px}
+@media(max-width:700px){
+  ul.e2 li{grid-template-columns:1fr;gap:10px}
+  .e2d{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}.e2d b{font-size:38px}.e2d i,.e2d span{margin:0}
+  .e2b{justify-self:start}.e2f{position:static}
+}
+</style>`;
+
+  const corpo = `${css}
 <p class="kick">Oportunidades <span>· para artistas, curadores e coletivos</span></p>
 <h1 class="g">Editais</h1>
-<p class="lede">Chamadas de galerias e museus, residências, prêmios, bolsas e editais de fomento. <b>${abertos.length}</b> confirmados com inscrição aberta${radar.length ? ` e <b>${radar.length}</b> detectados no radar` : ''}.</p>
+<div class="e2s">
+<div><b>${abertos.length}</b><span>abertos agora</span></div>
+<div><b>${fecham7}</b><span>fecham em 7 dias</span></div>
+<div><b>${confirmados}</b><span>com prazo conferido</span></div>
+<div><b>${semData}</b><span>sem data de fim</span></div>
+</div>
+<p class="lede">Chamadas de galerias e museus, residências, prêmios, bolsas e editais de fomento, numa lista só, do prazo mais curto ao mais longo. Os marcados <b>Prazo conferido</b> passaram por mim; os outros o radar achou sozinho, e a data vem do texto da matéria. <b>Leia sempre o regulamento oficial</b>: prorrogação é comum.</p>
+<div class="e2f">
 <input class="busca" id="q" type="search" placeholder="Buscar edital, organizador ou tipo" autocomplete="off">
 <div class="chips" id="fc"><span class="rot">Tipo</span>
-<button type="button" class="chip on" data-c="all">Todos</button>${Object.keys(CAT_EDITAL).map(c => `<button type="button" class="chip" data-c="${c}">${CAT_EDITAL[c]}${c === 'residencia' || c === 'chamada' ? 's' : c === 'fomento' ? 's' : 's'}</button>`).join('')}</div>
+<button type="button" class="chip on" data-c="all">Todos</button>${Object.keys(CAT_EDITAL).map(c => `<button type="button" class="chip" data-c="${c}">${CAT_EDITAL[c]}s</button>`).join('')}</div>
 <div class="chips" id="fo"><span class="rot">Onde</span>
 <button type="button" class="chip on" data-o="all">Qualquer lugar</button><button type="button" class="chip" data-o="sp">São Paulo</button><button type="button" class="chip" data-o="brasil">Brasil</button><button type="button" class="chip" data-o="exterior">Exterior</button></div>
-<div class="chips"><button type="button" class="chip" id="fe">Mostrar encerrados</button></div>
+<div class="chips"><span class="rot">Ver</span><button type="button" class="chip" id="fv">Só prazo conferido</button><button type="button" class="chip" id="fp">Só com data de fim</button><button type="button" class="chip" id="fe">Mostrar encerrados</button></div>
+</div>
 <div class="cont" id="cont" aria-live="polite"></div>
+${todos.length ? corpoLista : '<p class="txt">Nenhuma oportunidade aberta no momento.</p>'}
 
-<section class="bloco" id="conf"><h2>Confirmados<small>${ord.length}</small></h2>
-<p class="nota">Prazo conferido na fonte oficial. Ainda assim, leia o regulamento no site do organizador: prorrogação e mudança de data são comuns.</p>
-${ord.length ? `<ul class="lista ed">
-${ord.map(item).join('\n')}
-</ul>` : '<p class="txt">Nenhum edital confirmado no momento.</p>'}
-</section>
-
-<section class="bloco" id="radar"><h2>Radar<small>${radar.length} detectados</small></h2>
-<p class="nota">Achados sozinhos, todo dia, nas páginas oficiais de quem abre a chamada (Pivô, Tomie Ohtake, FAAP, Funarte...), em sites de arte (Dasartes, Prêmio PIPA, seLecT, ArteBrasileiros, Arte Que Acontece, Sesc SP), no apoio.art e em perfis do Instagram que divulgam oportunidades. As fontes estão listadas no rodapé. O prazo é o que está no texto da matéria, e a categoria é um palpite por palavra-chave: <b>confirme tudo na fonte oficial</b>. Quando o prazo passa, o item some sozinho.</p>
-${radar.length ? `<ul class="lista ed radar">
-${radar.map((r, i) => itemRadar(r, i)).join('\n')}
-</ul>${radar.length > 24 ? `<button type="button" class="btn" id="rmais" style="margin-top:18px">Ver todos os ${radar.length} do radar</button>` : ''}` : '<p class="txt">Nada novo no radar hoje.</p>'}
-</section>
-
-<section class="bloco" id="outras"><h2>Outras plataformas<small>para consultar</small></h2>
-<p class="nota">Reúnem muito mais chamadas, mas pedem cadastro ou assinatura, ou não permitem a leitura automática. Por isso o radar não as copia: vale deixar nos favoritos.</p>
+<section class="e2n" id="outras"><h2 style="margin-top:0">Fontes e outras plataformas</h2>
+<p class="nota">O radar lê todo dia as páginas oficiais de quem abre a chamada (Pivô, Tomie Ohtake, FAAP, Funarte...), sites de arte (Dasartes, Prêmio PIPA, seLecT, ArteBrasileiros, Arte Que Acontece, Sesc SP), o apoio.art e perfis do Instagram que divulgam oportunidades. A categoria é um palpite por palavra-chave. Passou o prazo, o item sai sozinho. As plataformas abaixo reúnem muito mais chamadas, mas pedem cadastro ou não permitem leitura automática; vale deixar nos favoritos.</p>
 <div class="chips">
 <a class="chip" href="https://zealous.co/explore/opportunities?status=SUBMISSIONS_OPEN" target="_blank" rel="noopener">Zealous · chamadas, prêmios e bolsas</a>
 <a class="chip" href="https://artenda.net/" target="_blank" rel="noopener">Artenda · bolsas, prêmios e residências</a>
@@ -468,20 +509,20 @@ ${radar.map((r, i) => itemRadar(r, i)).join('\n')}
 
   const scripts = `<script>
 (function(){
-var st={c:'all',o:'all',q:'',enc:false,todos:false},lis=[].slice.call(document.querySelectorAll('ul.ed li'));
+var st={c:'all',o:'all',q:'',enc:false,conf:false,dt:false},lis=[].slice.call(document.querySelectorAll('ul.e2 li'));
 function ap(){
   var n=0;
   lis.forEach(function(li){
-    var ok=(st.c==='all'||li.dataset.c===st.c)&&(st.o==='all'||li.dataset.o===st.o)&&(!st.q||li.dataset.b.indexOf(st.q)>-1)&&(st.enc||li.dataset.e!=='off')&&(st.todos||st.q||st.c!=='all'||st.o!=='all'||!li.classList.contains('mais'));
-    li.style.display=ok?'':'none';if(ok)n++;
+    var ok=(st.c==='all'||li.dataset.c===st.c)&&(st.o==='all'||li.dataset.o===st.o)&&(!st.q||li.dataset.b.indexOf(st.q)>-1)&&(st.enc||li.dataset.g!=='5')&&(!st.conf||li.dataset.v==='1')&&(!st.dt||li.dataset.p==='1');
+    li.style.display=ok?'':'none';if(ok&&li.dataset.g!=='5')n++;
   });
-  [].forEach.call(document.querySelectorAll('section.bloco'),function(s){var v=[].some.call(s.querySelectorAll('li'),function(li){return li.style.display!=='none'});s.style.display=v?'':'none';});
+  [].forEach.call(document.querySelectorAll('section.e2g'),function(s){var v=[].some.call(s.querySelectorAll('li'),function(li){return li.style.display!=='none'});s.style.display=v?'':'none';});
   document.getElementById('cont').innerHTML='<b>'+n+'</b> oportunidade'+(n===1?'':'s');
 }
 function chips(id,chave){document.getElementById(id).addEventListener('click',function(e){var b=e.target.closest('.chip');if(!b)return;[].forEach.call(this.querySelectorAll('.chip'),function(c){c.classList.toggle('on',c===b)});st[chave]=b.dataset[chave];ap();});}
 chips('fc','c');chips('fo','o');
-var rm=document.getElementById('rmais');if(rm)rm.addEventListener('click',function(){st.todos=!st.todos;this.textContent=st.todos?'Mostrar menos':'Ver todos os '+document.querySelectorAll('ul.radar li').length+' do radar';ap();});
-document.getElementById('fe').addEventListener('click',function(){st.enc=!st.enc;this.classList.toggle('on',st.enc);ap();});
+function liga(id,k){document.getElementById(id).addEventListener('click',function(){st[k]=!st[k];this.classList.toggle('on',st[k]);ap();});}
+liga('fe','enc');liga('fv','conf');liga('fp','dt');
 document.getElementById('q').addEventListener('input',function(){st.q=this.value.toLowerCase().trim();ap();});
 ap();
 })();
@@ -489,7 +530,7 @@ ap();
 
   return pagina({
     titulo: 'Editais, residências e chamadas para artistas em São Paulo | Vernissages SP',
-    desc: `${abertos.length} editais confirmados e ${radar.length} oportunidades no radar: residências, prêmios, bolsas e chamadas para artistas visuais, curadores e coletivos. Prazos, quem pode se inscrever e link oficial.`,
+    desc: `${abertos.length} editais, residências, prêmios e chamadas abertos para artistas visuais, curadores e coletivos, do prazo mais curto ao mais longo. Quem pode se inscrever e link oficial.`,
     canonical: `${SITE}/editais.html`, corpo, wide: true, scripts, ogTipo: 'website'
   });
 }
