@@ -49,12 +49,16 @@ const limpa = s => String(s || '').normalize('NFKC');
 /* o que conta como chamada. Perfil "agregador" tem gatilho amplo (é o assunto dele); perfil "org" só
    com gatilho forte, porque a instituição posta de tudo (mostra, curso, ingresso). */
 const FORTE = /(edital|chamada|convocat|residencia|residency|open call|call for|inscri[cç]|bolsa|premio|prize|award|grant|fellowship|vagas?|selecao|selection|submissions?)/;
-const RUIDO = /(resultado|vencedor|vencedora|ganhador|contemplad|selecionad[oa]s|conheca os|inscricoes encerradas|encerrad[oa]s?\b|parabens|winner|winners|announced|apply now closed)/;
-const CONSUMO = /(ingresso|curso de|aula|oficina paga|show|espetaculo|sorteio|cupom|desconto|loja)/;
+const RUIDO = /(comment\s|link in bio to know|resultado|vencedor|vencedora|ganhador|contemplad|selecionad[oa]s|conheca os|inscricoes encerradas|encerrad[oa]s?\b|parabens|winner|winners|announced|apply now closed)/;
+const CONSUMO = /(ingresso|curso de|aula|oficina paga|show|espetaculo|sorteio|cupom|desconto|loja|workshop|webinar|masterclass|featuring|interview|film festival|festival de cinema)/;
 
+/* o título do post tem de falar de chamada: é o que separa "Open call: residência em Lisboa" de
+   "Comment 111 below", "Looking for your next opportunity?" ou um post de opinião */
+const TITULO_FORTE = /(edital|chamada|convocat|open call|call for|residencia|residency|fellowship|grant\b|prize|premio|bolsa|award|submission|apply|inscri|selecao)/;
 function titulo(cap) {
   const linhas = limpa(cap).split(/\n+/).map(l => l.replace(/#\S+/g, '').replace(/[\u{1F000}-\u{1FFFF}\u{2600}-\u{27BF}\u{FE0F}]/gu, '').replace(/\s+/g, ' ').trim()).filter(l => l.length > 6);
-  let t = linhas[0] || limpa(cap).slice(0, 100);
+  const forte = linhas.slice(0, 6).find(l => TITULO_FORTE.test(norm(l)));
+  let t = forte || linhas[0] || limpa(cap).slice(0, 100);
   if (t.length > 110) t = t.slice(0, 107).replace(/\s+\S*$/, '') + '…';
   return t;
 }
@@ -79,11 +83,15 @@ function lerPosts(posts, perfis) {
     if (!gatilho) continue;
     /* instituição: o gatilho tem de ser inequívoco (edital, chamada, residência, convocatória, prêmio com inscrição) */
     if (perfil.tipo === 'org' && !/(edital|chamada|convocat|residencia|residency|open call|inscri[cç].{0,40}(aberta|ate)|premio.{0,60}inscri)/.test(t)) continue;
+    const linha = titulo(cap);
+    if (!TITULO_FORTE.test(norm(linha))) continue;
     const pub = String(p.timestamp || p.takenAtTimestamp || '').slice(0, 10) || HOJE;
     const prazo = acharPrazo(cap) || prazoRelativo(cap, pub);
     if (prazo && prazo < HOJE) continue;                                  /* já venceu */
     if (!prazo && (Date.parse(HOJE) - Date.parse(pub)) / 864e5 > 21) continue;   /* sem data e velho */
-    const it = { titulo: titulo(cap), resumo: cap.replace(/\s+/g, ' ').trim().slice(0, 260) };
+    /* sem data: só vale se o texto convoca de fato (descarta opinião e notícia que cita "edital" de passagem) */
+    if (!prazo && !/(inscri|aberta|abre|apply|open call|call for|candidat|submiss|deadline|prazo|formulario)/.test(t)) continue;
+    const it = { titulo: linha, resumo: cap.replace(/\s+/g, ' ').trim().slice(0, 260) };
     itens.push({
       t: it.titulo,
       fonte: 'Instagram @' + (p.ownerUsername || perfil.ig),

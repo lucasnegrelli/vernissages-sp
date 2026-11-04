@@ -1,15 +1,9 @@
 {
- "_doc": "Perfis de Instagram varridos por radar-ig.js (Apify). tipo: agregador = posta vários editais (gatilho amplo); org = instituição (gatilho estrito); escopo: sp | brasil | exterior (vazio = o texto decide). Para tirar um perfil, apague a linha; para ver o rendimento de cada um, leia o resumo da rodada. Handles conferidos por busca em 03/11/2026; o radar-ig informa os que não responderem.",
+ "_doc": "Perfis de Instagram varridos por radar-ig.js (Apify). tipo: agregador = posta vários editais (gatilho amplo); org = instituição (gatilho estrito); escopo: sp | brasil | exterior (vazio = o texto decide). Para tirar um perfil, apague a linha; para ver o rendimento de cada um, leia o resumo da rodada. Handles conferidos por busca em 03/11/2026; o radar-ig informa os que não responderem. Rodada de teste de 03/11/2026 (30 dias): editais_brasil e maau_sp vieram sem posts e saíram; res_artis posta pouco; editais_culturais posta ~5 vezes por mês.",
  "perfis": [
   {
    "ig": "editais_culturais",
    "nome": "Editais Abertos",
-   "tipo": "agregador",
-   "escopo": "brasil"
-  },
-  {
-   "ig": "editais_brasil",
-   "nome": "Editais Brasil",
    "tipo": "agregador",
    "escopo": "brasil"
   },
@@ -48,12 +42,6 @@
    "nome": "CAIXA Cultural Brasília",
    "tipo": "org",
    "escopo": "brasil"
-  },
-  {
-   "ig": "maau_sp",
-   "nome": "Museu Aberto de Arte Urbana",
-   "tipo": "org",
-   "escopo": "sp"
   },
   {
    "ig": "opencallforartists_",
