@@ -51,7 +51,8 @@ img{max-width:100%}
 
 /* ---------- topo ---------- */
 .marca{font-weight:800;font-size:10.6vw;line-height:.82;letter-spacing:-.055em;padding:2.2vw 0 1.2vw;white-space:nowrap;text-transform:uppercase}
-.marca span{display:inline-block;padding-right:.07em;background:var(--marca-bg,var(--terra));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.marca span{display:inline-block;padding-right:.07em;opacity:0;transition:opacity .45s ease;background:var(--marca-bg,var(--ink));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.marca.ok span{opacity:1}
 
 /* ---------- menu ---------- */
 .nav{display:flex;align-items:center;gap:clamp(18px,2.6vw,44px);border-top:2px solid var(--ink);border-bottom:1px solid var(--ink)}
@@ -381,6 +382,7 @@ footer a:hover{color:var(--terra)}
 @media(prefers-reduced-motion:reduce){.item .rc{clip-path:none}.item .tx{opacity:1;transform:none}.barra em{clip-path:none}.numeros div{opacity:1;transform:none}}
 </style>
 <script data-goatcounter="https://vernissages.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>try{var a=localStorage.getItem('vspAcento');if(a&&/^#[0-9a-f]{6}$/i.test(a))document.documentElement.style.setProperty('--terra',a)}catch(e){}</script>
 </head>
 <body>
 
@@ -906,11 +908,16 @@ function ajustaMarca(){
    logo ser reconhecível. O brilho dos pontos tem teto: as letras nunca ficam claras como o papel. */
 let IMG_MARCA=null;
 let IMG_BOX=null;
+let IMG_URL='';
+function marcaPronta(){const m=document.getElementById('marca');if(m)m.classList.add('ok');}
 function carregaImgMarca(url){
-  IMG_MARCA=null;IMG_BOX=null;
+  IMG_MARCA=null;IMG_BOX=null;IMG_URL=url||'';
   const sp=document.getElementById('marcaTx');
-  if(!url){if(sp){sp.style.backgroundImage='';sp.style.backgroundColor='';}return;}
-  analisa(url).then(info=>{if(!info)return;IMG_MARCA=info.im;IMG_BOX=info.box;desenhaMarca();});
+  if(!url){if(sp){sp.style.backgroundImage='';sp.style.backgroundColor='';}marcaPronta();return;}
+  /* mesma obra do último acesso: a textura guardada entra na hora, sem esperar a imagem */
+  try{const c=JSON.parse(LS.get('vspMarca')||'null');if(sp&&c&&c.u===url&&c.d){sp.style.backgroundImage='url('+c.d+')';sp.style.backgroundSize='100% 100%';sp.style.backgroundRepeat='no-repeat';sp.style.backgroundColor=c.b;marcaPronta();}}catch(_){}
+  setTimeout(marcaPronta,3500);   /* rede lenta: nunca deixa o logo sumido */
+  analisa(url).then(info=>{if(!info){marcaPronta();return;}IMG_MARCA=info.im;IMG_BOX=info.box;desenhaMarca();});
 }
 function desenhaMarca(){
   const sp=document.getElementById('marcaTx'),mh=document.getElementById('marca');
@@ -957,7 +964,9 @@ function desenhaMarca(){
     sp.style.backgroundSize='100% 100%';
     sp.style.backgroundRepeat='no-repeat';
     sp.style.backgroundColor=base;
-  }catch(_){sp.style.backgroundImage='';sp.style.backgroundColor='';}
+    marcaPronta();
+    if(IMG_URL){const d=sp.style.backgroundImage.slice(5,-2);if(d.length<400000)LS.set('vspMarca',JSON.stringify({u:IMG_URL,d:d,b:base}));}
+  }catch(_){sp.style.backgroundImage='';sp.style.backgroundColor='';marcaPronta();}
 }
 
 /* ================= FILTROS ================= */
