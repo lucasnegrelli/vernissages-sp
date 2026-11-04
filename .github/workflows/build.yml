@@ -9,6 +9,7 @@ on:
       - 'radar/editais-ig.json'
       - 'radar/editais-perfis.json'
       - 'radar/editais-sites.json'
+      - 'radar/editais-apoio.json'
       - 'radar/fontes-sites.json'
       - 'radar/perfis-ig.json'
       - 'temporada.js'
@@ -49,6 +50,11 @@ jobs:
       - name: Radar dos sites oficiais
         run: node radar-sites.js || echo "radar dos sites falhou, segue com o arquivo anterior"
 
+      # apoio.art: programas de fomento (DE/FR) abertos a artistas de varios paises. O site e lento
+      # (~30 s por pagina): uma requisicao so, com tempo de sobra. Falha nao derruba o build.
+      - name: Radar do apoio.art
+        run: node radar-apoio.js || echo "radar do apoio.art falhou, segue com o arquivo anterior"
+
       - name: Gerar acervo, paginas e sitemap
         run: node gerar.js
 
@@ -56,7 +62,7 @@ jobs:
         run: |
           git config user.name "vernissages-bot"
           git config user.email "actions@github.com"
-          git add -A acervo.json arquivo.html artistas.html editais.html fim-de-semana.html monta-meu-sabado.html temporada.css sitemap.xml robots.txt m a radar/editais.json radar/editais-sites.json
+          git add -A acervo.json arquivo.html artistas.html editais.html fim-de-semana.html monta-meu-sabado.html temporada.css sitemap.xml robots.txt m a radar/editais.json radar/editais-sites.json radar/editais-apoio.json
           if git diff --staged --quiet; then
             echo "Nada mudou no acervo."
             exit 0

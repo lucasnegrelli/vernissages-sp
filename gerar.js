@@ -105,8 +105,10 @@ const FONTES_RODAPE = (() => {
   const sites = (lj('radar/fontes-sites.json', { fontes: [] }).fontes || []).map(f => [f.nome, f.url]);
   const noticias = [['Dasartes', 'https://dasartes.com.br'], ['Prêmio PIPA', 'https://www.premiopipa.com'], ['seLecT', 'https://www.select.art.br'], ['ArteBrasileiros', 'https://artebrasileiros.com.br'], ['Arte Que Acontece', 'https://artequeacontece.com.br'], ['Sesc SP', 'https://www.sescsp.org.br']];
   const ig = (lj('radar/perfis-ig.json', { perfis: [] }).perfis || []).map(p => ['@' + p.ig, 'https://instagram.com/' + p.ig]);
+  const plataformas = [['apoio.art', 'https://apoio.art/']];
+  const consultar = [['Zealous', 'https://zealous.co/explore/opportunities?status=SUBMISSIONS_OPEN'], ['Artenda', 'https://artenda.net/'], ['Res Artis', 'https://www.resartis.org/'], ['Prosas', 'https://www.prosas.com.br/editais']];
   const a = l => l.map(([n, u]) => '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(n) + '</a>').join(' · ');
-  return '<div class="fontes"><b>Editais e chamadas, fontes monitoradas:</b> ' + a(sites) + ' · ' + a(noticias) + (ig.length ? '<br>Instagram: ' + a(ig) : '') + '</div>';
+  return '<div class="fontes"><b>Editais e chamadas, fontes monitoradas:</b> ' + a(sites) + ' · ' + a(noticias) + ' · ' + a(plataformas) + (ig.length ? '<br>Instagram: ' + a(ig) : '') + '<br>Para consultar por conta própria (pedem cadastro ou não permitem leitura automática): ' + a(consultar) + '</div>';
 })();
 const { pagina, rc } = require('./site.js')(SITE, esc, FONTES_RODAPE);
 
@@ -362,7 +364,7 @@ function estadoEdital(ed) {
 /* radar: o que a busca automática achou (sites de arte e Instagram). Fora do prazo some sozinho. */
 function carregarRadar() {
   const out = [];
-  for (const [arq, via] of [['radar/editais.json', 'sites'], ['radar/editais-ig.json', 'instagram'], ['radar/editais-perfis.json', 'instagram'], ['radar/editais-sites.json', 'site']]) {
+  for (const [arq, via] of [['radar/editais.json', 'sites'], ['radar/editais-ig.json', 'instagram'], ['radar/editais-perfis.json', 'instagram'], ['radar/editais-sites.json', 'site'], ['radar/editais-apoio.json', 'plataforma']]) {
     try {
       const j = JSON.parse(fs.readFileSync(path.join(RAIZ, arq), 'utf8'));
       (j.itens || []).forEach(x => {
@@ -372,8 +374,10 @@ function carregarRadar() {
       });
     } catch (_) { /* arquivo ainda não existe */ }
   }
-  const vistos = new Set();
-  return out.filter(x => !vistos.has(x.link) && vistos.add(x.link))
+  /* a mesma chamada aparece em notícia, Instagram e página oficial: fica uma vez (por link e por título) */
+  const chave = x => String(x.t).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, ' ').trim().slice(0, 48);
+  const vistos = new Set(), titulos = new Set();
+  return out.filter(x => { const k = chave(x); if (vistos.has(x.link) || titulos.has(k)) return false; vistos.add(x.link); titulos.add(k); return true; })
     .sort((a, b) => (a.prazo || '9999').localeCompare(b.prazo || '9999') || (b.pub || '').localeCompare(a.pub || ''));
 }
 
@@ -403,18 +407,18 @@ ${prz(st)}
 </li>`;
   };
 
-  const itemRadar = r => {
+  const itemRadar = (r, i) => {
     const st = estadoEdital({ prazo: r.prazo });
     const cat = r.cat in CAT_EDITAL ? r.cat : 'chamada';
     const onde = r.onde in ONDE_EDITAL ? r.onde : 'brasil';
     const busca = [r.t, r.fonte, CAT_EDITAL[cat], ONDE_EDITAL[onde], r.resumo].join(' ').toLowerCase();
-    return `<li class="${st.k}" data-c="${cat}" data-o="${onde}" data-e="on" data-b="${esc(busca)}">
+    return `<li class="${st.k}${i >= 24 ? ' mais' : ''}" data-c="${cat}" data-o="${onde}" data-e="on" data-b="${esc(busca)}">
 <div class="tx">
 <div class="qdt"><span class="tag">${CAT_EDITAL[cat]}</span><span class="tag">${ONDE_EDITAL[onde]}</span>${r.prazo ? `<span class="tag ${st.k}">${st.txt}</span>` : '<span class="tag off">PRAZO NÃO LIDO</span>'}</div>
 <a class="t" href="${esc(r.link)}" target="_blank" rel="noopener">${esc(r.t)}</a>
 <div class="l2">${esc(r.fonte)}${r.pub ? ' · ' + esc(dCurta(r.pub)) : ''}</div>
 ${r.resumo ? `<div class="l3">${esc(r.resumo)}</div>` : ''}
-<div class="l3">${r.via === 'site' ? 'Lido na página oficial de quem abriu a chamada' : 'Detectado automaticamente' + (r.via === 'instagram' ? ' no Instagram' : '')}. ${r.prazo ? 'Prazo lido no texto' : 'Sem data de encerramento lida'}: confirme antes de se inscrever.</div>
+<div class="l3">${r.via === 'site' ? 'Lido na página oficial de quem abriu a chamada' : r.via === 'plataforma' ? 'Listado pelo apoio.art (programas de fomento alemães e franceses, abertos a artistas de vários países); o link leva à página oficial do programa' : 'Detectado automaticamente' + (r.via === 'instagram' ? ' no Instagram' : '')}. ${r.prazo ? 'Prazo lido no texto' : 'Sem data de encerramento lida'}: confirme antes de se inscrever.</div>
 <div class="btns"><a class="btn" href="${esc(r.link)}" target="_blank" rel="noopener">Abrir fonte</a></div>
 </div>
 ${r.prazo ? prz(st) : '<div class="prz off"><b>?</b><span>conferir</span></div>'}
@@ -441,10 +445,21 @@ ${ord.map(item).join('\n')}
 </section>
 
 <section class="bloco" id="radar"><h2>Radar<small>${radar.length} detectados</small></h2>
-<p class="nota">Achados sozinhos, todo dia, nas páginas oficiais de quem abre a chamada (Pivô, Tomie Ohtake, FAAP, Funarte...), em sites de arte (Dasartes, Prêmio PIPA, seLecT, ArteBrasileiros, Arte Que Acontece, Sesc SP) e em perfis do Instagram que divulgam oportunidades. As fontes estão listadas no rodapé. O prazo é o que está no texto da matéria, e a categoria é um palpite por palavra-chave: <b>confirme tudo na fonte oficial</b>. Quando o prazo passa, o item some sozinho.</p>
+<p class="nota">Achados sozinhos, todo dia, nas páginas oficiais de quem abre a chamada (Pivô, Tomie Ohtake, FAAP, Funarte...), em sites de arte (Dasartes, Prêmio PIPA, seLecT, ArteBrasileiros, Arte Que Acontece, Sesc SP), no apoio.art e em perfis do Instagram que divulgam oportunidades. As fontes estão listadas no rodapé. O prazo é o que está no texto da matéria, e a categoria é um palpite por palavra-chave: <b>confirme tudo na fonte oficial</b>. Quando o prazo passa, o item some sozinho.</p>
 ${radar.length ? `<ul class="lista ed radar">
-${radar.map(itemRadar).join('\n')}
-</ul>` : '<p class="txt">Nada novo no radar hoje.</p>'}
+${radar.map((r, i) => itemRadar(r, i)).join('\n')}
+</ul>${radar.length > 24 ? `<button type="button" class="btn" id="rmais" style="margin-top:18px">Ver todos os ${radar.length} do radar</button>` : ''}` : '<p class="txt">Nada novo no radar hoje.</p>'}
+</section>
+
+<section class="bloco" id="outras"><h2>Outras plataformas<small>para consultar</small></h2>
+<p class="nota">Reúnem muito mais chamadas, mas pedem cadastro ou assinatura, ou não permitem a leitura automática. Por isso o radar não as copia: vale deixar nos favoritos.</p>
+<div class="chips">
+<a class="chip" href="https://zealous.co/explore/opportunities?status=SUBMISSIONS_OPEN" target="_blank" rel="noopener">Zealous · chamadas, prêmios e bolsas</a>
+<a class="chip" href="https://artenda.net/" target="_blank" rel="noopener">Artenda · bolsas, prêmios e residências</a>
+<a class="chip" href="https://www.resartis.org/" target="_blank" rel="noopener">Res Artis · rede mundial de residências</a>
+<a class="chip" href="https://www.prosas.com.br/editais" target="_blank" rel="noopener">Prosas · central de editais do Brasil</a>
+<a class="chip" href="https://apoio.art/" target="_blank" rel="noopener">apoio.art · fomento alemão e francês</a>
+</div>
 </section>
 <div class="btns">
 <a class="btn cheio" href="${SITE}/">Ver agenda de aberturas</a>
@@ -453,11 +468,11 @@ ${radar.map(itemRadar).join('\n')}
 
   const scripts = `<script>
 (function(){
-var st={c:'all',o:'all',q:'',enc:false},lis=[].slice.call(document.querySelectorAll('ul.ed li'));
+var st={c:'all',o:'all',q:'',enc:false,todos:false},lis=[].slice.call(document.querySelectorAll('ul.ed li'));
 function ap(){
   var n=0;
   lis.forEach(function(li){
-    var ok=(st.c==='all'||li.dataset.c===st.c)&&(st.o==='all'||li.dataset.o===st.o)&&(!st.q||li.dataset.b.indexOf(st.q)>-1)&&(st.enc||li.dataset.e!=='off');
+    var ok=(st.c==='all'||li.dataset.c===st.c)&&(st.o==='all'||li.dataset.o===st.o)&&(!st.q||li.dataset.b.indexOf(st.q)>-1)&&(st.enc||li.dataset.e!=='off')&&(st.todos||st.q||st.c!=='all'||st.o!=='all'||!li.classList.contains('mais'));
     li.style.display=ok?'':'none';if(ok)n++;
   });
   [].forEach.call(document.querySelectorAll('section.bloco'),function(s){var v=[].some.call(s.querySelectorAll('li'),function(li){return li.style.display!=='none'});s.style.display=v?'':'none';});
@@ -465,6 +480,7 @@ function ap(){
 }
 function chips(id,chave){document.getElementById(id).addEventListener('click',function(e){var b=e.target.closest('.chip');if(!b)return;[].forEach.call(this.querySelectorAll('.chip'),function(c){c.classList.toggle('on',c===b)});st[chave]=b.dataset[chave];ap();});}
 chips('fc','c');chips('fo','o');
+var rm=document.getElementById('rmais');if(rm)rm.addEventListener('click',function(){st.todos=!st.todos;this.textContent=st.todos?'Mostrar menos':'Ver todos os '+document.querySelectorAll('ul.radar li').length+' do radar';ap();});
 document.getElementById('fe').addEventListener('click',function(){st.enc=!st.enc;this.classList.toggle('on',st.enc);ap();});
 document.getElementById('q').addEventListener('input',function(){st.q=this.value.toLowerCase().trim();ap();});
 ap();
