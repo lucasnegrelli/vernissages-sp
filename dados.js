@@ -300,7 +300,6 @@ const EXPOS = [
 {t:"Troca de segredos — Barrão",a:"Barrão",v:"Fortes D'Aloia & Gabriel — Galeria",ini:"2026-11-03",fim:null,d:"Esculturas feitas de fragmentos de porcelana de objetos decorativos e utilitários coletados em feiras de usados, e aquarelas do mesmo pensamento escultórico. Abertura em 3 de novembro, das 18h às 21h; encerramento não divulgado.",img:"img/troca-de-segredos-fortes-d-aloia-gabriel-galeria.jpg",cred:"Cortesia Fortes D'Aloia & Gabriel"},
 {t:"Ver o mundo — João Luiz Musa",a:"João Luiz Musa",v:"Luciana Brito Galeria",ini:"2026-11-07",fim:null,d:"Primeira individual do artista desde 2012. Reúne fotografias da pesquisa de livre-docência na ECA-USP. Abertura em 7 de novembro; encerramento não divulgado.",img:"img/ver-o-mundo-luciana-brito-galeria.webp",cred:"Cortesia Luciana Brito Galeria",foco:55},
 {t:"Steps — Abbas Kiarostami",a:"Abbas Kiarostami",v:"MIS — Museu da Imagem e do Som",ini:"2026-10-20",fim:"2026-11-08",d:"Sessenta fotografias em preto e branco de escadarias, a maioria feita na Itália, apresentadas com o filme Me leve para casa (2016), finalizado por Ahmad Kiarostami. Terça a sexta, 10h às 19h; entrada gratuita.",img:"",cred:""},
-{t:"Superfície dos dias — coletiva",a:"",v:"Vazio Criativo",ini:"2026-10-17",fim:"2026-10-28",d:"Coletiva com 14 artistas, com orientação e curadoria de Letícia Castro. Visitação de terça a sábado, das 13h às 17h.",img:"img/superficie-dos-dias-vazio-criativo.webp",cred:"Cortesia Vazio Criativo"},
 {t:"Mucki Botkay: pinturas bordadas",a:"Mucki Botkay",v:"Galatea",ini:"2026-11-05",fim:null,d:"Curadoria e texto crítico de Tomás Toledo. Reúne 18 trabalhos de 2025 e 2026, feitos com milhares de miçangas de vidro bordadas à mão sobre tela, com fauna e flora brasileiras. Abertura em 5 de novembro, das 18h às 21h, na unidade Oscar Freire; encerramento não divulgado.",img:"img/mucki-botkay-pinturas-bordadas-galatea.jpg",cred:"Cortesia Galatea"},
 {t:"Pull/Pulso — Marcia Grostein",a:"Marcia Grostein",v:"Luciana Brito Galeria",ini:"2026-11-07",fim:null,d:"Primeira individual da artista no Brasil desde 1995, no programa Artista Visitante, com colaboração da Kreëmart. Radicada em Nova York desde 1979, reúne trabalhos sobre as relações entre materiais, suportes e linguagens. Abertura em 7 de novembro; encerramento não divulgado.",img:"img/pull-pulso-luciana-brito-galeria.webp",cred:"Cortesia Luciana Brito Galeria",foco:50},
 {t:"Atrás da superfície — Paulo Monteiro",a:"Paulo Monteiro",v:"Mendes Wood DM — Casa Iramaia",ini:"2026-11-07",fim:null,d:"Grupo de pinturas de pequeno formato que revisitam a linha desenhada, com cor construída em camadas, umas transparentes e outras densas. Abertura em 7 de novembro; encerramento não divulgado.",img:"img/atras-da-superficie-mendes-wood-dm-casa-iramaia.webp",cred:"Cortesia Mendes Wood DM",foco:50},
@@ -362,11 +361,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Pablo Delano: Museu da Antiga Colônia",
-  v: "MASP",
-  quem: "Pablo Delano",
-  txt: "Individual no Edifício Lina Bo Bardi, com curadoria de Adriano Pedrosa e Fernando Oliva. Abertura em 30 de outubro, até 31 de janeiro.",
-  link: "https://masp.org.br",
+  t: "Hino às galáxias — Ivan Campos",
+  v: "Almeida & Dale",
+  quem: "Ivan Campos",
+  txt: "Primeira mostra panorâmica do artista em São Paulo, com curadoria de Lisette Lagnado. Reúne obras inéditas e pinturas feitas desde os anos 1990. Abertura em 7 de novembro, das 11h às 15h, na Rua Fradique Coutinho, 1430.",
+  link: "https://www.almeidaedale.com.br",
   publi: false
 };
 
@@ -381,6 +380,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-11-05", k:"Hino às galáxias — Ivan Campos|Almeida & Dale"},
   {d:"2026-11-04", k:"Pablo Delano: Museu da Antiga Colônia|MASP"},
   {d:"2026-11-03", k:"Jacqueline Humphries e JH Studio|Auroras"},
   {d:"2026-11-02", k:"Deslocar, Desalinhar, Interromper — Antonio Bokel|Galeria Luis Maluf"},
@@ -482,5 +482,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "04/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "05/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
