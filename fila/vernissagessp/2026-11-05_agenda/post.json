@@ -1,0 +1,34 @@
+{
+  "conta": "vernissagessp",
+  "id": "2026-11-05_agenda",
+  "status": "aprovado",
+  "tipo": "carrossel",
+  "quando": "2026-11-05T12:15:00-03:00",
+  "imagens": [
+    "01.jpg",
+    "02.jpg",
+    "03.jpg",
+    "04.jpg",
+    "05.jpg",
+    "06.jpg",
+    "07.jpg",
+    "08.jpg",
+    "09.jpg",
+    "10.jpg"
+  ],
+  "legenda": "Arte em SP de 05.11 a 08.11.\n\nABRE\n• QUI 05.11 — Mucki Botkay: pinturas bordadas, Mucki Botkay · Galatea @galatea.art_, Cerqueira César\n• QUI 05.11 — Glauco Rodrigues: devorador de imagens, Glauco Rodrigues · Galatea @galatea.art_, Cerqueira César\n• SÁB 07.11 — Ver o mundo, João Luiz Musa · Luciana Brito Galeria @lucianabritogaleria, Jardim Europa\n• SÁB 07.11 — Pull/Pulso, Marcia Grostein · Luciana Brito Galeria @lucianabritogaleria, Jardim Europa\n• SÁB 07.11 — Atrás da superfície, Paulo Monteiro · Mendes Wood DM — Casa Iramaia @mendeswooddm, Jardim Europa\n• SÁB 07.11 — Hino às galáxias, Ivan Campos · Almeida & Dale @almeidaedale, Jardim Paulista\n• SÁB 07.11 — Amarelinha, Alice Shintani · Almeida & Dale @almeidaedale, Jardim Paulista\n• SÁB 07.11 — Voice Leading, Peter Shear · Mendes Wood DM — Casa Iramaia @mendeswooddm, Jardim Europa\n\nÚLTIMOS DIAS\n• SEX 06.11 — Cantaria, Daniel Jorge · Mendes Wood DM @mendeswooddm, Barra Funda\n• SEX 06.11 — Déboussolé est le mot exact, Jean Claracq · Mendes Wood DM @mendeswooddm, Barra Funda\n• SÁB 07.11 — Por Elas, Com Elas: Do Moderno ao Contemporâneo · DAN Galeria @dangaleria, Jardim América\n• SÁB 07.11 — Lava-Olhos de Emergência, Lucas Simões · Casa Triângulo @casatriangulo, Jardim América\n• SÁB 07.11 — Zanine Caldas: Criação de mundos, Zanine Caldas · Instituto Tomie Ohtake @institutotomieohtake, Pinheiros\n• DOM 08.11 — Tinta sobre Memória, Luiz Fukushiro · Museu da Imigração @museudaimigracao, Mooca\n• DOM 08.11 — trágico subúrbio, Paulo Pedro Leal · Pinacoteca de São Paulo @pinasp, Luz\n• DOM 08.11 — Steps, Abbas Kiarostami · MIS — Museu da Imagem e do Som @mis_sp, Jardim Europa\n\nSalva e manda pra quem vai com você. Mapa, horários e o resto da agenda no link da bio.",
+  "collab": [
+    "galatea.art_",
+    "lucianabritogaleria",
+    "mendeswooddm"
+  ],
+  "collabExtra": [
+    "almeidaedale",
+    "dangaleria",
+    "casatriangulo",
+    "institutotomieohtake",
+    "museudaimigracao",
+    "pinasp",
+    "mis_sp"
+  ]
+}
