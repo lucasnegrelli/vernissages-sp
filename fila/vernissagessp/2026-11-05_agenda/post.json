@@ -1,7 +1,7 @@
 {
   "conta": "vernissagessp",
   "id": "2026-11-05_agenda",
-  "status": "aprovado",
+  "status": "postado",
   "tipo": "carrossel",
   "quando": "2026-11-05T12:15:00-03:00",
   "imagens": [
@@ -30,5 +30,13 @@
     "museudaimigracao",
     "pinasp",
     "mis_sp"
-  ]
+  ],
+  "collabUsado": true,
+  "collabConvidados": [
+    "galatea.art_",
+    "lucianabritogaleria",
+    "mendeswooddm"
+  ],
+  "midiaId": "18102431717550602",
+  "postadoEm": "2026-11-05T18:42:10.571Z"
 }
