@@ -265,7 +265,6 @@ const EXPOS = [
 /* confirmado no Instagram (@galeriasuperficie, 17 e 23/09/2026). */
 {t:"Gestos",v:"Galeria Superfície",ini:"2026-08-29",fim:"2026-12-12",d:"Coletiva com 27 artistas de diferentes gerações, a partir da ideia de gesto do livro de Vilém Flusser. Curadoria de Paulo Venancio Filho e Gustavo Nóbrega, inaugura a nova sede da galeria na Vila Madalena.",img:"img/gestos-galeria-superficie.jpg",cred:"Cortesia Galeria Superfície",vista:true},
 /* confirmado no Instagram (@massape_projetos, 21/09/2026). */
-{t:"Tudo aquilo que move",a:"Diana Motta, Efe Godoy, Fabiana Preti, Giulia Bianchi, Marysia Portinari, Naia Ceschin, Poli Pieratti, Thamiris Mandú, Verena Smit, Victoria Serednicki",v:"Galeria Frente",ini:"2026-09-29",fim:"2026-10-29",d:"Coletiva de dez artistas em pintura, tapeçaria, cerâmica e papel, com mais de 40 obras listadas. Curadoria de Ana Carolina Ralston.",img:"img/tudo-aquilo-que-move-galeria-frente.webp",cred:"Fabiana Preti, Sem título. Foto: Luan Torres",foco:50},
 {t:"Pablo Delano: Museu da Antiga Colônia",a:"Pablo Delano",v:"MASP",ini:"2026-10-30",fim:"2027-01-31",d:"Individual no Edifício Lina Bo Bardi, com curadoria de Adriano Pedrosa e Fernando Oliva.",img:"img/pablo-delano-museu-da-antiga-colonia-masp.webp",cred:"Pablo Delano, As duas bandeiras (2020-em processo). Divulgação MASP",foco:50},
 {t:"Rosa Elena Curruchich: crônicas de Comalapa",a:"Rosa Elena Curruchich",v:"MASP",ini:"2026-10-30",fim:"2027-04-04",d:"Primeira mostra da artista guatemalteca no Brasil: mais de 80 obras de pequeno formato. Curadoria de Yudi Rafael e Guilherme Giufrida.",img:"img/rosa-elena-curruchich-cronicas-de-comalapa-masp.webp",cred:"Rosa Elena Curruchich, Van a escoger capitana del nuevo año, c. 1980. Acervo MASP. Foto: Eduardo Ortega",foco:53},
 {t:"Horizontes do Solo",a:"Bárbara Banida, Cláudio Cretti, Pedro França",v:"Ateliê397",ini:"2026-10-08",fim:"2026-11-21",d:"Coletiva com curadoria de Érica Burini, originada na primeira edição da residência artística IOD'A, no Piauí. Quarta a sábado, 14h às 18h; abertura das 19h às 22h.",img:"img/horizontes-do-solo-atelie397.webp",cred:"Cortesia Ateliê397",foco:53},
@@ -293,7 +292,6 @@ const EXPOS = [
 {t:"Deslocar, Desalinhar, Interromper — Antonio Bokel",a:"Antonio Bokel",v:"Galeria Luis Maluf",ini:"2026-10-08",fim:"2026-11-04",d:"Individual na unidade da Barra Funda com esculturas, instalações e pinturas que inserem galhos, rochas, espelhos e círculos em composições geométricas. Abertura em 8 de outubro, das 19h às 23h.",img:"img/deslocar-desalinhar-interromper-galeria-luis-maluf.jpg",cred:"Cortesia Galeria Luis Maluf",vista:true},
 {t:"Pequenos Afetos",a:"",v:"Farol Santander",ini:"2026-10-16",fim:"2027-01-10",d:"Nova exposição temporária do Farol Santander, que estreia em 16 de outubro. Visitação de terça a domingo, das 9h às 20h, com última entrada às 19h.",img:"img/pequenos-afetos-farol-santander.jpg",cred:"Cortesia Farol Santander"},
 {t:"Tábula Opaca — coletiva",a:"Fernanda Pacca, Jacque Faus, Kuenan Mayu, Olívia Lacerda, Uýra, Xinga Xow, Yaraçá",v:"Galeria Aura",ini:"2026-10-24",fim:null,d:"Curadoria do Projeto Mulheres Arquivadas. A mostra investiga a opacidade e a fugitividade como resistência aos sistemas de classificação. Abertura em 24 de outubro, a partir das 11h; encerramento não divulgado.",img:"img/tabula-opaca-galeria-aura.jpg",cred:"Cortesia Galeria Aura"},
-{t:"Geometrias do Invisível — Andrea Natali",a:"Andrea Natali",v:"Espaço República",ini:"2026-10-15",fim:"2026-10-29",d:"Primeira individual da artista, com curadoria de Renato Dib: panôs suspensos e lambe-lambes sobre geometria, cor, transparência e percepção. Sala Vera Helena; abertura em 15 de outubro, das 18h às 22h.",img:"",cred:""},
 {t:"Belezas Brasileiras",a:"Adriano Gambarini, Gabriel Bonatto, Ricardo Rojas, Toni Pires",v:"MIS — Museu da Imagem e do Som",ini:"2026-10-13",fim:null,d:"Quatro ensaios fotográficos percorrem a Caatinga, a Serra da Mantiqueira, a paisagem urbana paulistana e cenas do cotidiano. Abertura em 13 de outubro, às 19h; encerramento não divulgado.",img:"",cred:""},
 {t:"Afropindorama: tecnologia do afeto. Práticas de bem viver",a:"",v:"Museu Afro Brasil Emanoel Araujo",ini:"2026-10-10",fim:"2026-12-13",d:"Curadoria de Vera Nunes, a partir das reflexões de Nego Bispo dos Santos, Célia Tupinambá e Alberto Acosta, com obras do acervo e produções contemporâneas. Galeria da Marquise; entrada gratuita.",img:"",cred:""},
 {t:"Quarto de hora — Elisa Arruda",a:"Elisa Arruda",v:"AM Galeria",ini:"2026-10-29",fim:null,d:"Individual com curadoria de Luiza Testa. Gravuras sobre a relação da mulher com o ambiente doméstico e as padronagens do Raio que o Parta, estética modernista de Belém do Pará. Abertura adiada para 29 de outubro, das 16h às 21h; encerramento não divulgado.",img:"img/quarto-de-hora-am-galeria.jpg",cred:"Cortesia AM Galeria"},
@@ -361,11 +359,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Hino às galáxias — Ivan Campos",
-  v: "Almeida & Dale",
-  quem: "Ivan Campos",
-  txt: "Primeira mostra panorâmica do artista em São Paulo, com curadoria de Lisette Lagnado. Reúne obras inéditas e pinturas feitas desde os anos 1990. Abertura em 7 de novembro, das 11h às 15h, na Rua Fradique Coutinho, 1430.",
-  link: "https://www.almeidaedale.com.br",
+  t: "Glauco Rodrigues: devorador de imagens",
+  v: "Galatea",
+  quem: "Glauco Rodrigues",
+  txt: "Individual em homenagem ao artista, com texto crítico de Ademar Britto Jr. Destaque para a série A Lenda do Coati-Puru, de 1977, com dez pinturas. Abertura em 5 de novembro, das 18h às 21h, na unidade Padre João Manuel; encerramento não divulgado.",
+  link: "https://galatea.art",
   publi: false
 };
 
@@ -380,6 +378,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-11-06", k:"Glauco Rodrigues: devorador de imagens|Galatea"},
   {d:"2026-11-05", k:"Hino às galáxias — Ivan Campos|Almeida & Dale"},
   {d:"2026-11-04", k:"Pablo Delano: Museu da Antiga Colônia|MASP"},
   {d:"2026-11-03", k:"Jacqueline Humphries e JH Studio|Auroras"},
@@ -482,5 +481,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "05/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "06/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
