@@ -66,6 +66,12 @@
       "seguidores": 105,
       "seguindo": 100,
       "posts": 75
+    },
+    {
+      "data": "2026-11-06",
+      "seguidores": 106,
+      "seguindo": 100,
+      "posts": 75
     }
   ],
   "midias": {
@@ -536,7 +542,7 @@
     "18102431717550602": {
       "tipo": "FEED",
       "quando": "2026-11-05T18:42:04+0000",
-      "curtidas": 0,
+      "curtidas": 4,
       "comentarios": 0,
       "link": "https://www.instagram.com/p/DfXszXhGlWb/",
       "formato": "agenda"
