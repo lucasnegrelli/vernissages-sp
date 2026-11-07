@@ -235,7 +235,6 @@ const EXPOS = [
 /* --- confirmadas na fonte primária em 14/09/2026, casas já mapeadas sem nada em cartaz na base --- */
 {t:"Abismos Urbanos e o Plano Celeste",a:"Eduardo Coimbra",v:"Galeria Lume",ini:"2026-09-12",fim:"2026-11-14",d:"Exposição individual.",img:"img/abismos-urbanos-e-o-plano-celeste-galeria-lume.webp",cred:"Cortesia Galeria Lume",conferida:true},
 {t:"Território de Disputa",a:"Kilian Glasner",v:"Galeria Lume",ini:"2026-09-12",fim:"2026-11-14",d:"Pinturas feitas com saibro — laterita alaranjada recolhida no sertão —, cortadas pelas faixas brancas de uma quadra de tênis, como alegoria de disputa por território.",img:"img/territorio-de-disputa-galeria-lume.jpg",cred:"Cortesia Galeria Lume",foco:50},
-{t:"ambiguidade construtiva e ativação do espaço",a:"Wolfram Ullrich",v:"Galeria Raquel Arnaud",ini:"2026-09-02",fim:"2026-10-30",d:"Exposição individual.",img:"img/ambiguidade-construtiva-e-ativacao-do-espaco-galeria-raquel-.jpg",cred:"Cortesia Galeria Raquel Arnaud"},
 {t:"Longitudes",a:"Johanna Calle",v:"Galeria Marília Razuk",ini:"2026-09-12",fim:"2026-12-12",d:"Exposição individual.",img:"img/longitudes-galeria-marilia-razuk.jpg",cred:"Cortesia Galeria Marília Razuk"},
 {t:"Cavalinhas e Falésias",a:"Carolina Colichio",v:"Galeria Marília Razuk",ini:"2026-09-12",fim:"2026-11-03",d:"Exposição individual.",img:"img/cavalinhas-e-falesias-galeria-marilia-razuk.jpg",cred:"Cortesia Galeria Marília Razuk"},
 
@@ -359,11 +358,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Glauco Rodrigues: devorador de imagens",
-  v: "Galatea",
-  quem: "Glauco Rodrigues",
-  txt: "Individual em homenagem ao artista, com texto crítico de Ademar Britto Jr. Destaque para a série A Lenda do Coati-Puru, de 1977, com dez pinturas. Abertura em 5 de novembro, das 18h às 21h, na unidade Padre João Manuel; encerramento não divulgado.",
-  link: "https://galatea.art",
+  t: "Pequenos Afetos",
+  v: "Farol Santander",
+  quem: "",
+  txt: "Nova exposição temporária do Farol Santander, que estreia em 16 de outubro. Visitação de terça a domingo, das 9h às 20h, com última entrada às 19h. Abertura em 16 de outubro, até 10 de janeiro.",
+  link: "https://www.farolsantander.com.br/sp",
   publi: false
 };
 
@@ -378,6 +377,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-11-07", k:"Pequenos Afetos|Farol Santander"},
   {d:"2026-11-06", k:"Glauco Rodrigues: devorador de imagens|Galatea"},
   {d:"2026-11-05", k:"Hino às galáxias — Ivan Campos|Almeida & Dale"},
   {d:"2026-11-04", k:"Pablo Delano: Museu da Antiga Colônia|MASP"},
@@ -481,5 +481,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "06/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "07/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
