@@ -245,8 +245,6 @@ const EXPOS = [
    primária, cada uma abrindo casa nova na base ou corrigindo uma já mapeada.
    Uma delas (Paço das Artes) ainda não abriu — fica registrada certa e o
    `check.js`/`destaque.js` já sabem lidar com `ini` no futuro. */
-{t:"Paisagem temática para um novo normal",a:"Daniel Acosta",v:"Verve Galeria",ini:"2026-08-29",fim:"2026-10-31",d:"Instalação que ocupa a nova sala da galeria e a sobreloja do Edifício Louvre, com texto crítico de Agnaldo Farias; usa materiais de design e arquitetura — flores e arbustos de plástico, fórmica — em tom irônico sobre o \"novo normal\".",img:"img/paisagem-tematica-para-um-novo-normal-verve-galeria.jpg",cred:"Cortesia Verve Galeria"},
-{t:"Irracional",a:"Frederico Filippi",v:"Marli Matsumoto Arte Contemporânea",ini:"2026-08-01",fim:"2026-10-31",d:"Reúne diferentes grupos de trabalhos em que o acaso, o descontrole e o gesto errático operam como motores de criação, com curadoria de Germano Dushá.",img:"img/irracional-marli-matsumoto-arte-contemporanea.jpg",cred:"Cortesia Marli Matsumoto Arte Contemporânea"},
 {t:"Controle | Corrosão | Dispersão",a:"Beto Shwafaty",v:"Galeria Leme",ini:"2026-09-03",fim:"2026-11-13",d:"Individual com cerca de 15 trabalhos que pensam a sociedade contemporânea a partir de objetos e materiais do cotidiano, incluindo a obra inédita \"O sonho da terra, é o sonho americano\".",img:"img/controle-corrosao-dispersao-galeria-leme.jpg",cred:"Cortesia Galeria Leme"},
 {t:"Marlene Barros: tecitura do feminino",a:"Marlene Barros",v:"CCBB São Paulo",ini:"2026-08-26",fim:"2027-01-25",d:"Reúne 15 obras entre esculturas, bordados, crochês, instalações e objetos que discutem a feminilidade como construção histórica, social e cultural; curadoria de Betânia Pinheiro.",img:"img/marlene-barros-tecitura-do-feminino-ccbb-sao-paulo.jpg",cred:"Cortesia CCBB São Paulo",foco:35},
 {t:"Fernando Lemos: quanto mais desejo, mais invento o que vejo",a:"Fernando Lemos",v:"IMS Paulista",ini:"2026-09-19",fim:"2027-02-07",d:"Retrospectiva do centenário de nascimento de Fernando Lemos (1926–2019), com cerca de 400 itens entre fotografias, desenhos, projetos gráficos e poesia produzidos ao longo de 70 anos; curadoria de Thyago Nogueira.",img:"img/fernando-lemos-quanto-mais-desejo-mais-invento-o-que-vejo-im.webp",cred:"Fernando Lemos, Eu, poeta. Arquivo Fernando Lemos / Acervo Instituto Moreira Salles"},
@@ -276,9 +274,6 @@ const EXPOS = [
 {t:"Toda minúcia — André Barion",a:"André Barion",v:"Galeria Estação",ini:"2026-10-06",fim:"2026-11-28",d:"Individual com curadoria de Amanda Tavares e pesquisa de Omar Porto, entre pintura, desenho, escultura, costura e instalação, no segundo andar e no mezanino. Abertura em 6 de outubro, das 18h às 21h.",img:"img/toda-minucia-galeria-estacao.jpg",cred:"Cortesia Galeria Estação"},
 {t:"Não há só uma maneira — Oriol Vilanova",a:"Oriol Vilanova",v:"Galeria Luisa Strina",ini:"2026-10-01",fim:"2026-11-14",d:"Primeira individual do artista espanhol no Brasil, na Sala 2, sobre coleções e colecionadores. Inclui a performance Palabras prestadas, com datas a divulgar.",img:"img/nao-ha-so-uma-maneira-galeria-luisa-strina.jpg",cred:"Foto Mina Albespy / Cortesia Galeria Luisa Strina",vista:true},
 {t:"nome ar — Jarbas Lopes",a:"Jarbas Lopes",v:"Galeria Luisa Strina",ini:"2026-10-01",fim:"2026-11-14",d:"Obras inéditas na Sala 1, com ensaios críticos de Érica Burini e Luiz Villares. Abertura em 1º de outubro, das 18h às 21h, com performance do artista às 19h.",img:"img/nome-ar-galeria-luisa-strina.jpg",cred:"Foto Julia Thompson / Cortesia Galeria Luisa Strina"},
-{t:"Fazendo a América | Making America — Rosângela Rennó",a:"Rosângela Rennó",v:"Galeria Vermelho",ini:"2026-10-03",fim:"2026-10-31",d:"Série de 48 retratos de rosto coberto por bonés verdes bordados, entre Governador Valadares (MG) e Massachusetts, mais duas intervenções em lambe-lambe e a fotolitogravura American Spirits.",img:"img/fazendo-a-america-making-america-galeria-vermelho.jpg",cred:"Cortesia Galeria Vermelho"},
-{t:"Shh... — Edgard de Souza",a:"Edgard de Souza",v:"Galeria Vermelho",ini:"2026-10-03",fim:"2026-10-31",d:"Quarta individual do artista na galeria, com desenhos, bordados, esculturas e pintura feitos entre 2012 e 2026. Abertura das 11h às 17h.",img:"img/shh-galeria-vermelho.jpg",cred:"Foto Filipe Berndt / Cortesia Galeria Vermelho"},
-{t:"MUNDO CADUCO",a:"Gabrilândia, Lucas Matoso, Marina Cespe",v:"GRUTA Espaço de Arte Contemporânea",ini:"2026-10-03",fim:"2026-10-31",d:"Coletiva com curadoria de Daniel Donato, dentro do Plano de Exposições da Gruta. Abertura das 14h às 19h.",img:"img/mundo-caduco-gruta-espaco-de-arte-contemporanea.jpg",cred:"Cortesia GRUTA Espaço de Arte Contemporânea"},
 {t:"Círio de Nazaré. Do sagrado ao profano: uma extensão do Brasil | Nova Fotografia 2026",a:"Fabricio Augusto",v:"MIS — Museu da Imagem e do Som",ini:"2026-10-06",fim:"2026-11-15",d:"Ensaio fotográfico documental sobre o Círio de Nazaré, em Belém, no programa anual Nova Fotografia do MIS. Abertura às 19h; entrada gratuita.",img:"",cred:""},
 {t:"Marília Mendonça: Sentimento Louco",a:"",v:"MIS — Museu da Imagem e do Som",ini:"2026-10-09",fim:null,d:"Primeira grande exposição sobre a trajetória de Marília Mendonça, com memórias, objetos pessoais, música e audiovisual. Encerramento não divulgado.",img:"",cred:""},
 {t:"NZO: Memórias Afro-brasileiras",a:"",v:"Museu Afro Brasil Emanoel Araujo",ini:"2026-09-26",fim:"2027-02-28",d:"Primeira exposição da Rede de Acervos Afro-brasileiros, com curadoria compartilhada e mais de 150 obras e registros de diferentes regiões do país.",img:"",cred:""},
@@ -358,11 +353,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Pequenos Afetos",
-  v: "Farol Santander",
-  quem: "",
-  txt: "Nova exposição temporária do Farol Santander, que estreia em 16 de outubro. Visitação de terça a domingo, das 9h às 20h, com última entrada às 19h. Abertura em 16 de outubro, até 10 de janeiro.",
-  link: "https://www.farolsantander.com.br/sp",
+  t: "Ver o mundo — João Luiz Musa",
+  v: "Luciana Brito Galeria",
+  quem: "João Luiz Musa",
+  txt: "Primeira individual do artista desde 2012. Reúne fotografias da pesquisa de livre-docência na ECA-USP. Abertura em 7 de novembro; encerramento não divulgado.",
+  link: "https://lucianabritogaleria.com.br",
   publi: false
 };
 
@@ -377,6 +372,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-11-08", k:"Ver o mundo — João Luiz Musa|Luciana Brito Galeria"},
   {d:"2026-11-07", k:"Pequenos Afetos|Farol Santander"},
   {d:"2026-11-06", k:"Glauco Rodrigues: devorador de imagens|Galatea"},
   {d:"2026-11-05", k:"Hino às galáxias — Ivan Campos|Almeida & Dale"},
@@ -481,5 +477,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "07/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "08/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
