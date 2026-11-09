@@ -20,7 +20,7 @@ const fs = require('fs');
 const path = require('path');
 const base = require('./rima.js');
 const D = require('./direcao.js');
-const { carregarDados, exigirObra, medir, RAIZ, esc, porExtenso, arroba, tituloCurto, autoria } = base;
+const { carregarDados, exigirObra, marcarFoto, medir, RAIZ, esc, porExtenso, arroba, tituloCurto, autoria } = base;
 
 const argv = process.argv.slice(2);
 const alvoTit = argv.find(a => !a.startsWith('--'));
@@ -124,5 +124,6 @@ async function recortes(sharp, arquivo, n) {
 
   const leg = `${tituloCurto(e)}${quem ? ', ' + quem : ''}, por dentro.\n\nDeslize: a obra inteira e três aproximações da própria imagem, nas regiões de mais detalhe.\n\n${e.d ? e.d + '\n\n' : ''}Serviço: ${e.v} ${arroba(v.ig)}, ${v.addr ? v.addr + ', ' : ''}${v.b || ''}. ${e.fim ? 'Até ' + porExtenso(e.fim) + '.' : ''}\n\nImagem: ${e.cred}.\n\nSalva para ir e manda para quem vai com você. Agenda completa de exposições em vernissagessp.com.br\n\n#exposicaosp #arteemsp #saopaulo #artecontemporanea #galeriadearte`;
   fs.writeFileSync(path.join(out, 'detalhes-LEGENDA.md'), leg.replace(/ — /g, ': ') + '\n');
+  marcarFoto(rel, flag('pub', hoje));
   console.log(`OK 5 slides em ${path.relative(RAIZ, out)}`);
 })().catch(e => { console.error(e.stack || e.message); process.exit(1); });

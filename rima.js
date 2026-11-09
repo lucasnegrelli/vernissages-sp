@@ -177,6 +177,16 @@ function exigirObra(e, opcoes) {
   }
 }
 
+/* Registra que esta foto vai ao feed na data dada (peca gerada fora do semana.js: carrossel, detalhes, so a obra).
+   Sem isso a foto "continua fresca" ate sair e outro formato a usa de novo. */
+function marcarFoto(rel, data) {
+  const f = path.join(RAIZ, 'SOCIAL', 'FOTOS-USADAS.json');
+  let u = {}; try { u = JSON.parse(fs.readFileSync(f, 'utf8')); } catch (_) { /* novo */ }
+  const h = require('crypto').createHash('md5').update(fs.readFileSync(path.resolve(RAIZ, rel))).digest('hex');
+  if (!u[h]) { u[h] = data; fs.writeFileSync(f, JSON.stringify(u, null, 2) + String.fromCharCode(10)); }
+  _fotosVetadas = null;
+}
+
 /* ---------- dimensoes reais, para o layout obedecer a obra ---------- */
 
 function medir(rel) {
@@ -600,7 +610,7 @@ function descreverFiltro(filtro) {
   return p.join(' · ');
 }
 
-module.exports = { carregarDados, acharExpo, exigirObra, medir, chave, RAIZ,
+module.exports = { carregarDados, acharExpo, exigirObra, marcarFoto, medir, chave, RAIZ,
                    CSS, esc, porExtenso, porExtensoAno, carimbo, arroba,
                    tituloCurto, autoria, PALETAS, cssPaleta, grao,
                    passaFiltro, descreverFiltro, MARCA_HTML };
