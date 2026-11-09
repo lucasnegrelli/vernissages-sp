@@ -57,7 +57,10 @@ const RELATORIO = path.join(DIR_PEND, 'INSTAGRAM.md');
 
 const argv = process.argv.slice(2);
 const flag = (n, d) => { const i = argv.indexOf('--' + n); return i > -1 && argv[i + 1] ? argv[i + 1] : d; };
-const DIAS = Number(flag('dias', '10')) || 10;        // semanal + 3 dias de sobreposição
+const DIAS = Number(flag('dias', '10')) || 10;
+/* --so=a7magaleria,outra  só esses perfis; --sem-vistos  ignora o arquivo de vistos (reprocessar uma casa sem esperar a semana seguinte) */
+const SO = (flag('so', '') || '').split(',').map(x => x.trim().toLowerCase()).filter(Boolean);
+const SEM_VISTOS = argv.includes('--sem-vistos');        // semanal + 3 dias de sobreposição
 const POR_PERFIL = Number(flag('por-perfil', '8')) || 8;
 const GUARDA_DIAS = 120;                               // vistos mais velhos que isso saem do arquivo
 const hoje = () => new Date().toISOString().slice(0, 10);
@@ -238,8 +241,8 @@ async function principal() {
   if (argv.includes('--marcar')) return marcar();
   if (argv.includes('--faltantes')) return faltantes();
 
-  const casas = venues();
-  if (!casas.length) { console.error('Nenhuma casa com `ig` no dados.js.'); process.exit(1); }
+  const casas = venues().filter(v => !SO.length || SO.includes(v.ig.toLowerCase()));
+  if (!casas.length) { console.error('Nenhuma casa com `ig` no dados.js' + (SO.length ? ' para --so=' + SO.join(',') : '') + '.'); process.exit(1); }
   const porHandle = {};
   casas.forEach(v => { porHandle[v.ig.toLowerCase()] = v; });
 
@@ -252,7 +255,7 @@ async function principal() {
   const falhas = brutos.filter(p => p.error).map(p => (p.username || p.inputUrl || '?') + ': ' + p.error);
   const vistos = lerJSON(VISTOS, {});
   const novos = brutos
-    .filter(p => !p.error && p.shortCode && !vistos[p.shortCode])
+    .filter(p => !p.error && p.shortCode && (SEM_VISTOS || !vistos[p.shortCode]))
     .map(p => {
       const v = porHandle[String(p.ownerUsername || '').toLowerCase()];
       return {

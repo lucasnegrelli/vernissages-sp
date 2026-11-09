@@ -23,6 +23,19 @@ on:
     # a sabado; quarta pega o anuncio da semana a tempo do fim de semana.
     - cron: '0 11 * * 3'
   workflow_dispatch:
+    inputs:
+      so:
+        description: 'Só estes perfis (separados por vírgula), ex.: a7magaleria. Vazio = todas as casas'
+        required: false
+        default: ''
+      dias:
+        description: 'Quantos dias olhar para trás'
+        required: false
+        default: '10'
+      sem_vistos:
+        description: 'Reprocessar posts já vistos'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -46,21 +59,17 @@ jobs:
         id: raspa
         env:
           APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
-        run: node instagram.js
-
-      - name: Instalar Claude Code
-        if: steps.raspa.outputs.novos != '0'
-        run: npm install -g @anthropic-ai/claude-code
-
-      - name: Ler legendas e escrever no dados.js
-        if: steps.raspa.outputs.novos != '0'
-        env:
-          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
         run: |
-          claude -p "$(cat .github/prompts/instagram.md)" \
-            --allowedTools "Bash,Read,Write,Edit,Glob,Grep,WebFetch" \
-            --dangerously-skip-permissions \
-            | tee /tmp/instagram.log
+          ARGS="--dias ${{ github.event.inputs.dias || '10' }}"
+          if [ -n "${{ github.event.inputs.so }}" ]; then ARGS="$ARGS --so ${{ github.event.inputs.so }}"; fi
+          if [ "${{ github.event.inputs.sem_vistos }}" = "true" ]; then ARGS="$ARGS --sem-vistos"; fi
+          node instagram.js $ARGS
+
+      # Sem IA (09/11/2026): a leitura das legendas é por regra (instagram-mostras.js), não gasta crédito.
+      # Antes era o Claude Code; ele deixou passar a abertura de TRICKSTER (A7MA) e o post virou "visto".
+      - name: Ler legendas e escrever no dados.js (regra, sem IA)
+        if: steps.raspa.outputs.novos != '0'
+        run: node instagram-mostras.js | tee /tmp/instagram.log
 
       - name: Espelhar imagens (antes do CDN expirar)
         if: steps.raspa.outputs.novos != '0'
