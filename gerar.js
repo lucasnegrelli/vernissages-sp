@@ -418,6 +418,8 @@ function paginaEditais(editais) {
   } catch (_) {}
 
   const slug = x => 'e-' + String(x.t).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').slice(0, 40);
+  /* lembrete no calendário: evento de dia inteiro na data do prazo, com alarme 3 dias antes (.ics gerado no próprio link) */
+  const ics = x => 'data:text/calendar;charset=utf-8,' + encodeURIComponent(['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Vernissages SP//Editais//PT', 'BEGIN:VEVENT', 'UID:' + slug(x) + '@vernissagessp.com.br', 'DTSTAMP:' + HOJE.replace(/-/g, '') + 'T120000Z', 'DTSTART;VALUE=DATE:' + x.prazo.replace(/-/g, ''), 'SUMMARY:Prazo: ' + String(x.t).replace(/[,;\n]/g, ' ').slice(0, 90), 'DESCRIPTION:' + x.link, 'BEGIN:VALARM', 'TRIGGER:-P3D', 'ACTION:DISPLAY', 'DESCRIPTION:Faltam 3 dias', 'END:VALARM', 'END:VEVENT', 'END:VCALENDAR'].join('\r\n'));
   const data = x => x.prazo
     ? `<div class="e2d ${x.st.k}"><b>${+x.prazo.slice(8)}</b><i>${MES[+x.prazo.slice(5, 7) - 1]}${x.prazo.slice(0, 4) !== HOJE.slice(0, 4) ? ' ' + x.prazo.slice(2, 4) : ''}</i><span>${x.st.n === 0 ? 'último dia' : x.st.n > 0 ? 'faltam ' + x.st.n + (x.st.n > 1 ? ' dias' : ' dia') : 'encerrado'}</span></div>`
     : `<div class="e2d off"><b>?</b><span>ver no site</span></div>`;
@@ -439,7 +441,7 @@ ${x.org ? `<div class="l2">${esc(x.org)}${x.pub ? ' · ' + esc(dCurta(x.pub)) : 
 ${x.d ? `<p class="cl">${esc(x.d)}</p>` : ''}
 ${custo}
 </div>
-<a class="btn e2b" href="${esc(x.link)}" target="_blank" rel="noopener">Abrir</a>
+<div class="e2a"><a class="btn e2b" href="${esc(x.link)}" target="_blank" rel="noopener">Abrir</a>${x.prazo && x.st.n >= 0 ? `<a class="e2ics" href="${ics(x)}" download="prazo-${slug(x)}.ics">Lembrete</a>` : ''}</div>
 </li>`;
   };
 
@@ -456,15 +458,25 @@ ${custo}
   if (gAtual) corpoLista += '</ul></section>\n';
 
   /* linha do tempo dos próximos 60 dias: cada chamada com prazo (e sem taxa) é uma marca; clicar leva à entrada */
-  const J = 60;
-  const marcas = todos.filter(x => x.prazo && x.st.n >= 0 && x.st.n <= J && !pago(x)).sort((a, b) => a.st.n - b.st.n);
-  const colunas = [];
-  for (let d = 0; d <= J; d++) {
-    const quadrados = marcas.filter(x => x.st.n === d).map(x => `<a class="pt ${x.st.n <= 7 ? 'perto' : ''}" href="#${slug(x)}" title="${esc(String(x.t).replace(/s+/g, ' '))}"></a>`).join('');
-    colunas.push(`<div class="co">${quadrados}</div>`);
-  }
-  const tl = colunas.join('');
-  const eixo = [0, 7, 14, 30, 45, 60].map(d => `<span style="left:${(d + .5) / (J + 1) * 100}%">${d === 0 ? 'hoje' : '+' + d + ' d'}</span>`).join('');
+  /* "Semana a semana": as próximas 6 semanas (segunda a domingo), cada coluna com as chamadas que fecham nela.
+     Substitui o histograma de quadrados: aqui dá para LER o que fecha, e clicar. Residência com taxa fica de fora. */
+  const SEM = 6;
+  const seg0 = (() => { const d = new Date(HOJE + 'T12:00:00Z'); const w = (d.getUTCDay() + 6) % 7; return new Date(d.getTime() - w * 864e5); })();
+  const iso = d => d.toISOString().slice(0, 10);
+  const marcas = todos.filter(x => x.prazo && x.st.n >= 0 && !pago(x));
+  const semanas = Array.from({ length: SEM }, (_, i) => {
+    const ini = new Date(seg0.getTime() + i * 7 * 864e5), fim = new Date(ini.getTime() + 6 * 864e5);
+    const itens = marcas.filter(x => x.prazo >= iso(ini) && x.prazo <= iso(fim)).sort((p, q) => p.prazo.localeCompare(q.prazo));
+    const rot = i === 0 ? 'Esta semana' : i === 1 ? 'Semana que vem' : +iso(ini).slice(8) + ' a ' + +iso(fim).slice(8) + ' ' + MES[+iso(fim).slice(5, 7) - 1];
+    return { rot, ini: iso(ini), fim: iso(fim), itens };
+  });
+  const tl = semanas.map(s => {
+    const mostra = s.itens.slice(0, 6), resto = s.itens.length - mostra.length;
+    return '<div class="sm"><h3>' + esc(s.rot) + '<b>' + s.itens.length + '</b></h3>' +
+      (mostra.length ? '<ul>' + mostra.map(x => '<li><a href="#' + slug(x) + '"><i class="' + (x.st.n <= 3 ? 'urg' : '') + '">' + (+x.prazo.slice(8)) + '</i><span>' + esc(String(x.t).replace(/\s+/g, ' ').slice(0, 58)) + (String(x.t).length > 58 ? '…' : '') + '</span></a></li>').join('') + '</ul>' : '<p class="vz">nada fecha</p>') +
+      (resto > 0 ? '<p class="mais">+ ' + resto + ' nesta semana, na lista abaixo</p>' : '') + '</div>';
+  }).join('');
+  const eixo = '';
   const maisPerto = abertos.find(x => x.prazo);
 
   const css = `<style>
@@ -474,13 +486,19 @@ ${custo}
 .e2prox small{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--mute)}
 .e2prox b{display:block;font-weight:800;font-size:clamp(54px,9vw,150px);line-height:.8;letter-spacing:-.07em;color:var(--terra)}
 .e2prox span{display:block;font-size:13px;margin-top:8px;letter-spacing:.04em;max-width:26ch;margin-left:auto}
-.e2l{overflow-x:auto;border-top:2px solid var(--ink);margin:0 0 clamp(18px,2.4vw,30px);padding:18px 0 0}
-.e2l .in{display:grid;grid-template-columns:repeat(${J + 1},minmax(0,1fr));gap:2px;align-items:end;min-width:760px;min-height:34px;border-bottom:1px solid var(--ink)}
-.e2l .co{display:flex;flex-direction:column-reverse;gap:2px}
-.e2l .pt{display:block;aspect-ratio:1;background:var(--ink);transition:transform .1s}.e2l .pt.perto{background:var(--terra)}.e2l .pt:hover{transform:scale(1.35);background:var(--terra)}
-.e2l .eixo{position:relative;min-width:760px;height:26px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--mute)}
-.e2l .eixo span{position:absolute;top:7px;transform:translateX(-50%);white-space:nowrap}.e2l .eixo span:first-child{transform:none;left:0!important}.e2l .eixo span:last-child{transform:translateX(-100%);left:100%!important}
-.e2l .nota{min-width:0;margin:0 0 8px;font-size:12px;color:var(--mute)}
+.e2l{border-top:2px solid var(--ink);margin:0 0 clamp(18px,2.4vw,30px);padding:14px 0 0}
+.e2l>.nota{margin:0 0 12px;font-size:12px;color:var(--mute);letter-spacing:.04em}
+.e2w{display:grid;grid-template-columns:repeat(${SEM},minmax(0,1fr));gap:0;border-top:1px solid var(--ink)}
+.sm{padding:12px 14px 16px 0;border-right:1px solid rgba(14,14,14,.18);min-width:0}.sm+.sm{padding-left:14px}.sm:last-child{border-right:0}
+.sm h3{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;display:flex;justify-content:space-between;margin-bottom:10px}.sm h3 b{color:var(--terra)}
+.sm ul{list-style:none}.sm li{border-top:1px solid rgba(14,14,14,.14)}
+.sm a{display:grid;grid-template-columns:26px minmax(0,1fr);gap:8px;padding:7px 0;font-size:13px;line-height:1.15}
+.sm a i{font-style:normal;font-weight:800;font-size:15px;letter-spacing:-.03em}.sm a i.urg{color:var(--terra)}
+.sm a:hover span{color:var(--terra)}
+.sm .vz,.sm .mais{font-size:12px;color:var(--mute);margin-top:6px}
+@media(max-width:1000px){.e2w{grid-template-columns:repeat(3,minmax(0,1fr))}.sm{border-bottom:1px solid rgba(14,14,14,.18)}}
+@media(max-width:620px){.e2w{grid-template-columns:1fr}.sm,.sm+.sm{padding-left:0;border-right:0}}
+.e2ics{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-bottom:1.5px solid var(--ink);margin-left:14px;white-space:nowrap}.e2ics:hover{color:var(--terra);border-color:var(--terra)}
 .e2f{position:sticky;top:0;z-index:5;background:var(--paper);padding:10px 0 4px;margin-bottom:6px;border-bottom:1.5px solid rgba(14,14,14,.18)}
 .e2f .busca{font-size:clamp(18px,2.2vw,30px);margin:0 0 12px;padding-bottom:8px}
 .e2f .chips{margin-bottom:8px}
@@ -497,7 +515,7 @@ ul.e2 li:target .t{color:var(--terra)}
 .e2t .l2{margin-top:8px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;font-weight:700}
 .cl{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:15px;max-width:68ch;margin:10px 0 0}
 .e2c{margin-top:10px;font-size:13.5px;max-width:68ch}.e2c b{font-weight:800;margin-right:6px}.e2c.ok b{color:var(--ink);box-shadow:inset 0 -.45em 0 rgba(201,111,74,.28)}.e2c.taxa b{color:var(--terra)}
-.e2b{white-space:nowrap}
+.e2b{white-space:nowrap}.e2a{display:flex;flex-direction:column;align-items:flex-end;gap:10px}.e2a .e2ics{margin-left:0}
 .e2g h2 small{margin-left:12px}
 .e2g[data-g="1"] h2{color:var(--terra)}
 .e2g[data-g="6"]{margin-top:clamp(34px,5vw,72px)}
@@ -518,7 +536,7 @@ ul.e2 li:target .t{color:var(--terra)}
 <p class="voz">O que está aberto agora, com o prazo que vence primeiro no começo. Residência em que o artista paga fica separada, lá no fim.</p>
 ${maisPerto ? `<div class="e2prox"><small>Fecha primeiro</small><b${maisPerto.st.n === 0 ? ' style="font-size:clamp(40px,6vw,96px)"' : ''}>${maisPerto.st.n === 0 ? 'HOJE' : maisPerto.st.n}</b><span>${maisPerto.st.n === 0 ? '' : maisPerto.st.n === 1 ? 'dia: ' : 'dias: '}${esc(String(maisPerto.t).slice(0, 70))}</span></div>` : ''}
 </div>
-${marcas.length ? `<div class="e2l" aria-label="Prazos dos próximos 60 dias"><p class="nota">Cada quadrado é uma chamada, no dia em que fecha. Clique para ir até ela.</p><div class="in">${tl}</div><div class="eixo">${eixo}</div></div>` : ''}
+${marcas.length ? `<div class="e2l" aria-label="Prazos semana a semana"><p class="nota">Semana a semana: o que fecha em cada uma. Clique para ir até a chamada.</p><div class="e2w">${tl}</div></div>` : ''}
 <div class="e2f">
 <input class="busca" id="q" type="search" placeholder="Buscar edital, organizador ou tipo" autocomplete="off">
 <div class="chips" id="fc"><span class="rot">Tipo</span>
