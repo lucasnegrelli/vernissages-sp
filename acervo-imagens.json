@@ -2008,5 +2008,102 @@
     "img": "img/zanine-caldas-criacao-de-mundos-instituto-tomie-ohtake.jpg",
     "cred": "Cortesia Instituto Tomie Ohtake",
     "motivo": "vista da instalação com fotos e objetos, 8826x5887; sem reprodução de obra disponível"
+  },
+  "A Ressaca da democracia — Alexander Apóstol|Galeria Raquel Arnaud": {
+    "links": {
+      "siteErro": "nenhum link casou com o titulo (home + indices, ate com render)"
+    },
+    "candidatos": []
+  },
+  "Trickster — Sérgio Free|A7MA Galeria": {
+    "links": {
+      "site": "https://a7ma.com.br/veredas-2/",
+      "siteConfianca": 6
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://a7ma.com.br/wp-content/uploads/2023/06/AnyConv.com__e8a074a4-b06b-49c6-86a8-f06fd4fc97f5.webp",
+        "md5": "dd3d22f8609c23e53e409c498da06dcf",
+        "fonte": "site",
+        "w": 1200,
+        "h": 1600,
+        "kb": 95,
+        "serveObra": true,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://a7ma.com.br/wp-content/uploads/2022/07/WhatsApp-Image-2022-06-14-at-21.00.32-600x600-1.jpeg",
+        "md5": "1d59ab75e0e50db52af1c65076a20288",
+        "fonte": "site",
+        "w": 600,
+        "h": 600,
+        "kb": 89,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 3,
+        "url": "https://a7ma.com.br/wp-content/uploads/2023/06/AnyConv.com__dc42838d-0274-4414-acc7-eb70571ba45d.webp",
+        "md5": "51aca1aab530285cf5be998fcc1c447d",
+        "fonte": "site",
+        "w": 1024,
+        "h": 768,
+        "kb": 38,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 4,
+        "url": "https://a7ma.com.br/wp-content/uploads/2023/06/AnyConv.com__ffc26653-9d38-46f4-b26e-51248dc26958.webp",
+        "md5": "966823652ea35ae3be7bed712b343763",
+        "fonte": "site",
+        "w": 1024,
+        "h": 768,
+        "kb": 51,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 5,
+        "url": "https://a7ma.com.br/wp-content/uploads/2023/06/AnyConv.com__WhatsApp-Image-2022-06-30-at-18.31.32.webp",
+        "md5": "2bdd689f990e230634b688014d1a2796",
+        "fonte": "site",
+        "w": 1024,
+        "h": 768,
+        "kb": 40,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 6,
+        "url": "https://a7ma.com.br/wp-content/uploads/2023/06/AnyConv.com__0aca7e57-fb7e-43e4-bd81-61ba756760e2.webp",
+        "md5": "042a6de28fb51ef9eb4fd5eabeef9f1b",
+        "fonte": "site",
+        "w": 1024,
+        "h": 768,
+        "kb": 38,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 7,
+        "url": "https://a7ma.com.br/wp-content/uploads/2023/06/AnyConv.com__2f7bc41a-1981-4707-b58e-f6d20f3867a7.webp",
+        "md5": "02a6f4b18ed84d28aabb71a81096c228",
+        "fonte": "site",
+        "w": 1024,
+        "h": 768,
+        "kb": 38,
+        "serveObra": false,
+        "serveComFoco": false
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-11-09",
+    "escolhida": 1,
+    "img": "img/trickster-a7ma-galeria.webp",
+    "cred": "Cortesia A7MA Galeria",
+    "motivo": "auto: 1200x1600, fonte site"
   }
 }
