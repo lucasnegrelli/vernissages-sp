@@ -69,6 +69,13 @@
    "urls": [
     "https://static-assets.artlogic.net/w_2600,h_2600,c_fill,f_auto,fl_lossy,q_auto,dpr_auto/ws-mendeswood/usr/images/exhibitions/main_image_override/428/261013eeo_mwdm_067-to-al.jpg"
    ]
+  },
+  {
+   "chave": "Casa María Lionza — Sol Calero|MASP",
+   "urls": [
+    "https://artequeacontece.com.br/wp-content/uploads/2026/06/Sol-Calero-Casa-Maria-Lionza-2026_1.jpg"
+   ],
+   "max": 4500
   }
  ]
 }

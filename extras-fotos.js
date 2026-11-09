@@ -50,7 +50,7 @@ const esc = s => String(s).replace(/\\/g, '\\\\').replace(/"/g, '\\"');
       if (!fs.existsSync(dest)) {
         const r = await fetch(url, { headers: { 'user-agent': UA } });
         if (!r.ok) { console.log('  --  HTTP ' + r.status + ' ' + url); continue; }
-        if (!SECO) { await sharp(Buffer.from(await r.arrayBuffer())).rotate().resize({ width: 2800, height: 2800, fit: 'inside', withoutEnlargement: true }).jpeg({ quality: 90, mozjpeg: true }).toFile(dest); criados.push(dest); }
+        if (!SECO) { await sharp(Buffer.from(await r.arrayBuffer())).rotate().resize({ width: it.max || 2800, height: it.max || 2800, fit: 'inside', withoutEnlargement: true }).jpeg({ quality: 90, mozjpeg: true }).toFile(dest); criados.push(dest); }
       }
       campos.push(`${campo}:"${rel}"`);
       console.log('  ok  ' + it.chave.slice(0, 40) + ' -> ' + rel);
