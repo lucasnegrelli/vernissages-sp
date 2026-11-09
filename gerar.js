@@ -348,6 +348,7 @@ ap();
 
 /* ---------- editais, chamadas, residências e prêmios ---------- */
 const CAT_EDITAL = { fomento: 'Edital', residencia: 'Residência', premio: 'Prêmio', chamada: 'Chamada', bolsa: 'Bolsa' };
+const PLURAL_EDITAL = { fomento: 'Editais', residencia: 'Residências', premio: 'Prêmios', chamada: 'Chamadas', bolsa: 'Bolsas' };
 const ONDE_EDITAL = { sp: 'São Paulo', brasil: 'Brasil', exterior: 'Exterior' };
 
 function estadoEdital(ed) {
@@ -531,7 +532,7 @@ li.bc{display:flex;flex-direction:column;border-top:3px solid var(--ink);padding
 .bc-q b{font-weight:800;font-size:19px;letter-spacing:.04em;text-transform:uppercase}
 .bc-q span,.rw-q span{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
 .urg .bc-q b,.urg .bc-q span,.urg .rw-q b,.urg .rw-q span{color:var(--terra)}
-.bc-t{font-family:var(--serif);font-size:clamp(30px,2.9vw,44px);line-height:.98;letter-spacing:-.015em;margin-top:20px;text-wrap:balance;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.bc-t{font-family:var(--serif);font-size:clamp(30px,2.7vw,40px);line-height:1.02;letter-spacing:-.015em;margin-top:20px;height:3.06em;text-wrap:balance;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .bc-t:hover,.rw-t:hover{color:var(--terra)}
 .bc-d{margin-top:16px;font-size:15px;line-height:1.38;max-width:46ch;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .cd-k{margin-top:16px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--mute);line-height:1.45}
@@ -546,7 +547,7 @@ li.bc{display:flex;flex-direction:column;border-top:3px solid var(--ink);padding
 ul.e2-ex{border-top:3px solid var(--ink)}
 li.rw{display:grid;grid-template-columns:112px minmax(0,1.7fr) minmax(0,1fr) minmax(0,1fr) 170px;gap:clamp(14px,2vw,32px);align-items:baseline;border-bottom:1px solid rgba(14,14,14,.22);padding:14px 0 13px;scroll-margin-top:90px}
 .rw-q{flex-direction:column;gap:3px}.rw-q b{font-weight:800;font-size:14px;letter-spacing:.05em;text-transform:uppercase}
-.rw-t{font-family:var(--serif);font-size:clamp(21px,1.8vw,27px);line-height:1.03;letter-spacing:-.01em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.rw-t{font-family:var(--serif);font-size:25px;line-height:1.06;letter-spacing:-.01em;min-height:2.12em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .rw-k{font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;color:var(--mute);line-height:1.45}
 .rw-c .cd-et{margin:0}.rw-nd{font-size:11.5px;color:var(--mute)}
 .rw-a{display:flex;gap:14px;justify-content:flex-end;align-items:baseline;white-space:nowrap}
@@ -576,7 +577,7 @@ ${marcas.length ? `<div class="e2l" aria-label="Prazos semana a semana"><p class
 <div class="e2f">
 <input class="busca" id="q" type="search" placeholder="Buscar edital, organizador ou tipo" autocomplete="off">
 <div class="chips" id="fc"><span class="rot">Tipo</span>
-<button type="button" class="chip on" data-c="all">Todos</button>${Object.keys(CAT_EDITAL).map(c => `<button type="button" class="chip" data-c="${c}">${CAT_EDITAL[c]}s</button>`).join('')}</div>
+<button type="button" class="chip on" data-c="all">Todos</button>${Object.keys(CAT_EDITAL).map(c => `<button type="button" class="chip" data-c="${c}">${PLURAL_EDITAL[c]}</button>`).join('')}</div>
 <div class="chips" id="fa"><span class="rot">Atalhos</span><button type="button" class="chip" data-t="sete">Fecha em 7 dias</button><button type="button" class="chip" data-t="br">Só no Brasil</button><button type="button" class="chip" data-t="livre">Sem custo para o artista</button><button type="button" class="chip" data-t="taxa">Com taxa</button><button type="button" class="chip" data-t="conf">Prazo conferido</button></div>
 </div>
 <div class="cont" id="cont" aria-live="polite"></div>
