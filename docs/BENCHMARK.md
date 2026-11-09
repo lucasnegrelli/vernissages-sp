@@ -35,7 +35,7 @@ Perfis de Instagram para ver ritmo de grade e capa de carrossel: Contemporary Ar
 - (e-flux e Gallery Weekend Berlin bloquearam a captura de tela; só texto.)
 
 ### O que muda por causa disso
-1. **Capa tratada** (`carrossel.js`, tipo `capa`): obra em duotone na cor dela, título em caixa-alta, categoria em itálico no canto, data no rodapé. Implementado; falta decisão do Lucas, porque põe texto sobre uma versão processada da obra (a regra "nada sobre a obra" vale para a reprodução limpa, que continua no slide 2).
+1. **Capa em cartão de cor chapada** (cor da obra) com título tipográfico, sem a obra por baixo. A ideia do IMS de tratar a imagem como gráfico foi vetada pelo Lucas: **nunca texto sobre a obra, nem tratada**. A obra aparece limpa no slide 2.
 2. **Moldura fixa** em toda peça: marca embaixo à esquerda, data embaixo à direita, categoria em cima. Hoje cada gerador posiciona do seu jeito.
 3. **Série com molde e cor variável**, como o "Vem pro Vão": capas de série em cartão de cor chapada (a cor da obra do dia), para a grade alternar foto e cartão.
 4. **Destaques do perfil** por série: Editais, Mapa, A fundo, Abre esta semana, A pé por.

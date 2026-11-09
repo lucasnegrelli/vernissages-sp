@@ -6,7 +6,10 @@
     {
       "tipo": "hook",
       "kicker": "A fundo · Fernando Lemos",
-      "texto": "Fotografia, desenho, projeto gráfico e poesia. Um artista só."
+      "texto": "Fotografia, desenho, projeto gráfico e poesia. Um artista só.",
+      "fundo": "cor",
+      "cor": "#C96F4A",
+      "sobre": "#0E0E0E"
     },
     {
       "tipo": "obra",
