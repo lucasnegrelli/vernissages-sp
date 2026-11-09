@@ -257,7 +257,7 @@ function pagina({ titulo, desc, canonical, corpo, jsonld, wide, scripts, ogTipo 
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#F2EFE9">
-<link rel="icon" type="image/png" href="${SITE}/icon-192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="${SITE}/favicon-32.png"><link rel="icon" type="image/png" sizes="192x192" href="${SITE}/icon-192.png"><link rel="apple-touch-icon" href="${SITE}/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
