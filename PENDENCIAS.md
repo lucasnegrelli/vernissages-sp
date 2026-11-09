@@ -120,3 +120,26 @@ Latino-Americanas (MASP) também esperam conferência na fonte.
 2. O caçador diário ainda não rodou sozinho (primeiro cron 10/11 07:30 SP); a manual de 09/11 só confirmou que A Ressaca da democracia continua sem imagem em qualquer fonte.
 3. `dia-auto.yml` ainda instala e chama o Claude para legendar obra/encerra/estreia (passo "Legendar o feed"): gasta crédito todo dia, contra a regra de 08/11. Legenda por regra resolve; falta o Lucas autorizar mexer.
 4. Ideias da direção ainda não feitas: Reel "grátis", "onde ainda dá tempo", mapa vivo no story, carrossel do mês.
+
+---
+
+## Atualização de 09/11/2026, noite (continuação da sessão de direção de arte)
+
+**Feito e no ar**
+- **Postado hoje:** carrossel que apresenta a aba de Editais (15:30). Na fila: Reel "Últimos dias" (hoje 18:30), carrossel "Quem paga" (ter 10/11 12:30), carrossel "A fundo" do Fernando Lemos (qua 11/11 12:00), carrossel de aproximação da Jessica Costa (qui 12/11 19:00).
+- **Geradores novos:** `carrossel.js` (spec JSON em `carrosseis/`, texto escrito na conversa, sem IA), `detalhes.js` (aproximação real de obra), `editais-post.js` (card semanal de editais, segunda), `editais-apresenta.js`, `destaques.js` (5 capas em `destaques/`).
+- **Página de Editais v3** (`gerar.js`): hero em duas colunas, semana a semana, "No Brasil" em cards (contorno, luz que segue o cursor, inclinação, entrada em cascata) e "No exterior" em índice por prazo; atalhos de um clique; etiqueta COM TAXA; "a página cita" (hospedagem, ateliê, refeições) lido das chamadas; botão Lembrete (.ics). Plural do filtro corrigido (Editais).
+- **Favicon novo** (V claro sobre terracota). **Benchmark** em `docs/BENCHMARK.md` (MASP, IMS, Artforum, ArtConnect vistos no navegador). **Linha editorial** em `docs/LINHA-EDITORIAL.md`.
+- **Regras firmes anotadas:** nenhum texto sobre a obra, nem tratada; moldura fixa descartada (Lucas gosta de peça só de arte, tela cheia).
+- **Infra:** `publicar.yml` agora roda a cada 30 min; `REELS-USADOS.json` liberado no `.gitignore`; `dia-auto` aceita carrossel manual como feed do dia e tem Reel ter/sex/dom.
+
+**Pendências, em ordem**
+1. **Conferir hoje:** o Reel das 18:30 saiu? (o disparo manual estava num processo local; se o computador dormir, o cron de 30 min cobre, mas pode atrasar).
+2. **Primeiros Reels automáticos** (ter 10/11, sex 13/11, dom 15/11) e o card de editais (seg 16/11): ver o vídeo e a peça antes de confiar.
+3. **Legendas do `dia-auto` ainda chamam o Claude** (gasta crédito todo dia). Trocar por legenda por regra, como em `editais-post.js`; falta o Lucas autorizar.
+4. **Destaques do perfil:** só criam no app do celular. Capas prontas em `destaques/`; falta gerar um story por série (Editais, A fundo, Abre, A pé, Mapa) para empilhar em cada destaque.
+5. **Ideias aprovadas para fazer:** "Quem expõe o quê" (perfil de uma galeria), "Na mesma rua" (Reel de quadra), calendário mensal de aberturas (carrossel dia 1), "Só a obra" (5 imagens tela cheia), Reel "De graça" e "Onde ainda dá tempo", carrosséis de apresentação do Mapa e do Acervo, carrossel de quarta fixo ("A fundo"; próximo: Sol Calero no MASP).
+6. **Editais, limpeza de fonte:** muito título em inglês; duas chamadas de Ilhabela aparecem separadas; resumos raspados sujos ficam de fora, mas a fonte continua suja. Radar ainda lista chamada que não é de artista visual.
+7. **Gargalo de foto fresca** (regra "foto nunca repete"): o feed de obra/encerra/estreia não passa há dias; o caçador diário ainda não foi visto rodando sozinho (primeiro cron 10/11 07:30).
+8. **A testar:** feed em 1080x1440 (3:4); foto de gente nas aberturas; benchmark visual de e-flux e Gallery Weekend Berlin (bloquearam a captura).
+9. Ressaca da democracia (Raquel Arnaud) segue sem imagem até a galeria publicar.
