@@ -1,0 +1,74 @@
+{
+ "aviso": "Segunda e terceira fotos de mostras, curadas olhando a folha de contato (09/11/2026). So reproducoes de obra, sem vista de sala. O extras-fotos.js baixa, grava em img/ e acrescenta img2/img3 no dados.js.",
+ "itens": [
+  {
+   "chave": "Cantaria — Daniel Jorge|Mendes Wood DM",
+   "urls": [
+    "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto,dpr_auto/artlogicstorage/mendeswooddm/images/view/657068e0b22701890bcc3c98834cbbf3j/mendeswooddm-daniel-jorge-untitled-from-the-bandeiras-e-assentamentos-series-sem-t-tulo-da-s-rie-bandeiras-e-assentamentos-2026.jpg",
+    "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto,dpr_auto/artlogicstorage/mendeswooddm/images/view/52b3fbaecc8341dc2e91ad31d2fed9c6j/mendeswooddm-daniel-jorge-mergulho-iii-from-the-terrenos-acidentados-series-mergulho-iii-da-s-rie-terrenos-acidentados-2026.jpg"
+   ]
+  },
+  {
+   "chave": "39º Panorama da Arte Brasileira: Depois que tudo foi dito|MAM São Paulo",
+   "urls": [
+    "https://artequeacontece.com.br/wp-content/uploads/2026/05/captura-de-tela-2026-05-19-as-114154.png"
+   ]
+  },
+  {
+   "chave": "Rosa Elena Curruchich: crônicas de Comalapa|MASP",
+   "urls": [
+    "https://artequeacontece.com.br/wp-content/uploads/2026/10/Rosa-Elena-Curruchich-Van-a-escoger-capitana-del-nuevo-ano-c.-1980.-Acervo-MASP.jpg"
+   ]
+  },
+  {
+   "chave": "Estado de Transe — Dora Smék|Central Galeria",
+   "urls": [
+    "https://images.squarespace-cdn.com/content/v1/62a1065dc3312a38fe5914c1/1790789849858-WUZM35PQ32L40AS16Q4J/Dora%2BSm%25C3%25A9k_ID6341_ph%2BAna%2BPigosso_low_d.jpg?format=2500w"
+   ]
+  },
+  {
+   "chave": "vem, vira, vai, voo — Selva de Carvalho|Verve Galeria",
+   "urls": [
+    "https://www.vervegaleria.com/wp-content/uploads/2026/10/Selva-de-Carvalho_voo.jpg"
+   ]
+  },
+  {
+   "chave": "Aquilo Que Não Cabe — Jessica Costa|Zipper Galeria",
+   "urls": [
+    "https://artequeacontece.com.br/wp-content/uploads/2026/10/aquilo-que-nao-cabe-jessica-costa-zipper-galeria.jpg"
+   ]
+  },
+  {
+   "chave": "O Vaso de Ojuara — Claudia Marchetti|Zipper Galeria",
+   "urls": [
+    "https://artequeacontece.com.br/wp-content/uploads/2026/10/o-vaso-ojuara-claudia-marchetti-zipper-galeria.jpg"
+   ]
+  },
+  {
+   "chave": "Troca de segredos — Barrão|Fortes D'Aloia & Gabriel — Galeria",
+   "urls": [
+    "https://fdag.com.br/app/uploads/2026/10/fdag-barrao-202609-7.jpg"
+   ]
+  },
+  {
+   "chave": "Ver o mundo — João Luiz Musa|Luciana Brito Galeria",
+   "urls": [
+    "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto/ws-artlogicwebsite0106/usr/images/artworks/main_image/items/98/98160b3933ef4e64b77d1de9da804725/018404_2.jpg",
+    "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto/ws-artlogicwebsite0106/usr/images/artworks/main_image/items/02/02dbe465e4124119845ec52bbad49b35/018409.jpg"
+   ]
+  },
+  {
+   "chave": "Pull/Pulso — Marcia Grostein|Luciana Brito Galeria",
+   "urls": [
+    "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto/ws-artlogicwebsite0106/usr/images/artworks/main_image/items/25/25b45000818e4d70bca97ea00c0107cb/img_0023-editar_artlogic2.jpg",
+    "https://static-assets.artlogic.net/w_2600,c_limit,f_auto,fl_lossy,q_auto/ws-artlogicwebsite0106/usr/images/artworks/main_image/items/d5/d5cf76f84395464a99d4cb76f4c3c2cc/018451_fm.jpg"
+   ]
+  },
+  {
+   "chave": "Atrás da superfície — Paulo Monteiro|Mendes Wood DM — Casa Iramaia",
+   "urls": [
+    "https://static-assets.artlogic.net/w_2600,h_2600,c_fill,f_auto,fl_lossy,q_auto,dpr_auto/ws-mendeswood/usr/images/exhibitions/main_image_override/428/261013eeo_mwdm_067-to-al.jpg"
+   ]
+  }
+ ]
+}

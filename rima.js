@@ -121,7 +121,7 @@ function fotosVetadas() {
   return (_fotosVetadas = mapa);
 }
 
-function exigirObra(e, opcoes) {
+function exigirObra0(e, opcoes) {
   const rel = String(e.img || '').split('?')[0].split('#')[0].replace(/^\.?\//, '');
   const onde = 'mostra "' + e.t + '" (' + e.v + ')';
 
@@ -155,6 +155,26 @@ function exigirObra(e, opcoes) {
   if (ja) throw new Error('FOTO REPETIDA: ' + onde + ' usa uma imagem que ja saiu no feed (' + ja + '). ' +
     'Foto nao repete. Consiga outra reproducao desta mostra (garimpo) ou escolha outra.');
   return rel;
+}
+
+/* Foto extra (09/11/2026). Se a principal ja saiu no feed, tenta a 2a e a 3a reproducao da mostra
+   (img2, img3 no dados.js, curadas em fotos-extras.json). A extra nao herda o credito, o foco nem o
+   "vista" da principal: credito generico da casa, foco no centro. Muda o objeto em memoria, nao o arquivo. */
+function exigirObra(e, opcoes) {
+  try { return exigirObra0(e, opcoes); }
+  catch (erro) {
+    if (!/^(FOTO REPETIDA|VISTA DE SALA)/.test(String(erro.message))) throw erro;
+    for (const campo of ['img2', 'img3']) {
+      if (!e[campo]) continue;
+      const alt = Object.assign({}, e, { img: e[campo], cred: e['cred' + campo.slice(3)] || 'Cortesia ' + e.v, foco: undefined, vista: false, conferida: true });
+      try {
+        const rel = exigirObra0(alt, opcoes);
+        e.img = alt.img; e.cred = alt.cred; delete e.foco; e.vista = false; e.conferida = true;
+        return rel;
+      } catch (x) { /* tenta a proxima */ }
+    }
+    throw erro;
+  }
 }
 
 /* ---------- dimensoes reais, para o layout obedecer a obra ---------- */
