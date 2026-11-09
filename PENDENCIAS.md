@@ -143,3 +143,11 @@ Latino-Americanas (MASP) também esperam conferência na fonte.
 7. **Gargalo de foto fresca** (regra "foto nunca repete"): o feed de obra/encerra/estreia não passa há dias; o caçador diário ainda não foi visto rodando sozinho (primeiro cron 10/11 07:30).
 8. **A testar:** feed em 1080x1440 (3:4); foto de gente nas aberturas; benchmark visual de e-flux e Gallery Weekend Berlin (bloquearam a captura).
 9. Ressaca da democracia (Raquel Arnaud) segue sem imagem até a galeria publicar.
+
+---
+
+## 09/11/2026, fim do dia: itens 5, 6 e 7 resolvidos
+
+- **7 (foto fresca):** o veto de foto repetida tinha gasto 35 das 48 imagens em cartaz (sobravam 6). Curei 14 fotos extras de 11 mostras olhando a folha de contato (`fotos-extras.json`, `extras-fotos.js`, campos `img2`/`img3` no dados.js); o `exigirObra` cai para a extra quando a principal já saiu ou é vista de sala. Agora 13 imagens passam (eram 6). `marcarFoto()` registra no veto a foto de carrossel gerada fora do semana.js. Se o estoque voltar a secar: rodar `alt-fotos` (folha de contato das candidatas do acervo-imagens.json) e curar mais. O caçador diário roda sozinho pela primeira vez em 10/11, 07:30.
+- **6 (editais):** radar sem feira de arte e sem chamada para galerias; residência duplicada do Res Artis unida; título em inglês marcado "em inglês".
+- **5 (ideias):** feitos `soaobra.js` (carrossel "Só a obra", na fila sáb 14/11 12:00) e os Reels "De graça" e "Ainda dá tempo" (modos `gratis` e `tempo` do reel-arte.js, entram no rodízio de terça, sexta e domingo). Ficam: "Quem expõe o quê" (perfil de galeria), "Na mesma rua", calendário mensal, apresentação do Mapa e do Acervo.

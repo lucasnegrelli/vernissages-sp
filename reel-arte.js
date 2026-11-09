@@ -104,8 +104,11 @@ function escolherModo(cands, usados, V, modo) {
       rota = ord; bairro = b; break;
     }
   }
-  const mapa = { abre, fecha, rota };
-  const gosto = { 2: ['fecha', 'abre', 'rota'], 5: ['abre', 'rota', 'fecha'], 0: ['rota', 'fecha', 'abre'] }[dow] || ['abre', 'fecha', 'rota'];
+  /* De graça: entrada gratuita (campo ing.g da casa). Ainda dá tempo: fecha entre 8 e 45 dias, o oposto dos últimos dias. */
+  const gratis = umaPorCasa(cands.filter(c => c.aberta && c.v.ing && c.v.ing.g).sort((a, b) => (a.falta === null ? 999 : a.falta) - (b.falta === null ? 999 : b.falta)), N);
+  const tempo = umaPorCasa(cands.filter(c => c.aberta && c.falta !== null && c.falta >= 8 && c.falta <= 45).sort((a, b) => a.falta - b.falta), N);
+  const mapa = { abre, fecha, rota, gratis, tempo };
+  const gosto = { 2: ['fecha', 'tempo', 'abre', 'rota', 'gratis'], 5: ['abre', 'gratis', 'rota', 'fecha', 'tempo'], 0: ['rota', 'gratis', 'tempo', 'fecha', 'abre'] }[dow] || ['abre', 'fecha', 'rota', 'gratis', 'tempo'];
   /* não repete o formato dos dois últimos Reels */
   const ult = (usados._modos || []).slice(-2).map(x => x.modo);
   const ordem = modo && modo !== 'auto' ? [modo] : [...gosto.filter(m => !ult.includes(m)), ...gosto.filter(m => ult.includes(m))];
@@ -130,6 +133,8 @@ function capa(modo, pick, bairro) {
     const ate = pick[n - 1].e.fim;
     return { cnt: [n, 'exposições'], palavras: ['ÚLTIMOS', 'DIAS'], sub: D.pick([`${n} exposições fecham até ${curto(ate)}. Depois disso, só no catálogo.`, `${n} mostras em São Paulo para ver antes que acabem.`, `Fecham até ${curto(ate)}: ${n} exposições, da que sai primeiro à última.`], s) };
   }
+  if (modo === 'gratis') return { cnt: [n, 'exposições'], palavras: ['ENTRADA', 'GRÁTIS'], sub: D.pick([`${n} exposições em São Paulo que não cobram ingresso.`, `Arte de graça nesta semana: ${n} exposições, todas com entrada franca.`], s) };
+  if (modo === 'tempo') return { cnt: [n, 'exposições'], palavras: ['AINDA', 'DÁ TEMPO'], sub: D.pick([`${n} exposições que ficam em cartaz por mais uns dias. Dá para planejar.`, `Sem pressa, mas sem deixar para o fim: ${n} mostras para as próximas semanas.`], s) };
   const palavras = bairro.toUpperCase().split(/\s+/).reduce((acc, p) => { if (acc.length && (acc[acc.length - 1] + ' ' + p).length <= 9) acc[acc.length - 1] += ' ' + p; else acc.push(p); return acc; }, []);
   return { cnt: [n, 'paradas'], palavras, sub: D.pick([`${n} exposições a pé, num bairro só.`, `Um bairro, ${n} casas abertas. O percurso na ordem em que dá para andar.`], s) };
 }
@@ -149,6 +154,8 @@ function legenda(modo, pick, bairro) {
     abre: D.pick([`${n} exposições abrem em São Paulo nesta semana. Na ordem, para você se programar.`, `A agenda de aberturas da semana, do primeiro dia ao último.`], s),
     fecha: D.pick([`${n} exposições que fecham nos próximos dias em São Paulo. Quem deixou para depois, é agora.`, `Últimos dias: ${n} mostras para ver antes que acabem.`], s),
     rota: D.pick([`${n} exposições em ${bairro}, para fazer a pé numa tarde.`, `Um bairro só, ${n} casas abertas: ${bairro}.`], s),
+    gratis: D.pick([`${n} exposições com entrada gratuita em São Paulo. Arte não precisa de ingresso.`, `De graça: ${n} exposições para ver sem pagar nada.`], s),
+    tempo: D.pick([`${n} exposições que ainda ficam em cartaz por semanas. Planeje.`, `Ainda dá tempo: ${n} mostras para colocar na agenda.`], s),
   }[modo];
   const linhas = pick.map((c, i) => {
     const q = autoria(c.e) ? ', ' + quemCurto(autoria(c.e)) : '';
@@ -352,7 +359,7 @@ async function principal() {
     const rgb = await D.corDaObra(sharp, alvo);
     itens.push({ c, alvo, iw: m.width, ih: m.height, pal: D.paletaDaCor(rgb) });
   }
-  const kicker = { abre: 'Abre esta semana', fecha: 'Últimos dias', rota: bairro };
+  const kicker = { abre: 'Abre esta semana', fecha: 'Últimos dias', rota: bairro, gratis: 'De graça', tempo: 'Ainda dá tempo' };
   const pc = capa(modo, pick, bairro);
   const paletaCapa = itens[0].pal;
   const cenas = [{ tipo: 'capa', t0: 0, dur: T_CAPA, palavras: pc.palavras, sub: pc.sub, cnt: pc.cnt, campo: paletaCapa.campo, sobre: paletaCapa.sobre, kicker: pick.length + (modo === 'rota' ? ' a pé' : ' exposições') }];
@@ -361,6 +368,8 @@ async function principal() {
     const e = it.c.e;
     let num, rot, mes, nota = '';
     if (modo === 'abre') { num = String(+e.ini.slice(8)); rot = DIA[dowDe(e.ini)]; mes = MES[+e.ini.slice(5, 7) - 1]; nota = it.c.abre === 0 ? 'abre hoje' : it.c.abre === 1 ? 'abre amanhã' : ''; }
+    else if (modo === 'gratis') { num = '0'; rot = 'R$'; mes = 'DE ENTRADA'; nota = e.fim ? 'até ' + curto(e.fim) : 'em cartaz'; }
+    else if (modo === 'tempo') { const f = it.c.falta; num = String(f); rot = 'FALTAM'; mes = 'DIAS'; nota = 'fecha ' + DIA_EXT[dowDe(e.fim)] + ', ' + curto(e.fim); }
     else if (modo === 'fecha') { const f = it.c.falta; num = f === 0 ? 'HOJE' : String(f); rot = f === 0 ? 'ÚLTIMO' : 'FALTAM'; mes = f === 0 ? 'DIA' : f === 1 ? 'DIA' : 'DIAS'; nota = e.fim ? 'fecha ' + DIA_EXT[dowDe(e.fim)] + ', ' + curto(e.fim) : ''; }
     else { num = String(i + 1); rot = 'PARADA'; mes = 'DE ' + pick.length; const ant = pick[i - 1]; nota = 'ponto de partida'; if (ant) { const mt = Math.round(km(ant.v, it.c.v) * 1000 / 10) * 10; nota = (mt >= 1000 ? (mt / 1000).toFixed(1).replace('.', ',') + ' km' : mt + ' m') + ' da parada anterior'; } }
     const ate = modo === 'abre' ? (e.fim ? 'em cartaz até ' + porExtenso(e.fim) : 'abre em ' + porExtenso(e.ini)) : e.fim ? 'até ' + porExtenso(e.fim) : 'em cartaz';
