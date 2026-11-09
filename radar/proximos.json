@@ -2,16 +2,6 @@
  "gerado": "2026-11-09",
  "itens": [
   {
-   "t": "Festival internacional de jardins Hortillonnages Amiens",
-   "org": "apoio.art · Art & jardins |Hauts-de-France",
-   "cat": "Chamada",
-   "onde": "Exterior",
-   "prazo": "2026-11-09",
-   "dias": 0,
-   "conf": false,
-   "link": "https://www.artetjardins-hdf.com/appels-a-projet/"
-  },
-  {
    "t": "Residências Künstlerhaus Lauenburg -Artes Visuais, Literatura e Composição perto de Hamburg 2027",
    "org": "apoio.art · Künstlerhaus Lauenburg",
    "cat": "Residência",
@@ -120,6 +110,16 @@
    "dias": 6,
    "conf": false,
    "link": "https://resartis.org/open-call/spend-the-winter-with-us-in-a-mediterranean-region/"
+  },
+  {
+   "t": "La Porte Peinte Open Call June 2027",
+   "org": "Res Artis · France",
+   "cat": "Residência",
+   "onde": "Exterior",
+   "prazo": "2026-11-15",
+   "dias": 6,
+   "conf": false,
+   "link": "https://resartis.org/open-call/la-porte-peinte-open-call-august-2026/"
   }
  ]
 }

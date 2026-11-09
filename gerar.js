@@ -368,7 +368,7 @@ function carregarRadar() {
       (j.itens || []).forEach(x => {
         if (!x || !x.t || !x.link) return;
         /* ruído: chamada já fechada, conversa, palestra e resultado não são oportunidade aberta */
-        if (/inscri[çc][õo]es\s+(fechadas|encerradas)|\bencerrad[ao]s?\b|\bresultado\b|bate-papo|\bconversa\b|palestra|webinar|lan[çc]amento de livro/i.test(x.t)) return;
+        if (/inscri[çc][õo]es\s+(fechadas|encerradas)|\bencerrad[ao]s?\b|\bresultado\b|bate-papo|\bconversa\b|palestra|jardin|garden|webinar|lan[çc]amento de livro/i.test(x.t)) return;
         const vivo = x.prazo ? x.prazo >= HOJE : (x.pub ? difDias(x.pub, HOJE) <= 45 : (x.visto && difDias(x.visto, HOJE) <= 10));
         if (vivo) out.push({ ...x, via: x.via || via });
       });

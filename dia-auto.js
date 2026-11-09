@@ -167,7 +167,7 @@ function fase2(temStory, temFeed) {
   const fase = flag('fase', 'tudo');
   console.log(`dia-auto ${DATA} (dow ${dow}) fase=${fase}${SECO ? ' [seco]' : ''}`);
   const ja = filaDoDia();
-  const temFeed = ja.some(n => !/story/.test(n));
+  const temFeed = ja.some(n => !/story|reel|detalhes/.test(n) || /afundo/.test(n) && dow === 3);
   const temStory = ja.some(n => /story/.test(n));
   const temReel = ja.some(n => /reel/.test(n)), querReel = DIAS_REEL.includes(dow) && !temReel;
   if (temFeed && temStory && !querReel) { console.log(`fila do dia já existe (${ja.length}): nada a fazer`); return; }
