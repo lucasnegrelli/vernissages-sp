@@ -368,7 +368,7 @@ function carregarRadar() {
       (j.itens || []).forEach(x => {
         if (!x || !x.t || !x.link) return;
         /* ruído: chamada já fechada, conversa, palestra e resultado não são oportunidade aberta */
-        if (/inscri[çc][õo]es\s+(fechadas|encerradas)|\bencerrad[ao]s?\b|\bresultado\b|bate-papo|\bconversa\b|palestra|jardin|garden|webinar|lan[çc]amento de livro/i.test(x.t)) return;
+        if (/inscri[çc][õo]es\s+(fechadas|encerradas)|\bencerrad[ao]s?\b|\bresultado\b|bate-papo|\bconversa\b|palestra|jardin|\bgarden|webinar|lan[çc]amento de livro/i.test(x.t)) return;
         const vivo = x.prazo ? x.prazo >= HOJE : (x.pub ? difDias(x.pub, HOJE) <= 45 : (x.visto && difDias(x.visto, HOJE) <= 10));
         if (vivo) out.push({ ...x, via: x.via || via });
       });
@@ -402,9 +402,9 @@ function paginaEditais(editais) {
 
   /* residência em que o artista paga (lido da página da chamada): não é edital, vai para uma seção própria, no fim */
   const pago = x => x.custo === 'taxa';
-  const grupo = x => pago(x) ? 6 : !x.prazo ? 4 : x.st.n < 0 ? 5 : x.st.n <= 7 ? 1 : x.st.n <= 30 ? 2 : 3;
+  const grupo = x => !x.prazo ? 4 : x.st.n < 0 ? 5 : x.st.n <= 7 ? 1 : x.st.n <= 30 ? 2 : 3;
   const TITULO = { 1: ['Fecham esta semana', 'corra'], 2: ['Fecham neste mês', 'até 30 dias'], 3: ['Mais adiante', 'com folga'], 4: ['Sem data de fim', 'fluxo contínuo ou prazo que não consegui ler'], 5: ['Encerrados', 'só para consulta'], 6: ['Residências em que o artista paga', 'hospedagem e ateliê cobrados de quem vai'] };
-  todos.sort((a, b) => grupo(a) - grupo(b) || (a.prazo || '9999').localeCompare(b.prazo || '9999') || (b.conf - a.conf));
+  todos.sort((a, b) => grupo(a) - grupo(b) || ((a.custo === 'taxa') - (b.custo === 'taxa')) || (a.prazo || '9999').localeCompare(b.prazo || '9999') || (b.conf - a.conf));
 
   const abertos = todos.filter(x => x.st.n >= 0 && !pago(x));
   const comTaxa = todos.filter(x => x.st.n >= 0 && pago(x));
@@ -424,38 +424,46 @@ function paginaEditais(editais) {
     ? `<div class="e2d ${x.st.k}"><b>${+x.prazo.slice(8)}</b><i>${MES[+x.prazo.slice(5, 7) - 1]}${x.prazo.slice(0, 4) !== HOJE.slice(0, 4) ? ' ' + x.prazo.slice(2, 4) : ''}</i><span>${x.st.n === 0 ? 'último dia' : x.st.n > 0 ? 'faltam ' + x.st.n + (x.st.n > 1 ? ' dias' : ' dia') : 'encerrado'}</span></div>`
     : `<div class="e2d off"><b>?</b><span>ver no site</span></div>`;
 
-  const item = x => {
+  /* custo para o artista: 'taxa' (valor lido da página), 'livre' (edital, prêmio, bolsa, prazo conferido ou "com apoio") ou 'nd' (não informado) */
+  const custoK = x => x.custo === 'taxa' ? 'taxa' : (x.conf || x.custo === 'apoio' || ['fomento', 'bolsa', 'premio'].includes(x.cat)) ? 'livre' : 'nd';
+  const item = (x, extra) => {
     const busca = [x.t, x.org, CAT_EDITAL[x.cat], ONDE_EDITAL[x.onde], x.d].join(' ').toLowerCase();
     const g = grupo(x);
-    const custo = x.custo === 'taxa' ? `<div class="e2c taxa"><b>O artista paga</b> ${esc(x.taxaTxt)}</div>`
-      : x.custo === 'parcial' ? `<div class="e2c"><b>Financiada em parte</b> confira quanto sobra para o artista</div>`
-      : x.custo === 'apoio' ? `<div class="e2c ok"><b>Com apoio</b> a página fala em bolsa ou ausência de taxa</div>`
-      : x.custo === 'indefinido' ? `<div class="e2c"><b>Custo não informado</b> na página da chamada</div>`
-      : x.conf && x.taxa ? `<div class="e2c ok"><b>Inscrição</b> ${esc(x.taxa)}</div>` : '';
-    return `<li id="${slug(x)}" data-c="${x.cat}" data-o="${x.onde}" data-g="${g}" data-p="${x.prazo ? 1 : 0}" data-v="${x.conf ? 1 : 0}" data-b="${esc(busca)}">
-${data(x)}
-<div class="e2t">
-<div class="e2k">${CAT_EDITAL[x.cat]} · ${ONDE_EDITAL[x.onde]}${x.conf ? ' · <u>prazo conferido por mim</u>' : ''}</div>
-<a class="t" href="${esc(x.link)}" target="_blank" rel="noopener">${esc(x.t)}</a>
-${x.org ? `<div class="l2">${esc(x.org)}${x.pub ? ' · ' + esc(dCurta(x.pub)) : ''}</div>` : ''}
-${x.d ? `<p class="cl">${esc(x.d)}</p>` : ''}
-${custo}
-</div>
-<div class="e2a"><a class="btn e2b" href="${esc(x.link)}" target="_blank" rel="noopener">Abrir</a>${x.prazo && x.st.n >= 0 ? `<a class="e2ics" href="${ics(x)}" download="prazo-${slug(x)}.ics">Lembrete</a>` : ''}</div>
+    const etq = x.custo === 'taxa' ? `<div class="cd-et taxa"><b>Com taxa</b><span>${esc(x.taxaTxt)}</span></div>`
+      : x.custo === 'parcial' ? `<div class="cd-et"><b>Financiada em parte</b><span>confira o valor</span></div>`
+      : x.custo === 'apoio' ? `<div class="cd-et ok"><b>Com apoio</b><span>bolsa ou sem taxa</span></div>`
+      : x.custo === 'indefinido' ? `<div class="cd-et"><b>Custo não informado</b><span>ver na chamada</span></div>`
+      : x.conf && x.taxa ? `<div class="cd-et ok"><b>Inscrição</b><span>${esc(x.taxa)}</span></div>` : '';
+    const dt = x.prazo
+      ? `<div class="cd-dt"><b>${+x.prazo.slice(8)}</b><i>${MES[+x.prazo.slice(5, 7) - 1]}${x.prazo.slice(0, 4) !== HOJE.slice(0, 4) ? ' ' + x.prazo.slice(2, 4) : ''}</i></div><div class="cd-st">${x.st.n === 0 ? 'último dia' : x.st.n > 0 ? 'faltam ' + x.st.n + (x.st.n > 1 ? ' dias' : ' dia') : 'encerrado'}</div>`
+      : `<div class="cd-dt off"><b>?</b><i>sem data</i></div><div class="cd-st">ver no site</div>`;
+    const urg = x.prazo && x.st.n >= 0 && x.st.n <= 7 ? ' urg' : '';
+    return `<li class="cd${urg}${extra ? ' mais' : ''}" id="${slug(x)}" data-c="${x.cat}" data-o="${x.onde}" data-g="${g}" data-p="${x.prazo ? 1 : 0}" data-v="${x.conf ? 1 : 0}" data-k="${custoK(x)}" data-b="${esc(busca)}">
+<div class="cd-top">${dt}</div>
+<div class="cd-k">${CAT_EDITAL[x.cat]} · ${ONDE_EDITAL[x.onde]}${x.conf ? ' · prazo conferido' : ''}</div>
+<a class="cd-t" href="${esc(x.link)}" target="_blank" rel="noopener">${esc(x.t)}</a>
+${x.org ? `<div class="cd-o">${esc(String(x.org).split(' · ').pop().replace(/\s*\(.*$/, ''))}</div>` : ''}
+${etq}
+<div class="cd-foot"><a class="cd-ab" href="${esc(x.link)}" target="_blank" rel="noopener">Abrir</a>${x.prazo && x.st.n >= 0 ? `<a class="e2ics" href="${ics(x)}" download="prazo-${slug(x)}.ics">Lembrete</a>` : ''}</div>
 </li>`;
   };
 
-  let corpoLista = '', gAtual = 0;
+  const LIM = 8;
+  const porGrupo = {};
+  todos.forEach(x => { const g = grupo(x); porGrupo[g] = (porGrupo[g] || 0) + 1; });
+  const fechaGrupo = g => '</ul>' + (porGrupo[g] > LIM ? `<button type="button" class="vmais" data-t="${porGrupo[g]}">Ver todos (${porGrupo[g]})</button>` : '') + '</section>\n';
+  let corpoLista = '', gAtual = 0, kk = 0;
   todos.forEach(x => {
     const g = grupo(x);
     if (g !== gAtual) {
-      if (gAtual) corpoLista += '</ul></section>\n';
-      gAtual = g;
-      corpoLista += `<section class="bloco e2g" data-g="${g}"><h2>${TITULO[g][0]}<small>${TITULO[g][1]}</small></h2>${g === 6 ? '<p class="e2p">Programas privados, quase sempre no exterior, que cobram do artista a estadia, o ateliê e a mediação. É um formato comum e legítimo, mas não é edital: ninguém paga o seu trabalho, quem paga é você. O valor sai da própria página da chamada, o menor encontrado, e pode mudar com o tipo de quarto e a duração.</p>' : ''}<ul class="e2">\n`;
+      if (gAtual) corpoLista += fechaGrupo(gAtual);
+      gAtual = g; kk = 0;
+      corpoLista += `<section class="bloco e2g" data-g="${g}"><h2>${TITULO[g][0]}<small>${TITULO[g][1]}</small></h2><ul class="e2">\n`;
     }
-    corpoLista += item(x) + '\n';
+    corpoLista += item(x, kk++ >= LIM) + '\n';
   });
-  if (gAtual) corpoLista += '</ul></section>\n';
+  if (gAtual) corpoLista += fechaGrupo(gAtual);
+
 
   /* linha do tempo dos próximos 60 dias: cada chamada com prazo (e sem taxa) é uma marca; clicar leva à entrada */
   /* "Semana a semana": as próximas 6 semanas (segunda a domingo), cada coluna com as chamadas que fecham nela.
@@ -502,38 +510,45 @@ ${custo}
 .e2f{position:sticky;top:0;z-index:5;background:var(--paper);padding:10px 0 4px;margin-bottom:6px;border-bottom:1.5px solid rgba(14,14,14,.18)}
 .e2f .busca{font-size:clamp(18px,2.2vw,30px);margin:0 0 12px;padding-bottom:8px}
 .e2f .chips{margin-bottom:8px}
-ul.e2{list-style:none;display:block}
-ul.e2 li{display:grid;grid-template-columns:clamp(84px,9vw,128px) minmax(0,1fr) auto;gap:clamp(14px,2.6vw,36px);align-items:start;border-top:1.5px solid var(--ink);padding:22px 0 26px;scroll-margin-top:90px}
-ul.e2 li:target .t{color:var(--terra)}
-.e2d b{display:block;font-weight:800;font-size:clamp(40px,5vw,72px);line-height:.82;letter-spacing:-.06em}
-.e2d i{display:block;font-style:normal;font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin-top:5px}
-.e2d span{display:block;margin-top:5px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--mute)}
-.e2d.soon b,.e2d.soon span{color:var(--terra)}.e2d.off b{color:var(--mute)}
-.e2k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--mute);margin-bottom:8px}.e2k u{text-decoration:none;color:var(--ink)}
-.e2t .t{font-family:var(--serif);font-weight:400;font-size:clamp(26px,2.9vw,46px);line-height:1;letter-spacing:-.01em;display:block;text-wrap:balance}
-.e2t .t:hover{color:var(--terra)}
-.e2t .l2{margin-top:8px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;font-weight:700}
-.cl{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:15px;max-width:68ch;margin:10px 0 0}
-.e2c{margin-top:10px;font-size:13.5px;max-width:68ch}.e2c b{font-weight:800;margin-right:6px}.e2c.ok b{color:var(--ink);box-shadow:inset 0 -.45em 0 rgba(201,111,74,.28)}.e2c.taxa b{color:var(--terra)}
-.e2b{white-space:nowrap}.e2a{display:flex;flex-direction:column;align-items:flex-end;gap:10px}.e2a .e2ics{margin-left:0}
+ul.e2{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.4vw,20px)}
+ul.e2 li.cd{display:flex;flex-direction:column;border:1.5px solid var(--ink);padding:16px 16px 14px;min-height:300px;scroll-margin-top:90px;transition:transform .15s,box-shadow .15s}
+ul.e2 li.cd:hover{transform:translateY(-3px);box-shadow:0 6px 0 var(--ink)}
+ul.e2 li.cd:target{border-color:var(--terra);box-shadow:0 6px 0 var(--terra)}
+.cd-top{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;border-bottom:1.5px solid var(--ink);padding-bottom:12px;margin-bottom:12px}
+.cd-dt{display:flex;align-items:baseline;gap:7px}
+.cd-dt b{font-weight:800;font-size:clamp(44px,4.2vw,62px);line-height:.8;letter-spacing:-.07em}
+.cd-dt i{font-style:normal;font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.cd-dt.off b{color:var(--mute)}
+.cd-st{font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);text-align:right;line-height:1.2}
+.cd.urg .cd-dt b,.cd.urg .cd-st{color:var(--terra)}
+.cd-k{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;font-weight:700;color:var(--mute);margin-bottom:8px}
+.cd-t{font-family:var(--serif);font-size:clamp(22px,1.9vw,29px);line-height:1.02;letter-spacing:-.01em;text-wrap:balance;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.cd-t:hover{color:var(--terra)}
+.cd-o{margin-top:9px;font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;font-weight:700;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cd-et{margin-top:auto;padding-top:12px;font-size:12px;line-height:1.25}
+.cd-et b{display:inline-block;font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:10.5px;padding:3px 7px 2px;border:1.5px solid var(--ink);margin-right:6px}
+.cd-et.taxa b{background:var(--terra);border-color:var(--terra);color:var(--paper)}
+.cd-et.ok b{background:var(--ink);color:var(--paper)}
+.cd-et span{color:var(--mute)}
+.cd-foot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid rgba(14,14,14,.2)}
+.cd:not(:has(.cd-et)) .cd-foot{margin-top:auto}
+.cd-ab{font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;border-bottom:2px solid var(--ink)}.cd-ab:hover{color:var(--terra);border-color:var(--terra)}
+li.mais{display:none}.e2g.aberto li.mais,body.filtrando li.mais{display:flex}
+.vmais{display:block;margin:18px auto 0;border:1.5px solid var(--ink);padding:9px 18px;font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;background:transparent;cursor:pointer}.vmais:hover{background:var(--ink);color:var(--paper)}
+body.filtrando .vmais{display:none}
 .e2g h2 small{margin-left:12px}
 .e2g[data-g="1"] h2{color:var(--terra)}
-.e2g[data-g="6"]{margin-top:clamp(34px,5vw,72px)}
-.e2p{max-width:70ch;font-size:15px;margin:0 0 14px}
 .e2n{margin:34px 0 8px;border-top:2px solid var(--ink);padding-top:14px}
-@media(max-width:700px){
-  .e2h{grid-template-columns:1fr}.e2prox{text-align:left}.e2prox span{margin-left:0}
-  ul.e2 li{grid-template-columns:1fr;gap:10px}
-  .e2d{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}.e2d b{font-size:38px}.e2d i,.e2d span{margin:0}
-  .e2b{justify-self:start}.e2f{position:static}
-}
+@media(max-width:1180px){ul.e2{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:820px){ul.e2{grid-template-columns:repeat(2,minmax(0,1fr))}.e2h{grid-template-columns:1fr}.e2prox{text-align:left}.e2prox span{margin-left:0}.e2f{position:static}}
+@media(max-width:520px){ul.e2{grid-template-columns:1fr}ul.e2 li.cd{min-height:0}}
 </style>`;
 
   const corpo = `${css}
 <p class="kick">Para artistas, curadores e coletivos</p>
 <h1 class="g">Editais</h1>
 <div class="e2h">
-<p class="voz">O que está aberto agora, com o prazo que vence primeiro no começo. Residência em que o artista paga fica separada, lá no fim.</p>
+<p class="voz">O que está aberto agora, com o prazo que vence primeiro no começo. Residência em que o artista paga vem com a etiqueta COM TAXA, e dá para filtrar.</p>
 ${maisPerto ? `<div class="e2prox"><small>Fecha primeiro</small><b${maisPerto.st.n === 0 ? ' style="font-size:clamp(40px,6vw,96px)"' : ''}>${maisPerto.st.n === 0 ? 'HOJE' : maisPerto.st.n}</b><span>${maisPerto.st.n === 0 ? '' : maisPerto.st.n === 1 ? 'dia: ' : 'dias: '}${esc(String(maisPerto.t).slice(0, 70))}</span></div>` : ''}
 </div>
 ${marcas.length ? `<div class="e2l" aria-label="Prazos semana a semana"><p class="nota">Semana a semana: o que fecha em cada uma. Clique para ir até a chamada.</p><div class="e2w">${tl}</div></div>` : ''}
@@ -543,6 +558,7 @@ ${marcas.length ? `<div class="e2l" aria-label="Prazos semana a semana"><p class
 <button type="button" class="chip on" data-c="all">Todos</button>${Object.keys(CAT_EDITAL).map(c => `<button type="button" class="chip" data-c="${c}">${CAT_EDITAL[c]}s</button>`).join('')}</div>
 <div class="chips" id="fo"><span class="rot">Onde</span>
 <button type="button" class="chip on" data-o="all">Qualquer lugar</button><button type="button" class="chip" data-o="sp">São Paulo</button><button type="button" class="chip" data-o="brasil">Brasil</button><button type="button" class="chip" data-o="exterior">Exterior</button></div>
+<div class="chips" id="fk"><span class="rot">Custo</span><button type="button" class="chip on" data-k="all">Todos</button><button type="button" class="chip" data-k="livre">Sem custo para o artista</button><button type="button" class="chip" data-k="taxa">Com taxa</button></div>
 <div class="chips"><span class="rot">Ver</span><button type="button" class="chip" id="fv">Só prazo conferido</button><button type="button" class="chip" id="fp">Só com data de fim</button><button type="button" class="chip" id="fe">Mostrar encerrados</button></div>
 </div>
 <div class="cont" id="cont" aria-live="polite"></div>
@@ -562,21 +578,26 @@ ${todos.length ? corpoLista : '<p class="txt">Nenhuma oportunidade aberta no mom
 
   const scripts = `<script>
 (function(){
-var st={c:'all',o:'all',q:'',enc:false,conf:false,dt:false},lis=[].slice.call(document.querySelectorAll('ul.e2 li'));
+var st={c:'all',o:'all',k:'all',q:'',enc:false,conf:false,dt:false},lis=[].slice.call(document.querySelectorAll('ul.e2 li'));
 function ap(){
-  var n=0;
+  var n=0,filtrando=st.c!=='all'||st.o!=='all'||st.k!=='all'||st.q||st.conf||st.dt;
+  document.body.classList.toggle('filtrando',!!filtrando);
   lis.forEach(function(li){
-    var ok=(st.c==='all'||li.dataset.c===st.c)&&(st.o==='all'||li.dataset.o===st.o)&&(!st.q||li.dataset.b.indexOf(st.q)>-1)&&(st.enc||li.dataset.g!=='5')&&(!st.conf||li.dataset.v==='1')&&(!st.dt||li.dataset.p==='1');
+    var ok=(st.c==='all'||li.dataset.c===st.c)&&(st.o==='all'||li.dataset.o===st.o)&&(st.k==='all'||li.dataset.k===st.k)&&(!st.q||li.dataset.b.indexOf(st.q)>-1)&&(st.enc||li.dataset.g!=='5')&&(!st.conf||li.dataset.v==='1')&&(!st.dt||li.dataset.p==='1');
     li.style.display=ok?'':'none';if(ok&&li.dataset.g!=='5')n++;
   });
   [].forEach.call(document.querySelectorAll('section.e2g'),function(s){var v=[].some.call(s.querySelectorAll('li'),function(li){return li.style.display!=='none'});s.style.display=v?'':'none';});
   document.getElementById('cont').innerHTML='<b>'+n+'</b> oportunidade'+(n===1?'':'s');
 }
 function chips(id,chave){document.getElementById(id).addEventListener('click',function(e){var b=e.target.closest('.chip');if(!b)return;[].forEach.call(this.querySelectorAll('.chip'),function(c){c.classList.toggle('on',c===b)});st[chave]=b.dataset[chave];ap();});}
-chips('fc','c');chips('fo','o');
+chips('fc','c');chips('fo','o');chips('fk','k');
 function liga(id,k){document.getElementById(id).addEventListener('click',function(){st[k]=!st[k];this.classList.toggle('on',st[k]);ap();});}
 liga('fe','enc');liga('fv','conf');liga('fp','dt');
 document.getElementById('q').addEventListener('input',function(){st.q=this.value.toLowerCase().trim();ap();});
+[].forEach.call(document.querySelectorAll('.vmais'),function(b){b.addEventListener('click',function(){var s=b.closest('section');var a=s.classList.toggle('aberto');b.textContent=a?'Ver menos':'Ver todos ('+b.dataset.t+')';});});
+/* link de âncora para um card escondido abre o grupo */
+function abreAlvo(){var t=location.hash&&document.getElementById(location.hash.slice(1));if(t&&t.classList.contains('mais')){t.closest('section').classList.add('aberto');t.scrollIntoView();}}
+window.addEventListener('hashchange',abreAlvo);abreAlvo();
 ap();
 })();
 </script>`;
