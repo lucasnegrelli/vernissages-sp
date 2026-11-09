@@ -22,6 +22,9 @@ jobs:
       - name: testes do proprio validador
         run: node check.test.js
 
+      - name: guarda do layout da home (Abre esta semana)
+        run: node check-layout.test.js
+
       # Checagens que dependem do calendario (carimbo do dia, destaque de hoje,
       # mostras encerradas, editais vencidos) so travam quando o commit mexe no
       # dados.js. Assim um push de README numa terca qualquer nao fica vermelho.
