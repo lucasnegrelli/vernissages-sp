@@ -63,6 +63,7 @@ async function escolher(DATA, hoje, max, soComImagem) {
     if (!V[e.v] || e.cartaz) continue;
     const c = classificar(e, hoje, soComImagem);
     if (!c) continue;
+    c.hojeRef = hoje;
     let rel = null, dim = null;
     try {
       rel = exigirObra(e, { recusarVista: true });
@@ -77,41 +78,54 @@ async function escolher(DATA, hoje, max, soComImagem) {
   return fila.slice(0, max);
 }
 
+/* ---------- story v2 (09/11/2026): papel e tinta, o fato do dia gigante, a obra inteira ----------
+   Zona segura do Instagram: nada importante nos 250 px de cima nem nos de baixo. O selo ("ABRE HOJE",
+   "ÚLTIMO DIA") vira o protagonista tipográfico na cor da obra; a imagem aparece inteira, sem texto por cima. */
 function slide(o, indice) {
-  const pal = PALETAS[o.c.paleta] || PALETAS.escuro;
   const quem = autoria(o.e);
-  const temFoco = typeof o.e.foco === 'number';
-  const imagem = o.rel
-    ? `<img class="sangra" src="${esc(o.rel)}"${temFoco ? ` style="object-position:${o.e.foco}% 50%"` : ''}>`
-    : '';
-  return `<div class="slide story story--${o.c.chave}${o.rel ? '' : ' story--tipo'}" data-i="${indice}">
-    ${imagem}
-    <div class="faixa">
-      <div class="selo">${esc(o.c.selo)}</div>
-      <div class="tit">${esc(tituloCurto(o.e))}</div>
+  const cor = (o.pal && o.pal.texto) || '#C96F4A';
+  const palavras = o.c.selo.toUpperCase().split(' ');
+  const linhas = palavras.length > 2 ? [palavras.slice(0, -1).join(' '), palavras[palavras.length - 1]] : palavras;
+  const zonaTop = 650, zonaAlt = o.rel ? 700 : 0;
+  let img = '';
+  if (o.rel) {
+    const k = Math.min(940 / o.dim.w, zonaAlt / o.dim.h);
+    const w = Math.round(o.dim.w * k), h = Math.round(o.dim.h * k);
+    const left = w < 700 ? W - 70 - w : 70;
+    img = `<img class="obra" src="${esc(o.rel)}" style="left:${left}px;top:${zonaTop + zonaAlt - h}px;width:${w}px;height:${h}px">`;
+  }
+  const tTop = o.rel ? zonaTop + zonaAlt + 40 : 700;
+  const n = tituloCurto(o.e).length;
+  const tam = n <= 14 ? 100 : n <= 24 ? 80 : n <= 36 ? 66 : n <= 52 ? 56 : 48;
+  return `<div class="slide story v2 story--${o.c.chave}${o.rel ? '' : ' story--tipo'}" data-i="${indice}" style="--ac:${cor}">
+    <div class="selo2">${linhas.map(l => '<div>' + esc(l) + '</div>').join('')}</div>
+    <div class="linha2">${esc(o.c.linha === 'hoje' ? 'hoje, ' + curto(o.c.hojeRef) : o.c.linha)}</div>
+    ${img}
+    <div class="tx2" style="top:${tTop}px">
+      <div class="tit" style="font-size:${tam}px">${esc(tituloCurto(o.e))}</div>
       ${quem ? `<div class="quem">${esc(quem)}</div>` : ''}
-      <div class="serv">${esc(o.v.name)} ${esc(arroba(o.v.ig))}<br>${esc(o.v.b)}${o.e.fim ? ' · até ' + esc(porExtenso(o.e.fim)) : ''}</div>
+      <div class="onde">${esc(o.v.name)} · ${esc(o.v.b)}</div>
+      <div class="serv">${o.e.fim ? 'até ' + esc(porExtenso(o.e.fim)) : 'em cartaz'} ${o.v.ig ? '· ' + esc(arroba(o.v.ig)) : ''}</div>
+      ${o.rel && o.e.cred ? `<div class="cred">${esc(o.e.cred)}</div>` : ''}
     </div>
-    ${o.rel && o.e.cred ? `<div class="cred">${esc(o.e.cred)}</div>` : ''}
-    <div class="marca">${MARCA_HTML}</div>
   </div>`;
 }
 
 function css(pal) {
   return `${CSS}
-    .slide.story{width:${W}px;height:${H}px;position:relative;overflow:hidden}
+    @font-face{font-family:'IS';src:url('fontes/InstrumentSerif-Italic.ttf');font-style:italic}
+    .slide.story{width:${W}px;height:${H}px;position:relative;overflow:hidden;background:#F2EFE9;color:#0E0E0E}
     .slide.story::after{display:none}
-    .story .sangra{position:absolute;left:0;top:0;width:100%;height:${ALTURA_IMAGEM}px;object-fit:cover;display:block}
-    .story .faixa{position:absolute;left:88px;right:88px;top:${ALTURA_IMAGEM + 70}px}
-    .story--tipo .faixa{top:520px}
-    .story .selo{font-size:22px;font-weight:500;letter-spacing:.30em;text-transform:uppercase;margin-bottom:26px}
-    .story .tit{font-size:68px;font-weight:400;line-height:1.1;letter-spacing:-.016em}
-    .story--tipo .tit{font-size:92px}
-    .story .quem{font-size:34px;font-weight:300;margin-top:16px}
-    .story .serv{font-size:28px;font-weight:300;margin-top:34px;line-height:1.55}
-    .story .cred{position:absolute;left:88px;right:300px;bottom:84px;font-size:18px;font-weight:300}
-    .story .marca{left:auto;right:88px;bottom:84px}
-    ${cssPaleta(pal, 0.05)}`;
+    .story .selo2{position:absolute;left:62px;top:240px;color:var(--ac);font-weight:800;text-transform:uppercase;line-height:.84;letter-spacing:-.075em;font-size:210px;white-space:nowrap}
+    .story .linha2{position:absolute;left:70px;top:590px;font-family:'IS',serif;font-style:italic;font-size:44px;color:#0E0E0E;line-height:1}
+    .story .obra{position:absolute;object-fit:contain;display:block}
+    .story .tx2{position:absolute;left:70px;right:70px}
+    .story .tit{font-weight:800;text-transform:uppercase;letter-spacing:-.035em;line-height:.93}
+    .story .quem{font-family:'IS',serif;font-style:italic;font-size:44px;line-height:1.04;margin-top:16px}
+    .story .onde{font-weight:800;font-size:26px;letter-spacing:.15em;text-transform:uppercase;margin-top:20px}
+    .story .serv{font-weight:500;font-size:24px;letter-spacing:.1em;text-transform:uppercase;margin-top:6px;color:#6f6a60}
+    .story .cred{position:static;width:auto;font-size:17px;font-weight:500;color:#9a948a;margin-top:14px}
+    .story--tipo .tx2{top:760px}`;
 }
 
 async function principal() {
@@ -133,7 +147,7 @@ async function principal() {
   const saida = path.resolve(RAIZ, flag('out', path.join('SOCIAL', hoje.slice(5, 7), hoje.slice(8, 10))));
   fs.mkdirSync(saida, { recursive: true });
 
-  const puppeteer = require(path.join(RAIZ, '.render', 'node_modules', 'puppeteer-core'));
+  const puppeteer = require(path.join(process.env.RENDER_DIR || path.join(RAIZ, '.render'), 'node_modules', 'puppeteer-core'));
   const browser = await puppeteer.launch({
     executablePath: process.env.CHROME || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
     headless: 'new',
@@ -141,14 +155,15 @@ async function principal() {
     defaultViewport: { width: W, height: H, deviceScaleFactor: 1 }
   });
 
+  const D = require('./direcao.js');
+  let sharpC = null; try { sharpC = require(path.join(process.env.RENDER_DIR || path.join(RAIZ, '.render'), 'node_modules', 'sharp')); } catch (x) { /* sem sharp: cor da casa */ }
+  for (const o of lista) { try { o.pal = D.paletaDaCor(o.rel && sharpC ? await D.corDaObra(sharpC, path.resolve(RAIZ, o.rel)) : null); } catch (x) { o.pal = D.paletaDaCor(null); } }
   const tmp = path.join(RAIZ, '.stories-tmp.html');
   const feitos = [];
   for (let i = 0; i < lista.length; i++) {
     const o = lista[i];
     const pal = PALETAS[o.c.paleta] || PALETAS.escuro;
-    const html = `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>${css(pal)}
-      .story .selo{color:${pal.fraco}} .story .quem{color:${pal.meio}} .story .serv{color:${pal.meio}}
-      .story .tit{color:${pal.texto}}</style></head><body>${slide(o, i)}</body></html>`;
+    const html = `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>${css(pal)}</style></head><body>${slide(o, i)}</body></html>`;
     fs.writeFileSync(tmp, html, 'utf8');
     const page = await browser.newPage();
     page.on('pageerror', x => console.log('PAGEERROR: ' + x.message));
