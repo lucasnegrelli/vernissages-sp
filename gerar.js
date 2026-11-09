@@ -368,7 +368,7 @@ function carregarRadar() {
       (j.itens || []).forEach(x => {
         if (!x || !x.t || !x.link) return;
         /* ruído: chamada já fechada, conversa, palestra e resultado não são oportunidade aberta */
-        if (/inscri[çc][õo]ess+(fechadas|encerradas)|encerrad[ao]s?|resultado|bate-papo|conversa|palestra|webinar|lan[çc]amento de livro/i.test(x.t)) return;
+        if (/inscri[çc][õo]es\s+(fechadas|encerradas)|\bencerrad[ao]s?\b|\bresultado\b|bate-papo|\bconversa\b|palestra|webinar|lan[çc]amento de livro/i.test(x.t)) return;
         const vivo = x.prazo ? x.prazo >= HOJE : (x.pub ? difDias(x.pub, HOJE) <= 45 : (x.visto && difDias(x.visto, HOJE) <= 10));
         if (vivo) out.push({ ...x, via: x.via || via });
       });
@@ -410,6 +410,12 @@ function paginaEditais(editais) {
   const comTaxa = todos.filter(x => x.st.n >= 0 && pago(x));
   const fecham7 = abertos.filter(x => x.prazo && x.st.n <= 7).length;
   try { fs.writeFileSync(path.join(RAIZ, 'radar', 'resumo.json'), JSON.stringify({ abertos: abertos.length, fecham7, atualizado: HOJE })); } catch (_) {}
+  /* o que fecha primeiro, para o card de editais do Instagram (editais-post.js): sem taxa, com prazo, ainda aberto */
+  try {
+    const prox = abertos.filter(x => x.prazo).sort((a, b) => a.prazo.localeCompare(b.prazo) || (b.conf - a.conf)).slice(0, 12)
+      .map(x => ({ t: x.t, org: x.org || '', cat: CAT_EDITAL[x.cat], onde: ONDE_EDITAL[x.onde], prazo: x.prazo, dias: x.st.n, conf: !!x.conf, link: x.link }));
+    fs.writeFileSync(path.join(RAIZ, 'radar', 'proximos.json'), JSON.stringify({ gerado: HOJE, itens: prox }, null, 1));
+  } catch (_) {}
 
   const slug = x => 'e-' + String(x.t).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').slice(0, 40);
   const data = x => x.prazo

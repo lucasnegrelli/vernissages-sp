@@ -67,7 +67,19 @@ function post(formato) {
   return p;
 }
 
+/* Segunda-feira: o feed é o card de editais (radar do site, sem IA). Sem 3 chamadas fechando em 14 dias, cai no fluxo normal. */
+function gerarEditais() {
+  if (dow !== 1) return null;
+  try { rodar('editais-post.js', [`--date=${DATA}`, `--out=${path.relative(RAIZ, PASTA)}`]); }
+  catch (e) { console.log('editais: ' + (String(e.stdout || '') + String(e.stderr || '') || e.message).trim().split(String.fromCharCode(10)).slice(-1)[0]); return null; }
+  const ok = arquivos().some(x => x.startsWith('editais') && x.endsWith('.png'));
+  if (ok) console.log('feed: editais gerado');
+  return ok ? 'editais' : null;
+}
+
 function gerarFeed() {
+  const ed = gerarEditais();
+  if (ed) return ed;
   const ordem = dow === 4 ? ['agenda', 'encerra', 'obra'] : ['encerra', 'obra', 'estreia', 'agenda'];
   const motivos = [];
   for (const f of ordem) {
@@ -132,8 +144,7 @@ function fase1() {
     // tira o que sobrou de tentativas que não foram a escolhida
     for (const x of arquivos())
       if (x.endsWith('.png') && !x.startsWith(feed) && !x.startsWith('story')) fs.rmSync(path.join(PASTA, x), { force: true });
-    const n = fatos(feed);
-    console.log(`feed ${feed}: ${n} mostra(s) nos fatos`);
+    if (feed !== 'editais') { const n = fatos(feed); console.log(`feed ${feed}: ${n} mostra(s) nos fatos`); }
   }
   return feed;
 }
