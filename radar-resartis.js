@@ -36,7 +36,20 @@ const BOLSA = /scholarship|bursary|fellowship|grant/i;
 const MOEDA = '(?:USD|US\\$|EUR|€|£|GBP|CAD|AUD|CHF|\\$)';
 const NUM = '(\\d{1,3}(?:[.,]\\d{3})+|\\d{3,6})';
 const REVALOR = new RegExp('(?:(' + MOEDA + ')\\s?' + NUM + ')|(?:' + NUM + '\\s?(' + MOEDA + '))', 'g');
+const CITA = [
+  ['hospedagem', /accommodation|housing|lodging|bedroom|private room|shared room|guest ?house/i],
+  ['ateliê', /\bstudio\b|work ?space|atelier/i],
+  ['refeições', /breakfast|\bmeals?\b|\blunch\b|\bdinner\b/i],
+  ['tutoria', /\btutor|\bmentor|curatorial (support|guidance)/i],
+  ['exposição', /open studio|final (exhibition|presentation)|exhibition at the end/i],
+];
 function lerCusto(html) {
+  const r = lerCusto0(html);
+  const txt = decodeHTML(html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<nav[\s\S]*?<\/nav>|<footer[\s\S]*?<\/footer>/gi, ' ').replace(/<[^>]*>/g, ' ')).replace(/\s+/g, ' ').split(/Calls? for Speakers|Related (posts|calls)|Share this/i)[0];
+  r.cita = CITA.filter(([, re]) => re.test(txt)).map(([n]) => n);
+  return r;
+}
+function lerCusto0(html) {
   const txt = decodeHTML(html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<nav[\s\S]*?<\/nav>|<footer[\s\S]*?<\/footer>/gi, ' ').replace(/<[^>]*>/g, ' ')).replace(/\s+/g, ' ');
   const corpo = txt.split(/Calls? for Speakers|Related (posts|calls)|Share this/i)[0];
   const achados = [];
@@ -112,7 +125,7 @@ function ler(html) {
   const finais = [...porLink.values()].sort((a, b) => a.prazo.localeCompare(b.prazo));
   /* custo: uma leitura por chamada (guardada no arquivo; só relê se ainda não sabe) */
   if (!argv.includes('--sem-custo')) for (const x of finais) {
-    if (x.custo) continue;
+    if (x.custo && x.cita) continue;
     try { Object.assign(x, lerCusto(await paginaChamada(x.link))); } catch (e) { x.custo = 'indefinido'; x.taxaTxt = ''; }
   }
   fs.mkdirSync(path.dirname(SAIDA), { recursive: true });

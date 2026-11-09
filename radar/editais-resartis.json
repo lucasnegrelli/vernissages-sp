@@ -14,7 +14,11 @@
    "visto": "2026-11-04",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 350 EUR, menciona bolsa"
+   "taxaTxt": "a partir de 350 EUR, menciona bolsa",
+   "cita": [
+    "hospedagem",
+    "ateliê"
+   ]
   },
   {
    "t": "PATAGONIA ARGENTINA – 2027 multidisciplinary program",
@@ -28,7 +32,12 @@
    "visto": "2026-11-04",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 2.590 USD, menciona bolsa"
+   "taxaTxt": "a partir de 2.590 USD, menciona bolsa",
+   "cita": [
+    "hospedagem",
+    "ateliê",
+    "refeições"
+   ]
   },
   {
    "t": "Summer 2027 Byrdcliffe Historic Cottage Residency",
@@ -42,7 +51,14 @@
    "visto": "2026-11-04",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 4.500 USD, menciona bolsa"
+   "taxaTxt": "a partir de 4.500 USD, menciona bolsa",
+   "cita": [
+    "hospedagem",
+    "ateliê",
+    "refeições",
+    "tutoria",
+    "exposição"
+   ]
   },
   {
    "t": "OPEN CALL Residency 2027 l México City",
@@ -56,7 +72,12 @@
    "visto": "2026-11-05",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 30.000 USD"
+   "taxaTxt": "a partir de 30.000 USD",
+   "cita": [
+    "hospedagem",
+    "ateliê",
+    "exposição"
+   ]
   },
   {
    "t": "ILHABELA ISLAND, BRAZIL – FEB/MARCH 2027",
@@ -70,7 +91,13 @@
    "visto": "2026-11-05",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 1.950 USD"
+   "taxaTxt": "a partir de 1.950 USD",
+   "cita": [
+    "hospedagem",
+    "ateliê",
+    "refeições",
+    "tutoria"
+   ]
   },
   {
    "t": "Skyline of Venice Partially Funded Residency in a cool Apartment and Exhibition Space blow 26/27",
@@ -84,7 +111,12 @@
    "visto": "2026-11-05",
    "via": "plataforma",
    "custo": "parcial",
-   "taxaTxt": "financiada em parte, confira o valor"
+   "taxaTxt": "financiada em parte, confira o valor",
+   "cita": [
+    "hospedagem",
+    "ateliê",
+    "exposição"
+   ]
   },
   {
    "t": "La Storta Partially Sponsored Residency and Exhibition Space in the heart of Venice 2026/2027",
@@ -98,7 +130,12 @@
    "visto": "2026-11-05",
    "via": "plataforma",
    "custo": "parcial",
-   "taxaTxt": "financiada em parte, confira o valor"
+   "taxaTxt": "financiada em parte, confira o valor",
+   "cita": [
+    "hospedagem",
+    "ateliê",
+    "tutoria"
+   ]
   },
   {
    "t": "MYREN GÅRD, Kristiansand, Norway, AIR, Open Call – 2027",
@@ -112,7 +149,12 @@
    "visto": "2026-11-05",
    "via": "plataforma",
    "custo": "apoio",
-   "taxaTxt": ""
+   "taxaTxt": "",
+   "cita": [
+    "hospedagem",
+    "ateliê",
+    "exposição"
+   ]
   },
   {
    "t": "OPEN CALL・On-line Residency (January – March 2027)",
@@ -126,7 +168,13 @@
    "visto": "2026-11-05",
    "via": "plataforma",
    "custo": "apoio",
-   "taxaTxt": ""
+   "taxaTxt": "",
+   "cita": [
+    "hospedagem",
+    "ateliê",
+    "tutoria",
+    "exposição"
+   ]
   },
   {
    "t": "AMAZONIA – multidisciplinary residence in the Amazon",
@@ -140,7 +188,12 @@
    "visto": "2026-11-06",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 2.590 USD, menciona bolsa"
+   "taxaTxt": "a partir de 2.590 USD, menciona bolsa",
+   "cita": [
+    "hospedagem",
+    "ateliê",
+    "refeições"
+   ]
   },
   {
    "t": "Ilhabela Island, Brazil, 2027 MULTIDISCIPLINARY RESIDENCE –",
@@ -154,7 +207,13 @@
    "visto": "2026-11-06",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 1.950 USD"
+   "taxaTxt": "a partir de 1.950 USD",
+   "cita": [
+    "hospedagem",
+    "ateliê",
+    "refeições",
+    "tutoria"
+   ]
   },
   {
    "t": "Joya: BERILO",
@@ -168,7 +227,11 @@
    "visto": "2026-11-07",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 450 EUR"
+   "taxaTxt": "a partir de 450 EUR",
+   "cita": [
+    "hospedagem",
+    "ateliê"
+   ]
   },
   {
    "t": "Joya: AiR / spring residencies 2027",
@@ -182,7 +245,12 @@
    "visto": "2026-11-07",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 400 EUR"
+   "taxaTxt": "a partir de 400 EUR",
+   "cita": [
+    "hospedagem",
+    "ateliê",
+    "refeições"
+   ]
   },
   {
    "t": "February Retreat 2027 – ARiR Guiniguada, Gran Canaria",
@@ -196,7 +264,11 @@
    "visto": "2026-11-07",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 230 EUR"
+   "taxaTxt": "a partir de 230 EUR",
+   "cita": [
+    "hospedagem",
+    "ateliê"
+   ]
   },
   {
    "t": "Greek Island Residency with a City Experience.",
@@ -210,7 +282,11 @@
    "visto": "2026-11-07",
    "via": "plataforma",
    "custo": "indefinido",
-   "taxaTxt": ""
+   "taxaTxt": "",
+   "cita": [
+    "hospedagem",
+    "ateliê"
+   ]
   },
   {
    "t": "KORDON WINTER-SPRING 2027",
@@ -224,7 +300,11 @@
    "visto": "2026-11-08",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 715 EUR"
+   "taxaTxt": "a partir de 715 EUR",
+   "cita": [
+    "hospedagem",
+    "ateliê"
+   ]
   },
   {
    "t": "Printmaking in Milan: Last minute residency opportunity – December 2026",
@@ -238,7 +318,11 @@
    "visto": "2026-11-08",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 350 EUR, menciona bolsa"
+   "taxaTxt": "a partir de 350 EUR, menciona bolsa",
+   "cita": [
+    "hospedagem",
+    "ateliê"
+   ]
   },
   {
    "t": "Hub Feenix Residency 2027",
@@ -252,7 +336,13 @@
    "visto": "2026-11-09",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 800 EUR"
+   "taxaTxt": "a partir de 800 EUR",
+   "cita": [
+    "hospedagem",
+    "ateliê",
+    "refeições",
+    "exposição"
+   ]
   },
   {
    "t": "LONG DAYS AND STARRY NIGHTS SUMMER IN PATAGONIA",
@@ -266,7 +356,11 @@
    "visto": "2026-11-09",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 500 USD"
+   "taxaTxt": "a partir de 500 USD",
+   "cita": [
+    "hospedagem",
+    "ateliê"
+   ]
   },
   {
    "t": "Reviving Nature 2027 — International Artist Residency & Festival | Chiang Mai, Thailand",
@@ -280,7 +374,12 @@
    "visto": "2026-11-09",
    "via": "plataforma",
    "custo": "indefinido",
-   "taxaTxt": ""
+   "taxaTxt": "",
+   "cita": [
+    "hospedagem",
+    "ateliê",
+    "exposição"
+   ]
   },
   {
    "t": "Early bird call for Summer Retreat 2027 – ARiR Guiniguada, Gran Canaria",
@@ -294,7 +393,11 @@
    "visto": "2026-11-09",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 1.050 EUR"
+   "taxaTxt": "a partir de 1.050 EUR",
+   "cita": [
+    "hospedagem",
+    "ateliê"
+   ]
   },
   {
    "t": "Art Residency Available – DECEMBER 2026 – Colombia",
@@ -308,7 +411,11 @@
    "visto": "2026-11-09",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 945 USD"
+   "taxaTxt": "a partir de 945 USD",
+   "cita": [
+    "hospedagem",
+    "ateliê"
+   ]
   },
   {
    "t": "Special Winter Offer – Dec 2026 at Hub Feenix Residency",
@@ -322,7 +429,12 @@
    "visto": "2026-11-09",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 700 EUR"
+   "taxaTxt": "a partir de 700 EUR",
+   "cita": [
+    "hospedagem",
+    "ateliê",
+    "exposição"
+   ]
   },
   {
    "t": "'In Simplicitate Libertas' 1-Week UNESCO Site Discovery",
@@ -336,7 +448,11 @@
    "visto": "2026-11-09",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 550 EUR, menciona bolsa"
+   "taxaTxt": "a partir de 550 EUR, menciona bolsa",
+   "cita": [
+    "hospedagem",
+    "ateliê"
+   ]
   },
   {
    "t": "OPEN CALL: self-guided – all artists – ART14 Residency",
@@ -350,7 +466,12 @@
    "visto": "2026-11-09",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 400 USD, menciona bolsa"
+   "taxaTxt": "a partir de 400 USD, menciona bolsa",
+   "cita": [
+    "hospedagem",
+    "ateliê",
+    "exposição"
+   ]
   },
   {
    "t": "2027 Open Call Essere Residency",
@@ -364,7 +485,13 @@
    "visto": "2026-11-09",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 1.000 EUR, menciona bolsa"
+   "taxaTxt": "a partir de 1.000 EUR, menciona bolsa",
+   "cita": [
+    "hospedagem",
+    "ateliê",
+    "refeições",
+    "tutoria"
+   ]
   },
   {
    "t": "Spend the Winter with Us: Intaglio Etching, Aquatint and Letterpress in the Mediterranean",
@@ -378,7 +505,12 @@
    "visto": "2026-11-09",
    "via": "plataforma",
    "custo": "indefinido",
-   "taxaTxt": ""
+   "taxaTxt": "",
+   "cita": [
+    "hospedagem",
+    "ateliê",
+    "exposição"
+   ]
   },
   {
    "t": "WINTER 2026-27 | OPEN CALL | Residency at Hangar for Curators and Researchers",
@@ -392,7 +524,12 @@
    "visto": "2026-11-09",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 1.000 EUR"
+   "taxaTxt": "a partir de 1.000 EUR",
+   "cita": [
+    "hospedagem",
+    "ateliê",
+    "exposição"
+   ]
   },
   {
    "t": "WINTER 26-27 | OPEN CALL | COWORK ARTISTS RESIDENCY (No accommodation)",
@@ -406,7 +543,13 @@
    "visto": "2026-11-09",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 550 EUR"
+   "taxaTxt": "a partir de 550 EUR",
+   "cita": [
+    "hospedagem",
+    "ateliê",
+    "tutoria",
+    "exposição"
+   ]
   },
   {
    "t": "WINTER 2026-27 | OPEN CALL | Residency at Hangar for Visual Artists",
@@ -420,7 +563,13 @@
    "visto": "2026-11-09",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 1.000 EUR"
+   "taxaTxt": "a partir de 1.000 EUR",
+   "cita": [
+    "hospedagem",
+    "ateliê",
+    "tutoria",
+    "exposição"
+   ]
   },
   {
    "t": "La Porte Peinte Open Call June 2027",
@@ -434,7 +583,14 @@
    "visto": "2026-11-09",
    "via": "plataforma",
    "custo": "parcial",
-   "taxaTxt": "financiada em parte, confira o valor"
+   "taxaTxt": "financiada em parte, confira o valor",
+   "cita": [
+    "hospedagem",
+    "ateliê",
+    "refeições",
+    "tutoria",
+    "exposição"
+   ]
   },
   {
    "t": "December 2026 – Open Call for Visual Artists_Ecovillage_Spain",
@@ -448,7 +604,14 @@
    "visto": "2026-11-09",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 700 EUR"
+   "taxaTxt": "a partir de 700 EUR",
+   "cita": [
+    "hospedagem",
+    "ateliê",
+    "refeições",
+    "tutoria",
+    "exposição"
+   ]
   },
   {
    "t": "SIXI AiR OPEN CALL 2027 SPRING & AUTUMN",
@@ -462,7 +625,13 @@
    "visto": "2026-11-09",
    "via": "plataforma",
    "custo": "indefinido",
-   "taxaTxt": ""
+   "taxaTxt": "",
+   "cita": [
+    "hospedagem",
+    "ateliê",
+    "refeições",
+    "exposição"
+   ]
   },
   {
    "t": "November and Decemner — Solo or Duo in Canada's Temperate Rainforest",
@@ -476,7 +645,12 @@
    "visto": "2026-11-09",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 250 USD"
+   "taxaTxt": "a partir de 250 USD",
+   "cita": [
+    "hospedagem",
+    "ateliê",
+    "refeições"
+   ]
   },
   {
    "t": "SUMMER IN PATAGONIA Long days and starry nights. Printmaking residency",
@@ -490,7 +664,11 @@
    "visto": "2026-11-09",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 500 USD"
+   "taxaTxt": "a partir de 500 USD",
+   "cita": [
+    "hospedagem",
+    "ateliê"
+   ]
   },
   {
    "t": "RECYCLE ART LAB",
@@ -504,7 +682,11 @@
    "visto": "2026-11-09",
    "via": "plataforma",
    "custo": "indefinido",
-   "taxaTxt": ""
+   "taxaTxt": "",
+   "cita": [
+    "hospedagem",
+    "ateliê"
+   ]
   },
   {
    "t": "Nature Morte: The Natural History of Death",
@@ -518,7 +700,11 @@
    "visto": "2026-11-09",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 600 USD"
+   "taxaTxt": "a partir de 600 USD",
+   "cita": [
+    "hospedagem",
+    "ateliê"
+   ]
   },
   {
    "t": "ILLAPSE RESIDENCY PROGRAM WINTER 2027",
@@ -532,7 +718,11 @@
    "visto": "2026-11-09",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 500 EUR"
+   "taxaTxt": "a partir de 500 EUR",
+   "cita": [
+    "hospedagem",
+    "ateliê"
+   ]
   },
   {
    "t": "Sheni Studio and Residency — Open Call for International Artists",
@@ -546,7 +736,12 @@
    "visto": "2026-11-09",
    "via": "plataforma",
    "custo": "parcial",
-   "taxaTxt": "financiada em parte, confira o valor"
+   "taxaTxt": "financiada em parte, confira o valor",
+   "cita": [
+    "hospedagem",
+    "ateliê",
+    "refeições"
+   ]
   },
   {
    "t": "SYMPOIESIS / Open call 2027",
@@ -560,7 +755,13 @@
    "visto": "2026-11-09",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 300 EUR"
+   "taxaTxt": "a partir de 300 EUR",
+   "cita": [
+    "hospedagem",
+    "ateliê",
+    "tutoria",
+    "exposição"
+   ]
   },
   {
    "t": "Collective residency",
@@ -574,7 +775,12 @@
    "visto": "2026-11-09",
    "via": "plataforma",
    "custo": "indefinido",
-   "taxaTxt": ""
+   "taxaTxt": "",
+   "cita": [
+    "hospedagem",
+    "ateliê",
+    "refeições"
+   ]
   },
   {
    "t": "AEGEAN FUTURES – 2027 Art Residency in Greece",
@@ -588,7 +794,11 @@
    "visto": "2026-11-09",
    "via": "plataforma",
    "custo": "taxa",
-   "taxaTxt": "a partir de 500 EUR"
+   "taxaTxt": "a partir de 500 EUR",
+   "cita": [
+    "hospedagem",
+    "ateliê"
+   ]
   }
  ]
 }

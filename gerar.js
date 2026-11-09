@@ -395,7 +395,7 @@ function paginaEditais(editais) {
     }),
     ...radar.map(r => {
       const cat = r.cat in CAT_EDITAL ? r.cat : 'chamada';
-      return { conf: false, t: r.t, org: r.fonte || '', cat, onde: r.onde in ONDE_EDITAL ? r.onde : 'brasil', prazo: r.prazo || '', link: r.link, d: r.resumo || '', pub: r.pub, custo: r.custo || '', taxaTxt: r.taxaTxt || '',
+      return { conf: false, t: r.t, org: r.fonte || '', cat, onde: r.onde in ONDE_EDITAL ? r.onde : 'brasil', prazo: r.prazo || '', link: r.link, d: r.resumo || '', pub: r.pub, custo: r.custo || '', taxaTxt: r.taxaTxt || '', cita: r.cita || [],
         meta: r.via === 'site' ? 'Lido na página oficial de quem abriu a chamada' : r.via === 'plataforma' ? 'Listado por ' + String(r.fonte || '').split(' · ')[0] + '; o link leva à página do programa' : 'Achado automaticamente' + (r.via === 'instagram' ? ' no Instagram' : '') };
     })
   ].map(x => ({ ...x, st: estadoEdital({ prazo: x.prazo }) }));
@@ -446,9 +446,10 @@ function paginaEditais(editais) {
     : x.conf && x.taxa ? `<div class="cd-et ok"><i></i><b>Inscrição</b> ${esc(x.taxa)}</div>` : '';
   /* resumo só quando é texto de gente: raspagem de menu de site, aviso de javascript e o resumo genérico do Res Artis ficam de fora */
   const descOk = x => !!x.d && x.d.length > 50 && !/Pular para|Menu |javascript|navegador|Digite aqui|cookies|\| EN|Seu navegador|leva ao programa/i.test(x.d) && !x.d.trim().toLowerCase().startsWith(String(x.t).trim().toLowerCase().slice(0, 25));
+  const citaHtml = x => x.cita && x.cita.length ? `<div class="cd-in">A página cita: ${esc(x.cita.join(', '))}</div>` : '';
   const quandoCurto = x => x.prazo ? `${+x.prazo.slice(8)} ${MES[+x.prazo.slice(5, 7) - 1]}${x.prazo.slice(0, 4) !== HOJE.slice(0, 4) ? ' ' + x.prazo.slice(2, 4) : ''}` : 'Sem data';
   const faltam = x => !x.prazo ? 'ver no site' : x.st.n === 0 ? 'último dia' : x.st.n === 1 ? 'falta 1 dia' : 'faltam ' + x.st.n + ' dias';
-  const dados = (x, g, extra, cls) => `class="${cls}${x.prazo && x.st.n <= 7 ? ' urg' : ''}${extra ? ' mais' : ''}" id="${slug(x)}" data-c="${x.cat}" data-o="${x.onde}" data-g="${g}" data-p="${x.prazo ? 1 : 0}" data-v="${x.conf ? 1 : 0}" data-k="${custoK(x)}" data-b="${esc([x.t, x.org, CAT_EDITAL[x.cat], ONDE_EDITAL[x.onde], x.d].join(' ').toLowerCase())}"`;
+  const dados = (x, g, extra, cls) => `class="${cls}${x.prazo && x.st.n <= 7 ? ' urg' : ''}${extra ? ' mais' : ''}" id="${slug(x)}" data-c="${x.cat}" data-o="${x.onde}" data-g="${g}" data-p="${x.prazo ? 1 : 0}" data-v="${x.conf ? 1 : 0}" data-n="${x.prazo ? x.st.n : ''}" data-k="${custoK(x)}" data-b="${esc([x.t, x.org, CAT_EDITAL[x.cat], ONDE_EDITAL[x.onde], x.d].join(' ').toLowerCase())}"`;
   const orgDe = x => x.org ? String(x.org).split(' · ').pop().replace(/\s*\(.*$/, '') : '';
   const botoes = x => `<a class="cd-ab" href="${esc(x.link)}" target="_blank" rel="noopener">Abrir</a>${x.prazo ? `<a class="e2ics" href="${ics(x)}" download="prazo-${slug(x)}.ics">Lembrete</a>` : ''}`;
   const cartao = (x, extra) => `<li ${dados(x, 'br', extra, 'bc')}>
@@ -457,13 +458,14 @@ function paginaEditais(editais) {
 ${descOk(x) ? `<p class="bc-d">${esc(x.d)}</p>` : ''}
 <div class="cd-k">${CAT_EDITAL[x.cat]} · ${ONDE_EDITAL[x.onde]}${orgDe(x) ? ' · ' + esc(orgDe(x)) : ''}${x.conf ? ' · prazo conferido' : ''}</div>
 ${etiqueta(x)}
+${citaHtml(x)}
 <div class="cd-foot">${botoes(x)}</div>
 </li>`;
   const linha = (x, extra) => `<li ${dados(x, 'ex', extra, 'rw')}>
 <div class="rw-q"><b>${quandoCurto(x)}</b><span>${faltam(x)}</span></div>
 <a class="rw-t" href="${esc(x.link)}" target="_blank" rel="noopener">${esc(limpaT(x.t))}</a>
 <div class="rw-k">${CAT_EDITAL[x.cat]}<br>${esc(orgDe(x) || ONDE_EDITAL[x.onde])}</div>
-<div class="rw-c">${etiqueta(x) || '<span class="rw-nd">sem informação de custo</span>'}</div>
+<div class="rw-c">${etiqueta(x) || '<span class="rw-nd">sem informação de custo</span>'}${citaHtml(x)}</div>
 <div class="rw-a">${botoes(x)}</div>
 </li>`;
 
@@ -504,7 +506,7 @@ ${etiqueta(x)}
 .e2h .voz{font-family:var(--serif);font-style:italic;font-size:clamp(22px,2.6vw,40px);line-height:1.08;max-width:30ch;margin:0}
 .e2prox{border-top:2px solid var(--ink);padding-top:10px;text-align:right}
 .e2prox small{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--mute)}
-.e2prox b{display:block;font-weight:800;font-size:clamp(54px,9vw,150px);line-height:.8;letter-spacing:-.07em;color:var(--terra)}
+.e2prox b{display:block;font-weight:800;font-size:clamp(44px,5vw,78px);line-height:.8;letter-spacing:-.07em;color:var(--terra)}
 .e2prox span{display:block;font-size:13px;margin-top:8px;letter-spacing:.04em;max-width:26ch;margin-left:auto}
 .e2l{border-top:2px solid var(--ink);margin:0 0 clamp(18px,2.4vw,30px);padding:14px 0 0}
 .e2l>.nota{margin:0 0 12px;font-size:12px;color:var(--mute);letter-spacing:.04em}
@@ -540,6 +542,7 @@ li.bc{display:flex;flex-direction:column;border-top:3px solid var(--ink);padding
 .cd-foot{margin-top:auto;padding-top:22px;display:flex;gap:18px;align-items:baseline}
 .cd-ab{font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase}.cd-ab::after{content:" →"}.cd-ab:hover,.e2ics:hover{color:var(--terra)}
 .e2ics{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);border:0}
+.cd-in{margin-top:6px;font-size:11.5px;color:var(--mute);line-height:1.3}
 ul.e2-ex{border-top:3px solid var(--ink)}
 li.rw{display:grid;grid-template-columns:112px minmax(0,1.7fr) minmax(0,1fr) minmax(0,1fr) 170px;gap:clamp(14px,2vw,32px);align-items:baseline;border-bottom:1px solid rgba(14,14,14,.22);padding:14px 0 13px;scroll-margin-top:90px}
 .rw-q{flex-direction:column;gap:3px}.rw-q b{font-weight:800;font-size:14px;letter-spacing:.05em;text-transform:uppercase}
@@ -566,7 +569,7 @@ body.filtrando .vmais{display:none}
 <p class="kick">Para artistas, curadores e coletivos</p>
 <h1 class="g">Editais</h1>
 <div class="e2h">
-<p class="voz">O que está aberto agora, com o prazo que vence primeiro no começo. Residência em que o artista paga vem com a etiqueta COM TAXA, e dá para filtrar.</p>
+<p class="voz">O que está aberto para artista agora, com o prazo que vence primeiro no começo. Residência que cobra do artista leva a etiqueta COM TAXA.</p>
 ${maisPerto ? `<div class="e2prox"><small>Fecha primeiro</small><b${maisPerto.st.n === 0 ? ' style="font-size:clamp(40px,6vw,96px)"' : ''}>${maisPerto.st.n === 0 ? 'HOJE' : maisPerto.st.n}</b><span>${maisPerto.st.n === 0 ? '' : maisPerto.st.n === 1 ? 'dia: ' : 'dias: '}${esc(String(maisPerto.t).slice(0, 70))}</span></div>` : ''}
 </div>
 ${marcas.length ? `<div class="e2l" aria-label="Prazos semana a semana"><p class="nota">Semana a semana: o que fecha em cada uma. Clique para ir até a chamada.</p><div class="e2w">${tl}</div></div>` : ''}
@@ -574,10 +577,7 @@ ${marcas.length ? `<div class="e2l" aria-label="Prazos semana a semana"><p class
 <input class="busca" id="q" type="search" placeholder="Buscar edital, organizador ou tipo" autocomplete="off">
 <div class="chips" id="fc"><span class="rot">Tipo</span>
 <button type="button" class="chip on" data-c="all">Todos</button>${Object.keys(CAT_EDITAL).map(c => `<button type="button" class="chip" data-c="${c}">${CAT_EDITAL[c]}s</button>`).join('')}</div>
-<div class="chips" id="fo"><span class="rot">Onde</span>
-<button type="button" class="chip on" data-o="all">Qualquer lugar</button><button type="button" class="chip" data-o="sp">São Paulo</button><button type="button" class="chip" data-o="brasil">Brasil</button><button type="button" class="chip" data-o="exterior">Exterior</button></div>
-<div class="chips" id="fk"><span class="rot">Custo</span><button type="button" class="chip on" data-k="all">Todos</button><button type="button" class="chip" data-k="livre">Sem custo para o artista</button><button type="button" class="chip" data-k="taxa">Com taxa</button></div>
-<div class="chips"><span class="rot">Ver</span><button type="button" class="chip" id="fv">Só prazo conferido</button><button type="button" class="chip" id="fp">Só com data de fim</button></div>
+<div class="chips" id="fa"><span class="rot">Atalhos</span><button type="button" class="chip" data-t="sete">Fecha em 7 dias</button><button type="button" class="chip" data-t="br">Só no Brasil</button><button type="button" class="chip" data-t="livre">Sem custo para o artista</button><button type="button" class="chip" data-t="taxa">Com taxa</button><button type="button" class="chip" data-t="conf">Prazo conferido</button></div>
 </div>
 <div class="cont" id="cont" aria-live="polite"></div>
 ${todos.length ? corpoLista : '<p class="txt">Nenhuma oportunidade aberta no momento.</p>'}
@@ -596,24 +596,24 @@ ${todos.length ? corpoLista : '<p class="txt">Nenhuma oportunidade aberta no mom
 
   const scripts = `<script>
 (function(){
-var st={c:'all',o:'all',k:'all',q:'',enc:false,conf:false,dt:false},lis=[].slice.call(document.querySelectorAll('ul.e2 li'));
+var st={c:'all',q:'',sete:false,br:false,k:'all',conf:false},lis=[].slice.call(document.querySelectorAll('ul.e2 li'));
 function ap(){
-  var n=0,filtrando=st.c!=='all'||st.o!=='all'||st.k!=='all'||st.q||st.conf||st.dt;
+  var n=0,filtrando=st.c!=='all'||st.q||st.sete||st.br||st.k!=='all'||st.conf;
   document.body.classList.toggle('filtrando',!!filtrando);
   lis.forEach(function(li){
-    var ok=(st.c==='all'||li.dataset.c===st.c)&&(st.o==='all'||li.dataset.o===st.o)&&(st.k==='all'||li.dataset.k===st.k)&&(!st.q||li.dataset.b.indexOf(st.q)>-1)&&(st.enc||li.dataset.g!=='5')&&(!st.conf||li.dataset.v==='1')&&(!st.dt||li.dataset.p==='1');
-    li.style.display=ok?'':'none';if(ok&&li.dataset.g!=='5')n++;
+    var d=li.dataset,ok=(st.c==='all'||d.c===st.c)&&(!st.q||d.b.indexOf(st.q)>-1)&&(!st.sete||(d.n!==''&&+d.n<=7))&&(!st.br||d.o!=='exterior')&&(st.k==='all'||d.k===st.k)&&(!st.conf||d.v==='1');
+    li.style.display=ok?'':'none';if(ok)n++;
   });
   [].forEach.call(document.querySelectorAll('section.e2g'),function(s){var v=[].some.call(s.querySelectorAll('li'),function(li){return li.style.display!=='none'});s.style.display=v?'':'none';});
   document.getElementById('cont').innerHTML='<b>'+n+'</b> oportunidade'+(n===1?'':'s');
 }
-function chips(id,chave){document.getElementById(id).addEventListener('click',function(e){var b=e.target.closest('.chip');if(!b)return;[].forEach.call(this.querySelectorAll('.chip'),function(c){c.classList.toggle('on',c===b)});st[chave]=b.dataset[chave];ap();});}
-chips('fc','c');chips('fo','o');chips('fk','k');
-function liga(id,k){document.getElementById(id).addEventListener('click',function(){st[k]=!st[k];this.classList.toggle('on',st[k]);ap();});}
-liga('fv','conf');liga('fp','dt');
+document.getElementById('fc').addEventListener('click',function(e){var b=e.target.closest('.chip');if(!b)return;[].forEach.call(this.querySelectorAll('.chip'),function(c){c.classList.toggle('on',c===b)});st.c=b.dataset.c;ap();});
+document.getElementById('fa').addEventListener('click',function(e){var b=e.target.closest('.chip');if(!b)return;var k=b.dataset.t,on=!b.classList.contains('on');
+  if(k==='livre'||k==='taxa'){[].forEach.call(this.querySelectorAll('[data-t=livre],[data-t=taxa]'),function(c){c.classList.remove('on')});st.k=on?k:'all';}
+  else st[k]=on;
+  b.classList.toggle('on',on);ap();});
 document.getElementById('q').addEventListener('input',function(){st.q=this.value.toLowerCase().trim();ap();});
 [].forEach.call(document.querySelectorAll('.vmais'),function(b){b.addEventListener('click',function(){var s=b.closest('section');var a=s.classList.toggle('aberto');b.textContent=a?'Ver menos':'Ver todos ('+b.dataset.t+')';});});
-/* link de âncora para um card escondido abre o grupo */
 function abreAlvo(){var t=location.hash&&document.getElementById(location.hash.slice(1));if(t&&t.classList.contains('mais')){t.closest('section').classList.add('aberto');t.scrollIntoView();}}
 window.addEventListener('hashchange',abreAlvo);abreAlvo();
 ap();
