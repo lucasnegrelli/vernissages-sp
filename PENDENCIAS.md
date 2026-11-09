@@ -101,3 +101,22 @@ Latino-Americanas (MASP) também esperam conferência na fonte.
 6. Decidir se "Abre esta semana" inclui também as que abriram nesta semana.
 
 **Regra firme**: automação recorrente não chama Claude nem outra IA paga.
+
+---
+
+## Atualização de 09/11/2026
+
+**Feito e no ar nesta data** (detalhe da direção em `docs/DIRECAO-DE-ARTE.md`)
+- **Direção de arte em código** (`direcao.js`): papel e tinta, cor da obra, Instrument Serif local em `fontes/`. Tudo abaixo usa isso.
+- **Reel novo** (`reel-arte.js`): três formatos (abre, fecha, rota), capa em cor chapada da obra, data gigante, véu entre cenas, mapa na cena final, batida grave nos cortes. Renderiza frame a frame no Chrome, sem IA (~35 s). O `dia-auto` roda terça, sexta e domingo; o `reel-auto.js` antigo ficou só de reserva.
+- **Feed**: etiqueta de obra, encerra e estreia refeita (data gigante na cor da obra). **Stories** refeitos (selo gigante, obra inteira, zona segura).
+- **Card de editais** (`editais-post.js`): segunda-feira, feed, lê `radar/proximos.json` (escrito pelo `gerar.js`).
+- **Página de Editais** redesenhada: histograma dos prazos, títulos em serifa, sem pílulas nem KPIs. **Residência com taxa** (lida da página da chamada, `radar-resartis.js`) vai para uma seção própria no fim; o caso de Ilhabela cobra a partir de 1.950 USD.
+- **Aberturas da semana** inclui as que abriram nos últimos 6 dias (ABRIU, depois das que abrem).
+- Bugs achados: `SOCIAL/REELS-USADOS.json` estava no `.gitignore` (a memória dos Reels nunca era salva no CI); o resumo do caçador falhava sem `aplicar.log`; o filtro de ruído do radar nasceu sem as barras dos `\b`.
+
+**Pendências**
+1. Conferir a primeira rodada real do Reel novo (terça 10/11, depois sexta 13/11) e o card de editais (segunda 16/11). Ver o vídeo antes de aprovar o formato.
+2. O caçador diário ainda não rodou sozinho (primeiro cron 10/11 07:30 SP); a manual de 09/11 só confirmou que A Ressaca da democracia continua sem imagem em qualquer fonte.
+3. `dia-auto.yml` ainda instala e chama o Claude para legendar obra/encerra/estreia (passo "Legendar o feed"): gasta crédito todo dia, contra a regra de 08/11. Legenda por regra resolve; falta o Lucas autorizar mexer.
+4. Ideias da direção ainda não feitas: Reel "grátis", "onde ainda dá tempo", mapa vivo no story, carrossel do mês.
