@@ -19,5 +19,11 @@ exige(!/\.cartao \.im\.sem/.test(html), "CSS do cartao de reserva (.cartao .im.s
 exige(/\.pino\.curto\{/.test(html), "falta .pino.curto (secao curta, sem pin, quando os cartoes cabem na tela)");
 exige(/dist\(\)<=\d+\)\{[^}]*classList\.add\('curto'\)/.test(html), "o pin do trilho precisa pular quando dist()<=limite");
 
+/* Espacos: o nome abre a ficha na propria pagina (nao sobe para o mapa); botoes sao icones, so "Rota" e texto */
+exige(/class="nm" data-act="casa"/.test(html), "o nome do espaco precisa abrir a ficha (data-act=casa), nao subir para o mapa");
+exige(/function fichaCasa\(/.test(html), "falta fichaCasa");
+exige(/function btnsCasa\(/.test(html) && /ICO_SITE/.test(html) && /ICO_IG/.test(html), "botoes de site/Instagram devem ser icones (btnsCasa)");
+exige(!/>Site<\/a>':'<a href="'\+esc\(gsearch/.test(html), "botao Site em texto nao pode voltar na lista de espacos");
+
 if (erros.length) { console.error("FALHOU layout da home:\n- " + erros.join("\n- ")); process.exit(1); }
 console.log("ok: secao Abre esta semana (so com imagem, sem cartao de reserva, sem pin vazio)");

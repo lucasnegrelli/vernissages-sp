@@ -296,6 +296,16 @@ footer a:hover{color:var(--terra)}
 #modal .cred{font-size:11px;color:var(--mute)}
 #modal .art{font-family:var(--serif);font-style:italic;font-size:24px;margin-top:6px}
 #modal .art span{cursor:pointer}#modal .art span:hover{color:var(--terra)}
+.ib{display:inline-flex;align-items:center;justify-content:center;color:#8f897c}
+.ib.ico svg{display:block}
+.ib.cheio{font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.bg .row .ic .ib:hover{color:var(--terra)}
+.bt.ico{padding:7px 10px;display:inline-flex;align-items:center;justify-content:center}
+.bt.ico svg{display:block}
+#modal .links .favbt{font-size:22px;padding:0 8px;align-self:center}
+#modal .ex{border-top:1px solid rgba(0,0,0,.12);padding:10px 0;cursor:pointer}
+#modal .ex i{font-style:normal;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--terra);font-weight:700;display:block}
+#modal .ex small{display:block;color:var(--mute);font-size:12px;margin-top:2px}
 #modal .links{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
 #modal .exline{border-top:2px solid var(--ink);padding-top:8px;margin-top:14px;font-size:15px}
 #modal .exline b{text-transform:uppercase;font-weight:800;letter-spacing:-.02em}
@@ -1130,7 +1140,7 @@ function renderPainel(){
     (F.near&&userPos?'<div class="k" style="color:var(--terra)">'+distKm(v).toFixed(1).replace('.',',')+' km de você</div>':'')+
     (it?'<div class="k" style="text-transform:none;letter-spacing:0;font-size:13px">'+esc(it)+'</div>':'')+
     (L.length?L.map(e=>'<div class="ex" data-act="ficha" data-id="'+e.k+'"><i>'+esc(tagE(e))+'</i><b>'+esc(tituloLimpo(e))+'</b>'+(e.a?'<small>'+esc(e.a)+'</small>':'')+'</div>').join(''):'<div class="ex" style="cursor:default"><small>Sem mostra na agenda agora.</small></div>')+
-    '<div class="ac">'+(v.site?'<a class="bt" href="'+esc(v.site)+'" target="_blank" rel="noopener">Site</a>':'')+(v.ig?'<a class="bt" href="https://instagram.com/'+esc(v.ig)+'" target="_blank" rel="noopener">Instagram</a>':'')+'<a class="bt cheio" href="'+esc(gmaps(v))+'" target="_blank" rel="noopener">Rota</a></div>';
+    '<div class="ac">'+btnsCasa(v,'bt')+'</div>';
 }
 
 /* ================= SEMANA (trilho fixado) ================= */
@@ -1230,11 +1240,9 @@ function renderEspacos(){
   document.getElementById('bairros').innerHTML=Object.keys(g).sort((a,b)=>g[b].length-g[a].length||a.localeCompare(b,'pt-BR')).map(b=>
     '<div class="bg"><h5 data-act="bairro" data-b="'+esc(b)+'" title="Filtrar por este bairro"><span>'+esc(b)+'</span><span>'+g[b].length+'</span></h5>'+
     g[b].sort((x,y)=>x.name.localeCompare(y.name,'pt-BR')).map(v=>
-      '<div class="row"><span><button type="button" class="nm" data-act="veremapa" data-v="'+esc(v.name)+'">'+esc(v.name)+'</button><small>'+esc(rot[v.tipo]||v.tipo)+'</small></span>'+
+      '<div class="row"><span><button type="button" class="nm" data-act="casa" data-v="'+esc(v.name)+'">'+esc(v.name)+'</button><small>'+esc(rot[v.tipo]||v.tipo)+'</small></span>'+
       '<span class="ic"><button type="button" class="'+(favs.has(v.name)?'on':'')+'" data-act="fav" data-v="'+esc(v.name)+'" aria-label="Favoritar">&#9829;</button>'+
-      (v.site?'<a href="'+esc(v.site)+'" target="_blank" rel="noopener">Site</a>':'<a href="'+esc(gsearch(v.name+' galeria são paulo'))+'" target="_blank" rel="noopener">Buscar</a>')+
-      (v.ig?'<a href="https://instagram.com/'+esc(v.ig)+'" target="_blank" rel="noopener">IG</a>':'')+
-      '<a href="'+esc(gmaps(v))+'" target="_blank" rel="noopener">Rota</a></span></div>').join('')+'</div>').join('')||'<p class="note">Nenhum espaço com esses filtros.</p>';
+      btnsCasa(v,'ib')+'</span></div>').join('')+'</div>').join('')||'<p class="note">Nenhum espaço com esses filtros.</p>';
 }
 
 /* ================= IMERSIVAS ================= */
@@ -1252,6 +1260,31 @@ function abreModal(html){modal.innerHTML='<button type="button" class="close" da
 function fechaModal(){modalBg.style.display='none';if(lenis)lenis.start();}
 modalBg.addEventListener('click',e=>{if(e.target===modalBg)fechaModal();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modalBg.style.display==='flex')fechaModal();});
+/* ícones dos botões (SVG inline, herdam a cor do texto) */
+const ICO_SITE='<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg>';
+const ICO_IG='<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>';
+function btnsCasa(v,cls){
+  return (v.site?'<a class="'+cls+' ico" href="'+esc(v.site)+'" target="_blank" rel="noopener" aria-label="Site" title="Site">'+ICO_SITE+'</a>':'')+
+    (v.ig?'<a class="'+cls+' ico" href="https://instagram.com/'+esc(v.ig)+'" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">'+ICO_IG+'</a>':'')+
+    '<a class="'+cls+' cheio" href="'+esc(gmaps(v))+'" target="_blank" rel="noopener">Rota</a>';
+}
+/* ficha da casa: abre na própria página (modal), sem subir para o mapa */
+function fichaCasa(nome){
+  const v=vByName[nome]; if(!v)return;
+  const L=expos.filter(e=>e.ven===v);
+  const comImg=L.find(e=>e.img&&String(e.img).trim());
+  const it=ingTxt(v);
+  const rot={galeria:'Galeria',institucional:'Instituição',hibrido:'Espaço híbrido',feira:'Feira'};
+  const mostras=L.length?L.map(e=>'<div class="ex" data-act="ficha" data-id="'+e.k+'"><i>'+esc(tagE(e))+'</i><b>'+esc(tituloLimpo(e))+'</b>'+(e.a?'<small>'+esc(e.a)+'</small>':'')+'</div>').join(''):'<div class="sub">Sem mostra na agenda agora.</div>';
+  abreModal((comImg?'<div class="foto"><div class="rc" data-u="'+esc(comImg.img)+'"><img src="'+esc(comImg.img)+'" alt="'+esc(comImg.t)+'" onerror="this.closest(\'.foto\').remove()"></div></div><div class="cred">'+esc(comImg.cred||'')+(comImg.cred?' · ':'')+'em cartaz: '+esc(tituloLimpo(comImg))+'</div>':'')+
+    '<div class="sub" style="margin-top:'+(comImg?'10':'0')+'px">'+esc(rot[v.tipo]||v.tipo)+(v.z?' · Zona '+esc(v.z):'')+'</div>'+
+    '<h3>'+esc(v.name)+'</h3>'+
+    '<div class="sub">'+esc(v.addr||'')+(v.b?' · '+esc(v.b):'')+'</div>'+
+    (v.info?'<div class="corpo">'+esc(v.info)+'</div>':'')+(it?'<div class="sub">'+esc(it)+'</div>':'')+
+    '<div class="sub" style="margin-top:14px">Em cartaz e por vir</div>'+mostras+
+    '<div class="links"><button type="button" class="favbt'+(favs.has(v.name)?' on':'')+'" data-act="fav" data-v="'+esc(v.name)+'" aria-label="Favoritar" title="Favoritar">&#9829;</button>'+btnsCasa(v,'bt')+'<button type="button" class="bt" data-act="veremapa" data-v="'+esc(v.name)+'">Ver no mapa</button></div>');
+  modal.querySelectorAll('.rc[data-u]').forEach(aplicaRC);
+}
 function fichaMostra(id){
   const e=exById[id]; if(!e)return; const v=e.ven;
   const links=[v.site?['Site',v.site]:null,v.ig?['Instagram','https://instagram.com/'+v.ig]:null,['Buscar',gsearch(e.t+' '+v.name)],['Rota',gmaps(v)]].filter(Boolean)
@@ -1323,6 +1356,7 @@ document.addEventListener('click',ev=>{
   else if(a==='ficha'){ev.preventDefault();fichaMostra(+t.dataset.id);}
   else if(a==='artista'){ev.stopPropagation();fichaArtista(t.dataset.n);}
   else if(a==='fav'){ev.stopPropagation();toggleFav(t.dataset.v);}
+  else if(a==='casa'){ev.preventDefault();fichaCasa(t.dataset.v);}
   else if(a==='veremapa'){fechaModal();selecionar(t.dataset.v,true);irPara('mapa');}
   else if(a==='form'){ev.preventDefault();abreForm();}
   else if(a==='enviar')enviarForm(t.dataset.via);
