@@ -3786,6 +3786,24 @@
    "ig": "ccbbsp",
    "visto": "2026-11-09",
    "primeiroRegistro": "2026-11-04"
+  },
+  {
+   "id": "trickster-sergio-free--a7ma-galeria",
+   "t": "Trickster — Sérgio Free",
+   "a": "Sérgio Free",
+   "v": "A7MA Galeria",
+   "ini": "2026-11-07",
+   "fim": "2026-12-05",
+   "d": "Em TRICKSTER, Sérgio Free apresenta o palhaço como uma figura que transita entre mundos. Nascido de sua pesquisa com a pixação nos anos 1990, o personagem ultrapassa o campo do lúdico para assumir um papel provocador, capaz de questionar valores, desestabilizar certezas e revelar aquilo que muitas vezes permanece oculto no cotidiano.",
+   "img": "",
+   "cred": "",
+   "bairro": "Vila Madalena",
+   "zona": "Oeste",
+   "addr": "R. Medeiros de Albuquerque, 250",
+   "tipo": "galeria",
+   "site": "https://a7ma.com.br",
+   "ig": "a7magaleria",
+   "visto": "2026-11-09"
   }
  ],
  "artistas": {
@@ -5601,6 +5619,12 @@
    "nome": "Fause Hauten",
    "mostras": [
     "residencia-fause-hauten-um-artista-em-processo--ccbb-sao-paulo"
+   ]
+  },
+  "sergio-free": {
+   "nome": "Sérgio Free",
+   "mostras": [
+    "trickster-sergio-free--a7ma-galeria"
    ]
   }
  },

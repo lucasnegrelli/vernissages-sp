@@ -45,6 +45,34 @@ async function aHash(sharp, arq) {
   return Array.from(data, v => v > med ? 1 : 0).join('');
 }
 
+let paginaHtml = null;
+const { decodeHTML } = require('./radar-editais.js');
+
+/* ---------- texto da exposição (texto curatorial / crítico) ----------
+   Pega o bloco de descrição da página da galeria, separa em parágrafos e procura
+   a assinatura ("Texto de X", "Curadoria: X"). Sem assinatura, o crédito vai para
+   a casa. Só trecho (o resto fica no site da casa, com link na legenda). */
+function extrairTexto(html) {
+  if (!html) return null;
+  const m = html.match(/<div class="description"[^>]*>([\s\S]*?)<\/div>\s*(?:<div class="(?:read-more|share|artists)|<\/section|<div class="(?:images|artworks))/i) || html.match(/<div class="description"[^>]*>([\s\S]*?)<\/div>/i);
+  if (!m) return null;
+  const par = [...m[1].matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)].map(x => decodeHTML(x[1].replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim()).filter(x => x.length > 40);
+  if (!par.length) return null;
+  const tudo = par.join('\n');
+  const assin = tudo.match(/(?:texto(?:\s+curatorial|\s+cr[ií]tico)?|text|curadoria|curated by|curatorial text)\s*(?:de|by|por|:)\s*([A-ZÀ-Ý][A-Za-zÀ-ÿ'’. \-]{4,70})/);
+  return { paragrafos: par, assinatura: assin ? assin[1].trim().replace(/[.,;]+$/, '') : null };
+}
+/* trechos de até `max` caracteres, cortados em fim de frase; maximo `n` trechos */
+function trechos(par, max, n) {
+  const frases = par.join(' ').replace(/ [–—] /g, ', ').match(/[^.!?]+[.!?]+(?:["”’)]*)|[^.!?]+$/g) || [];
+  const out = []; let atual = '';
+  for (const f of frases.map(x => x.trim())) {
+    if ((atual + ' ' + f).trim().length > max && atual) { out.push(atual.trim()); atual = f; if (out.length === n) return out; } else atual = (atual + ' ' + f).trim();
+  }
+  if (atual && out.length < n) out.push(atual);
+  return out.slice(0, n);
+}
+
 (async () => {
   const sharp = require(path.join(REND, 'node_modules', 'sharp'));
   const DATA = carregarDados();
@@ -83,6 +111,7 @@ async function aHash(sharp, arq) {
       try {
         const r = await fetch(pag, { headers: { 'user-agent': UA } }); if (!r.ok) continue;
         const html = await r.text();
+        if (!paginaHtml && /class="description"/.test(html)) paginaHtml = html;
         for (const m of html.matchAll(/(?:https?:)?\/\/[^"'\s)<>]+\.(?:jpe?g|png|webp)(?:\?[^"'\s)<>]*)?|["'(]\/[^"'\s)<>]+\.(?:jpe?g|png|webp)(?:\?[^"'\s)<>]*)?/gi)) {
           let u = m[0].replace(/^["'(]/, '');
           if (u.startsWith('//')) u = 'https:' + u; else if (u.startsWith('/')) u = new URL(u, pag).href;
@@ -109,7 +138,7 @@ async function aHash(sharp, arq) {
         const h = await aHash(sharp, f);
         if (hashes.some(o => dist(o, h) <= 10)) continue;
         const n0 = lista.length; await add('fonte', f);
-        if (lista.length > n0) { hashes.push(h); baixadas++; }
+        if (lista.length > n0) { lista[lista.length - 1].artlogic = /static-assets\.artlogic\.net/.test(u); hashes.push(h); baixadas++; }
       } catch (x) { /* próxima */ }
     }
   }
@@ -127,6 +156,18 @@ async function aHash(sharp, arq) {
     return;
   }
 
+  if (argv.includes('--auto')) {
+    /* origem confiável: a principal e extras curadas, e imagens do CDN de obra/exposição da Artlogic; o resto fica fora */
+    const ok = lista.map((x, i) => i).filter(i => lista[i].origem !== 'site' && lista[i].origem !== 'fonte' ? true : !!lista[i].artlogic);
+    const obra = ok.filter(i => lista[i].w / lista[i].h < 1.3), sala = ok.filter(i => lista[i].w / lista[i].h >= 1.3 && lista[i].w >= 2000);
+    const ordemAuto = []; let panoAuto = -1;
+    if (obra.length) ordemAuto.push(obra.shift());
+    if (sala.length) { panoAuto = sala[0]; ordemAuto.push(sala.shift()); }
+    while ((obra.length || sala.length) && ordemAuto.length < 7) { if (obra.length) ordemAuto.push(obra.shift()); if (obra.length && ordemAuto.length < 7) ordemAuto.push(obra.shift()); if (sala.length && ordemAuto.length < 7) ordemAuto.push(sala.shift()); }
+    argv.push('--ordem=' + ordemAuto.join(','));
+    if (panoAuto >= 0 && !argv.some(a => a.startsWith('--pano='))) argv.push('--pano=' + panoAuto + ':2');
+    console.log('  --auto: ordem ' + ordemAuto.join(',') + (panoAuto >= 0 ? ' · pano ' + panoAuto : ''));
+  }
   const ordem = (flag('ordem', '') || lista.map((_, i) => i).join(',')).split(',').map(Number).filter(i => lista[i]).slice(0, parseInt(flag('max', '8'), 10));
   if (ordem.length < 3) throw new Error('precisa de pelo menos 3 fotos (--ordem)');
   const out = path.resolve(RAIZ, flag('out', path.join('SOCIAL', hoje.slice(5, 7), hoje.slice(8, 10))));
@@ -168,6 +209,40 @@ async function aHash(sharp, arq) {
     if (ar < 1.2 || k === 0) await sharp(buf).resize(W, H, { fit: 'cover', position: 'attention' }).png().toFile(dest);
     else await sharp(buf).resize(W, H, { fit: 'contain', background: fundo }).png().toFile(dest);
   }
+  /* slides de texto (--texto=N): trecho do texto da exposição, com a assinatura de quem escreveu */
+  const nTexto = parseInt(flag('texto', '0'), 10) || 0;
+  const tx = nTexto ? extrairTexto(paginaHtml) : null;
+  const credTexto = tx ? (tx.assinatura || e.v) : null;
+  const partes = tx ? trechos(tx.paragrafos, 520, nTexto) : [];
+  const urlTexto = (acervo.links || {}).site || '';
+  const arqTexto = [];
+  if (partes.length) {
+    const puppeteerT = require(path.join(REND, 'node_modules', 'puppeteer-core'));
+    const brT = await puppeteerT.launch({ executablePath: process.env.CHROME || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', headless: 'new', args: ['--no-sandbox', '--allow-file-access-from-files', '--force-device-scale-factor=1'], defaultViewport: { width: W, height: H, deviceScaleFactor: 1 } });
+    for (const [k, parte] of partes.entries()) {
+      const htmlT = `<!doctype html><meta charset="utf-8"><style>
+@font-face{font-family:'Switzer';src:url('fontes/Switzer-Variable.woff2') format('woff2-variations');font-weight:100 900}
+@font-face{font-family:'IS';src:url('fontes/InstrumentSerif-Regular.ttf');font-style:normal}
+@font-face{font-family:'IS';src:url('fontes/InstrumentSerif-Italic.ttf');font-style:italic}
+*{margin:0;padding:0;box-sizing:border-box}.slide{position:relative;width:${W}px;height:${H}px;background:${D.PAPEL};color:${D.TINTA};font-family:'Switzer',sans-serif;overflow:hidden}
+.cab{position:absolute;left:70px;right:70px;top:56px;height:46px;border-bottom:3px solid ${D.TINTA};display:flex;justify-content:space-between;font-weight:800;font-size:22px;letter-spacing:.17em;text-transform:uppercase}.cab span{color:${D.TERRA}}
+.c{position:absolute;left:70px;right:90px;top:150px;bottom:190px;display:flex;flex-direction:column;justify-content:center}
+.asp{font-family:'IS',serif;font-size:140px;line-height:.5;color:${D.TERRA};height:70px}
+.tx{font-family:'IS',serif;font-size:${parte.length > 430 ? 50 : parte.length > 300 ? 56 : 64}px;line-height:1.1;letter-spacing:-.005em}
+.cr{position:absolute;left:70px;right:70px;bottom:52px;border-top:2px solid ${D.TINTA};padding-top:14px;display:flex;justify-content:space-between;gap:30px;font-size:18px;line-height:1.35}
+.cr b{font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:16px}.cr span{color:#6f6a60;text-align:right}
+</style><body><div class="slide"><div class="cab"><b>Vernissages SP</b><span>Texto da exposição</span></div><div class="c"><div class="asp">“</div><div class="tx">${esc(parte)}</div></div>
+<div class="cr"><div><b>Texto</b><br>${esc(credTexto)}</div><span>Trecho ${k + 1} de ${partes.length}. Texto completo no site da ${esc(e.v)}.</span></div></div></body>`;
+      const arqT = path.join(RAIZ, '.exposicao-texto.html'); fs.writeFileSync(arqT, htmlT);
+      const pgT = await brT.newPage(); await pgT.goto('file:///' + arqT.replace(/\\/g, '/'), { waitUntil: 'networkidle0' });
+      await pgT.evaluate(() => document.fonts.ready); await new Promise(r2 => setTimeout(r2, 300));
+      const bufT = await (await pgT.$('.slide')).screenshot();
+      arqTexto.push(bufT); await pgT.close(); fs.rmSync(arqT, { force: true });
+    }
+    await brT.close();
+    for (const bufT of arqTexto) fs.writeFileSync(path.join(out, `exposicao-${String(++nSlide).padStart(2, '0')}.png`), bufT);
+  }
+
   /* último slide: legenda de parede */
   const credTxt = e.cred && /cortesia/i.test(e.cred) ? e.cred : 'cortesia ' + e.v + (e.cred ? '. ' + e.cred : '');
   const quem = autoria(e), n = tituloCurto(e).length, tam = n <= 14 ? 120 : n <= 24 ? 96 : n <= 36 ? 78 : n <= 52 ? 64 : 54;
@@ -194,7 +269,7 @@ async function aHash(sharp, arq) {
   await (await p.$('.slide')).screenshot({ path: path.join(out, `exposicao-${String(++nSlide).padStart(2, '0')}.png`) });
   await br.close(); fs.rmSync(arqHtml, { force: true });
 
-  const leg = `${tituloCurto(e)}${quem ? ', ' + quem : ''}, em ${nSlide - 1} slides.\n\nDeslize para passear pela exposição na ${e.v} ${arroba(v.ig)}.\n\n${e.d ? e.d + '\n\n' : ''}Serviço: ${e.v}, ${v.addr ? v.addr + ', ' : ''}${v.b || ''}. ${e.fim ? 'Até ' + porExtenso(e.fim) + '.' : 'Aberta desde ' + porExtenso(e.ini) + '.'}${v.ing && v.ing.g ? ' Entrada gratuita.' : ''}\n\nImagens: ${credTxt}.\n\nSalva para ir e manda para quem vai com você. Agenda completa de exposições em vernissagessp.com.br\n\n#exposicaosp #arteemsp #saopaulo #artecontemporanea #galeriadearte`;
+  const leg = `${tituloCurto(e)}${quem ? ', ' + quem : ''}, em ${nSlide - 1} slides.\n\nDeslize para passear pela exposição na ${e.v} ${arroba(v.ig)}.\n\n${e.d ? e.d + '\n\n' : ''}Serviço: ${e.v}, ${v.addr ? v.addr + ', ' : ''}${v.b || ''}. ${e.fim ? 'Até ' + porExtenso(e.fim) + '.' : 'Aberta desde ' + porExtenso(e.ini) + '.'}${v.ing && v.ing.g ? ' Entrada gratuita.' : ''}\n\nImagens: ${credTxt}.\n\n${partes.length ? 'Os slides de texto são trecho do texto da exposição' + (tx && tx.assinatura ? ', de ' + tx.assinatura : ', da ' + e.v) + '. Texto completo em ' + urlTexto + '\n\n' : ''}Salva para ir e manda para quem vai com você. Agenda completa de exposições em vernissagessp.com.br\n\n#exposicaosp #arteemsp #saopaulo #artecontemporanea #galeriadearte`;
   fs.writeFileSync(path.join(out, 'exposicao-LEGENDA.md'), leg.replace(/ — /g, ': ') + '\n');
   if (e.img) marcarFoto(e.img, flag('pub', hoje));
   console.log(`OK ${nSlide} slides em ${path.relative(RAIZ, out)} · legenda ${leg.length} caracteres`);
