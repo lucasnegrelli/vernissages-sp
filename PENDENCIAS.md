@@ -81,3 +81,23 @@ Latino-Americanas (MASP) também esperam conferência na fonte.
 - Imagens do garimpo recusadas: Museu Afro Brasil (img_apoie_01.jpg, banner genérico repetido em 4 mostras), MIS (img_expo_linha-fotografia-tb.jpg genérica; réguas/banners de período eleitoral).
 - Casas não mapeadas (só relato): Claraboia, Sardenberg, Rosewood SP, Museu FAMA, Pinacoteca Miguel Dutra, Move Arte, Mayer Mizrahi, WG Galeria, Casa Yara DW, Pina Contemporânea, Mitre Galeria, Cemitério Parque das Cerejeiras, AM Galeria SP, Gomide&Co (grafia), Karla Osorio, CCSP.
 - Mitologias do Mistério (Casa de Cultura do Parque) também tem fim 25/10 passado e não foi removida (não estava no radar).
+
+---
+
+## Atualização de 08/11/2026
+
+**Feito e no ar nesta data**
+- **Abre esta semana**: só mostra COM imagem; não existe cartão de reserva; sem nenhuma com imagem a seção some; trilho curto não prende a rolagem. Guardado por `check-layout.test.js` (roda no `check.yml`).
+- **Recorte automático de imagem** (`analisa()` no `index.html`): acha o bloco principal de conteúdo e ignora legenda isolada (caso Coordenadas improváveis).
+- **Caçador de imagens**: roda todo dia 07:30 SP (`--aberturas=10`, força a busca) e sexta (varredura completa). Julgamento `--auto` por regras, **sem IA e sem custo**. Resumo de cada rodada lista as aberturas da semana sem imagem.
+- **Espaços**: o nome abre a ficha na própria página (`fichaCasa`); botões em ícone (globo, Instagram) e só "Rota" escrito.
+
+**Próxima sessão**
+1. **Social genérico e repetitivo, principalmente Reels**: criar formatos novos usando a estética nova do site.
+2. **Página de Editais**: genérica, "cara de IA"; redesenhar.
+3. **Residência paga** (Ilhabela, "Praia Mauro"?): selo "com taxa", separar ou rebaixar de edital com bolsa; conferir o caso no radar.
+4. **A Ressaca da democracia** (Apóstol, Raquel Arnaud, abre 12/11) sem imagem: sai da seção até a galeria publicar.
+5. Conferir a primeira rodada automática do caçador (Actions) e se aparece imagem errada.
+6. Decidir se "Abre esta semana" inclui também as que abriram nesta semana.
+
+**Regra firme**: automação recorrente não chama Claude nem outra IA paga.
