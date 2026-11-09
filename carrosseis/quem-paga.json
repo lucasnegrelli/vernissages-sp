@@ -1,0 +1,15 @@
+{
+  "serie": "Quem paga",
+  "data": "2026-11-10",
+  "acento": "#8E2A3A",
+  "slides": [
+    { "tipo": "hook", "fundo": "cor", "cor": "#8E2A3A", "sobre": "#F2EFE9", "kicker": "Quem paga", "texto": "Residência em que você paga: o que perguntar antes de dizer sim." },
+    { "tipo": "numero", "kicker": "Os números de hoje", "n": "30", "rotulo": "de 42 residências abertas cobram taxa", "texto": "É o que o site leu nas chamadas do Res Artis em 9 de novembro. Só duas falam em apoio ou bolsa." },
+    { "tipo": "numero", "kicker": "O preço", "n": "230", "rotulo": "euros: o menor valor lido", "texto": "Em euros, o menor valor lido é 230 e o maior passa de mil. Muda com o quarto, a duração e o país." },
+    { "tipo": "tese", "kicker": "Sem drama", "texto": "Cobrar não é golpe. Residência privada paga casa, ateliê e equipe com o dinheiro de quem vai. O problema é entrar sem saber o que o valor cobre." },
+    { "tipo": "lista", "kicker": "Antes de pagar", "titulo": "Cinco perguntas", "itens": ["O valor inclui hospedagem, ateliê e refeições?", "Quem seleciona, e a seleção é de verdade?", "Existe exposição, publicação ou só a estadia?", "Quanto custa chegar lá, além da taxa?", "Há bolsa, desconto ou troca por trabalho?"] },
+    { "tipo": "tese", "kicker": "A diferença", "texto": "Residência com taxa e edital com bolsa são coisas diferentes. Uma você compra, a outra você ganha." },
+    { "tipo": "serv", "kicker": "Onde ver", "linhas": [["Onde", "vernissagessp.com.br/editais"], ["Filtro", "Custo: com taxa ou sem custo"], ["Etiqueta", "COM TAXA, com o valor lido"], ["Ordem", "Do prazo que fecha primeiro ao último"]], "cta": "Salva e manda para quem está pensando em se inscrever.", "credito": "Valores lidos nas páginas das chamadas do Res Artis em 09.11.2026. Confira sempre o regulamento oficial." }
+  ],
+  "legenda": "Residência em que o artista paga: o que perguntar antes de dizer sim.\n\nNa aba de editais do Vernissages SP, o site lê as chamadas todo dia. Em 9 de novembro, das 42 residências do Res Artis abertas no radar, 30 cobram taxa do artista (em euros, de 230 a pouco mais de mil), 4 são financiadas em parte, 2 falam em apoio e 6 não informam o custo na página.\n\nCobrar não é golpe: residência privada paga casa, ateliê e equipe com o dinheiro de quem vai. O que importa é saber o que o valor cobre. Cinco perguntas: o valor inclui hospedagem, ateliê e refeições? Quem seleciona, e a seleção é de verdade? Existe exposição, publicação ou só a estadia? Quanto custa chegar lá, além da taxa? Há bolsa, desconto ou troca por trabalho?\n\nResidência com taxa e edital com bolsa são coisas diferentes: uma você compra, a outra você ganha. Por isso a aba traz a etiqueta COM TAXA e um filtro de custo.\n\nLink na bio: vernissagessp.com.br/editais. Os valores vêm das páginas das chamadas; confira sempre o regulamento oficial.\n\nSalva e manda para quem está pensando em se inscrever.\n\n#residenciaartistica #editaisdearte #artistasvisuais #chamadaaberta #arteemsp #artecontemporanea"
+}
