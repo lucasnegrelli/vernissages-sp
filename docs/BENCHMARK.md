@@ -26,3 +26,17 @@ Feito com busca e leitura de páginas pela ferramenta de texto: dá para ver est
 ## Para o Lucas abrir e olhar (o que eu não consigo ver daqui)
 
 Perfis de Instagram para ver ritmo de grade e capa de carrossel: Contemporary Art Daily, e-flux, Artforum, Frieze, Cultured, Hyperallergic, Pinacoteca, MASP, Instituto Moreira Salles, Bienal, SP-Arte, Galeria Vermelho, Mendes Wood DM. Sites para ver tipografia e mapa: contemporaryartdaily.com, e-flux.com/announcements, galleryweekendberlin.com, are.na, rhizome.org, resartis.org. O que anotar: como a capa de cada carrossel faz a pessoa arrastar, quantos slides têm, onde o texto fica e como a grade do perfil alterna cor.
+
+## Visto no navegador (09/11/2026, perfis abertos de verdade)
+
+- **@masp**: a grade alterna cartão de cor com cartaz tipográfico e foto de gente olhando arte (de costas). Uma série com molde fixo e a cor mudando ("Vem pro Vão" em rosa, lilás, off-white) é reconhecível a distância. Capa de exposição com identidade própria por mostra (padrão colorido, tipografia da mostra) e rodapé fixo: marca, "Até 31.1.2027", andar.
+- **@imoreirasalles**: cada exposição ganha uma capa feita da própria obra, tratada como material gráfico (cinza texturizado, duotone, meio-tom) com título grande por cima. Moldura fixa em volta: categoria no canto de cima ("exposição", "cinema"), data embaixo à direita ("até 22/11", "últimos dias"), marca e endereço embaixo à esquerda. Variedade total dentro de um sistema inconfundível. A capa da retrospectiva do Fernando Lemos é a imagem dele em cinza com a frase do título.
+- **@artforum**: grade editorial de foto, retrato e capa; título em caixa-alta pesada no canto da foto; **destaques fixos por série** (Art Week NYC, Reviews, From the Archive, Art Guide) funcionando como menu do perfil.
+- (e-flux e Gallery Weekend Berlin bloquearam a captura de tela; só texto.)
+
+### O que muda por causa disso
+1. **Capa tratada** (`carrossel.js`, tipo `capa`): obra em duotone na cor dela, título em caixa-alta, categoria em itálico no canto, data no rodapé. Implementado; falta decisão do Lucas, porque põe texto sobre uma versão processada da obra (a regra "nada sobre a obra" vale para a reprodução limpa, que continua no slide 2).
+2. **Moldura fixa** em toda peça: marca embaixo à esquerda, data embaixo à direita, categoria em cima. Hoje cada gerador posiciona do seu jeito.
+3. **Série com molde e cor variável**, como o "Vem pro Vão": capas de série em cartão de cor chapada (a cor da obra do dia), para a grade alternar foto e cartão.
+4. **Destaques do perfil** por série: Editais, Mapa, A fundo, Abre esta semana, A pé por.
+5. **Gente na imagem**: MASP e IMS misturam foto de visitante. Não temos esse material; vale pedir às casas ou fotografar nas aberturas.

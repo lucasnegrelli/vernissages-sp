@@ -46,6 +46,7 @@ const N = spec.slides.length;
 function slide(s, i) {
   const pag = `<div class="pag">${i + 1}/${N}</div>`;
   const cab = k => `<div class="cab"><b>Vernissages SP</b><span>${esc(k || spec.serie)}</span></div>`;
+  if (s.tipo === 'capa') return `<div class="slide capa"><img src="${esc(s.img2)}"><div class="cp-top">${esc(s.rotulo || 'exposição')}</div><div class="cp-tit" style="font-size:${hookTam(s.texto) * 0.95}px">${esc(s.texto)}</div>${s.sub ? `<div class="cp-sub">${esc(s.sub)}</div>` : ''}<div class="cp-rod"><b>Vernissages SP</b><span>${esc(s.data || '')}</span></div></div>`;
   if (s.tipo === 'obra') return `<div class="slide obra"><img src="${esc(s.img)}" style="object-position:${s.foco || 50}% 50%"></div>`;
   if (s.tipo === 'hook') return `<div class="slide">${cab(s.kicker)}<div class="c"><div class="hk" style="font-size:${hookTam(s.texto)}px">${esc(s.texto)}</div></div><div class="seta">arrasta para ler</div>${pag}</div>`;
   if (s.tipo === 'numero') return `<div class="slide">${cab(s.kicker)}<div class="c"><div class="num">${esc(s.n)}</div><div class="rot">${esc(s.rotulo)}</div><div class="sub">${esc(s.texto)}</div></div>${pag}</div>`;
@@ -62,6 +63,11 @@ const css = `
 *{margin:0;padding:0;box-sizing:border-box}
 .slide{position:relative;width:${W}px;height:${H}px;overflow:hidden;background:${D.PAPEL};color:${D.TINTA};font-family:'Switzer',sans-serif}
 .slide.obra{background:#000}.slide.obra img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.slide.capa{background:#0E0E0E}.slide.capa img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cp-top{position:absolute;left:70px;top:64px;font-family:'IS',serif;font-style:italic;font-size:44px;color:#F2EFE9}
+.cp-tit{position:absolute;left:62px;right:70px;bottom:210px;font-weight:800;text-transform:uppercase;letter-spacing:-.06em;line-height:.88;color:#F2EFE9}
+.cp-sub{position:absolute;left:70px;right:70px;bottom:140px;font-family:'IS',serif;font-size:46px;color:#F2EFE9}
+.cp-rod{position:absolute;left:70px;right:70px;bottom:56px;display:flex;justify-content:space-between;font-weight:800;font-size:22px;letter-spacing:.15em;text-transform:uppercase;color:#F2EFE9}
 .cab{position:absolute;left:70px;right:70px;top:56px;height:46px;border-bottom:3px solid ${D.TINTA};display:flex;justify-content:space-between;font-weight:800;font-size:22px;letter-spacing:.17em;text-transform:uppercase}
 .cab span{color:${ac}}
 .c{position:absolute;left:62px;right:70px;top:150px;bottom:130px;display:flex;flex-direction:column;justify-content:center}
@@ -78,14 +84,32 @@ const css = `
 .pag{position:absolute;right:70px;bottom:50px;font-weight:800;font-size:22px;letter-spacing:.14em;color:#9a948a}
 .cred{position:absolute;left:70px;right:200px;bottom:48px;font-size:17px;font-weight:500;color:#9a948a;line-height:1.35}
 `;
-const html = `<!doctype html><meta charset="utf-8"><style>${css}</style><body>${spec.slides.map(slide).join('')}</body>`;
+const htmlDe = () => `<!doctype html><meta charset="utf-8"><style>${css}</style><body>${spec.slides.map(slide).join('')}</body>`;
+
+async function tratar() {
+  const sharp = require(path.join(REND, 'node_modules', 'sharp'));
+  for (const sl of spec.slides) {
+    if (sl.tipo !== 'capa') continue;
+    const dst = path.join(RAIZ, '.capa-' + Math.random().toString(36).slice(2) + '.png');
+    const [r, g, b] = D.hex2rgb(sl.tom || ac);
+    let img = sharp(path.resolve(RAIZ, sl.img)).rotate().resize(W, H, { fit: 'cover', position: 'attention' }).greyscale().normalise();
+    /* duotone: sombra quase preta, luz na cor do tom; escurece para o título ler */
+    const buf = await img.raw().toBuffer({ resolveWithObject: true });
+    const out = Buffer.alloc(buf.info.width * buf.info.height * 3);
+    const sh = [14, 14, 16], k = sl.escuro == null ? 0.62 : sl.escuro;
+    for (let i = 0; i < buf.data.length; i++) { const t = (buf.data[i] / 255) * k; out[i * 3] = sh[0] + (r - sh[0]) * t; out[i * 3 + 1] = sh[1] + (g - sh[1]) * t; out[i * 3 + 2] = sh[2] + (b - sh[2]) * t; }
+    await sharp(out, { raw: { width: buf.info.width, height: buf.info.height, channels: 3 } }).png().toFile(dst);
+    sl.img2 = 'file:///' + dst.replace(/\\/g, '/'); sl._tmp = dst;
+  }
+}
 
 (async () => {
+  await tratar();
   console.log(`CARROSSEL ${spec.serie} · ${N} slides · legenda ${spec.legenda.length} caracteres`);
   if (argv.includes('--seco')) return;
   const puppeteer = require(path.join(REND, 'node_modules', 'puppeteer-core'));
   const tmp = path.join(RAIZ, '.carrossel.html');
-  fs.writeFileSync(tmp, html);
+  fs.writeFileSync(tmp, htmlDe());
   const browser = await puppeteer.launch({ executablePath: process.env.CHROME || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', headless: 'new',
     args: ['--no-sandbox', '--allow-file-access-from-files', '--force-device-scale-factor=1'], defaultViewport: { width: W, height: H, deviceScaleFactor: 1 } });
   const p = await browser.newPage();
@@ -95,7 +119,7 @@ const html = `<!doctype html><meta charset="utf-8"><style>${css}</style><body>${
   fs.mkdirSync(out, { recursive: true });
   const els = await p.$$('.slide');
   for (let i = 0; i < els.length; i++) await els[i].screenshot({ path: path.join(out, `afundo-${String(i + 1).padStart(2, '0')}.png`) });
-  await browser.close(); fs.rmSync(tmp, { force: true });
+  await browser.close(); fs.rmSync(tmp, { force: true }); spec.slides.forEach(x => x._tmp && fs.rmSync(x._tmp, { force: true }));
   fs.writeFileSync(path.join(out, 'afundo-LEGENDA.md'), spec.legenda + '\n');
   console.log(`OK ${els.length} slides em ${path.relative(RAIZ, out)}`);
 })().catch(e => { console.error(e.stack || e.message); process.exit(1); });
