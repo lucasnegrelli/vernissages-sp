@@ -1,5 +1,5 @@
 {
- "gerado": "2026-11-08",
+ "gerado": "2026-11-09",
  "aviso": "Listado pelo Res Artis; a página da chamada leva ao programa. Confirme prazo e requisitos nela.",
  "itens": [
   {
@@ -12,7 +12,9 @@
    "onde": "exterior",
    "resumo": "Residência artística em Italy. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
    "visto": "2026-11-04",
-   "via": "plataforma"
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 350 EUR, menciona bolsa"
   },
   {
    "t": "PATAGONIA ARGENTINA – 2027 multidisciplinary program",
@@ -24,7 +26,9 @@
    "onde": "exterior",
    "resumo": "Residência artística em Argentina. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
    "visto": "2026-11-04",
-   "via": "plataforma"
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 2.590 USD, menciona bolsa"
   },
   {
    "t": "Summer 2027 Byrdcliffe Historic Cottage Residency",
@@ -36,7 +40,9 @@
    "onde": "exterior",
    "resumo": "Residência artística em United States. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
    "visto": "2026-11-04",
-   "via": "plataforma"
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 4.500 USD, menciona bolsa"
   },
   {
    "t": "OPEN CALL Residency 2027 l México City",
@@ -48,7 +54,9 @@
    "onde": "exterior",
    "resumo": "Residência artística em Mexico. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
    "visto": "2026-11-05",
-   "via": "plataforma"
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 30.000 USD"
   },
   {
    "t": "ILHABELA ISLAND, BRAZIL – FEB/MARCH 2027",
@@ -60,7 +68,9 @@
    "onde": "brasil",
    "resumo": "Residência artística em Brazil. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
    "visto": "2026-11-05",
-   "via": "plataforma"
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 1.950 USD"
   },
   {
    "t": "Skyline of Venice Partially Funded Residency in a cool Apartment and Exhibition Space blow 26/27",
@@ -72,7 +82,9 @@
    "onde": "exterior",
    "resumo": "Residência artística em Italy. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
    "visto": "2026-11-05",
-   "via": "plataforma"
+   "via": "plataforma",
+   "custo": "parcial",
+   "taxaTxt": "financiada em parte, confira o valor"
   },
   {
    "t": "La Storta Partially Sponsored Residency and Exhibition Space in the heart of Venice 2026/2027",
@@ -84,7 +96,9 @@
    "onde": "exterior",
    "resumo": "Residência artística em Italy. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
    "visto": "2026-11-05",
-   "via": "plataforma"
+   "via": "plataforma",
+   "custo": "parcial",
+   "taxaTxt": "financiada em parte, confira o valor"
   },
   {
    "t": "MYREN GÅRD, Kristiansand, Norway, AIR, Open Call – 2027",
@@ -96,7 +110,9 @@
    "onde": "exterior",
    "resumo": "Residência artística em Norway. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
    "visto": "2026-11-05",
-   "via": "plataforma"
+   "via": "plataforma",
+   "custo": "apoio",
+   "taxaTxt": ""
   },
   {
    "t": "OPEN CALL・On-line Residency (January – March 2027)",
@@ -108,7 +124,9 @@
    "onde": "exterior",
    "resumo": "Residência artística em Global. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
    "visto": "2026-11-05",
-   "via": "plataforma"
+   "via": "plataforma",
+   "custo": "apoio",
+   "taxaTxt": ""
   },
   {
    "t": "AMAZONIA – multidisciplinary residence in the Amazon",
@@ -120,7 +138,9 @@
    "onde": "brasil",
    "resumo": "Residência artística em Brazil. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
    "visto": "2026-11-06",
-   "via": "plataforma"
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 2.590 USD, menciona bolsa"
   },
   {
    "t": "Ilhabela Island, Brazil, 2027 MULTIDISCIPLINARY RESIDENCE –",
@@ -132,7 +152,9 @@
    "onde": "brasil",
    "resumo": "Residência artística em Brazil. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
    "visto": "2026-11-06",
-   "via": "plataforma"
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 1.950 USD"
   },
   {
    "t": "Joya: BERILO",
@@ -144,7 +166,9 @@
    "onde": "exterior",
    "resumo": "Residência artística em Spain. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
    "visto": "2026-11-07",
-   "via": "plataforma"
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 450 EUR"
   },
   {
    "t": "Joya: AiR / spring residencies 2027",
@@ -156,7 +180,9 @@
    "onde": "exterior",
    "resumo": "Residência artística em Spain. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
    "visto": "2026-11-07",
-   "via": "plataforma"
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 400 EUR"
   },
   {
    "t": "February Retreat 2027 – ARiR Guiniguada, Gran Canaria",
@@ -168,7 +194,9 @@
    "onde": "exterior",
    "resumo": "Residência artística em Spain. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
    "visto": "2026-11-07",
-   "via": "plataforma"
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 230 EUR"
   },
   {
    "t": "Greek Island Residency with a City Experience.",
@@ -180,7 +208,9 @@
    "onde": "exterior",
    "resumo": "Residência artística em Greece. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
    "visto": "2026-11-07",
-   "via": "plataforma"
+   "via": "plataforma",
+   "custo": "indefinido",
+   "taxaTxt": ""
   },
   {
    "t": "KORDON WINTER-SPRING 2027",
@@ -192,7 +222,9 @@
    "onde": "exterior",
    "resumo": "Residência artística em Estonia. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
    "visto": "2026-11-08",
-   "via": "plataforma"
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 715 EUR"
   },
   {
    "t": "Printmaking in Milan: Last minute residency opportunity – December 2026",
@@ -204,7 +236,9 @@
    "onde": "exterior",
    "resumo": "Residência artística em Italy. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
    "visto": "2026-11-08",
-   "via": "plataforma"
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 350 EUR, menciona bolsa"
   },
   {
    "t": "Hub Feenix Residency 2027",
@@ -215,8 +249,10 @@
    "cat": "residencia",
    "onde": "exterior",
    "resumo": "Residência artística em Finland. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
-   "visto": "2026-11-08",
-   "via": "plataforma"
+   "visto": "2026-11-09",
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 800 EUR"
   },
   {
    "t": "LONG DAYS AND STARRY NIGHTS SUMMER IN PATAGONIA",
@@ -227,8 +263,10 @@
    "cat": "residencia",
    "onde": "exterior",
    "resumo": "Residência artística em Argentina. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
-   "visto": "2026-11-08",
-   "via": "plataforma"
+   "visto": "2026-11-09",
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 500 USD"
   },
   {
    "t": "Reviving Nature 2027 — International Artist Residency & Festival | Chiang Mai, Thailand",
@@ -239,8 +277,10 @@
    "cat": "residencia",
    "onde": "exterior",
    "resumo": "Residência artística em Thailand. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
-   "visto": "2026-11-08",
-   "via": "plataforma"
+   "visto": "2026-11-09",
+   "via": "plataforma",
+   "custo": "indefinido",
+   "taxaTxt": ""
   },
   {
    "t": "Early bird call for Summer Retreat 2027 – ARiR Guiniguada, Gran Canaria",
@@ -251,8 +291,10 @@
    "cat": "residencia",
    "onde": "exterior",
    "resumo": "Residência artística em Spain. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
-   "visto": "2026-11-08",
-   "via": "plataforma"
+   "visto": "2026-11-09",
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 1.050 EUR"
   },
   {
    "t": "Art Residency Available – DECEMBER 2026 – Colombia",
@@ -263,8 +305,10 @@
    "cat": "residencia",
    "onde": "exterior",
    "resumo": "Residência artística em Colombia. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
-   "visto": "2026-11-08",
-   "via": "plataforma"
+   "visto": "2026-11-09",
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 945 USD"
   },
   {
    "t": "Special Winter Offer – Dec 2026 at Hub Feenix Residency",
@@ -275,8 +319,10 @@
    "cat": "residencia",
    "onde": "exterior",
    "resumo": "Residência artística em Finland. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
-   "visto": "2026-11-08",
-   "via": "plataforma"
+   "visto": "2026-11-09",
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 700 EUR"
   },
   {
    "t": "'In Simplicitate Libertas' 1-Week UNESCO Site Discovery",
@@ -287,8 +333,10 @@
    "cat": "residencia",
    "onde": "exterior",
    "resumo": "Residência artística em Italy. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
-   "visto": "2026-11-08",
-   "via": "plataforma"
+   "visto": "2026-11-09",
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 550 EUR, menciona bolsa"
   },
   {
    "t": "OPEN CALL: self-guided – all artists – ART14 Residency",
@@ -299,8 +347,10 @@
    "cat": "residencia",
    "onde": "exterior",
    "resumo": "Residência artística em United States. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
-   "visto": "2026-11-08",
-   "via": "plataforma"
+   "visto": "2026-11-09",
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 400 USD, menciona bolsa"
   },
   {
    "t": "2027 Open Call Essere Residency",
@@ -311,8 +361,10 @@
    "cat": "residencia",
    "onde": "exterior",
    "resumo": "Residência artística em Italy. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
-   "visto": "2026-11-08",
-   "via": "plataforma"
+   "visto": "2026-11-09",
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 1.000 EUR, menciona bolsa"
   },
   {
    "t": "Spend the Winter with Us: Intaglio Etching, Aquatint and Letterpress in the Mediterranean",
@@ -323,8 +375,10 @@
    "cat": "residencia",
    "onde": "exterior",
    "resumo": "Residência artística em Spain. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
-   "visto": "2026-11-08",
-   "via": "plataforma"
+   "visto": "2026-11-09",
+   "via": "plataforma",
+   "custo": "indefinido",
+   "taxaTxt": ""
   },
   {
    "t": "WINTER 2026-27 | OPEN CALL | Residency at Hangar for Curators and Researchers",
@@ -335,8 +389,10 @@
    "cat": "residencia",
    "onde": "exterior",
    "resumo": "Residência artística em Portugal. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
-   "visto": "2026-11-08",
-   "via": "plataforma"
+   "visto": "2026-11-09",
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 1.000 EUR"
   },
   {
    "t": "WINTER 26-27 | OPEN CALL | COWORK ARTISTS RESIDENCY (No accommodation)",
@@ -347,8 +403,10 @@
    "cat": "residencia",
    "onde": "exterior",
    "resumo": "Residência artística em Portugal. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
-   "visto": "2026-11-08",
-   "via": "plataforma"
+   "visto": "2026-11-09",
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 550 EUR"
   },
   {
    "t": "WINTER 2026-27 | OPEN CALL | Residency at Hangar for Visual Artists",
@@ -359,8 +417,10 @@
    "cat": "residencia",
    "onde": "exterior",
    "resumo": "Residência artística em Portugal. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
-   "visto": "2026-11-08",
-   "via": "plataforma"
+   "visto": "2026-11-09",
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 1.000 EUR"
   },
   {
    "t": "La Porte Peinte Open Call June 2027",
@@ -371,8 +431,10 @@
    "cat": "residencia",
    "onde": "exterior",
    "resumo": "Residência artística em France. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
-   "visto": "2026-11-08",
-   "via": "plataforma"
+   "visto": "2026-11-09",
+   "via": "plataforma",
+   "custo": "parcial",
+   "taxaTxt": "financiada em parte, confira o valor"
   },
   {
    "t": "December 2026 – Open Call for Visual Artists_Ecovillage_Spain",
@@ -383,8 +445,10 @@
    "cat": "residencia",
    "onde": "exterior",
    "resumo": "Residência artística em Spain. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
-   "visto": "2026-11-08",
-   "via": "plataforma"
+   "visto": "2026-11-09",
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 700 EUR"
   },
   {
    "t": "SIXI AiR OPEN CALL 2027 SPRING & AUTUMN",
@@ -395,8 +459,10 @@
    "cat": "residencia",
    "onde": "exterior",
    "resumo": "Residência artística em China. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
-   "visto": "2026-11-08",
-   "via": "plataforma"
+   "visto": "2026-11-09",
+   "via": "plataforma",
+   "custo": "indefinido",
+   "taxaTxt": ""
   },
   {
    "t": "November and Decemner — Solo or Duo in Canada's Temperate Rainforest",
@@ -407,8 +473,10 @@
    "cat": "residencia",
    "onde": "exterior",
    "resumo": "Residência artística em Canada. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
-   "visto": "2026-11-08",
-   "via": "plataforma"
+   "visto": "2026-11-09",
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 250 USD"
   },
   {
    "t": "SUMMER IN PATAGONIA Long days and starry nights. Printmaking residency",
@@ -419,8 +487,10 @@
    "cat": "residencia",
    "onde": "exterior",
    "resumo": "Residência artística em Argentina. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
-   "visto": "2026-11-08",
-   "via": "plataforma"
+   "visto": "2026-11-09",
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 500 USD"
   },
   {
    "t": "RECYCLE ART LAB",
@@ -431,8 +501,10 @@
    "cat": "residencia",
    "onde": "exterior",
    "resumo": "Residência artística em Global. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
-   "visto": "2026-11-08",
-   "via": "plataforma"
+   "visto": "2026-11-09",
+   "via": "plataforma",
+   "custo": "indefinido",
+   "taxaTxt": ""
   },
   {
    "t": "Nature Morte: The Natural History of Death",
@@ -443,8 +515,10 @@
    "cat": "residencia",
    "onde": "exterior",
    "resumo": "Residência artística em Global. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
-   "visto": "2026-11-08",
-   "via": "plataforma"
+   "visto": "2026-11-09",
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 600 USD"
   },
   {
    "t": "ILLAPSE RESIDENCY PROGRAM WINTER 2027",
@@ -455,8 +529,10 @@
    "cat": "residencia",
    "onde": "exterior",
    "resumo": "Residência artística em Spain. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
-   "visto": "2026-11-08",
-   "via": "plataforma"
+   "visto": "2026-11-09",
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 500 EUR"
   },
   {
    "t": "Sheni Studio and Residency — Open Call for International Artists",
@@ -467,8 +543,10 @@
    "cat": "residencia",
    "onde": "exterior",
    "resumo": "Residência artística em Georgia. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
-   "visto": "2026-11-08",
-   "via": "plataforma"
+   "visto": "2026-11-09",
+   "via": "plataforma",
+   "custo": "parcial",
+   "taxaTxt": "financiada em parte, confira o valor"
   },
   {
    "t": "SYMPOIESIS / Open call 2027",
@@ -479,8 +557,10 @@
    "cat": "residencia",
    "onde": "exterior",
    "resumo": "Residência artística em Spain. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
-   "visto": "2026-11-08",
-   "via": "plataforma"
+   "visto": "2026-11-09",
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 300 EUR"
   },
   {
    "t": "Collective residency",
@@ -491,8 +571,10 @@
    "cat": "residencia",
    "onde": "exterior",
    "resumo": "Residência artística em France. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
-   "visto": "2026-11-08",
-   "via": "plataforma"
+   "visto": "2026-11-09",
+   "via": "plataforma",
+   "custo": "indefinido",
+   "taxaTxt": ""
   },
   {
    "t": "AEGEAN FUTURES – 2027 Art Residency in Greece",
@@ -503,8 +585,10 @@
    "cat": "residencia",
    "onde": "exterior",
    "resumo": "Residência artística em Greece. A página no Res Artis leva ao programa e às regras de inscrição (em inglês).",
-   "visto": "2026-11-08",
-   "via": "plataforma"
+   "visto": "2026-11-09",
+   "via": "plataforma",
+   "custo": "taxa",
+   "taxaTxt": "a partir de 500 EUR"
   }
  ]
 }

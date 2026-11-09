@@ -367,6 +367,8 @@ function carregarRadar() {
       const j = JSON.parse(fs.readFileSync(path.join(RAIZ, arq), 'utf8'));
       (j.itens || []).forEach(x => {
         if (!x || !x.t || !x.link) return;
+        /* ruído: chamada já fechada, conversa, palestra e resultado não são oportunidade aberta */
+        if (/inscri[çc][õo]ess+(fechadas|encerradas)|encerrad[ao]s?|resultado|bate-papo|conversa|palestra|webinar|lan[çc]amento de livro/i.test(x.t)) return;
         const vivo = x.prazo ? x.prazo >= HOJE : (x.pub ? difDias(x.pub, HOJE) <= 45 : (x.visto && difDias(x.visto, HOJE) <= 10));
         if (vivo) out.push({ ...x, via: x.via || via });
       });
@@ -388,41 +390,48 @@ function paginaEditais(editais) {
   const todos = [
     ...editais.map(e => {
       const cat = e.cat in CAT_EDITAL ? e.cat : 'chamada';
-      return { conf: true, t: e.t, org: e.org || '', cat, onde: ondeDe(e.onde), prazo: e.prazo || '', link: e.link || '#', d: e.d || '',
+      return { conf: true, t: e.t, org: e.org || '', cat, onde: ondeDe(e.onde), prazo: e.prazo || '', link: e.link || '#', d: e.d || '', taxa: e.taxa || '',
         meta: [e.quem ? 'Quem pode: ' + e.quem : '', e.onde ? 'Abrangência: ' + e.onde : '', e.valor || '', e.taxa ? 'Inscrição ' + e.taxa : '', e.fonte ? 'Fonte: ' + e.fonte : ''].filter(Boolean).join(' · ') };
     }),
     ...radar.map(r => {
       const cat = r.cat in CAT_EDITAL ? r.cat : 'chamada';
-      return { conf: false, t: r.t, org: r.fonte || '', cat, onde: r.onde in ONDE_EDITAL ? r.onde : 'brasil', prazo: r.prazo || '', link: r.link, d: r.resumo || '', pub: r.pub,
+      return { conf: false, t: r.t, org: r.fonte || '', cat, onde: r.onde in ONDE_EDITAL ? r.onde : 'brasil', prazo: r.prazo || '', link: r.link, d: r.resumo || '', pub: r.pub, custo: r.custo || '', taxaTxt: r.taxaTxt || '',
         meta: r.via === 'site' ? 'Lido na página oficial de quem abriu a chamada' : r.via === 'plataforma' ? 'Listado por ' + String(r.fonte || '').split(' · ')[0] + '; o link leva à página do programa' : 'Achado automaticamente' + (r.via === 'instagram' ? ' no Instagram' : '') };
     })
   ].map(x => ({ ...x, st: estadoEdital({ prazo: x.prazo }) }));
 
-  const abertos = todos.filter(x => x.st.n >= 0);
-  const fecham7 = abertos.filter(x => x.prazo && x.st.n <= 7).length;
-  const confirmados = abertos.filter(x => x.conf).length;
-  const semData = abertos.filter(x => !x.prazo).length;
-  try { fs.writeFileSync(path.join(RAIZ, 'radar', 'resumo.json'), JSON.stringify({ abertos: abertos.length, fecham7, atualizado: HOJE })); } catch (_) {}
-
-  const grupo = x => !x.prazo ? 4 : x.st.n < 0 ? 5 : x.st.n <= 7 ? 1 : x.st.n <= 30 ? 2 : 3;
-  const TITULO = { 1: ['Fecham nos próximos 7 dias', 'corra'], 2: ['Fecham neste mês', 'até 30 dias'], 3: ['Mais adiante', 'com folga'], 4: ['Sem data de fim lida', 'fluxo contínuo ou prazo não encontrado'], 5: ['Encerrados', 'ficam aqui só para consulta'] };
+  /* residência em que o artista paga (lido da página da chamada): não é edital, vai para uma seção própria, no fim */
+  const pago = x => x.custo === 'taxa';
+  const grupo = x => pago(x) ? 6 : !x.prazo ? 4 : x.st.n < 0 ? 5 : x.st.n <= 7 ? 1 : x.st.n <= 30 ? 2 : 3;
+  const TITULO = { 1: ['Fecham esta semana', 'corra'], 2: ['Fecham neste mês', 'até 30 dias'], 3: ['Mais adiante', 'com folga'], 4: ['Sem data de fim', 'fluxo contínuo ou prazo que não consegui ler'], 5: ['Encerrados', 'só para consulta'], 6: ['Residências em que o artista paga', 'hospedagem e ateliê cobrados de quem vai'] };
   todos.sort((a, b) => grupo(a) - grupo(b) || (a.prazo || '9999').localeCompare(b.prazo || '9999') || (b.conf - a.conf));
 
+  const abertos = todos.filter(x => x.st.n >= 0 && !pago(x));
+  const comTaxa = todos.filter(x => x.st.n >= 0 && pago(x));
+  const fecham7 = abertos.filter(x => x.prazo && x.st.n <= 7).length;
+  try { fs.writeFileSync(path.join(RAIZ, 'radar', 'resumo.json'), JSON.stringify({ abertos: abertos.length, fecham7, atualizado: HOJE })); } catch (_) {}
+
+  const slug = x => 'e-' + String(x.t).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').slice(0, 40);
   const data = x => x.prazo
     ? `<div class="e2d ${x.st.k}"><b>${+x.prazo.slice(8)}</b><i>${MES[+x.prazo.slice(5, 7) - 1]}${x.prazo.slice(0, 4) !== HOJE.slice(0, 4) ? ' ' + x.prazo.slice(2, 4) : ''}</i><span>${x.st.n === 0 ? 'último dia' : x.st.n > 0 ? 'faltam ' + x.st.n + (x.st.n > 1 ? ' dias' : ' dia') : 'encerrado'}</span></div>`
-    : `<div class="e2d off"><b>?</b><span>conferir no site</span></div>`;
+    : `<div class="e2d off"><b>?</b><span>ver no site</span></div>`;
 
   const item = x => {
     const busca = [x.t, x.org, CAT_EDITAL[x.cat], ONDE_EDITAL[x.onde], x.d].join(' ').toLowerCase();
     const g = grupo(x);
-    return `<li data-c="${x.cat}" data-o="${x.onde}" data-g="${g}" data-p="${x.prazo ? 1 : 0}" data-v="${x.conf ? 1 : 0}" data-b="${esc(busca)}">
+    const custo = x.custo === 'taxa' ? `<div class="e2c taxa"><b>O artista paga</b> ${esc(x.taxaTxt)}</div>`
+      : x.custo === 'parcial' ? `<div class="e2c"><b>Financiada em parte</b> confira quanto sobra para o artista</div>`
+      : x.custo === 'apoio' ? `<div class="e2c ok"><b>Com apoio</b> a página fala em bolsa ou ausência de taxa</div>`
+      : x.custo === 'indefinido' ? `<div class="e2c"><b>Custo não informado</b> na página da chamada</div>`
+      : x.conf && x.taxa ? `<div class="e2c ok"><b>Inscrição</b> ${esc(x.taxa)}</div>` : '';
+    return `<li id="${slug(x)}" data-c="${x.cat}" data-o="${x.onde}" data-g="${g}" data-p="${x.prazo ? 1 : 0}" data-v="${x.conf ? 1 : 0}" data-b="${esc(busca)}">
 ${data(x)}
 <div class="e2t">
-<div class="qdt"><span class="tag">${CAT_EDITAL[x.cat]}</span><span class="tag">${ONDE_EDITAL[x.onde]}</span>${x.conf ? '<span class="tag on">Prazo conferido</span>' : ''}</div>
+<div class="e2k">${CAT_EDITAL[x.cat]} · ${ONDE_EDITAL[x.onde]}${x.conf ? ' · <u>prazo conferido por mim</u>' : ''}</div>
 <a class="t" href="${esc(x.link)}" target="_blank" rel="noopener">${esc(x.t)}</a>
 ${x.org ? `<div class="l2">${esc(x.org)}${x.pub ? ' · ' + esc(dCurta(x.pub)) : ''}</div>` : ''}
-${x.d ? `<div class="l3 cl">${esc(x.d)}</div>` : ''}
-${x.meta ? `<div class="l3">${esc(x.meta)}</div>` : ''}
+${x.d ? `<p class="cl">${esc(x.d)}</p>` : ''}
+${custo}
 </div>
 <a class="btn e2b" href="${esc(x.link)}" target="_blank" rel="noopener">Abrir</a>
 </li>`;
@@ -434,35 +443,62 @@ ${x.meta ? `<div class="l3">${esc(x.meta)}</div>` : ''}
     if (g !== gAtual) {
       if (gAtual) corpoLista += '</ul></section>\n';
       gAtual = g;
-      corpoLista += `<section class="bloco e2g" data-g="${g}"><h2>${TITULO[g][0]}<small>${TITULO[g][1]}</small></h2><ul class="e2">\n`;
+      corpoLista += `<section class="bloco e2g" data-g="${g}"><h2>${TITULO[g][0]}<small>${TITULO[g][1]}</small></h2>${g === 6 ? '<p class="e2p">Programas privados, quase sempre no exterior, que cobram do artista a estadia, o ateliê e a mediação. É um formato comum e legítimo, mas não é edital: ninguém paga o seu trabalho, quem paga é você. O valor sai da própria página da chamada, o menor encontrado, e pode mudar com o tipo de quarto e a duração.</p>' : ''}<ul class="e2">\n`;
     }
     corpoLista += item(x) + '\n';
   });
   if (gAtual) corpoLista += '</ul></section>\n';
 
+  /* linha do tempo dos próximos 60 dias: cada chamada com prazo (e sem taxa) é uma marca; clicar leva à entrada */
+  const J = 60;
+  const marcas = todos.filter(x => x.prazo && x.st.n >= 0 && x.st.n <= J && !pago(x)).sort((a, b) => a.st.n - b.st.n);
+  const colunas = [];
+  for (let d = 0; d <= J; d++) {
+    const quadrados = marcas.filter(x => x.st.n === d).map(x => `<a class="pt ${x.st.n <= 7 ? 'perto' : ''}" href="#${slug(x)}" title="${esc(String(x.t).replace(/s+/g, ' '))}"></a>`).join('');
+    colunas.push(`<div class="co">${quadrados}</div>`);
+  }
+  const tl = colunas.join('');
+  const eixo = [0, 7, 14, 30, 45, 60].map(d => `<span style="left:${(d + .5) / (J + 1) * 100}%">${d === 0 ? 'hoje' : '+' + d + ' d'}</span>`).join('');
+  const maisPerto = abertos.find(x => x.prazo);
+
   const css = `<style>
-.e2s{display:flex;gap:clamp(18px,4vw,56px);flex-wrap:wrap;margin:6px 0 26px}
-.e2s div{min-width:0}.e2s b{display:block;font-weight:800;font-size:clamp(40px,6vw,92px);line-height:.85;letter-spacing:-.06em}
-.e2s div:first-child b{color:var(--terra)}
-.e2s span{display:block;margin-top:8px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--mute)}
+.e2h{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(20px,4vw,64px);align-items:end;margin:0 0 clamp(18px,2.4vw,34px)}
+.e2h .voz{font-family:var(--serif);font-style:italic;font-size:clamp(22px,2.6vw,40px);line-height:1.08;max-width:30ch;margin:0}
+.e2prox{border-top:2px solid var(--ink);padding-top:10px;text-align:right}
+.e2prox small{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--mute)}
+.e2prox b{display:block;font-weight:800;font-size:clamp(54px,9vw,150px);line-height:.8;letter-spacing:-.07em;color:var(--terra)}
+.e2prox span{display:block;font-size:13px;margin-top:8px;letter-spacing:.04em;max-width:26ch;margin-left:auto}
+.e2l{overflow-x:auto;border-top:2px solid var(--ink);margin:0 0 clamp(18px,2.4vw,30px);padding:18px 0 0}
+.e2l .in{display:grid;grid-template-columns:repeat(${J + 1},minmax(0,1fr));gap:2px;align-items:end;min-width:760px;min-height:34px;border-bottom:1px solid var(--ink)}
+.e2l .co{display:flex;flex-direction:column-reverse;gap:2px}
+.e2l .pt{display:block;aspect-ratio:1;background:var(--ink);transition:transform .1s}.e2l .pt.perto{background:var(--terra)}.e2l .pt:hover{transform:scale(1.35);background:var(--terra)}
+.e2l .eixo{position:relative;min-width:760px;height:26px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--mute)}
+.e2l .eixo span{position:absolute;top:7px;transform:translateX(-50%);white-space:nowrap}.e2l .eixo span:first-child{transform:none;left:0!important}.e2l .eixo span:last-child{transform:translateX(-100%);left:100%!important}
+.e2l .nota{min-width:0;margin:0 0 8px;font-size:12px;color:var(--mute)}
 .e2f{position:sticky;top:0;z-index:5;background:var(--paper);padding:10px 0 4px;margin-bottom:6px;border-bottom:1.5px solid rgba(14,14,14,.18)}
 .e2f .busca{font-size:clamp(18px,2.2vw,30px);margin:0 0 12px;padding-bottom:8px}
 .e2f .chips{margin-bottom:8px}
 ul.e2{list-style:none;display:block}
-ul.e2 li{display:grid;grid-template-columns:clamp(84px,9vw,128px) minmax(0,1fr) auto;gap:clamp(14px,2.6vw,36px);align-items:start;border-top:1.5px solid var(--ink);padding:20px 0 24px}
+ul.e2 li{display:grid;grid-template-columns:clamp(84px,9vw,128px) minmax(0,1fr) auto;gap:clamp(14px,2.6vw,36px);align-items:start;border-top:1.5px solid var(--ink);padding:22px 0 26px;scroll-margin-top:90px}
+ul.e2 li:target .t{color:var(--terra)}
 .e2d b{display:block;font-weight:800;font-size:clamp(40px,5vw,72px);line-height:.82;letter-spacing:-.06em}
 .e2d i{display:block;font-style:normal;font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin-top:5px}
 .e2d span{display:block;margin-top:5px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--mute)}
 .e2d.soon b,.e2d.soon span{color:var(--terra)}.e2d.off b{color:var(--mute)}
-.e2t .t{font-weight:800;font-size:clamp(20px,2vw,30px);line-height:1;letter-spacing:-.03em;text-transform:uppercase;display:block;text-wrap:balance}
+.e2k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--mute);margin-bottom:8px}.e2k u{text-decoration:none;color:var(--ink)}
+.e2t .t{font-family:var(--serif);font-weight:400;font-size:clamp(26px,2.9vw,46px);line-height:1;letter-spacing:-.01em;display:block;text-wrap:balance}
 .e2t .t:hover{color:var(--terra)}
-.e2t .qdt{margin-bottom:9px}
-.cl{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--ink)!important;font-size:14px!important;max-width:72ch}
+.e2t .l2{margin-top:8px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;font-weight:700}
+.cl{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:15px;max-width:68ch;margin:10px 0 0}
+.e2c{margin-top:10px;font-size:13.5px;max-width:68ch}.e2c b{font-weight:800;margin-right:6px}.e2c.ok b{color:var(--ink);box-shadow:inset 0 -.45em 0 rgba(201,111,74,.28)}.e2c.taxa b{color:var(--terra)}
 .e2b{white-space:nowrap}
 .e2g h2 small{margin-left:12px}
 .e2g[data-g="1"] h2{color:var(--terra)}
+.e2g[data-g="6"]{margin-top:clamp(34px,5vw,72px)}
+.e2p{max-width:70ch;font-size:15px;margin:0 0 14px}
 .e2n{margin:34px 0 8px;border-top:2px solid var(--ink);padding-top:14px}
 @media(max-width:700px){
+  .e2h{grid-template-columns:1fr}.e2prox{text-align:left}.e2prox span{margin-left:0}
   ul.e2 li{grid-template-columns:1fr;gap:10px}
   .e2d{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}.e2d b{font-size:38px}.e2d i,.e2d span{margin:0}
   .e2b{justify-self:start}.e2f{position:static}
@@ -470,15 +506,13 @@ ul.e2 li{display:grid;grid-template-columns:clamp(84px,9vw,128px) minmax(0,1fr) 
 </style>`;
 
   const corpo = `${css}
-<p class="kick">Oportunidades <span>· para artistas, curadores e coletivos</span></p>
+<p class="kick">Para artistas, curadores e coletivos</p>
 <h1 class="g">Editais</h1>
-<div class="e2s">
-<div><b>${abertos.length}</b><span>abertos agora</span></div>
-<div><b>${fecham7}</b><span>fecham em 7 dias</span></div>
-<div><b>${confirmados}</b><span>com prazo conferido</span></div>
-<div><b>${semData}</b><span>sem data de fim</span></div>
+<div class="e2h">
+<p class="voz">O que está aberto agora, com o prazo que vence primeiro no começo. Residência em que o artista paga fica separada, lá no fim.</p>
+${maisPerto ? `<div class="e2prox"><small>Fecha primeiro</small><b${maisPerto.st.n === 0 ? ' style="font-size:clamp(40px,6vw,96px)"' : ''}>${maisPerto.st.n === 0 ? 'HOJE' : maisPerto.st.n}</b><span>${maisPerto.st.n === 0 ? '' : maisPerto.st.n === 1 ? 'dia: ' : 'dias: '}${esc(String(maisPerto.t).slice(0, 70))}</span></div>` : ''}
 </div>
-<p class="lede">Chamadas de galerias e museus, residências, prêmios, bolsas e editais de fomento, numa lista só, do prazo mais curto ao mais longo. Os marcados <b>Prazo conferido</b> passaram por mim; os outros o radar achou sozinho, e a data vem do texto da matéria. <b>Leia sempre o regulamento oficial</b>: prorrogação é comum.</p>
+${marcas.length ? `<div class="e2l" aria-label="Prazos dos próximos 60 dias"><p class="nota">Cada quadrado é uma chamada, no dia em que fecha. Clique para ir até ela.</p><div class="in">${tl}</div><div class="eixo">${eixo}</div></div>` : ''}
 <div class="e2f">
 <input class="busca" id="q" type="search" placeholder="Buscar edital, organizador ou tipo" autocomplete="off">
 <div class="chips" id="fc"><span class="rot">Tipo</span>
@@ -491,7 +525,7 @@ ul.e2 li{display:grid;grid-template-columns:clamp(84px,9vw,128px) minmax(0,1fr) 
 ${todos.length ? corpoLista : '<p class="txt">Nenhuma oportunidade aberta no momento.</p>'}
 
 <section class="e2n" id="outras"><h2 style="margin-top:0">De onde vem</h2>
-<p class="nota">O radar lê todo dia as páginas oficiais de quem abre a chamada (Pivô, Tomie Ohtake, FAAP, Funarte...), sites de arte (Dasartes, Prêmio PIPA, seLecT, ArteBrasileiros, Arte Que Acontece, Sesc SP), perfis do Instagram que divulgam oportunidades e duas listas abertas de residências e fomento: apoio.art e Res Artis. A categoria é um palpite por palavra-chave. Passou o prazo, o item sai sozinho.</p>
+<p class="nota">Todo dia o radar lê as páginas de quem abre a chamada (Pivô, Tomie Ohtake, FAAP, Funarte), sites de arte (Dasartes, Prêmio PIPA, seLecT, ArteBrasileiros, Arte Que Acontece, Sesc SP), perfis do Instagram que divulgam oportunidades e duas listas abertas: apoio.art e Res Artis. O prazo vem do texto de cada fonte e a categoria é um palpite por palavra-chave. Leia sempre o regulamento oficial, porque prorrogação é comum. Passou o prazo, o item sai sozinho.</p>
 <div class="chips">
 <a class="chip" href="https://apoio.art/" target="_blank" rel="noopener">apoio.art · fomento alemão e francês</a>
 <a class="chip" href="https://www.resartis.org/open-calls/" target="_blank" rel="noopener">Res Artis · rede mundial de residências</a>
