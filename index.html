@@ -738,12 +738,23 @@ function analisa(url){
           const lin=j=>{let n=0;for(let i=0;i<w;i++)if(fg(i,j))n++;return n/w};
           const col=i=>{let n=0;for(let j=0;j<h;j++)if(fg(i,j))n++;return n/h};
           const T=.012;
-          let y0=0;while(y0<h-1&&lin(y0)<T)y0++;
-          let y1=h-1;while(y1>y0&&lin(y1)<T)y1--;
-          let x0=0;while(x0<w-1&&col(x0)<T)x0++;
-          let x1=w-1;while(x1>x0&&col(x1)<T)x1--;
+          /* acha o BLOCO principal de conteúdo: junta linhas (ou colunas) próximas e fica com o bloco mais pesado.
+             Legenda pequena, assinatura ou fio isolado longe da obra viram outro bloco e são ignorados;
+             só se o segundo bloco for pesado (>=40% do maior) o recorte abraça os dois. */
+          const bloco=(n,f,gap)=>{
+            const runs=[];let cur=null;
+            for(let k=0;k<n;k++){const v=f(k);if(v>=T){if(cur&&k-cur.b<=gap){cur.b=k;cur.s+=v;}else{cur={a:k,b:k,s:v};runs.push(cur);}}}
+            if(!runs.length)return [0,n-1];
+            runs.sort((p,q)=>q.s-p.s);
+            const m=runs[0];let a=m.a,b2=m.b;
+            for(const r of runs.slice(1))if(r.s>=.4*m.s){a=Math.min(a,r.a);b2=Math.max(b2,r.b);}
+            return [a,b2];
+          };
+          const [y0,y1]=bloco(h,lin,Math.max(2,Math.round(h*.05)));
+          const colR=i=>{let n=0;for(let j=y0;j<=y1;j++)if(fg(i,j))n++;return n/(y1-y0+1)};
+          const [x0,x1]=bloco(w,colR,Math.max(2,Math.round(w*.05)));
           const bw=(x1-x0+1)/w,bh=(y1-y0+1)/h;
-          if((bw<.985||bh<.985)&&bw*bh>=.3&&bw>=.4&&bh>=.4){
+          if((bw<.985||bh<.985)&&bw*bh>=.16&&bw>=.3&&bh>=.25){
             const kx=W/w,ky=H/h;
             box={x:Math.round(x0*kx),y:Math.round(y0*ky),w:Math.round((x1-x0+1)*kx),h:Math.round((y1-y0+1)*ky)};
           }

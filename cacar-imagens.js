@@ -57,6 +57,7 @@ const argv = process.argv.slice(2);
 const flag = (n, d) => { const a = argv.find(x => x.startsWith(`--${n}=`)); return a ? a.split('=').slice(1).join('=') : d; };
 const SECO = argv.includes('--seco');
 const TODAS = argv.includes('--todas');
+const ABERTURAS = flag('aberturas', null);          // --aberturas=10: só mostras que abrem de 3 dias atrás a +10 dias, e FORÇA a busca (ignora a pausa de 14 dias das recusadas)
 const FALTANTES = argv.includes('--faltantes');   // só repete o que ainda não tem candidata que sirva
 const SO = flag('so', '');
 const LIMITE = parseInt(flag('limite', '0'), 10);
@@ -251,7 +252,9 @@ async function medirAtual(e) {
 async function cacar() {
   const { D } = carregarDados();
   const hoje = new Date(Date.now() - 3 * 3600e3).toISOString().slice(0, 10);
-  const vivas = (D.expos || []).filter(e => (!e.fim || e.fim >= hoje) && !e.cartaz);
+  let vivas = (D.expos || []).filter(e => (!e.fim || e.fim >= hoje) && !e.cartaz);
+  const soma = n => new Date(Date.parse(hoje + 'T12:00') + n * 864e5).toISOString().slice(0, 10);
+  if (ABERTURAS !== null) vivas = vivas.filter(e => e.ini && e.ini >= soma(-3) && e.ini <= soma(Number(ABERTURAS) || 10));
   const alvos = [];
   for (const e of vivas) {
     if (SO && !norm(e.t + ' ' + e.v).includes(norm(SO))) continue;
@@ -274,7 +277,7 @@ async function cacar() {
     const reg = acervo[k] = acervo[k] || { links: {}, candidatos: [] };
     if (FALTANTES && (reg.candidatos || []).some(c => c.serveObra || c.serveComFoco)) continue;
     // recusada há pouco (só logo/banner/genérica): não re-julga toda semana; --todas ou --so forçam
-    if (!TODAS && !SO && reg.sem && reg.semEm && (Date.parse(hoje) - Date.parse(reg.semEm)) / 864e5 < 14) { puladasRecentes++; continue; }
+    if (!TODAS && !SO && ABERTURAS === null && reg.sem && reg.semEm && (Date.parse(hoje) - Date.parse(reg.semEm)) / 864e5 < 14) { puladasRecentes++; continue; }
     const pasta = path.join(TRIAGEM, baseNome(e));
     const ev = casar(e, eventos);
     let cands = [], credLegenda = null;

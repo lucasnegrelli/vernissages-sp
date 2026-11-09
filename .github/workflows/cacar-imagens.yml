@@ -13,8 +13,14 @@ name: Caçador de imagens
 
 on:
   schedule:
-    - cron: '0 12 * * 5'
+    - cron: '0 12 * * 5'        # sexta: varredura completa
+    - cron: '30 10 * * *'       # todo dia 07:30 em SP: só as aberturas dos próximos 10 dias, forçando a busca
   workflow_dispatch:
+    inputs:
+      aberturas:
+        description: 'Só aberturas dos próximos N dias (vazio = varredura completa)'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -45,7 +51,11 @@ jobs:
       - name: Caçar candidatas
         id: cacar
         run: |
-          node cacar-imagens.js | tee /tmp/cacar.log
+          ARGS=""
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "${{ github.event.schedule }}" != "0 12 * * 5" ]; then ARGS="--aberturas=10"; fi
+          if [ -n "${{ github.event.inputs.aberturas }}" ]; then ARGS="--aberturas=${{ github.event.inputs.aberturas }}"; fi
+          echo "modo: ${ARGS:-varredura completa}"
+          node cacar-imagens.js $ARGS | tee /tmp/cacar.log
           N=$(node -e "try{console.log(require('./PENDENTE/cacador/fila.json').length)}catch{console.log(0)}")
           echo "fila=$N" >> "$GITHUB_OUTPUT"
 
@@ -75,7 +85,7 @@ jobs:
           git config user.email "actions@github.com"
           git add dados.js img acervo-imagens.json
           if git diff --staged --quiet; then echo "Nada mudou."; exit 0; fi
-          git commit -m "Caçador de imagens: rodada semanal"
+          git commit -m "Caçador de imagens: rodada automática"
           for i in 1 2 3 4 5; do
             if git push; then exit 0; fi
             echo "push rejeitado, tentativa $i"
@@ -84,10 +94,24 @@ jobs:
           done
           exit 1
 
+      - name: Aberturas ainda sem imagem (some da seção Abre esta semana até ter)
+        if: always()
+        run: |
+          node -e "
+          const fs=require('fs'),vm=require('vm');
+          const c={window:{}};vm.runInNewContext(fs.readFileSync('dados.js','utf8'),c);c.D=c.window.DATA;
+          const hoje=new Date(Date.now()-3*3600e3).toISOString().slice(0,10);
+          const fim=new Date(Date.parse(hoje+'T12:00')+7*864e5).toISOString().slice(0,10);
+          const f=((c.D&&c.D.expos)||[]).filter(e=>e.ini>=hoje&&e.ini<=fim&&!(e.img&&String(e.img).trim()));
+          console.log(f.length?'SEM IMAGEM ('+f.length+'): '+f.map(e=>e.ini+' '+e.t+' @ '+e.v).join(' | '):'todas as aberturas da semana têm imagem');
+          " | tee /tmp/semimg.log || true
+
       - name: Resumo
         if: always()
         run: |
           {
+            echo '### Aberturas da semana'
+            cat /tmp/semimg.log 2>/dev/null
             echo "## Caçador de imagens"
             echo '```'
             tail -40 /tmp/cacar.log 2>/dev/null
