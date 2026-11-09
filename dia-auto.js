@@ -89,13 +89,17 @@ function gerarFeed() {
   return null;
 }
 
-/* Reel: terça (últimos dias/semana) e sexta (fim de semana). Falha aqui nunca derruba o dia. */
+/* Reel: terça, sexta e domingo. O reel-arte.js (movimento na linguagem do site: abre / fecha / rota) é o principal;
+   se ele não achar 3 mostras que passem nas réguas, tenta o reel-auto.js antigo. Falha aqui nunca derruba o dia. */
+const DIAS_REEL = [2, 5, 0];
 function gerarReel() {
-  if (![2, 5].includes(dow)) return;
+  if (!DIAS_REEL.includes(dow)) return;
   const ja = filaDoDia().some(n => /reel/.test(n));
   if (ja) return;
-  try { console.log(rodar('reel-auto.js', [`--date=${DATA}`, '--fila', `--quando=${flag('reel', HORA_REEL)}`])); }
-  catch (e) { console.log('reel: ' + (String(e.stdout || '') + String(e.stderr || '') || e.message).trim().split(String.fromCharCode(10)).slice(-2).join(' | ')); }
+  for (const script of ['reel-arte.js', 'reel-auto.js']) {
+    try { console.log(rodar(script, [`--date=${DATA}`, '--fila', `--quando=${flag('reel', HORA_REEL)}`])); return; }
+    catch (e) { console.log(script + ': ' + (String(e.stdout || '') + String(e.stderr || '') || e.message).trim().split(String.fromCharCode(10)).slice(-2).join(' | ')); }
+  }
 }
 
 function gerarStories() {
@@ -154,7 +158,7 @@ function fase2(temStory, temFeed) {
   const ja = filaDoDia();
   const temFeed = ja.some(n => !/story/.test(n));
   const temStory = ja.some(n => /story/.test(n));
-  const temReel = ja.some(n => /reel/.test(n)), querReel = [2, 5].includes(dow) && !temReel;
+  const temReel = ja.some(n => /reel/.test(n)), querReel = DIAS_REEL.includes(dow) && !temReel;
   if (temFeed && temStory && !querReel) { console.log(`fila do dia já existe (${ja.length}): nada a fazer`); return; }
   if (SECO) { console.log('seco: pararia aqui'); return; }
   if (fase === 'gerar' || fase === 'tudo') { if (!temFeed) fase1(); else if (!temStory) gerarStories(); gerarReel(); }
