@@ -164,45 +164,53 @@ function contagem(hoje, fim) {
   return '';
 }
 
+/* ---------- etiqueta v2 (09/11/2026): a mesma língua do site e do Reel ----------
+   Papel e tinta, a data como protagonista (número gigante na cor da obra), título em caixa-alta pesada,
+   artista em itálico serifado, a obra inteira embaixo do número. O slide 1 (obra tela cheia, sem texto)
+   não muda. A cor do número vem da obra (direcao.js); obra sem cor usa a terracota da casa. */
+const DIAS_SEM = ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 'sáb'];
+const MES_CURTO = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
+const dowIso = iso => new Date(iso + 'T12:00:00Z').getUTCDay();
+const DIA_LONGO = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado'];
+
 function slideEtiqueta(o, cfg, hoje) {
   const modo = cfg.modo || 'obra';
-  /* A imagem ocupa a metade de cima; a etiqueta de parede, a de baixo. Quando
-     há selo (encerra/estreia) a imagem cede um pouco de altura para ele. */
-  const temSelo = modo === 'encerra' || modo === 'estreia';
-  const cx = W - 96 * 2, cy = temSelo ? 620 : 700;
-  const k = Math.min(cx / o.dim.w, cy / o.dim.h);
-  const w = Math.round(o.dim.w * k), h = Math.round(o.dim.h * k);
-  const topo = Math.round(110 + (cy - h) / 2);
-  const quem = autoria(o.e);
-  /* nota só quando o config pede, e só no modo `obra`: a etiqueta de encerra e
-     estreia já carrega selo + prazo + contagem, e uma descrição longa por cima
-     empurra o crédito e a marca para fora do quadro. Nesses modos o recado da
-     ideia mora na legenda. */
-  const nota = temSelo ? '' : (cfg.nota || '');
-
-  let selo = '';
-  if (modo === 'encerra') {
-    const c = contagem(hoje, o.e.fim);
-    selo = `<div class="selo">última semana</div>
-    <div class="prazo">fecha ${_curto(o.e.fim)}</div>
-    ${c ? `<div class="conta">${c}</div>` : ''}`;
-  } else if (modo === 'estreia') {
-    selo = `<div class="selo">estreia</div>
-    <div class="prazo">abre ${_curto(o.e.ini)}</div>`;
+  const cor = (o.pal && o.pal.texto) || '#C96F4A';
+  let num = '', rot = '', mes = '', nota = '', kicker = 'Em cartaz';
+  if (modo === 'encerra' && o.e.fim) {
+    const n = _dias(hoje, o.e.fim);
+    kicker = 'Últimos dias';
+    num = n <= 0 ? 'HOJE' : String(n); rot = n <= 0 ? 'ÚLTIMO' : 'FALTAM'; mes = n <= 0 ? 'DIA' : n === 1 ? 'DIA' : 'DIAS';
+    nota = 'fecha ' + DIA_LONGO[dowIso(o.e.fim)] + ', ' + _curto(o.e.fim);
+  } else if (modo === 'estreia' && o.e.ini) {
+    kicker = 'Estreia';
+    num = String(+o.e.ini.slice(8)); rot = DIAS_SEM[dowIso(o.e.ini)].toUpperCase(); mes = MES_CURTO[+o.e.ini.slice(5, 7) - 1];
+    const n = _dias(hoje, o.e.ini); nota = n <= 0 ? 'abre hoje' : n === 1 ? 'abre amanhã' : 'abre ' + DIA_LONGO[dowIso(o.e.ini)];
+  } else if (o.e.fim) {
+    num = String(+o.e.fim.slice(8)); rot = 'ATÉ'; mes = MES_CURTO[+o.e.fim.slice(5, 7) - 1];
+    nota = 'em cartaz até ' + DIA_LONGO[dowIso(o.e.fim)];
   }
-
-  return `<div class="slide slide--${modo}">
-    <img class="obra" src="${esc(o.rel)}" style="left:${Math.round((W - w) / 2)}px;top:${topo}px;width:${w}px;height:${h}px">
-    <div class="etq" style="top:900px">
-      ${selo}
-      <div class="tit">${esc(tituloCurto(o.e))}</div>
+  const quem = autoria(o.e);
+  const tem = !!num;
+  const zonaTop = tem ? 480 : 150, zonaAlt = tem ? 440 : 760;
+  const k = Math.min((W - 140) / o.dim.w, zonaAlt / o.dim.h);
+  const w = Math.round(o.dim.w * k), h = Math.round(o.dim.h * k);
+  const left = w < 640 ? W - 70 - w : 70;
+  const topo = zonaTop + zonaAlt - h;
+  const tamTit = (t => { const n = t.length; return n <= 14 ? 96 : n <= 24 ? 78 : n <= 36 ? 64 : n <= 52 ? 54 : 46; })(tituloCurto(o.e));
+  const nota2 = modo === 'obra' ? (cfg.nota || '') : '';
+  return `<div class="slide v2 slide--${modo}" style="--ac:${cor}">
+    <div class="cab"><b>Vernissages SP</b><span>${esc(kicker)}</span></div>
+    ${tem ? `<div class="dado"><div class="nm">${esc(num)}</div><div class="lado"><div class="r">${esc(rot)}</div><div class="m">${esc(mes)}</div>${nota ? `<div class="s">${esc(nota)}</div>` : ''}</div></div>` : ''}
+    <img class="obra" src="${esc(o.rel)}" style="left:${left}px;top:${topo}px;width:${w}px;height:${h}px">
+    <div class="etq2" style="top:${topo + h + 36}px">
+      <div class="tit" style="font-size:${tamTit}px">${esc(tituloCurto(o.e))}</div>
       ${quem ? `<div class="quem">${esc(quem)}</div>` : ''}
-      <div class="serv">${esc(o.v.name)} ${esc(arroba(o.v.ig))} · ${esc(o.v.b)}<br>
-        ${o.e.fim ? 'até ' + esc(porExtenso(o.e.fim)) : 'encerramento não divulgado'}</div>
-      ${nota ? `<div class="nota">${esc(nota)}</div>` : ''}
+      <div class="onde">${esc(o.v.name)} · ${esc(o.v.b)}</div>
+      <div class="serv">${o.e.fim ? 'até ' + esc(porExtenso(o.e.fim)) : 'encerramento não divulgado'} ${o.v.ig ? '· ' + esc(arroba(o.v.ig)) : ''}</div>
+      ${nota2 ? `<div class="nota">${esc(nota2)}</div>` : ''}
     </div>
     <div class="cred">${esc(o.e.cred)}</div>
-    <div class="marca">${MARCA_HTML}</div>
   </div>`;
 }
 
@@ -210,23 +218,29 @@ function montarHTML(o, cfg, hoje) {
   const total = 2;
   const s = slideCheia(o) + slideEtiqueta(o, cfg, hoje);
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>${CSS}
+    @font-face{font-family:'IS';src:url('fontes/InstrumentSerif-Italic.ttf');font-style:italic}
+    @font-face{font-family:'IS';src:url('fontes/InstrumentSerif-Regular.ttf');font-style:normal}
     .slide--cheia{background:#000}
     .slide--cheia::after{display:none}
     .slide .sangra{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-    .slide .etq{position:absolute;left:88px;right:88px}
-    .slide .marca{left:auto;right:88px;bottom:84px}
-    .slide .etq .tit{font-size:44px;font-weight:400;line-height:1.14;letter-spacing:-.014em}
-    .slide .etq .quem{font-size:27px;font-weight:300;margin-top:10px}
-    .slide .etq .serv{font-size:22px;font-weight:300;margin-top:22px;line-height:1.55}
-    .slide .etq .nota{font-size:23px;font-weight:300;line-height:1.5;margin-top:22px;max-width:840px}
-    .slide .etq .selo{font-size:17px;font-weight:500;letter-spacing:.30em;text-transform:uppercase;margin-bottom:14px}
-    .slide .etq .prazo{font-size:52px;font-weight:300;letter-spacing:-.02em;margin-bottom:6px;line-height:1}
-    .slide .etq .conta{font-size:23px;font-weight:400;letter-spacing:.02em;margin-bottom:22px}
     ${cssPaleta(cfg.paleta, cfg.textura)}
-    .slide .etq .nota{color:${cfg.paleta.meio}}
-    .slide .etq .selo{color:${cfg.paleta.fraco}}
-    .slide .etq .prazo{color:${cfg.paleta.texto}}
-    .slide .etq .conta{color:${cfg.paleta.meio}}
+    .slide.v2{background:#F2EFE9;color:#0E0E0E}
+    .slide.v2 .cab{position:absolute;left:70px;right:70px;top:56px;height:46px;border-bottom:3px solid #0E0E0E;display:flex;justify-content:space-between;font-weight:800;font-size:22px;letter-spacing:.17em;text-transform:uppercase}
+    .slide.v2 .cab span{color:var(--ac)}
+    .slide.v2 .dado{position:absolute;left:62px;top:128px;display:flex;align-items:flex-end;gap:26px;color:var(--ac)}
+    .slide.v2 .nm{font-weight:800;font-size:380px;line-height:.8;letter-spacing:-.085em;margin-left:-.03em;height:300px;overflow:hidden;padding-top:6px}
+    .slide.v2 .lado{padding-bottom:24px}
+    .slide.v2 .lado .r{font-weight:800;font-size:32px;letter-spacing:.2em;line-height:1}
+    .slide.v2 .lado .m{font-weight:800;font-size:76px;letter-spacing:-.04em;line-height:.95;margin-top:4px}
+    .slide.v2 .lado .s{font-family:'IS',serif;font-style:italic;font-size:34px;color:#0E0E0E;margin-top:6px;line-height:1.05}
+    .slide.v2 .obra{object-fit:contain}
+    .slide.v2 .etq2{position:absolute;left:70px;right:70px}
+    .slide.v2 .tit{font-weight:800;text-transform:uppercase;letter-spacing:-.035em;line-height:.93}
+    .slide.v2 .quem{font-family:'IS',serif;font-style:italic;font-weight:400;font-size:40px;line-height:1.04;margin-top:14px;color:#0E0E0E}
+    .slide.v2 .onde{font-weight:800;font-size:23px;letter-spacing:.15em;text-transform:uppercase;margin-top:18px;color:#0E0E0E}
+    .slide.v2 .serv{font-weight:500;font-size:22px;letter-spacing:.1em;text-transform:uppercase;margin-top:6px;color:#6f6a60}
+    .slide.v2 .nota{font-size:23px;font-weight:300;line-height:1.5;margin-top:16px;max-width:900px;color:#0E0E0E}
+    .slide.v2 .cred{left:70px;bottom:44px;width:900px;font-size:17px;font-weight:500;color:#9a948a}
     </style></head><body>${s}</body></html>`;
 }
 
@@ -268,11 +282,15 @@ async function principal() {
 
   if (seco) { console.log('\n--seco: nada foi renderizado.'); return; }
 
+  try {
+    const D = require('./direcao.js'), sharpC = require(path.join(process.env.RENDER_DIR || path.join(RAIZ, '.render'), 'node_modules', 'sharp'));
+    o.pal = D.paletaDaCor(await D.corDaObra(sharpC, path.resolve(RAIZ, o.rel)));
+  } catch (x) { console.log('cor da obra: ' + x.message); }
   const saida = path.resolve(RAIZ, flag('out', '.'));
   const tmp = path.join(RAIZ, '.obra-tmp.html');
   fs.writeFileSync(tmp, montarHTML(o, cfg, hoje), 'utf8');
 
-  const puppeteer = require(path.join(RAIZ, '.render', 'node_modules', 'puppeteer-core'));
+  const puppeteer = require(path.join(process.env.RENDER_DIR || path.join(RAIZ, '.render'), 'node_modules', 'puppeteer-core'));
   const browser = await puppeteer.launch({
     executablePath: process.env.CHROME || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
     headless: 'new',
