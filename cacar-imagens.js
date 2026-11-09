@@ -435,6 +435,34 @@ async function aplicar() {
   fs.writeFileSync(ACERVO, JSON.stringify(acervo, null, 2) + '\n');
 }
 
+/* ---------- julgamento automático (SEM IA): regras conservadoras ----------
+   Roda no GitHub Actions, não gasta crédito de ninguém. Ninguém "vê" a imagem, então a régua é dura:
+   só serve candidata com formato de obra (serveObra: banner largo e cartaz de rede social ficam de fora),
+   resolução boa, que não saiu no feed e cujo nome de arquivo/URL não tem cara de logo, cartaz ou convite.
+   Entre as que servem, escolhe a de maior resolução (empate: a do site oficial). Dúvida = sem escolha:
+   a mostra fica fora da seção "Abre esta semana" até alguém trazer a imagem. */
+const SUSPEITA = /logo|banner|cartaz|flyer|poster|convite|save-?the-?date|story|stories|post-?\d|whatsapp|screenshot|print|avatar|mapa|map-|selo|qr-?code|thumb|ico[n]?[-_.]/i;
+function autoDecidir() {
+  const fila = lerJSON(path.join(TRIAGEM, 'fila.json'), []);
+  const dec = {};
+  for (const f of fila) {
+    const bons = (f.candidatos || []).filter(c => c.serveObra && !c.jaNoFeed && c.w >= 1200 && !SUSPEITA.test(String(c.url || '')));
+    if (!bons.length) { dec[f.key] = { escolha: null, motivo: 'auto: nenhuma candidata passou na régua (formato de obra, >=1200 px, nome sem cara de cartaz/logo)' }; continue; }
+    bons.sort((a, b) => (b.w * b.h) - (a.w * a.h) || (a.fonte === 'site' ? -1 : 1));
+    const c = bons[0];
+    const casa = f.v;
+    const leg = String(f.credLegenda || '');
+    const m = leg.match(/foto(?:grafia)?\s*[:\-–]\s*([^|·\n]{3,60})/i);
+    const cred = m ? `Foto: ${m[1].trim()} / ${casa}` : `Cortesia ${casa}`;
+    dec[f.key] = { escolha: c.n, cred, motivo: `auto: ${c.w}x${c.h}, fonte ${c.fonte}` };
+  }
+  fs.mkdirSync(TRIAGEM, { recursive: true });
+  fs.writeFileSync(path.join(TRIAGEM, 'decisoes.json'), JSON.stringify(dec, null, 2) + '\n');
+  const n = Object.values(dec).filter(d => d.escolha).length;
+  console.log(`auto: ${n} de ${fila.length} mostra(s) com escolha; o resto fica sem imagem (nao aparece em "Abre esta semana").`);
+}
+
 (async () => {
+  if (argv.includes('--auto')) { autoDecidir(); return; }
   if (argv.includes('--aplicar')) await aplicar(); else await cacar();
 })().catch(e => { console.error('ABORTADO: ' + e.message); process.exit(1); });

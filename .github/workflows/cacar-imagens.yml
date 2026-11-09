@@ -4,7 +4,7 @@ name: Caçador de imagens
 # que passasse na régua, em 26/10/2026). Três etapas:
 #   1. cacar-imagens.js  acha a mostra no agregador e no site da casa, baixa os
 #                        candidatos, mede, tira repetidas e monta a folha de contato
-#   2. Claude Code       olha as folhas e decide (prompt: .github/prompts/cacar-imagens.md)
+#   2. --auto            julga por regras (formato de obra, resolução, nome do arquivo). SEM IA: não gasta crédito
 #   3. --aplicar         copia p/ img/, edita o dados.js e roda o check.js;
 #                        reprovou, desfaz tudo e o job falha
 # O portão é o check.js. Dúvida real vira "escolha: null" e entra no resumo:
@@ -59,20 +59,9 @@ jobs:
           N=$(node -e "try{console.log(require('./PENDENTE/cacador/fila.json').length)}catch{console.log(0)}")
           echo "fila=$N" >> "$GITHUB_OUTPUT"
 
-      - name: Instalar Claude Code
+      - name: Julgar (regras automáticas, sem IA e sem custo)
         if: steps.cacar.outputs.fila != '0'
-        run: npm install -g @anthropic-ai/claude-code
-
-      - name: Julgar as folhas
-        if: steps.cacar.outputs.fila != '0'
-        env:
-          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-        run: |
-          claude -p "$(cat .github/prompts/cacar-imagens.md)" \
-            --allowedTools "Bash,Read,Write,Glob,Grep" \
-            --dangerously-skip-permissions \
-            | tee /tmp/julgamento.log
-          test -f PENDENTE/cacador/decisoes.json
+        run: node cacar-imagens.js --auto | tee /tmp/julgamento.log
 
       - name: Aplicar (check.js é o portão)
         if: steps.cacar.outputs.fila != '0'
