@@ -1147,16 +1147,18 @@ function renderPainel(){
 let wkTxt='';
 function renderSemana(){
   const fimISO=new Date(Date.parse(HOJE+'T12:00')+7*864e5).toISOString().slice(0,10);
-  const wk=expos.filter(e=>e.ini>=HOJE&&e.ini<=fimISO).sort((a,c)=>a.ini.localeCompare(c.ini));
+  const iniISO=new Date(Date.parse(HOJE+'T12:00')-6*864e5).toISOString().slice(0,10);
+  /* abrem de hoje a +7 dias vêm primeiro; as que abriram nos últimos 6 dias vêm depois, da mais recente para a mais antiga */
+  const wk=expos.filter(e=>e.ini>=iniISO&&e.ini<=fimISO).sort((a,c)=>{const pa=a.ini<HOJE,pc=c.ini<HOJE;return pa!==pc?(pa?1:-1):(pa?c.ini.localeCompare(a.ini):a.ini.localeCompare(c.ini));});
   /* só entra no trilho mostra COM imagem: sem imagem não há cartão de reserva, a mostra simplesmente não aparece aqui */
   const comImg=wk.filter(e=>e.img&&String(e.img).trim());
   const sec=document.getElementById('semana');
   if(!comImg.length){sec.hidden=true;return;}
   sec.hidden=false;
-  wkTxt='Vernissages SP — aberturas da semana:\n'+wk.map(e=>'• '+dm(e.ini)+(e.ini===HOJE?' (hoje!)':'')+' — '+e.t+' @ '+e.ven.name+' ('+e.ven.b+')').join('\n')+'\n\nAgenda completa, mapa e roteiros: https://vernissagessp.com.br/';
-  document.getElementById('pino').innerHTML='<div class="cab"><h2>Abre esta semana</h2><div class="acoes-sem"><a class="bt" target="_blank" rel="noopener" href="https://wa.me/?text='+encodeURIComponent(wkTxt)+'">WhatsApp</a><button type="button" class="bt" data-act="copyweek">Copiar agenda</button></div></div>'+
+  wkTxt='Vernissages SP — aberturas da semana:\n'+wk.map(e=>'• '+dm(e.ini)+(e.ini===HOJE?' (hoje)':e.ini<HOJE?' (já abriu)':'')+' — '+e.t+' @ '+e.ven.name+' ('+e.ven.b+')').join('\n')+'\n\nAgenda completa, mapa e roteiros: https://vernissagessp.com.br/';
+  document.getElementById('pino').innerHTML='<div class="cab"><h2>Aberturas da semana</h2><div class="acoes-sem"><a class="bt" target="_blank" rel="noopener" href="https://wa.me/?text='+encodeURIComponent(wkTxt)+'">WhatsApp</a><button type="button" class="bt" data-act="copyweek">Copiar agenda</button></div></div>'+
     '<div class="trilho" id="trilho">'+comImg.map(e=>{
-      const d='<div class="dia"><small>'+(e.ini===HOJE?'HOJE':'ABRE')+'</small>'+dl(e.ini)+'</div>';
+      const d='<div class="dia"><small>'+(e.ini===HOJE?'HOJE':e.ini<HOJE?'ABRIU':'ABRE')+'</small>'+dl(e.ini)+'</div>';
       return '<button type="button" class="cartao" data-act="ficha" data-id="'+e.k+'"><div class="rc im" data-u="'+esc(e.img)+'"><img src="'+esc(e.img)+'" alt="" loading="lazy" onerror="semanaSemImg(this)">'+d+'</div><h3>'+esc(tituloLimpo(e))+'</h3><p>'+esc(e.ven.name)+' · '+esc(e.ven.b)+'</p></button>';
     }).join('')+'</div>';
   document.querySelectorAll('#pino .rc[data-u]').forEach(aplicaRC);

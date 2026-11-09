@@ -100,11 +100,11 @@ jobs:
         run: |
           {
             echo '### Aberturas da semana'
-            cat /tmp/semimg.log 2>/dev/null
+            cat /tmp/semimg.log 2>/dev/null || true
             echo "## Caçador de imagens"
             echo '```'
-            tail -40 /tmp/cacar.log 2>/dev/null
+            tail -40 /tmp/cacar.log 2>/dev/null || true
             echo '--- aplicado ---'
-            cat /tmp/aplicar.log 2>/dev/null
+            cat /tmp/aplicar.log 2>/dev/null || true
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
