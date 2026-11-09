@@ -369,7 +369,7 @@ function carregarRadar() {
       (j.itens || []).forEach(x => {
         if (!x || !x.t || !x.link) return;
         /* ruído: chamada já fechada, conversa, palestra e resultado não são oportunidade aberta */
-        if (/inscri[çc][õo]es\s+(fechadas|encerradas)|\bencerrad[ao]s?\b|\bresultado\b|bate-papo|\bconversa\b|palestra|jardin|\bgarden|webinar|lan[çc]amento de livro/i.test(x.t)) return;
+        if (/inscri[çc][õo]es\s+(fechadas|encerradas)|\bencerrad[ao]s?\b|\bresultado\b|bate-papo|\bconversa\b|palestra|jardin|\bgarden|webinar|\bart fair\b|for galleries|\bexhibitors?\b|light festival|\bbooth\b|lan[çc]amento de livro/i.test(x.t)) return;
         const vivo = x.prazo ? x.prazo >= HOJE : (x.pub ? difDias(x.pub, HOJE) <= 45 : (x.visto && difDias(x.visto, HOJE) <= 10));
         if (vivo) out.push({ ...x, via: x.via || via });
       });
@@ -377,8 +377,13 @@ function carregarRadar() {
   }
   /* a mesma chamada aparece em notícia, Instagram e página oficial: fica uma vez (por link e por título) */
   const chave = x => String(x.t).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, ' ').trim().slice(0, 48);
-  const vistos = new Set(), titulos = new Set();
-  return out.filter(x => { const k = chave(x); if (vistos.has(x.link) || titulos.has(k)) return false; vistos.add(x.link); titulos.add(k); return true; })
+  /* e a mesma residência listada duas vezes pelo Res Artis (só muda o período): mesmos 3 últimos termos do endereço */
+  const fim3 = x => { try { return new URL(x.link).pathname.split('/').filter(Boolean).pop().split('-').slice(-3).join('-'); } catch (_) { return ''; } };
+  const vistos = new Set(), titulos = new Set(), enderecos = new Set();
+  return out.filter(x => {
+    const k = chave(x), e3 = /resartis\.org/.test(x.link) ? 'ra|' + fim3(x) : '';
+    if (vistos.has(x.link) || titulos.has(k) || (e3 && enderecos.has(e3))) return false;
+    vistos.add(x.link); titulos.add(k); if (e3) enderecos.add(e3); return true; })
     .sort((a, b) => (a.prazo || '9999').localeCompare(b.prazo || '9999') || (b.pub || '').localeCompare(a.pub || ''));
 }
 
@@ -451,13 +456,14 @@ function paginaEditais(editais) {
   const quandoCurto = x => x.prazo ? `${+x.prazo.slice(8)} ${MES[+x.prazo.slice(5, 7) - 1]}${x.prazo.slice(0, 4) !== HOJE.slice(0, 4) ? ' ' + x.prazo.slice(2, 4) : ''}` : 'Sem data';
   const faltam = x => !x.prazo ? 'ver no site' : x.st.n === 0 ? 'último dia' : x.st.n === 1 ? 'falta 1 dia' : 'faltam ' + x.st.n + ' dias';
   const dados = (x, g, extra, cls) => `class="${cls}${x.prazo && x.st.n <= 7 ? ' urg' : ''}${extra ? ' mais' : ''}" id="${slug(x)}" data-c="${x.cat}" data-o="${x.onde}" data-g="${g}" data-p="${x.prazo ? 1 : 0}" data-v="${x.conf ? 1 : 0}" data-n="${x.prazo ? x.st.n : ''}" data-k="${custoK(x)}" data-b="${esc([x.t, x.org, CAT_EDITAL[x.cat], ONDE_EDITAL[x.onde], x.d].join(' ').toLowerCase())}"`;
+  const emIngles = x => { const t = String(x.t); return !/[ãçõáéíóúâêô]/i.test(t) && (t.match(/\b(the|of|and|for|in|with|residency|open call|program|artist|artists|call)\b/gi) || []).length >= 2; };
   const orgDe = x => x.org ? String(x.org).split(' · ').pop().replace(/\s*\(.*$/, '') : '';
   const botoes = x => `<a class="cd-ab" href="${esc(x.link)}" target="_blank" rel="noopener">Abrir</a>${x.prazo ? `<a class="e2ics" href="${ics(x)}" download="prazo-${slug(x)}.ics">Lembrete</a>` : ''}`;
   const cartao = (x, extra) => `<li ${dados(x, 'br', extra, 'bc')}>
 <div class="bc-q"><b>${quandoCurto(x)}</b><span>${faltam(x)}</span></div>
 <a class="bc-t" href="${esc(x.link)}" target="_blank" rel="noopener">${esc(limpaT(x.t))}</a>
 ${descOk(x) ? `<p class="bc-d">${esc(x.d)}</p>` : ''}
-<div class="cd-k">${CAT_EDITAL[x.cat]} · ${ONDE_EDITAL[x.onde]}${orgDe(x) ? ' · ' + esc(orgDe(x)) : ''}${x.conf ? ' · prazo conferido' : ''}</div>
+<div class="cd-k">${CAT_EDITAL[x.cat]} · ${ONDE_EDITAL[x.onde]}${orgDe(x) ? ' · ' + esc(orgDe(x)) : ''}${x.conf ? ' · prazo conferido' : ''}${emIngles(x) ? ' · em inglês' : ''}</div>
 ${etiqueta(x)}
 ${citaHtml(x)}
 <div class="cd-foot">${botoes(x)}</div>
@@ -465,7 +471,7 @@ ${citaHtml(x)}
   const linha = (x, extra) => `<li ${dados(x, 'ex', extra, 'rw')}>
 <div class="rw-q"><b>${quandoCurto(x)}</b><span>${faltam(x)}</span></div>
 <a class="rw-t" href="${esc(x.link)}" target="_blank" rel="noopener">${esc(limpaT(x.t))}</a>
-<div class="rw-k">${CAT_EDITAL[x.cat]}<br>${esc(orgDe(x) || ONDE_EDITAL[x.onde])}</div>
+<div class="rw-k">${CAT_EDITAL[x.cat]}${emIngles(x) ? ' · em inglês' : ''}<br>${esc(orgDe(x) || ONDE_EDITAL[x.onde])}</div>
 <div class="rw-c">${etiqueta(x) || '<span class="rw-nd">sem informação de custo</span>'}${citaHtml(x)}</div>
 <div class="rw-a">${botoes(x)}</div>
 </li>`;
