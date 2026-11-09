@@ -41,7 +41,8 @@ try { itens = JSON.parse(fs.readFileSync(arq, 'utf8')).itens || []; } catch (e) 
 /* recalcula os dias contra a data pedida e tira o que já passou */
 itens = itens.map(x => ({ ...x, dias: dias(hoje, x.prazo) })).filter(x => x.dias >= 0);
 /* o que cabe na primeira quinzena; chamada em português e prazo conferido à mão vêm antes no empate */
-const quinzena = itens.filter(x => x.dias <= 14);
+/* fora o que não é para artista visual (festival de jardim, de luz) */
+const quinzena = itens.filter(x => x.dias <= 14 && !/festival|jardin|garden/i.test(x.t));
 /* para quem é de São Paulo, chamada daqui ou do Brasil vem antes da estrangeira; dentro disso, o prazo mais curto */
 const peso = x => (x.onde === 'Exterior' ? 1 : 0);
 const pick = quinzena.slice().sort((a, b) => peso(a) - peso(b) || a.prazo.localeCompare(b.prazo)).slice(0, N).sort((a, b) => a.prazo.localeCompare(b.prazo));
