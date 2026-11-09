@@ -1,0 +1,65 @@
+name: Exposição no feed (automático)
+
+# Escolhe uma exposição em cartaz, monta o carrossel profundo (fotos da página
+# da própria galeria, vista de sala em faixa contínua, trechos do texto da
+# exposição com a assinatura de quem escreveu, ficha) e enfileira para o
+# publicar.yml. Tudo por regra, SEM IA e sem gastar crédito. Ver o cabeçalho do
+# exposicao-auto.js. Domingo e quarta, 19:00 em SP; só enfileira se houver menos de
+# 2 carrosséis de exposição na fila.
+
+on:
+  schedule:
+    - cron: '0 22 * * 0'
+    - cron: '0 22 * * 3'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: exposicao-auto
+  cancel-in-progress: false
+
+jobs:
+  exposicao:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      CHROME: /usr/bin/google-chrome
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Dependências de renderização
+        run: |
+          mkdir -p .render && cd .render
+          echo '{"name":"render","private":true}' > package.json
+          npm i puppeteer-core sharp >/dev/null 2>&1
+
+      - name: Escolher, montar e enfileirar
+        run: node exposicao-auto.js | tee /tmp/exposicao.log
+
+      - name: Commitar fila e memória
+        run: |
+          git config user.name "vernissages-bot"
+          git config user.email "actions@github.com"
+          for p in fila SOCIAL/EXPOSICOES-USADAS.json SOCIAL/FOTOS-USADAS.json SOCIAL/POSTADAS.json; do [ -e "$p" ] && git add "$p"; done || true
+          if git diff --cached --quiet; then echo "Nada mudou."; exit 0; fi
+          git commit -m "exposicao-auto: carrossel de exposição na fila"
+          for i in 1 2 3 4 5; do
+            if git pull --rebase -q origin main && git push; then exit 0; fi
+            sleep 3
+          done
+          exit 1
+
+      - name: Resumo
+        if: always()
+        run: |
+          {
+            echo "## Exposição no feed"
+            echo '```'
+            cat /tmp/exposicao.log 2>/dev/null || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

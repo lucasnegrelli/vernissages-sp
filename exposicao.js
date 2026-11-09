@@ -46,7 +46,12 @@ async function aHash(sharp, arq) {
 }
 
 let paginaHtml = null;
-const { decodeHTML } = require('./radar-editais.js');
+const ACENTOS = {};
+for (const [base, nomes] of Object.entries({ a: 'àáâãä', e: 'èéêë', i: 'ìíîï', o: 'òóôõö', u: 'ùúûü', A: 'ÀÁÂÃÄ', E: 'ÈÉÊË', I: 'ÌÍÎÏ', O: 'ÒÓÔÕÖ', U: 'ÙÚÛÜ' })) {
+  const suf = ['grave', 'acute', 'circ', 'tilde', 'uml']; [...nomes].forEach((ch, k) => { ACENTOS[base + suf[k]] = ch; });
+}
+Object.assign(ACENTOS, { ccedil: 'ç', Ccedil: 'Ç', ntilde: 'ñ', amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ', ndash: '–', mdash: '—', rsquo: '’', lsquo: '‘', rdquo: '”', ldquo: '“', hellip: '…', ordm: 'º', ordf: 'ª', deg: '°' });
+const decodeHTML = t => String(t || '').replace(/&#(\d+);/g, (m, n) => String.fromCodePoint(+n)).replace(/&#x([0-9a-f]+);/gi, (m, n) => String.fromCodePoint(parseInt(n, 16))).replace(/&([A-Za-z]+);/g, (m, n) => ACENTOS[n] !== undefined ? ACENTOS[n] : m);
 
 /* ---------- texto da exposição (texto curatorial / crítico) ----------
    Pega o bloco de descrição da página da galeria, separa em parágrafos e procura
@@ -56,7 +61,8 @@ function extrairTexto(html) {
   if (!html) return null;
   const m = html.match(/<div class="description"[^>]*>([\s\S]*?)<\/div>\s*(?:<div class="(?:read-more|share|artists)|<\/section|<div class="(?:images|artworks))/i) || html.match(/<div class="description"[^>]*>([\s\S]*?)<\/div>/i);
   if (!m) return null;
-  const par = [...m[1].matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)].map(x => decodeHTML(x[1].replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim()).filter(x => x.length > 40);
+  const par0 = [...m[1].matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)].map(x => decodeHTML(x[1].replace(/<br\s*\/?>/gi, ' ').replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim()).filter(x => x.length > 40);
+  const par = par0.filter((x, k) => !(k === 0 && /tem o prazer de|convida|abertura|vernissage|inaugura/i.test(x.slice(0, 120))));
   if (!par.length) return null;
   const tudo = par.join('\n');
   const assin = tudo.match(/(?:texto(?:\s+curatorial|\s+cr[ií]tico)?|text|curadoria|curated by|curatorial text)\s*(?:de|by|por|:)\s*([A-ZÀ-Ý][A-Za-zÀ-ÿ'’. \-]{4,70})/);
@@ -88,9 +94,11 @@ function trechos(par, max, n) {
   const add = async (origem, arq) => {
     const buf = fs.readFileSync(arq), h = crypto.createHash('md5').update(buf).digest('hex');
     if (md5s.has(h)) return; md5s.add(h);
+    const ph = await aHash(sharp, arq);
+    if (lista.some(o => o.ph && dist(o.ph, ph) <= 10)) return;
     const m = await sharp(buf).metadata();
     if (m.width < 1200 || m.height < 1000 && m.width < 1600) return;
-    lista.push({ arq, origem, w: m.width, h: m.height });
+    lista.push({ arq, origem, w: m.width, h: m.height, ph });
   };
   for (const campo of ['img', 'img2', 'img3']) if (e[campo]) await add(campo, path.join(RAIZ, e[campo]));
   for (const [i, c] of (acervo.candidatos || []).entries()) {
@@ -163,7 +171,9 @@ function trechos(par, max, n) {
     const ordemAuto = []; let panoAuto = -1;
     if (obra.length) ordemAuto.push(obra.shift());
     if (sala.length) { panoAuto = sala[0]; ordemAuto.push(sala.shift()); }
-    while ((obra.length || sala.length) && ordemAuto.length < 7) { if (obra.length) ordemAuto.push(obra.shift()); if (obra.length && ordemAuto.length < 7) ordemAuto.push(obra.shift()); if (sala.length && ordemAuto.length < 7) ordemAuto.push(sala.shift()); }
+    const teto = 10 - 1 - (parseInt(flag('texto', '0'), 10) || 0) - (panoAuto >= 0 ? 1 : 0);  /* o Instagram aceita 10 slides: fichas, texto e a faixa contínua contam */
+    sala.length = 0;   /* só a vista que virou faixa contínua; vista larga solta cabe pequena no slide */
+    while (obra.length && ordemAuto.length < teto) ordemAuto.push(obra.shift());
     argv.push('--ordem=' + ordemAuto.join(','));
     if (panoAuto >= 0 && !argv.some(a => a.startsWith('--pano='))) argv.push('--pano=' + panoAuto + ':2');
     console.log('  --auto: ordem ' + ordemAuto.join(',') + (panoAuto >= 0 ? ' · pano ' + panoAuto : ''));
