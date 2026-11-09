@@ -38,6 +38,13 @@ const UA = 'Mozilla/5.0 (compatible; vernissages-sp/1.0; +https://vernissagessp.
 const norm = s => String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 const SUSPEITA = /logo|banner|cartaz|flyer|poster|convite|thumb|avatar|qr-?code/i;
 
+const dist = (a, b) => { let d = 0; for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) d++; return d; };
+async function aHash(sharp, arq) {
+  const { data } = await sharp(arq).rotate().greyscale().resize(16, 16, { fit: 'fill' }).raw().toBuffer({ resolveWithObject: true });
+  const med = data.reduce((x, y) => x + y, 0) / data.length;
+  return Array.from(data, v => v > med ? 1 : 0).join('');
+}
+
 (async () => {
   const sharp = require(path.join(REND, 'node_modules', 'sharp'));
   const DATA = carregarDados();
@@ -67,6 +74,45 @@ const SUSPEITA = /logo|banner|cartaz|flyer|poster|convite|thumb|avatar|qr-?code/
       await add('site', f);
     } catch (x) { /* próxima */ }
   }
+  /* BUSCAR NA FONTE: abre a página da mostra no site da casa (e no Arte Que Acontece) e pega todas as imagens grandes.
+     Mesma foto em tamanhos diferentes é uma só (hash perceptual). */
+  if (argv.includes('--buscar')) {
+    const fontes = [(acervo.links || {}).site, (acervo.links || {}).aqa].filter(Boolean);
+    const urls = new Map();
+    for (const pag of fontes) {
+      try {
+        const r = await fetch(pag, { headers: { 'user-agent': UA } }); if (!r.ok) continue;
+        const html = await r.text();
+        for (const m of html.matchAll(/(?:https?:)?\/\/[^"'\s)<>]+\.(?:jpe?g|png|webp)(?:\?[^"'\s)<>]*)?|["'(]\/[^"'\s)<>]+\.(?:jpe?g|png|webp)(?:\?[^"'\s)<>]*)?/gi)) {
+          let u = m[0].replace(/^["'(]/, '');
+          if (u.startsWith('//')) u = 'https:' + u; else if (u.startsWith('/')) u = new URL(u, pag).href;
+          if (SUSPEITA.test(u) || /sprite|icon|favicon|placeholder/i.test(u)) continue;
+          if (/static-assets\.artlogic\.net\/w_/.test(u)) u = u.replace(/\/w_[^/]+\/ws-/, '/w_2600,c_limit,f_auto,fl_lossy,q_auto/ws-');
+          const chave = u.split('?')[0].replace(/\/w_[^/]+\/ws-/, '/ws-').replace(/[-_]\d{2,4}x\d{2,4}(?=\.)/, '').replace(/\/(thumb|small|medium|large|resized?)\//i, '/');
+          if (!urls.has(chave)) urls.set(chave, []);
+          urls.get(chave).push(u);
+        }
+      } catch (x) { console.log('fonte falhou: ' + pag); }
+    }
+    console.log('  na fonte: ' + urls.size + ' imagem(ns) distinta(s) por endereço');
+    const hashes = [];
+    for (const it of lista) hashes.push(await aHash(sharp, it.arq));
+    let baixadas = 0;
+    for (const [chave, variantes] of urls) {
+      if (baixadas >= 40) break;
+      /* a maior variante é a que tem número maior no nome; sem número, a primeira */
+      const u = variantes.slice().sort((a, b) => ((b.match(/(\d{3,4})/g) || [0]).map(Number).reduce((x, y) => Math.max(x, y), 0)) - ((a.match(/(\d{3,4})/g) || [0]).map(Number).reduce((x, y) => Math.max(x, y), 0)))[0];
+      try {
+        const r = await fetch(u, { headers: { 'user-agent': UA } }); if (!r.ok) continue;
+        const f = path.join(tmp, 'b' + baixadas + '.jpg');
+        await sharp(Buffer.from(await r.arrayBuffer())).rotate().jpeg({ quality: 92 }).toFile(f);
+        const h = await aHash(sharp, f);
+        if (hashes.some(o => dist(o, h) <= 10)) continue;
+        const n0 = lista.length; await add('fonte', f);
+        if (lista.length > n0) { hashes.push(h); baixadas++; }
+      } catch (x) { /* próxima */ }
+    }
+  }
   console.log(`${e.t} · ${e.v}: ${lista.length} foto(s) usáveis`);
 
   const pasta = flag('folha', null);
@@ -89,7 +135,26 @@ const SUSPEITA = /logo|banner|cartaz|flyer|poster|convite|thumb|avatar|qr-?code/
      - retrato ou quadrado: preenche o slide inteiro (corte inteligente);
      - paisagem larga: cabe inteira na largura, sobre o papel, para não decepar a foto. */
   const fundo = { r: 242, g: 239, b: 233 };
+  const pano = (flag('pano', '') || '').split(':'); const panoI = pano[0] === '' ? -1 : parseInt(pano[0], 10), panoN = parseInt(pano[1], 10) || 0;
+  let nSlide = 0;
   for (const [k, i] of ordem.entries()) {
+    if (i === panoI) {
+      /* faixa contínua: tela única N x 1080, fundo da cor exata do canto da imagem, fatias em N slides */
+      let pb = await sharp(lista[i].arq).rotate().toBuffer();
+      try { const t = await sharp(pb).trim({ threshold: 30 }).toBuffer({ resolveWithObject: true }); const m00 = await sharp(pb).metadata(); if (t.info.width * t.info.height >= m00.width * m00.height * 0.2) pb = t.data; } catch (x) { /* sem trim */ }
+      const pm = await sharp(pb).metadata();
+      const nn = panoN || Math.max(2, Math.min(4, Math.round(pm.width / pm.height * H / W)));
+      let rr = 0, gg = 0, bb = 0, cc = 0;
+      for (const [x, y] of [[0, 0], [pm.width - 6, 0], [0, pm.height - 6], [pm.width - 6, pm.height - 6]]) {
+        const q = await sharp(pb).extract({ left: Math.max(0, x), top: Math.max(0, y), width: 6, height: 6 }).raw().toBuffer({ resolveWithObject: true });
+        for (let z = 0; z < q.data.length; z += q.info.channels) { rr += q.data[z]; gg += q.data[z + 1]; bb += q.data[z + 2]; cc++; }
+      }
+      const e1 = Math.min(nn * W / pm.width, H / pm.height), iw = Math.round(pm.width * e1), ih = Math.round(pm.height * e1);
+      const tela = await sharp({ create: { width: nn * W, height: H, channels: 3, background: { r: Math.round(rr / cc), g: Math.round(gg / cc), b: Math.round(bb / cc) } } })
+        .composite([{ input: await sharp(pb).resize(iw, ih).toBuffer(), left: Math.round((nn * W - iw) / 2), top: Math.round((H - ih) / 2) }]).png().toBuffer();
+      for (let z = 0; z < nn; z++) await sharp(tela).extract({ left: z * W, top: 0, width: W, height: H }).png().toFile(path.join(out, `exposicao-${String(++nSlide).padStart(2, '0')}.png`));
+      continue;
+    }
     let buf = await sharp(lista[i].arq).rotate().toBuffer();
     if (!argv.includes('--sem-trim')) {
       try {
@@ -99,7 +164,7 @@ const SUSPEITA = /logo|banner|cartaz|flyer|poster|convite|thumb|avatar|qr-?code/
       } catch (x) { /* sem trim */ }
     }
     const m = await sharp(buf).metadata(), ar = m.width / m.height;
-    const dest = path.join(out, `exposicao-${String(k + 1).padStart(2, '0')}.png`);
+    const dest = path.join(out, `exposicao-${String(++nSlide).padStart(2, '0')}.png`);
     if (ar < 1.2 || k === 0) await sharp(buf).resize(W, H, { fit: 'cover', position: 'attention' }).png().toFile(dest);
     else await sharp(buf).resize(W, H, { fit: 'contain', background: fundo }).png().toFile(dest);
   }
@@ -126,12 +191,12 @@ const SUSPEITA = /logo|banner|cartaz|flyer|poster|convite|thumb|avatar|qr-?code/
   const br = await puppeteer.launch({ executablePath: process.env.CHROME || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', headless: 'new', args: ['--no-sandbox', '--allow-file-access-from-files', '--force-device-scale-factor=1'], defaultViewport: { width: W, height: H, deviceScaleFactor: 1 } });
   const p = await br.newPage(); await p.goto('file:///' + arqHtml.replace(/\\/g, '/'), { waitUntil: 'networkidle0' });
   await p.evaluate(() => document.fonts.ready); await new Promise(r => setTimeout(r, 400));
-  await (await p.$('.slide')).screenshot({ path: path.join(out, `exposicao-${String(ordem.length + 1).padStart(2, '0')}.png`) });
+  await (await p.$('.slide')).screenshot({ path: path.join(out, `exposicao-${String(++nSlide).padStart(2, '0')}.png`) });
   await br.close(); fs.rmSync(arqHtml, { force: true });
 
-  const leg = `${tituloCurto(e)}${quem ? ', ' + quem : ''}, em ${ordem.length} imagens.\n\nDeslize para passear pela exposição na ${e.v} ${arroba(v.ig)}.\n\n${e.d ? e.d + '\n\n' : ''}Serviço: ${e.v}, ${v.addr ? v.addr + ', ' : ''}${v.b || ''}. ${e.fim ? 'Até ' + porExtenso(e.fim) + '.' : 'Aberta desde ' + porExtenso(e.ini) + '.'}${v.ing && v.ing.g ? ' Entrada gratuita.' : ''}\n\nImagens: ${credTxt}.\n\nSalva para ir e manda para quem vai com você. Agenda completa de exposições em vernissagessp.com.br\n\n#exposicaosp #arteemsp #saopaulo #artecontemporanea #galeriadearte`;
+  const leg = `${tituloCurto(e)}${quem ? ', ' + quem : ''}, em ${nSlide - 1} slides.\n\nDeslize para passear pela exposição na ${e.v} ${arroba(v.ig)}.\n\n${e.d ? e.d + '\n\n' : ''}Serviço: ${e.v}, ${v.addr ? v.addr + ', ' : ''}${v.b || ''}. ${e.fim ? 'Até ' + porExtenso(e.fim) + '.' : 'Aberta desde ' + porExtenso(e.ini) + '.'}${v.ing && v.ing.g ? ' Entrada gratuita.' : ''}\n\nImagens: ${credTxt}.\n\nSalva para ir e manda para quem vai com você. Agenda completa de exposições em vernissagessp.com.br\n\n#exposicaosp #arteemsp #saopaulo #artecontemporanea #galeriadearte`;
   fs.writeFileSync(path.join(out, 'exposicao-LEGENDA.md'), leg.replace(/ — /g, ': ') + '\n');
   if (e.img) marcarFoto(e.img, flag('pub', hoje));
-  console.log(`OK ${ordem.length + 1} slides em ${path.relative(RAIZ, out)} · legenda ${leg.length} caracteres`);
+  console.log(`OK ${nSlide} slides em ${path.relative(RAIZ, out)} · legenda ${leg.length} caracteres`);
   fs.rmSync(tmp, { recursive: true, force: true });
 })().catch(e => { console.error(e.stack || e.message); process.exit(1); });
