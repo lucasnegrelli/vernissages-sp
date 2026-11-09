@@ -1,0 +1,69 @@
+{
+  "serie": "A fundo",
+  "data": "2026-11-11",
+  "acento": "#C96F4A",
+  "slides": [
+    {
+      "tipo": "hook",
+      "kicker": "A fundo · Fernando Lemos",
+      "texto": "Fotografia, desenho, projeto gráfico e poesia. Um artista só."
+    },
+    {
+      "tipo": "obra",
+      "img": "img/fernando-lemos-quanto-mais-desejo-mais-invento-o-que-vejo-im.webp",
+      "foco": 50
+    },
+    {
+      "tipo": "numero",
+      "n": "100",
+      "rotulo": "anos de nascimento, em 2026",
+      "texto": "Fernando Lemos nasceu em Lisboa em 1926 e morreu em São Paulo em 2019. A retrospectiva marca o centenário."
+    },
+    {
+      "tipo": "numero",
+      "n": "400",
+      "rotulo": "itens na mostra",
+      "texto": "Fotografias, desenhos, projetos gráficos e poesia, produzidos ao longo de 70 anos."
+    },
+    {
+      "tipo": "tese",
+      "kicker": "O título",
+      "texto": "Quanto mais desejo, mais invento o que vejo. Primeiro vem o desejo, depois a invenção, e só então o que se vê."
+    },
+    {
+      "tipo": "lista",
+      "kicker": "Quem está por trás",
+      "titulo": "Ficha da mostra",
+      "itens": [
+        "Curadoria de Thyago Nogueira",
+        "No IMS Paulista, em São Paulo",
+        "Obras do Arquivo Fernando Lemos, no acervo do Instituto Moreira Salles"
+      ]
+    },
+    {
+      "tipo": "serv",
+      "kicker": "Para ir",
+      "linhas": [
+        [
+          "Onde",
+          "IMS Paulista, Av. Paulista, 2424"
+        ],
+        [
+          "Bairro",
+          "Bela Vista"
+        ],
+        [
+          "Até",
+          "7 de fevereiro de 2027"
+        ],
+        [
+          "Entrada",
+          "Gratuita"
+        ]
+      ],
+      "cta": "Salva para ir, e leva alguém que nunca viu o trabalho dele.",
+      "credito": "Imagem da abertura: Fernando Lemos, Eu, poeta. Arquivo Fernando Lemos / Acervo Instituto Moreira Salles"
+    }
+  ],
+  "legenda": "Fernando Lemos, 100 anos. Fotografia, desenho, projeto gráfico e poesia numa retrospectiva só, no @imoreirasalles.\n\nNasceu em Lisboa em 1926 e morreu em São Paulo em 2019. A mostra reúne cerca de 400 itens produzidos ao longo de 70 anos, com curadoria de Thyago Nogueira. O título, quanto mais desejo, mais invento o que vejo, funciona como um método: olhar como quem inventa.\n\nServiço: IMS Paulista, Avenida Paulista, 2424, Bela Vista. Até 7 de fevereiro de 2027. Entrada gratuita. Confira os horários no site do IMS.\n\nImagem: Fernando Lemos, Eu, poeta. Arquivo Fernando Lemos, Acervo Instituto Moreira Salles.\n\nSalva para ir e manda para quem gosta de fotografia. Agenda completa de exposições em vernissagessp.com.br\n\n#fernandolemos #imsbrasil #fotografia #exposicaosp #arteemsp #saopaulo #retrospectiva"
+}
