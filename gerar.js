@@ -426,27 +426,38 @@ function paginaEditais(editais) {
 
   /* custo para o artista: 'taxa' (valor lido da página), 'livre' (edital, prêmio, bolsa, prazo conferido ou "com apoio") ou 'nd' (não informado) */
   const custoK = x => x.custo === 'taxa' ? 'taxa' : (x.conf || x.custo === 'apoio' || ['fomento', 'bolsa', 'premio'].includes(x.cat)) ? 'livre' : 'nd';
+  /* título arrumado para ler: título TODO EM MAIÚSCULAS vira frase, sobra de separador no fim sai, espaço duplo some */
+  const limpaT = t => {
+    let s = String(t).replace(/\s+/g, ' ').replace(/[\s\-–—|·:]+$/, '').trim();
+    const letras = s.replace(/[^A-Za-zÀ-ÿ]/g, '');
+    if (letras.length > 8 && letras.replace(/[^A-ZÀ-Ý]/g, '').length / letras.length > 0.6) {
+      s = s.toLowerCase().replace(/(^|[.:!?]\s+)([a-zà-ÿ])/g, (m, a, b) => a + b.toUpperCase());
+      s = s.charAt(0).toUpperCase() + s.slice(1);
+    }
+    return s;
+  };
   const item = (x, extra) => {
     const busca = [x.t, x.org, CAT_EDITAL[x.cat], ONDE_EDITAL[x.onde], x.d].join(' ').toLowerCase();
     const g = grupo(x);
-    const etq = x.custo === 'taxa' ? `<div class="cd-et taxa"><b>Com taxa</b><span>${esc(x.taxaTxt)}</span></div>`
-      : x.custo === 'parcial' ? `<div class="cd-et"><b>Financiada em parte</b><span>confira o valor</span></div>`
-      : x.custo === 'apoio' ? `<div class="cd-et ok"><b>Com apoio</b><span>bolsa ou sem taxa</span></div>`
-      : x.custo === 'indefinido' ? `<div class="cd-et"><b>Custo não informado</b><span>ver na chamada</span></div>`
-      : x.conf && x.taxa ? `<div class="cd-et ok"><b>Inscrição</b><span>${esc(x.taxa)}</span></div>` : '';
-    const dt = x.prazo
-      ? `<div class="cd-dt"><b>${+x.prazo.slice(8)}</b><i>${MES[+x.prazo.slice(5, 7) - 1]}${x.prazo.slice(0, 4) !== HOJE.slice(0, 4) ? ' ' + x.prazo.slice(2, 4) : ''}</i></div><div class="cd-st">${x.st.n === 0 ? 'último dia' : x.st.n > 0 ? 'faltam ' + x.st.n + (x.st.n > 1 ? ' dias' : ' dia') : 'encerrado'}</div>`
-      : `<div class="cd-dt off"><b>?</b><i>sem data</i></div><div class="cd-st">ver no site</div>`;
+    const etq = x.custo === 'taxa' ? `<div class="cd-et taxa"><i></i><b>Com taxa</b> ${esc(x.taxaTxt)}</div>`
+      : x.custo === 'parcial' ? `<div class="cd-et"><i></i><b>Financiada em parte</b> confira o valor</div>`
+      : x.custo === 'apoio' ? `<div class="cd-et ok"><i></i><b>Com apoio</b> bolsa ou sem taxa</div>`
+      : x.custo === 'indefinido' ? `<div class="cd-et nd"><i></i><b>Custo não informado</b></div>`
+      : x.conf && x.taxa ? `<div class="cd-et ok"><i></i><b>Inscrição</b> ${esc(x.taxa)}</div>` : '';
+    const quando = x.prazo
+      ? `<b>${+x.prazo.slice(8)} ${MES[+x.prazo.slice(5, 7) - 1]}${x.prazo.slice(0, 4) !== HOJE.slice(0, 4) ? ' ' + x.prazo.slice(2, 4) : ''}</b><span>${x.st.n === 0 ? 'último dia' : x.st.n > 0 ? 'faltam ' + x.st.n + (x.st.n > 1 ? ' dias' : ' dia') : 'encerrado'}</span>`
+      : `<b>Sem data</b><span>ver no site</span>`;
     const urg = x.prazo && x.st.n >= 0 && x.st.n <= 7 ? ' urg' : '';
+    const org = x.org ? String(x.org).split(' · ').pop().replace(/\s*\(.*$/, '') : '';
     return `<li class="cd${urg}${extra ? ' mais' : ''}" id="${slug(x)}" data-c="${x.cat}" data-o="${x.onde}" data-g="${g}" data-p="${x.prazo ? 1 : 0}" data-v="${x.conf ? 1 : 0}" data-k="${custoK(x)}" data-b="${esc(busca)}">
-<div class="cd-top">${dt}</div>
-<div class="cd-k">${CAT_EDITAL[x.cat]} · ${ONDE_EDITAL[x.onde]}${x.conf ? ' · prazo conferido' : ''}</div>
-<a class="cd-t" href="${esc(x.link)}" target="_blank" rel="noopener">${esc(x.t)}</a>
-${x.org ? `<div class="cd-o">${esc(String(x.org).split(' · ').pop().replace(/\s*\(.*$/, ''))}</div>` : ''}
+<div class="cd-q">${quando}</div>
+<a class="cd-t" href="${esc(x.link)}" target="_blank" rel="noopener">${esc(limpaT(x.t))}</a>
+<div class="cd-k">${CAT_EDITAL[x.cat]} · ${ONDE_EDITAL[x.onde]}${org ? ' · ' + esc(org) : ''}</div>
 ${etq}
 <div class="cd-foot"><a class="cd-ab" href="${esc(x.link)}" target="_blank" rel="noopener">Abrir</a>${x.prazo && x.st.n >= 0 ? `<a class="e2ics" href="${ics(x)}" download="prazo-${slug(x)}.ics">Lembrete</a>` : ''}</div>
 </li>`;
   };
+
 
   const LIM = 8;
   const porGrupo = {};
@@ -508,33 +519,29 @@ ${etq}
 @media(max-width:620px){.e2w{grid-template-columns:1fr}.sm,.sm+.sm{padding-left:0;border-right:0}}
 .e2ics{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-bottom:1.5px solid var(--ink);margin-left:14px;white-space:nowrap}.e2ics:hover{color:var(--terra);border-color:var(--terra)}
 .e2f{position:sticky;top:0;z-index:5;background:var(--paper);padding:10px 0 4px;margin-bottom:6px;border-bottom:1.5px solid rgba(14,14,14,.18)}
-.e2f .busca{font-size:clamp(18px,2.2vw,30px);margin:0 0 12px;padding-bottom:8px}
+.e2f .busca{font-size:clamp(15px,1.5vw,20px);margin:0 0 10px;padding-bottom:6px}.e2f .chip{padding:5px 10px;font-size:11px}.e2f .chips{gap:6px;margin-bottom:6px}
 .e2f .chips{margin-bottom:8px}
-ul.e2{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.4vw,20px)}
-ul.e2 li.cd{display:flex;flex-direction:column;border:1.5px solid var(--ink);padding:16px 16px 14px;min-height:300px;scroll-margin-top:90px;transition:transform .15s,box-shadow .15s}
-ul.e2 li.cd:hover{transform:translateY(-3px);box-shadow:0 6px 0 var(--ink)}
-ul.e2 li.cd:target{border-color:var(--terra);box-shadow:0 6px 0 var(--terra)}
-.cd-top{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;border-bottom:1.5px solid var(--ink);padding-bottom:12px;margin-bottom:12px}
-.cd-dt{display:flex;align-items:baseline;gap:7px}
-.cd-dt b{font-weight:800;font-size:clamp(44px,4.2vw,62px);line-height:.8;letter-spacing:-.07em}
-.cd-dt i{font-style:normal;font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
-.cd-dt.off b{color:var(--mute)}
-.cd-st{font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);text-align:right;line-height:1.2}
-.cd.urg .cd-dt b,.cd.urg .cd-st{color:var(--terra)}
-.cd-k{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;font-weight:700;color:var(--mute);margin-bottom:8px}
-.cd-t{font-family:var(--serif);font-size:clamp(22px,1.9vw,29px);line-height:1.02;letter-spacing:-.01em;text-wrap:balance;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+ul.e2{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:clamp(20px,2.4vw,40px);row-gap:clamp(30px,3.4vw,52px)}
+ul.e2 li.cd{display:flex;flex-direction:column;border-top:2px solid var(--ink);padding-top:12px;scroll-margin-top:90px}
+ul.e2 li.cd:target .cd-t{color:var(--terra)}
+.cd-q{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.cd-q b{font-weight:800;font-size:15px;letter-spacing:.06em}
+.cd-q span{font-weight:700;color:var(--mute);font-size:11px}
+.cd.urg .cd-q b,.cd.urg .cd-q span{color:var(--terra)}
+.cd-t{font-family:var(--serif);font-size:clamp(25px,2.2vw,34px);line-height:1.02;letter-spacing:-.012em;margin-top:18px;text-wrap:balance;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .cd-t:hover{color:var(--terra)}
-.cd-o{margin-top:9px;font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;font-weight:700;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.cd-et{margin-top:auto;padding-top:12px;font-size:12px;line-height:1.25}
-.cd-et b{display:inline-block;font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:10.5px;padding:3px 7px 2px;border:1.5px solid var(--ink);margin-right:6px}
-.cd-et.taxa b{background:var(--terra);border-color:var(--terra);color:var(--paper)}
-.cd-et.ok b{background:var(--ink);color:var(--paper)}
-.cd-et span{color:var(--mute)}
-.cd-foot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid rgba(14,14,14,.2)}
-.cd:not(:has(.cd-et)) .cd-foot{margin-top:auto}
-.cd-ab{font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;border-bottom:2px solid var(--ink)}.cd-ab:hover{color:var(--terra);border-color:var(--terra)}
+.cd-k{margin-top:14px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--mute);line-height:1.4}
+.cd-et{margin-top:12px;font-size:12.5px;line-height:1.3;display:flex;gap:7px;align-items:baseline;flex-wrap:wrap}
+.cd-et i{display:inline-block;width:8px;height:8px;background:var(--mute);flex:none;transform:translateY(-1px)}
+.cd-et b{font-weight:800;letter-spacing:.05em;text-transform:uppercase;font-size:11px}
+.cd-et.taxa i,.cd-et.taxa b{color:var(--terra);background:none}.cd-et.taxa i{background:var(--terra)}
+.cd-et.ok i{background:var(--ink)}
+.cd-et.nd{color:var(--mute)}
+.cd-foot{margin-top:auto;padding-top:20px;display:flex;gap:18px;align-items:baseline}
+.cd-ab{font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase}.cd-ab::after{content:" →"}.cd-ab:hover,.e2ics:hover{color:var(--terra)}
+.e2ics{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);border:0}
 li.mais{display:none}.e2g.aberto li.mais,body.filtrando li.mais{display:flex}
-.vmais{display:block;margin:18px auto 0;border:1.5px solid var(--ink);padding:9px 18px;font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;background:transparent;cursor:pointer}.vmais:hover{background:var(--ink);color:var(--paper)}
+.vmais{display:block;margin:34px auto 0;border:1.5px solid var(--ink);padding:9px 18px;font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;background:transparent;cursor:pointer}.vmais:hover{background:var(--ink);color:var(--paper)}
 body.filtrando .vmais{display:none}
 .e2g h2 small{margin-left:12px}
 .e2g[data-g="1"] h2{color:var(--terra)}

@@ -211,33 +211,29 @@ h3.zona{font-size:12px;color:var(--terra);letter-spacing:.14em;text-transform:up
 @media(max-width:620px){.e2w{grid-template-columns:1fr}.sm,.sm+.sm{padding-left:0;border-right:0}}
 .e2ics{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-bottom:1.5px solid var(--ink);margin-left:14px;white-space:nowrap}.e2ics:hover{color:var(--terra);border-color:var(--terra)}
 .e2f{position:sticky;top:0;z-index:5;background:var(--paper);padding:10px 0 4px;margin-bottom:6px;border-bottom:1.5px solid rgba(14,14,14,.18)}
-.e2f .busca{font-size:clamp(18px,2.2vw,30px);margin:0 0 12px;padding-bottom:8px}
+.e2f .busca{font-size:clamp(15px,1.5vw,20px);margin:0 0 10px;padding-bottom:6px}.e2f .chip{padding:5px 10px;font-size:11px}.e2f .chips{gap:6px;margin-bottom:6px}
 .e2f .chips{margin-bottom:8px}
-ul.e2{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.4vw,20px)}
-ul.e2 li.cd{display:flex;flex-direction:column;border:1.5px solid var(--ink);padding:16px 16px 14px;min-height:300px;scroll-margin-top:90px;transition:transform .15s,box-shadow .15s}
-ul.e2 li.cd:hover{transform:translateY(-3px);box-shadow:0 6px 0 var(--ink)}
-ul.e2 li.cd:target{border-color:var(--terra);box-shadow:0 6px 0 var(--terra)}
-.cd-top{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;border-bottom:1.5px solid var(--ink);padding-bottom:12px;margin-bottom:12px}
-.cd-dt{display:flex;align-items:baseline;gap:7px}
-.cd-dt b{font-weight:800;font-size:clamp(44px,4.2vw,62px);line-height:.8;letter-spacing:-.07em}
-.cd-dt i{font-style:normal;font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
-.cd-dt.off b{color:var(--mute)}
-.cd-st{font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);text-align:right;line-height:1.2}
-.cd.urg .cd-dt b,.cd.urg .cd-st{color:var(--terra)}
-.cd-k{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;font-weight:700;color:var(--mute);margin-bottom:8px}
-.cd-t{font-family:var(--serif);font-size:clamp(22px,1.9vw,29px);line-height:1.02;letter-spacing:-.01em;text-wrap:balance;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+ul.e2{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:clamp(20px,2.4vw,40px);row-gap:clamp(30px,3.4vw,52px)}
+ul.e2 li.cd{display:flex;flex-direction:column;border-top:2px solid var(--ink);padding-top:12px;scroll-margin-top:90px}
+ul.e2 li.cd:target .cd-t{color:var(--terra)}
+.cd-q{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.cd-q b{font-weight:800;font-size:15px;letter-spacing:.06em}
+.cd-q span{font-weight:700;color:var(--mute);font-size:11px}
+.cd.urg .cd-q b,.cd.urg .cd-q span{color:var(--terra)}
+.cd-t{font-family:var(--serif);font-size:clamp(25px,2.2vw,34px);line-height:1.02;letter-spacing:-.012em;margin-top:18px;text-wrap:balance;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
 .cd-t:hover{color:var(--terra)}
-.cd-o{margin-top:9px;font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;font-weight:700;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.cd-et{margin-top:auto;padding-top:12px;font-size:12px;line-height:1.25}
-.cd-et b{display:inline-block;font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:10.5px;padding:3px 7px 2px;border:1.5px solid var(--ink);margin-right:6px}
-.cd-et.taxa b{background:var(--terra);border-color:var(--terra);color:var(--paper)}
-.cd-et.ok b{background:var(--ink);color:var(--paper)}
-.cd-et span{color:var(--mute)}
-.cd-foot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid rgba(14,14,14,.2)}
-.cd:not(:has(.cd-et)) .cd-foot{margin-top:auto}
-.cd-ab{font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;border-bottom:2px solid var(--ink)}.cd-ab:hover{color:var(--terra);border-color:var(--terra)}
+.cd-k{margin-top:14px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:var(--mute);line-height:1.4}
+.cd-et{margin-top:12px;font-size:12.5px;line-height:1.3;display:flex;gap:7px;align-items:baseline;flex-wrap:wrap}
+.cd-et i{display:inline-block;width:8px;height:8px;background:var(--mute);flex:none;transform:translateY(-1px)}
+.cd-et b{font-weight:800;letter-spacing:.05em;text-transform:uppercase;font-size:11px}
+.cd-et.taxa i,.cd-et.taxa b{color:var(--terra);background:none}.cd-et.taxa i{background:var(--terra)}
+.cd-et.ok i{background:var(--ink)}
+.cd-et.nd{color:var(--mute)}
+.cd-foot{margin-top:auto;padding-top:20px;display:flex;gap:18px;align-items:baseline}
+.cd-ab{font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase}.cd-ab::after{content:" →"}.cd-ab:hover,.e2ics:hover{color:var(--terra)}
+.e2ics{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);border:0}
 li.mais{display:none}.e2g.aberto li.mais,body.filtrando li.mais{display:flex}
-.vmais{display:block;margin:18px auto 0;border:1.5px solid var(--ink);padding:9px 18px;font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;background:transparent;cursor:pointer}.vmais:hover{background:var(--ink);color:var(--paper)}
+.vmais{display:block;margin:34px auto 0;border:1.5px solid var(--ink);padding:9px 18px;font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;background:transparent;cursor:pointer}.vmais:hover{background:var(--ink);color:var(--paper)}
 body.filtrando .vmais{display:none}
 .e2g h2 small{margin-left:12px}
 .e2g[data-g="1"] h2{color:var(--terra)}
@@ -265,576 +261,505 @@ body.filtrando .vmais{display:none}
 <div class="cont" id="cont" aria-live="polite"></div>
 <section class="bloco e2g" data-g="1"><h2>Fecham esta semana<small>corra</small></h2><ul class="e2">
 <li class="cd urg" id="e-residencias-kunstlerhaus-lauenburg-artes" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="nd" data-b="residências künstlerhaus lauenburg -artes visuais, literatura e composição perto de hamburg 2027 apoio.art · künstlerhaus lauenburg residência exterior a künstlerhaus lauenburg é uma instituição internacional de bolsas de estudo do estado de schleswig-holstein. todos os anos, a instituição anuncia regularmente três bolsas-residência de quatro meses nas áreas de composição, literatura (publ">
-<div class="cd-top"><div class="cd-dt"><b>10</b><i>nov</i></div><div class="cd-st">faltam 1 dia</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>10 nov</b><span>faltam 1 dia</span></div>
 <a class="cd-t" href="https://kuenstlerhaus-lauenburg.de/stipendium-start-2025-en/?lang=en" target="_blank" rel="noopener">Residências Künstlerhaus Lauenburg -Artes Visuais, Literatura e Composição perto de Hamburg 2027</a>
-<div class="cd-o">Künstlerhaus Lauenburg</div>
+<div class="cd-k">Residência · Exterior · Künstlerhaus Lauenburg</div>
 
 <div class="cd-foot"><a class="cd-ab" href="https://kuenstlerhaus-lauenburg.de/stipendium-start-2025-en/?lang=en" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-residencias-kunstlerhaus-lauenburg-artes%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261110%0D%0ASUMMARY%3APrazo%3A%20Resid%C3%AAncias%20K%C3%BCnstlerhaus%20Lauenburg%20-Artes%20Visuais%20%20Literatura%20e%20Composi%C3%A7%C3%A3o%20perto%20de%20Hambur%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fkuenstlerhaus-lauenburg.de%2Fstipendium-start-2025-en%2F%3Flang%3Den%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-residencias-kunstlerhaus-lauenburg-artes.ics">Lembrete</a></div>
 </li>
 <li class="cd urg" id="e-skyline-of-venice-partially-funded-resid" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="nd" data-b="skyline of venice partially funded residency in a cool apartment and exhibition space blow 26/27 res artis · italy residência exterior residência artística em italy. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>10</b><i>nov</i></div><div class="cd-st">faltam 1 dia</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>10 nov</b><span>faltam 1 dia</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/in-the-heart-of-venice-upstairs-a-cool-studio-apartment-downstairs-a-space-to-exhibit-and-sell-32/" target="_blank" rel="noopener">Skyline of Venice Partially Funded Residency in a cool Apartment and Exhibition Space blow 26/27</a>
-<div class="cd-o">Italy</div>
-<div class="cd-et"><b>Financiada em parte</b><span>confira o valor</span></div>
+<div class="cd-k">Residência · Exterior · Italy</div>
+<div class="cd-et"><i></i><b>Financiada em parte</b> confira o valor</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/in-the-heart-of-venice-upstairs-a-cool-studio-apartment-downstairs-a-space-to-exhibit-and-sell-32/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-skyline-of-venice-partially-funded-resid%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261110%0D%0ASUMMARY%3APrazo%3A%20Skyline%20of%20Venice%20Partially%20Funded%20Residency%20in%20a%20cool%20Apartment%20and%20Exhibition%20Space%20blow%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fin-the-heart-of-venice-upstairs-a-cool-studio-apartment-downstairs-a-space-to-exhibit-and-sell-32%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-skyline-of-venice-partially-funded-resid.ics">Lembrete</a></div>
 </li>
 <li class="cd urg" id="e-la-storta-partially-sponsored-residency-" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="nd" data-b="la storta partially sponsored residency and exhibition space in the heart of venice 2026/2027 res artis · italy residência exterior residência artística em italy. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>10</b><i>nov</i></div><div class="cd-st">faltam 1 dia</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>10 nov</b><span>faltam 1 dia</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/open-call-2026-27-live-create-exhibit-in-venice-fully-partially-sponsored-residencies-special-program/" target="_blank" rel="noopener">La Storta Partially Sponsored Residency and Exhibition Space in the heart of Venice 2026/2027</a>
-<div class="cd-o">Italy</div>
-<div class="cd-et"><b>Financiada em parte</b><span>confira o valor</span></div>
+<div class="cd-k">Residência · Exterior · Italy</div>
+<div class="cd-et"><i></i><b>Financiada em parte</b> confira o valor</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/open-call-2026-27-live-create-exhibit-in-venice-fully-partially-sponsored-residencies-special-program/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-la-storta-partially-sponsored-residency-%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261110%0D%0ASUMMARY%3APrazo%3A%20La%20Storta%20Partially%20Sponsored%20Residency%20and%20Exhibition%20Space%20in%20the%20heart%20of%20Venice%202026%2F2%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fopen-call-2026-27-live-create-exhibit-in-venice-fully-partially-sponsored-residencies-special-program%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-la-storta-partially-sponsored-residency-.ics">Lembrete</a></div>
 </li>
 <li class="cd urg" id="e-myren-gard-kristiansand-norway-air-open-" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="livre" data-b="myren gård, kristiansand, norway, air, open call – 2027 res artis · norway residência exterior residência artística em norway. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>10</b><i>nov</i></div><div class="cd-st">faltam 1 dia</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>10 nov</b><span>faltam 1 dia</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/myren-gard-kristiansand-norway-air-open-call-2027/" target="_blank" rel="noopener">MYREN GÅRD, Kristiansand, Norway, AIR, Open Call – 2027</a>
-<div class="cd-o">Norway</div>
-<div class="cd-et ok"><b>Com apoio</b><span>bolsa ou sem taxa</span></div>
+<div class="cd-k">Residência · Exterior · Norway</div>
+<div class="cd-et ok"><i></i><b>Com apoio</b> bolsa ou sem taxa</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/myren-gard-kristiansand-norway-air-open-call-2027/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-myren-gard-kristiansand-norway-air-open-%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261110%0D%0ASUMMARY%3APrazo%3A%20MYREN%20G%C3%85RD%20%20Kristiansand%20%20Norway%20%20AIR%20%20Open%20Call%20%E2%80%93%202027%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fmyren-gard-kristiansand-norway-air-open-call-2027%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-myren-gard-kristiansand-norway-air-open-.ics">Lembrete</a></div>
 </li>
 <li class="cd urg" id="e-open-call-on-line-residency-january-marc" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="livre" data-b="open call・on-line residency (january – march 2027) res artis · global residência exterior residência artística em global. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>10</b><i>nov</i></div><div class="cd-st">faltam 1 dia</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>10 nov</b><span>faltam 1 dia</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/open-call%e3%83%bbon-line-residency-january-march-2027/" target="_blank" rel="noopener">OPEN CALL・On-line Residency (January – March 2027)</a>
-<div class="cd-o">Global</div>
-<div class="cd-et ok"><b>Com apoio</b><span>bolsa ou sem taxa</span></div>
+<div class="cd-k">Residência · Exterior · Global</div>
+<div class="cd-et ok"><i></i><b>Com apoio</b> bolsa ou sem taxa</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/open-call%e3%83%bbon-line-residency-january-march-2027/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-open-call-on-line-residency-january-marc%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261110%0D%0ASUMMARY%3APrazo%3A%20OPEN%20CALL%E3%83%BBOn-line%20Residency%20(January%20%E2%80%93%20March%202027)%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fopen-call%25e3%2583%25bbon-line-residency-january-march-2027%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-open-call-on-line-residency-january-marc.ics">Lembrete</a></div>
 </li>
 <li class="cd urg" id="e-greek-island-residency-with-a-city-exper" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="nd" data-b="greek island residency with a city experience. res artis · greece residência exterior residência artística em greece. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>12</b><i>nov</i></div><div class="cd-st">faltam 3 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>12 nov</b><span>faltam 3 dias</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/greek-island-residency-with-a-city-experience/" target="_blank" rel="noopener">Greek Island Residency with a City Experience.</a>
-<div class="cd-o">Greece</div>
-<div class="cd-et"><b>Custo não informado</b><span>ver na chamada</span></div>
+<div class="cd-k">Residência · Exterior · Greece</div>
+<div class="cd-et nd"><i></i><b>Custo não informado</b></div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/greek-island-residency-with-a-city-experience/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-greek-island-residency-with-a-city-exper%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261112%0D%0ASUMMARY%3APrazo%3A%20Greek%20Island%20Residency%20with%20a%20City%20Experience.%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fgreek-island-residency-with-a-city-experience%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-greek-island-residency-with-a-city-exper.ics">Lembrete</a></div>
 </li>
 <li class="cd urg" id="e-reviving-nature-2027-international-artis" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="nd" data-b="reviving nature 2027 — international artist residency &amp; festival | chiang mai, thailand res artis · thailand residência exterior residência artística em thailand. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>14</b><i>nov</i></div><div class="cd-st">faltam 5 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>14 nov</b><span>faltam 5 dias</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/reviving-nature-2027-chiang-mai-thailand/" target="_blank" rel="noopener">Reviving Nature 2027 — International Artist Residency &amp; Festival | Chiang Mai, Thailand</a>
-<div class="cd-o">Thailand</div>
-<div class="cd-et"><b>Custo não informado</b><span>ver na chamada</span></div>
+<div class="cd-k">Residência · Exterior · Thailand</div>
+<div class="cd-et nd"><i></i><b>Custo não informado</b></div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/reviving-nature-2027-chiang-mai-thailand/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-reviving-nature-2027-international-artis%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261114%0D%0ASUMMARY%3APrazo%3A%20Reviving%20Nature%202027%20%E2%80%94%20International%20Artist%20Residency%20%26%20Festival%20%7C%20Chiang%20Mai%20%20Thailand%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Freviving-nature-2027-chiang-mai-thailand%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-reviving-nature-2027-international-artis.ics">Lembrete</a></div>
 </li>
 <li class="cd urg" id="e-residencia-junto" data-c="residencia" data-o="sp" data-g="1" data-p="1" data-v="0" data-k="nd" data-b="residência juntó instituto tomie ohtake (site oficial) residência são paulo residência juntó - instituto tomie ohtake pular para conteúdo menu instituto tomie ohtake digite aqui o que procura digite aqui sua busca ok loja tomie assine nossas newsletters assine nossas newsletters instituto tomie ohtake casa-ateliê t">
-<div class="cd-top"><div class="cd-dt"><b>15</b><i>nov</i></div><div class="cd-st">faltam 6 dias</div></div>
-<div class="cd-k">Residência · São Paulo</div>
+<div class="cd-q"><b>15 nov</b><span>faltam 6 dias</span></div>
 <a class="cd-t" href="https://www.institutotomieohtake.org.br/residencia-junto/" target="_blank" rel="noopener">Residência Juntó</a>
-<div class="cd-o">Instituto Tomie Ohtake</div>
+<div class="cd-k">Residência · São Paulo · Instituto Tomie Ohtake</div>
 
 <div class="cd-foot"><a class="cd-ab" href="https://www.institutotomieohtake.org.br/residencia-junto/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-residencia-junto%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261115%0D%0ASUMMARY%3APrazo%3A%20Resid%C3%AAncia%20Junt%C3%B3%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fwww.institutotomieohtake.org.br%2Fresidencia-junto%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-residencia-junto.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-bolsa-residencia-de-arte-jovem-da-antiga" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="nd" data-b="bolsa residência de arte jovem da antiga cidade hanseática de lemgo apoio.art · alten hansestadt lemgo + staff stiftung lemgo residência exterior anualmente a bolsa de arte jovem é concedida a um/a artista visual jovem no âmbito de um prêmio. a bolsa é oferecida pela antiga cidade hanseática de lemgo e apoiada pela staff stiftung lemgo. o programa oferece um subsídio mensal de 1000 e">
-<div class="cd-top"><div class="cd-dt"><b>15</b><i>nov</i></div><div class="cd-st">faltam 6 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>15 nov</b><span>faltam 6 dias</span></div>
 <a class="cd-t" href="https://www.lemgo.de/kultur-und-tourismus/kultur/kunst/stipendium-junge-kunst" target="_blank" rel="noopener">Bolsa residência de arte jovem da antiga cidade hanseática de Lemgo</a>
-<div class="cd-o">Alten Hansestadt Lemgo + STAFF STIFTUNG Lemgo</div>
+<div class="cd-k">Residência · Exterior · Alten Hansestadt Lemgo + STAFF STIFTUNG Lemgo</div>
 
 <div class="cd-foot"><a class="cd-ab" href="https://www.lemgo.de/kultur-und-tourismus/kultur/kunst/stipendium-junge-kunst" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-bolsa-residencia-de-arte-jovem-da-antiga%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261115%0D%0ASUMMARY%3APrazo%3A%20Bolsa%20resid%C3%AAncia%20de%20arte%20jovem%20da%20antiga%20cidade%20hanse%C3%A1tica%20de%20Lemgo%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fwww.lemgo.de%2Fkultur-und-tourismus%2Fkultur%2Fkunst%2Fstipendium-junge-kunst%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-bolsa-residencia-de-arte-jovem-da-antiga.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-encontros-da-jovem-fotografia-internacio" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="nd" data-b="encontros da jovem fotografia internacional – niort apoio.art · villa pérochon – centre d’art contemporain photographique residência exterior as rencontres de la jeune photographie internationale abrem inscrições para a residência artística que acontecerá em niort, nouvelle-aquitaine (frança), de 26 de março a 12 de abril de 2027. a iniciativa, organizada pela villa pérochon – ce">
-<div class="cd-top"><div class="cd-dt"><b>15</b><i>nov</i></div><div class="cd-st">faltam 6 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>15 nov</b><span>faltam 6 dias</span></div>
 <a class="cd-t" href="https://www.cacp-villaperochon.com/agenda/appel-a-candidature-rencontres-de-la-jeune-photographie-internationale-2027/" target="_blank" rel="noopener">Encontros da jovem fotografia internacional – Niort</a>
-<div class="cd-o">Villa Pérochon – Centre d’art contemporain photographique</div>
+<div class="cd-k">Residência · Exterior · Villa Pérochon – Centre d’art contemporain photographique</div>
 
 <div class="cd-foot"><a class="cd-ab" href="https://www.cacp-villaperochon.com/agenda/appel-a-candidature-rencontres-de-la-jeune-photographie-internationale-2027/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-encontros-da-jovem-fotografia-internacio%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261115%0D%0ASUMMARY%3APrazo%3A%20Encontros%20da%20jovem%20fotografia%20internacional%20%E2%80%93%20Niort%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fwww.cacp-villaperochon.com%2Fagenda%2Fappel-a-candidature-rencontres-de-la-jeune-photographie-internationale-2027%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-encontros-da-jovem-fotografia-internacio.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-spend-the-winter-with-us-intaglio-etchin" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="nd" data-b="spend the winter with us: intaglio etching, aquatint and letterpress in the mediterranean res artis · spain residência exterior residência artística em spain. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>15</b><i>nov</i></div><div class="cd-st">faltam 6 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>15 nov</b><span>faltam 6 dias</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/spend-the-winter-with-us-in-a-mediterranean-region/" target="_blank" rel="noopener">Spend the Winter with Us: Intaglio Etching, Aquatint and Letterpress in the Mediterranean</a>
-<div class="cd-o">Spain</div>
-<div class="cd-et"><b>Custo não informado</b><span>ver na chamada</span></div>
+<div class="cd-k">Residência · Exterior · Spain</div>
+<div class="cd-et nd"><i></i><b>Custo não informado</b></div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/spend-the-winter-with-us-in-a-mediterranean-region/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-spend-the-winter-with-us-intaglio-etchin%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261115%0D%0ASUMMARY%3APrazo%3A%20Spend%20the%20Winter%20with%20Us%3A%20Intaglio%20Etching%20%20Aquatint%20and%20Letterpress%20in%20the%20Mediterranean%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fspend-the-winter-with-us-in-a-mediterranean-region%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-spend-the-winter-with-us-intaglio-etchin.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-la-porte-peinte-open-call-june-2027" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="nd" data-b="la porte peinte open call june 2027 res artis · france residência exterior residência artística em france. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>15</b><i>nov</i></div><div class="cd-st">faltam 6 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>15 nov</b><span>faltam 6 dias</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/la-porte-peinte-open-call-august-2026/" target="_blank" rel="noopener">La Porte Peinte Open Call June 2027</a>
-<div class="cd-o">France</div>
-<div class="cd-et"><b>Financiada em parte</b><span>confira o valor</span></div>
+<div class="cd-k">Residência · Exterior · France</div>
+<div class="cd-et"><i></i><b>Financiada em parte</b> confira o valor</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/la-porte-peinte-open-call-august-2026/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-la-porte-peinte-open-call-june-2027%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261115%0D%0ASUMMARY%3APrazo%3A%20La%20Porte%20Peinte%20Open%20Call%20June%202027%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fla-porte-peinte-open-call-august-2026%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-la-porte-peinte-open-call-june-2027.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-sixi-air-open-call-2027-spring-autumn" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="nd" data-b="sixi air open call 2027 spring &amp; autumn res artis · china residência exterior residência artística em china. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>15</b><i>nov</i></div><div class="cd-st">faltam 6 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
-<a class="cd-t" href="https://resartis.org/open-call/sixi-air-open-call-2027-spring-autumn/" target="_blank" rel="noopener">SIXI AiR OPEN CALL 2027 SPRING &amp; AUTUMN</a>
-<div class="cd-o">China</div>
-<div class="cd-et"><b>Custo não informado</b><span>ver na chamada</span></div>
+<div class="cd-q"><b>15 nov</b><span>faltam 6 dias</span></div>
+<a class="cd-t" href="https://resartis.org/open-call/sixi-air-open-call-2027-spring-autumn/" target="_blank" rel="noopener">Sixi air open call 2027 spring &amp; autumn</a>
+<div class="cd-k">Residência · Exterior · China</div>
+<div class="cd-et nd"><i></i><b>Custo não informado</b></div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/sixi-air-open-call-2027-spring-autumn/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-sixi-air-open-call-2027-spring-autumn%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261115%0D%0ASUMMARY%3APrazo%3A%20SIXI%20AiR%20OPEN%20CALL%202027%20SPRING%20%26%20AUTUMN%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fsixi-air-open-call-2027-spring-autumn%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-sixi-air-open-call-2027-spring-autumn.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-recycle-art-lab" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="nd" data-b="recycle art lab res artis · global residência exterior residência artística em global. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>15</b><i>nov</i></div><div class="cd-st">faltam 6 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
-<a class="cd-t" href="https://resartis.org/open-call/recycle-art-lab/" target="_blank" rel="noopener">RECYCLE ART LAB</a>
-<div class="cd-o">Global</div>
-<div class="cd-et"><b>Custo não informado</b><span>ver na chamada</span></div>
+<div class="cd-q"><b>15 nov</b><span>faltam 6 dias</span></div>
+<a class="cd-t" href="https://resartis.org/open-call/recycle-art-lab/" target="_blank" rel="noopener">Recycle art lab</a>
+<div class="cd-k">Residência · Exterior · Global</div>
+<div class="cd-et nd"><i></i><b>Custo não informado</b></div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/recycle-art-lab/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-recycle-art-lab%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261115%0D%0ASUMMARY%3APrazo%3A%20RECYCLE%20ART%20LAB%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Frecycle-art-lab%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-recycle-art-lab.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-sheni-studio-and-residency-open-call-for" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="nd" data-b="sheni studio and residency — open call for international artists res artis · georgia residência exterior residência artística em georgia. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>15</b><i>nov</i></div><div class="cd-st">faltam 6 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>15 nov</b><span>faltam 6 dias</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/sheni-studio-and-residency-open-call-for-international-artists/" target="_blank" rel="noopener">Sheni Studio and Residency — Open Call for International Artists</a>
-<div class="cd-o">Georgia</div>
-<div class="cd-et"><b>Financiada em parte</b><span>confira o valor</span></div>
+<div class="cd-k">Residência · Exterior · Georgia</div>
+<div class="cd-et"><i></i><b>Financiada em parte</b> confira o valor</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/sheni-studio-and-residency-open-call-for-international-artists/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-sheni-studio-and-residency-open-call-for%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261115%0D%0ASUMMARY%3APrazo%3A%20Sheni%20Studio%20and%20Residency%20%E2%80%94%20Open%20Call%20for%20International%20Artists%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fsheni-studio-and-residency-open-call-for-international-artists%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-sheni-studio-and-residency-open-call-for.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-collective-residency" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="nd" data-b="collective residency res artis · france residência exterior residência artística em france. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>15</b><i>nov</i></div><div class="cd-st">faltam 6 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>15 nov</b><span>faltam 6 dias</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/collective-residency/" target="_blank" rel="noopener">Collective residency</a>
-<div class="cd-o">France</div>
-<div class="cd-et"><b>Custo não informado</b><span>ver na chamada</span></div>
+<div class="cd-k">Residência · Exterior · France</div>
+<div class="cd-et nd"><i></i><b>Custo não informado</b></div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/collective-residency/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-collective-residency%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261115%0D%0ASUMMARY%3APrazo%3A%20Collective%20residency%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fcollective-residency%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-collective-residency.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-residencia-artistica-em-casa-projetada-p" data-c="residencia" data-o="brasil" data-g="1" data-p="1" data-v="0" data-k="nd" data-b="residência artística em casa projetada por zanine caldas abre inscrições dasartes residência brasil programa selecionará quatro artistas brasileiros e estrangeiros para uma imersão de um mês à beira-mar, com curadoria de felipe scovino e foco na relação entre arte, arquitetura e natureza estão abertas, até 5 de novembro, as inscrições par">
-<div class="cd-top"><div class="cd-dt"><b>16</b><i>nov</i></div><div class="cd-st">faltam 7 dias</div></div>
-<div class="cd-k">Residência · Brasil</div>
+<div class="cd-q"><b>16 nov</b><span>faltam 7 dias</span></div>
 <a class="cd-t" href="https://dasartes.com.br/de-arte-a-z/residencia-artistica-em-casa-projetada-por-zanine-caldas-abre-inscricoes/" target="_blank" rel="noopener">Residência artística em casa projetada por Zanine Caldas abre inscrições</a>
-<div class="cd-o">Dasartes</div>
+<div class="cd-k">Residência · Brasil · Dasartes</div>
 
 <div class="cd-foot"><a class="cd-ab" href="https://dasartes.com.br/de-arte-a-z/residencia-artistica-em-casa-projetada-por-zanine-caldas-abre-inscricoes/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-residencia-artistica-em-casa-projetada-p%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261116%0D%0ASUMMARY%3APrazo%3A%20Resid%C3%AAncia%20art%C3%ADstica%20em%20casa%20projetada%20por%20Zanine%20Caldas%20abre%20inscri%C3%A7%C3%B5es%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fdasartes.com.br%2Fde-arte-a-z%2Fresidencia-artistica-em-casa-projetada-por-zanine-caldas-abre-inscricoes%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-residencia-artistica-em-casa-projetada-p.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-pigprints-printmaking-residency-in-milan" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="pigprints: printmaking residency in milan res artis · italy residência exterior residência artística em italy. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>9</b><i>nov</i></div><div class="cd-st">último dia</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>9 nov</b><span>último dia</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/pigprints-printmaking-residency-in-milan/" target="_blank" rel="noopener">PIGPRINTS: Printmaking Residency in Milan</a>
-<div class="cd-o">Italy</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 350 EUR, menciona bolsa</span></div>
+<div class="cd-k">Residência · Exterior · Italy</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 350 EUR, menciona bolsa</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/pigprints-printmaking-residency-in-milan/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-pigprints-printmaking-residency-in-milan%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261109%0D%0ASUMMARY%3APrazo%3A%20PIGPRINTS%3A%20Printmaking%20Residency%20in%20Milan%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fpigprints-printmaking-residency-in-milan%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-pigprints-printmaking-residency-in-milan.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-patagonia-argentina-2027-multidisciplina" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="patagonia argentina – 2027 multidisciplinary program res artis · argentina residência exterior residência artística em argentina. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>9</b><i>nov</i></div><div class="cd-st">último dia</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>9 nov</b><span>último dia</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/patagonia-argentina-2027-multidisciplinary-program/" target="_blank" rel="noopener">PATAGONIA ARGENTINA – 2027 multidisciplinary program</a>
-<div class="cd-o">Argentina</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 2.590 USD, menciona bolsa</span></div>
+<div class="cd-k">Residência · Exterior · Argentina</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 2.590 USD, menciona bolsa</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/patagonia-argentina-2027-multidisciplinary-program/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-patagonia-argentina-2027-multidisciplina%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261109%0D%0ASUMMARY%3APrazo%3A%20PATAGONIA%20ARGENTINA%20%E2%80%93%202027%20multidisciplinary%20program%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fpatagonia-argentina-2027-multidisciplinary-program%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-patagonia-argentina-2027-multidisciplina.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-summer-2027-byrdcliffe-historic-cottage-" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="summer 2027 byrdcliffe historic cottage residency res artis · united states residência exterior residência artística em united states. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>9</b><i>nov</i></div><div class="cd-st">último dia</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>9 nov</b><span>último dia</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/summer-2027-byrdcliffe-historic-cottage-residency/" target="_blank" rel="noopener">Summer 2027 Byrdcliffe Historic Cottage Residency</a>
-<div class="cd-o">United States</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 4.500 USD, menciona bolsa</span></div>
+<div class="cd-k">Residência · Exterior · United States</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 4.500 USD, menciona bolsa</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/summer-2027-byrdcliffe-historic-cottage-residency/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-summer-2027-byrdcliffe-historic-cottage-%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261109%0D%0ASUMMARY%3APrazo%3A%20Summer%202027%20Byrdcliffe%20Historic%20Cottage%20Residency%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fsummer-2027-byrdcliffe-historic-cottage-residency%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-summer-2027-byrdcliffe-historic-cottage-.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-open-call-residency-2027-l-mexico-city" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="open call residency 2027 l méxico city res artis · mexico residência exterior residência artística em mexico. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>10</b><i>nov</i></div><div class="cd-st">faltam 1 dia</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>10 nov</b><span>faltam 1 dia</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/art-residency-in-mexico-city-fall-2026/" target="_blank" rel="noopener">OPEN CALL Residency 2027 l México City</a>
-<div class="cd-o">Mexico</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 30.000 USD</span></div>
+<div class="cd-k">Residência · Exterior · Mexico</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 30.000 USD</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/art-residency-in-mexico-city-fall-2026/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-open-call-residency-2027-l-mexico-city%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261110%0D%0ASUMMARY%3APrazo%3A%20OPEN%20CALL%20Residency%202027%20l%20M%C3%A9xico%20City%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fart-residency-in-mexico-city-fall-2026%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-open-call-residency-2027-l-mexico-city.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-ilhabela-island-brazil-feb-march-2027" data-c="residencia" data-o="brasil" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="ilhabela island, brazil – feb/march 2027 res artis · brazil residência brasil residência artística em brazil. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>10</b><i>nov</i></div><div class="cd-st">faltam 1 dia</div></div>
-<div class="cd-k">Residência · Brasil</div>
-<a class="cd-t" href="https://resartis.org/open-call/july-august-multidisciplinary-residence-ilhabela-island-brazil/" target="_blank" rel="noopener">ILHABELA ISLAND, BRAZIL – FEB/MARCH 2027</a>
-<div class="cd-o">Brazil</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 1.950 USD</span></div>
+<div class="cd-q"><b>10 nov</b><span>faltam 1 dia</span></div>
+<a class="cd-t" href="https://resartis.org/open-call/july-august-multidisciplinary-residence-ilhabela-island-brazil/" target="_blank" rel="noopener">Ilhabela island, brazil – feb/march 2027</a>
+<div class="cd-k">Residência · Brasil · Brazil</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 1.950 USD</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/july-august-multidisciplinary-residence-ilhabela-island-brazil/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-ilhabela-island-brazil-feb-march-2027%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261110%0D%0ASUMMARY%3APrazo%3A%20ILHABELA%20ISLAND%20%20BRAZIL%20%E2%80%93%20FEB%2FMARCH%202027%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fjuly-august-multidisciplinary-residence-ilhabela-island-brazil%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-ilhabela-island-brazil-feb-march-2027.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-amazonia-multidisciplinary-residence-in-" data-c="residencia" data-o="brasil" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="amazonia – multidisciplinary residence in the amazon res artis · brazil residência brasil residência artística em brazil. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>11</b><i>nov</i></div><div class="cd-st">faltam 2 dias</div></div>
-<div class="cd-k">Residência · Brasil</div>
+<div class="cd-q"><b>11 nov</b><span>faltam 2 dias</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/amazonia-multidisciplinary-residence-in-the-amazon/" target="_blank" rel="noopener">AMAZONIA – multidisciplinary residence in the Amazon</a>
-<div class="cd-o">Brazil</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 2.590 USD, menciona bolsa</span></div>
+<div class="cd-k">Residência · Brasil · Brazil</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 2.590 USD, menciona bolsa</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/amazonia-multidisciplinary-residence-in-the-amazon/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-amazonia-multidisciplinary-residence-in-%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261111%0D%0ASUMMARY%3APrazo%3A%20AMAZONIA%20%E2%80%93%20multidisciplinary%20residence%20in%20the%20Amazon%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Famazonia-multidisciplinary-residence-in-the-amazon%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-amazonia-multidisciplinary-residence-in-.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-ilhabela-island-brazil-2027-multidiscipl" data-c="residencia" data-o="brasil" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="ilhabela island, brazil, 2027 multidisciplinary residence – res artis · brazil residência brasil residência artística em brazil. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>11</b><i>nov</i></div><div class="cd-st">faltam 2 dias</div></div>
-<div class="cd-k">Residência · Brasil</div>
-<a class="cd-t" href="https://resartis.org/open-call/2026-2027-multidisciplinary-residence-ilhabela-island-brazil/" target="_blank" rel="noopener">Ilhabela Island, Brazil, 2027 MULTIDISCIPLINARY RESIDENCE –</a>
-<div class="cd-o">Brazil</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 1.950 USD</span></div>
+<div class="cd-q"><b>11 nov</b><span>faltam 2 dias</span></div>
+<a class="cd-t" href="https://resartis.org/open-call/2026-2027-multidisciplinary-residence-ilhabela-island-brazil/" target="_blank" rel="noopener">Ilhabela island, brazil, 2027 multidisciplinary residence</a>
+<div class="cd-k">Residência · Brasil · Brazil</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 1.950 USD</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/2026-2027-multidisciplinary-residence-ilhabela-island-brazil/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-ilhabela-island-brazil-2027-multidiscipl%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261111%0D%0ASUMMARY%3APrazo%3A%20Ilhabela%20Island%20%20Brazil%20%202027%20MULTIDISCIPLINARY%20RESIDENCE%20%E2%80%93%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2F2026-2027-multidisciplinary-residence-ilhabela-island-brazil%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-ilhabela-island-brazil-2027-multidiscipl.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-joya-berilo" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="joya: berilo res artis · spain residência exterior residência artística em spain. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>12</b><i>nov</i></div><div class="cd-st">faltam 3 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
-<a class="cd-t" href="https://resartis.org/open-call/joya-berilo/" target="_blank" rel="noopener">Joya: BERILO</a>
-<div class="cd-o">Spain</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 450 EUR</span></div>
+<div class="cd-q"><b>12 nov</b><span>faltam 3 dias</span></div>
+<a class="cd-t" href="https://resartis.org/open-call/joya-berilo/" target="_blank" rel="noopener">Joya: Berilo</a>
+<div class="cd-k">Residência · Exterior · Spain</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 450 EUR</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/joya-berilo/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-joya-berilo%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261112%0D%0ASUMMARY%3APrazo%3A%20Joya%3A%20BERILO%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fjoya-berilo%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-joya-berilo.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-joya-air-spring-residencies-2027" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="joya: air / spring residencies 2027 res artis · spain residência exterior residência artística em spain. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>12</b><i>nov</i></div><div class="cd-st">faltam 3 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>12 nov</b><span>faltam 3 dias</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/joya-air-spring-residencies-2027/" target="_blank" rel="noopener">Joya: AiR / spring residencies 2027</a>
-<div class="cd-o">Spain</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 400 EUR</span></div>
+<div class="cd-k">Residência · Exterior · Spain</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 400 EUR</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/joya-air-spring-residencies-2027/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-joya-air-spring-residencies-2027%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261112%0D%0ASUMMARY%3APrazo%3A%20Joya%3A%20AiR%20%2F%20spring%20residencies%202027%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fjoya-air-spring-residencies-2027%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-joya-air-spring-residencies-2027.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-february-retreat-2027-arir-guiniguada-gr" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="february retreat 2027 – arir guiniguada, gran canaria res artis · spain residência exterior residência artística em spain. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>12</b><i>nov</i></div><div class="cd-st">faltam 3 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>12 nov</b><span>faltam 3 dias</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/february-retreat-2027-arir-guiniguada-gran-canaria-2/" target="_blank" rel="noopener">February Retreat 2027 – ARiR Guiniguada, Gran Canaria</a>
-<div class="cd-o">Spain</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 230 EUR</span></div>
+<div class="cd-k">Residência · Exterior · Spain</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 230 EUR</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/february-retreat-2027-arir-guiniguada-gran-canaria-2/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-february-retreat-2027-arir-guiniguada-gr%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261112%0D%0ASUMMARY%3APrazo%3A%20February%20Retreat%202027%20%E2%80%93%20ARiR%20Guiniguada%20%20Gran%20Canaria%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Ffebruary-retreat-2027-arir-guiniguada-gran-canaria-2%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-february-retreat-2027-arir-guiniguada-gr.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-kordon-winter-spring-2027" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="kordon winter-spring 2027 res artis · estonia residência exterior residência artística em estonia. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>13</b><i>nov</i></div><div class="cd-st">faltam 4 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
-<a class="cd-t" href="https://resartis.org/open-call/kordon-winter-spring-2027/" target="_blank" rel="noopener">KORDON WINTER-SPRING 2027</a>
-<div class="cd-o">Estonia</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 715 EUR</span></div>
+<div class="cd-q"><b>13 nov</b><span>faltam 4 dias</span></div>
+<a class="cd-t" href="https://resartis.org/open-call/kordon-winter-spring-2027/" target="_blank" rel="noopener">Kordon winter-spring 2027</a>
+<div class="cd-k">Residência · Exterior · Estonia</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 715 EUR</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/kordon-winter-spring-2027/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-kordon-winter-spring-2027%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261113%0D%0ASUMMARY%3APrazo%3A%20KORDON%20WINTER-SPRING%202027%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fkordon-winter-spring-2027%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-kordon-winter-spring-2027.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-printmaking-in-milan-last-minute-residen" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="printmaking in milan: last minute residency opportunity – december 2026 res artis · italy residência exterior residência artística em italy. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>13</b><i>nov</i></div><div class="cd-st">faltam 4 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>13 nov</b><span>faltam 4 dias</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/printmaking-in-milan-last-minute-residency-opportunity-in-july-2026/" target="_blank" rel="noopener">Printmaking in Milan: Last minute residency opportunity – December 2026</a>
-<div class="cd-o">Italy</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 350 EUR, menciona bolsa</span></div>
+<div class="cd-k">Residência · Exterior · Italy</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 350 EUR, menciona bolsa</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/printmaking-in-milan-last-minute-residency-opportunity-in-july-2026/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-printmaking-in-milan-last-minute-residen%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261113%0D%0ASUMMARY%3APrazo%3A%20Printmaking%20in%20Milan%3A%20Last%20minute%20residency%20opportunity%20%E2%80%93%20December%202026%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fprintmaking-in-milan-last-minute-residency-opportunity-in-july-2026%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-printmaking-in-milan-last-minute-residen.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-hub-feenix-residency-2027" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="hub feenix residency 2027 res artis · finland residência exterior residência artística em finland. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>14</b><i>nov</i></div><div class="cd-st">faltam 5 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>14 nov</b><span>faltam 5 dias</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/hub-feenix-artist-residency-2026-27/" target="_blank" rel="noopener">Hub Feenix Residency 2027</a>
-<div class="cd-o">Finland</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 800 EUR</span></div>
+<div class="cd-k">Residência · Exterior · Finland</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 800 EUR</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/hub-feenix-artist-residency-2026-27/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-hub-feenix-residency-2027%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261114%0D%0ASUMMARY%3APrazo%3A%20Hub%20Feenix%20Residency%202027%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fhub-feenix-artist-residency-2026-27%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-hub-feenix-residency-2027.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-long-days-and-starry-nights-summer-in-pa" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="long days and starry nights summer in patagonia res artis · argentina residência exterior residência artística em argentina. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>14</b><i>nov</i></div><div class="cd-st">faltam 5 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
-<a class="cd-t" href="https://resartis.org/open-call/long-days-and-starry-nights-summer-in-patagonia/" target="_blank" rel="noopener">LONG DAYS AND STARRY NIGHTS SUMMER IN PATAGONIA</a>
-<div class="cd-o">Argentina</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 500 USD</span></div>
+<div class="cd-q"><b>14 nov</b><span>faltam 5 dias</span></div>
+<a class="cd-t" href="https://resartis.org/open-call/long-days-and-starry-nights-summer-in-patagonia/" target="_blank" rel="noopener">Long days and starry nights summer in patagonia</a>
+<div class="cd-k">Residência · Exterior · Argentina</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 500 USD</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/long-days-and-starry-nights-summer-in-patagonia/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-long-days-and-starry-nights-summer-in-pa%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261114%0D%0ASUMMARY%3APrazo%3A%20LONG%20DAYS%20AND%20STARRY%20NIGHTS%20SUMMER%20IN%20PATAGONIA%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Flong-days-and-starry-nights-summer-in-patagonia%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-long-days-and-starry-nights-summer-in-pa.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-early-bird-call-for-summer-retreat-2027-" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="early bird call for summer retreat 2027 – arir guiniguada, gran canaria res artis · spain residência exterior residência artística em spain. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>14</b><i>nov</i></div><div class="cd-st">faltam 5 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>14 nov</b><span>faltam 5 dias</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/early-bird-call-for-summer-retreat-2027-arir-guiniguada-gran-canaria/" target="_blank" rel="noopener">Early bird call for Summer Retreat 2027 – ARiR Guiniguada, Gran Canaria</a>
-<div class="cd-o">Spain</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 1.050 EUR</span></div>
+<div class="cd-k">Residência · Exterior · Spain</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 1.050 EUR</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/early-bird-call-for-summer-retreat-2027-arir-guiniguada-gran-canaria/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-early-bird-call-for-summer-retreat-2027-%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261114%0D%0ASUMMARY%3APrazo%3A%20Early%20bird%20call%20for%20Summer%20Retreat%202027%20%E2%80%93%20ARiR%20Guiniguada%20%20Gran%20Canaria%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fearly-bird-call-for-summer-retreat-2027-arir-guiniguada-gran-canaria%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-early-bird-call-for-summer-retreat-2027-.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-art-residency-available-december-2026-co" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="art residency available – december 2026 – colombia res artis · colombia residência exterior residência artística em colombia. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>14</b><i>nov</i></div><div class="cd-st">faltam 5 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>14 nov</b><span>faltam 5 dias</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/art-residency-available-december-2026-colombia/" target="_blank" rel="noopener">Art Residency Available – DECEMBER 2026 – Colombia</a>
-<div class="cd-o">Colombia</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 945 USD</span></div>
+<div class="cd-k">Residência · Exterior · Colombia</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 945 USD</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/art-residency-available-december-2026-colombia/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-art-residency-available-december-2026-co%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261114%0D%0ASUMMARY%3APrazo%3A%20Art%20Residency%20Available%20%E2%80%93%20DECEMBER%202026%20%E2%80%93%20Colombia%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fart-residency-available-december-2026-colombia%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-art-residency-available-december-2026-co.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-special-winter-offer-dec-2026-at-hub-fee" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="special winter offer – dec 2026 at hub feenix residency res artis · finland residência exterior residência artística em finland. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>14</b><i>nov</i></div><div class="cd-st">faltam 5 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>14 nov</b><span>faltam 5 dias</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/hub-feenix-residency-special-offer-for-nov-dec-2026/" target="_blank" rel="noopener">Special Winter Offer – Dec 2026 at Hub Feenix Residency</a>
-<div class="cd-o">Finland</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 700 EUR</span></div>
+<div class="cd-k">Residência · Exterior · Finland</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 700 EUR</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/hub-feenix-residency-special-offer-for-nov-dec-2026/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-special-winter-offer-dec-2026-at-hub-fee%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261114%0D%0ASUMMARY%3APrazo%3A%20Special%20Winter%20Offer%20%E2%80%93%20Dec%202026%20at%20Hub%20Feenix%20Residency%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fhub-feenix-residency-special-offer-for-nov-dec-2026%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-special-winter-offer-dec-2026-at-hub-fee.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e--in-simplicitate-libertas-1-week-unesco-" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="'in simplicitate libertas' 1-week unesco site discovery res artis · italy residência exterior residência artística em italy. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>15</b><i>nov</i></div><div class="cd-st">faltam 6 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>15 nov</b><span>faltam 6 dias</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/in-simplicitate-libertas-1-week-unesco-site-discovery/" target="_blank" rel="noopener">'In Simplicitate Libertas' 1-Week UNESCO Site Discovery</a>
-<div class="cd-o">Italy</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 550 EUR, menciona bolsa</span></div>
+<div class="cd-k">Residência · Exterior · Italy</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 550 EUR, menciona bolsa</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/in-simplicitate-libertas-1-week-unesco-site-discovery/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae--in-simplicitate-libertas-1-week-unesco-%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261115%0D%0ASUMMARY%3APrazo%3A%20'In%20Simplicitate%20Libertas'%201-Week%20UNESCO%20Site%20Discovery%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fin-simplicitate-libertas-1-week-unesco-site-discovery%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e--in-simplicitate-libertas-1-week-unesco-.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-open-call-self-guided-all-artists-art14-" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="open call: self-guided – all artists – art14 residency res artis · united states residência exterior residência artística em united states. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>15</b><i>nov</i></div><div class="cd-st">faltam 6 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>15 nov</b><span>faltam 6 dias</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/open-call-self-guided-all-artists-art14-residency/" target="_blank" rel="noopener">OPEN CALL: self-guided – all artists – ART14 Residency</a>
-<div class="cd-o">United States</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 400 USD, menciona bolsa</span></div>
+<div class="cd-k">Residência · Exterior · United States</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 400 USD, menciona bolsa</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/open-call-self-guided-all-artists-art14-residency/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-open-call-self-guided-all-artists-art14-%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261115%0D%0ASUMMARY%3APrazo%3A%20OPEN%20CALL%3A%20self-guided%20%E2%80%93%20all%20artists%20%E2%80%93%20ART14%20Residency%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fopen-call-self-guided-all-artists-art14-residency%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-open-call-self-guided-all-artists-art14-.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-2027-open-call-essere-residency" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="2027 open call essere residency res artis · italy residência exterior residência artística em italy. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>15</b><i>nov</i></div><div class="cd-st">faltam 6 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>15 nov</b><span>faltam 6 dias</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/2027-open-call-essere-residency/" target="_blank" rel="noopener">2027 Open Call Essere Residency</a>
-<div class="cd-o">Italy</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 1.000 EUR, menciona bolsa</span></div>
+<div class="cd-k">Residência · Exterior · Italy</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 1.000 EUR, menciona bolsa</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/2027-open-call-essere-residency/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-2027-open-call-essere-residency%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261115%0D%0ASUMMARY%3APrazo%3A%202027%20Open%20Call%20Essere%20Residency%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2F2027-open-call-essere-residency%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-2027-open-call-essere-residency.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-winter-2026-27-open-call-residency-at-ha" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="winter 2026-27 | open call | residency at hangar for curators and researchers res artis · portugal residência exterior residência artística em portugal. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>15</b><i>nov</i></div><div class="cd-st">faltam 6 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>15 nov</b><span>faltam 6 dias</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/open-call-residency-at-hangar-for-curators-and-researchers/" target="_blank" rel="noopener">WINTER 2026-27 | OPEN CALL | Residency at Hangar for Curators and Researchers</a>
-<div class="cd-o">Portugal</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 1.000 EUR</span></div>
+<div class="cd-k">Residência · Exterior · Portugal</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 1.000 EUR</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/open-call-residency-at-hangar-for-curators-and-researchers/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-winter-2026-27-open-call-residency-at-ha%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261115%0D%0ASUMMARY%3APrazo%3A%20WINTER%202026-27%20%7C%20OPEN%20CALL%20%7C%20Residency%20at%20Hangar%20for%20Curators%20and%20Researchers%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fopen-call-residency-at-hangar-for-curators-and-researchers%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-winter-2026-27-open-call-residency-at-ha.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-winter-26-27-open-call-cowork-artists-re" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="winter 26-27 | open call | cowork artists residency (no accommodation) res artis · portugal residência exterior residência artística em portugal. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>15</b><i>nov</i></div><div class="cd-st">faltam 6 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
-<a class="cd-t" href="https://resartis.org/open-call/open-call-cowork-artists-residency-no-accommodation/" target="_blank" rel="noopener">WINTER 26-27 | OPEN CALL | COWORK ARTISTS RESIDENCY (No accommodation)</a>
-<div class="cd-o">Portugal</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 550 EUR</span></div>
+<div class="cd-q"><b>15 nov</b><span>faltam 6 dias</span></div>
+<a class="cd-t" href="https://resartis.org/open-call/open-call-cowork-artists-residency-no-accommodation/" target="_blank" rel="noopener">Winter 26-27 | open call | cowork artists residency (no accommodation)</a>
+<div class="cd-k">Residência · Exterior · Portugal</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 550 EUR</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/open-call-cowork-artists-residency-no-accommodation/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-winter-26-27-open-call-cowork-artists-re%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261115%0D%0ASUMMARY%3APrazo%3A%20WINTER%2026-27%20%7C%20OPEN%20CALL%20%7C%20COWORK%20ARTISTS%20RESIDENCY%20(No%20accommodation)%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fopen-call-cowork-artists-residency-no-accommodation%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-winter-26-27-open-call-cowork-artists-re.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-december-2026-open-call-for-visual-artis" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="december 2026 – open call for visual artists_ecovillage_spain res artis · spain residência exterior residência artística em spain. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>15</b><i>nov</i></div><div class="cd-st">faltam 6 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>15 nov</b><span>faltam 6 dias</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/august-2026-last-call-for-visual-artists_ecovillage_spain/" target="_blank" rel="noopener">December 2026 – Open Call for Visual Artists_Ecovillage_Spain</a>
-<div class="cd-o">Spain</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 700 EUR</span></div>
+<div class="cd-k">Residência · Exterior · Spain</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 700 EUR</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/august-2026-last-call-for-visual-artists_ecovillage_spain/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-december-2026-open-call-for-visual-artis%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261115%0D%0ASUMMARY%3APrazo%3A%20December%202026%20%E2%80%93%20Open%20Call%20for%20Visual%20Artists_Ecovillage_Spain%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Faugust-2026-last-call-for-visual-artists_ecovillage_spain%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-december-2026-open-call-for-visual-artis.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-november-and-decemner-solo-or-duo-in-can" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="november and decemner — solo or duo in canada's temperate rainforest res artis · canada residência exterior residência artística em canada. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>15</b><i>nov</i></div><div class="cd-st">faltam 6 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>15 nov</b><span>faltam 6 dias</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/winter-residencies-solo-or-duo-in-canadas-temperate-rainforest/" target="_blank" rel="noopener">November and Decemner — Solo or Duo in Canada's Temperate Rainforest</a>
-<div class="cd-o">Canada</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 250 USD</span></div>
+<div class="cd-k">Residência · Exterior · Canada</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 250 USD</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/winter-residencies-solo-or-duo-in-canadas-temperate-rainforest/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-november-and-decemner-solo-or-duo-in-can%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261115%0D%0ASUMMARY%3APrazo%3A%20November%20and%20Decemner%20%E2%80%94%20Solo%20or%20Duo%20in%20Canada's%20Temperate%20Rainforest%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fwinter-residencies-solo-or-duo-in-canadas-temperate-rainforest%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-november-and-decemner-solo-or-duo-in-can.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-summer-in-patagonia-long-days-and-starry" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="summer in patagonia long days and starry nights. printmaking residency res artis · argentina residência exterior residência artística em argentina. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>15</b><i>nov</i></div><div class="cd-st">faltam 6 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>15 nov</b><span>faltam 6 dias</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/summer-in-patagonia-long-days-and-starry-nights-printmaking-residency/" target="_blank" rel="noopener">SUMMER IN PATAGONIA Long days and starry nights. Printmaking residency</a>
-<div class="cd-o">Argentina</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 500 USD</span></div>
+<div class="cd-k">Residência · Exterior · Argentina</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 500 USD</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/summer-in-patagonia-long-days-and-starry-nights-printmaking-residency/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-summer-in-patagonia-long-days-and-starry%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261115%0D%0ASUMMARY%3APrazo%3A%20SUMMER%20IN%20PATAGONIA%20Long%20days%20and%20starry%20nights.%20Printmaking%20residency%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fsummer-in-patagonia-long-days-and-starry-nights-printmaking-residency%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-summer-in-patagonia-long-days-and-starry.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-nature-morte-the-natural-history-of-deat" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="nature morte: the natural history of death res artis · global residência exterior residência artística em global. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>15</b><i>nov</i></div><div class="cd-st">faltam 6 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>15 nov</b><span>faltam 6 dias</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/nature-morte/" target="_blank" rel="noopener">Nature Morte: The Natural History of Death</a>
-<div class="cd-o">Global</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 600 USD</span></div>
+<div class="cd-k">Residência · Exterior · Global</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 600 USD</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/nature-morte/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-nature-morte-the-natural-history-of-deat%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261115%0D%0ASUMMARY%3APrazo%3A%20Nature%20Morte%3A%20The%20Natural%20History%20of%20Death%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fnature-morte%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-nature-morte-the-natural-history-of-deat.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-illapse-residency-program-winter-2027" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="illapse residency program winter 2027 res artis · spain residência exterior residência artística em spain. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>15</b><i>nov</i></div><div class="cd-st">faltam 6 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
-<a class="cd-t" href="https://resartis.org/open-call/illapse-winter-2027/" target="_blank" rel="noopener">ILLAPSE RESIDENCY PROGRAM WINTER 2027</a>
-<div class="cd-o">Spain</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 500 EUR</span></div>
+<div class="cd-q"><b>15 nov</b><span>faltam 6 dias</span></div>
+<a class="cd-t" href="https://resartis.org/open-call/illapse-winter-2027/" target="_blank" rel="noopener">Illapse residency program winter 2027</a>
+<div class="cd-k">Residência · Exterior · Spain</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 500 EUR</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/illapse-winter-2027/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-illapse-residency-program-winter-2027%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261115%0D%0ASUMMARY%3APrazo%3A%20ILLAPSE%20RESIDENCY%20PROGRAM%20WINTER%202027%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fillapse-winter-2027%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-illapse-residency-program-winter-2027.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-sympoiesis-open-call-2027" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="sympoiesis / open call 2027 res artis · spain residência exterior residência artística em spain. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>15</b><i>nov</i></div><div class="cd-st">faltam 6 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
-<a class="cd-t" href="https://resartis.org/open-call/sympoiesis-open-call-2027-2/" target="_blank" rel="noopener">SYMPOIESIS / Open call 2027</a>
-<div class="cd-o">Spain</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 300 EUR</span></div>
+<div class="cd-q"><b>15 nov</b><span>faltam 6 dias</span></div>
+<a class="cd-t" href="https://resartis.org/open-call/sympoiesis-open-call-2027-2/" target="_blank" rel="noopener">Sympoiesis / open call 2027</a>
+<div class="cd-k">Residência · Exterior · Spain</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 300 EUR</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/sympoiesis-open-call-2027-2/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-sympoiesis-open-call-2027%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261115%0D%0ASUMMARY%3APrazo%3A%20SYMPOIESIS%20%2F%20Open%20call%202027%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Fsympoiesis-open-call-2027-2%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-sympoiesis-open-call-2027.ics">Lembrete</a></div>
 </li>
 <li class="cd urg mais" id="e-aegean-futures-2027-art-residency-in-gre" data-c="residencia" data-o="exterior" data-g="1" data-p="1" data-v="0" data-k="taxa" data-b="aegean futures – 2027 art residency in greece res artis · greece residência exterior residência artística em greece. a página no res artis leva ao programa e às regras de inscrição (em inglês).">
-<div class="cd-top"><div class="cd-dt"><b>15</b><i>nov</i></div><div class="cd-st">faltam 6 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>15 nov</b><span>faltam 6 dias</span></div>
 <a class="cd-t" href="https://resartis.org/open-call/aegean-futures-2027-art-residency-in-greece/" target="_blank" rel="noopener">AEGEAN FUTURES – 2027 Art Residency in Greece</a>
-<div class="cd-o">Greece</div>
-<div class="cd-et taxa"><b>Com taxa</b><span>a partir de 500 EUR</span></div>
+<div class="cd-k">Residência · Exterior · Greece</div>
+<div class="cd-et taxa"><i></i><b>Com taxa</b> a partir de 500 EUR</div>
 <div class="cd-foot"><a class="cd-ab" href="https://resartis.org/open-call/aegean-futures-2027-art-residency-in-greece/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-aegean-futures-2027-art-residency-in-gre%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261115%0D%0ASUMMARY%3APrazo%3A%20AEGEAN%20FUTURES%20%E2%80%93%202027%20Art%20Residency%20in%20Greece%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fresartis.org%2Fopen-call%2Faegean-futures-2027-art-residency-in-greece%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-aegean-futures-2027-art-residency-in-gre.ics">Lembrete</a></div>
 </li>
 </ul><button type="button" class="vmais" data-t="46">Ver todos (46)</button></section>
 <section class="bloco e2g" data-g="2"><h2>Fecham neste mês<small>até 30 dias</small></h2><ul class="e2">
 <li class="cd" id="e-concurso-talentos-contemporaneos-da-fund" data-c="premio" data-o="exterior" data-g="2" data-p="1" data-v="0" data-k="livre" data-b="concurso talentos contemporâneos da fundação françois schneider apoio.art · fondation françois schneider prêmio exterior a fondation françois schneider (wattwiller, frança) lança a 16ª edição do concurso talents contemporains, dedicado à criação contemporânea sobre o tema da água. o prêmio busca apoiar artistas plásticos por meio da aquisição de obras e da di">
-<div class="cd-top"><div class="cd-dt"><b>22</b><i>nov</i></div><div class="cd-st">faltam 13 dias</div></div>
-<div class="cd-k">Prêmio · Exterior</div>
+<div class="cd-q"><b>22 nov</b><span>faltam 13 dias</span></div>
 <a class="cd-t" href="https://www.fondationfrancoisschneider.org/wp-content/uploads/2026/09/2026-09-02-Reglement-TC16-FR.pdf" target="_blank" rel="noopener">Concurso Talentos Contemporâneos da Fundação François Schneider</a>
-<div class="cd-o">Fondation François Schneider</div>
+<div class="cd-k">Prêmio · Exterior · Fondation François Schneider</div>
 
 <div class="cd-foot"><a class="cd-ab" href="https://www.fondationfrancoisschneider.org/wp-content/uploads/2026/09/2026-09-02-Reglement-TC16-FR.pdf" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-concurso-talentos-contemporaneos-da-fund%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261122%0D%0ASUMMARY%3APrazo%3A%20Concurso%20Talentos%20Contempor%C3%A2neos%20da%20Funda%C3%A7%C3%A3o%20Fran%C3%A7ois%20Schneider%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fwww.fondationfrancoisschneider.org%2Fwp-content%2Fuploads%2F2026%2F09%2F2026-09-02-Reglement-TC16-FR.pdf%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-concurso-talentos-contemporaneos-da-fund.ics">Lembrete</a></div>
 </li>
 <li class="cd" id="e-chamada-aberta-para-premio-dm-connecting" data-c="premio" data-o="exterior" data-g="2" data-p="1" data-v="0" data-k="livre" data-b="chamada aberta para prêmio dm connecting worlds 2027 apoio.art · unesco creative city of media arts + stadt karlsruhe | kulturamt +dm prêmio exterior a convocatória do prêmio dm-award connecting worlds é dirigida artistas de todo o mundo, que podem se inscrever individualmente ou em coletivo. os projetos inscritos deverão ser realizados em 2027 no âmbito do festival de luzes schlosslicht">
-<div class="cd-top"><div class="cd-dt"><b>26</b><i>nov</i></div><div class="cd-st">faltam 17 dias</div></div>
-<div class="cd-k">Prêmio · Exterior</div>
+<div class="cd-q"><b>26 nov</b><span>faltam 17 dias</span></div>
 <a class="cd-t" href="https://www.cityofmediaarts.de/de/events/jetzt-bewerben-ausschreibung-dm-award-connecting-worlds/" target="_blank" rel="noopener">Chamada aberta para Prêmio DM Connecting Worlds 2027</a>
-<div class="cd-o">UNESCO Creative City of Media Arts + Stadt Karlsruhe | Kulturamt +DM</div>
+<div class="cd-k">Prêmio · Exterior · UNESCO Creative City of Media Arts + Stadt Karlsruhe | Kulturamt +DM</div>
 
 <div class="cd-foot"><a class="cd-ab" href="https://www.cityofmediaarts.de/de/events/jetzt-bewerben-ausschreibung-dm-award-connecting-worlds/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-chamada-aberta-para-premio-dm-connecting%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261126%0D%0ASUMMARY%3APrazo%3A%20Chamada%20aberta%20para%20Pr%C3%AAmio%20DM%20Connecting%20Worlds%202027%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fwww.cityofmediaarts.de%2Fde%2Fevents%2Fjetzt-bewerben-ausschreibung-dm-award-connecting-worlds%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-chamada-aberta-para-premio-dm-connecting.ics">Lembrete</a></div>
 </li>
 <li class="cd" id="e-festival-ubuntu-abre-inscricoes-para-sua" data-c="chamada" data-o="sp" data-g="2" data-p="1" data-v="0" data-k="nd" data-b="festival ubuntu abre inscrições para sua sexta edição em são paulo dasartes chamada são paulo com o tema ancestralidade e território, evento selecionará 21 artistas e projetos para uma semana de programação na ocupação 9 de julho, com cachê de r$ 5 mil o festival ubuntu chega à sexta edição ampliando seu espaço para a produção cultu">
-<div class="cd-top"><div class="cd-dt"><b>29</b><i>nov</i></div><div class="cd-st">faltam 20 dias</div></div>
-<div class="cd-k">Chamada · São Paulo</div>
+<div class="cd-q"><b>29 nov</b><span>faltam 20 dias</span></div>
 <a class="cd-t" href="https://dasartes.com.br/de-arte-a-z/festival-ubuntu-abre-inscricoes-para-sua-sexta-edicao-em-sao-paulo/" target="_blank" rel="noopener">Festival Ubuntu abre inscrições para sua sexta edição em São Paulo</a>
-<div class="cd-o">Dasartes</div>
+<div class="cd-k">Chamada · São Paulo · Dasartes</div>
 
 <div class="cd-foot"><a class="cd-ab" href="https://dasartes.com.br/de-arte-a-z/festival-ubuntu-abre-inscricoes-para-sua-sexta-edicao-em-sao-paulo/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-festival-ubuntu-abre-inscricoes-para-sua%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261129%0D%0ASUMMARY%3APrazo%3A%20Festival%20Ubuntu%20abre%20inscri%C3%A7%C3%B5es%20para%20sua%20sexta%20edi%C3%A7%C3%A3o%20em%20S%C3%A3o%20Paulo%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fdasartes.com.br%2Fde-arte-a-z%2Ffestival-ubuntu-abre-inscricoes-para-sua-sexta-edicao-em-sao-paulo%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-festival-ubuntu-abre-inscricoes-para-sua.ics">Lembrete</a></div>
 </li>
 <li class="cd" id="e-liste-art-fair-basel-2027-open-call-for-" data-c="chamada" data-o="exterior" data-g="2" data-p="1" data-v="0" data-k="nd" data-b="liste art fair basel 2027: open call for galleries instagram @opencallpalette chamada exterior liste art fair basel 2027: open call for galleries 📍 messe basel, hall 1.1, switzerland · 32nd edition · june 14–20, 2027 who applies: · younger and more established galleries from different geographical contexts, committed to supporting emerging artists · am">
-<div class="cd-top"><div class="cd-dt"><b>30</b><i>nov</i></div><div class="cd-st">faltam 21 dias</div></div>
-<div class="cd-k">Chamada · Exterior</div>
+<div class="cd-q"><b>30 nov</b><span>faltam 21 dias</span></div>
 <a class="cd-t" href="https://www.instagram.com/p/DfOWGs5jZ10/" target="_blank" rel="noopener">Liste Art Fair Basel 2027: Open Call for Galleries</a>
-<div class="cd-o">Instagram @opencallpalette</div>
+<div class="cd-k">Chamada · Exterior · Instagram @opencallpalette</div>
 
 <div class="cd-foot"><a class="cd-ab" href="https://www.instagram.com/p/DfOWGs5jZ10/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-liste-art-fair-basel-2027-open-call-for-%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261130%0D%0ASUMMARY%3APrazo%3A%20Liste%20Art%20Fair%20Basel%202027%3A%20Open%20Call%20for%20Galleries%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fwww.instagram.com%2Fp%2FDfOWGs5jZ10%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-liste-art-fair-basel-2027-open-call-for-.ics">Lembrete</a></div>
 </li>
 <li class="cd" id="e-sigg-fellowship-for-chinese-art-research" data-c="chamada" data-o="exterior" data-g="2" data-p="1" data-v="0" data-k="nd" data-b="sigg fellowship for chinese art research 2026/27 instagram @opencallpalette chamada exterior sigg fellowship for chinese art research 2026/27 m+ · hong kong · 3-6 months · international researchers, curators &amp; writers · free to apply fellowship: 3-6 months attached to m+ · theme: tradition and the contemporary in chinese art since the 1980s what you g">
-<div class="cd-top"><div class="cd-dt"><b>30</b><i>nov</i></div><div class="cd-st">faltam 21 dias</div></div>
-<div class="cd-k">Chamada · Exterior</div>
+<div class="cd-q"><b>30 nov</b><span>faltam 21 dias</span></div>
 <a class="cd-t" href="https://www.instagram.com/p/De5Xv60mpvB/" target="_blank" rel="noopener">Sigg Fellowship for Chinese Art Research 2026/27</a>
-<div class="cd-o">Instagram @opencallpalette</div>
+<div class="cd-k">Chamada · Exterior · Instagram @opencallpalette</div>
 
 <div class="cd-foot"><a class="cd-ab" href="https://www.instagram.com/p/De5Xv60mpvB/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-sigg-fellowship-for-chinese-art-research%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261130%0D%0ASUMMARY%3APrazo%3A%20Sigg%20Fellowship%20for%20Chinese%20Art%20Research%202026%2F27%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fwww.instagram.com%2Fp%2FDe5Xv60mpvB%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-sigg-fellowship-for-chinese-art-research.ics">Lembrete</a></div>
 </li>
 <li class="cd" id="e-bolsa-de-pesquisa-curatorial-rencontres-" data-c="bolsa" data-o="exterior" data-g="2" data-p="1" data-v="0" data-k="livre" data-b="bolsa de pesquisa curatorial – rencontres d'arles 2027 apoio.art · les rencontres d'arles bolsa exterior a bolsa de pesquisa curatorial das rencontres d’arles destina-se a curadores de exposições, individualmente ou em parceria, que desejem desenvolver um projeto inédito relacionado à imagem e à fotografia. o projeto selecionado será desenvolv">
-<div class="cd-top"><div class="cd-dt"><b>30</b><i>nov</i></div><div class="cd-st">faltam 21 dias</div></div>
-<div class="cd-k">Bolsa · Exterior</div>
+<div class="cd-q"><b>30 nov</b><span>faltam 21 dias</span></div>
 <a class="cd-t" href="https://ellesfontla.culture.gouv.fr/aides/282" target="_blank" rel="noopener">Bolsa de Pesquisa Curatorial – Rencontres d'Arles 2027</a>
-<div class="cd-o">Les REncontres d'Arles</div>
+<div class="cd-k">Bolsa · Exterior · Les REncontres d'Arles</div>
 
 <div class="cd-foot"><a class="cd-ab" href="https://ellesfontla.culture.gouv.fr/aides/282" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-bolsa-de-pesquisa-curatorial-rencontres-%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261130%0D%0ASUMMARY%3APrazo%3A%20Bolsa%20de%20Pesquisa%20Curatorial%20%E2%80%93%20Rencontres%20d'Arles%202027%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fellesfontla.culture.gouv.fr%2Faides%2F282%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-bolsa-de-pesquisa-curatorial-rencontres-.ics">Lembrete</a></div>
 </li>
 <li class="cd" id="e-bolsa-de-pesquisa-francois-daulte-museu-" data-c="bolsa" data-o="exterior" data-g="2" data-p="1" data-v="0" data-k="livre" data-b="bolsa de pesquisa françois daulte – museu fabre (2026–2027) apoio.art · musée fabre bolsa exterior o museu fabre, em montpellier, na frança, oferece a bolsa de pesquisa françois daulte, no valor de € 10.000, destinada a apoiar pesquisas em história e história da arte relacionadas aos campos de estudo do historiador da arte françois dault">
-<div class="cd-top"><div class="cd-dt"><b>30</b><i>nov</i></div><div class="cd-st">faltam 21 dias</div></div>
-<div class="cd-k">Bolsa · Exterior</div>
+<div class="cd-q"><b>30 nov</b><span>faltam 21 dias</span></div>
 <a class="cd-t" href="https://www.museefabre.fr/news/appel-candidature-bourse-francois-daulte" target="_blank" rel="noopener">Bolsa de Pesquisa François Daulte – Museu Fabre (2026–2027)</a>
-<div class="cd-o">Musée Fabre</div>
+<div class="cd-k">Bolsa · Exterior · Musée Fabre</div>
 
 <div class="cd-foot"><a class="cd-ab" href="https://www.museefabre.fr/news/appel-candidature-bourse-francois-daulte" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-bolsa-de-pesquisa-francois-daulte-museu-%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261130%0D%0ASUMMARY%3APrazo%3A%20Bolsa%20de%20Pesquisa%20Fran%C3%A7ois%20Daulte%20%E2%80%93%20Museu%20Fabre%20(2026%E2%80%932027)%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fwww.museefabre.fr%2Fnews%2Fappel-candidature-bourse-francois-daulte%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-bolsa-de-pesquisa-francois-daulte-museu-.ics">Lembrete</a></div>
 </li>
 <li class="cd" id="e-residencia-fotografica-incertitude" data-c="residencia" data-o="exterior" data-g="2" data-p="1" data-v="0" data-k="nd" data-b="residência fotográfica incertitude apoio.art · freelens residência exterior a residência fotográfica incertitude é um programa de apoio à criação artística que convida um(a) fotógrafo(a) profissional a desenvolver um projeto autoral em diálogo com a pesquisa científica, tendo como eixo temático a incerteza. a resid">
-<div class="cd-top"><div class="cd-dt"><b>30</b><i>nov</i></div><div class="cd-st">faltam 21 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>30 nov</b><span>faltam 21 dias</span></div>
 <a class="cd-t" href="https://www.freelens.fr/incertitude" target="_blank" rel="noopener">Residência Fotográfica Incertitude</a>
-<div class="cd-o">Freelens</div>
+<div class="cd-k">Residência · Exterior · Freelens</div>
 
 <div class="cd-foot"><a class="cd-ab" href="https://www.freelens.fr/incertitude" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-residencia-fotografica-incertitude%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261130%0D%0ASUMMARY%3APrazo%3A%20Resid%C3%AAncia%20Fotogr%C3%A1fica%20Incertitude%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fwww.freelens.fr%2Fincertitude%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-residencia-fotografica-incertitude.ics">Lembrete</a></div>
 </li>
 <li class="cd mais" id="e-premio-de-fotografia-roger-pic-2027" data-c="premio" data-o="exterior" data-g="2" data-p="1" data-v="0" data-k="livre" data-b="prêmio de fotografia roger pic 2027 apoio.art · lascam prêmio exterior promovido pela lascam, em parceria com a revista fisheye, o prix roger pic chega à sua 35ª edição e distingue fotógrafos profissionais cujo trabalho documental aborda a realidade e interroga a condição humana de maneira singular. o prêmio h">
-<div class="cd-top"><div class="cd-dt"><b>30</b><i>nov</i></div><div class="cd-st">faltam 21 dias</div></div>
-<div class="cd-k">Prêmio · Exterior</div>
+<div class="cd-q"><b>30 nov</b><span>faltam 21 dias</span></div>
 <a class="cd-t" href="https://www.lascam.fr/lessentiel/prix-et-etoiles/prix-photographiques/prix-roger-pic/" target="_blank" rel="noopener">Prêmio de Fotografia Roger Pic 2027</a>
-<div class="cd-o">LaScam</div>
+<div class="cd-k">Prêmio · Exterior · LaScam</div>
 
 <div class="cd-foot"><a class="cd-ab" href="https://www.lascam.fr/lessentiel/prix-et-etoiles/prix-photographiques/prix-roger-pic/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-premio-de-fotografia-roger-pic-2027%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261130%0D%0ASUMMARY%3APrazo%3A%20Pr%C3%AAmio%20de%20Fotografia%20Roger%20Pic%202027%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fwww.lascam.fr%2Flessentiel%2Fprix-et-etoiles%2Fprix-photographiques%2Fprix-roger-pic%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-premio-de-fotografia-roger-pic-2027.ics">Lembrete</a></div>
 </li>
 <li class="cd mais" id="e-9-bolsa-de-pesquisa-e-criacao-do-institu" data-c="bolsa" data-o="exterior" data-g="2" data-p="1" data-v="0" data-k="livre" data-b="9ª bolsa de pesquisa e criação do instituto para a fotografia apoio.art · institut pour la photographie bolsa exterior a 9ª bolsa de pesquisa e criação do institut pour la photographie apoia projetos que desenvolvam e cruzem diferentes abordagens em torno da fotografia. a edição tem como tema “a cidade e suas narrativas”, propondo explorar a cidade como exp">
-<div class="cd-top"><div class="cd-dt"><b>1</b><i>dez</i></div><div class="cd-st">faltam 22 dias</div></div>
-<div class="cd-k">Bolsa · Exterior</div>
+<div class="cd-q"><b>1 dez</b><span>faltam 22 dias</span></div>
 <a class="cd-t" href="https://institut-photo.com/fr/recherche-et-creation/la-bourse" target="_blank" rel="noopener">9ª Bolsa de Pesquisa e Criação do Instituto para a Fotografia</a>
-<div class="cd-o">Institut pour la Photographie</div>
+<div class="cd-k">Bolsa · Exterior · Institut pour la Photographie</div>
 
 <div class="cd-foot"><a class="cd-ab" href="https://institut-photo.com/fr/recherche-et-creation/la-bourse" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-9-bolsa-de-pesquisa-e-criacao-do-institu%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261201%0D%0ASUMMARY%3APrazo%3A%209%C2%AA%20Bolsa%20de%20Pesquisa%20e%20Cria%C3%A7%C3%A3o%20do%20Instituto%20para%20a%20Fotografia%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Finstitut-photo.com%2Ffr%2Frecherche-et-creation%2Fla-bourse%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-9-bolsa-de-pesquisa-e-criacao-do-institu.ics">Lembrete</a></div>
 </li>
 <li class="cd mais" id="e-amsterdam-light-festival-international-o" data-c="chamada" data-o="exterior" data-g="2" data-p="1" data-v="0" data-k="nd" data-b="amsterdam light festival: international open call 2027–2028 instagram @opencallpalette chamada exterior amsterdam light festival: international open call 2027–2028 📍 amsterdam, netherlands · light art in public space · worldwide festival: nov 25, 2027 - jan 16, 2028 · edition 16 selected artworks will become part of the festival route in amsterdam. what you get">
-<div class="cd-top"><div class="cd-dt"><b>7</b><i>dez</i></div><div class="cd-st">faltam 28 dias</div></div>
-<div class="cd-k">Chamada · Exterior</div>
+<div class="cd-q"><b>7 dez</b><span>faltam 28 dias</span></div>
 <a class="cd-t" href="https://www.instagram.com/p/DfC6Q0Dmq4r/" target="_blank" rel="noopener">Amsterdam Light Festival: International Open Call 2027–2028</a>
-<div class="cd-o">Instagram @opencallpalette</div>
+<div class="cd-k">Chamada · Exterior · Instagram @opencallpalette</div>
 
 <div class="cd-foot"><a class="cd-ab" href="https://www.instagram.com/p/DfC6Q0Dmq4r/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-amsterdam-light-festival-international-o%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261207%0D%0ASUMMARY%3APrazo%3A%20Amsterdam%20Light%20Festival%3A%20International%20Open%20Call%202027%E2%80%932028%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fwww.instagram.com%2Fp%2FDfC6Q0Dmq4r%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-amsterdam-light-festival-international-o.ics">Lembrete</a></div>
 </li>
 <li class="cd mais" id="e-premio-descoberta-2027-fundacao-louis-ro" data-c="premio" data-o="exterior" data-g="2" data-p="1" data-v="0" data-k="livre" data-b="prêmio descoberta 2027 – fundação louis roederer apoio.art · fondation louis roederer prêmio exterior organizado pelo festival les rencontres d’arles, com o apoio da fundação louis roederer, o prêmio descoberta tem como objetivo promover a produção fotográfica emergente e dar visibilidade internacional a artistas cujo trabalho foi recenteme">
-<div class="cd-top"><div class="cd-dt"><b>8</b><i>dez</i></div><div class="cd-st">faltam 29 dias</div></div>
-<div class="cd-k">Prêmio · Exterior</div>
+<div class="cd-q"><b>8 dez</b><span>faltam 29 dias</span></div>
 <a class="cd-t" href="https://www.rencontres-arles.com/fr/prix-decouverte-2027-fondation-louis-roederer" target="_blank" rel="noopener">Prêmio Descoberta 2027 – Fundação Louis Roederer</a>
-<div class="cd-o">Fondation Louis Roederer</div>
+<div class="cd-k">Prêmio · Exterior · Fondation Louis Roederer</div>
 
 <div class="cd-foot"><a class="cd-ab" href="https://www.rencontres-arles.com/fr/prix-decouverte-2027-fondation-louis-roederer" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-premio-descoberta-2027-fundacao-louis-ro%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261208%0D%0ASUMMARY%3APrazo%3A%20Pr%C3%AAmio%20Descoberta%202027%20%E2%80%93%20Funda%C3%A7%C3%A3o%20Louis%20Roederer%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fwww.rencontres-arles.com%2Ffr%2Fprix-decouverte-2027-fondation-louis-roederer%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-premio-descoberta-2027-fundacao-louis-ro.ics">Lembrete</a></div>
 </li>
 </ul><button type="button" class="vmais" data-t="12">Ver todos (12)</button></section>
 <section class="bloco e2g" data-g="3"><h2>Mais adiante<small>com folga</small></h2><ul class="e2">
 <li class="cd" id="e-cove-park-awarded-residencies-2027-2028" data-c="chamada" data-o="exterior" data-g="3" data-p="1" data-v="0" data-k="nd" data-b="cove park awarded residencies 2027–2028 instagram @opencallpalette chamada exterior cove park awarded residencies 2027–2028 📍argyll, scotland · 2-12 weeks · fully funded artists, writers &amp; researchers in the uk, central and south america and their diasporas residency: between mid-2027 and december 2028 · 2 to 12 weeks, average 4 · dates nego">
-<div class="cd-top"><div class="cd-dt"><b>11</b><i>dez</i></div><div class="cd-st">faltam 32 dias</div></div>
-<div class="cd-k">Chamada · Exterior</div>
+<div class="cd-q"><b>11 dez</b><span>faltam 32 dias</span></div>
 <a class="cd-t" href="https://www.instagram.com/p/DfAmO-kmvTe/" target="_blank" rel="noopener">Cove Park Awarded Residencies 2027–2028</a>
-<div class="cd-o">Instagram @opencallpalette</div>
+<div class="cd-k">Chamada · Exterior · Instagram @opencallpalette</div>
 
 <div class="cd-foot"><a class="cd-ab" href="https://www.instagram.com/p/DfAmO-kmvTe/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-cove-park-awarded-residencies-2027-2028%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261211%0D%0ASUMMARY%3APrazo%3A%20Cove%20Park%20Awarded%20Residencies%202027%E2%80%932028%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fwww.instagram.com%2Fp%2FDfAmO-kmvTe%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-cove-park-awarded-residencies-2027-2028.ics">Lembrete</a></div>
 </li>
 <li class="cd" id="e-foundation-yves-klein-research-grant-202" data-c="chamada" data-o="exterior" data-g="3" data-p="1" data-v="0" data-k="nd" data-b="foundation yves klein - research grant 2027 instagram @opencallpalette chamada exterior foundation yves klein - research grant 2027 📍yves klein foundation · lugano, with archives in paris · international researchers under 35 with a phd · free to apply residency: one week (5 working days) on site · #02 spring 2027, by mid-june · #03 autumn 2027, ">
-<div class="cd-top"><div class="cd-dt"><b>16</b><i>dez</i></div><div class="cd-st">faltam 37 dias</div></div>
-<div class="cd-k">Chamada · Exterior</div>
+<div class="cd-q"><b>16 dez</b><span>faltam 37 dias</span></div>
 <a class="cd-t" href="https://www.instagram.com/p/DfQ-zDOjS9L/" target="_blank" rel="noopener">Foundation Yves Klein - Research Grant 2027</a>
-<div class="cd-o">Instagram @opencallpalette</div>
+<div class="cd-k">Chamada · Exterior · Instagram @opencallpalette</div>
 
 <div class="cd-foot"><a class="cd-ab" href="https://www.instagram.com/p/DfQ-zDOjS9L/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-foundation-yves-klein-research-grant-202%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261216%0D%0ASUMMARY%3APrazo%3A%20Foundation%20Yves%20Klein%20-%20Research%20Grant%202027%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fwww.instagram.com%2Fp%2FDfQ-zDOjS9L%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-foundation-yves-klein-research-grant-202.ics">Lembrete</a></div>
 </li>
 <li class="cd" id="e-iv-bolsa-funarte-de-estimulo-a-conservac" data-c="bolsa" data-o="brasil" data-g="3" data-p="1" data-v="0" data-k="livre" data-b="iv bolsa funarte de estímulo à conservação fotográfica solange zúñiga funarte (site oficial) bolsa brasil iv bolsa funarte de estímulo à conservação fotográfica solange zúñiga — funarte atenção! seu navegador não pode executar javascript. alguns recursos podem não funcionar corretamente. --&gt; abrir menu principal de navegação nome do site --&gt; fu">
-<div class="cd-top"><div class="cd-dt"><b>18</b><i>dez</i></div><div class="cd-st">faltam 39 dias</div></div>
-<div class="cd-k">Bolsa · Brasil</div>
+<div class="cd-q"><b>18 dez</b><span>faltam 39 dias</span></div>
 <a class="cd-t" href="https://www.gov.br/funarte/pt-br/editais/2026/programa-funarte-memoria-das-artes/iv-bolsa-funarte-de-estimulo-a-conservacao-fotografica-solange-zuniga" target="_blank" rel="noopener">IV Bolsa Funarte de Estímulo à Conservação Fotográfica Solange Zúñiga</a>
-<div class="cd-o">Funarte</div>
+<div class="cd-k">Bolsa · Brasil · Funarte</div>
 
 <div class="cd-foot"><a class="cd-ab" href="https://www.gov.br/funarte/pt-br/editais/2026/programa-funarte-memoria-das-artes/iv-bolsa-funarte-de-estimulo-a-conservacao-fotografica-solange-zuniga" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-iv-bolsa-funarte-de-estimulo-a-conservac%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20261218%0D%0ASUMMARY%3APrazo%3A%20IV%20Bolsa%20Funarte%20de%20Est%C3%ADmulo%20%C3%A0%20Conserva%C3%A7%C3%A3o%20Fotogr%C3%A1fica%20Solange%20Z%C3%BA%C3%B1iga%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fwww.gov.br%2Ffunarte%2Fpt-br%2Feditais%2F2026%2Fprograma-funarte-memoria-das-artes%2Fiv-bolsa-funarte-de-estimulo-a-conservacao-fotografica-solange-zuniga%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-iv-bolsa-funarte-de-estimulo-a-conservac.ics">Lembrete</a></div>
 </li>
 <li class="cd" id="e-open-call-mudhouse-artist-residency-gree" data-c="residencia" data-o="exterior" data-g="3" data-p="1" data-v="0" data-k="nd" data-b="open call: mudhouse artist residency | greece instagram @res_artis residência exterior open call: mudhouse artist residency | greece 🇬🇷 the mudhouse residency is inviting visual artists, writers, musicians, performers, and creative practitioners from around the world to apply for its 2027 artist residency programme in crete, greece. taking pla">
-<div class="cd-top"><div class="cd-dt"><b>5</b><i>jan 27</i></div><div class="cd-st">faltam 57 dias</div></div>
-<div class="cd-k">Residência · Exterior</div>
+<div class="cd-q"><b>5 jan 27</b><span>faltam 57 dias</span></div>
 <a class="cd-t" href="https://www.instagram.com/p/DfQCzxit9EC/" target="_blank" rel="noopener">OPEN CALL: Mudhouse Artist Residency | Greece</a>
-<div class="cd-o">Instagram @res_artis</div>
+<div class="cd-k">Residência · Exterior · Instagram @res_artis</div>
 
 <div class="cd-foot"><a class="cd-ab" href="https://www.instagram.com/p/DfQCzxit9EC/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-open-call-mudhouse-artist-residency-gree%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20270105%0D%0ASUMMARY%3APrazo%3A%20OPEN%20CALL%3A%20Mudhouse%20Artist%20Residency%20%7C%20Greece%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fwww.instagram.com%2Fp%2FDfQCzxit9EC%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-open-call-mudhouse-artist-residency-gree.ics">Lembrete</a></div>
 </li>
 <li class="cd" id="e-saiba-como-se-inscrever-na-residencia-ar" data-c="residencia" data-o="brasil" data-g="3" data-p="1" data-v="0" data-k="nd" data-b="saiba como se inscrever na residência artística da galeria luis maluf para 2027 dasartes residência brasil programa chega à 6ª edição com coordenação de jacopo crivelli e gabriela gotoda e parceria de intercâmbio com o sertão negro ateliê e escola de artes a galeria luis maluf abriu inscrições para a 6ª edição de seu programa de residência artís">
-<div class="cd-top"><div class="cd-dt"><b>26</b><i>fev 27</i></div><div class="cd-st">faltam 109 dias</div></div>
-<div class="cd-k">Residência · Brasil</div>
+<div class="cd-q"><b>26 fev 27</b><span>faltam 109 dias</span></div>
 <a class="cd-t" href="https://dasartes.com.br/de-arte-a-z/saiba-como-se-inscrever-na-residencia-artistica-da-galeria-luis-maluf-para-2027/" target="_blank" rel="noopener">Saiba como se inscrever na residência artística da Galeria Luis Maluf para 2027</a>
-<div class="cd-o">Dasartes</div>
+<div class="cd-k">Residência · Brasil · Dasartes</div>
 
 <div class="cd-foot"><a class="cd-ab" href="https://dasartes.com.br/de-arte-a-z/saiba-como-se-inscrever-na-residencia-artistica-da-galeria-luis-maluf-para-2027/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-saiba-como-se-inscrever-na-residencia-ar%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20270226%0D%0ASUMMARY%3APrazo%3A%20Saiba%20como%20se%20inscrever%20na%20resid%C3%AAncia%20art%C3%ADstica%20da%20Galeria%20Luis%20Maluf%20para%202027%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fdasartes.com.br%2Fde-arte-a-z%2Fsaiba-como-se-inscrever-na-residencia-artistica-da-galeria-luis-maluf-para-2027%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-saiba-como-se-inscrever-na-residencia-ar.ics">Lembrete</a></div>
 </li>
 <li class="cd" id="e-pivo-boulevard-lanca-chamada-aberta-para" data-c="residencia" data-o="sp" data-g="3" data-p="1" data-v="0" data-k="nd" data-b="pivô boulevard lança chamada aberta para residências artísticas em 2027 pivô (site oficial) residência são paulo pivô boulevard lança chamada aberta para residências artísticas em 2027 - pivô pt | en | menu // sp // // --&gt; sp exposições sp pivô pesquisa pivô recebe biblioteca pivô satélite // ssa // // --&gt; ssa exposições ssa pivô residência pivô progr">
-<div class="cd-top"><div class="cd-dt"><b>30</b><i>jun 27</i></div><div class="cd-st">faltam 233 dias</div></div>
-<div class="cd-k">Residência · São Paulo</div>
+<div class="cd-q"><b>30 jun 27</b><span>faltam 233 dias</span></div>
 <a class="cd-t" href="https://pivo.org.br/noticias/pivo-boulevard-lanca-chamada-aberta-para-residencias-artisticas-em-2027/" target="_blank" rel="noopener">Pivô Boulevard lança Chamada Aberta para Residências Artísticas em 2027</a>
-<div class="cd-o">Pivô</div>
+<div class="cd-k">Residência · São Paulo · Pivô</div>
 
 <div class="cd-foot"><a class="cd-ab" href="https://pivo.org.br/noticias/pivo-boulevard-lanca-chamada-aberta-para-residencias-artisticas-em-2027/" target="_blank" rel="noopener">Abrir</a><a class="e2ics" href="data:text/calendar;charset=utf-8,BEGIN%3AVCALENDAR%0D%0AVERSION%3A2.0%0D%0APRODID%3A-%2F%2FVernissages%20SP%2F%2FEditais%2F%2FPT%0D%0ABEGIN%3AVEVENT%0D%0AUID%3Ae-pivo-boulevard-lanca-chamada-aberta-para%40vernissagessp.com.br%0D%0ADTSTAMP%3A20261109T120000Z%0D%0ADTSTART%3BVALUE%3DDATE%3A20270630%0D%0ASUMMARY%3APrazo%3A%20Piv%C3%B4%20Boulevard%20lan%C3%A7a%20Chamada%20Aberta%20para%20Resid%C3%AAncias%20Art%C3%ADsticas%20em%202027%0D%0ADESCRIPTION%3Ahttps%3A%2F%2Fpivo.org.br%2Fnoticias%2Fpivo-boulevard-lanca-chamada-aberta-para-residencias-artisticas-em-2027%2F%0D%0ABEGIN%3AVALARM%0D%0ATRIGGER%3A-P3D%0D%0AACTION%3ADISPLAY%0D%0ADESCRIPTION%3AFaltam%203%20dias%0D%0AEND%3AVALARM%0D%0AEND%3AVEVENT%0D%0AEND%3AVCALENDAR" download="prazo-e-pivo-boulevard-lanca-chamada-aberta-para.ics">Lembrete</a></div>
 </li>
 </ul></section>
 <section class="bloco e2g" data-g="4"><h2>Sem data de fim<small>fluxo contínuo ou prazo que não consegui ler</small></h2><ul class="e2">
 <li class="cd" id="e-clinica-geral-2026-atelie397" data-c="chamada" data-o="sp" data-g="4" data-p="0" data-v="1" data-k="livre" data-b="clínica geral 2026 — ateliê397 ateliê397 chamada são paulo grupos de acompanhamento de projetos do ateliê397 no segundo semestre de 2026. o espaço informa inscrições abertas e prorrogadas, sem divulgar data de encerramento.">
-<div class="cd-top"><div class="cd-dt off"><b>?</b><i>sem data</i></div><div class="cd-st">ver no site</div></div>
-<div class="cd-k">Chamada · São Paulo · prazo conferido</div>
+<div class="cd-q"><b>Sem data</b><span>ver no site</span></div>
 <a class="cd-t" href="https://atelie397.com" target="_blank" rel="noopener">Clínica Geral 2026 — Ateliê397</a>
-<div class="cd-o">Ateliê397</div>
-<div class="cd-et ok"><b>Inscrição</b><span>a confirmar</span></div>
+<div class="cd-k">Chamada · São Paulo · Ateliê397</div>
+<div class="cd-et ok"><i></i><b>Inscrição</b> a confirmar</div>
 <div class="cd-foot"><a class="cd-ab" href="https://atelie397.com" target="_blank" rel="noopener">Abrir</a></div>
 </li>
 <li class="cd" id="e-propostas-de-exposicao-para-o-mab-faap" data-c="chamada" data-o="sp" data-g="4" data-p="0" data-v="1" data-k="livre" data-b="propostas de exposição para o mab faap museu de arte brasileira da faap chamada são paulo o museu recebe propostas de exposição em fluxo contínuo, por formulário online. não há data de encerramento divulgada.">
-<div class="cd-top"><div class="cd-dt off"><b>?</b><i>sem data</i></div><div class="cd-st">ver no site</div></div>
-<div class="cd-k">Chamada · São Paulo · prazo conferido</div>
+<div class="cd-q"><b>Sem data</b><span>ver no site</span></div>
 <a class="cd-t" href="https://faapinscricao.crmeducacional.com/formulario/2406" target="_blank" rel="noopener">Propostas de exposição para o MAB FAAP</a>
-<div class="cd-o">Museu de Arte Brasileira da FAAP</div>
-<div class="cd-et ok"><b>Inscrição</b><span>gratuita</span></div>
+<div class="cd-k">Chamada · São Paulo · Museu de Arte Brasileira da FAAP</div>
+<div class="cd-et ok"><i></i><b>Inscrição</b> gratuita</div>
 <div class="cd-foot"><a class="cd-ab" href="https://faapinscricao.crmeducacional.com/formulario/2406" target="_blank" rel="noopener">Abrir</a></div>
 </li>
 <li class="cd" id="e-cultsp-pro-abre-edital-para-grafite-de-1" data-c="fomento" data-o="sp" data-g="4" data-p="0" data-v="0" data-k="livre" data-b="cultsp pro abre edital para grafite de 130 m² no bom retiro dasartes edital são paulo artista ou coletivo selecionado receberá r$ 20.150 para criar obra no complexo cultural oswald de andrade; outros cinco projetos poderão ser remunerados durante feira de arte urbana o bom retiro, bairro paulistano marcado pela presença de d">
-<div class="cd-top"><div class="cd-dt off"><b>?</b><i>sem data</i></div><div class="cd-st">ver no site</div></div>
-<div class="cd-k">Edital · São Paulo</div>
+<div class="cd-q"><b>Sem data</b><span>ver no site</span></div>
 <a class="cd-t" href="https://dasartes.com.br/de-arte-a-z/cultsp-pro-abre-edital-para-grafite-de-130-m%c2%b2-no-bom-retiro/" target="_blank" rel="noopener">CULTSP PRO abre edital para grafite de 130 m² no Bom Retiro</a>
-<div class="cd-o">Dasartes</div>
+<div class="cd-k">Edital · São Paulo · Dasartes</div>
 
 <div class="cd-foot"><a class="cd-ab" href="https://dasartes.com.br/de-arte-a-z/cultsp-pro-abre-edital-para-grafite-de-130-m%c2%b2-no-bom-retiro/" target="_blank" rel="noopener">Abrir</a></div>
 </li>
 <li class="cd" id="e-pivo-residencia" data-c="residencia" data-o="sp" data-g="4" data-p="0" data-v="0" data-k="nd" data-b="pivô residência pivô (site oficial) residência são paulo pivô residência - pivô pt | en | menu // sp // // --&gt; sp exposições sp pivô pesquisa pivô recebe biblioteca pivô satélite // ssa // // --&gt; ssa exposições ssa pivô residência pivô programa público pivô projetos sala de leitura pivô ssa receb">
-<div class="cd-top"><div class="cd-dt off"><b>?</b><i>sem data</i></div><div class="cd-st">ver no site</div></div>
-<div class="cd-k">Residência · São Paulo</div>
+<div class="cd-q"><b>Sem data</b><span>ver no site</span></div>
 <a class="cd-t" href="https://pivo.org.br/programas/pivo-residencia/" target="_blank" rel="noopener">Pivô Residência</a>
-<div class="cd-o">Pivô</div>
+<div class="cd-k">Residência · São Paulo · Pivô</div>
 
 <div class="cd-foot"><a class="cd-ab" href="https://pivo.org.br/programas/pivo-residencia/" target="_blank" rel="noopener">Abrir</a></div>
 </li>
 <li class="cd" id="e-residencia-artistica-faap-sao-paulo" data-c="residencia" data-o="sp" data-g="4" data-p="0" data-v="0" data-k="nd" data-b="residência artística faap – são paulo faap mab (site oficial) residência são paulo --&gt; --&gt; residência artística faap – são paulo - faap --&gt; --&gt; --&gt; --&gt; ‹ › × &amp;times; previous next residência artística faap são paulo residência artística faap são paulo inscrições abertas inscreva-se página inicial nossos cursos arte e cult">
-<div class="cd-top"><div class="cd-dt off"><b>?</b><i>sem data</i></div><div class="cd-st">ver no site</div></div>
-<div class="cd-k">Residência · São Paulo</div>
+<div class="cd-q"><b>Sem data</b><span>ver no site</span></div>
 <a class="cd-t" href="https://www.faap.br/residencia-artistica/" target="_blank" rel="noopener">Residência Artística FAAP – São Paulo</a>
-<div class="cd-o">FAAP MAB</div>
+<div class="cd-k">Residência · São Paulo · FAAP MAB</div>
 
 <div class="cd-foot"><a class="cd-ab" href="https://www.faap.br/residencia-artistica/" target="_blank" rel="noopener">Abrir</a></div>
 </li>
 <li class="cd" id="e-apresentacao-de-propostas-para-exposicoe" data-c="chamada" data-o="sp" data-g="4" data-p="0" data-v="0" data-k="nd" data-b="apresentação de propostas para exposições no mab faap faap mab (site oficial) chamada são paulo mab faap apresentação de propostas para exposições no mab faap 1 login 2 curso 3 dados 4 inscrição identificação do proponente nome completo ou razão social cpf cnpj (apenas se indicou a razão social. caso contrário, n/a) e-mail endereço nú">
-<div class="cd-top"><div class="cd-dt off"><b>?</b><i>sem data</i></div><div class="cd-st">ver no site</div></div>
-<div class="cd-k">Chamada · São Paulo</div>
-<a class="cd-t" href="https://faapinscricao.crmeducacional.com/formulario/2406" target="_blank" rel="noopener">APRESENTAÇÃO DE PROPOSTAS PARA EXPOSIÇÕES NO MAB FAAP</a>
-<div class="cd-o">FAAP MAB</div>
+<div class="cd-q"><b>Sem data</b><span>ver no site</span></div>
+<a class="cd-t" href="https://faapinscricao.crmeducacional.com/formulario/2406" target="_blank" rel="noopener">Apresentação de propostas para exposições no mab faap</a>
+<div class="cd-k">Chamada · São Paulo · FAAP MAB</div>
 
 <div class="cd-foot"><a class="cd-ab" href="https://faapinscricao.crmeducacional.com/formulario/2406" target="_blank" rel="noopener">Abrir</a></div>
 </li>
 <li class="cd" id="e-laczos-artisticos" data-c="chamada" data-o="brasil" data-g="4" data-p="0" data-v="0" data-k="nd" data-b="laçzos artísticos funarte (site oficial) chamada brasil laçzos artísticos - chamada especial cplp menu fechar tamanho da fonte escala de cinza on off alto contraste on off contraste negativo on off fundo claro on off sublinhar links on off fonte legível on off resetar ir para o conteúdo pesquisa">
-<div class="cd-top"><div class="cd-dt off"><b>?</b><i>sem data</i></div><div class="cd-st">ver no site</div></div>
-<div class="cd-k">Chamada · Brasil</div>
+<div class="cd-q"><b>Sem data</b><span>ver no site</span></div>
 <a class="cd-t" href="https://oei.int/pt/escritorios/portugal/programa/laczos-artisticos-chamada-especial-cplp/" target="_blank" rel="noopener">Laçzos Artísticos</a>
-<div class="cd-o">Funarte</div>
+<div class="cd-k">Chamada · Brasil · Funarte</div>
 
 <div class="cd-foot"><a class="cd-ab" href="https://oei.int/pt/escritorios/portugal/programa/laczos-artisticos-chamada-especial-cplp/" target="_blank" rel="noopener">Abrir</a></div>
 </li>
