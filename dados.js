@@ -353,11 +353,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Diáfana — Gretta Sarfaty",
-  v: "Museu Judaico de São Paulo",
-  quem: "Gretta Sarfaty",
-  txt: "Curadoria de Patricia Wagner, com apoio da Central Galeria. Mais de 50 trabalhos percorrem seis décadas da artista, em fotografia, performance, vídeo e pintura. Inédita no museu. Abertura em 13 de novembro, até 11 de abril.",
-  link: "https://museujudaicosp.org.br",
+  t: "Trickster — Sérgio Free",
+  v: "A7MA Galeria",
+  quem: "Sérgio Free",
+  txt: "Em TRICKSTER, Sérgio Free apresenta o palhaço como uma figura que transita entre mundos. Nascido de sua pesquisa com a pixação nos anos 1990, o personagem ultrapassa o campo do lúdico para assumir um papel provocador, capaz de questionar valores, desestabilizar certezas e revelar aquilo que muitas vezes permanece oculto no cotidiano. Abertura em 7 de novembro, até 5 de dezembro.",
+  link: "https://a7ma.com.br",
   publi: false
 };
 
@@ -372,6 +372,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-11-10", k:"Trickster — Sérgio Free|A7MA Galeria"},
   {d:"2026-11-09", k:"Diáfana — Gretta Sarfaty|Museu Judaico de São Paulo"},
   {d:"2026-11-08", k:"Ver o mundo — João Luiz Musa|Luciana Brito Galeria"},
   {d:"2026-11-07", k:"Pequenos Afetos|Farol Santander"},
@@ -478,5 +479,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "09/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "10/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
