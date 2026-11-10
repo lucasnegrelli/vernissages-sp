@@ -1,7 +1,7 @@
 {
   "conta": "vernissagessp",
   "id": "2026-11-10_story-01-semana.png-01",
-  "status": "aprovado",
+  "status": "postado",
   "tipo": "story",
   "quando": "2026-11-10T09:00:00-03:00",
   "imagens": [
@@ -9,5 +9,9 @@
   ],
   "legenda": "",
   "collab": [],
-  "collabExtra": []
+  "collabExtra": [],
+  "collabUsado": false,
+  "collabConvidados": [],
+  "midiaId": "18174276001462846",
+  "postadoEm": "2026-11-10T16:35:02.799Z"
 }
