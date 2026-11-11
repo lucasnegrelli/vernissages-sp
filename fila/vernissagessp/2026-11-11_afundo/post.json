@@ -1,7 +1,7 @@
 {
   "conta": "vernissagessp",
   "id": "2026-11-11_afundo",
-  "status": "aprovado",
+  "status": "postado",
   "tipo": "carrossel",
   "quando": "2026-11-11T12:00:00-03:00",
   "imagens": [
@@ -15,5 +15,9 @@
   ],
   "legenda": "Fernando Lemos, 100 anos. Fotografia, desenho, projeto gráfico e poesia numa retrospectiva só, no @imoreirasalles.\n\nNasceu em Lisboa em 1926 e morreu em São Paulo em 2019. A mostra reúne cerca de 400 itens produzidos ao longo de 70 anos, com curadoria de Thyago Nogueira. O título, quanto mais desejo, mais invento o que vejo, funciona como um método: olhar como quem inventa.\n\nServiço: IMS Paulista, Avenida Paulista, 2424, Bela Vista. Até 7 de fevereiro de 2027. Entrada gratuita. Confira os horários no site do IMS.\n\nImagem: Fernando Lemos, Eu, poeta. Arquivo Fernando Lemos, Acervo Instituto Moreira Salles.\n\nSalva para ir e manda para quem gosta de fotografia. Agenda completa de exposições em vernissagessp.com.br\n\n#fernandolemos #imsbrasil #fotografia #exposicaosp #arteemsp #saopaulo #retrospectiva",
   "collab": [],
-  "collabExtra": []
+  "collabExtra": [],
+  "collabUsado": false,
+  "collabConvidados": [],
+  "midiaId": "18183022750433041",
+  "postadoEm": "2026-11-11T17:24:52.096Z"
 }
