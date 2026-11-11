@@ -19,6 +19,8 @@ prontas (a publicação é sempre manual).
 | **PENDENCIAS.md** | retrato atual do projeto e pauta aberta |
 | **POSTS.md** | sistema visual das peças (grade da semana, tipografia, paletas, acento terracota) |
 | **ESTILO.md** | voz do texto |
+| **docs/COPY.md** | método de copy: autores, vieses e gatilhos adaptados ao nicho, a voz ácida/certeira/cirúrgica |
+| **docs/PERSONAS.md** | para quem escrevemos (artista em SP, residência fora, estudante, frequentador, casa) |
 | **COMOGERAR.md** | passo a passo para gerar a semana do social |
 | **docs/IDEIAS.md** | banco bruto de 240 ideias de post (o que ainda não virou formato) |
 | **docs/REFERENCIAS.md** | concorrência e inspiração: quem copiar e o quê |
@@ -77,6 +79,8 @@ rima e aproximação serão reconstruídas. Formatos novos em estudo no `docs/ID
 | `obra.js` · `rima.js` · `aproximacao.js` · `numero.js` · `entrada.js` · `salao.js` | formatos do repertório (vários em revisão) |
 | `stories.js` | stories do dia (1080x1920) direto da base: abre hoje/amanhã, último dia, fecha amanhã; `--seco` lista |
 | `reel.js` | monta Reel a partir de filmagem própria (`--clipes=pasta`) |
+| `copy.js` · `copy-lint.js` | motor de copy (triagem por persona, texto só com fato) e conferência de voz das legendas |
+| `editais-post.js` | carrossel de editais: capa, uma chamada por slide, fechamento; legenda travada pelo lint |
 | `engajar.js` | lista semanal de quem comentar à mão, com gancho |
 | `leads-sites.js` | prospecção do serviço de sites |
 

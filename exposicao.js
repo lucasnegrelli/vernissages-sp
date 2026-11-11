@@ -19,6 +19,7 @@
    Sai: exposicao-01..N.png e exposicao-LEGENDA.md
    ============================================================ */
 'use strict';
+const { semTravessao } = require('./copy.js');
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
@@ -280,7 +281,7 @@ function trechos(par, max, n) {
   await br.close(); fs.rmSync(arqHtml, { force: true });
 
   const leg = `${tituloCurto(e)}${quem ? ', ' + quem : ''}, em ${nSlide - 1} slides.\n\nDeslize para passear pela exposição na ${e.v} ${arroba(v.ig)}.\n\n${e.d ? e.d + '\n\n' : ''}Serviço: ${e.v}, ${v.addr ? v.addr + ', ' : ''}${v.b || ''}. ${e.fim ? 'Até ' + porExtenso(e.fim) + '.' : 'Aberta desde ' + porExtenso(e.ini) + '.'}${v.ing && v.ing.g ? ' Entrada gratuita.' : ''}\n\nImagens: ${credTxt}.\n\n${partes.length ? 'Os slides de texto são trecho do texto da exposição' + (tx && tx.assinatura ? ', de ' + tx.assinatura : ', da ' + e.v) + '. Texto completo em ' + urlTexto + '\n\n' : ''}Salva para ir e manda para quem vai com você. Agenda completa de exposições em vernissagessp.com.br\n\n#exposicaosp #arteemsp #saopaulo #artecontemporanea #galeriadearte`;
-  fs.writeFileSync(path.join(out, 'exposicao-LEGENDA.md'), leg.replace(/ — /g, ': ') + '\n');
+  fs.writeFileSync(path.join(out, 'exposicao-LEGENDA.md'), semTravessao(leg) + '\n');
   if (e.img) marcarFoto(e.img, flag('pub', hoje));
   console.log(`OK ${nSlide} slides em ${path.relative(RAIZ, out)} · legenda ${leg.length} caracteres`);
   fs.rmSync(tmp, { recursive: true, force: true });

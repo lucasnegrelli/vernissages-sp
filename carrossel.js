@@ -19,6 +19,7 @@
    Sai: A-FUNDO-01..N.png e carrossel-LEGENDA.md (formato que o publicar.js lê).
    ============================================================ */
 'use strict';
+const { semTravessao } = require('./copy.js');
 const fs = require('fs');
 const path = require('path');
 const D = require('./direcao.js');
@@ -97,6 +98,6 @@ const htmlDe = () => `<!doctype html><meta charset="utf-8"><style>${css}</style>
   const els = await p.$$('.slide');
   for (let i = 0; i < els.length; i++) await els[i].screenshot({ path: path.join(out, `afundo-${String(i + 1).padStart(2, '0')}.png`) });
   await browser.close(); fs.rmSync(tmp, { force: true });
-  fs.writeFileSync(path.join(out, 'afundo-LEGENDA.md'), spec.legenda + '\n');
+  fs.writeFileSync(path.join(out, 'afundo-LEGENDA.md'), semTravessao(spec.legenda) + '\n');
   console.log(`OK ${els.length} slides em ${path.relative(RAIZ, out)}`);
 })().catch(e => { console.error(e.stack || e.message); process.exit(1); });

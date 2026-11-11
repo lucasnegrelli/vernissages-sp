@@ -17,6 +17,7 @@
    Sai: panoramica-01..N.png (pedaços), o último é a ficha, e panoramica-LEGENDA.md
    ============================================================ */
 'use strict';
+const { semTravessao } = require('./copy.js');
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
@@ -102,7 +103,7 @@ const norm = s => String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase
   await br.close(); fs.rmSync(arqHtml, { force: true });
 
   const leg = `${tituloCurto(e)}${quem ? ', ' + quem : ''}, em ${n} partes. Deslize: a imagem continua no slide seguinte.\n\n${e.d ? e.d + '\n\n' : ''}Serviço: ${e.v} ${arroba(v.ig)}, ${v.addr ? v.addr + ', ' : ''}${v.b || ''}. ${e.fim ? 'Até ' + porExtenso(e.fim) + '.' : 'Aberta desde ' + porExtenso(e.ini) + '.'}${v.ing && v.ing.g ? ' Entrada gratuita.' : ''}\n\nImagem: ${credTxt}.\n\nSalva para ir e manda para quem vai com você. Agenda completa de exposições em vernissagessp.com.br\n\n#exposicaosp #arteemsp #saopaulo #artecontemporanea #galeriadearte`;
-  fs.writeFileSync(path.join(out, 'panoramica-LEGENDA.md'), leg.replace(/ — /g, ': ') + '\n');
+  fs.writeFileSync(path.join(out, 'panoramica-LEGENDA.md'), semTravessao(leg) + '\n');
   marcarFoto(rel, flag('pub', hoje));
   console.log(`OK ${n + 1} slides em ${path.relative(RAIZ, out)}`);
 })().catch(e => { console.error(e.stack || e.message); process.exit(1); });

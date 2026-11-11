@@ -29,6 +29,7 @@
    ============================================================ */
 
 'use strict';
+const { semTravessao } = require('./copy.js');
 
 process.env.VSP_FOTOS_LIVRE = '1';   // foto de feed pode repetir no Reel
 
@@ -211,13 +212,13 @@ async function principal() {
     '-c:v', 'libx264', '-preset', 'medium', '-crf', '21', '-pix_fmt', 'yuv420p', '-movflags', '+faststart',
     '-c:a', 'aac', '-b:a', '96k', mp4]);
   const leg = legenda(modo, pick);
-  fs.writeFileSync(path.join(saidaDir, 'reel-LEGENDA.md'), leg + '\n');
+  fs.writeFileSync(path.join(saidaDir, 'reel-LEGENDA.md'), semTravessao(leg) + '\n');
   console.log(`OK ${path.relative(RAIZ, mp4)} (${(fs.statSync(mp4).size / 1048576).toFixed(1)} MB)`);
 
   if (argv.includes('--fila')) {
     const q = flag('quando', '18:00');
     const post = { conta: 'vernissagessp', id: `${hoje}_reel`, status: 'aprovado', tipo: 'reel', quando: `${hoje}T${q}:00-03:00`,
-                   imagens: ['reel.mp4'], legenda: leg, collab: [], collabExtra: [] };
+                   imagens: ['reel.mp4'], legenda: semTravessao(leg), collab: [], collabExtra: [] };
     fs.writeFileSync(path.join(saidaDir, 'post.json'), JSON.stringify(post, null, 2) + '\n');
     fs.rmSync(path.join(saidaDir, 'reel-LEGENDA.md'), { force: true });
     console.log(`na fila: ${post.id} às ${q}`);

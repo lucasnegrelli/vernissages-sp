@@ -176,34 +176,32 @@ const DIA_LONGO = ['domingo', 'segunda', 'terça', 'quarta', 'quinta', 'sexta', 
 function slideEtiqueta(o, cfg, hoje) {
   const modo = cfg.modo || 'obra';
   const cor = (o.pal && o.pal.texto) || '#C96F4A';
-  let num = '', rot = '', mes = '', nota = '', kicker = 'Em cartaz';
+  /* v3 (11/11/2026): sem número gigante (o Lucas não gosta). O prazo vira uma frase em palavras, a obra cresce. */
+  let quando = '', kicker = 'Em cartaz';
   if (modo === 'encerra' && o.e.fim) {
     const n = _dias(hoje, o.e.fim);
     kicker = 'Últimos dias';
-    num = n <= 0 ? 'HOJE' : String(n); rot = n <= 0 ? 'ÚLTIMO' : 'FALTAM'; mes = n <= 0 ? 'DIA' : n === 1 ? 'DIA' : 'DIAS';
-    nota = 'fecha ' + DIA_LONGO[dowIso(o.e.fim)] + ', ' + _curto(o.e.fim);
+    quando = n <= 0 ? 'Último dia é hoje.' : n === 1 ? 'Fecha amanhã, ' + porExtenso(o.e.fim) + '.' : 'Fecha ' + DIA_LONGO[dowIso(o.e.fim)] + ', ' + porExtenso(o.e.fim) + '.';
   } else if (modo === 'estreia' && o.e.ini) {
     kicker = 'Estreia';
-    num = String(+o.e.ini.slice(8)); rot = DIAS_SEM[dowIso(o.e.ini)].toUpperCase(); mes = MES_CURTO[+o.e.ini.slice(5, 7) - 1];
-    const n = _dias(hoje, o.e.ini); nota = n <= 0 ? 'abre hoje' : n === 1 ? 'abre amanhã' : 'abre ' + DIA_LONGO[dowIso(o.e.ini)];
+    const n = _dias(hoje, o.e.ini);
+    quando = n <= 0 ? 'Abre hoje.' : n === 1 ? 'Abre amanhã, ' + porExtenso(o.e.ini) + '.' : 'Abre ' + DIA_LONGO[dowIso(o.e.ini)] + ', ' + porExtenso(o.e.ini) + '.';
   } else if (o.e.fim) {
-    num = String(+o.e.fim.slice(8)); rot = 'ATÉ'; mes = MES_CURTO[+o.e.fim.slice(5, 7) - 1];
-    nota = 'em cartaz até ' + DIA_LONGO[dowIso(o.e.fim)];
+    quando = 'Em cartaz até ' + DIA_LONGO[dowIso(o.e.fim)] + ', ' + porExtenso(o.e.fim) + '.';
   }
   const quem = autoria(o.e);
-  const tem = !!num;
-  const zonaTop = tem ? 480 : 150, zonaAlt = tem ? 440 : 760;
+  const nota2 = modo === 'obra' ? (cfg.nota || '') : '';
+  const zonaTop = 130, zonaAlt = nota2 ? 620 : 700;
   const k = Math.min((W - 140) / o.dim.w, zonaAlt / o.dim.h);
   const w = Math.round(o.dim.w * k), h = Math.round(o.dim.h * k);
   const left = w < 640 ? W - 70 - w : 70;
   const topo = zonaTop + zonaAlt - h;
   const tamTit = (t => { const n = t.length; return n <= 14 ? 96 : n <= 24 ? 78 : n <= 36 ? 64 : n <= 52 ? 54 : 46; })(tituloCurto(o.e));
-  const nota2 = modo === 'obra' ? (cfg.nota || '') : '';
   return `<div class="slide v2 slide--${modo}" style="--ac:${cor}">
     <div class="cab"><b>Vernissages SP</b><span>${esc(kicker)}</span></div>
-    ${tem ? `<div class="dado"><div class="nm">${esc(num)}</div><div class="lado"><div class="r">${esc(rot)}</div><div class="m">${esc(mes)}</div>${nota ? `<div class="s">${esc(nota)}</div>` : ''}</div></div>` : ''}
     <img class="obra" src="${esc(o.rel)}" style="left:${left}px;top:${topo}px;width:${w}px;height:${h}px">
     <div class="etq2" style="top:${topo + h + 36}px">
+      ${quando ? `<div class="quando">${esc(quando)}</div>` : ''}
       <div class="tit" style="font-size:${tamTit}px">${esc(tituloCurto(o.e))}</div>
       ${quem ? `<div class="quem">${esc(quem)}</div>` : ''}
       <div class="onde">${esc(o.v.name)} · ${esc(o.v.b)}</div>
@@ -227,12 +225,7 @@ function montarHTML(o, cfg, hoje) {
     .slide.v2{background:#F2EFE9;color:#0E0E0E}
     .slide.v2 .cab{position:absolute;left:70px;right:70px;top:56px;height:46px;border-bottom:3px solid #0E0E0E;display:flex;justify-content:space-between;font-weight:800;font-size:22px;letter-spacing:.17em;text-transform:uppercase}
     .slide.v2 .cab span{color:var(--ac)}
-    .slide.v2 .dado{position:absolute;left:62px;top:128px;display:flex;align-items:flex-end;gap:26px;color:var(--ac)}
-    .slide.v2 .nm{font-weight:800;font-size:380px;line-height:.8;letter-spacing:-.085em;margin-left:-.03em;height:300px;overflow:hidden;padding-top:6px}
-    .slide.v2 .lado{padding-bottom:24px}
-    .slide.v2 .lado .r{font-weight:800;font-size:32px;letter-spacing:.2em;line-height:1}
-    .slide.v2 .lado .m{font-weight:800;font-size:76px;letter-spacing:-.04em;line-height:.95;margin-top:4px}
-    .slide.v2 .lado .s{font-family:'IS',serif;font-style:italic;font-size:34px;color:#0E0E0E;margin-top:6px;line-height:1.05}
+    .slide.v2 .quando{font-family:'IS',serif;font-style:italic;font-size:46px;line-height:1.05;color:var(--ac);margin-bottom:22px}
     .slide.v2 .obra{object-fit:contain}
     .slide.v2 .etq2{position:absolute;left:70px;right:70px}
     .slide.v2 .tit{font-weight:800;text-transform:uppercase;letter-spacing:-.035em;line-height:.93}

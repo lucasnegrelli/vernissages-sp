@@ -22,6 +22,13 @@ de bloco "Collab".
 5. **Crédito**: `Foto: <credito_da_foto>` (copie exato).
 6. **Hashtags**: 6 a 8, específicas (#arteemsp #exposicaosp #galeriadearte #arte contemporânea etc.), no fim.
 
+## Voz (leia antes de escrever)
+Leia `docs/COPY.md` (seções 1, 3 e 5) e `docs/PERSONAS.md`. A voz é ácida, certeira e cirúrgica: a primeira linha é um
+dado (número, data ou nome), cada frase carrega fato, no máximo uma ironia seca por legenda e nunca contra artista,
+casa ou pessoa. Escolha UMA estrutura de primeira linha da seção 5 e um viés da seção 3, e não invente fato para
+sustentá-los. Depois de salvar a legenda, rode `node copy-lint.js SOCIAL/MM/DD/<formato>-LEGENDA.md` e corrija o
+que for marcado como ERRO antes de terminar.
+
 ## Regras que não mudam
 - NADA inventado: datas, horários, preço, nomes, cargos, intenção do artista. Só o que está nos fatos. Faltou
   informação? Deixe a linha de fora; nunca preencha.

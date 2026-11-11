@@ -29,6 +29,7 @@
    ============================================================ */
 
 'use strict';
+const { semTravessao } = require('./copy.js');
 
 const fs = require('fs');
 const path = require('path');
@@ -92,7 +93,7 @@ async function enfileirar() {
     const story = meta.height >= 1900;
     if ((so === 'story' && !story) || (so === 'feed' && story)) continue;
     const leg = [`${nome}-LEGENDA.md`, 'LEGENDA.txt'].map(f => path.join(pasta, f)).find(fs.existsSync);
-    const { legenda, collab } = leg && !story ? separarLegenda(fs.readFileSync(leg, 'utf8')) : { legenda: '', collab: [] };
+    const { legenda, collab } = leg && !story ? separarLegenda(semTravessao(fs.readFileSync(leg, 'utf8'))) : { legenda: '', collab: [] };
     if (!story && !legenda) throw new Error(`${nome}: sem legenda`);
 
     const destinos = story ? lista.map((p, i) => [p, `${nome}-${pad(i + 1)}`]) : [[null, nome]];

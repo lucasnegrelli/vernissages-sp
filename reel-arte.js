@@ -29,6 +29,7 @@
    Precisa de ffmpeg e de .render (sharp + puppeteer-core) ou RENDER_DIR.
    ============================================================ */
 'use strict';
+const { semTravessao } = require('./copy.js');
 
 process.env.VSP_FOTOS_LIVRE = '1';   /* foto de feed pode repetir no Reel: outro formato, outra audiência */
 
@@ -127,16 +128,16 @@ function capa(modo, pick, bairro) {
   const n = pick.length, s = D.semente(hoje + modo);
   if (modo === 'abre') {
     const de = pick[0].e.ini, ate = pick[n - 1].e.ini;
-    return { cnt: [n, 'aberturas'], palavras: ['ABRE', 'ESTA', 'SEMANA'], sub: D.pick([`${n} exposições abrem em São Paulo, de ${curto(de)} a ${curto(ate)}.`, `${n} aberturas, em ordem de data. Quem for primeiro vê primeiro.`, `A semana das aberturas: ${n} exposições novas na cidade.`], s) };
+    return { palavras: ['ABRE', 'ESTA', 'SEMANA'], sub: D.pick([`Aberturas em São Paulo, de ${curto(de)} a ${curto(ate)}.`, 'As aberturas da semana, em ordem de data. Quem for primeiro vê primeiro.', 'A semana das aberturas: exposições novas na cidade.'], s) };
   }
   if (modo === 'fecha') {
     const ate = pick[n - 1].e.fim;
-    return { cnt: [n, 'exposições'], palavras: ['ÚLTIMOS', 'DIAS'], sub: D.pick([`${n} exposições fecham até ${curto(ate)}. Depois disso, só no catálogo.`, `${n} mostras em São Paulo para ver antes que acabem.`, `Fecham até ${curto(ate)}: ${n} exposições, da que sai primeiro à última.`], s) };
+    return { palavras: ['ÚLTIMOS', 'DIAS'], sub: D.pick([`Fecham até ${curto(ate)}. Depois disso, só no catálogo.`, 'Mostras em São Paulo para ver antes que acabem.', `Da que sai primeiro à última: tudo o que fecha até ${curto(ate)}.`], s) };
   }
-  if (modo === 'gratis') return { cnt: [n, 'exposições'], palavras: ['ENTRADA', 'GRÁTIS'], sub: D.pick([`${n} exposições em São Paulo que não cobram ingresso.`, `Arte de graça nesta semana: ${n} exposições, todas com entrada franca.`], s) };
-  if (modo === 'tempo') return { cnt: [n, 'exposições'], palavras: ['AINDA', 'DÁ TEMPO'], sub: D.pick([`${n} exposições que ficam em cartaz por mais uns dias. Dá para planejar.`, `Sem pressa, mas sem deixar para o fim: ${n} mostras para as próximas semanas.`], s) };
+  if (modo === 'gratis') return { palavras: ['ENTRADA', 'GRÁTIS'], sub: D.pick(['Exposições em São Paulo que não cobram ingresso.', 'Arte de graça nesta semana, todas com entrada franca.'], s) };
+  if (modo === 'tempo') return { palavras: ['AINDA', 'DÁ TEMPO'], sub: D.pick(['Exposições que ficam em cartaz por mais uns dias. Dá para planejar.', 'Sem pressa, mas sem deixar para o fim.'], s) };
   const palavras = bairro.toUpperCase().split(/\s+/).reduce((acc, p) => { if (acc.length && (acc[acc.length - 1] + ' ' + p).length <= 9) acc[acc.length - 1] += ' ' + p; else acc.push(p); return acc; }, []);
-  return { cnt: [n, 'paradas'], palavras, sub: D.pick([`${n} exposições a pé, num bairro só.`, `Um bairro, ${n} casas abertas. O percurso na ordem em que dá para andar.`], s) };
+  return { palavras, sub: D.pick(['Exposições a pé, num bairro só.', 'Um bairro, várias casas abertas. O percurso na ordem em que dá para andar.'], s) };
 }
 
 function selo(c, modo) {
@@ -151,16 +152,16 @@ function selo(c, modo) {
 function legenda(modo, pick, bairro) {
   const n = pick.length, s = D.semente(hoje + modo + 'l');
   const abertura = {
-    abre: D.pick([`${n} exposições abrem em São Paulo nesta semana. Na ordem, para você se programar.`, `A agenda de aberturas da semana, do primeiro dia ao último.`], s),
-    fecha: D.pick([`${n} exposições que fecham nos próximos dias em São Paulo. Quem deixou para depois, é agora.`, `Últimos dias: ${n} mostras para ver antes que acabem.`], s),
-    rota: D.pick([`${n} exposições em ${bairro}, para fazer a pé numa tarde.`, `Um bairro só, ${n} casas abertas: ${bairro}.`], s),
-    gratis: D.pick([`${n} exposições com entrada gratuita em São Paulo. Arte não precisa de ingresso.`, `De graça: ${n} exposições para ver sem pagar nada.`], s),
-    tempo: D.pick([`${n} exposições que ainda ficam em cartaz por semanas. Planeje.`, `Ainda dá tempo: ${n} mostras para colocar na agenda.`], s),
+    abre: D.pick(['As exposições que abrem em São Paulo nesta semana, na ordem, para você se programar.', 'A agenda de aberturas da semana, do primeiro dia ao último.'], s),
+    fecha: D.pick(['Últimos dias em São Paulo. Quem deixou para depois, é agora.', 'Mostras para ver antes que acabem, da que fecha primeiro à última.'], s),
+    rota: D.pick([`Exposições em ${bairro}, para fazer a pé numa tarde.`, `Um bairro só, várias casas abertas: ${bairro}.`], s),
+    gratis: D.pick(['Exposições com entrada gratuita em São Paulo. Arte não precisa de ingresso.', 'De graça: exposições para ver sem pagar nada.'], s),
+    tempo: D.pick(['Exposições que ainda ficam em cartaz por semanas. Planeje.', 'Ainda dá tempo: mostras para colocar na agenda.'], s),
   }[modo];
   const linhas = pick.map((c, i) => {
     const q = autoria(c.e) ? ', ' + quemCurto(autoria(c.e)) : '';
     const quando = modo === 'abre' ? `abre ${DIA_EXT[dowDe(c.e.ini)]}, ${porExtenso(c.e.ini)}` : c.e.fim ? `até ${porExtenso(c.e.fim)}` : 'em cartaz';
-    return `${i + 1}. ${tit(c.e)}${q}\n   ${(c.v.name + ' ' + arroba(c.v.ig)).trim()}, ${c.v.b} · ${quando}`;
+    return `${tit(c.e)}${q}\n   ${(c.v.name + ' ' + arroba(c.v.ig)).trim()}, ${c.v.b} · ${quando}`;
   });
   return `${abertura}\n\n${linhas.join('\n\n')}\n\nSalva para não perder o dia e manda para quem vai com você.\n\n` +
     `Fotos: cortesia das casas e dos artistas. Agenda completa em vernissagessp.com.br\n\n` +
@@ -207,13 +208,7 @@ body{font-family:'Switzer',system-ui,sans-serif;color:${D.TINTA};-webkit-font-sm
 .cena{position:absolute;left:0;top:0;width:${W}px;height:${H}px;overflow:hidden;background:${D.PAPEL};display:none}
 .cab{position:absolute;left:70px;right:70px;top:62px;height:50px;border-bottom:3px solid ${D.TINTA};display:flex;justify-content:space-between;align-items:flex-start;font-weight:800;font-size:25px;letter-spacing:.17em;text-transform:uppercase}
 .cab span{color:var(--ac)}
-.data{position:absolute;left:62px;top:150px;display:flex;align-items:flex-end;gap:30px;color:var(--ac)}
-.nm{overflow:hidden;height:430px;padding-top:8px}
-.num{font-weight:800;font-size:520px;line-height:.82;letter-spacing:-.085em;margin-left:-.03em}
-.lado{padding-bottom:34px;display:flex;flex-direction:column;gap:6px}
-.lado .r{font-weight:800;font-size:40px;letter-spacing:.2em;text-transform:uppercase;line-height:1}
-.lado .m{font-weight:800;font-size:96px;letter-spacing:-.04em;line-height:.9}
-.lado .s{font-family:'IS',serif;font-style:italic;font-size:42px;color:${D.TINTA};line-height:1.05;margin-top:4px}
+.quando{position:absolute;left:70px;right:70px;top:158px;font-family:'IS',serif;font-style:italic;font-size:76px;line-height:1.02;color:var(--ac)}
 .foto{position:absolute;overflow:hidden}
 .foto img{display:block;width:100%;height:100%;object-fit:cover;transform-origin:50% 50%}
 .tx{position:absolute;left:70px;right:70px;top:1388px}
@@ -252,16 +247,14 @@ const palavras=(txt,cls)=>txt.split(' ').map(p=>'<span class="w"><span>'+E(p)+'<
 
 function cenaCapa(c){
   const el=document.createElement('section');el.className='cena capa';el.style.setProperty('--campo',c.campo);el.style.setProperty('--sobre',c.sobre);
-  el.innerHTML='<div class="marca">Vernissages SP</div><div class="mk2">'+E(c.kicker)+'</div><div class="pal">'+c.palavras.map(p=>'<div class="l" style="white-space:nowrap">'+E(p)+'</div>').join('')+'</div><div class="cnt"><b>'+E(c.cnt[0])+'</b><span>'+E(c.cnt[1])+'</span></div><div class="sub">'+E(c.sub)+'</div>';
+  el.innerHTML='<div class="marca">Vernissages SP</div><div class="mk2">'+E(c.kicker)+'</div><div class="pal">'+c.palavras.map(p=>'<div class="l" style="white-space:nowrap">'+E(p)+'</div>').join('')+'</div><div class="sub">'+E(c.sub)+'</div>';
   document.body.appendChild(el);el.style.display='block';
   /* a maior palavra ocupa a largura inteira útil */
   const pal=el.querySelector('.pal');pal.style.fontSize='100px';
   let mx=0;[].forEach.call(pal.children,l=>{l.style.display='inline-block';mx=Math.max(mx,l.getBoundingClientRect().width);l.style.display='block'});
-  const fs=Math.min(430,Math.floor(100*(W-150)/mx));pal.style.fontSize=fs+'px';
+  const fs=Math.min(520,Math.floor(100*(W-150)/mx));pal.style.fontSize=fs+'px';
   const alt=pal.getBoundingClientRect().height;
   if(170+alt>1290){pal.style.fontSize=Math.floor(fs*(1290-170)/alt)+'px'}
-  const palH=pal.getBoundingClientRect().height,disp=1290-(170+palH)-20,cn=el.querySelector('.cnt'),cb=cn.querySelector('b');
-  if(disp<380){cn.style.display='none'}else{const f2=Math.min(760,Math.floor(disp/.74));cb.style.fontSize=f2+'px';cn.style.bottom=(H-1290)+'px';cn.querySelector('span').style.fontSize=Math.max(30,Math.round(f2*.06))+'px'}
   el.style.display='none';
   return {el,t0:c.t0,dur:c.dur,anim(u){
     const k=oQ(seg(u,0,1.2));pal.style.letterSpacing=(-0.06-0.015*k)+'em';
@@ -271,12 +264,12 @@ function cenaCapa(c){
 
 function cenaMostra(c){
   const el=document.createElement('section');el.className='cena mostra';el.style.setProperty('--ac',c.cor);
-  const W0=940,Hz=770,top=585;
+  const W0=940,Hz=980,top=375;
   const r=Math.min(W0/c.iw,Hz/c.ih),dw=Math.round(c.iw*r),dh=Math.round(c.ih*r);
   const fl=dw<720?70+W0-dw:70,ft=top+Hz-dh;
   const fs=(function(t){const n=t.length;return n<=14?112:n<=24?92:n<=36?76:n<=52?62:52})(c.titulo);
   el.innerHTML='<div class="cab"><b>Vernissages SP</b><span>'+E(c.kicker)+'</span></div>'+
-   '<div class="data"><div class="nm"><div class="num">'+E(c.num)+'</div></div><div class="lado"><div class="r">'+E(c.rot)+'</div><div class="m">'+E(c.mes)+'</div>'+(c.nota?'<div class="s">'+E(c.nota)+'</div>':'')+'</div></div>'+
+   '<div class="quando">'+E(c.quando)+'</div>'+
    '<div class="foto" style="left:'+fl+'px;top:'+ft+'px;width:'+dw+'px;height:'+dh+'px"><img src="'+c.img+'"></div>'+
    '<div class="tx">'+(c.selo?'<div class="selo">'+E(c.selo)+'</div>':'')+'<div class="tit" style="font-size:'+fs+'px">'+palavras(c.titulo)+'</div>'+(c.quem?'<div class="art">'+E(c.quem)+'</div>':'')+'<div class="onde">'+E(c.casa)+' · '+E(c.bairro)+'</div><div class="ate">'+E(c.ate)+'</div></div>'+
    '<div class="rod"><span>@vernissagessp</span><span class="pq">'+Array.from({length:c.total},(_,i)=>'<i class="'+(i<=c.i?'on':'')+'"></i>').join('')+'</span></div>';
@@ -285,11 +278,10 @@ function cenaMostra(c){
   const t=el.querySelector('.tit');let f=fs;t.style.fontSize=f+'px';el.style.display='block';
   while(t.getBoundingClientRect().height>f*.93*3+6&&f>40){f-=4;t.style.fontSize=f+'px'}
   el.style.display='none';
-  const nm=el.querySelector('.num'),lado=el.querySelector('.lado'),ft_=el.querySelector('.foto'),im=el.querySelector('img'),ws=[].slice.call(el.querySelectorAll('.tit .w>span')),art=el.querySelector('.art'),onde=el.querySelector('.onde'),ate=el.querySelector('.ate'),cab=el.querySelector('.cab'),selo=el.querySelector('.selo');
+  const qd=el.querySelector('.quando'),ft_=el.querySelector('.foto'),im=el.querySelector('img'),ws=[].slice.call(el.querySelectorAll('.tit .w>span')),art=el.querySelector('.art'),onde=el.querySelector('.onde'),ate=el.querySelector('.ate'),cab=el.querySelector('.cab'),selo=el.querySelector('.selo');
   return {el,t0:c.t0,dur:c.dur,anim(u){
     cab.style.opacity=seg(u,0,.2);
-    nm.style.transform='translateY('+(110*(1-oE(seg(u,.02,.5))))+'%)';
-    const kl=oQ(seg(u,.18,.6));lado.style.opacity=kl;lado.style.transform='translateX('+(-40*(1-kl))+'px)';
+    const kq=oQ(seg(u,.05,.5));qd.style.opacity=kq;qd.style.transform='translateY('+(30*(1-kq))+'px)';
     ft_.style.clipPath='inset('+(100*(1-io(seg(u,.14,.8))))+'% 0 0 0)';
     im.style.transform='scale('+(1.12-.12*oQ(seg(u,.14,c.dur)))+')';
     if(selo){const ks=oQ(seg(u,.5,.8));selo.style.opacity=ks;selo.style.transform='translateY('+(18*(1-ks))+'px)'}
@@ -362,19 +354,21 @@ async function principal() {
   const kicker = { abre: 'Abre esta semana', fecha: 'Últimos dias', rota: bairro, gratis: 'De graça', tempo: 'Ainda dá tempo' };
   const pc = capa(modo, pick, bairro);
   const paletaCapa = itens[0].pal;
-  const cenas = [{ tipo: 'capa', t0: 0, dur: T_CAPA, palavras: pc.palavras, sub: pc.sub, cnt: pc.cnt, campo: paletaCapa.campo, sobre: paletaCapa.sobre, kicker: pick.length + (modo === 'rota' ? ' a pé' : ' exposições') }];
+  const cenas = [{ tipo: 'capa', t0: 0, dur: T_CAPA, palavras: pc.palavras, sub: pc.sub, campo: paletaCapa.campo, sobre: paletaCapa.sobre, kicker: modo === 'rota' ? 'a pé' : kicker[modo] }];
   let t = T_CAPA;
   itens.forEach((it, i) => {
     const e = it.c.e;
-    let num, rot, mes, nota = '';
-    if (modo === 'abre') { num = String(+e.ini.slice(8)); rot = DIA[dowDe(e.ini)]; mes = MES[+e.ini.slice(5, 7) - 1]; nota = it.c.abre === 0 ? 'abre hoje' : it.c.abre === 1 ? 'abre amanhã' : ''; }
-    else if (modo === 'gratis') { num = '0'; rot = 'R$'; mes = 'DE ENTRADA'; nota = e.fim ? 'até ' + curto(e.fim) : 'em cartaz'; }
-    else if (modo === 'tempo') { const f = it.c.falta; num = String(f); rot = 'FALTAM'; mes = 'DIAS'; nota = 'fecha ' + DIA_EXT[dowDe(e.fim)] + ', ' + curto(e.fim); }
-    else if (modo === 'fecha') { const f = it.c.falta; num = f === 0 ? 'HOJE' : String(f); rot = f === 0 ? 'ÚLTIMO' : 'FALTAM'; mes = f === 0 ? 'DIA' : f === 1 ? 'DIA' : 'DIAS'; nota = e.fim ? 'fecha ' + DIA_EXT[dowDe(e.fim)] + ', ' + curto(e.fim) : ''; }
-    else { num = String(i + 1); rot = 'PARADA'; mes = 'DE ' + pick.length; const ant = pick[i - 1]; nota = 'ponto de partida'; if (ant) { const mt = Math.round(km(ant.v, it.c.v) * 1000 / 10) * 10; nota = (mt >= 1000 ? (mt / 1000).toFixed(1).replace('.', ',') + ' km' : mt + ' m') + ' da parada anterior'; } }
+    /* v3 (11/11/2026): sem número gigante. O prazo é uma frase. */
+    const F1 = it.c.falta, dEx = iso => DIA_EXT[dowDe(iso)] + ', ' + porExtenso(iso) + '.';
+    let quando = '';
+    if (modo === 'abre') quando = it.c.abre === 0 ? 'Abre hoje.' : it.c.abre === 1 ? 'Abre amanhã, ' + porExtenso(e.ini) + '.' : 'Abre ' + dEx(e.ini);
+    else if (modo === 'gratis') quando = 'Entrada gratuita.';
+    else if (modo === 'tempo') quando = 'Fecha ' + dEx(e.fim);
+    else if (modo === 'fecha') quando = F1 === 0 ? 'Último dia é hoje.' : F1 === 1 ? 'Fecha amanhã, ' + porExtenso(e.fim) + '.' : 'Fecha ' + dEx(e.fim);
+    else { quando = 'Ponto de partida.'; const ant = pick[i - 1]; if (ant) { const mt = Math.round(km(ant.v, it.c.v) * 1000 / 10) * 10; quando = 'A ' + (mt >= 1000 ? (mt / 1000).toFixed(1).replace('.', ',') + ' km' : mt + ' m') + ' da parada anterior.'; } }
     const ate = modo === 'abre' ? (e.fim ? 'em cartaz até ' + porExtenso(e.fim) : 'abre em ' + porExtenso(e.ini)) : e.fim ? 'até ' + porExtenso(e.fim) : 'em cartaz';
-    cenas.push({ tipo: 'mostra', t0: t - T_VAO, dur: T_MOSTRA + T_VAO, i, total: pick.length, kicker: kicker[modo], num, rot, mes, nota, cor: it.pal.texto, img: 'file:///' + it.alvo.replace(/\\/g, '/'),
-      iw: it.iw, ih: it.ih, titulo: tit(e), quem: quemCurto(autoria(e)), casa: it.c.v.name, bairro: it.c.v.b, ate, selo: modo === 'rota' || modo === 'fecha' ? selo(it.c, modo) : '' });
+    cenas.push({ tipo: 'mostra', t0: t - T_VAO, dur: T_MOSTRA + T_VAO, i, total: pick.length, kicker: kicker[modo], quando, cor: it.pal.texto, img: 'file:///' + it.alvo.replace(/\\/g, '/'),
+      iw: it.iw, ih: it.ih, titulo: tit(e), quem: quemCurto(autoria(e)), casa: it.c.v.name, bairro: it.c.v.b, ate, selo: modo === 'rota' ? selo(it.c, modo) : '' });
     t += T_MOSTRA;
   });
   const mapa = projeta(DATA, pick, modo, 940, 740);
@@ -429,10 +423,10 @@ async function principal() {
   const leg = legenda(modo, pick, bairro);
   if (argv.includes('--fila')) {
     const q = flag('quando', '18:00');
-    const post = { conta: 'vernissagessp', id: `${hoje}_reel`, status: 'aprovado', tipo: 'reel', quando: `${hoje}T${q}:00-03:00`, imagens: ['reel.mp4'], legenda: leg, collab: [], collabExtra: [] };
+    const post = { conta: 'vernissagessp', id: `${hoje}_reel`, status: 'aprovado', tipo: 'reel', quando: `${hoje}T${q}:00-03:00`, imagens: ['reel.mp4'], legenda: semTravessao(leg), collab: [], collabExtra: [] };
     fs.writeFileSync(path.join(saidaDir, 'post.json'), JSON.stringify(post, null, 2) + '\n');
     console.log(`na fila: ${post.id} às ${q}`);
-  } else fs.writeFileSync(path.join(saidaDir, 'reel-LEGENDA.md'), leg + '\n');
+  } else fs.writeFileSync(path.join(saidaDir, 'reel-LEGENDA.md'), semTravessao(leg) + '\n');
 
   if (!argv.includes('--sem-memoria')) {
     const u = lerJson(USADOS, {});

@@ -35,6 +35,7 @@
    ============================================================ */
 
 'use strict';
+const { semTravessao } = require('./copy.js');
 
 const fs = require('fs');
 const path = require('path');
@@ -327,7 +328,7 @@ async function principal() {
   arqs.forEach(a => console.log('OK ' + a));
   const leg = legenda(sel);
   fs.writeFileSync(path.join(saida, cfg.nome + '-LEGENDA.md'),
-    leg.texto + '\n---\nConvidar como Collab (o post aparece no perfil delas também):\n' + leg.collab.join(' ') + '\n');
+    semTravessao(leg.texto) + '\n---\nConvidar como Collab (o post aparece no perfil delas também):\n' + leg.collab.join(' ') + '\n');
   console.log('\n' + arqs.length + ' slides · legenda e lista de Collab em ' + cfg.nome + '-LEGENDA.md');
 }
 

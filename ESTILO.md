@@ -7,6 +7,19 @@ envio de sexta e conteúdo gerado automaticamente pela rotina diária.
 
 Curador e arquivista. Objetivo, culto, direto. O texto informa; não convence.
 
+**Camada de voz (11/11/2026): ácida, certeira, cirúrgica.** Dentro de todas as regras abaixo, o texto tem ponto
+de vista: ironia seca, no máximo uma por peça, sempre com número ou fato atrás, e o alvo é o hábito ou o sistema
+(adiar a visita, título de 14 palavras em inglês, taxa de inscrição), nunca artista, casa ou pessoa. A acidez é
+escolha de dado e sintaxe, não vocabulário novo. Método, vieses e exemplos: `docs/COPY.md`. Públicos:
+`docs/PERSONAS.md`. Conferência automática: `node copy-lint.js <legenda>`.
+
+**Imagem e arte primeiro; número nunca de gancho (Lucas, 11/11/2026).** Sem estatística na primeira linha, sem
+"big number" como protagonista da peça, sem "separamos N". A peça abre com imagem (obra, ou a imagem da própria
+chamada) e o texto completa. Prazo em palavras ("fecha domingo"). Valor em reais e data entram só na ficha.
+
+**Travessão: nunca, em legenda nenhuma.** Todo escritor de legenda passa por `semTravessao()` (`copy.js`) e o
+`publicar.js` passa de novo antes de enfileirar. Se aparecer um, é bug: corrigir na origem.
+
 **Regras invioláveis**
 
 - Sem gírias. Sem emojis. Sem exclamações.
