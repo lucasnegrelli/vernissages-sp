@@ -44,7 +44,7 @@ img{max-width:100%}
 /* ---------- barra fixa (aparece depois da marca) ---------- */
 .barra-fixa{position:fixed;top:0;left:0;right:0;z-index:60;background:var(--paper);border-bottom:1px solid var(--ink);display:flex;justify-content:space-between;align-items:center;padding:0 var(--gut);height:46px;transform:translateY(-101%);transition:transform .3s}
 .barra-fixa.on{transform:none}
-.barra-fixa b{font-weight:800;letter-spacing:-.03em;text-transform:uppercase;color:var(--terra);font-size:19px}
+.barra-fixa b{cursor:pointer;font-weight:800;letter-spacing:-.03em;text-transform:uppercase;color:var(--terra);font-size:19px}
 .barra-fixa nav{display:flex;gap:22px;font-size:13px;letter-spacing:.04em}
 .barra-fixa a:hover{color:var(--terra)}
 .nbadge{display:inline-block;background:var(--terra);color:var(--ink);font-size:10px;font-weight:700;padding:1px 6px;margin-left:5px;vertical-align:1px}
@@ -393,7 +393,7 @@ footer a:hover{color:var(--terra)}
 <body>
 
 <div class="barra-fixa" id="barraFixa" aria-hidden="true">
-  <b>Vernissages SP</b>
+  <b id="topoLogo" role="link" tabindex="0" title="Voltar ao topo">Vernissages SP</b>
   <nav>
     <a href="#semana" data-go="semana" class="opc">Semana</a>
     <a href="#mapa" data-go="mapa">Mapa</a>
@@ -1392,6 +1392,11 @@ function animaGrade(){
 function iniciaMovimento(){
   /* barra fixa depois da marca */
   const bf=document.getElementById('barraFixa');
+  /* logo da barra fixa: com a página no meio, clique (ou Enter) sobe ao topo */
+  const topoLogo=document.getElementById('topoLogo');
+  if(topoLogo){const sobe=()=>{if(lenis)lenis.scrollTo(0,{duration:1.1});else window.scrollTo({top:0,behavior:calmo?'auto':'smooth'});};
+    topoLogo.addEventListener('click',sobe);
+    topoLogo.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();sobe();}});}
   if('IntersectionObserver' in window){new IntersectionObserver(([en])=>{bf.classList.toggle('on',!en.isIntersecting);bf.setAttribute('aria-hidden',en.isIntersecting);},{threshold:0}).observe(document.getElementById('marca'));}
   observeVis('.barra');observeVis('.numeros');
   if(calmo||!window.gsap||!window.ScrollTrigger||typeof Lenis!=='function'){document.documentElement.classList.add('semmov');return;}
