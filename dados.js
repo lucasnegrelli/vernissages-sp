@@ -235,7 +235,6 @@ const EXPOS = [
 {t:"Abismos Urbanos e o Plano Celeste",a:"Eduardo Coimbra",v:"Galeria Lume",ini:"2026-09-12",fim:"2026-11-14",d:"Exposição individual.",img:"img/abismos-urbanos-e-o-plano-celeste-galeria-lume.webp",cred:"Cortesia Galeria Lume",conferida:true},
 {t:"Território de Disputa",a:"Kilian Glasner",v:"Galeria Lume",ini:"2026-09-12",fim:"2026-11-14",d:"Pinturas feitas com saibro — laterita alaranjada recolhida no sertão —, cortadas pelas faixas brancas de uma quadra de tênis, como alegoria de disputa por território.",img:"img/territorio-de-disputa-galeria-lume.jpg",cred:"Cortesia Galeria Lume",foco:50},
 {t:"Longitudes",a:"Johanna Calle",v:"Galeria Marília Razuk",ini:"2026-09-12",fim:"2026-12-12",d:"Exposição individual.",img:"img/longitudes-galeria-marilia-razuk.jpg",cred:"Cortesia Galeria Marília Razuk"},
-{t:"Cavalinhas e Falésias",a:"Carolina Colichio",v:"Galeria Marília Razuk",ini:"2026-09-12",fim:"2026-11-03",d:"Exposição individual.",img:"img/cavalinhas-e-falesias-galeria-marilia-razuk.jpg",cred:"Cortesia Galeria Marília Razuk"},
 
 /* --- casas novas mapeadas hoje: mostra atual confirmada na fonte --- */
 
@@ -353,11 +352,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Trickster — Sérgio Free",
-  v: "A7MA Galeria",
-  quem: "Sérgio Free",
-  txt: "Em TRICKSTER, Sérgio Free apresenta o palhaço como uma figura que transita entre mundos. Nascido de sua pesquisa com a pixação nos anos 1990, o personagem ultrapassa o campo do lúdico para assumir um papel provocador, capaz de questionar valores, desestabilizar certezas e revelar aquilo que muitas vezes permanece oculto no cotidiano. Abertura em 7 de novembro, até 5 de dezembro.",
-  link: "https://a7ma.com.br",
+  t: "Voice Leading — Peter Shear",
+  v: "Mendes Wood DM — Casa Iramaia",
+  quem: "Peter Shear",
+  txt: "Pinturas reunidas em pares, a partir da percepção do artista de que havia duplas entre seus trabalhos, com motivos que reaparecem de forma levemente diferente. Abertura em 7 de novembro; encerramento não divulgado.",
+  link: "https://mendeswooddm.com",
   publi: false
 };
 
@@ -372,6 +371,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-11-11", k:"Voice Leading — Peter Shear|Mendes Wood DM — Casa Iramaia"},
   {d:"2026-11-10", k:"Trickster — Sérgio Free|A7MA Galeria"},
   {d:"2026-11-09", k:"Diáfana — Gretta Sarfaty|Museu Judaico de São Paulo"},
   {d:"2026-11-08", k:"Ver o mundo — João Luiz Musa|Luciana Brito Galeria"},
@@ -479,5 +479,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "10/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "11/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
