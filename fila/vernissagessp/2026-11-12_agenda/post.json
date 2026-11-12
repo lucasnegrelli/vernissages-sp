@@ -1,0 +1,32 @@
+{
+  "conta": "vernissagessp",
+  "id": "2026-11-12_agenda",
+  "status": "aprovado",
+  "tipo": "carrossel",
+  "quando": "2026-11-12T11:45:00-03:00",
+  "imagens": [
+    "01.jpg",
+    "02.jpg",
+    "03.jpg",
+    "04.jpg",
+    "05.jpg",
+    "06.jpg",
+    "07.jpg",
+    "08.jpg",
+    "09.jpg",
+    "10.jpg"
+  ],
+  "legenda": "Arte em SP de 12.11 a 15.11.\n\nABRE\n• QUI 12.11, A Ressaca da democracia, Alexander Apóstol · Galeria Raquel Arnaud @galeriaraquelarnaud, Vila Madalena\n• SEX 13.11, Diáfana, Gretta Sarfaty · Museu Judaico de São Paulo @museujudaicosp, Bela Vista\n\nÚLTIMOS DIAS\n• SEX 13.11, Controle | Corrosão | Dispersão, Beto Shwafaty · Galeria Leme @galerialeme, Butantã\n• SÁB 14.11, Abismos Urbanos e o Plano Celeste, Eduardo Coimbra · Galeria Lume @galerialume, Jardim Europa\n• SÁB 14.11, Território de Disputa, Kilian Glasner · Galeria Lume @galerialume, Jardim Europa\n• SÁB 14.11, Estado de Transe, Dora Smék · Central Galeria @centralgaleria, Higienópolis\n• SÁB 14.11, nome ar, Jarbas Lopes · Galeria Luisa Strina @galerialuisastrina, Cerqueira César\n• SÁB 14.11, Não há só uma maneira, Oriol Vilanova · Galeria Luisa Strina @galerialuisastrina, Cerqueira César\n• DOM 15.11, NO LIMITE: forma e transformação · Paço das Artes, Higienópolis\n• DOM 15.11, Coordenadas Improváveis · MITS Galeria @mits.galeria, Jardim Paulista\n• DOM 15.11, Círio de Nazaré. Do sagrado ao profano: uma extensão do Brasil | Nova Fotografia 2026, Fabricio Augusto · MIS, Museu da Imagem e do Som @mis_sp, Jardim Europa\n\nSalva e manda pra quem vai com você. Mapa, horários e o resto da agenda no link da bio.",
+  "collab": [
+    "galeriaraquelarnaud",
+    "museujudaicosp",
+    "galerialeme"
+  ],
+  "collabExtra": [
+    "galerialume",
+    "centralgaleria",
+    "galerialuisastrina",
+    "mits.galeria",
+    "mis_sp"
+  ]
+}
