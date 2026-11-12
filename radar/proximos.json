@@ -1,63 +1,13 @@
 {
- "gerado": "2026-11-09",
+ "gerado": "2026-11-12",
  "itens": [
-  {
-   "t": "Residências Künstlerhaus Lauenburg -Artes Visuais, Literatura e Composição perto de Hamburg 2027",
-   "org": "apoio.art · Künstlerhaus Lauenburg",
-   "cat": "Residência",
-   "onde": "Exterior",
-   "prazo": "2026-11-10",
-   "dias": 1,
-   "conf": false,
-   "link": "https://kuenstlerhaus-lauenburg.de/stipendium-start-2025-en/?lang=en"
-  },
-  {
-   "t": "Skyline of Venice Partially Funded Residency in a cool Apartment and Exhibition Space blow 26/27",
-   "org": "Res Artis · Italy",
-   "cat": "Residência",
-   "onde": "Exterior",
-   "prazo": "2026-11-10",
-   "dias": 1,
-   "conf": false,
-   "link": "https://resartis.org/open-call/in-the-heart-of-venice-upstairs-a-cool-studio-apartment-downstairs-a-space-to-exhibit-and-sell-32/"
-  },
-  {
-   "t": "La Storta Partially Sponsored Residency and Exhibition Space in the heart of Venice 2026/2027",
-   "org": "Res Artis · Italy",
-   "cat": "Residência",
-   "onde": "Exterior",
-   "prazo": "2026-11-10",
-   "dias": 1,
-   "conf": false,
-   "link": "https://resartis.org/open-call/open-call-2026-27-live-create-exhibit-in-venice-fully-partially-sponsored-residencies-special-program/"
-  },
-  {
-   "t": "MYREN GÅRD, Kristiansand, Norway, AIR, Open Call – 2027",
-   "org": "Res Artis · Norway",
-   "cat": "Residência",
-   "onde": "Exterior",
-   "prazo": "2026-11-10",
-   "dias": 1,
-   "conf": false,
-   "link": "https://resartis.org/open-call/myren-gard-kristiansand-norway-air-open-call-2027/"
-  },
-  {
-   "t": "OPEN CALL・On-line Residency (January – March 2027)",
-   "org": "Res Artis · Global",
-   "cat": "Residência",
-   "onde": "Exterior",
-   "prazo": "2026-11-10",
-   "dias": 1,
-   "conf": false,
-   "link": "https://resartis.org/open-call/open-call%e3%83%bbon-line-residency-january-march-2027/"
-  },
   {
    "t": "Greek Island Residency with a City Experience.",
    "org": "Res Artis · Greece",
    "cat": "Residência",
    "onde": "Exterior",
    "prazo": "2026-11-12",
-   "dias": 3,
+   "dias": 0,
    "conf": false,
    "link": "https://resartis.org/open-call/greek-island-residency-with-a-city-experience/"
   },
@@ -67,7 +17,7 @@
    "cat": "Residência",
    "onde": "Exterior",
    "prazo": "2026-11-14",
-   "dias": 5,
+   "dias": 2,
    "conf": false,
    "link": "https://resartis.org/open-call/reviving-nature-2027-chiang-mai-thailand/"
   },
@@ -77,7 +27,7 @@
    "cat": "Residência",
    "onde": "São Paulo",
    "prazo": "2026-11-15",
-   "dias": 6,
+   "dias": 3,
    "conf": false,
    "link": "https://www.institutotomieohtake.org.br/residencia-junto/"
   },
@@ -87,7 +37,7 @@
    "cat": "Residência",
    "onde": "Exterior",
    "prazo": "2026-11-15",
-   "dias": 6,
+   "dias": 3,
    "conf": false,
    "link": "https://www.lemgo.de/kultur-und-tourismus/kultur/kunst/stipendium-junge-kunst"
   },
@@ -97,7 +47,7 @@
    "cat": "Residência",
    "onde": "Exterior",
    "prazo": "2026-11-15",
-   "dias": 6,
+   "dias": 3,
    "conf": false,
    "link": "https://www.cacp-villaperochon.com/agenda/appel-a-candidature-rencontres-de-la-jeune-photographie-internationale-2027/"
   },
@@ -107,7 +57,7 @@
    "cat": "Residência",
    "onde": "Exterior",
    "prazo": "2026-11-15",
-   "dias": 6,
+   "dias": 3,
    "conf": false,
    "link": "https://resartis.org/open-call/spend-the-winter-with-us-in-a-mediterranean-region/"
   },
@@ -117,9 +67,59 @@
    "cat": "Residência",
    "onde": "Exterior",
    "prazo": "2026-11-15",
-   "dias": 6,
+   "dias": 3,
    "conf": false,
    "link": "https://resartis.org/open-call/la-porte-peinte-open-call-august-2026/"
+  },
+  {
+   "t": "SIXI AiR OPEN CALL 2027 SPRING & AUTUMN",
+   "org": "Res Artis · China",
+   "cat": "Residência",
+   "onde": "Exterior",
+   "prazo": "2026-11-15",
+   "dias": 3,
+   "conf": false,
+   "link": "https://resartis.org/open-call/sixi-air-open-call-2027-spring-autumn/"
+  },
+  {
+   "t": "RECYCLE ART LAB",
+   "org": "Res Artis · Global",
+   "cat": "Residência",
+   "onde": "Exterior",
+   "prazo": "2026-11-15",
+   "dias": 3,
+   "conf": false,
+   "link": "https://resartis.org/open-call/recycle-art-lab/"
+  },
+  {
+   "t": "Sheni Studio and Residency — Open Call for International Artists",
+   "org": "Res Artis · Georgia",
+   "cat": "Residência",
+   "onde": "Exterior",
+   "prazo": "2026-11-15",
+   "dias": 3,
+   "conf": false,
+   "link": "https://resartis.org/open-call/sheni-studio-and-residency-open-call-for-international-artists/"
+  },
+  {
+   "t": "Collective residency",
+   "org": "Res Artis · France",
+   "cat": "Residência",
+   "onde": "Exterior",
+   "prazo": "2026-11-15",
+   "dias": 3,
+   "conf": false,
+   "link": "https://resartis.org/open-call/collective-residency/"
+  },
+  {
+   "t": "Old fire station residency – a residency by Skogshyddan AIR",
+   "org": "Res Artis · Finland",
+   "cat": "Residência",
+   "onde": "Exterior",
+   "prazo": "2026-11-15",
+   "dias": 3,
+   "conf": false,
+   "link": "https://resartis.org/open-call/old-fire-station-residency/"
   }
  ]
 }

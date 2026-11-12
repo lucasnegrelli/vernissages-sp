@@ -176,8 +176,10 @@ h3.zona{font-size:12px;color:var(--terra);letter-spacing:.14em;text-transform:up
 
 /* Recorte automático de margem: acha a cor que se repete nos cantos, avança de cada lado até
    encontrar conteúdo e mostra só a janela da obra. Mesma lógica da home. ES5, sem dependências. */
+const RC_JS_RECORTE = require('fs').readFileSync(require('path').join(__dirname, 'recorte.js'), 'utf8').replace(/if \(typeof module !== 'undefined'\)[^\n]*\n?/, '');
 const RC_JS = `
 (function(){
+${RC_JS_RECORTE}
 var A={};
 function analisa(u){
   if(A[u])return A[u];
@@ -187,26 +189,11 @@ function analisa(u){
       var W=im.naturalWidth,H=im.naturalHeight;if(!W||!H){res(null);return}
       var box=null;
       try{
-        var k=Math.min(1,180/Math.max(W,H)),w=Math.max(8,Math.round(W*k)),h=Math.max(8,Math.round(H*k));
+        var k=Math.min(1,220/Math.max(W,H)),w=Math.max(8,Math.round(W*k)),h=Math.max(8,Math.round(H*k));
         var c=document.createElement('canvas');c.width=w;c.height=h;
         var x=c.getContext('2d',{willReadFrequently:true});x.drawImage(im,0,0,w,h);
-        var d=x.getImageData(0,0,w,h).data;
-        var at=function(i,j){var o=(j*w+i)*4;return [d[o],d[o+1],d[o+2]]};
-        var dist=function(a,b){return Math.sqrt(Math.pow(a[0]-b[0],2)+Math.pow(a[1]-b[1],2)+Math.pow(a[2]-b[2],2))};
-        var cant=[at(1,1),at(w-2,1),at(1,h-2),at(w-2,h-2)],bg=null,best=0;
-        cant.forEach(function(c1){var n=cant.filter(function(o){return dist(o,c1)<26}).length;if(n>best){best=n;bg=c1}});
-        if(best>=3){
-          var fg=function(i,j){return dist(at(i,j),bg)>40};
-          var lin=function(j){var n=0;for(var i=0;i<w;i++)if(fg(i,j))n++;return n/w};
-          var col=function(i){var n=0;for(var j=0;j<h;j++)if(fg(i,j))n++;return n/h};
-          var T=.012,y0=0,y1=h-1,x0=0,x1=w-1;
-          while(y0<h-1&&lin(y0)<T)y0++;
-          while(y1>y0&&lin(y1)<T)y1--;
-          while(x0<w-1&&col(x0)<T)x0++;
-          while(x1>x0&&col(x1)<T)x1--;
-          var bw=(x1-x0+1)/w,bh=(y1-y0+1)/h;
-          if((bw<.985||bh<.985)&&bw*bh>=.3&&bw>=.4&&bh>=.4){var kx=W/w,ky=H/h;box={x:Math.round(x0*kx),y:Math.round(y0*ky),w:Math.round((x1-x0+1)*kx),h:Math.round((y1-y0+1)*ky)}}
-        }
+        var r=caixaFinal(x.getImageData(0,0,w,h).data,w,h);
+        if(r){var kx=W/w,ky=H/h;box={x:Math.round(r.x*kx),y:Math.round(r.y*ky),w:Math.round(r.w*kx),h:Math.round(r.h*ky)}}
       }catch(e){}
       res({W:W,H:H,box:box});
     };
