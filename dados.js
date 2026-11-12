@@ -281,7 +281,6 @@ const EXPOS = [
 {t:"Aquilo Que Não Cabe — Jessica Costa",a:"Jessica Costa",v:"Zipper Galeria",ini:"2026-10-08",fim:"2026-12-18",d:"Individual com curadoria de Carollina Lauriano, a primeira da artista no salão principal. Esculturas e tapeçarias que usam a modelagem de vestuário para pensar o volume do corpo. Abertura em 8 de outubro, das 18h às 21h.",img:"img/aquilo-que-nao-cabe-zipper-galeria.jpg",cred:"Jessica Costa, Voluptuosa II, 2026. Divulgação Zipper Galeria",foco:52,img2:"img/aquilo-que-nao-cabe-zipper-galeria-2.jpg"},
 {t:"O Vaso de Ojuara — Claudia Marchetti",a:"Claudia Marchetti",v:"Zipper Galeria",ini:"2026-10-08",fim:"2026-12-18",d:"Individual no Zip'Up com texto crítico de Paula Alzugaray: quatorze pinturas recentes, o primeiro conjunto da artista em vinte anos. Abertura em 8 de outubro, das 18h às 21h.",img:"img/o-vaso-de-ojuara-zipper-galeria.jpg",cred:"Foto: Biah Schmidt / Zipper Galeria",foco:70,img2:"img/o-vaso-de-ojuara-zipper-galeria-2.jpg"},
 {t:"Jacqueline Humphries e JH Studio",a:"Jacqueline Humphries, Peter Granados, Paul Kopkau, Ciccio",v:"Auroras",ini:"2026-10-17",fim:"2027-01-16",d:"Primeira exposição de Humphries no Brasil, com pinturas e seis livros de artista, e obras de três artistas do seu ateliê. Abertura em 17 de outubro, das 14h às 17h, com performance de Arto Lindsay às 16h. Em cartaz até 16 de janeiro de 2027.",img:"img/jacqueline-humphries-e-jh-studio-auroras.jpg",cred:"Cortesia Auroras"},
-{t:"Deslocar, Desalinhar, Interromper — Antonio Bokel",a:"Antonio Bokel",v:"Galeria Luis Maluf",ini:"2026-10-08",fim:"2026-11-04",d:"Individual na unidade da Barra Funda com esculturas, instalações e pinturas que inserem galhos, rochas, espelhos e círculos em composições geométricas. Abertura em 8 de outubro, das 19h às 23h.",img:"img/deslocar-desalinhar-interromper-galeria-luis-maluf.jpg",cred:"Cortesia Galeria Luis Maluf",vista:true},
 {t:"Pequenos Afetos",a:"",v:"Farol Santander",ini:"2026-10-16",fim:"2027-01-10",d:"Nova exposição temporária do Farol Santander, que estreia em 16 de outubro. Visitação de terça a domingo, das 9h às 20h, com última entrada às 19h.",img:"img/pequenos-afetos-farol-santander.jpg",cred:"Cortesia Farol Santander"},
 {t:"Tábula Opaca — coletiva",a:"Fernanda Pacca, Jacque Faus, Kuenan Mayu, Olívia Lacerda, Uýra, Xinga Xow, Yaraçá",v:"Galeria Aura",ini:"2026-10-24",fim:null,d:"Curadoria do Projeto Mulheres Arquivadas. A mostra investiga a opacidade e a fugitividade como resistência aos sistemas de classificação. Abertura em 24 de outubro, a partir das 11h; encerramento não divulgado.",img:"img/tabula-opaca-galeria-aura.jpg",cred:"Cortesia Galeria Aura"},
 {t:"Belezas Brasileiras",a:"Adriano Gambarini, Gabriel Bonatto, Ricardo Rojas, Toni Pires",v:"MIS — Museu da Imagem e do Som",ini:"2026-10-13",fim:null,d:"Quatro ensaios fotográficos percorrem a Caatinga, a Serra da Mantiqueira, a paisagem urbana paulistana e cenas do cotidiano. Abertura em 13 de outubro, às 19h; encerramento não divulgado.",img:"",cred:""},
@@ -352,11 +351,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Voice Leading — Peter Shear",
-  v: "Mendes Wood DM — Casa Iramaia",
-  quem: "Peter Shear",
-  txt: "Pinturas reunidas em pares, a partir da percepção do artista de que havia duplas entre seus trabalhos, com motivos que reaparecem de forma levemente diferente. Abertura em 7 de novembro; encerramento não divulgado.",
-  link: "https://mendeswooddm.com",
+  t: "Coordenadas Improváveis",
+  v: "MITS Galeria",
+  quem: "",
+  txt: "Coletiva com 11 artistas, entre eles Jay Boggo, Maria Tereza Bomfim, Marcos Cavallaria, Letícia Façanha, Matheus Freitas e Cadeh Juaçaba. Em cartaz até 15 de novembro.",
+  link: "https://www.mitsgaleria.art",
   publi: false
 };
 
@@ -371,6 +370,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-11-12", k:"Coordenadas Improváveis|MITS Galeria"},
   {d:"2026-11-11", k:"Voice Leading — Peter Shear|Mendes Wood DM — Casa Iramaia"},
   {d:"2026-11-10", k:"Trickster — Sérgio Free|A7MA Galeria"},
   {d:"2026-11-09", k:"Diáfana — Gretta Sarfaty|Museu Judaico de São Paulo"},
@@ -479,5 +479,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "11/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "12/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
