@@ -114,6 +114,32 @@ function aperta(d, w, h, b, loose) {
   return { x: x0, y: y0, w: x1 - x0 + 1, h: y1 - y0 + 1 };
 }
 
+/* Mapa de bordas (mesmo cálculo da detecção) e o limiar sensível. */
+function mapaBordas(d, w, h) {
+  const g = new Float32Array(w * h);
+  for (let i = 0; i < w * h; i++) g[i] = .299 * d[i * 4] + .587 * d[i * 4 + 1] + .114 * d[i * 4 + 2];
+  const b = new Float32Array(w * h);
+  for (let y = 1; y < h - 1; y++) for (let x = 1; x < w - 1; x++) { let s2 = 0; for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) s2 += g[(y + dy) * w + x + dx]; b[y * w + x] = s2 / 9; }
+  const m = new Float32Array(w * h), vals = [];
+  for (let y = 2; y < h - 2; y++) for (let x = 2; x < w - 2; x++) { const v = Math.abs(b[y * w + x + 2] - b[y * w + x - 2]) + Math.abs(b[(y + 2) * w + x] - b[(y - 2) * w + x]); m[y * w + x] = v; vals.push(v); }
+  vals.sort((p, q) => p - q);
+  return { m, T: Math.max(9, .2 * (vals[Math.floor(vals.length * .98)] || 0)) };
+}
+/* A caixa nova pode cortar obra de contraste fraco (branco sobre branco, peças que vão até a borda). Referência =
+   a caixa antiga (se achou) ou a foto inteira. Em cada lado, se a faixa entre a caixa e a referência tem BORDA de
+   verdade (grade, contorno, objeto), a caixa cresce até a referência; se é parede lisa, fica como está. */
+function expande(d, w, h, N, R) {
+  const { m, T } = mapaBordas(d, w, h);
+  const dens = (x0, y0, x1, y1) => { let n = 0, t = 0; for (let y = Math.max(2, y0); y <= Math.min(h - 3, y1); y++) for (let x = Math.max(2, x0); x <= Math.min(w - 3, x1); x++) { t++; if (m[y * w + x] > T) n++; } return t ? n / t : 0; };
+  let x0 = N.x, y0 = N.y, x1 = N.x + N.w - 1, y1 = N.y + N.h - 1;
+  const rx0 = R.x, ry0 = R.y, rx1 = R.x + R.w - 1, ry1 = R.y + R.h - 1, LIM = .05;
+  if (x0 > rx0 && dens(rx0, y0, x0 - 1, y1) >= LIM) x0 = rx0;
+  if (x1 < rx1 && dens(x1 + 1, y0, rx1, y1) >= LIM) x1 = rx1;
+  if (y0 > ry0 && dens(x0, ry0, x1, y0 - 1) >= LIM) y0 = ry0;
+  if (y1 < ry1 && dens(x0, y1 + 1, x1, ry1) >= LIM) y1 = ry1;
+  return { x: x0, y: y0, w: x1 - x0 + 1, h: y1 - y0 + 1 };
+}
+
 /* Os cantos da foto parecem fundo (parede)? Foto sangrada (obra até a borda) não pode ser recortada: a
    detecção por borda acharia "miolo" e cortaria obra de verdade (Diáfana, Glauco Rodrigues). */
 function cantosParecemParede(d, w, h, tol) {
@@ -136,19 +162,28 @@ function cantosParecemParede(d, w, h, tol) {
    - a antiga achou caixa e a nova também: interseção (a antiga erra por excesso com parede em degradê e sombra,
      a nova às vezes erra por excesso em obra branca sobre parede branca);
    - só a nova (parede em degradê, que a antiga não leu): vale a nova, se os cantos parecem parede (tolerância larga). */
-function caixaFinal(d, w, h) { return aperta(d, w, h, caixaFinal0(d, w, h)); }
+function caixaFinal(d, w, h) {
+  const b = aperta(d, w, h, caixaFinal0(d, w, h));
+  if (!b) return b;
+  const m = Math.max(1, Math.round(Math.max(w, h) * .012));
+  const x0 = Math.max(0, b.x - m), y0 = Math.max(0, b.y - m), x1 = Math.min(w - 1, b.x + b.w - 1 + m), y1 = Math.min(h - 1, b.y + b.h - 1 + m);
+  return { x: x0, y: y0, w: x1 - x0 + 1, h: y1 - y0 + 1 };
+}
 function caixaFinal0(d, w, h) {
   const A = caixaAntiga(d, w, h);
+  const inteira = { x: 0, y: 0, w, h };
   if (A) {
     if (A.w * A.h >= .9 * w * h) return A;
     const N = caixaDaObra(d, w, h);
     if (!N) return A;
     const x0 = Math.max(A.x, N.x), y0 = Math.max(A.y, N.y), x1 = Math.min(A.x + A.w, N.x + N.w), y1 = Math.min(A.y + A.h, N.y + N.h);
     const I = { x: x0, y: y0, w: x1 - x0, h: y1 - y0 };
-    if (I.w > 0 && I.h > 0 && I.w * I.h >= .6 * Math.min(A.w * A.h, N.w * N.h)) return I;
+    if (I.w > 0 && I.h > 0 && I.w * I.h >= .6 * Math.min(A.w * A.h, N.w * N.h)) return expande(d, w, h, I, A);
     return A;
   }
   if (!cantosParecemParede(d, w, h, 60)) return null;
-  return caixaDaObra(d, w, h);
+  const N = caixaDaObra(d, w, h);
+  return N ? expande(d, w, h, N, inteira) : null;
 }
+
 if (typeof module !== 'undefined') module.exports = { caixaAntiga, caixaDaObra, caixaFinal };
