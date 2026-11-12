@@ -2011,9 +2011,29 @@
   },
   "A Ressaca da democracia — Alexander Apóstol|Galeria Raquel Arnaud": {
     "links": {
-      "siteErro": "nenhum link casou com o titulo (home + indices, ate com render)"
+      "siteErro": "nenhum link casou com o titulo (home + indices, ate com render)",
+      "site": "https://raquelarnaud.com/exposicoes/alexander-apostol_-a-ressaca-da-democracia/",
+      "siteConfianca": 13
     },
-    "candidatos": []
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://raquelarnaud.com/wp-content/uploads/2026/10/18268_tango.jpg",
+        "md5": "b2b31b4052a46d6f351f4b62fc028970",
+        "fonte": "site",
+        "w": 1935,
+        "h": 1782,
+        "kb": 573,
+        "serveObra": true,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-11-12",
+    "escolhida": 1,
+    "img": "img/a-ressaca-da-democracia-galeria-raquel-arnaud.jpg",
+    "cred": "Cortesia Galeria Raquel Arnaud",
+    "motivo": "auto: 1935x1782, fonte site"
   },
   "Trickster — Sérgio Free|A7MA Galeria": {
     "links": {
