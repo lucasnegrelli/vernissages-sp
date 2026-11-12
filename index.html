@@ -73,15 +73,16 @@ img{max-width:100%}
 /* ---------- destaque ---------- */
 .hero{--ar:1;--ar-m:1;--p:clamp(16px,2vw,34px);--hv:max(520px,calc(100vh - var(--topo,200px)));display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(24px,3.4vw,64px);align-items:center;min-height:var(--hv);padding:var(--p) 0;border-bottom:1px solid var(--ink)}
 @supports (height:100svh){.hero{--hv:max(520px,calc(100svh - var(--topo,200px)))}}
-.hero .tx{display:flex;flex-direction:column;gap:clamp(12px,1.5vw,24px);min-width:0}
+.hero .tx{display:flex;flex-direction:column;gap:clamp(12px,1.5vw,24px);min-width:0;container-type:inline-size}
 .rot{grid-area:rot;font-size:12px;letter-spacing:.14em;text-transform:uppercase}.rot b{color:var(--terra);font-weight:700}
-.hero h2{grid-area:tit;font-weight:800;text-transform:uppercase;line-height:.9;letter-spacing:-.04em;margin:0;overflow-wrap:anywhere;text-wrap:balance}
+.hero h2{grid-area:tit;font-weight:800;text-transform:uppercase;line-height:.9;letter-spacing:-.04em;margin:0;overflow-wrap:normal;hyphens:none;text-wrap:balance;--cw:100cqw}
+.hero.pais h2{--cw:56cqw}
 .hero .art,.hero .desc,.item .art{text-wrap:pretty}
 .item h3,.cartao h3,.painel h3,#modal h3,.cta h2,.cab h2{text-wrap:balance}
-.hero h2.t-xl{font-size:clamp(54px,8.2vw,150px)}
-.hero h2.t-l{font-size:clamp(44px,6vw,110px)}
-.hero h2.t-m{font-size:clamp(36px,4.6vw,84px)}
-.hero h2.t-s{font-size:clamp(30px,3.6vw,64px)}
+.hero h2.t-xl{font-size:min(clamp(54px,8.2vw,150px),calc(var(--cw)/(var(--mw,8)*.66)))}
+.hero h2.t-l{font-size:min(clamp(44px,6vw,110px),calc(var(--cw)/(var(--mw,8)*.66)))}
+.hero h2.t-m{font-size:min(clamp(36px,4.6vw,84px),calc(var(--cw)/(var(--mw,8)*.66)))}
+.hero h2.t-s{font-size:min(clamp(30px,3.6vw,64px),calc(var(--cw)/(var(--mw,8)*.66)))}
 .hero .art{grid-area:art;font-family:var(--serif);font-style:italic;font-size:clamp(22px,2.4vw,40px);line-height:1.08}
 .hero .qd{grid-area:qd;display:flex;flex-direction:column;gap:clamp(10px,1.2vw,18px)}
 .hero .quando{border-top:2px solid var(--ink);padding-top:clamp(10px,1.2vw,18px);display:flex;flex-direction:column;gap:8px}
@@ -107,6 +108,7 @@ img{max-width:100%}
 .hero.pais{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto;gap:clamp(18px,2vw,32px);height:var(--hv);min-height:0}
 .hero.pais .fg{order:-1;display:flex;flex-direction:column;min-height:0;height:100%}
 .hero.pais figure{flex:1;min-height:0;height:auto;width:100%;max-width:none;aspect-ratio:auto}
+.hero.pais figure img{object-fit:contain;object-position:left top}
 .hero.pais .tx{display:grid;grid-template-columns:7fr 5fr;column-gap:clamp(24px,4vw,80px);row-gap:clamp(8px,1vw,16px);grid-template-areas:"rot rot" "tit qd" "art qd" "btn qd";align-items:start}
 .hero.pais .tx .botoes{align-self:start}
 
@@ -895,7 +897,7 @@ async function montaHeroImg(url,hero){
   if(!info){fig.innerHTML='<div class="capa">'+esc((FOCO&&(FOCO.v||FOCO.t))||'')+'</div>';fig.classList.add('ok');return;}
   const b=info.box||{x:0,y:0,w:info.W,h:info.H},ar=b.w/b.h;
   hero.style.setProperty('--ar',ar.toFixed(3));hero.style.setProperty('--ar-m',Math.max(ar,.8).toFixed(3));
-  hero.classList.toggle('pais',ar>1.7);
+  hero.classList.toggle('pais',ar>2.3);
   const k=Math.min(1,2000/Math.max(b.w,b.h)),c=document.createElement('canvas');
   c.width=Math.round(b.w*k);c.height=Math.round(b.h*k);
   c.getContext('2d').drawImage(info.im,b.x,b.y,b.w,b.h,0,0,c.width,c.height);
@@ -911,7 +913,7 @@ function renderHero(){
   const n=(f.t||'').length, tam=n<=16?'xl':n<=30?'l':n<=52?'m':'s';
   const desc=f.txt?corteDesc(f.txt,520):'';
   el.innerHTML='<div class="hero"><div class="tx">'+
-    '<div class="rot"><b>'+(f.publi?'Apoio · conteúdo patrocinado':'Em foco')+'</b>'+(f.auto&&!f.publi?' · destaque do dia':'')+(v?' · '+esc(v.name)+' · '+esc(v.b):'')+'</div>'+
+    '<div class="rot">'+(f.publi?'<b>Apoio · conteúdo patrocinado</b>'+(v?' · ':''):'')+(v?'<b>'+esc(v.name)+'</b> · '+esc(v.b):'')+'</div>'+
     '<h2 class="t-'+tam+'">'+quebraTitulo(f.t)+'</h2>'+(()=>{const n=aSemTitulo(f.quem,f.t);return n.length?'<div class="art">'+esc(n.join(', '))+'</div>':''})()+
     '<div class="qd">'+(f.ini?'<div class="quando"><div class="dt">'+datasFoco(f)+'</div><div class="sit">'+situacaoFoco(f)+'</div></div>':'')+(desc?'<p class="desc">'+esc(desc)+'</p>':'')+'</div>'+
     '<div class="botoes">'+(v?'<button type="button" class="bt cheio" data-act="veremapa" data-v="'+esc(v.name)+'">Ver no mapa</button>':'')+
@@ -920,6 +922,7 @@ function renderHero(){
     (v&&v.site?'<a class="bt" href="'+esc(v.site)+'" target="_blank" rel="noopener">Site</a>':'')+'</div></div>'+
     '<div class="fg"><figure>'+(imgOk?'':'<div class="capa">'+esc(f.v||f.t)+'</div>')+'</figure>'+
     (f.cred?'<figcaption>'+esc(f.cred)+'</figcaption>':'')+'</div></div>';
+  { const h2=el.querySelector('h2'); if(h2){ const mw=Math.max(5,...String(f.t||'').split(/[\s\-—:·\/]+/).map(w=>w.length)); h2.style.setProperty('--mw',mw); } }
   medeTopo();
   const hero=el.querySelector('.hero');
   if(imgOk){corDaObra(f.img);montaHeroImg(f.img,hero);carregaImgMarca(f.img);}
