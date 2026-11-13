@@ -108,6 +108,12 @@
       "seguidores": 114,
       "seguindo": 104,
       "posts": 81
+    },
+    {
+      "data": "2026-11-13",
+      "seguidores": 115,
+      "seguindo": 104,
+      "posts": 82
     }
   ],
   "midias": {
@@ -630,6 +636,14 @@
       "comentarios": 0,
       "link": "https://www.instagram.com/reel/Dfk6-CiD6zB/",
       "formato": "reel"
+    },
+    "17956179108271892": {
+      "tipo": "FEED",
+      "quando": "2026-11-13T18:29:18+0000",
+      "curtidas": 0,
+      "comentarios": 0,
+      "link": "https://www.instagram.com/p/DfsRs8qHRl3/",
+      "formato": "obra"
     }
   }
 }
