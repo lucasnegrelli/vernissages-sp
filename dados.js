@@ -351,11 +351,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Coordenadas Improváveis",
-  v: "MITS Galeria",
-  quem: "",
-  txt: "Coletiva com 11 artistas, entre eles Jay Boggo, Maria Tereza Bomfim, Marcos Cavallaria, Letícia Façanha, Matheus Freitas e Cadeh Juaçaba. Em cartaz até 15 de novembro.",
-  link: "https://www.mitsgaleria.art",
+  t: "A Ressaca da democracia — Alexander Apóstol",
+  v: "Galeria Raquel Arnaud",
+  quem: "Alexander Apóstol",
+  txt: "Primeira individual do artista venezuelano no Brasil, com texto crítico de Ana Maria Maia. Dois trabalhos partem do abstracionismo geométrico para tratar da fragilidade política da Venezuela. Abertura em 12 de novembro, das 18h às 21h; encerramento não divulgado.",
+  link: "https://www.raquelarnaud.com",
   publi: false
 };
 
@@ -370,6 +370,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-11-13", k:"A Ressaca da democracia — Alexander Apóstol|Galeria Raquel Arnaud"},
   {d:"2026-11-12", k:"Coordenadas Improváveis|MITS Galeria"},
   {d:"2026-11-11", k:"Voice Leading — Peter Shear|Mendes Wood DM — Casa Iramaia"},
   {d:"2026-11-10", k:"Trickster — Sérgio Free|A7MA Galeria"},
@@ -479,5 +480,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "12/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "13/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
