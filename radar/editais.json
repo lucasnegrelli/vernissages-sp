@@ -1,17 +1,17 @@
 {
- "gerado": "2026-11-12",
+ "gerado": "2026-11-13",
  "aviso": "Detectado automaticamente em feeds e buscas. O prazo vem do texto da matéria: confirme na fonte oficial.",
  "itens": [
   {
-   "t": "Conversa no Paço Imperial sobre residências (14/11): com a dupla Amador e Jr., Melissa Alves e Camilla Rocha Campos",
+   "t": "Este sábado (14/11): Conversa no Paço Imperial sobre residências com a dupla Amador e Jr., Melissa Alves e Camilla Rocha Campos",
    "fonte": "Prêmio PIPA",
    "link": "https://www.premiopipa.com/2026/11/conversa-no-paco-imperial-sobre-residencias-1411-com-a-dupla-amador-e-jr-melissa-alves-e-camilla-rocha-campos/",
-   "pub": "2026-11-06",
+   "pub": "2026-11-13",
    "prazo": "2026-11-14",
    "cat": "residencia",
    "onde": "brasil",
-   "resumo": "No próximo sábado, dia 14 de novembro, às 14h, será oferecida uma conversa sobre residências artísticas e curatoriais como parte da programação das mostras do PIPA no Paço Imperial. Leia mais sobre o evento e sobre os convidados",
-   "visto": "2026-11-12"
+   "resumo": "Neste sábado, dia 14 de novembro, às 14h, será oferecida uma conversa sobre a importância das residências artísticas e curatoriais e os desdobramentos dessas experiências para a formação profissional. O evento faz parte da programação das m",
+   "visto": "2026-11-13"
   },
   {
    "t": "Residência artística em casa projetada por Zanine Caldas abre inscrições",
@@ -22,7 +22,7 @@
    "cat": "residencia",
    "onde": "brasil",
    "resumo": "Programa selecionará quatro artistas brasileiros e estrangeiros para uma imersão de um mês à beira-mar, com curadoria de Felipe Scovino e foco na relação entre arte, arquitetura e natureza Estão abertas, até 5 de novembro, as inscrições par",
-   "visto": "2026-11-12"
+   "visto": "2026-11-13"
   },
   {
    "t": "Inscrições Fechadas (03/11): Residência Artística The PIPA Foundation na Gasworks",
@@ -44,7 +44,7 @@
    "cat": "chamada",
    "onde": "sp",
    "resumo": "Com o tema Ancestralidade e Território, evento selecionará 21 artistas e projetos para uma semana de programação na Ocupação 9 de Julho, com cachê de R$ 5 mil O Festival Ubuntu chega à sexta edição ampliando seu espaço para a produção cultu",
-   "visto": "2026-11-12"
+   "visto": "2026-11-13"
   },
   {
    "t": "Saiba como se inscrever na residência artística da Galeria Luis Maluf para 2027",
@@ -55,7 +55,18 @@
    "cat": "residencia",
    "onde": "brasil",
    "resumo": "Programa chega à 6ª edição com coordenação de Jacopo Crivelli e Gabriela Gotoda e parceria de intercâmbio com o Sertão Negro Ateliê e Escola de Artes A Galeria Luis Maluf abriu inscrições para a 6ª edição de seu Programa de Residência Artís",
-   "visto": "2026-11-12"
+   "visto": "2026-11-13"
+  },
+  {
+   "t": "MoMA lança prêmio de arquitetura e premia projeto em Bangladesh",
+   "fonte": "Arte Que Acontece",
+   "link": "https://artequeacontece.com.br/moma-lanca-premio-de-arquitetura-e-premia-projeto-em-bangladesh/",
+   "pub": "2026-11-13",
+   "prazo": null,
+   "cat": "premio",
+   "onde": "brasil",
+   "resumo": "Para proteger um prédio das enchentes no delta do rio Jamuna, em Bangladesh, o arquiteto Kashef Chowdhury buscou inspiração em um assentamento de mais de 2.300 anos. O resultado, o [&hellip;]",
+   "visto": "2026-11-13"
   },
   {
    "t": "CULTSP PRO abre edital para grafite de 130 m² no Bom Retiro",
@@ -66,7 +77,7 @@
    "cat": "fomento",
    "onde": "sp",
    "resumo": "Artista ou coletivo selecionado receberá R$ 20.150 para criar obra no Complexo Cultural Oswald de Andrade; outros cinco projetos poderão ser remunerados durante feira de arte urbana O Bom Retiro, bairro paulistano marcado pela presença de d",
-   "visto": "2026-11-12"
+   "visto": "2026-11-13"
   }
  ]
 }
