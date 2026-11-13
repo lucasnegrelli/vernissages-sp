@@ -89,7 +89,9 @@
       }
     ],
     "credLegenda": null,
-    "atualizado": "2026-10-30"
+    "atualizado": "2026-11-13",
+    "sem": "auto: nenhuma candidata passou na régua (formato de obra, >=1200 px, nome sem cara de cartaz/logo)",
+    "semEm": "2026-11-13"
   },
   "Ocupação JAMAC|Galeria Vermelho": {
     "links": {
@@ -130,13 +132,13 @@
       }
     ],
     "credLegenda": "Emiliano di Cavalcanti, \"Vendedoras de Peixe\" 1952. Divulgação.",
-    "atualizado": "2026-10-30",
+    "atualizado": "2026-11-13",
     "escolhida": 1,
     "img": "img/brasil-das-multiplas-faces-itau-cultural.webp",
     "cred": "Emiliano di Cavalcanti, Vendedoras de Peixe, 1952. Divulgação Itaú Cultural",
     "motivo": "pintura do acervo (Di Cavalcanti), só 1025x485: serve ao site, o formato obra recusa pela régua",
-    "sem": "única obra (Di Cavalcanti) tem 1025x485, não serve nem com foco; a outra é retrato",
-    "semEm": "2026-10-30"
+    "sem": "auto: nenhuma candidata passou na régua (formato de obra, >=1200 px, nome sem cara de cartaz/logo)",
+    "semEm": "2026-11-13"
   },
   "Casa María Lionza — Sol Calero|MASP": {
     "links": {
@@ -146,11 +148,11 @@
       {
         "n": 1,
         "url": "https://artequeacontece.com.br/wp-content/uploads/2026/06/Sol-Calero-Casa-Maria-Lionza-2026_1-scaled.jpg",
-        "md5": "e209052ef3de6297f34d5208331ca764",
+        "md5": "25da125b5218f81a3b774ea7c00b3323",
         "fonte": "aqa",
         "w": 2560,
         "h": 1808,
-        "kb": 161,
+        "kb": 375,
         "serveObra": false,
         "serveComFoco": true
       },
@@ -167,11 +169,13 @@
       }
     ],
     "credLegenda": "Foto: Divulgação",
-    "atualizado": "2026-10-26",
+    "atualizado": "2026-11-13",
     "escolhida": 1,
     "img": "img/casa-maria-lionza-masp.webp",
     "cred": "Cortesia MASP",
-    "motivo": "obra da mostra, casas coloridas, 2560x1808; foco central"
+    "motivo": "obra da mostra, casas coloridas, 2560x1808; foco central",
+    "sem": "auto: nenhuma candidata passou na régua (formato de obra, >=1200 px, nome sem cara de cartaz/logo)",
+    "semEm": "2026-11-13"
   },
   "Histórias Latino-Americanas|MASP": {
     "links": {
@@ -215,13 +219,13 @@
       }
     ],
     "credLegenda": "Foto: Divulgação",
-    "atualizado": "2026-10-30",
+    "atualizado": "2026-11-13",
     "escolhida": 1,
     "img": "img/historias-latino-americanas-masp.webp",
     "cred": "Arte cusquenha, Virgem de Copacabana. Divulgação MASP",
     "motivo": "pintura colonial, 1024x1415: abaixo da régua do feed, serve ao site",
-    "sem": "Virgem de Copacabana 1024x1415 reprovada pela resolução e sem confirmação de que está na mostra; demais são banner preto e foto da fachada",
-    "semEm": "2026-10-30"
+    "sem": "auto: nenhuma candidata passou na régua (formato de obra, >=1200 px, nome sem cara de cartaz/logo)",
+    "semEm": "2026-11-13"
   },
   "Cantaria — Daniel Jorge|Mendes Wood DM": {
     "links": {
@@ -356,12 +360,12 @@
     "candidatos": [
       {
         "n": 1,
-        "url": "https://pinacoteca.org.br/wp-content/uploads/2026/06/uma-obra-III_eleitoral_jul26.png",
-        "md5": "bc69f8ce9939cfc51cf575c27ab2da83",
+        "url": "https://pinacoteca.org.br/wp-content/uploads/2026/06/regua_uma-obra-III_jun26-1.png",
+        "md5": "40eb184671a321f485e36016a3c27761",
         "fonte": "site",
-        "w": 2346,
-        "h": 1391,
-        "kb": 89,
+        "w": 4889,
+        "h": 2899,
+        "kb": 367,
         "serveObra": false,
         "serveComFoco": true
       },
@@ -378,9 +382,9 @@
       }
     ],
     "credLegenda": null,
-    "atualizado": "2026-10-26",
-    "sem": "tela preta com logo e cartaz de OUTRA exposição (Para Crianças)",
-    "semEm": "2026-10-26"
+    "atualizado": "2026-11-13",
+    "sem": "auto: nenhuma candidata passou na régua (formato de obra, >=1200 px, nome sem cara de cartaz/logo)",
+    "semEm": "2026-11-13"
   },
   "Beatriz Milhazes: gravuras do acervo da Pinacoteca|Estação Pinacoteca": {
     "links": {
@@ -477,7 +481,8 @@
   "Mundo Pequeno — Martin Parr|Centro Cultural FIESP": {
     "links": {
       "site": "https://centrocultural.fiesp.com.br/evento/mundo-pequeno-do-fotografo-martin-parr",
-      "siteConfianca": 8
+      "siteConfianca": 8,
+      "siteErro": "nenhum link casou com o titulo (home + indices, ate com render)"
     },
     "candidatos": [
       {
@@ -534,25 +539,108 @@
   },
   "39º Panorama da Arte Brasileira: Depois que tudo foi dito|MAM São Paulo": {
     "links": {
-      "aqa": "https://artequeacontece.com.br/evento/39-panorama-arte-brasileira-depois-que-tudo-foi-dito-mam-sao-paulo/"
+      "aqa": "https://artequeacontece.com.br/evento/39-panorama-arte-brasileira-depois-que-tudo-foi-dito-mam-sao-paulo/",
+      "site": "https://mam.org.br/exposicao/39o-panorama-da-arte-brasileira-depois-que-tudo-foi-dito/",
+      "siteConfianca": 22
     },
     "candidatos": [
       {
         "n": 1,
-        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/05/captura-de-tela-2026-05-19-as-114154.png",
-        "md5": "afde21340510a871501b829c56e54268",
-        "fonte": "aqa",
+        "url": "https://mam.org.br/wp-content/uploads/2025/11/captura-de-tela-2026-05-19-as-114154.png",
+        "md5": "6ad0eda7c02eddb1824928a06dd66350",
+        "fonte": "site",
         "w": 2358,
         "h": 1745,
-        "kb": 3677,
+        "kb": 2563,
         "serveObra": false,
         "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://mam.org.br/wp-content/uploads/2025/11/retrato-diane-lima-foto-mariana-valente.jpg",
+        "md5": "2611783eabbb51db83490c2fc3809ee3",
+        "fonte": "site",
+        "w": 2493,
+        "h": 2493,
+        "kb": 1144,
+        "serveObra": true,
+        "serveComFoco": true
+      },
+      {
+        "n": 3,
+        "url": "https://mam.org.br/wp-content/uploads/2026/05/giovanna-querido-gerente-de-projetos-da-curadoria-do-39o-panorama-da-arte-brasileira.jpeg",
+        "md5": "e6699fd8a6b589cf3c8a444b46946b0e",
+        "fonte": "site",
+        "w": 400,
+        "h": 400,
+        "kb": 22,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 4,
+        "url": "https://mam.org.br/wp-content/uploads/2026/05/allan-weber-por-marina-zabenzi.jpg",
+        "md5": "7aaa47fe5a530ae91956da8222a77849",
+        "fonte": "site",
+        "w": 3088,
+        "h": 2048,
+        "kb": 1786,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 5,
+        "url": "https://mam.org.br/wp-content/uploads/2026/05/amori-por-roger-luz1.jpeg",
+        "md5": "2593f820d7db3e1ae192770033c4a8de",
+        "fonte": "site",
+        "w": 3854,
+        "h": 3600,
+        "kb": 2339,
+        "serveObra": true,
+        "serveComFoco": true
+      },
+      {
+        "n": 6,
+        "url": "https://mam.org.br/wp-content/uploads/2026/05/ana-claudia-almeida-foto-marina-lima1.jpg",
+        "md5": "805fe60cdac95cb093d87916e4a28e21",
+        "fonte": "site",
+        "w": 1553,
+        "h": 1545,
+        "kb": 290,
+        "serveObra": true,
+        "serveComFoco": true
+      },
+      {
+        "n": 7,
+        "url": "https://mam.org.br/wp-content/uploads/2026/05/03-foto-felpsac.jpeg",
+        "md5": "249548fbb81fca07031b8a8934eb88c6",
+        "fonte": "site",
+        "w": 4000,
+        "h": 4793,
+        "kb": 2619,
+        "serveObra": true,
+        "serveComFoco": true
+      },
+      {
+        "n": 8,
+        "url": "https://mam.org.br/wp-content/uploads/2026/05/retrato-anti-ribeiro-por-mitsy-queiroz-440x440.jpg",
+        "md5": "0c2bcb5251c58a507afdbd2d6bc56c31",
+        "fonte": "site",
+        "w": 440,
+        "h": 440,
+        "kb": 30,
+        "serveObra": false,
+        "serveComFoco": false
       }
     ],
-    "credLegenda": "Foto: Divulgação MAM",
-    "atualizado": "2026-10-26",
+    "credLegenda": null,
+    "atualizado": "2026-11-13",
     "sem": "key visual com o título em areia; é arte de divulgação com texto, não obra",
-    "semEm": "2026-10-26"
+    "semEm": "2026-10-26",
+    "escolhida": 7,
+    "img": "img/39-panorama-da-arte-brasileira-depois-que-tudo-foi-dito-mam-.jpg",
+    "cred": "Cortesia MAM São Paulo",
+    "motivo": "auto: 4000x4793, fonte site"
   },
   "Constelação em trânsito: uma escuta cartográfica|Galpão da Lapa": {
     "links": {
@@ -739,9 +827,9 @@
       }
     ],
     "credLegenda": null,
-    "atualizado": "2026-10-26",
-    "sem": "só banners pretos com logos",
-    "semEm": "2026-10-26"
+    "atualizado": "2026-11-13",
+    "sem": "auto: nenhuma candidata passou na régua (formato de obra, >=1200 px, nome sem cara de cartaz/logo)",
+    "semEm": "2026-11-13"
   },
   "Afríquia: o artista como colecionador|Museu Afro Brasil Emanoel Araujo": {
     "links": {
@@ -784,9 +872,9 @@
       }
     ],
     "credLegenda": null,
-    "atualizado": "2026-10-26",
-    "sem": "foto genérica do salão do museu, logo e cartaz de outro evento",
-    "semEm": "2026-10-26"
+    "atualizado": "2026-11-13",
+    "sem": "auto: nenhuma candidata passou na régua (formato de obra, >=1200 px, nome sem cara de cartaz/logo)",
+    "semEm": "2026-11-13"
   },
   "Coordenadas Improváveis|MITS Galeria": {
     "links": {
@@ -956,17 +1044,6 @@
     "candidatos": [
       {
         "n": 1,
-        "url": "https://mis-sp.org.br/wp-content/uploads/2026/06/regua_NOVA-FOTO_posit_horiz-V1_periodo-eleitoral-scaled.png",
-        "md5": "276ed3b03d3c2bc76d9b7b19abd3b9bd",
-        "fonte": "site",
-        "w": 2560,
-        "h": 1307,
-        "kb": 186,
-        "serveObra": false,
-        "serveComFoco": true
-      },
-      {
-        "n": 2,
         "url": "https://mis-sp.org.br/wp-content/uploads/2023/12/cropped-marca-texto-768x71.png",
         "md5": "10b25492774636cc01b8001dc8a24656",
         "fonte": "site",
@@ -977,7 +1054,7 @@
         "serveComFoco": false
       },
       {
-        "n": 3,
+        "n": 2,
         "url": "https://mis-sp.org.br/wp-content/uploads/2026/06/regua_NOVA-FOTO_posit_horiz-V1_periodo-eleitoral.png",
         "md5": "bedffd1c50ab26cbaf2853da08fc6363",
         "fonte": "site",
@@ -989,9 +1066,9 @@
       }
     ],
     "credLegenda": null,
-    "atualizado": "2026-10-26",
-    "sem": "só banners pretos com logos de patrocinadores",
-    "semEm": "2026-10-26"
+    "atualizado": "2026-11-13",
+    "sem": "auto: nenhuma candidata passou na régua (formato de obra, >=1200 px, nome sem cara de cartaz/logo)",
+    "semEm": "2026-11-13"
   },
   "Marília Mendonça: Sentimento Louco|MIS — Museu da Imagem e do Som": {
     "links": {
@@ -1034,9 +1111,9 @@
       }
     ],
     "credLegenda": null,
-    "atualizado": "2026-10-26",
-    "sem": "quadro de patrocinadores e logo",
-    "semEm": "2026-10-26"
+    "atualizado": "2026-11-13",
+    "sem": "auto: nenhuma candidata passou na régua (formato de obra, >=1200 px, nome sem cara de cartaz/logo)",
+    "semEm": "2026-11-13"
   },
   "NZO: Memórias Afro-brasileiras|Museu Afro Brasil Emanoel Araujo": {
     "links": {
@@ -1079,9 +1156,9 @@
       }
     ],
     "credLegenda": null,
-    "atualizado": "2026-10-26",
-    "sem": "mesma folha genérica do Afríquia, nada da mostra",
-    "semEm": "2026-10-26"
+    "atualizado": "2026-11-13",
+    "sem": "auto: nenhuma candidata passou na régua (formato de obra, >=1200 px, nome sem cara de cartaz/logo)",
+    "semEm": "2026-11-13"
   },
   "Tinta sobre Memória — Luiz Fukushiro|Museu da Imigração": {
     "links": {
@@ -1412,23 +1489,12 @@
         "kb": 225,
         "serveObra": false,
         "serveComFoco": true
-      },
-      {
-        "n": 2,
-        "url": "https://mis-sp.org.br/wp-content/uploads/2023/12/cropped-marca-texto-768x71.png",
-        "md5": "10b25492774636cc01b8001dc8a24656",
-        "fonte": "site",
-        "w": 768,
-        "h": 71,
-        "kb": 22,
-        "serveObra": false,
-        "serveComFoco": false
       }
     ],
     "credLegenda": null,
-    "atualizado": "2026-10-26",
-    "sem": "mesma câmera antiga que aparece na página de Steps: imagem genérica do site, não da mostra",
-    "semEm": "2026-10-26"
+    "atualizado": "2026-11-13",
+    "sem": "auto: nenhuma candidata passou na régua (formato de obra, >=1200 px, nome sem cara de cartaz/logo)",
+    "semEm": "2026-11-13"
   },
   "Afropindorama: tecnologia do afeto. Práticas de bem viver|Museu Afro Brasil Emanoel Araujo": {
     "links": {
@@ -1471,9 +1537,9 @@
       }
     ],
     "credLegenda": null,
-    "atualizado": "2026-10-26",
-    "sem": "mesma folha genérica das outras mostras do museu",
-    "semEm": "2026-10-26"
+    "atualizado": "2026-11-13",
+    "sem": "auto: nenhuma candidata passou na régua (formato de obra, >=1200 px, nome sem cara de cartaz/logo)",
+    "semEm": "2026-11-13"
   },
   "Quarto de hora — Elisa Arruda|AM Galeria": {
     "links": {
@@ -1858,17 +1924,17 @@
   "Caleidoscópio Xapiri Yanomami — Leão Serva|MIS — Museu da Imagem e do Som": {
     "links": {
       "site": "https://mis-sp.org.br/exposicao/caleidoscopio-xapiri-yanomam/",
-      "siteConfianca": 10
+      "siteConfianca": 7
     },
     "candidatos": [
       {
         "n": 1,
-        "url": "https://mis-sp.org.br/wp-content/uploads/2026/08/reguas_mis_posit_SITE-PAREDE-TV_V3_periodo-eleitoral-scaled.png",
-        "md5": "afd4d8de8fb65bc8ddd12c62deb3b0d2",
+        "url": "https://mis-sp.org.br/wp-content/uploads/2026/08/reguas_mis_posit_SITE-PAREDE-TV_V3_periodo-eleitoral.png",
+        "md5": "1451cfb10a86fee5dc16c503160ba87b",
         "fonte": "site",
-        "w": 2560,
-        "h": 970,
-        "kb": 166,
+        "w": 8517,
+        "h": 3228,
+        "kb": 374,
         "serveObra": false,
         "serveComFoco": false
       },
@@ -1885,20 +1951,20 @@
       },
       {
         "n": 3,
-        "url": "https://mis-sp.org.br/wp-content/uploads/2026/08/reguas_mis_posit_SITE-PAREDE-TV_V3_periodo-eleitoral.png",
-        "md5": "1451cfb10a86fee5dc16c503160ba87b",
+        "url": "https://mis-sp.org.br/wp-content/uploads/2026/08/reguas_mis_posit_SITE-PAREDE-TV_V3_periodo-eleitoral-scaled.png",
+        "md5": "afd4d8de8fb65bc8ddd12c62deb3b0d2",
         "fonte": "site",
-        "w": 8517,
-        "h": 3228,
-        "kb": 374,
+        "w": 2560,
+        "h": 970,
+        "kb": 166,
         "serveObra": false,
         "serveComFoco": false
       }
     ],
     "credLegenda": null,
-    "atualizado": "2026-10-30",
-    "sem": "só réguas/logo, pretas e com texto",
-    "semEm": "2026-10-30"
+    "atualizado": "2026-11-13",
+    "sem": "auto: nenhuma candidata passou na régua (formato de obra, >=1200 px, nome sem cara de cartaz/logo)",
+    "semEm": "2026-11-13"
   },
   "Encantário Ibejis: Salve as crianças!|Museu Afro Brasil Emanoel Araujo": {
     "links": {
@@ -1941,9 +2007,9 @@
       }
     ],
     "credLegenda": null,
-    "atualizado": "2026-10-30",
-    "sem": "vista genérica do acervo permanente, logo e banner de outro evento",
-    "semEm": "2026-10-30"
+    "atualizado": "2026-11-13",
+    "sem": "auto: nenhuma candidata passou na régua (formato de obra, >=1200 px, nome sem cara de cartaz/logo)",
+    "semEm": "2026-11-13"
   },
   "Diáfana — Gretta Sarfaty|Museu Judaico de São Paulo": {
     "links": {
@@ -2125,5 +2191,47 @@
     "img": "img/trickster-a7ma-galeria.webp",
     "cred": "Cortesia A7MA Galeria",
     "motivo": "auto: 1200x1600, fonte site"
+  },
+  "Kansai Noguchi e Syotatsu|Mendes Wood DM": {
+    "links": {
+      "site": "https://mendeswooddm.com/exhibitions/430-syotatsu-kansai-noguchi-syotatsu-kansai-noguchi/",
+      "siteConfianca": 10
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://static-assets.artlogic.net/w_2600,h_2600,c_limit,f_auto,fl_lossy,q_auto,dpr_auto/ws-mendeswood/usr/images/exhibitions/group_images_override/430/mw.syo.031-d4-hr-to-al.jpg",
+        "md5": "6bbbc77bb6fb08dd198ed282d2f2fab4",
+        "fonte": "site",
+        "w": 2600,
+        "h": 1734,
+        "kb": 843,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://static-assets.artlogic.net/w_2600,h_2600,c_fill,f_auto,fl_lossy,q_auto,dpr_auto/ws-mendeswood/usr/images/exhibitions/main_image_override/430/mw.syo.031-d4-hr-to-al.jpg",
+        "md5": "f8afede465a48fee7f674296c4ed5479",
+        "fonte": "site",
+        "w": 2600,
+        "h": 2600,
+        "kb": 1163,
+        "serveObra": true,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-11-13",
+    "escolhida": 2,
+    "img": "img/kansai-noguchi-e-syotatsu-mendes-wood-dm.webp",
+    "cred": "Cortesia Mendes Wood DM",
+    "motivo": "auto: 2600x2600, fonte site"
+  },
+  "Residência Fause Hauten: Um artista em processo|CCBB São Paulo": {
+    "links": {
+      "siteErro": "nenhum link casou com o titulo (home + indices, ate com render)"
+    },
+    "candidatos": []
   }
 }
