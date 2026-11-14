@@ -180,6 +180,18 @@ function trechos(par, max, n) {
     console.log('  --auto: ordem ' + ordemAuto.join(',') + (panoAuto >= 0 ? ' · pano ' + panoAuto : ''));
   }
   const ordem = (flag('ordem', '') || lista.map((_, i) => i).join(',')).split(',').map(Number).filter(i => lista[i]).slice(0, parseInt(flag('max', '8'), 10));
+  /* NUNCA a mesma imagem duas vezes no carrossel (regra do Lucas, 14/11/2026): a capa já é a informação, não se repete mais adiante.
+     O hash pega a mesma foto em outro tamanho; a foto nua + a vista emoldurada dela (caso Ver o mundo) o hash não pega:
+     ao escolher --ordem pela folha de contato, olhar e nunca pôr as duas. */
+  {
+    const hs = [], limpa = [];
+    for (const i of ordem) {
+      const h = await aHash(sharp, lista[i].arq);
+      if (hs.some(o => dist(o, h) <= 12)) { console.log(`  repetida, fora do carrossel: foto ${i}`); continue; }
+      hs.push(h); limpa.push(i);
+    }
+    ordem.length = 0; ordem.push(...limpa);
+  }
   if (ordem.length < 3) throw new Error('precisa de pelo menos 3 fotos (--ordem)');
   const out = path.resolve(RAIZ, flag('out', path.join('SOCIAL', hoje.slice(5, 7), hoje.slice(8, 10))));
   fs.mkdirSync(out, { recursive: true });
