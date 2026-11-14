@@ -103,7 +103,9 @@ function legendar(feed) {
     const texto = montar(feed, comCorpo);
     if (!texto) return null;
     const v = lint(texto, { tipo: 'legenda' });
-    if (!v.some(x => x.grave) && texto.length <= 1300) return { texto, avisos: v.map(x => x.regra + ': ' + x.trecho), comCorpo };
+    if (!v.some(x => x.grave) && texto.length <= 1300)
+    { const collab = [...new Set((feed.mostras || []).map(m => m && m.instagram_da_casa).filter(Boolean).map(h => h.startsWith('@') ? h : '@' + h))].slice(0, 3);
+    return { texto, avisos: v.map(x => x.regra + ': ' + x.trecho), comCorpo, collab }; }
   }
   return null;
 }
