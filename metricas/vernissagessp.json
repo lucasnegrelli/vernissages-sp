@@ -114,6 +114,12 @@
       "seguidores": 115,
       "seguindo": 104,
       "posts": 82
+    },
+    {
+      "data": "2026-11-14",
+      "seguidores": 117,
+      "seguindo": 104,
+      "posts": 85
     }
   ],
   "midias": {
@@ -600,7 +606,7 @@
     "17915716044475711": {
       "tipo": "FEED",
       "quando": "2026-11-09T18:30:58+0000",
-      "curtidas": 9,
+      "curtidas": 10,
       "comentarios": 0,
       "link": "https://www.instagram.com/p/Dfh-tkPIzxi/",
       "formato": "editais"
@@ -624,7 +630,7 @@
     "18183022750433041": {
       "tipo": "FEED",
       "quando": "2026-11-11T17:24:47+0000",
-      "curtidas": 1,
+      "curtidas": 2,
       "comentarios": 0,
       "link": "https://www.instagram.com/p/DfnAulnmzz8/",
       "formato": "afundo"
@@ -640,10 +646,34 @@
     "17956179108271892": {
       "tipo": "FEED",
       "quando": "2026-11-13T18:29:18+0000",
-      "curtidas": 0,
+      "curtidas": 2,
       "comentarios": 0,
       "link": "https://www.instagram.com/p/DfsRs8qHRl3/",
       "formato": "obra"
+    },
+    "18193539259409861": {
+      "tipo": "FEED",
+      "quando": "2026-11-14T15:22:22+0000",
+      "curtidas": 3,
+      "comentarios": 0,
+      "link": "https://www.instagram.com/p/DfuhGtcoFBV/",
+      "formato": "avesso"
+    },
+    "17933836608165771": {
+      "tipo": "FEED",
+      "quando": "2026-11-14T15:21:52+0000",
+      "curtidas": 2,
+      "comentarios": 0,
+      "link": "https://www.instagram.com/p/DfuhC9roKsG/",
+      "formato": "exposicao"
+    },
+    "18120091283327716": {
+      "tipo": "REELS",
+      "quando": "2026-11-13T23:49:40+0000",
+      "curtidas": 0,
+      "comentarios": 0,
+      "link": "https://www.instagram.com/reel/Dfs2U--Ao5L/",
+      "formato": "reel"
     }
   }
 }
