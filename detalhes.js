@@ -45,7 +45,7 @@ async function recortes(sharp, arquivo, n) {
     mag[y * L + x] = Math.hypot(gx, gy);
   }
   const cands = [];
-  for (const f of [0.36, 0.5]) {
+  for (const f of [0.28, 0.36, 0.5]) {
     let cw = IW * f, ch = cw * 1.25;
     if (ch > IH * 0.92) { ch = IH * 0.92; cw = ch / 1.25; }
     const w = Math.round(cw * sc), h = Math.round(ch * sc), passo = Math.max(4, Math.round(w / 6));
@@ -53,15 +53,18 @@ async function recortes(sharp, arquivo, n) {
       let soma = 0, quentes = 0, c = 0;
       for (let y = y0; y < y0 + h; y += 2) for (let x = x0; x < x0 + w; x += 2) { const m = mag[y * L + x]; soma += m; c++; if (m > 18) quentes++; }
       const media = soma / c, cobertura = quentes / c;
-      if (cobertura < 0.12) continue;   /* fundo liso: não é detalhe */
-      cands.push({ x: x0 / sc, y: y0 / sc, w: w / sc, h: h / sc, nota: media * (0.6 + cobertura) * (f === 0.36 ? 1.08 : 1) });
+      if (cobertura < 0.22) continue;   /* fundo liso: não é detalhe (corrigido 14/11: 0,12 deixava passar janela quase toda parede) */
+      cands.push({ x: x0 / sc, y: y0 / sc, w: w / sc, h: h / sc, nota: media * (0.6 + cobertura) * (f < 0.5 ? 1.08 : 1) });
     }
   }
   cands.sort((a, b) => b.nota - a.nota);
+  if (process.env.DBG) console.log("cands", cands.length, cands.slice(0,5).map(c=>[Math.round(c.x),Math.round(c.y),Math.round(c.w)].join(",")).join(" "));
   const out = [];
   for (const c of cands) {
     const cx = c.x + c.w / 2, cy = c.y + c.h / 2;
-    if (out.every(o => Math.hypot(cx - (o.x + o.w / 2), cy - (o.y + o.h / 2)) > Math.max(c.w, o.w) * 0.8)) out.push(c);
+    /* recortes nunca se sobrepõem: janelas vizinhas com emenda quase igual parecem uma panorâmica desalinhada ao deslizar */
+    const livre = o => c.x >= o.x + o.w || o.x >= c.x + c.w || c.y >= o.y + o.h || o.y >= c.y + c.h;
+    if (out.every(livre)) out.push(c);
     if (out.length === n) break;
   }
   /* ordem de leitura: da esquerda para a direita, de cima para baixo */
@@ -81,18 +84,25 @@ async function recortes(sharp, arquivo, n) {
   const sharp = require(path.join(REND, 'node_modules', 'sharp'));
   const arquivo = path.resolve(RAIZ, rel);
   const { lista, IW, IH } = await recortes(sharp, arquivo, 3);
-  if (lista.length < 3) throw new Error('a imagem não tem 3 regiões ricas o bastante');
+  if (lista.length < 2) throw new Error('a imagem não tem 2 regiões ricas e separadas o bastante');
   console.log('recortes:', lista.map(r => `${Math.round(r.x)},${Math.round(r.y)} ${Math.round(r.w)}x${Math.round(r.h)}`).join(' | '));
   if (argv.includes('--seco')) return;
 
   const out = path.resolve(RAIZ, flag('out', path.join('SOCIAL', hoje.slice(5, 7), hoje.slice(8, 10))));
   fs.mkdirSync(out, { recursive: true });
   /* 1: obra inteira, cobrindo o quadro 4:5 com o foco da base */
-  const foco = typeof e.foco === 'number' ? e.foco : 50;
-  const cover = Math.max(W / IW, H / IH), cw = Math.round(IW * cover), ch = Math.round(IH * cover);
-  await sharp(arquivo).rotate().resize(cw, ch).extract({ left: Math.max(0, Math.min(cw - W, Math.round((cw - W) * foco / 100))), top: Math.max(0, Math.round((ch - H) / 2)), width: W, height: H }).png().toFile(path.join(out, 'detalhes-01.png'));
+  /* "obra inteira" é inteira de verdade: cabe sem cortar e o resto do quadro leva a cor exata do fundo da foto (cantos 6x6 px). Antes era cover e cortava as laterais. */
+  const base1 = await sharp(arquivo).rotate().toBuffer(), m1 = await sharp(base1).metadata();
+  let rr = 0, gg = 0, bb = 0, cc = 0;
+  for (const [x, y] of [[0, 0], [m1.width - 6, 0], [0, m1.height - 6], [m1.width - 6, m1.height - 6]]) {
+    const q = await sharp(base1).extract({ left: Math.max(0, x), top: Math.max(0, y), width: 6, height: 6 }).raw().toBuffer({ resolveWithObject: true });
+    for (let i = 0; i < q.data.length; i += q.info.channels) { rr += q.data[i]; gg += q.data[i + 1]; bb += q.data[i + 2]; cc++; }
+  }
+  const fit = Math.min(W / m1.width, H / m1.height), fw = Math.round(m1.width * fit), fh = Math.round(m1.height * fit);
+  const dx = W - fw, dy = H - fh, ex = { top: Math.floor(dy / 2), bottom: Math.ceil(dy / 2), left: Math.floor(dx / 2), right: Math.ceil(dx / 2) };
+  await sharp(await sharp(base1).resize(fw, fh).toBuffer()).extend({ ...ex, extendWith: 'copy' }).png().toFile(path.join(out, 'detalhes-01.png'));
   /* 2..4: aproximações reais */
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < lista.length; i++) {
     const r = lista[i];
     const left = Math.max(0, Math.min(IW - 1, Math.round(r.x))), top = Math.max(0, Math.min(IH - 1, Math.round(r.y)));
     await sharp(arquivo).rotate().extract({ left, top, width: Math.min(Math.round(r.w), IW - left), height: Math.min(Math.round(r.h), IH - top) }).resize(W, H, { fit: 'cover' }).png().toFile(path.join(out, `detalhes-0${i + 2}.png`));
@@ -120,10 +130,10 @@ async function recortes(sharp, arquivo, n) {
   const browser = await puppeteer.launch({ executablePath: process.env.CHROME || 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe', headless: 'new', args: ['--no-sandbox', '--allow-file-access-from-files', '--force-device-scale-factor=1'], defaultViewport: { width: W, height: H, deviceScaleFactor: 1 } });
   const p = await browser.newPage(); await p.goto('file:///' + tmp.replace(/\\/g, '/'), { waitUntil: 'networkidle0' });
   await p.evaluate(() => document.fonts.ready); await new Promise(r => setTimeout(r, 300));
-  await (await p.$('.slide')).screenshot({ path: path.join(out, 'detalhes-05.png') });
+  await (await p.$('.slide')).screenshot({ path: path.join(out, `detalhes-0${lista.length + 2}.png`) });
   await browser.close(); fs.rmSync(tmp, { force: true });
 
-  const leg = `${tituloCurto(e)}${quem ? ', ' + quem : ''}, por dentro.\n\nDeslize: a obra inteira e três aproximações da própria imagem, nas regiões de mais detalhe.\n\n${e.d ? e.d + '\n\n' : ''}Serviço: ${e.v} ${arroba(v.ig)}, ${v.addr ? v.addr + ', ' : ''}${v.b || ''}. ${e.fim ? 'Até ' + porExtenso(e.fim) + '.' : ''}\n\nImagem: ${e.cred}.\n\nSalva para ir e manda para quem vai com você. Agenda completa de exposições em vernissagessp.com.br\n\n#exposicaosp #arteemsp #saopaulo #artecontemporanea #galeriadearte`;
+  const leg = `${tituloCurto(e)}${quem ? ', ' + quem : ''}, por dentro.\n\nDeslize: a obra inteira e ${lista.length === 3 ? 'três' : 'duas'} aproximações da própria imagem, nas regiões de mais detalhe.\n\n${e.d ? e.d + '\n\n' : ''}Serviço: ${e.v} ${arroba(v.ig)}, ${v.addr ? v.addr + ', ' : ''}${v.b || ''}. ${e.fim ? 'Até ' + porExtenso(e.fim) + '.' : ''}\n\nImagem: ${e.cred}.\n\nSalva para ir e manda para quem vai com você. Agenda completa de exposições em vernissagessp.com.br\n\n#exposicaosp #arteemsp #saopaulo #artecontemporanea #galeriadearte`;
   fs.writeFileSync(path.join(out, 'detalhes-LEGENDA.md'), semTravessao(leg) + '\n');
   marcarFoto(rel, flag('pub', hoje));
   console.log(`OK 5 slides em ${path.relative(RAIZ, out)}`);

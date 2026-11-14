@@ -144,7 +144,11 @@ function fase1() {
     // tira o que sobrou de tentativas que não foram a escolhida
     for (const x of arquivos())
       if (x.endsWith('.png') && !x.startsWith(feed) && !x.startsWith('story')) fs.rmSync(path.join(PASTA, x), { force: true });
-    if (feed !== 'editais') { const n = fatos(feed); console.log(`feed ${feed}: ${n} mostra(s) nos fatos`); }
+    if (feed !== 'editais') {
+      const n = fatos(feed); console.log(`feed ${feed}: ${n} mostra(s) nos fatos`);
+      /* legenda por regra (legenda-regra.js), sem IA: só o que está na base; sem fatos suficientes, o feed fica sem legenda e não sai */
+      if (!arquivos().some(x => /-LEGENDA.md$/.test(x))) { try { console.log(rodar('legenda-regra.js', [path.join(path.relative(RAIZ, PASTA), '_feed.json')])); } catch (e) { console.log('legenda: ' + String(e.stdout || e.message).trim().split(String.fromCharCode(10)).pop()); } }
+    }
   }
   return feed;
 }
