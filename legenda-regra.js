@@ -119,7 +119,8 @@ if (require.main === module) {
   const r = legendar(feed);
   if (!r) { console.log('legenda: fatos insuficientes ou lint grave; nenhuma legenda escrita'); process.exit(0); }
   const dest = path.join(path.dirname(arq), `${feed.formato}-LEGENDA.md`);
-  fs.writeFileSync(dest, r.texto + '\n');
+  /* collab (14/11): a casa entra como coautora; o post aparece para os seguidores dela. O publicar.js lê este bloco. */
+  fs.writeFileSync(dest, r.texto + '\n' + (r.collab.length ? '\n---\nConvidar como Collab (a casa aceita no app)\n' + r.collab.join(' ') + '\n' : ''));
   console.log(`legenda: ${path.basename(dest)} (${r.texto.length} caracteres${r.comCorpo ? ', com descrição da base' : ', só fatos'})${r.avisos.length ? ' · avisos: ' + r.avisos.join(' | ') : ''}`);
   if (process.argv.includes('--mostrar')) console.log('\n' + r.texto);
 }
