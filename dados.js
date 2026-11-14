@@ -218,8 +218,6 @@ const EXPOS = [
    creditados. Apareceu errada no salao de 25/09 (a parede pendurou a mesma
    imagem que ja tinha passado por todas as medidas, sem ninguem checar SE ERA
    a obra). Achar a reproducao certa com a Luciana Brito antes de repor. */
-{t:"Cantaria — Daniel Jorge",a:"Daniel Jorge",v:"Mendes Wood DM",ini:"2026-08-22",fim:"2026-11-06",d:"Primeira individual do artista em São Paulo: 23 obras em pedra-sabão, entre escultura, relevo, instalação e performance. Ensaio de Carlos Quijon Jr.",img:"img/cantaria-mendes-wood-dm.jpg",cred:"Foto: Divulgação / Mendes Wood DM",img2:"img/cantaria-mendes-wood-dm-2.jpg",img3:"img/cantaria-mendes-wood-dm-3.jpg"},
-{t:"Déboussolé est le mot exact — Jean Claracq",a:"Jean Claracq",v:"Mendes Wood DM",ini:"2026-08-22",fim:"2026-11-06",d:"Dez pinturas de pequeno formato, a maioria entre 10 e 20 centímetros. Texto de Renato Menezes.",img:"img/deboussole-jean-claracq.jpg",cred:"Cortesia do artista e Mendes Wood DM"},
 {t:"É Tempo Ainda",v:"Janaina Torres Galeria",ini:"2026-08-15",fim:"2026-12-18",d:"Vinte e seis artistas de gerações diferentes, com curadoria de Heloisa Amaral Peixoto, nos dez anos da galeria.",img:"img/e-tempo-ainda-janaina-torres-galeria.webp",cred:"Cortesia Janaina Torres Galeria"},
 {t:"Uma Obra: Pintura sem fim",a:"Gui Teixeira",v:"Pinacoteca de São Paulo",ini:"2026-07-04",fim:"2028-01-31",d:"Terceira edição do projeto Uma Obra: uma parede de carpete recebe centenas de peças de feltro colorido que o público move e recompõe (Pina Luz). Colaboração do artista Gui Teixeira.",img:"img/uma-obra-pintura-sem-fim-pinacoteca-de-sao-paulo.jpg",cred:"Cortesia Pinacoteca de São Paulo"},
 {t:"Beatriz Milhazes: gravuras do acervo da Pinacoteca",a:"Beatriz Milhazes",v:"Estação Pinacoteca",ini:"2026-05-16",fim:"2027-03-14",d:"27 gravuras feitas entre 1996 e 2019 com a Durham Press (Pina Estação).",img:"img/beatriz-milhazes-gravuras-do-acervo-da-pinacoteca-estacao-pi.webp",cred:"Beatriz Milhazes, O pato, 1996. Foto: Cortesia da artista e Pinacoteca de São Paulo",foco:50},
@@ -351,11 +349,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "A Ressaca da democracia — Alexander Apóstol",
-  v: "Galeria Raquel Arnaud",
-  quem: "Alexander Apóstol",
-  txt: "Primeira individual do artista venezuelano no Brasil, com texto crítico de Ana Maria Maia. Dois trabalhos partem do abstracionismo geométrico para tratar da fragilidade política da Venezuela. Abertura em 12 de novembro, das 18h às 21h; encerramento não divulgado.",
-  link: "https://www.raquelarnaud.com",
+  t: "Amarelinha — Alice Shintani",
+  v: "Almeida & Dale",
+  quem: "Alice Shintani",
+  txt: "Primeira individual da artista na galeria, com texto crítico de José Augusto Ribeiro. Pinturas novas em grande formato e fitas amarelas de demarcação que traçam uma amarelinha no piso. Abertura em 7 de novembro, das 11h às 15h, na Rua Fradique Coutinho, 1360.",
+  link: "https://www.almeidaedale.com.br",
   publi: false
 };
 
@@ -370,6 +368,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-11-14", k:"Amarelinha — Alice Shintani|Almeida & Dale"},
   {d:"2026-11-13", k:"A Ressaca da democracia — Alexander Apóstol|Galeria Raquel Arnaud"},
   {d:"2026-11-12", k:"Coordenadas Improváveis|MITS Galeria"},
   {d:"2026-11-11", k:"Voice Leading — Peter Shear|Mendes Wood DM — Casa Iramaia"},
@@ -480,5 +479,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "13/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "14/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
