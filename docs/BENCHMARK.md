@@ -40,3 +40,18 @@ Perfis de Instagram para ver ritmo de grade e capa de carrossel: Contemporary Ar
 3. **Série com molde e cor variável**, como o "Vem pro Vão": capas de série em cartão de cor chapada (a cor da obra do dia), para a grade alternar foto e cartão.
 4. **Destaques do perfil** por série: Editais, Mapa, A fundo, Abre esta semana, A pé por.
 5. **Gente na imagem**: MASP e IMS misturam foto de visitante. Não temos esse material; vale pedir às casas ou fotografar nas aberturas.
+
+## Benchmark visual de perfis (14/11/2026)
+
+Perfis olhados na grade: Palais de Tokyo, Serpentine, Cultured, Arte Que Acontece, Pinacoteca, Whitechapel, Mendes Wood DM. Falta olhar as galerias que o Lucas segue (ele vai indicar).
+
+O que as páginas fortes fazem e a gente não:
+1. A grade é fotográfica primeiro: obra, artista, visitante, sala. Texto é minoria.
+2. Quando há tipografia, ela ocupa o quadro de ponta a ponta (Palais: condensada gigante, preto e branco).
+3. A obra sangra até a borda; o corte é ousado. Nada de obra pequena no meio do papel.
+4. Há gente em muitos quadrados. Falta estoque.
+5. Um molde leve (logo, etiqueta, barra) com conteúdo variável.
+6. Texto sobre foto é comum lá; aqui só sobre foto que não é obra.
+7. Destaques funcionam como menu (os nossos estão em `destaques/`, falta criar no app).
+
+Aplicado em 14/11: Reel com obra em tela cheia e cartela tipográfica (cada palavra na largura inteira); `detalhes.js` com recorte nítido (sem esticar além de 1,5x) e do mais aberto ao mais fechado. Pendente: grade com mais foto e menos cartão; destaques; estoque de foto com gente.
