@@ -282,7 +282,7 @@ function trechos(par, max, n) {
 .cred{position:absolute;left:70px;right:70px;bottom:46px;font-size:17px;font-weight:500;color:#9a948a}
 </style><body><div class="slide"><div class="cab"><b>Vernissages SP</b><span>Uma exposição</span></div><div class="c">
 <div class="tit">${esc(tituloCurto(e))}</div>${quem ? `<div class="q">${esc(quem)}</div>` : ''}
-<div class="sv"><div class="l"><i>Onde</i><span>${esc(e.v)}${v.addr ? ', ' + esc(v.addr) : ''}</span></div><div class="l"><i>Bairro</i><span>${esc(v.b || '')}</span></div><div class="l"><i>Quando</i><span>${e.fim ? 'até ' + esc(porExtenso(e.fim)) : 'desde ' + esc(porExtenso(e.ini))}</span></div>${v.ing && v.ing.g ? '<div class="l"><i>Entrada</i><span>Gratuita</span></div>' : ''}</div></div>
+<div class="sv"><div class="l"><i>Onde</i><span>${esc(e.v)}${v.addr ? ', ' + esc(v.addr) : ''}</span></div><div class="l"><i>Bairro</i><span>${esc(v.b || '')}</span></div><div class="l"><i>Quando</i><span>${flag('quando', null) ? esc(flag('quando')) : e.fim ? 'até ' + esc(porExtenso(e.fim)) : 'desde ' + esc(porExtenso(e.ini))}</span></div>${v.ing && v.ing.g ? '<div class="l"><i>Entrada</i><span>Gratuita</span></div>' : ''}</div></div>
 <div class="cred">Imagens: ${esc(credTxt)}</div></div></body>`;
   const puppeteer = require(path.join(REND, 'node_modules', 'puppeteer-core'));
   const arqHtml = path.join(RAIZ, '.exposicao.html'); fs.writeFileSync(arqHtml, html);
