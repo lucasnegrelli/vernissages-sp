@@ -1,7 +1,7 @@
 {
   "conta": "vernissagessp",
   "id": "2026-11-14_raiox",
-  "status": "aprovado",
+  "status": "postado",
   "tipo": "carrossel",
   "quando": "2026-11-14T18:30:00-03:00",
   "imagens": [
@@ -13,5 +13,9 @@
   ],
   "legenda": "Raio X de São Paulo: 7 em cada 10 exposições em cartaz estão em 6 bairros.\n\nHoje a base do Vernissages SP acompanha 62 exposições em 40 casas. Jardim Europa, Cerqueira César, Bela Vista, Higienópolis, Ibirapuera e Jardim Paulista concentram 43 delas. Zona Oeste 34, Centro 20, Sul 8.\n\nSó conta o que foi mapeado, e o circuito de galerias pesa na conta. Falta um espaço perto de você? Comenta o nome e ele entra no mapa.\n\n10 exposições fecham nos próximos 7 dias, a lista está no slide 4.\n\nSalva e manda para quem acha que SP não tem exposição perto. Mapa completo em vernissagessp.com.br\n\n#exposicaosp #arteemsp #saopaulo #artecontemporanea #galeriadearte",
   "collab": [],
-  "collabExtra": []
+  "collabExtra": [],
+  "collabUsado": false,
+  "collabConvidados": [],
+  "midiaId": "18640974847062627",
+  "postadoEm": "2026-11-14T22:56:16.429Z"
 }
