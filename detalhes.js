@@ -45,7 +45,9 @@ async function recortes(sharp, arquivo, n) {
     mag[y * L + x] = Math.hypot(gx, gy);
   }
   const cands = [];
+  /* nitidez (14/11): o recorte nunca é esticado mais que 1,5x ao virar 1080 px; janela com menos de ~720 px de origem fica borrada e some */
   for (const f of [0.28, 0.36, 0.5]) {
+    if (IW * f < 720) continue;
     let cw = IW * f, ch = cw * 1.25;
     if (ch > IH * 0.92) { ch = IH * 0.92; cw = ch / 1.25; }
     const w = Math.round(cw * sc), h = Math.round(ch * sc), passo = Math.max(4, Math.round(w / 6));
@@ -67,8 +69,8 @@ async function recortes(sharp, arquivo, n) {
     if (out.every(livre)) out.push(c);
     if (out.length === n) break;
   }
-  /* ordem de leitura: da esquerda para a direita, de cima para baixo */
-  return { lista: out.sort((a, b) => (a.y + a.h / 2) * 1.5 + (a.x + a.w / 2) - ((b.y + b.h / 2) * 1.5 + (b.x + b.w / 2))), IW, IH };
+  /* ordem: do recorte mais aberto para o mais fechado, para o deslize parecer entrar na obra */
+  return { lista: out.sort((a, b) => b.w - a.w), IW, IH };
 }
 
 (async () => {
@@ -105,7 +107,7 @@ async function recortes(sharp, arquivo, n) {
   for (let i = 0; i < lista.length; i++) {
     const r = lista[i];
     const left = Math.max(0, Math.min(IW - 1, Math.round(r.x))), top = Math.max(0, Math.min(IH - 1, Math.round(r.y)));
-    await sharp(arquivo).rotate().extract({ left, top, width: Math.min(Math.round(r.w), IW - left), height: Math.min(Math.round(r.h), IH - top) }).resize(W, H, { fit: 'cover' }).png().toFile(path.join(out, `detalhes-0${i + 2}.png`));
+    await sharp(arquivo).rotate().extract({ left, top, width: Math.min(Math.round(r.w), IW - left), height: Math.min(Math.round(r.h), IH - top) }).resize(W, H, { fit: 'cover', kernel: 'lanczos3' }).sharpen({ sigma: 0.6 }).png().toFile(path.join(out, `detalhes-0${i + 2}.png`));
   }
   /* 5: etiqueta */
   const pal = D.paletaDaCor(await D.corDaObra(sharp, arquivo));
