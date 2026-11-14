@@ -11,6 +11,7 @@ soIG:true = agenda só sai no Instagram (sem site ou site parado); entra na
 raspagem semanal do instagram.js. */
 const VENUES = [
 // --- Jardins / Cerqueira César / Jardim América / Jardim Paulista (Oeste) ---
+{name:"Mazzucchelli Cardoso",ig:"mazzucchellicardoso",site:"https://www.mazzucchellicardoso.com.br",addr:"R. Barão de Capanema, 440",b:"Cerqueira César",z:"Oeste",tipo:"galeria",lat:-23.5617,lng:-46.6609,info:"Galeria em Cerqueira César. Abertura da mostra com a presença da artista."},
 {name:"Galeria Luisa Strina",ig:"galerialuisastrina",site:"https://www.luisastrina.com.br",addr:"R. Padre João Manuel, 755",b:"Cerqueira César",z:"Oeste",tipo:"galeria",lat:-23.5646,lng:-46.6683,info:"Fundada em 1974, decana da arte contemporânea no Brasil. Alfredo Jaar, Cildo Meireles, Leonilson. Segunda a sexta, 10h–19h; sábado, 10h–17h."},
 {name:"Galatea",ig:"galatea.art_",site:"https://galatea.art",addr:"R. Oscar Freire, 379",b:"Cerqueira César",z:"Oeste",tipo:"galeria",lat:-23.5622,lng:-46.6661,info:"Dois espaços nos Jardins (Oscar Freire e Padre João Manuel) e uma sede em Salvador. Arte brasileira moderna e contemporânea."},
 {name:"Casa Triângulo",ig:"casatriangulo",site:"https://www.casatriangulo.com",addr:"R. Estados Unidos, 1324",b:"Jardim América",z:"Oeste",tipo:"galeria",lat:-23.5668,lng:-46.6672,info:"Desde 1988 (Ricardo Trevisan). ~500 m² experimentais. Yuli Yamagata, Vânia Mignone. Terça a sexta, 10h–19h; sábado, 10h–17h."},
@@ -207,6 +208,7 @@ const VENUES = [
 
 /* ================= EXPOS ================= */
 const EXPOS = [
+{t:"O Avesso — Kim Gordon e Valentina Liernur",a:"Kim Gordon, Valentina Liernur",v:"Mazzucchelli Cardoso",ini:"2026-11-14",fim:"2027-01-30",d:"Duas pintoras em sintonia: Kim Gordon, com figuras de jovens mulheres em acrílica dentro de molduras ovais, e a argentina Valentina Liernur, com telas rasgadas, nós e fitas. Cerca de 15 trabalhos, texto crítico de Giovana Madalosso. Abertura em 14 de novembro, das 12h às 17h, com a presença de Kim Gordon.",img:"img/o-avesso-mazzucchelli-cardoso.jpg",cred:"Cortesia Mazzucchelli Cardoso",img2:"img/o-avesso-mazzucchelli-cardoso-2.jpg",img3:"img/o-avesso-mazzucchelli-cardoso-3.jpg"},
 {t:"To Love — Claudia Andujar e George Love",a:"Claudia Andujar, George Love",v:"Galeria Vermelho",ini:"2026-08-15",fim:null,d:"Curadoria de Eder Chiodetto sobre a produção experimental de George Love e seu diálogo com Claudia Andujar nos anos 1960 e 1970. A mostra marca o início da representação do Arquivo de George Love pela galeria. Abertura em 15 de agosto; encerramento não divulgado.",img:"img/to-love-galeria-vermelho.jpg",cred:"Cortesia Galeria Vermelho",foco:57},
 {t:"No meio da pedra — André Vargas",a:"André Vargas",v:"Galeria Vermelho",ini:"2026-08-15",fim:null,d:"Segunda individual do artista na galeria. Abertura em 15 de agosto; encerramento não divulgado.",img:"img/no-meio-da-pedra-galeria-vermelho.jpg",cred:"Cortesia Galeria Vermelho"},
 {t:"Ocupação JAMAC",a:"JAMAC — Jardim Miriam Arte Clube",v:"Galeria Vermelho",ini:"2024-10-04",fim:"2026-12-19",d:"O coletivo fundado por Mônica Nador em 2004 ocupa a banca da galeria com os projetos Inventários e Aprender algo novo. Quinta e sexta, 12h–18h; sábado, 11h–17h."},
@@ -349,11 +351,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Amarelinha — Alice Shintani",
-  v: "Almeida & Dale",
-  quem: "Alice Shintani",
-  txt: "Primeira individual da artista na galeria, com texto crítico de José Augusto Ribeiro. Pinturas novas em grande formato e fitas amarelas de demarcação que traçam uma amarelinha no piso. Abertura em 7 de novembro, das 11h às 15h, na Rua Fradique Coutinho, 1360.",
-  link: "https://www.almeidaedale.com.br",
+  t: "O Avesso — Kim Gordon e Valentina Liernur",
+  v: "Mazzucchelli Cardoso",
+  quem: "Kim Gordon e Valentina Liernur",
+  txt: "Kim Gordon, a artista do Sonic Youth, abre hoje a primeira exposição de pinturas dela em São Paulo, ao lado da argentina Valentina Liernur. Cerca de 15 trabalhos, com texto crítico de Giovana Madalosso. Abertura das 12h às 17h, na Rua Barão de Capanema, 440, com a artista presente. Em cartaz até 30 de janeiro de 2027, entrada gratuita.",
+  link: "https://www.instagram.com/mazzucchellicardoso/",
   publi: false
 };
 
@@ -368,7 +370,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
-  {d:"2026-11-14", k:"Amarelinha — Alice Shintani|Almeida & Dale"},
+  {d:"2026-11-14", k:"O Avesso — Kim Gordon e Valentina Liernur|Mazzucchelli Cardoso"},
   {d:"2026-11-13", k:"A Ressaca da democracia — Alexander Apóstol|Galeria Raquel Arnaud"},
   {d:"2026-11-12", k:"Coordenadas Improváveis|MITS Galeria"},
   {d:"2026-11-11", k:"Voice Leading — Peter Shear|Mendes Wood DM — Casa Iramaia"},
