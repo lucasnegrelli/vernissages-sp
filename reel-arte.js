@@ -49,7 +49,7 @@ const N = parseInt(flag('n', '5'), 10);
 const FFMPEG = process.env.FFMPEG || 'ffmpeg';
 const REND = process.env.RENDER_DIR || path.join(RAIZ, '.render');
 const USADOS = path.join(RAIZ, 'SOCIAL', 'REELS-USADOS.json');
-const T_CAPA = 2.4, T_MOSTRA = 2.6, T_FIM = 3.6, T_VAO = 0.3;   /* T_VAO: o véu da cena seguinte cobre a anterior em 0,3 s */
+const T_CAPA = 2.4, T_MOSTRA = 2.6, T_FIM = 3.6, T_VAO = 0.3, T_OBRA = 2.4, T_CART = 2.0;   /* T_VAO: o véu da cena seguinte cobre a anterior em 0,3 s */
 
 const lerJson = (f, d) => { try { return JSON.parse(fs.readFileSync(f, 'utf8')); } catch (e) { return d; } };
 const dias = (a, b) => Math.round((Date.parse(b + 'T12:00:00Z') - Date.parse(a + 'T12:00:00Z')) / 864e5);
@@ -227,6 +227,8 @@ body{font-family:'Switzer',system-ui,sans-serif;color:${D.TINTA};-webkit-font-sm
 .capa .sub{position:absolute;left:70px;right:90px;top:1330px;font-family:'IS',serif;font-size:66px;line-height:1.04;border-top:3px solid var(--sobre);padding-top:30px}
 .capa .marca{position:absolute;left:70px;top:62px;font-weight:800;font-size:25px;letter-spacing:.17em;text-transform:uppercase}
 .capa .mk2{position:absolute;right:70px;top:62px;font-weight:800;font-size:25px;letter-spacing:.17em}
+.obra{background:#111}.obra .bg,.obra .fg{position:absolute;left:0;top:0;width:100%;height:100%}.obra .bg{object-fit:cover;filter:blur(70px) brightness(.8);transform:scale(1.25)}.obra .fg{object-fit:contain;transform-origin:50% 50%}
+.cart{background:var(--campo);color:var(--sobre)}.cart .top{position:absolute;left:70px;right:70px;top:64px;display:flex;justify-content:space-between;font-weight:800;font-size:25px;letter-spacing:.17em;text-transform:uppercase}.cart .q{position:absolute;left:70px;right:70px;top:150px;font-family:'IS',serif;font-style:italic;font-size:84px;line-height:1.02}.cart .t{position:absolute;left:62px;right:62px;bottom:440px;font-weight:800;text-transform:uppercase;letter-spacing:-.05em;line-height:.88}.cart .base{position:absolute;left:70px;right:70px;bottom:120px;border-top:3px solid var(--sobre);padding-top:30px}.cart .a{font-family:'IS',serif;font-style:italic;font-size:64px;line-height:1.04}.cart .o{font-weight:800;font-size:30px;letter-spacing:.15em;text-transform:uppercase;margin-top:22px}.cart .d{font-weight:500;font-size:30px;letter-spacing:.12em;text-transform:uppercase;margin-top:8px;opacity:.8}
 .fim{background:${D.TINTA};color:${D.PAPEL}}
 .fim .cab{border-color:${D.PAPEL}}.fim .cab span{color:${D.TERRA}}
 .mapa{position:absolute;left:70px;top:150px;width:940px;height:740px}
@@ -291,6 +293,32 @@ function cenaMostra(c){
   }};
 }
 
+
+function cenaObra(c){
+  const el=document.createElement('section');el.className='cena obra';
+  el.innerHTML='<img class="bg" src="'+c.img+'"><img class="fg" src="'+c.img+'">';
+  document.body.appendChild(el);
+  const fg=el.querySelector('.fg');
+  return {el,t0:c.t0,dur:c.dur,anim(u){const k=u/Math.max(.1,c.dur);fg.style.transform='scale('+(1.0+.14*io(clamp(k)))+') translate('+(c.dx*k)+'px,'+(c.dy*k)+'px)'}};
+}
+function cenaCartela(c){
+  const el=document.createElement('section');el.className='cena cart';el.style.setProperty('--campo',c.campo);el.style.setProperty('--sobre',c.sobre);
+  el.innerHTML='<div class="top"><b>Vernissages SP</b><span>'+E(c.kicker)+' · '+(c.i+1)+'/'+c.total+'</span></div><div class="q">'+E(c.quando)+'</div><div class="t">'+palavras(c.titulo)+'</div><div class="base">'+(c.quem?'<div class="a">'+E(c.quem)+'</div>':'')+'<div class="o">'+E(c.casa)+' · '+E(c.bairro)+'</div><div class="d">'+E(c.ate)+'</div></div>';
+  document.body.appendChild(el);
+  const t=el.querySelector('.t');el.style.display='block';
+  t.style.fontSize='100px';let mx=0;
+  [].forEach.call(t.querySelectorAll('.w'),w=>{mx=Math.max(mx,w.getBoundingClientRect().width)});
+  let f=Math.min(380,Math.floor(100*(W-124)/mx));t.style.fontSize=f+'px';
+  while(t.getBoundingClientRect().height>1150&&f>60){f-=6;t.style.fontSize=f+'px'}
+  el.style.display='none';
+  const ws=[].slice.call(el.querySelectorAll('.t .w>span')),q=el.querySelector('.q'),b=el.querySelector('.base');
+  return {el,t0:c.t0,dur:c.dur,anim(u){
+    const kq=oQ(seg(u,0,.4));q.style.opacity=kq;q.style.transform='translateY('+(24*(1-kq))+'px)';
+    ws.forEach((w,i)=>{w.style.transform='translateY('+(108*(1-oE(seg(u,.1+i*.06,.55+i*.06))))+'%)'});
+    const kb=oQ(seg(u,.5,.9));b.style.opacity=kb;b.style.transform='translateY('+(20*(1-kb))+'px)';
+  }};
+}
+
 function cenaFim(c){
   const el=document.createElement('section');el.className='cena fim';
   const M=c.mapa;
@@ -314,7 +342,7 @@ function cenaFim(c){
   }};
 }
 
-R.cenas.forEach(c=>C.push(c.tipo==='capa'?cenaCapa(c):c.tipo==='mostra'?cenaMostra(c):cenaFim(c)));
+R.cenas.forEach(c=>C.push(c.tipo==='capa'?cenaCapa(c):c.tipo==='obra'?cenaObra(c):c.tipo==='cartela'?cenaCartela(c):c.tipo==='mostra'?cenaMostra(c):cenaFim(c)));
 window.setT=function(t){
   C.forEach((c,i)=>{
     const u=t-c.t0,fim=c.dur+${T_VAO};
@@ -367,9 +395,12 @@ async function principal() {
     else if (modo === 'fecha') quando = F1 === 0 ? 'Último dia é hoje.' : F1 === 1 ? 'Fecha amanhã, ' + porExtenso(e.fim) + '.' : 'Fecha ' + dEx(e.fim);
     else { quando = 'Ponto de partida.'; const ant = pick[i - 1]; if (ant) { const mt = Math.round(km(ant.v, it.c.v) * 1000 / 10) * 10; quando = 'A ' + (mt >= 1000 ? (mt / 1000).toFixed(1).replace('.', ',') + ' km' : mt + ' m') + ' da parada anterior.'; } }
     const ate = modo === 'abre' ? (e.fim ? 'em cartaz até ' + porExtenso(e.fim) : 'abre em ' + porExtenso(e.ini)) : e.fim ? 'até ' + porExtenso(e.fim) : 'em cartaz';
-    cenas.push({ tipo: 'mostra', t0: t - T_VAO, dur: T_MOSTRA + T_VAO, i, total: pick.length, kicker: kicker[modo], quando, cor: it.pal.texto, img: 'file:///' + it.alvo.replace(/\\/g, '/'),
-      iw: it.iw, ih: it.ih, titulo: tit(e), quem: quemCurto(autoria(e)), casa: it.c.v.name, bairro: it.c.v.b, ate, selo: modo === 'rota' ? selo(it.c, modo) : '' });
-    t += T_MOSTRA;
+    const img = 'file:///' + it.alvo.replace(/\\/g, '/'), sg = (i % 2 ? -1 : 1);
+    cenas.push({ tipo: 'obra', t0: t - T_VAO, dur: T_OBRA + T_VAO, img, dx: sg * -14, dy: it.ih > it.iw ? -18 : 0 });
+    t += T_OBRA;
+    cenas.push({ tipo: 'cartela', t0: t - T_VAO, dur: T_CART + T_VAO, i, total: pick.length, kicker: kicker[modo], quando, campo: it.pal.campo, sobre: it.pal.sobre,
+      titulo: tit(e), quem: quemCurto(autoria(e)), casa: it.c.v.name, bairro: it.c.v.b, ate });
+    t += T_CART;
   });
   const mapa = projeta(DATA, pick, modo, 940, 740);
   cenas.push({ tipo: 'fim', t0: t - T_VAO, dur: T_FIM + T_VAO, kicker: kicker[modo], mapa, rota: modo === 'rota', lista: pick.map(c => ({ nome: c.v.name, bairro: c.v.b })) });
