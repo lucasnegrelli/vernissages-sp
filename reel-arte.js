@@ -249,17 +249,18 @@ const palavras=(txt,cls)=>txt.split(' ').map(p=>'<span class="w"><span>'+E(p)+'<
 
 function cenaCapa(c){
   const el=document.createElement('section');el.className='cena capa';el.style.setProperty('--campo',c.campo);el.style.setProperty('--sobre',c.sobre);
-  el.innerHTML='<div class="marca">Vernissages SP</div><div class="mk2">'+E(c.kicker)+'</div><div class="pal">'+c.palavras.map(p=>'<div class="l" style="white-space:nowrap">'+E(p)+'</div>').join('')+'</div><div class="sub">'+E(c.sub)+'</div>';
+  el.innerHTML='<div class="marca">Vernissages SP</div><div class="mk2">'+E(c.kicker)+'</div><div class="pal">'+c.palavras.reduce((a,p)=>a.concat(a.length+p.split(' ').length<=4?p.split(' '):[p]),[]).map(p=>'<div class="l" style="white-space:nowrap">'+E(p)+'</div>').join('')+'</div><div class="sub">'+E(c.sub)+'</div>';
   document.body.appendChild(el);el.style.display='block';
   /* a maior palavra ocupa a largura inteira útil */
-  const pal=el.querySelector('.pal');pal.style.fontSize='100px';
-  let mx=0;[].forEach.call(pal.children,l=>{l.style.display='inline-block';mx=Math.max(mx,l.getBoundingClientRect().width);l.style.display='block'});
-  const fs=Math.min(520,Math.floor(100*(W-150)/mx));pal.style.fontSize=fs+'px';
-  const alt=pal.getBoundingClientRect().height;
-  if(170+alt>1290){pal.style.fontSize=Math.floor(fs*(1290-170)/alt)+'px'}
+  const pal=el.querySelector('.pal');el.style.display='block';
+  /* cada linha ocupa a largura inteira (cartaz): fonte própria por linha, o bloco desce até o rodapé */
+  const ls=[].slice.call(pal.children);let tot=0;
+  ls.forEach(l=>{l.style.fontSize='100px';l.style.display='inline-block';const w=l.getBoundingClientRect().width;l.style.display='block';l.style.fontSize=Math.min(560,Math.floor(100*(W-110)/w))+'px';l.style.lineHeight='.98';tot+=l.getBoundingClientRect().height});
+  if(tot>1100){const k=1100/tot;ls.forEach(l=>{l.style.fontSize=Math.floor(parseFloat(l.style.fontSize)*k)+'px'})}
+  pal.style.letterSpacing='-.06em';
   el.style.display='none';
   return {el,t0:c.t0,dur:c.dur,anim(u){
-    const k=oQ(seg(u,0,1.2));pal.style.letterSpacing=(-0.06-0.015*k)+'em';
+    const k=oQ(seg(u,0,.9));pal.style.opacity=k;pal.style.transform='translateY('+(40*(1-k))+'px)';
     el.querySelector('.sub').style.opacity=1;
   }};
 }
