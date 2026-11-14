@@ -1,7 +1,7 @@
 {
   "conta": "vernissagessp",
   "id": "2026-11-14_avesso",
-  "status": "aprovado",
+  "status": "postado",
   "tipo": "carrossel",
   "quando": "2026-11-14T12:20:00-03:00",
   "imagens": [
@@ -12,5 +12,9 @@
   ],
   "legenda": "Kim Gordon abre hoje a primeira exposição de pinturas dela em São Paulo.\n\nO Avesso reúne a artista, conhecida pelo Sonic Youth, e a argentina Valentina Liernur na Mazzucchelli Cardoso @mazzucchellicardoso. Gordon pinta jovens mulheres em acrílica, dentro de molduras ovais que lembram espelho. Liernur trabalha telas rasgadas, nós e fitas. Cerca de 15 trabalhos, com texto crítico de Giovana Madalosso.\n\nServiço: Mazzucchelli Cardoso, Cerqueira César. R. Barão de Capanema, 440. Abertura hoje, das 12h às 17h, com a presença de Kim Gordon. Em cartaz até 30 de janeiro.\n\nImagens: Cortesia Mazzucchelli Cardoso.\n\nSalva para ir e manda para quem vai com você. Agenda completa de exposições em vernissagessp.com.br\n\n#kimgordon #oavesso #exposicaosp #arteemsp #saopaulo #artecontemporanea #galeriadearte",
   "collab": [],
-  "collabExtra": []
+  "collabExtra": [],
+  "collabUsado": false,
+  "collabConvidados": [],
+  "midiaId": "18193539259409861",
+  "postadoEm": "2026-11-14T15:22:26.471Z"
 }

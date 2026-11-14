@@ -1,7 +1,7 @@
 {
   "conta": "vernissagessp",
   "id": "2026-11-14_exposicao",
-  "status": "aprovado",
+  "status": "postado",
   "tipo": "carrossel",
   "quando": "2026-11-14T12:00:00-03:00",
   "imagens": [
@@ -16,5 +16,9 @@
   ],
   "legenda": "Ver o mundo, João Luiz Musa, em 7 slides.\n\nDeslize para passear pela exposição na Luciana Brito Galeria @lucianabritogaleria.\n\nPrimeira individual do artista desde 2012. Reúne fotografias da pesquisa de livre-docência na ECA-USP. Abertura em 7 de novembro.\n\nServiço: Luciana Brito Galeria, Av. Nove de Julho, 5162, Jardim Europa. Até 19 de dezembro.\n\nImagens: Cortesia Luciana Brito Galeria.\n\nSalva para ir e manda para quem vai com você. Agenda completa de exposições em vernissagessp.com.br\n\n#exposicaosp #arteemsp #saopaulo #artecontemporanea #galeriadearte",
   "collab": [],
-  "collabExtra": []
+  "collabExtra": [],
+  "collabUsado": false,
+  "collabConvidados": [],
+  "midiaId": "17933836608165771",
+  "postadoEm": "2026-11-14T15:21:56.155Z"
 }
