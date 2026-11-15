@@ -1,5 +1,5 @@
 {
- "gerado": "2026-11-14",
+ "gerado": "2026-11-15",
  "aviso": "Lido nas páginas oficiais de quem abriu a chamada. Regulamento e prazo podem mudar: confirme antes de se inscrever.",
  "itens": [
   {
@@ -11,7 +11,7 @@
    "cat": "residencia",
    "onde": "sp",
    "resumo": "Residência Juntó - Instituto Tomie Ohtake Pular para conteúdo Menu Instituto Tomie Ohtake Estamos em montagem. Em breve, novas exposições chegam ao Instituto Tomie Ohtake. Programe-se para visitar a partir do dia 18 de novembro de 2026. Dig",
-   "visto": "2026-11-14",
+   "visto": "2026-11-15",
    "via": "site"
   },
   {
@@ -60,6 +60,30 @@
    "onde": "brasil",
    "resumo": "Laçzos Artísticos - Chamada Especial CPLP Menu Fechar Tamanho da fonte Escala de cinza ON OFF Alto contraste ON OFF Contraste negativo ON OFF Fundo claro ON OFF Sublinhar links ON OFF Fonte legível ON OFF Resetar Ir para o conteúdo Pesquisa",
    "visto": "2026-11-09",
+   "via": "site"
+  },
+  {
+   "t": "Residência Artística FAAP – São Paulo",
+   "fonte": "FAAP MAB (site oficial)",
+   "link": "https://www.faap.br/residencia-artistica/",
+   "pub": "",
+   "prazo": null,
+   "cat": "residencia",
+   "onde": "sp",
+   "resumo": "--> --> Residência Artística FAAP – São Paulo - FAAP --> --> --> --> ‹ › × &times; Previous Next Residência Artística FAAP São Paulo Residência Artística FAAP São Paulo Inscrições Abertas Inscreva-se Página Inicial Nossos Cursos Arte e Cult",
+   "visto": "2026-11-15",
+   "via": "site"
+  },
+  {
+   "t": "APRESENTAÇÃO DE PROPOSTAS PARA EXPOSIÇÕES NO MAB FAAP",
+   "fonte": "FAAP MAB (site oficial)",
+   "link": "https://faapinscricao.crmeducacional.com/formulario/2406",
+   "pub": "",
+   "prazo": null,
+   "cat": "chamada",
+   "onde": "sp",
+   "resumo": "MAB FAAP APRESENTAÇÃO DE PROPOSTAS PARA EXPOSIÇÕES NO MAB FAAP 1 Login 2 Curso 3 Dados 4 Inscrição IDENTIFICAÇÃO DO PROPONENTE Nome Completo ou Razão Social CPF CNPJ (apenas se indicou a Razão Social. Caso contrário, N/A) E-mail Endereço Nú",
+   "visto": "2026-11-15",
    "via": "site"
   }
  ]
