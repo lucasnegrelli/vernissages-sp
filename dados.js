@@ -229,7 +229,6 @@ const EXPOS = [
 {t:"Beijo de Língua — Nelson Felix",a:"Nelson Felix",v:"MAC USP",ini:"2026-05-30",fim:"2026-11-29",d:"Individual do escultor carioca no MAC USP. Entrada gratuita.",img:"img/beijo-de-lingua-mac-usp.webp",cred:"Cortesia do artista"},
 {t:"39º Panorama da Arte Brasileira: Depois que tudo foi dito",v:"MAM São Paulo",ini:"2026-09-12",fim:"2027-01-24",d:"Curadoria de Diane Lima, com 33 artistas de 13 estados. A mostra marca o retorno do museu à sede do Ibirapuera após a reforma da marquise.",img:"img/39-panorama-da-arte-brasileira-depois-que-tudo-foi-dito-mam-.jpg",cred:"Cortesia MAM São Paulo",img2:"img/39-panorama-da-arte-brasileira-depois-que-tudo-foi-dito-mam--2.jpg"},
 {t:"Constelação em trânsito: uma escuta cartográfica",v:"Galpão da Lapa",ini:"2025-09-06",fim:"2027-03-01",d:"Mostra de longa duração da coleção privada de arte contemporânea brasileira do Galpão da Lapa, organizada em três eixos - Arquiteturas do Inconsciente, Geometrias do Sul e Topologias do Orgânico - a partir de uma escuta do próprio acervo. Visitas guiadas gratuitas mediante agendamento, quintas e sábados.",img:"img/constelacao-em-transito-uma-escuta-cartografica-galpao-da-la.jpg",cred:"Cortesia Galpão da Lapa",foco:50},
-{t:"Por Elas, Com Elas: Do Moderno ao Contemporâneo",v:"DAN Galeria",ini:"2026-09-09",fim:"2026-11-07",d:"Coletiva com obras de meados do século 20 aos dias atuais, em núcleo histórico — com Tarsila do Amaral, Anita Malfatti, Lygia Clark e Tomie Ohtake — e núcleo contemporâneo. Curadoria de Maria Alice Milliet.",img:"img/por-elas-com-elas-do-moderno-ao-contemporaneo-dan-galeria.jpg",cred:"Cortesia DAN Galeria"},
 
 /* --- confirmadas na fonte primária em 14/09/2026, casas já mapeadas sem nada em cartaz na base --- */
 {t:"Abismos Urbanos e o Plano Celeste",a:"Eduardo Coimbra",v:"Galeria Lume",ini:"2026-09-12",fim:"2026-11-14",d:"Exposição individual.",img:"img/abismos-urbanos-e-o-plano-celeste-galeria-lume.webp",cred:"Cortesia Galeria Lume",conferida:true},
@@ -265,7 +264,6 @@ const EXPOS = [
 {t:"Horizontes do Solo",a:"Bárbara Banida, Cláudio Cretti, Pedro França",v:"Ateliê397",ini:"2026-10-08",fim:"2026-11-21",d:"Coletiva com curadoria de Érica Burini, originada na primeira edição da residência artística IOD'A, no Piauí. Quarta a sábado, 14h às 18h; abertura das 19h às 22h.",img:"img/horizontes-do-solo-atelie397.webp",cred:"Cortesia Ateliê397",foco:53},
 {t:"O tudo e o todo — André Vargas",a:"André Vargas",v:"Casa de Cultura do Parque",ini:"2026-10-03",fim:"2027-04-25",d:"Oito bandeiras feitas a partir de paramentas de orixás formam as palavras TUDO e TODO na fachada, na edição do Dando Bandeira. Quarta a domingo, 11h às 18h.",img:"img/o-tudo-e-o-todo-casa-de-cultura-do-parque.webp",cred:"Cortesia Casa de Cultura do Parque"},
 {t:"Metragens — Pablo Accinelli e Gustavo Silvamaral",a:"Pablo Accinelli, Gustavo Silvamaral",v:"Casa de Cultura do Parque",ini:"2026-10-03",fim:"2027-04-25",d:"Projeto concebido em colaboração, no programa No Deck, com vidro, metal e utensílios de limpeza. Texto crítico de Omar Porto. Quarta a domingo, 11h às 18h.",img:"img/metragens-casa-de-cultura-do-parque.webp",cred:"Cortesia Casa de Cultura do Parque"},
-{t:"Lava-Olhos de Emergência — Lucas Simões",a:"Lucas Simões",v:"Casa Triângulo",ini:"2026-09-26",fim:"2026-11-07",d:"Terceira individual do artista na galeria, com textos críticos de Pollyana Quintella e Ciro Miguel. Esculturas em aço galvanizado e concreto.",img:"img/lava-olhos-de-emergencia-casa-triangulo.jpg",cred:"Cortesia Casa Triângulo"},
 {t:"Estado de Transe — Dora Smék",a:"Dora Smék",v:"Central Galeria",ini:"2026-10-03",fim:"2026-11-14",d:"Segunda individual da artista na galeria, com esculturas, instalações e vídeo inéditos. Texto de Yago Toscano. Segunda a sexta, 10h às 19h; sábado, 11h às 17h.",img:"img/estado-de-transe-central-galeria.jpg",cred:"Foto Ana Pigosso / Cortesia Central Galeria",foco:50,img2:"img/estado-de-transe-central-galeria-2.jpg"},
 {t:"Corrente Contínua — tecfase",a:"",v:"Choque Cultural",ini:"2026-09-26",fim:"2026-11-26",d:"Individual com TVs pintadas, pinturas, colagem e vídeos. Aberta em 26 de setembro.",img:"img/corrente-continua-choque-cultural.jpg",cred:"Cortesia Choque Cultural",foco:50},
 {t:"Khāmoshī — Fernanda Valadares",a:"Fernanda Valadares",v:"Galeria Aura",ini:"2026-10-03",fim:"2026-11-18",d:"Individual com pinturas inéditas em encáustica, numa paleta de negros profundos. Texto curatorial de Priscyla Gomes. Abertura em 3 de outubro; em cartaz até 18 de novembro.",img:"img/khamoshi-galeria-aura.jpg",cred:"Vista da exposição. Cortesia Galeria Aura",vista:true},
@@ -295,7 +293,6 @@ const EXPOS = [
 {t:"Caleidoscópio Xapiri Yanomami — Leão Serva",a:"Leão Serva",v:"MIS — Museu da Imagem e do Som",ini:"2026-10-28",fim:null,d:"Curadoria de Ricardo Corrêa. Cerca de trinta fotografias feitas com celular na comunidade de Xihopi, rio Demini, nos trinta anos da homologação da Terra Indígena Yanomami, em 2022. Abertura em 28 de outubro, às 19h; encerramento não divulgado.",img:"",cred:""},
 {t:"Encantário Ibejis: Salve as crianças!",a:"",v:"Museu Afro Brasil Emanoel Araujo",ini:"2026-10-31",fim:null,d:"Curadoria de Vera Nunes e cocuradoria de Camila Tuon e Gabriela de Paula. Inspirada nos Ibejis, nos Erês e em outros seres encantados. Abertura em 31 de outubro, às 11h; encerramento não divulgado.",img:"",cred:""},
 {t:"Diáfana — Gretta Sarfaty",a:"Gretta Sarfaty",v:"Museu Judaico de São Paulo",ini:"2026-11-13",fim:"2027-04-11",d:"Curadoria de Patricia Wagner, com apoio da Central Galeria. Mais de 50 trabalhos percorrem seis décadas da artista, em fotografia, performance, vídeo e pintura. Inédita no museu.",img:"img/diafana-gretta-sarfaty-museu-judaico-de-sao-paulo.jpg",cred:"Cortesia Museu Judaico de São Paulo"},
-{t:"Zanine Caldas: Criação de mundos",a:"Zanine Caldas",v:"Instituto Tomie Ohtake",ini:"2026-09-13",fim:"2026-11-07",d:"Curadoria de Sabrina Fontenele, com assistência de Lahayda Mamani Poma. Em cartaz na Casa-ateliê Tomie Ohtake, Rua Antônio de Macedo Soares, 1800, em parceria com o Instituto José Zanine Caldas. Quinta a domingo, 10h às 17h.",img:"img/zanine-caldas-criacao-de-mundos-instituto-tomie-ohtake.jpg",cred:"Cortesia Instituto Tomie Ohtake",foco:52,vista:true},
 {t:"Hino às galáxias — Ivan Campos",a:"Ivan Campos",v:"Almeida & Dale",ini:"2026-11-07",fim:"2027-01-09",d:"Primeira mostra panorâmica do artista em São Paulo, com curadoria de Lisette Lagnado. Reúne obras inéditas e pinturas feitas desde os anos 1990. Abertura em 7 de novembro, das 11h às 15h, na Rua Fradique Coutinho, 1430.",img:"img/hino-as-galaxias-almeida-dale.jpg",cred:"Cortesia Almeida & Dale"},
 {t:"Amarelinha — Alice Shintani",a:"Alice Shintani",v:"Almeida & Dale",ini:"2026-11-07",fim:"2027-01-09",d:"Primeira individual da artista na galeria, com texto crítico de José Augusto Ribeiro. Pinturas novas em grande formato e fitas amarelas de demarcação que traçam uma amarelinha no piso. Abertura em 7 de novembro, das 11h às 15h, na Rua Fradique Coutinho, 1360.",img:"img/amarelinha-almeida-dale.jpg",cred:"Cortesia Almeida & Dale"},
 {t:"Glauco Rodrigues: devorador de imagens",a:"Glauco Rodrigues",v:"Galatea",ini:"2026-11-05",fim:null,d:"Individual em homenagem ao artista, com texto crítico de Ademar Britto Jr. Destaque para a série A Lenda do Coati-Puru, de 1977, com dez pinturas. Abertura em 5 de novembro, das 18h às 21h, na unidade Padre João Manuel; encerramento não divulgado.",img:"img/glauco-rodrigues-devorador-de-imagens-galatea.jpg",cred:"Cortesia Galatea"},
@@ -351,11 +348,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "O Avesso — Kim Gordon e Valentina Liernur",
-  v: "Mazzucchelli Cardoso",
-  quem: "Kim Gordon e Valentina Liernur",
-  txt: "Kim Gordon, a artista do Sonic Youth, abre hoje a primeira exposição de pinturas dela em São Paulo, ao lado da argentina Valentina Liernur. Cerca de 15 trabalhos, com texto crítico de Giovana Madalosso. Abertura das 12h às 17h, na Rua Barão de Capanema, 440, com a artista presente. Em cartaz até 30 de janeiro de 2027, entrada gratuita.",
-  link: "https://www.instagram.com/mazzucchellicardoso/",
+  t: "Kansai Noguchi e Syotatsu",
+  v: "Mendes Wood DM",
+  quem: "Kansai Noguchi, Syotatsu",
+  txt: "Mostra de dois artistas que reúne as cerâmicas de Noguchi, de tradição oleira japonesa antiga, e as obras de Syotatsu com sol, lua e estrelas. Abertura em 28 de novembro, na sede da Barra Funda; encerramento não divulgado.",
+  link: "https://mendeswooddm.com",
   publi: false
 };
 
@@ -370,6 +367,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-11-15", k:"Kansai Noguchi e Syotatsu|Mendes Wood DM"},
   {d:"2026-11-14", k:"O Avesso — Kim Gordon e Valentina Liernur|Mazzucchelli Cardoso"},
   {d:"2026-11-13", k:"A Ressaca da democracia — Alexander Apóstol|Galeria Raquel Arnaud"},
   {d:"2026-11-12", k:"Coordenadas Improváveis|MITS Galeria"},
@@ -481,5 +479,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "14/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "15/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
