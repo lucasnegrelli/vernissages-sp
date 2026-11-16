@@ -126,6 +126,12 @@
       "seguidores": 118,
       "seguindo": 104,
       "posts": 87
+    },
+    {
+      "data": "2026-11-16",
+      "seguidores": 119,
+      "seguindo": 105,
+      "posts": 81
     }
   ],
   "midias": {
@@ -612,7 +618,7 @@
     "17915716044475711": {
       "tipo": "FEED",
       "quando": "2026-11-09T18:30:58+0000",
-      "curtidas": 10,
+      "curtidas": 11,
       "comentarios": 0,
       "link": "https://www.instagram.com/p/Dfh-tkPIzxi/",
       "formato": "editais"
@@ -692,10 +698,18 @@
     "18640974847062627": {
       "tipo": "FEED",
       "quando": "2026-11-14T22:56:12+0000",
-      "curtidas": 3,
+      "curtidas": 4,
       "comentarios": 0,
       "link": "https://www.instagram.com/p/DfvVCuPIRac/",
       "formato": "raiox"
+    },
+    "18172857130466491": {
+      "tipo": "FEED",
+      "quando": "2026-11-16T19:48:15+0000",
+      "curtidas": 3,
+      "comentarios": 0,
+      "link": "https://www.instagram.com/p/Df0JG49o1P6/",
+      "formato": "obra"
     }
   }
 }
