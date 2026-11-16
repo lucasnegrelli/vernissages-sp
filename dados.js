@@ -223,7 +223,6 @@ const EXPOS = [
 {t:"É Tempo Ainda",v:"Janaina Torres Galeria",ini:"2026-08-15",fim:"2026-12-18",d:"Vinte e seis artistas de gerações diferentes, com curadoria de Heloisa Amaral Peixoto, nos dez anos da galeria.",img:"img/e-tempo-ainda-janaina-torres-galeria.webp",cred:"Cortesia Janaina Torres Galeria"},
 {t:"Uma Obra: Pintura sem fim",a:"Gui Teixeira",v:"Pinacoteca de São Paulo",ini:"2026-07-04",fim:"2028-01-31",d:"Terceira edição do projeto Uma Obra: uma parede de carpete recebe centenas de peças de feltro colorido que o público move e recompõe (Pina Luz). Colaboração do artista Gui Teixeira.",img:"img/uma-obra-pintura-sem-fim-pinacoteca-de-sao-paulo.jpg",cred:"Cortesia Pinacoteca de São Paulo"},
 {t:"Beatriz Milhazes: gravuras do acervo da Pinacoteca",a:"Beatriz Milhazes",v:"Estação Pinacoteca",ini:"2026-05-16",fim:"2027-03-14",d:"27 gravuras feitas entre 1996 e 2019 com a Durham Press (Pina Estação).",img:"img/beatriz-milhazes-gravuras-do-acervo-da-pinacoteca-estacao-pi.webp",cred:"Beatriz Milhazes, O pato, 1996. Foto: Cortesia da artista e Pinacoteca de São Paulo",foco:50},
-{t:"trágico subúrbio — Paulo Pedro Leal",a:"Paulo Pedro Leal",v:"Pinacoteca de São Paulo",ini:"2026-04-11",fim:"2026-11-08",d:"Mais de 50 pinturas dos anos 1950 e 1960, entre naufrágios, conflitos urbanos e cenas de rua. Primeira mostra institucional do artista autodidata carioca.",img:"img/tragico-suburbio-pinacoteca-de-sao-paulo.jpg",cred:"Vista da exposição. Foto Levi Fanan / Cortesia Pinacoteca de São Paulo",vista:true},
 {t:"Ibirapema — Olinda Tupinambá",a:"Olinda Tupinambá",v:"Pinacoteca de São Paulo",ini:"2026-04-11",fim:"2026-12-27",d:"Filme de 2022 comissionado para a mostra Atos Modernos, com a transformação em onça como método. Curadoria de Ana Paula Lopes."},
 {t:"Mundo Pequeno — Martin Parr",a:"Martin Parr",v:"Centro Cultural FIESP",ini:"2026-10-15",fim:"2027-04-04",d:"45 fotografias de Martin Parr (Magnum Photos) sobre turismo de massa, consumo e a obsessão de provar que se esteve ali, mostradas pela primeira vez no Brasil, com projeções e fotolivros. Curadoria de João Kulcsár. Terça a domingo, das 10h às 20h.",img:"",cred:""},
 {t:"Beijo de Língua — Nelson Felix",a:"Nelson Felix",v:"MAC USP",ini:"2026-05-30",fim:"2026-11-29",d:"Individual do escultor carioca no MAC USP. Entrada gratuita.",img:"img/beijo-de-lingua-mac-usp.webp",cred:"Cortesia do artista"},
@@ -273,7 +272,6 @@ const EXPOS = [
 {t:"Círio de Nazaré. Do sagrado ao profano: uma extensão do Brasil | Nova Fotografia 2026",a:"Fabricio Augusto",v:"MIS — Museu da Imagem e do Som",ini:"2026-10-06",fim:"2026-11-15",d:"Ensaio fotográfico documental sobre o Círio de Nazaré, em Belém, no programa anual Nova Fotografia do MIS. Abertura às 19h; entrada gratuita.",img:"",cred:""},
 {t:"Marília Mendonça: Sentimento Louco",a:"",v:"MIS — Museu da Imagem e do Som",ini:"2026-10-09",fim:null,d:"Primeira grande exposição sobre a trajetória de Marília Mendonça, com memórias, objetos pessoais, música e audiovisual. Encerramento não divulgado.",img:"",cred:""},
 {t:"NZO: Memórias Afro-brasileiras",a:"",v:"Museu Afro Brasil Emanoel Araujo",ini:"2026-09-26",fim:"2027-02-28",d:"Primeira exposição da Rede de Acervos Afro-brasileiros, com curadoria compartilhada e mais de 150 obras e registros de diferentes regiões do país.",img:"",cred:""},
-{t:"Tinta sobre Memória — Luiz Fukushiro",a:"Luiz Fukushiro",v:"Museu da Imigração",ini:"2026-09-26",fim:"2026-11-08",d:"Instalação da residência artística 2026, a partir de haikus e esculturas de Takeo Hirata do acervo, com caligrafia japonesa (shodō). Sala das Comunidades.",img:"img/tinta-sobre-memoria-museu-da-imigracao.png",cred:"Cortesia Museu da Imigração",foco:62},
 {t:"vem, vira, vai, voo — Selva de Carvalho",a:"Selva de Carvalho",v:"Verve Galeria",ini:"2026-10-03",fim:null,d:"Instalação inédita na vitrine da Sala de Projetos, no Edifício Louvre. Abertura das 12h às 17h; encerramento não divulgado.",img:"img/vem-vira-vai-voo-verve-galeria.jpg",cred:"Cortesia Verve Galeria",img2:"img/vem-vira-vai-voo-verve-galeria-2.jpg"},
 {t:"Cardosinho: Acervo Especial",a:"José Bernardo Cardoso Júnior",v:"Galeria Estação",ini:"2026-10-06",fim:"2026-11-28",d:"Sala com oito pinturas recém-adquiridas de José Bernardo Cardoso Júnior (1861–1947), todas sem título e feitas entre 1931 e 1947. Ele começou a pintar por volta dos 70 anos, após se aposentar do ensino.",img:"img/cardosinho-acervo-especial-galeria-estacao.jpg",cred:"Cortesia Galeria Estação"},
 {t:"Aquilo Que Não Cabe — Jessica Costa",a:"Jessica Costa",v:"Zipper Galeria",ini:"2026-10-08",fim:"2026-12-18",d:"Individual com curadoria de Carollina Lauriano, a primeira da artista no salão principal. Esculturas e tapeçarias que usam a modelagem de vestuário para pensar o volume do corpo. Abertura em 8 de outubro, das 18h às 21h.",img:"img/aquilo-que-nao-cabe-zipper-galeria.jpg",cred:"Jessica Costa, Voluptuosa II, 2026. Divulgação Zipper Galeria",foco:52,img2:"img/aquilo-que-nao-cabe-zipper-galeria-2.jpg"},
@@ -286,7 +284,6 @@ const EXPOS = [
 {t:"Quarto de hora — Elisa Arruda",a:"Elisa Arruda",v:"AM Galeria",ini:"2026-10-29",fim:null,d:"Individual com curadoria de Luiza Testa. Gravuras sobre a relação da mulher com o ambiente doméstico e as padronagens do Raio que o Parta, estética modernista de Belém do Pará. Abertura adiada para 29 de outubro, das 16h às 21h; encerramento não divulgado.",img:"img/quarto-de-hora-am-galeria.jpg",cred:"Cortesia AM Galeria"},
 {t:"Troca de segredos — Barrão",a:"Barrão",v:"Fortes D'Aloia & Gabriel — Galeria",ini:"2026-11-03",fim:null,d:"Esculturas feitas de fragmentos de porcelana de objetos decorativos e utilitários coletados em feiras de usados, e aquarelas do mesmo pensamento escultórico. Abertura em 3 de novembro, das 18h às 21h; encerramento não divulgado.",img:"img/troca-de-segredos-fortes-d-aloia-gabriel-galeria.jpg",cred:"Cortesia Fortes D'Aloia & Gabriel",img2:"img/troca-de-segredos-fortes-d-aloia-gabriel-galeria-2.jpg"},
 {t:"Ver o mundo — João Luiz Musa",a:"João Luiz Musa",v:"Luciana Brito Galeria",ini:"2026-11-07",fim:"2026-12-19",d:"Primeira individual do artista desde 2012. Reúne fotografias da pesquisa de livre-docência na ECA-USP. Abertura em 7 de novembro.",img:"img/ver-o-mundo-luciana-brito-galeria.webp",cred:"Cortesia Luciana Brito Galeria",foco:55,img2:"img/ver-o-mundo-luciana-brito-galeria-2.jpg",img3:"img/ver-o-mundo-luciana-brito-galeria-3.jpg"},
-{t:"Steps — Abbas Kiarostami",a:"Abbas Kiarostami",v:"MIS — Museu da Imagem e do Som",ini:"2026-10-20",fim:"2026-11-08",d:"Sessenta fotografias em preto e branco de escadarias, a maioria feita na Itália, apresentadas com o filme Me leve para casa (2016), finalizado por Ahmad Kiarostami. Terça a sexta, 10h às 19h; entrada gratuita.",img:"",cred:""},
 {t:"Mucki Botkay: pinturas bordadas",a:"Mucki Botkay",v:"Galatea",ini:"2026-11-05",fim:null,d:"Curadoria e texto crítico de Tomás Toledo. Reúne 18 trabalhos de 2025 e 2026, feitos com milhares de miçangas de vidro bordadas à mão sobre tela, com fauna e flora brasileiras. Abertura em 5 de novembro, das 18h às 21h, na unidade Oscar Freire; encerramento não divulgado.",img:"img/mucki-botkay-pinturas-bordadas-galatea.jpg",cred:"Cortesia Galatea"},
 {t:"Pull/Pulso — Marcia Grostein",a:"Marcia Grostein",v:"Luciana Brito Galeria",ini:"2026-11-07",fim:"2026-12-19",d:"Primeira individual da artista no Brasil desde 1995, no programa Artista Visitante, com colaboração da Kreëmart. Radicada em Nova York desde 1979, reúne trabalhos sobre as relações entre materiais, suportes e linguagens. Abertura em 7 de novembro.",img:"img/pull-pulso-luciana-brito-galeria.webp",cred:"Cortesia Luciana Brito Galeria",foco:50,img2:"img/pull-pulso-luciana-brito-galeria-2.jpg",img3:"img/pull-pulso-luciana-brito-galeria-3.jpg"},
 {t:"Atrás da superfície — Paulo Monteiro",a:"Paulo Monteiro",v:"Mendes Wood DM — Casa Iramaia",ini:"2026-11-07",fim:null,d:"Grupo de pinturas de pequeno formato que revisitam a linha desenhada, com cor construída em camadas, umas transparentes e outras densas. Abertura em 7 de novembro; encerramento não divulgado.",img:"img/atras-da-superficie-mendes-wood-dm-casa-iramaia.webp",cred:"Cortesia Mendes Wood DM",foco:50,img2:"img/atras-da-superficie-mendes-wood-dm-casa-iramaia-2.jpg"},
@@ -348,11 +345,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Kansai Noguchi e Syotatsu",
-  v: "Mendes Wood DM",
-  quem: "Kansai Noguchi, Syotatsu",
-  txt: "Mostra de dois artistas que reúne as cerâmicas de Noguchi, de tradição oleira japonesa antiga, e as obras de Syotatsu com sol, lua e estrelas. Abertura em 28 de novembro, na sede da Barra Funda; encerramento não divulgado.",
-  link: "https://mendeswooddm.com",
+  t: "Amarelinha — Alice Shintani",
+  v: "Almeida & Dale",
+  quem: "Alice Shintani",
+  txt: "Primeira individual da artista na galeria, com texto crítico de José Augusto Ribeiro. Pinturas novas em grande formato e fitas amarelas de demarcação que traçam uma amarelinha no piso. Abertura em 7 de novembro, das 11h às 15h, na Rua Fradique Coutinho, 1360.",
+  link: "https://www.almeidaedale.com.br",
   publi: false
 };
 
@@ -367,6 +364,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-11-16", k:"Amarelinha — Alice Shintani|Almeida & Dale"},
   {d:"2026-11-15", k:"Kansai Noguchi e Syotatsu|Mendes Wood DM"},
   {d:"2026-11-14", k:"O Avesso — Kim Gordon e Valentina Liernur|Mazzucchelli Cardoso"},
   {d:"2026-11-13", k:"A Ressaca da democracia — Alexander Apóstol|Galeria Raquel Arnaud"},
@@ -479,5 +477,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "15/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "16/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
