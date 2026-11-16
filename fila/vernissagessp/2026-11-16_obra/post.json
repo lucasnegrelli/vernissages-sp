@@ -1,7 +1,7 @@
 {
   "conta": "vernissagessp",
   "id": "2026-11-16_obra",
-  "status": "aprovado",
+  "status": "postado",
   "tipo": "carrossel",
   "quando": "2026-11-16T12:45:00-03:00",
   "imagens": [
@@ -12,5 +12,11 @@
   "collab": [
     "mazzucchellicardoso"
   ],
-  "collabExtra": []
+  "collabExtra": [],
+  "collabUsado": true,
+  "collabConvidados": [
+    "mazzucchellicardoso"
+  ],
+  "midiaId": "18172857130466491",
+  "postadoEm": "2026-11-16T19:48:22.959Z"
 }
