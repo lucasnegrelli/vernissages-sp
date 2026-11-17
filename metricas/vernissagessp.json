@@ -132,6 +132,12 @@
       "seguidores": 119,
       "seguindo": 105,
       "posts": 81
+    },
+    {
+      "data": "2026-11-17",
+      "seguidores": 120,
+      "seguindo": 105,
+      "posts": 81
     }
   ],
   "midias": {
@@ -154,7 +160,7 @@
     "18108497693437534": {
       "tipo": "FEED",
       "quando": "2026-10-21T13:37:59+0000",
-      "curtidas": 3,
+      "curtidas": 4,
       "comentarios": 0,
       "link": "https://www.instagram.com/p/DewiGEOnCXs/",
       "formato": null
@@ -706,7 +712,7 @@
     "18172857130466491": {
       "tipo": "FEED",
       "quando": "2026-11-16T19:48:15+0000",
-      "curtidas": 3,
+      "curtidas": 5,
       "comentarios": 0,
       "link": "https://www.instagram.com/p/Df0JG49o1P6/",
       "formato": "obra"
