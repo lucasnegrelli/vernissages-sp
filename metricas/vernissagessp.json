@@ -138,6 +138,12 @@
       "seguidores": 120,
       "seguindo": 105,
       "posts": 81
+    },
+    {
+      "data": "2026-11-18",
+      "seguidores": 122,
+      "seguindo": 105,
+      "posts": 83
     }
   ],
   "midias": {
@@ -608,7 +614,7 @@
     "18102431717550602": {
       "tipo": "FEED",
       "quando": "2026-11-05T18:42:04+0000",
-      "curtidas": 6,
+      "curtidas": 7,
       "comentarios": 0,
       "link": "https://www.instagram.com/p/DfXszXhGlWb/",
       "formato": "agenda"
@@ -704,7 +710,7 @@
     "18640974847062627": {
       "tipo": "FEED",
       "quando": "2026-11-14T22:56:12+0000",
-      "curtidas": 4,
+      "curtidas": 5,
       "comentarios": 0,
       "link": "https://www.instagram.com/p/DfvVCuPIRac/",
       "formato": "raiox"
@@ -716,6 +722,22 @@
       "comentarios": 0,
       "link": "https://www.instagram.com/p/Df0JG49o1P6/",
       "formato": "obra"
+    },
+    "18084434441712151": {
+      "tipo": "REELS",
+      "quando": "2026-11-18T02:50:37+0000",
+      "curtidas": 1,
+      "comentarios": 0,
+      "link": "https://www.instagram.com/reel/Df3eOVqEhby/",
+      "formato": "reel"
+    },
+    "18115025672626166": {
+      "tipo": "FEED",
+      "quando": "2026-11-17T20:47:03+0000",
+      "curtidas": 3,
+      "comentarios": 0,
+      "link": "https://www.instagram.com/p/Df20pRQHRsb/",
+      "formato": "exposicao"
     }
   }
 }
