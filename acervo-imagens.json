@@ -2230,8 +2230,79 @@
   },
   "Residência Fause Hauten: Um artista em processo|CCBB São Paulo": {
     "links": {
-      "siteErro": "nenhum link casou com o titulo (home + indices, ate com render)"
+      "siteErro": "nenhum link casou com o titulo (home + indices, ate com render)",
+      "site": "https://ccbb.com.br/sao-paulo/programacao/residencia-fause-haten-um-artista-em-processo/",
+      "siteConfianca": 9
     },
-    "candidatos": []
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://ccbbstg.blob.core.windows.net/site-2025/2026/11/Designer-1.png",
+        "md5": "abed750d4c6aa6bf1a365f831c3833d8",
+        "fonte": "site",
+        "w": 1024,
+        "h": 1024,
+        "kb": 1131,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 2,
+        "url": "https://static.ccbb.com.br/site-2025/2026/11/fause-imag.png",
+        "md5": "6d79e92c83458291efab6755f3f5fdc7",
+        "fonte": "site",
+        "w": 348,
+        "h": 441,
+        "kb": 202,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 3,
+        "url": "https://static.ccbb.com.br/site-2025/2026/11/fause-6afdc160defb2.png",
+        "md5": "d83367c837b389d01877ae604e6bf3c5",
+        "fonte": "site",
+        "w": 411,
+        "h": 520,
+        "kb": 271,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 4,
+        "url": "https://static.ccbb.com.br/site-2025/2026/11/geni-cabelo.png",
+        "md5": "f891e3e802c01b57709e97ba0cf685ea",
+        "fonte": "site",
+        "w": 380,
+        "h": 488,
+        "kb": 218,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 5,
+        "url": "https://static.ccbb.com.br/site-2025/2026/11/eu-sou-um-monstro.png",
+        "md5": "5f8e5b7fc5518aa515cc7a4d2f140dfe",
+        "fonte": "site",
+        "w": 361,
+        "h": 521,
+        "kb": 222,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 6,
+        "url": "https://ccbb.com.br/wp-content/themes/ccbb/partials/footer/images/celulares.png",
+        "md5": "f1241136eb009456abede0d76990bed4",
+        "fonte": "site",
+        "w": 275,
+        "h": 200,
+        "kb": 60,
+        "serveObra": false,
+        "serveComFoco": false
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-11-18"
   }
 }
