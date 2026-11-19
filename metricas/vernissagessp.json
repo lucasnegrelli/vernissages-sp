@@ -144,6 +144,12 @@
       "seguidores": 122,
       "seguindo": 105,
       "posts": 83
+    },
+    {
+      "data": "2026-11-19",
+      "seguidores": 123,
+      "seguindo": 105,
+      "posts": 84
     }
   ],
   "midias": {
@@ -738,6 +744,14 @@
       "comentarios": 0,
       "link": "https://www.instagram.com/p/Df20pRQHRsb/",
       "formato": "exposicao"
+    },
+    "17918376078494994": {
+      "tipo": "FEED",
+      "quando": "2026-11-18T19:32:33+0000",
+      "curtidas": 1,
+      "comentarios": 0,
+      "link": "https://www.instagram.com/p/Df5Q6kgDwVL/",
+      "formato": "panoramica"
     }
   }
 }
