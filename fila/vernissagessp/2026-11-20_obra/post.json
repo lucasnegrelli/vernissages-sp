@@ -1,7 +1,7 @@
 {
   "conta": "vernissagessp",
   "id": "2026-11-20_obra",
-  "status": "aprovado",
+  "status": "postado",
   "tipo": "carrossel",
   "quando": "2026-11-20T11:30:00-03:00",
   "imagens": [
@@ -12,5 +12,11 @@
   "collab": [
     "galeriavermelho"
   ],
-  "collabExtra": []
+  "collabExtra": [],
+  "collabUsado": true,
+  "collabConvidados": [
+    "galeriavermelho"
+  ],
+  "midiaId": "17998533074844113",
+  "postadoEm": "2026-11-20T17:12:02.910Z"
 }
