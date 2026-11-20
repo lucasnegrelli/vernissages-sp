@@ -345,11 +345,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Fernando Lemos: quanto mais desejo, mais invento o que vejo",
-  v: "IMS Paulista",
-  quem: "Fernando Lemos",
-  txt: "Retrospectiva do centenário de nascimento de Fernando Lemos (1926–2019), com cerca de 400 itens entre fotografias, desenhos, projetos gráficos e poesia produzidos ao longo de 70 anos; curadoria de Thyago Nogueira. Abertura em 19 de setembro, até 7 de fevereiro.",
-  link: "https://ims.com.br",
+  t: "Ocupação JAMAC",
+  v: "Galeria Vermelho",
+  quem: "JAMAC — Jardim Miriam Arte Clube",
+  txt: "O coletivo fundado por Mônica Nador em 2004 ocupa a banca da galeria com os projetos Inventários e Aprender algo novo. Quinta e sexta, 12h–18h; sábado, 11h–17h. Abertura em 4 de outubro, até 19 de dezembro.",
+  link: "https://galeriavermelho.com.br",
   publi: false
 };
 
@@ -364,6 +364,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-11-20", k:"Ocupação JAMAC|Galeria Vermelho"},
   {d:"2026-11-19", k:"Fernando Lemos: quanto mais desejo, mais invento o que vejo|IMS Paulista"},
   {d:"2026-11-18", k:"Beijo de Língua — Nelson Felix|MAC USP"},
   {d:"2026-11-17", k:"Marlene Barros: tecitura do feminino|CCBB São Paulo"},
@@ -480,5 +481,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "19/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "20/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
