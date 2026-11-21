@@ -241,7 +241,6 @@ const EXPOS = [
    primária, cada uma abrindo casa nova na base ou corrigindo uma já mapeada.
    Uma delas (Paço das Artes) ainda não abriu — fica registrada certa e o
    `check.js`/`destaque.js` já sabem lidar com `ini` no futuro. */
-{t:"Controle | Corrosão | Dispersão",a:"Beto Shwafaty",v:"Galeria Leme",ini:"2026-09-03",fim:"2026-11-13",d:"Individual com cerca de 15 trabalhos que pensam a sociedade contemporânea a partir de objetos e materiais do cotidiano, incluindo a obra inédita \"O sonho da terra, é o sonho americano\".",img:"img/controle-corrosao-dispersao-galeria-leme.jpg",cred:"Cortesia Galeria Leme"},
 {t:"Marlene Barros: tecitura do feminino",a:"Marlene Barros",v:"CCBB São Paulo",ini:"2026-08-26",fim:"2027-01-25",d:"Reúne 15 obras entre esculturas, bordados, crochês, instalações e objetos que discutem a feminilidade como construção histórica, social e cultural; curadoria de Betânia Pinheiro.",img:"img/marlene-barros-tecitura-do-feminino-ccbb-sao-paulo.jpg",cred:"Cortesia CCBB São Paulo",foco:35},
 {t:"Fernando Lemos: quanto mais desejo, mais invento o que vejo",a:"Fernando Lemos",v:"IMS Paulista",ini:"2026-09-19",fim:"2027-02-07",d:"Retrospectiva do centenário de nascimento de Fernando Lemos (1926–2019), com cerca de 400 itens entre fotografias, desenhos, projetos gráficos e poesia produzidos ao longo de 70 anos; curadoria de Thyago Nogueira.",img:"img/fernando-lemos-quanto-mais-desejo-mais-invento-o-que-vejo-im.webp",cred:"Fernando Lemos, Eu, poeta. Arquivo Fernando Lemos / Acervo Instituto Moreira Salles"},
 {t:"NO LIMITE: forma e transformação",a:"",v:"Paço das Artes",ini:"2026-09-26",fim:"2026-11-15",d:"Coletiva com 17 artistas de 6 países que explora o conceito de \"situação-limite\" do filósofo Karl Jaspers, combinando aspectos psicológicos com elementos como água, pedras, sal e luz. Curadoria de Martin Juef, cocuradoria de Francisco Klinger Carvalho.",img:"img/no-limite-paco-das-artes.png",cred:"Nina E. Schönefeld, still de vídeo / Cortesia Paço das Artes"},
@@ -345,11 +344,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Ocupação JAMAC",
-  v: "Galeria Vermelho",
-  quem: "JAMAC — Jardim Miriam Arte Clube",
-  txt: "O coletivo fundado por Mônica Nador em 2004 ocupa a banca da galeria com os projetos Inventários e Aprender algo novo. Quinta e sexta, 12h–18h; sábado, 11h–17h. Abertura em 4 de outubro, até 19 de dezembro.",
-  link: "https://galeriavermelho.com.br",
+  t: "Gestos",
+  v: "Galeria Superfície",
+  quem: "",
+  txt: "Coletiva com 27 artistas de diferentes gerações, a partir da ideia de gesto do livro de Vilém Flusser. Curadoria de Paulo Venancio Filho e Gustavo Nóbrega, inaugura a nova sede da galeria na Vila Madalena. Abertura em 29 de agosto, até 12 de dezembro.",
+  link: "",
   publi: false
 };
 
@@ -364,6 +363,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-11-21", k:"Gestos|Galeria Superfície"},
   {d:"2026-11-20", k:"Ocupação JAMAC|Galeria Vermelho"},
   {d:"2026-11-19", k:"Fernando Lemos: quanto mais desejo, mais invento o que vejo|IMS Paulista"},
   {d:"2026-11-18", k:"Beijo de Língua — Nelson Felix|MAC USP"},
@@ -481,5 +481,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "20/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "21/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
