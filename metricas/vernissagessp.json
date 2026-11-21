@@ -156,6 +156,12 @@
       "seguidores": 123,
       "seguindo": 105,
       "posts": 85
+    },
+    {
+      "data": "2026-11-21",
+      "seguidores": 124,
+      "seguindo": 105,
+      "posts": 86
     }
   ],
   "midias": {
@@ -762,10 +768,18 @@
     "17998533074844113": {
       "tipo": "FEED",
       "quando": "2026-11-20T17:11:55+0000",
-      "curtidas": 0,
+      "curtidas": 1,
       "comentarios": 0,
       "link": "https://www.instagram.com/p/Df-KaJSCXYL/",
       "formato": "obra"
+    },
+    "17957391414318912": {
+      "tipo": "REELS",
+      "quando": "2026-11-20T23:19:11+0000",
+      "curtidas": 1,
+      "comentarios": 0,
+      "link": "https://www.instagram.com/reel/Df-0Z5FCm2n/",
+      "formato": "reel"
     }
   }
 }
