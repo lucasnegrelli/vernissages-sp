@@ -230,8 +230,6 @@ const EXPOS = [
 {t:"Constelação em trânsito: uma escuta cartográfica",v:"Galpão da Lapa",ini:"2025-09-06",fim:"2027-03-01",d:"Mostra de longa duração da coleção privada de arte contemporânea brasileira do Galpão da Lapa, organizada em três eixos - Arquiteturas do Inconsciente, Geometrias do Sul e Topologias do Orgânico - a partir de uma escuta do próprio acervo. Visitas guiadas gratuitas mediante agendamento, quintas e sábados.",img:"img/constelacao-em-transito-uma-escuta-cartografica-galpao-da-la.jpg",cred:"Cortesia Galpão da Lapa",foco:50},
 
 /* --- confirmadas na fonte primária em 14/09/2026, casas já mapeadas sem nada em cartaz na base --- */
-{t:"Abismos Urbanos e o Plano Celeste",a:"Eduardo Coimbra",v:"Galeria Lume",ini:"2026-09-12",fim:"2026-11-14",d:"Exposição individual.",img:"img/abismos-urbanos-e-o-plano-celeste-galeria-lume.webp",cred:"Cortesia Galeria Lume",conferida:true},
-{t:"Território de Disputa",a:"Kilian Glasner",v:"Galeria Lume",ini:"2026-09-12",fim:"2026-11-14",d:"Pinturas feitas com saibro — laterita alaranjada recolhida no sertão —, cortadas pelas faixas brancas de uma quadra de tênis, como alegoria de disputa por território.",img:"img/territorio-de-disputa-galeria-lume.jpg",cred:"Cortesia Galeria Lume",foco:50},
 {t:"Longitudes",a:"Johanna Calle",v:"Galeria Marília Razuk",ini:"2026-09-12",fim:"2026-12-12",d:"Exposição individual.",img:"img/longitudes-galeria-marilia-razuk.jpg",cred:"Cortesia Galeria Marília Razuk"},
 
 /* --- casas novas mapeadas hoje: mostra atual confirmada na fonte --- */
@@ -262,12 +260,9 @@ const EXPOS = [
 {t:"Horizontes do Solo",a:"Bárbara Banida, Cláudio Cretti, Pedro França",v:"Ateliê397",ini:"2026-10-08",fim:"2026-11-21",d:"Coletiva com curadoria de Érica Burini, originada na primeira edição da residência artística IOD'A, no Piauí. Quarta a sábado, 14h às 18h; abertura das 19h às 22h.",img:"img/horizontes-do-solo-atelie397.webp",cred:"Cortesia Ateliê397",foco:53},
 {t:"O tudo e o todo — André Vargas",a:"André Vargas",v:"Casa de Cultura do Parque",ini:"2026-10-03",fim:"2027-04-25",d:"Oito bandeiras feitas a partir de paramentas de orixás formam as palavras TUDO e TODO na fachada, na edição do Dando Bandeira. Quarta a domingo, 11h às 18h.",img:"img/o-tudo-e-o-todo-casa-de-cultura-do-parque.webp",cred:"Cortesia Casa de Cultura do Parque"},
 {t:"Metragens — Pablo Accinelli e Gustavo Silvamaral",a:"Pablo Accinelli, Gustavo Silvamaral",v:"Casa de Cultura do Parque",ini:"2026-10-03",fim:"2027-04-25",d:"Projeto concebido em colaboração, no programa No Deck, com vidro, metal e utensílios de limpeza. Texto crítico de Omar Porto. Quarta a domingo, 11h às 18h.",img:"img/metragens-casa-de-cultura-do-parque.webp",cred:"Cortesia Casa de Cultura do Parque"},
-{t:"Estado de Transe — Dora Smék",a:"Dora Smék",v:"Central Galeria",ini:"2026-10-03",fim:"2026-11-14",d:"Segunda individual da artista na galeria, com esculturas, instalações e vídeo inéditos. Texto de Yago Toscano. Segunda a sexta, 10h às 19h; sábado, 11h às 17h.",img:"img/estado-de-transe-central-galeria.jpg",cred:"Foto Ana Pigosso / Cortesia Central Galeria",foco:50,img2:"img/estado-de-transe-central-galeria-2.jpg"},
 {t:"Corrente Contínua — tecfase",a:"",v:"Choque Cultural",ini:"2026-09-26",fim:"2026-11-26",d:"Individual com TVs pintadas, pinturas, colagem e vídeos. Aberta em 26 de setembro.",img:"img/corrente-continua-choque-cultural.jpg",cred:"Cortesia Choque Cultural",foco:50},
 {t:"Khāmoshī — Fernanda Valadares",a:"Fernanda Valadares",v:"Galeria Aura",ini:"2026-10-03",fim:"2026-11-18",d:"Individual com pinturas inéditas em encáustica, numa paleta de negros profundos. Texto curatorial de Priscyla Gomes. Abertura em 3 de outubro; em cartaz até 18 de novembro.",img:"img/khamoshi-galeria-aura.jpg",cred:"Vista da exposição. Cortesia Galeria Aura",vista:true},
 {t:"Toda minúcia — André Barion",a:"André Barion",v:"Galeria Estação",ini:"2026-10-06",fim:"2026-11-28",d:"Individual com curadoria de Amanda Tavares e pesquisa de Omar Porto, entre pintura, desenho, escultura, costura e instalação, no segundo andar e no mezanino. Abertura em 6 de outubro, das 18h às 21h.",img:"img/toda-minucia-galeria-estacao.jpg",cred:"Cortesia Galeria Estação"},
-{t:"Não há só uma maneira — Oriol Vilanova",a:"Oriol Vilanova",v:"Galeria Luisa Strina",ini:"2026-10-01",fim:"2026-11-14",d:"Primeira individual do artista espanhol no Brasil, na Sala 2, sobre coleções e colecionadores. Inclui a performance Palabras prestadas, com datas a divulgar.",img:"img/nao-ha-so-uma-maneira-galeria-luisa-strina.jpg",cred:"Foto Mina Albespy / Cortesia Galeria Luisa Strina",vista:true},
-{t:"nome ar — Jarbas Lopes",a:"Jarbas Lopes",v:"Galeria Luisa Strina",ini:"2026-10-01",fim:"2026-11-14",d:"Obras inéditas na Sala 1, com ensaios críticos de Érica Burini e Luiz Villares. Abertura em 1º de outubro, das 18h às 21h, com performance do artista às 19h.",img:"img/nome-ar-galeria-luisa-strina.jpg",cred:"Foto Julia Thompson / Cortesia Galeria Luisa Strina"},
 {t:"Círio de Nazaré. Do sagrado ao profano: uma extensão do Brasil | Nova Fotografia 2026",a:"Fabricio Augusto",v:"MIS — Museu da Imagem e do Som",ini:"2026-10-06",fim:"2026-11-15",d:"Ensaio fotográfico documental sobre o Círio de Nazaré, em Belém, no programa anual Nova Fotografia do MIS. Abertura às 19h; entrada gratuita.",img:"",cred:""},
 {t:"Marília Mendonça: Sentimento Louco",a:"",v:"MIS — Museu da Imagem e do Som",ini:"2026-10-09",fim:null,d:"Primeira grande exposição sobre a trajetória de Marília Mendonça, com memórias, objetos pessoais, música e audiovisual. Encerramento não divulgado.",img:"",cred:""},
 {t:"NZO: Memórias Afro-brasileiras",a:"",v:"Museu Afro Brasil Emanoel Araujo",ini:"2026-09-26",fim:"2027-02-28",d:"Primeira exposição da Rede de Acervos Afro-brasileiros, com curadoria compartilhada e mais de 150 obras e registros de diferentes regiões do país.",img:"",cred:""},
@@ -344,11 +339,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Gestos",
-  v: "Galeria Superfície",
+  t: "39º Panorama da Arte Brasileira: Depois que tudo foi dito",
+  v: "MAM São Paulo",
   quem: "",
-  txt: "Coletiva com 27 artistas de diferentes gerações, a partir da ideia de gesto do livro de Vilém Flusser. Curadoria de Paulo Venancio Filho e Gustavo Nóbrega, inaugura a nova sede da galeria na Vila Madalena. Abertura em 29 de agosto, até 12 de dezembro.",
-  link: "",
+  txt: "Curadoria de Diane Lima, com 33 artistas de 13 estados. A mostra marca o retorno do museu à sede do Ibirapuera após a reforma da marquise. Abertura em 12 de setembro, até 24 de janeiro.",
+  link: "https://mam.org.br",
   publi: false
 };
 
@@ -363,6 +358,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-11-22", k:"39º Panorama da Arte Brasileira: Depois que tudo foi dito|MAM São Paulo"},
   {d:"2026-11-21", k:"Gestos|Galeria Superfície"},
   {d:"2026-11-20", k:"Ocupação JAMAC|Galeria Vermelho"},
   {d:"2026-11-19", k:"Fernando Lemos: quanto mais desejo, mais invento o que vejo|IMS Paulista"},
@@ -481,5 +477,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "21/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "22/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
