@@ -1,7 +1,7 @@
 {
   "conta": "vernissagessp",
   "id": "2026-11-22_encerra",
-  "status": "aprovado",
+  "status": "postado",
   "tipo": "carrossel",
   "quando": "2026-11-22T12:00:00-03:00",
   "imagens": [
@@ -10,5 +10,9 @@
   ],
   "legenda": "Fecha domingo, 29 de novembro: Beijo de Língua, Nelson Felix.\n\nIndividual do escultor carioca no MAC USP. Entrada gratuita.\n\nServiço: MAC USP, Ibirapuera. Av. Pedro Álvares Cabral, 1301. Até 29 de novembro.\n\nImagem: Cortesia do artista.\n\nManda para quem gosta de ver exposição. Agenda completa de exposições em vernissagessp.com.br\n\n#exposicaosp #arteemsp #saopaulo #artecontemporanea #galeriadearte",
   "collab": [],
-  "collabExtra": []
+  "collabExtra": [],
+  "collabUsado": false,
+  "collabConvidados": [],
+  "midiaId": "18428646994159470",
+  "postadoEm": "2026-11-22T15:37:39.255Z"
 }
