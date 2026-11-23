@@ -248,14 +248,12 @@ const EXPOS = [
    `check.js`/`destaque.js` já sabem lidar com `ini` no futuro. */
 {t:"Marlene Barros: tecitura do feminino",a:"Marlene Barros",v:"CCBB São Paulo",ini:"2026-08-26",fim:"2027-01-25",d:"Reúne 15 obras entre esculturas, bordados, crochês, instalações e objetos que discutem a feminilidade como construção histórica, social e cultural; curadoria de Betânia Pinheiro.",img:"img/marlene-barros-tecitura-do-feminino-ccbb-sao-paulo.jpg",cred:"Cortesia CCBB São Paulo",foco:35},
 {t:"Fernando Lemos: quanto mais desejo, mais invento o que vejo",a:"Fernando Lemos",v:"IMS Paulista",ini:"2026-09-19",fim:"2027-02-07",d:"Retrospectiva do centenário de nascimento de Fernando Lemos (1926–2019), com cerca de 400 itens entre fotografias, desenhos, projetos gráficos e poesia produzidos ao longo de 70 anos; curadoria de Thyago Nogueira.",img:"img/fernando-lemos-quanto-mais-desejo-mais-invento-o-que-vejo-im.webp",cred:"Fernando Lemos, Eu, poeta. Arquivo Fernando Lemos / Acervo Instituto Moreira Salles"},
-{t:"NO LIMITE: forma e transformação",a:"",v:"Paço das Artes",ini:"2026-09-26",fim:"2026-11-15",d:"Coletiva com 17 artistas de 6 países que explora o conceito de \"situação-limite\" do filósofo Karl Jaspers, combinando aspectos psicológicos com elementos como água, pedras, sal e luz. Curadoria de Martin Juef, cocuradoria de Francisco Klinger Carvalho.",img:"img/no-limite-paco-das-artes.png",cred:"Nina E. Schönefeld, still de vídeo / Cortesia Paço das Artes"},
 {t:"Afríquia: o artista como colecionador",a:"",v:"Museu Afro Brasil Emanoel Araujo",ini:"2026-06-26",fim:"2027-01-31",d:"Reúne mais de 200 obras e materiais de arquivo — esculturas, pinturas, máscaras, fotografias, livros, discos e têxteis, com destaque para peças da Nigéria e do Benin — mostrando como Emanoel Araujo formou o acervo de arte africana do museu. Curadoria de Gabrielle Nascimento.",img:"",cred:""},
 /* confirmado no Instagram (@vazio_criativo_, 23/09/2026), checagem manual.
    Só cartaz disponível, sem imagem de obra. */
 /* confirmado no Instagram (@mits.galeria, 23/09/2026). Curadoria e lista
    de artistas apareciam no cartaz mas cortados/ilegiveis no zoom -- nao
    incluidos, para nao chutar nome. */
-{t:"Coordenadas Improváveis",a:"",v:"MITS Galeria",ini:"2026-09-24",fim:"2026-11-15",d:"Coletiva com 11 artistas, entre eles Jay Boggo, Maria Tereza Bomfim, Marcos Cavallaria, Letícia Façanha, Matheus Freitas e Cadeh Juaçaba. Em cartaz até 15 de novembro.",img:"img/coordenadas-improvaveis-mits-galeria.jpg",cred:"Cortesia MITS Galeria"},
 /* confirmado no Instagram (@espacorepublica, 25/09/2026). Lista de artistas
    tirada do cartaz da 2a edicao (imagem do post); flyer tipografico, sem
    imagem de obra disponivel. */
@@ -270,7 +268,6 @@ const EXPOS = [
 {t:"Corrente Contínua — tecfase",a:"",v:"Choque Cultural",ini:"2026-09-26",fim:"2026-11-26",d:"Individual com TVs pintadas, pinturas, colagem e vídeos. Aberta em 26 de setembro.",img:"img/corrente-continua-choque-cultural.jpg",cred:"Cortesia Choque Cultural",foco:50},
 {t:"Khāmoshī — Fernanda Valadares",a:"Fernanda Valadares",v:"Galeria Aura",ini:"2026-10-03",fim:"2026-11-18",d:"Individual com pinturas inéditas em encáustica, numa paleta de negros profundos. Texto curatorial de Priscyla Gomes. Abertura em 3 de outubro; em cartaz até 18 de novembro.",img:"img/khamoshi-galeria-aura.jpg",cred:"Vista da exposição. Cortesia Galeria Aura",vista:true},
 {t:"Toda minúcia — André Barion",a:"André Barion",v:"Galeria Estação",ini:"2026-10-06",fim:"2026-11-28",d:"Individual com curadoria de Amanda Tavares e pesquisa de Omar Porto, entre pintura, desenho, escultura, costura e instalação, no segundo andar e no mezanino. Abertura em 6 de outubro, das 18h às 21h.",img:"img/toda-minucia-galeria-estacao.jpg",cred:"Cortesia Galeria Estação"},
-{t:"Círio de Nazaré. Do sagrado ao profano: uma extensão do Brasil | Nova Fotografia 2026",a:"Fabricio Augusto",v:"MIS — Museu da Imagem e do Som",ini:"2026-10-06",fim:"2026-11-15",d:"Ensaio fotográfico documental sobre o Círio de Nazaré, em Belém, no programa anual Nova Fotografia do MIS. Abertura às 19h; entrada gratuita.",img:"",cred:""},
 {t:"Marília Mendonça: Sentimento Louco",a:"",v:"MIS — Museu da Imagem e do Som",ini:"2026-10-09",fim:null,d:"Primeira grande exposição sobre a trajetória de Marília Mendonça, com memórias, objetos pessoais, música e audiovisual. Encerramento não divulgado.",img:"",cred:""},
 {t:"NZO: Memórias Afro-brasileiras",a:"",v:"Museu Afro Brasil Emanoel Araujo",ini:"2026-09-26",fim:"2027-02-28",d:"Primeira exposição da Rede de Acervos Afro-brasileiros, com curadoria compartilhada e mais de 150 obras e registros de diferentes regiões do país.",img:"",cred:""},
 {t:"vem, vira, vai, voo — Selva de Carvalho",a:"Selva de Carvalho",v:"Verve Galeria",ini:"2026-10-03",fim:null,d:"Instalação inédita na vitrine da Sala de Projetos, no Edifício Louvre. Abertura das 12h às 17h; encerramento não divulgado.",img:"img/vem-vira-vai-voo-verve-galeria.jpg",cred:"Cortesia Verve Galeria",img2:"img/vem-vira-vai-voo-verve-galeria-2.jpg"},
@@ -346,11 +343,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "39º Panorama da Arte Brasileira: Depois que tudo foi dito",
-  v: "MAM São Paulo",
-  quem: "",
-  txt: "Curadoria de Diane Lima, com 33 artistas de 13 estados. A mostra marca o retorno do museu à sede do Ibirapuera após a reforma da marquise. Abertura em 12 de setembro, até 24 de janeiro.",
-  link: "https://mam.org.br",
+  t: "Beatriz Milhazes: gravuras do acervo da Pinacoteca",
+  v: "Estação Pinacoteca",
+  quem: "Beatriz Milhazes",
+  txt: "27 gravuras feitas entre 1996 e 2019 com a Durham Press (Pina Estação). Abertura em 16 de maio, até 14 de março.",
+  link: "https://pinacoteca.org.br",
   publi: false
 };
 
@@ -365,6 +362,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-11-23", k:"Beatriz Milhazes: gravuras do acervo da Pinacoteca|Estação Pinacoteca"},
   {d:"2026-11-22", k:"39º Panorama da Arte Brasileira: Depois que tudo foi dito|MAM São Paulo"},
   {d:"2026-11-21", k:"Gestos|Galeria Superfície"},
   {d:"2026-11-20", k:"Ocupação JAMAC|Galeria Vermelho"},
@@ -484,5 +482,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "22/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "23/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
