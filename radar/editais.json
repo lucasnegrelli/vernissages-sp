@@ -1,18 +1,7 @@
 {
- "gerado": "2026-11-23",
+ "gerado": "2026-11-24",
  "aviso": "Detectado automaticamente em feeds e buscas. O prazo vem do texto da matéria: confirme na fonte oficial.",
  "itens": [
-  {
-   "t": "Inscrições Fechadas (03/11): Residência Artística The PIPA Foundation na Gasworks",
-   "fonte": "Prêmio PIPA",
-   "link": "https://www.premiopipa.com/2026/10/residencia-artistica-the-pipa-foundation-na-gasworks-abertura-das-inscricoes-em-1309/",
-   "pub": "2026-10-26",
-   "prazo": "2026-11-23",
-   "cat": "residencia",
-   "onde": "exterior",
-   "resumo": "Dia 03 de novembro, encerram as inscrições para a segunda edição da The PIPA Foundation Artist Residency at Gasworks, que será realizada em 2027, em Londres. Leia mais sobre a oportunidade e inscreva-se! As inscrições foram encerradas em 3 ",
-   "visto": "2026-11-05"
-  },
   {
    "t": "Festival Ubuntu abre inscrições para sua sexta edição em São Paulo",
    "fonte": "Dasartes",
@@ -66,18 +55,7 @@
    "cat": "premio",
    "onde": "brasil",
    "resumo": "Para proteger um prédio das enchentes no delta do rio Jamuna, em Bangladesh, o arquiteto Kashef Chowdhury buscou inspiração em um assentamento de mais de 2.300 anos. O resultado, o [&hellip;]",
-   "visto": "2026-11-23"
-  },
-  {
-   "t": "CULTSP PRO abre edital para grafite de 130 m² no Bom Retiro",
-   "fonte": "Dasartes",
-   "link": "https://dasartes.com.br/de-arte-a-z/cultsp-pro-abre-edital-para-grafite-de-130-m%c2%b2-no-bom-retiro/",
-   "pub": "2026-10-09",
-   "prazo": null,
-   "cat": "fomento",
-   "onde": "sp",
-   "resumo": "Artista ou coletivo selecionado receberá R$ 20.150 para criar obra no Complexo Cultural Oswald de Andrade; outros cinco projetos poderão ser remunerados durante feira de arte urbana O Bom Retiro, bairro paulistano marcado pela presença de d",
-   "visto": "2026-11-23"
+   "visto": "2026-11-24"
   }
  ]
 }
