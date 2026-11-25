@@ -343,11 +343,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Electric Feel",
-  v: "GRUTA Espaço de Arte Contemporânea",
-  quem: "Ana Zala, Emer Freire, Fernando Moletta, Henrique Cutait, Lorenzo Muratorio",
-  txt: "Coletiva de cinco artistas, com curadoria de Chico Soll. Abertura em 14 de novembro, até 9 de janeiro.",
-  link: "https://www.gruta.cc",
+  t: "Southern Conversations",
+  v: "Galeria Marília Razuk",
+  quem: "",
+  txt: "Coletiva com texto crítico de Eugênio Viola. Abertura em 14 de novembro, até 30 de janeiro.",
+  link: "https://www.galeriamariliarazuk.com.br",
   publi: false
 };
 
@@ -362,6 +362,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-11-25", k:"Southern Conversations|Galeria Marília Razuk"},
   {d:"2026-11-24", k:"Electric Feel|GRUTA Espaço de Arte Contemporânea"},
   {d:"2026-11-23", k:"Beatriz Milhazes: gravuras do acervo da Pinacoteca|Estação Pinacoteca"},
   {d:"2026-11-22", k:"39º Panorama da Arte Brasileira: Depois que tudo foi dito|MAM São Paulo"},
@@ -483,5 +484,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "24/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "25/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
