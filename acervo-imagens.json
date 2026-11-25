@@ -2259,17 +2259,6 @@
       },
       {
         "n": 3,
-        "url": "https://static.ccbb.com.br/site-2025/2026/11/fause-6afdc160defb2.png",
-        "md5": "d83367c837b389d01877ae604e6bf3c5",
-        "fonte": "site",
-        "w": 411,
-        "h": 520,
-        "kb": 271,
-        "serveObra": false,
-        "serveComFoco": false
-      },
-      {
-        "n": 4,
         "url": "https://static.ccbb.com.br/site-2025/2026/11/geni-cabelo.png",
         "md5": "f891e3e802c01b57709e97ba0cf685ea",
         "fonte": "site",
@@ -2280,7 +2269,7 @@
         "serveComFoco": false
       },
       {
-        "n": 5,
+        "n": 4,
         "url": "https://static.ccbb.com.br/site-2025/2026/11/eu-sou-um-monstro.png",
         "md5": "5f8e5b7fc5518aa515cc7a4d2f140dfe",
         "fonte": "site",
@@ -2291,18 +2280,33 @@
         "serveComFoco": false
       },
       {
-        "n": 6,
-        "url": "https://static.ccbb.com.br/site-2025/2026/11/imagem_1024x1024.jpg",
-        "md5": "6b5f43e63cf0dd7049718162edfa14ff",
+        "n": 5,
+        "url": "https://static.ccbb.com.br/site-2025/2026/11/Designer-6.png",
+        "md5": "5bfc5bd0da4ba9901242382bd7a9d7a7",
         "fonte": "site",
         "w": 1024,
         "h": 1024,
-        "kb": 167,
+        "kb": 1504,
         "serveObra": false,
         "serveComFoco": false
+      },
+      {
+        "n": 6,
+        "url": "https://static.ccbb.com.br/site-2025/2026/11/Fause-Haten_Eu-sou-um-Monstro_8.jpg",
+        "md5": "d18a6ee0a8b769b4e29bc0852f98b38a",
+        "fonte": "site",
+        "w": 1500,
+        "h": 1499,
+        "kb": 225,
+        "serveObra": true,
+        "serveComFoco": true
       }
     ],
     "credLegenda": null,
-    "atualizado": "2026-11-24"
+    "atualizado": "2026-11-25",
+    "escolhida": 6,
+    "img": "img/residencia-fause-hauten-um-artista-em-processo-ccbb-sao-paul.jpg",
+    "cred": "Cortesia CCBB São Paulo",
+    "motivo": "auto: 1500x1499, fonte site"
   }
 }
