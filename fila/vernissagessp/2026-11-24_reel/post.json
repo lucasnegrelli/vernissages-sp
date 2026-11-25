@@ -1,7 +1,7 @@
 {
   "conta": "vernissagessp",
   "id": "2026-11-24_reel",
-  "status": "aprovado",
+  "status": "postado",
   "tipo": "reel",
   "quando": "2026-11-24T19:15:00-03:00",
   "imagens": [
@@ -9,5 +9,9 @@
   ],
   "legenda": "Últimos dias em São Paulo. Quem deixou para depois, é agora.\n\nCorrente Contínua\n   Choque Cultural @choquecultural, Jardim Paulista · até 26 de novembro\n\nToda minúcia, André Barion\n   Galeria Estação @galeriaestacao, Pinheiros · até 28 de novembro\n\nBeijo de Língua, Nelson Felix\n   MAC USP, Ibirapuera · até 29 de novembro\n\nSalva para não perder o dia e manda para quem vai com você.\n\nFotos: cortesia das casas e dos artistas. Agenda completa em vernissagessp.com.br\n\n#arteemsp #exposicaosp #saopaulo #galeriadearte #arte #museusp #agendacultural",
   "collab": [],
-  "collabExtra": []
+  "collabExtra": [],
+  "collabUsado": false,
+  "collabConvidados": [],
+  "midiaId": "18100287068671985",
+  "postadoEm": "2026-11-25T02:44:52.882Z"
 }
