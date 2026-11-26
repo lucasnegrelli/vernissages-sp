@@ -266,7 +266,6 @@ const EXPOS = [
 {t:"O tudo e o todo — André Vargas",a:"André Vargas",v:"Casa de Cultura do Parque",ini:"2026-10-03",fim:"2027-04-25",d:"Oito bandeiras feitas a partir de paramentas de orixás formam as palavras TUDO e TODO na fachada, na edição do Dando Bandeira. Quarta a domingo, 11h às 18h.",img:"img/o-tudo-e-o-todo-casa-de-cultura-do-parque.webp",cred:"Cortesia Casa de Cultura do Parque"},
 {t:"Metragens — Pablo Accinelli e Gustavo Silvamaral",a:"Pablo Accinelli, Gustavo Silvamaral",v:"Casa de Cultura do Parque",ini:"2026-10-03",fim:"2027-04-25",d:"Projeto concebido em colaboração, no programa No Deck, com vidro, metal e utensílios de limpeza. Texto crítico de Omar Porto. Quarta a domingo, 11h às 18h.",img:"img/metragens-casa-de-cultura-do-parque.webp",cred:"Cortesia Casa de Cultura do Parque"},
 {t:"Corrente Contínua — tecfase",a:"",v:"Choque Cultural",ini:"2026-09-26",fim:"2026-11-26",d:"Individual com TVs pintadas, pinturas, colagem e vídeos. Aberta em 26 de setembro.",img:"img/corrente-continua-choque-cultural.jpg",cred:"Cortesia Choque Cultural",foco:50},
-{t:"Khāmoshī — Fernanda Valadares",a:"Fernanda Valadares",v:"Galeria Aura",ini:"2026-10-03",fim:"2026-11-18",d:"Individual com pinturas inéditas em encáustica, numa paleta de negros profundos. Texto curatorial de Priscyla Gomes. Abertura em 3 de outubro; em cartaz até 18 de novembro.",img:"img/khamoshi-galeria-aura.jpg",cred:"Vista da exposição. Cortesia Galeria Aura",vista:true},
 {t:"Toda minúcia — André Barion",a:"André Barion",v:"Galeria Estação",ini:"2026-10-06",fim:"2026-11-28",d:"Individual com curadoria de Amanda Tavares e pesquisa de Omar Porto, entre pintura, desenho, escultura, costura e instalação, no segundo andar e no mezanino. Abertura em 6 de outubro, das 18h às 21h.",img:"img/toda-minucia-galeria-estacao.jpg",cred:"Cortesia Galeria Estação"},
 {t:"Marília Mendonça: Sentimento Louco",a:"",v:"MIS — Museu da Imagem e do Som",ini:"2026-10-09",fim:null,d:"Primeira grande exposição sobre a trajetória de Marília Mendonça, com memórias, objetos pessoais, música e audiovisual. Encerramento não divulgado.",img:"",cred:""},
 {t:"NZO: Memórias Afro-brasileiras",a:"",v:"Museu Afro Brasil Emanoel Araujo",ini:"2026-09-26",fim:"2027-02-28",d:"Primeira exposição da Rede de Acervos Afro-brasileiros, com curadoria compartilhada e mais de 150 obras e registros de diferentes regiões do país.",img:"",cred:""},
@@ -343,11 +342,11 @@ const BAIRRO_COUNTS = Object.entries(
 Bloco de destaque no topo. Troque quando quiser.
 publi:true acrescenta o selo "conteúdo patrocinado" (use sempre que for espaço pago). */
  const FOCO = {
-  t: "Southern Conversations",
-  v: "Galeria Marília Razuk",
-  quem: "",
-  txt: "Coletiva com texto crítico de Eugênio Viola. Abertura em 14 de novembro, até 30 de janeiro.",
-  link: "https://www.galeriamariliarazuk.com.br",
+  t: "Residência Fause Hauten: Um artista em processo",
+  v: "CCBB São Paulo",
+  quem: "Fause Hauten",
+  txt: "Inclui a mostra Aquilo que não foi, com 28 obras de 2026 e curadoria de Daniel Rangel. Estreia no Espaço Anexo do CCBB em 25 de novembro e fica em cartaz junto com a mostra de Marlene Barros. O centro abre todos os dias, exceto terças, das 9h às 20h. Abertura em 25 de novembro, até 25 de janeiro.",
+  link: "https://ccbb.com.br",
   publi: false
 };
 
@@ -362,6 +361,7 @@ com imagem e por isso repetia a cada cinco dias.
 Em empate de data de abertura, evite galeria que ja esteve em foco nos ultimos 7 dias,
 mesmo que isso custe procurar a imagem de divulgacao. */
 const DESTAQUES = [
+  {d:"2026-11-26", k:"Residência Fause Hauten: Um artista em processo|CCBB São Paulo"},
   {d:"2026-11-25", k:"Southern Conversations|Galeria Marília Razuk"},
   {d:"2026-11-24", k:"Electric Feel|GRUTA Espaço de Arte Contemporânea"},
   {d:"2026-11-23", k:"Beatriz Milhazes: gravuras do acervo da Pinacoteca|Estação Pinacoteca"},
@@ -484,5 +484,5 @@ Para onde vão os envios do botão "Divulgue sua vernissage".
 wa: número com DDI e DDD, só dígitos (ex.: "5511999999999"). Deixe "" para esconder o botão de WhatsApp. */
 const CONTATO = { wa:"", email:"propagang8@gmail.com" };
 
-return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "25/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
+return { foco: FOCO, destaques: DESTAQUES, contato: CONTATO, atualizado: "26/11/2026", venues: VENUES, expos: EXPOS, editais: EDITAIS, imersivas: IMERSIVAS, bairros: BAIRRO_COUNTS, grupoBairro: GRUPO_BAIRRO };
 })();
