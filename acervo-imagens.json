@@ -89,9 +89,9 @@
       }
     ],
     "credLegenda": null,
-    "atualizado": "2026-11-13",
+    "atualizado": "2026-11-27",
     "sem": "auto: nenhuma candidata passou na régua (formato de obra, >=1200 px, nome sem cara de cartaz/logo)",
-    "semEm": "2026-11-13"
+    "semEm": "2026-11-27"
   },
   "Ocupação JAMAC|Galeria Vermelho": {
     "links": {
@@ -104,7 +104,7 @@
   "Brasil das Múltiplas Faces|Itaú Cultural": {
     "links": {
       "aqa": "https://artequeacontece.com.br/evento/brasil-das-multiplas-faces-no-itau-cultural/",
-      "site": "https://www.itaucultural.org.br/secoes/agenda/pioneiro-da-educacao-do-brasil-anisio-teixeira-e-homenageado-pelo-ocupacao",
+      "site": "https://www.itaucultural.org.br/secoes/noticias/velhice-que-outro-nao-enxerga-um-romance-por-dayse-torres",
       "siteConfianca": 3
     },
     "candidatos": [
@@ -121,24 +121,24 @@
       },
       {
         "n": 2,
-        "url": "https://s3.sa-east-1.amazonaws.com/prd.editor.fundacaoitau.org.br/public/image/20488/file/optimized-ee9df9dc167d7c0f75b22a62005de66a.jpeg",
-        "md5": "c9ca9f4349f0e67029fb401f73d2aa5e",
+        "url": "https://s3.sa-east-1.amazonaws.com/prd.editor.fundacaoitau.org.br/public/image/20935/file/optimized-1f3fa8bbbbe1d11432cf5d9ee3eb093d.jpeg",
+        "md5": "bc6db54569c22c0dc1dcbc83910208b2",
         "fonte": "site",
-        "w": 1920,
-        "h": 1080,
-        "kb": 546,
+        "w": 383,
+        "h": 205,
+        "kb": 23,
         "serveObra": false,
-        "serveComFoco": true
+        "serveComFoco": false
       }
     ],
     "credLegenda": "Emiliano di Cavalcanti, \"Vendedoras de Peixe\" 1952. Divulgação.",
-    "atualizado": "2026-11-13",
+    "atualizado": "2026-11-27",
     "escolhida": 1,
     "img": "img/brasil-das-multiplas-faces-itau-cultural.webp",
     "cred": "Emiliano di Cavalcanti, Vendedoras de Peixe, 1952. Divulgação Itaú Cultural",
     "motivo": "pintura do acervo (Di Cavalcanti), só 1025x485: serve ao site, o formato obra recusa pela régua",
     "sem": "auto: nenhuma candidata passou na régua (formato de obra, >=1200 px, nome sem cara de cartaz/logo)",
-    "semEm": "2026-11-13"
+    "semEm": "2026-11-27"
   },
   "Casa María Lionza — Sol Calero|MASP": {
     "links": {
@@ -169,13 +169,13 @@
       }
     ],
     "credLegenda": "Foto: Divulgação",
-    "atualizado": "2026-11-13",
+    "atualizado": "2026-11-27",
     "escolhida": 1,
     "img": "img/casa-maria-lionza-masp.webp",
     "cred": "Cortesia MASP",
     "motivo": "obra da mostra, casas coloridas, 2560x1808; foco central",
     "sem": "auto: nenhuma candidata passou na régua (formato de obra, >=1200 px, nome sem cara de cartaz/logo)",
-    "semEm": "2026-11-13"
+    "semEm": "2026-11-27"
   },
   "Histórias Latino-Americanas|MASP": {
     "links": {
@@ -197,7 +197,7 @@
       },
       {
         "n": 2,
-        "url": "https://assets.masp.org.br/uploads/exposure-sponsors/KtqmWu8d3tYtfPUUoxmd-o85hFyNAl7NSp6BHd0iI.png",
+        "url": "https://nyc3.digitaloceanspaces.com/masp/uploads/exposure-sponsors/KtqmWu8d3tYtfPUUoxmd-o85hFyNAl7NSp6BHd0iI.png",
         "md5": "bffae620c568b276ad691d6eff9a375a",
         "fonte": "site",
         "w": 3674,
@@ -208,22 +208,77 @@
       },
       {
         "n": 3,
-        "url": "https://assets.masp.org.br/images/img_01_masp_preto_branco.jpg",
-        "md5": "2e9488f19a6085e89dd8ce6cf419425c",
+        "url": "https://assets.masp.org.br/uploads/exhibition-views/x0YLYGHt0C7LzYelW5tm-axYnpzj6CcPRmRdlMXas.jpg",
+        "md5": "d0233795754602feb897603ac08dc3bf",
         "fonte": "site",
-        "w": 1366,
-        "h": 654,
-        "kb": 175,
+        "w": 4000,
+        "h": 2182,
+        "kb": 3860,
         "serveObra": false,
-        "serveComFoco": false
+        "serveComFoco": true
+      },
+      {
+        "n": 4,
+        "url": "https://assets.masp.org.br/uploads/exhibition-views/1h5QL9jWockDpsN5lavM-AFJF80NyTJ2FdgnswvUo.jpg",
+        "md5": "71cf6a279c024dc4e242a9b2f4a2b900",
+        "fonte": "site",
+        "w": 4000,
+        "h": 3418,
+        "kb": 4933,
+        "serveObra": true,
+        "serveComFoco": true
+      },
+      {
+        "n": 5,
+        "url": "https://assets.masp.org.br/uploads/exhibition-views/rHueiRRPwQQn34aR88HZ-SUaqY95l9vSwouoWMAh9.jpg",
+        "md5": "289dba742b1a60c7c9567a040ee8f0b5",
+        "fonte": "site",
+        "w": 4000,
+        "h": 2151,
+        "kb": 4603,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 6,
+        "url": "https://nyc3.digitaloceanspaces.com/masp/uploads/exhibition-views/1Ea9ys0odqsrK3cdqFOI-sDC4SRCyiU5izI0V2pDY.jpg",
+        "md5": "cb1d7ff6483f88eb013c1ff547f21c51",
+        "fonte": "site",
+        "w": 4000,
+        "h": 2794,
+        "kb": 4567,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 7,
+        "url": "https://nyc3.digitaloceanspaces.com/masp/uploads/exhibition-views/meQF2ueEUoyvUd2oqSoq-lYjn4SLBrtvecIwDviGb.jpg",
+        "md5": "754ee84508cffd58e296f03331d6e5ef",
+        "fonte": "site",
+        "w": 3759,
+        "h": 4000,
+        "kb": 3350,
+        "serveObra": true,
+        "serveComFoco": true
+      },
+      {
+        "n": 8,
+        "url": "https://nyc3.digitaloceanspaces.com/masp/uploads/exhibition-views/PemjzdNfXqD2S14hKdYX-Mn8Q8lmsMKttRtHuxN1W.jpg",
+        "md5": "0ef3d0bcea254fc7d1c3262987c5094f",
+        "fonte": "site",
+        "w": 4000,
+        "h": 3070,
+        "kb": 3361,
+        "serveObra": false,
+        "serveComFoco": true
       }
     ],
     "credLegenda": "Foto: Divulgação",
-    "atualizado": "2026-11-13",
-    "escolhida": 1,
-    "img": "img/historias-latino-americanas-masp.webp",
-    "cred": "Arte cusquenha, Virgem de Copacabana. Divulgação MASP",
-    "motivo": "pintura colonial, 1024x1415: abaixo da régua do feed, serve ao site",
+    "atualizado": "2026-11-27",
+    "escolhida": 7,
+    "img": "img/historias-latino-americanas-masp.jpg",
+    "cred": "Foto: Divulgação / MASP",
+    "motivo": "auto: 3759x4000, fonte site",
     "sem": "auto: nenhuma candidata passou na régua (formato de obra, >=1200 px, nome sem cara de cartaz/logo)",
     "semEm": "2026-11-13"
   },
@@ -382,9 +437,9 @@
       }
     ],
     "credLegenda": null,
-    "atualizado": "2026-11-13",
+    "atualizado": "2026-11-27",
     "sem": "auto: nenhuma candidata passou na régua (formato de obra, >=1200 px, nome sem cara de cartaz/logo)",
-    "semEm": "2026-11-13"
+    "semEm": "2026-11-27"
   },
   "Beatriz Milhazes: gravuras do acervo da Pinacoteca|Estação Pinacoteca": {
     "links": {
@@ -861,20 +916,20 @@
       },
       {
         "n": 3,
-        "url": "https://museuafrobrasil.org.br/wp-content/uploads/2026/09/Site-miniatura.png",
-        "md5": "5ea4166020f752e245b08173fe328888",
+        "url": "https://museuafrobrasil.org.br/wp-content/uploads/2026/06/Afriquia_feed_sem_data_1254x1254px.png",
+        "md5": "df7c2a013f66640b44a635c8b1233da1",
         "fonte": "site",
-        "w": 1189,
-        "h": 713,
-        "kb": 25,
+        "w": 1254,
+        "h": 1254,
+        "kb": 719,
         "serveObra": false,
         "serveComFoco": false
       }
     ],
     "credLegenda": null,
-    "atualizado": "2026-11-13",
+    "atualizado": "2026-11-27",
     "sem": "auto: nenhuma candidata passou na régua (formato de obra, >=1200 px, nome sem cara de cartaz/logo)",
-    "semEm": "2026-11-13"
+    "semEm": "2026-11-27"
   },
   "Coordenadas Improváveis|MITS Galeria": {
     "links": {
@@ -1073,7 +1128,8 @@
   "Marília Mendonça: Sentimento Louco|MIS — Museu da Imagem e do Som": {
     "links": {
       "site": "https://mis-sp.org.br/exposicao/marilia-mendonca-sentimento-louco/",
-      "siteConfianca": 13
+      "siteConfianca": 13,
+      "siteErro": "nenhum link casou com o titulo (home + indices, ate com render)"
     },
     "candidatos": [
       {
@@ -1117,7 +1173,7 @@
   },
   "NZO: Memórias Afro-brasileiras|Museu Afro Brasil Emanoel Araujo": {
     "links": {
-      "site": "https://museuafrobrasil.org.br/exposicao/nzo-memorias-afro-brasileiras/",
+      "site": "https://museuafrobrasil.org.br/exposicao/nzo-memorias-afro-brasileiras-2/",
       "siteConfianca": 13
     },
     "candidatos": [
@@ -1134,31 +1190,20 @@
       },
       {
         "n": 2,
-        "url": "https://museuafrobrasil.org.br/wp-content/uploads/2026/06/cropped-mab-preto.png",
-        "md5": "70805b7166df81399499045ff0648b66",
+        "url": "https://museuafrobrasil.org.br/wp-content/uploads/2026/06/Afriquia_feed_sem_data_1254x1254px.png",
+        "md5": "df7c2a013f66640b44a635c8b1233da1",
         "fonte": "site",
-        "w": 791,
-        "h": 144,
-        "kb": 20,
-        "serveObra": false,
-        "serveComFoco": false
-      },
-      {
-        "n": 3,
-        "url": "https://museuafrobrasil.org.br/wp-content/uploads/2026/09/Site-miniatura.png",
-        "md5": "5ea4166020f752e245b08173fe328888",
-        "fonte": "site",
-        "w": 1189,
-        "h": 713,
-        "kb": 25,
+        "w": 1254,
+        "h": 1254,
+        "kb": 719,
         "serveObra": false,
         "serveComFoco": false
       }
     ],
     "credLegenda": null,
-    "atualizado": "2026-11-13",
+    "atualizado": "2026-11-27",
     "sem": "auto: nenhuma candidata passou na régua (formato de obra, >=1200 px, nome sem cara de cartaz/logo)",
-    "semEm": "2026-11-13"
+    "semEm": "2026-11-27"
   },
   "Tinta sobre Memória — Luiz Fukushiro|Museu da Imigração": {
     "links": {
@@ -1476,7 +1521,8 @@
   "Belezas Brasileiras|MIS — Museu da Imagem e do Som": {
     "links": {
       "site": "https://mis-sp.org.br/exposicao/belezas-brasileiras/",
-      "siteConfianca": 31
+      "siteConfianca": 31,
+      "siteErro": "nenhum link casou com o titulo (home + indices, ate com render)"
     },
     "candidatos": [
       {
@@ -1526,20 +1572,20 @@
       },
       {
         "n": 3,
-        "url": "https://museuafrobrasil.org.br/wp-content/uploads/2026/09/Site-miniatura.png",
-        "md5": "5ea4166020f752e245b08173fe328888",
+        "url": "https://museuafrobrasil.org.br/wp-content/uploads/2026/06/Afriquia_feed_sem_data_1254x1254px.png",
+        "md5": "df7c2a013f66640b44a635c8b1233da1",
         "fonte": "site",
-        "w": 1189,
-        "h": 713,
-        "kb": 25,
+        "w": 1254,
+        "h": 1254,
+        "kb": 719,
         "serveObra": false,
         "serveComFoco": false
       }
     ],
     "credLegenda": null,
-    "atualizado": "2026-11-13",
+    "atualizado": "2026-11-27",
     "sem": "auto: nenhuma candidata passou na régua (formato de obra, >=1200 px, nome sem cara de cartaz/logo)",
-    "semEm": "2026-11-13"
+    "semEm": "2026-11-27"
   },
   "Quarto de hora — Elisa Arruda|AM Galeria": {
     "links": {
@@ -1929,12 +1975,12 @@
     "candidatos": [
       {
         "n": 1,
-        "url": "https://mis-sp.org.br/wp-content/uploads/2026/08/reguas_mis_posit_SITE-PAREDE-TV_V3_periodo-eleitoral.png",
-        "md5": "1451cfb10a86fee5dc16c503160ba87b",
+        "url": "https://mis-sp.org.br/wp-content/uploads/2026/08/reguas_mis_posit_SITE-PAREDE-TV_V3_periodo-eleitoral-scaled.png",
+        "md5": "afd4d8de8fb65bc8ddd12c62deb3b0d2",
         "fonte": "site",
-        "w": 8517,
-        "h": 3228,
-        "kb": 374,
+        "w": 2560,
+        "h": 970,
+        "kb": 166,
         "serveObra": false,
         "serveComFoco": false
       },
@@ -1951,20 +1997,20 @@
       },
       {
         "n": 3,
-        "url": "https://mis-sp.org.br/wp-content/uploads/2026/08/reguas_mis_posit_SITE-PAREDE-TV_V3_periodo-eleitoral-scaled.png",
-        "md5": "afd4d8de8fb65bc8ddd12c62deb3b0d2",
+        "url": "https://mis-sp.org.br/wp-content/uploads/2026/08/reguas_mis_posit_SITE-PAREDE-TV_V3_periodo-eleitoral.png",
+        "md5": "1451cfb10a86fee5dc16c503160ba87b",
         "fonte": "site",
-        "w": 2560,
-        "h": 970,
-        "kb": 166,
+        "w": 8517,
+        "h": 3228,
+        "kb": 374,
         "serveObra": false,
         "serveComFoco": false
       }
     ],
     "credLegenda": null,
-    "atualizado": "2026-11-13",
+    "atualizado": "2026-11-27",
     "sem": "auto: nenhuma candidata passou na régua (formato de obra, >=1200 px, nome sem cara de cartaz/logo)",
-    "semEm": "2026-11-13"
+    "semEm": "2026-11-27"
   },
   "Encantário Ibejis: Salve as crianças!|Museu Afro Brasil Emanoel Araujo": {
     "links": {
@@ -1996,20 +2042,20 @@
       },
       {
         "n": 3,
-        "url": "https://museuafrobrasil.org.br/wp-content/uploads/2026/09/Site-miniatura.png",
-        "md5": "5ea4166020f752e245b08173fe328888",
+        "url": "https://museuafrobrasil.org.br/wp-content/uploads/2026/06/Afriquia_feed_sem_data_1254x1254px.png",
+        "md5": "df7c2a013f66640b44a635c8b1233da1",
         "fonte": "site",
-        "w": 1189,
-        "h": 713,
-        "kb": 25,
+        "w": 1254,
+        "h": 1254,
+        "kb": 719,
         "serveObra": false,
         "serveComFoco": false
       }
     ],
     "credLegenda": null,
-    "atualizado": "2026-11-13",
+    "atualizado": "2026-11-27",
     "sem": "auto: nenhuma candidata passou na régua (formato de obra, >=1200 px, nome sem cara de cartaz/logo)",
-    "semEm": "2026-11-13"
+    "semEm": "2026-11-27"
   },
   "Diáfana — Gretta Sarfaty|Museu Judaico de São Paulo": {
     "links": {
@@ -2308,5 +2354,243 @@
     "img": "img/residencia-fause-hauten-um-artista-em-processo-ccbb-sao-paul.jpg",
     "cred": "Cortesia CCBB São Paulo",
     "motivo": "auto: 1500x1499, fonte site"
+  },
+  "Sara Ramo: a fúria dos restos vivos|Estação Pinacoteca": {
+    "links": {
+      "aqa": "https://artequeacontece.com.br/evento/sara-ramo-a-furia-dos-restos-vivos-na-pinacoteca-de-sao-paulo/"
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/10/sara-ramo-exposicao-pinacoteca-sao-paulo-scaled.jpg",
+        "md5": "c92c032ee68be0ea9dfc4c80449096a5",
+        "fonte": "aqa",
+        "w": 2560,
+        "h": 1707,
+        "kb": 679,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/10/sara-ramo-exposicao-pinacoteca-sao-paulo.jpg",
+        "md5": "492ba488995cd9ae48f10644c4dae815",
+        "fonte": "aqa",
+        "w": 4000,
+        "h": 2667,
+        "kb": 6710,
+        "serveObra": false,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": "Detalhe de Destino Amoroso, 2026. Foto: Levi Fanan para Pinacoteca, 2026",
+    "atualizado": "2026-11-27",
+    "sem": "auto: nenhuma candidata passou na régua (formato de obra, >=1200 px, nome sem cara de cartaz/logo)",
+    "semEm": "2026-11-27"
+  },
+  "Oikografías — Fabio Miguez e Raul Mourão|Galeria Nara Roesler": {
+    "links": {
+      "site": "https://nararoesler.art/exhibitions/319/",
+      "siteConfianca": 16
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://static-assets.artlogic.net/w_2600,h_2600,c_limit,f_auto,fl_lossy/ws-nararoesler/usr/exhibitions/images/exhibitions/319/teste-02.png",
+        "md5": "cb883bf990a729bb66cdb425e6d1eded",
+        "fonte": "site",
+        "w": 2600,
+        "h": 1941,
+        "kb": 570,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://static-assets.artlogic.net/w_2600,h_2600,c_limit,f_auto,fl_lossy/ws-nararoesler/usr/exhibitions/images/exhibitions/319/61204_fm_tatianamito_high-1.jpg",
+        "md5": "1d4f4b7c06f8a927a953f9d64d516b01",
+        "fonte": "site",
+        "w": 2600,
+        "h": 1733,
+        "kb": 655,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 3,
+        "url": "https://static-assets.artlogic.net/w_2600,h_2600,c_limit,f_auto,fl_lossy/ws-nararoesler/usr/exhibitions/images/exhibitions/319/ezgif-1236803139bf3051.gif",
+        "md5": "701e13f1f815fd849b14098655815c13",
+        "fonte": "site",
+        "w": 800,
+        "h": 450,
+        "kb": 1780,
+        "serveObra": false,
+        "serveComFoco": false
+      },
+      {
+        "n": 4,
+        "url": "https://static-assets.artlogic.net/w_2600,h_2600,c_limit,f_auto,fl_lossy/ws-nararoesler/usr/images/exhibitions/images_and_objects/319/61205_fm_tatianamito_high-1.jpg",
+        "md5": "0107266732fa2fc21d3093c8e28edef4",
+        "fonte": "site",
+        "w": 2600,
+        "h": 1733,
+        "kb": 1188,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 5,
+        "url": "https://static-assets.artlogic.net/w_2600,h_2600,c_limit,f_auto,fl_lossy/ws-nararoesler/usr/images/exhibitions/group_images_override/319/install_fm_rm_oikografias_tatianamito_high-3.jpg",
+        "md5": "bf3b31c8e467505b587090c58fbd9f2d",
+        "fonte": "site",
+        "w": 2600,
+        "h": 1733,
+        "kb": 613,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 6,
+        "url": "https://static-assets.artlogic.net/w_2600,h_2600,c_limit,f_auto,fl_lossy/ws-nararoesler/usr/exhibitions/images/exhibitions/319/install_fm_rm_oikografias_tatianamito_high-2.jpg",
+        "md5": "0dfabf7e8809d9164d0758068e37c9eb",
+        "fonte": "site",
+        "w": 2600,
+        "h": 1733,
+        "kb": 476,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 7,
+        "url": "https://static-assets.artlogic.net/w_2600,h_2600,c_limit,f_auto,fl_lossy/ws-nararoesler/usr/exhibitions/images/exhibitions/319/install_fm_rm_oikografias_tatianamito_high-1.jpg",
+        "md5": "e0ff4c19b9e07af9697219a84d1a0ab1",
+        "fonte": "site",
+        "w": 2600,
+        "h": 1733,
+        "kb": 666,
+        "serveObra": false,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": null,
+    "atualizado": "2026-11-27",
+    "sem": "auto: nenhuma candidata passou na régua (formato de obra, >=1200 px, nome sem cara de cartaz/logo)",
+    "semEm": "2026-11-27"
+  },
+  "Southern Conversations|Galeria Marília Razuk": {
+    "links": {
+      "aqa": "https://artequeacontece.com.br/evento/southern-conversations-na-galeria-marilia-razuk/"
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/11/Voluspa-Jarpa_Cartografia-em-Fluxo-verde_2026-scaled.jpg",
+        "md5": "697f3b4cce7fe642c95f9bad1c56216f",
+        "fonte": "aqa",
+        "w": 1564,
+        "h": 2560,
+        "kb": 1792,
+        "serveObra": true,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/11/Voluspa-Jarpa_Cartografia-em-Fluxo-verde_2026.jpg",
+        "md5": "e54c1fbf0688d4fbfa538e1ccefe6e6e",
+        "fonte": "aqa",
+        "w": 2598,
+        "h": 4252,
+        "kb": 11078,
+        "serveObra": true,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": "“Cartografia em Fluxo” de Voluspa Jarpa. Foto: Divulgação",
+    "atualizado": "2026-11-27",
+    "escolhida": 2,
+    "img": "img/southern-conversations-galeria-marilia-razuk.jpg",
+    "cred": "Foto: Divulgação / Galeria Marília Razuk",
+    "motivo": "auto: 2598x4252, fonte aqa"
+  },
+  "Entre nós e as coisas|Casa de Cultura do Parque": {
+    "links": {
+      "aqa": "https://artequeacontece.com.br/evento/entre-nos-e-as-coisas-na-casa-de-cultura-do-parque/"
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/11/Matheus-Machado-Sem-titulo-2026-Foto_-Maria-Eduarda-Rezende-scaled-e1793891550525.png",
+        "md5": "60c8db0098c6e4158b2eee2626603743",
+        "fonte": "aqa",
+        "w": 1707,
+        "h": 1502,
+        "kb": 3780,
+        "serveObra": true,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": "Matheus Machado, Sem título, 2026. Foto: Maria Eduarda Rezende",
+    "atualizado": "2026-11-27",
+    "escolhida": 1,
+    "img": "img/entre-nos-e-as-coisas-casa-de-cultura-do-parque.jpg",
+    "cred": "Foto: Maria Eduarda Rezende / Casa de Cultura do Parque",
+    "motivo": "auto: 1707x1502, fonte aqa"
+  },
+  "Dois de paus — David Almeida e Mauricio Parra|Casa de Cultura do Parque": {
+    "links": {
+      "aqa": "https://artequeacontece.com.br/evento/dois-de-paus-de-david-almeida-e-mauricio-parra-na-casa-de-cultura-do-parque/"
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/11/Mauricio-Parra_The-School-Backyard-Gludsted-DM-2014_Foto_-Raphaela-Campano-scaled.jpg",
+        "md5": "f4292845468b5446e83adb265b2e92c8",
+        "fonte": "aqa",
+        "w": 2560,
+        "h": 1707,
+        "kb": 493,
+        "serveObra": false,
+        "serveComFoco": true
+      },
+      {
+        "n": 2,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/11/Mauricio-Parra_The-School-Backyard-Gludsted-DM-2014_Foto_-Raphaela-Campano.jpg",
+        "md5": "da0ac79fa1781209218b3088077fcace",
+        "fonte": "aqa",
+        "w": 5157,
+        "h": 3438,
+        "kb": 6925,
+        "serveObra": false,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": "Mauricio Parra, The School Backyard - Gludsted (DM), 2014. Foto: Raphaela Campano",
+    "atualizado": "2026-11-27",
+    "sem": "auto: nenhuma candidata passou na régua (formato de obra, >=1200 px, nome sem cara de cartaz/logo)",
+    "semEm": "2026-11-27"
+  },
+  "Linhas de origem — Kaya Agari|Casa de Cultura do Parque": {
+    "links": {
+      "aqa": "https://artequeacontece.com.br/evento/linhas-de-origem-de-kaya-agari-na-casa-de-cultura-do-parque/"
+    },
+    "candidatos": [
+      {
+        "n": 1,
+        "url": "https://artequeacontece.com.br/wp-content/uploads/2026/11/linhas-de-origem-kaya-agari-casa-cultura-parque-scaled-e1793978667745.jpeg",
+        "md5": "953b307ac41eede8f2e86ef069d6fa08",
+        "fonte": "aqa",
+        "w": 1707,
+        "h": 1920,
+        "kb": 682,
+        "serveObra": true,
+        "serveComFoco": true
+      }
+    ],
+    "credLegenda": "Kaya Agari, Grafismos variados #9, 2022. Foto: Samuel Esteves | Cortesia: Carmo Johnson Projects",
+    "atualizado": "2026-11-27",
+    "escolhida": 1,
+    "img": "img/linhas-de-origem-casa-de-cultura-do-parque.jpg",
+    "cred": "Foto: Samuel Esteves / Casa de Cultura do Parque",
+    "motivo": "auto: 1707x1920, fonte aqa"
   }
 }
