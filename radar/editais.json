@@ -1,5 +1,5 @@
 {
- "gerado": "2026-11-26",
+ "gerado": "2026-11-27",
  "aviso": "Detectado automaticamente em feeds e buscas. O prazo vem do texto da matéria: confirme na fonte oficial.",
  "itens": [
   {
@@ -11,7 +11,7 @@
    "cat": "chamada",
    "onde": "sp",
    "resumo": "Com o tema Ancestralidade e Território, evento selecionará 21 artistas e projetos para uma semana de programação na Ocupação 9 de Julho, com cachê de R$ 5 mil O Festival Ubuntu chega à sexta edição ampliando seu espaço para a produção cultu",
-   "visto": "2026-11-25"
+   "visto": "2026-11-27"
   },
   {
    "t": "Residência artística em casa projetada por Zanine Caldas abre inscrições",
@@ -22,7 +22,7 @@
    "cat": "residencia",
    "onde": "brasil",
    "resumo": "Programa selecionará quatro artistas brasileiros e estrangeiros para uma imersão de um mês à beira-mar, com curadoria de Felipe Scovino e foco na relação entre arte, arquitetura e natureza Estão abertas, até 5 de novembro, as inscrições par",
-   "visto": "2026-11-25"
+   "visto": "2026-11-27"
   },
   {
    "t": "Parque Global Cultural abre edital de R$ 30 mil para artistas iniciantes",
@@ -33,7 +33,7 @@
    "cat": "residencia",
    "onde": "sp",
    "resumo": "Edital do projeto Do Atelier Direto a Você selecionará um artista residente em São Paulo para produzir obras e realizar sua primeira exposição individual em 2027; inscrições gratuitas vão até 30 de janeiro Artistas visuais em início de traj",
-   "visto": "2026-11-25"
+   "visto": "2026-11-27"
   },
   {
    "t": "Saiba como se inscrever na residência artística da Galeria Luis Maluf para 2027",
@@ -44,7 +44,18 @@
    "cat": "residencia",
    "onde": "brasil",
    "resumo": "Programa chega à 6ª edição com coordenação de Jacopo Crivelli e Gabriela Gotoda e parceria de intercâmbio com o Sertão Negro Ateliê e Escola de Artes A Galeria Luis Maluf abriu inscrições para a 6ª edição de seu Programa de Residência Artís",
-   "visto": "2026-11-25"
+   "visto": "2026-11-27"
+  },
+  {
+   "t": "Brasileiro Jonathas de Andrade vence o prêmio internacional Eye Art & Film 2026",
+   "fonte": "Dasartes",
+   "link": "https://dasartes.com.br/de-arte-a-z/brasileiro-jonathas-de-andrade-vence-o-premio-internacional-eye-art-film-2026/",
+   "pub": "2026-11-24",
+   "prazo": null,
+   "cat": "premio",
+   "onde": "exterior",
+   "resumo": "Artista brasileiro receberá 30 mil euros para o desenvolvimento de novos trabalhos e terá sua produção apresentada no Eye Filmmuseum, em Amsterdã O artista visual e cineasta brasileiro Jonathas de Andrade é o vencedor da 12ª edição do Eye A",
+   "visto": "2026-11-27"
   },
   {
    "t": "MoMA lança prêmio de arquitetura e premia projeto em Bangladesh",
@@ -53,9 +64,9 @@
    "pub": "2026-11-13",
    "prazo": null,
    "cat": "premio",
-   "onde": "exterior",
-   "resumo": "Para proteger um prédio das enchentes no delta do rio Jamuna, em Bangladesh, o arquiteto Kashef Chowdhury buscou inspiração em um assentamento de mais de 2.300 anos. O resultado, o Friendship Centre, em Gaibandha, é o primeiro vencedor do P",
-   "visto": "2026-11-26"
+   "onde": "brasil",
+   "resumo": "Para proteger um prédio das enchentes no delta do rio Jamuna, em Bangladesh, o arquiteto Kashef Chowdhury buscou inspiração em um assentamento de mais de 2.300 anos. O resultado, o [&hellip;]",
+   "visto": "2026-11-27"
   }
  ]
 }
